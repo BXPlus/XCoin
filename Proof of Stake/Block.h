@@ -12,4 +12,6 @@ private:
 public:
     Block(int index, std::string hash, std::string previousHash, long timestamp, std::string data);
     Block GenerateNextBlock(std::string data);
+    bool IsValidNewBlock(Block &previous);
+    bool operator==(Block const& rhs);
 };

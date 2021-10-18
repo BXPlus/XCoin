@@ -13,8 +13,6 @@ int main()
     std::cout << sha256(std::to_string(0) + "" + std::to_string(1465154705) + "Genesis block");
 }
 
-const Block genesisBlock = Block(0,"0ee63a465f8cded3246596c920d7b673c4885b9d6e54ad1761da985e7219d9f2", "", 1465154705, "Genesis block");
-
 std::string CalculateHash(int index, std::string previousHash, long timestamp, std::string data) {
     return sha256(std::to_string(index) + previousHash + std::to_string(timestamp) + data);
 }
@@ -31,4 +29,12 @@ Block Block::GenerateNextBlock(std::string data) {
     const long timestamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
     const std::string hash = CalculateHash(this->index + 1, this->hash, timestamp, data);
     return Block(this->index , hash, this->hash, timestamp, data);
+}
+
+bool Block::IsValidNewBlock(Block &previous) {
+    return previous.index + 1 == this->index && previous.hash != this->hash && CalculateHash(this->index, previous.hash, this->timestamp, this->data) == this->hash;
+}
+
+bool Block::operator==(Block const& rhs) {
+    return this->index == rhs.index && this->hash == rhs.hash && this->previousHash == rhs.previousHash && this->timestamp == rhs.timestamp && this->data == rhs.data;
 }
