@@ -10,4 +10,5 @@ public:
 	Blockchain();
 	void AppendBlock(Block block);
 	bool isValidChain();
+	void ReplaceChain(std::vector<Block> blocks);
 };
