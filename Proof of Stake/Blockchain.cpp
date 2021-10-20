@@ -6,6 +6,10 @@ Blockchain::Blockchain() {
 	this->blocks = {genesisBlock};
 }
 
+std::vector<Block> Blockchain::GetBlocks() {
+	return this->blocks;
+}
+
 void Blockchain::AppendBlock(Block block) {
 	this->blocks.push_back(block);
 }
@@ -18,6 +22,7 @@ bool isChainValid(std::vector<Block> blocks) {
 			break;
 		}
 	}
+	return allValid;
 }
 
 bool Blockchain::isValidChain() {
