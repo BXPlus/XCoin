@@ -15,24 +15,27 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Proof of Stake.cpp">
+    <ClCompile Include="..\Proof of Stake v_0\bignumber.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sha256.cpp">
+    <ClCompile Include="..\Proof of Stake v_0\block.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Blockchain.cpp">
+    <ClCompile Include="..\Proof of Stake v_0\blockchain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="sha256.h">
+    <ClInclude Include="..\Proof of Stake v_0\bignumber.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Block.h">
+    <ClInclude Include="..\Proof of Stake v_0\block.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Blockchain.h">
+    <ClInclude Include="..\Proof of Stake v_0\blockchain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Proof of Stake v_0\sha256.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

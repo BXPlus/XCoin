@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Proof of Stake", "Proof of Stake\Proof of Stake.vcxproj", "{9839D6C1-0ADD-43D9-BBE8-16099BBDF5AE}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XCoin_Tests", "XCoin_Tests\XCoin_Tests.vcxproj", "{ACCF278F-AEBC-47E5-B357-255B8060E3B5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XBlockchain", "XBlockchain\XBlockchain.vcxproj", "{5CB603AF-EC32-4424-BAD2-1EA4677C1D11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +15,22 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9839D6C1-0ADD-43D9-BBE8-16099BBDF5AE}.Debug|x64.ActiveCfg = Debug|x64
-		{9839D6C1-0ADD-43D9-BBE8-16099BBDF5AE}.Debug|x64.Build.0 = Debug|x64
-		{9839D6C1-0ADD-43D9-BBE8-16099BBDF5AE}.Debug|x86.ActiveCfg = Debug|Win32
-		{9839D6C1-0ADD-43D9-BBE8-16099BBDF5AE}.Debug|x86.Build.0 = Debug|Win32
-		{9839D6C1-0ADD-43D9-BBE8-16099BBDF5AE}.Release|x64.ActiveCfg = Release|x64
-		{9839D6C1-0ADD-43D9-BBE8-16099BBDF5AE}.Release|x64.Build.0 = Release|x64
-		{9839D6C1-0ADD-43D9-BBE8-16099BBDF5AE}.Release|x86.ActiveCfg = Release|Win32
-		{9839D6C1-0ADD-43D9-BBE8-16099BBDF5AE}.Release|x86.Build.0 = Release|Win32
+		{ACCF278F-AEBC-47E5-B357-255B8060E3B5}.Debug|x64.ActiveCfg = Debug|x64
+		{ACCF278F-AEBC-47E5-B357-255B8060E3B5}.Debug|x64.Build.0 = Debug|x64
+		{ACCF278F-AEBC-47E5-B357-255B8060E3B5}.Debug|x86.ActiveCfg = Debug|Win32
+		{ACCF278F-AEBC-47E5-B357-255B8060E3B5}.Debug|x86.Build.0 = Debug|Win32
+		{ACCF278F-AEBC-47E5-B357-255B8060E3B5}.Release|x64.ActiveCfg = Release|x64
+		{ACCF278F-AEBC-47E5-B357-255B8060E3B5}.Release|x64.Build.0 = Release|x64
+		{ACCF278F-AEBC-47E5-B357-255B8060E3B5}.Release|x86.ActiveCfg = Release|Win32
+		{ACCF278F-AEBC-47E5-B357-255B8060E3B5}.Release|x86.Build.0 = Release|Win32
+		{5CB603AF-EC32-4424-BAD2-1EA4677C1D11}.Debug|x64.ActiveCfg = Debug|x64
+		{5CB603AF-EC32-4424-BAD2-1EA4677C1D11}.Debug|x64.Build.0 = Debug|x64
+		{5CB603AF-EC32-4424-BAD2-1EA4677C1D11}.Debug|x86.ActiveCfg = Debug|Win32
+		{5CB603AF-EC32-4424-BAD2-1EA4677C1D11}.Debug|x86.Build.0 = Debug|Win32
+		{5CB603AF-EC32-4424-BAD2-1EA4677C1D11}.Release|x64.ActiveCfg = Release|x64
+		{5CB603AF-EC32-4424-BAD2-1EA4677C1D11}.Release|x64.Build.0 = Release|x64
+		{5CB603AF-EC32-4424-BAD2-1EA4677C1D11}.Release|x86.ActiveCfg = Release|Win32
+		{5CB603AF-EC32-4424-BAD2-1EA4677C1D11}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
