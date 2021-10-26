@@ -29,7 +29,6 @@ class Block
 {
 public:
     //Constructor
-    Block(); //This has to be done
     Block(int index, string hash, string previousHash, long long timestamp, string data, int difficulty, int minterBalance, string minterAddress);
     ~Block(); //This has to be done
 

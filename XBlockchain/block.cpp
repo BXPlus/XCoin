@@ -4,17 +4,6 @@ using namespace std;
 
 //Constructor
 
-Block::Block() {
-    this->index = 0;
-    this->previousHash = "";
-    this->timestamp = 0;
-    this->data = "";
-    this->hash = "";
-    this->difficulty = 0;
-    this->minterBalance = 0;
-    this->minterAddress = "";
-}
-
 Block::Block(int index, string hash, string previousHash, long long timestamp, string data, int difficulty, int minterBalance, string minterAddress)
 {
     //Elements for minimal working

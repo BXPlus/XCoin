@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/cyruspellet/Desktop/xcoin/XBlockchain/Blockchain.cpp
+Blockchain.h
+/Users/cyruspellet/Desktop/xcoin/XBlockchain/Blockchain.h
+
+/Users/cyruspellet/Desktop/xcoin/XBlockchain/Blockchain.h
+block.h
+/Users/cyruspellet/Desktop/xcoin/XBlockchain/block.h
+
+/Users/cyruspellet/Desktop/xcoin/XBlockchain/bignumber.h
+vector
+-
+string
+-
+iostream
+-
+
+/Users/cyruspellet/Desktop/xcoin/XBlockchain/block.h
+sha256.h
+/Users/cyruspellet/Desktop/xcoin/XBlockchain/sha256.h
+bignumber.h
+/Users/cyruspellet/Desktop/xcoin/XBlockchain/bignumber.h
+iostream
+-
+sstream
+-
+chrono
+-
+cmath
+-
+
+/Users/cyruspellet/Desktop/xcoin/XBlockchain/sha256.h
+string
+-
+

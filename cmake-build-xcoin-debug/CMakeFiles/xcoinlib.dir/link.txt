@@ -1,0 +1,2 @@
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar qc libxcoinlib.a CMakeFiles/xcoinlib.dir/XBlockchain/block.cpp.o CMakeFiles/xcoinlib.dir/XBlockchain/Blockchain.cpp.o CMakeFiles/xcoinlib.dir/XBlockchain/sha256.cpp.o CMakeFiles/xcoinlib.dir/XBlockchain/bignumber.cpp.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib libxcoinlib.a

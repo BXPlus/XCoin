@@ -6,7 +6,7 @@
 
 //Constructor
 
-ChainNode::ChainNode(Block block, ChainNode *prev)
+ChainNode::ChainNode(const Block& block, ChainNode *prev) : block(block)
 {
     this->block = block;
     this->prev = prev;
