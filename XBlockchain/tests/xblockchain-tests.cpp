@@ -6,5 +6,6 @@
 #include "../Blockchain.h"
 
 TEST(XBlockchainCore, BlockchainInit) {
-    ASSERT_NO_THROW(Blockchain bc = Blockchain());
+    Blockchain bc = Blockchain();
+    EXPECT_STREQ(bc.getLatestBlock().hash.c_str(), bc.genesisBlock.hash.c_str());
 }
