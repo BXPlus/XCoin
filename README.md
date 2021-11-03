@@ -14,7 +14,7 @@ On top of this, we will dedicate 3 additional research teams for the **[front-en
 - Alexandre Misrahi, [AlexandreMisrahi2005](https://github.com/AlexandreMisrahi2005), Alex
 - Youssef Chaabouni, [youssef-chaabouni](https://github.com/youssef-chaabouni), Youssef Chaabouni
 - Jean-Sebastien Gaultier, [jeansebastien-gaultier](https://github.com/jeansebastien-gaultier), Jean-Sebastien G.
-- Laura Galindo [laura-enya-galindo](https://github.com/laura-enya-galindo), Laura Galindo
+- Laura Galindo, [laura-enya-galindo](https://github.com/laura-enya-galindo), Laura Galindo
 - Malo Lahogue [malo-lahogue](https://github.com/malo-lahogue), Malo
 - Salma Zainana [salmazainana](https://github.com/salmazainana),
 - Clara Schneuwly [claraschneuwly](https://github.com/claraschneuwly),
