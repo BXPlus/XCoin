@@ -5,10 +5,10 @@ XCoin is a cryptocurrency...
 
 ## Members (name surname, github username, notion username, role)
 
-- Cyrus Pellet, [...], [...] leader
-- Tim Valencony, [...], [...], git leader and frontend
-- Alexandre Misrahi, AlexandreMisrahi2005, Alex, frontend
-- Youssef Chaabouni
+- Cyrus Pellet, @cpellet, @Cyrus Pellet, leader
+- Tim Valencony, [...], @Tim Valencony, git leader
+- Alexandre Misrahi, @AlexandreMisrahi2005, @Alex
+- Youssef Chaabouni, @youssef-chaabouni, @Youssef Chaabouni
 - Jean-Sebastien Gaultier
 - Laura Galindo
 - Malo Lahogue
