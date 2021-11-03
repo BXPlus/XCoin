@@ -1,7 +1,10 @@
 # XCoin
-The green coin project
 
-XCoin is a cryptocurrency...
+## Objectives
+
+The core goal of the project is to set up a functional and production-ready(ish) cryptocurrency for our community. We will do this **from scratch** in C++, first developing  a robust **[blockchain](https://www.notion.so/Blockchain-80873a40d433432aa92678ead283691a)** algorithm. Not only that, we will also try to make this algorithm more **energy-efficient** (🍀 **Green coin**) than most algorithms widely implemented today. The next step will be to define a **[currency](https://www.notion.so/Currency-58d8e7b21ad04570b03dfd83d21de559)**, which is built on top of the blockchain to bring it purpose. The goal is to enable **monetary** **transactions** between peers, as close as possible to transactions using conventional currencies.
+
+On top of this, we will dedicate 3 additional research teams for the **[front-end](https://www.notion.so/Front-end-2d92b9dc962b4269a3613306fb13fb99)**, which is the **app** that users will interact with, a **[security](https://www.notion.so/Security-5295c1f432e143409e7e6be7da20242b)** team to **harden** our implementation and an **[API](https://www.notion.so/API-fdbd7e831412431d85073d5bf83885b3)** team to enable third-parties to **integrate** our code easily in their applications.
 
 ## Members (name surname, github username, notion username, role)
 
