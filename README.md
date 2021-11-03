@@ -7,6 +7,7 @@ XCoin is a cryptocurrency...
 
 - Cyrus Pellet, @cpellet, @Cyrus Pellet, leader
 - Tim Valencony, [...], @Tim Valencony, git leader
+- Kevin Messali, [...], @Kevin Messali, notion leader
 - Alexandre Misrahi, @AlexandreMisrahi2005, @Alex
 - Youssef Chaabouni, @youssef-chaabouni, @Youssef Chaabouni
 - Jean-Sebastien Gaultier
@@ -14,7 +15,6 @@ XCoin is a cryptocurrency...
 - Malo Lahogue
 - Salma Zainana
 - Clara Schneuwly
-- Kevin Messali
 - Lio Elalouf
 - Pierre-Chanel Mangin
 - Arthur Failler
