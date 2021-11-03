@@ -20,7 +20,7 @@ On top of this, we will dedicate 3 additional research teams for the **[front-en
 - Clara Schneuwly [claraschneuwly](https://github.com/claraschneuwly),
 - Lio Elalouf [lio-elalouf](https://github.com/lio-elalouf),
 - Pierre-Chanel Mangin [pierrechanel-mangin](https://github.com/pierrechanel-mangin), Picha
-- Arthur Failler, [arthur-failler](https://github.com/arthur-failler), 
+- Arthur Failler, [arthur-failler](https://github.com/arthur-failler), arthur
 - Mamoune Mouchtaki, [mamoune-mouchtaki](https://github.com/mamoune-mouchtaki), Mamoune Mouchtaki
 
 ## Project documents: [link](https://bx23.notion.site/XCoin-5f91e6c48a49445e8da08c63f12fa3b6)
