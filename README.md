@@ -1,23 +1,50 @@
 # XCoin
 The green coin project
 
-XCoin...
+XCoin is a cryptocurrency...
 
-## Members (name surname, github username, trello username, [role])
+## Members (name surname, github username, notion username, role)
 
-- Stephane Redon, StephaneRedon, sredon, project leader
-- Sergio Mover, smover, smover, git leader
-- Sebastian Will, todo, todo, git leader
-- ...
+- Cyrus Pellet, [...], [...] leader
+- Tim Valencony, [...], [...], git leader and frontend
+- Alexandre Misrahi, AlexandreMisrahi2005, Alex, frontend
+- Youssef Chaabouni
+- Jean-Sebastien Gaultier
+- Laura Galindo
+- Malo Lahogue
+- Salma Zainana
+- Clara Schneuwly
+- Kevin Messali
+- Lio Elalouf
+- Pierre-Chanel Mangin
+- Arthur Failler
 
 ## Teams
 
-### Graphics
+### Blockchain
 
-- Stephane Redon
+- Cyrus Pellet
+- Jean-Sebastien Gaultier
+- Youssef Chaabouni
 
-### Constraint Solving
+### Security
 
-- Sergio Mover
+- Laura Galindo
+- Malo Lahogue
+- Salma Zainana
 
-...
+### API
+- Clara Schneuwly
+- Kevin Messali
+- Lio Elalouf
+- Malo Lahogue
+
+### Currency
+- Pierre-Chanel Mangin
+
+### Frontend
+- Alexandre Misrahi
+- Arthur Failler
+- Tim Valencony
+
+
