@@ -22,6 +22,7 @@ On top of this, we will dedicate 3 additional research teams for the **[front-en
 - Pierre-Chanel Mangin [pierrechanel-mangin](https://github.com/pierrechanel-mangin), Picha
 - Arthur Failler, [arthur-failler](https://github.com/arthur-failler), arthur
 - Mamoune Mouchtaki, [mamoune-mouchtaki](https://github.com/mamoune-mouchtaki), Mamoune Mouchtaki
+- Thang Long Vu, [Dragon-Fly-02](https://github.com/Dragon-Fly-02), dragonfly02
 
 ## Project documents: [link](https://bx23.notion.site/XCoin-5f91e6c48a49445e8da08c63f12fa3b6)
 
@@ -47,6 +48,7 @@ On top of this, we will dedicate 3 additional research teams for the **[front-en
 
 ### Currency
 - Pierre-Chanel Mangin
+- Thang Long Vu
 
 ### Frontend
 - Alexandre Misrahi
