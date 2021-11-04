@@ -294,6 +294,9 @@ INSTALL_GTEST:BOOL=ON
 //Path to a program.
 ProcessorCount_cmd_sysctl:FILEPATH=/usr/sbin/sysctl
 
+//The directory containing a CMake configuration file for Qt5.
+Qt5_DIR:PATH=Qt5_DIR-NOTFOUND
+
 //Value Computed by CMake
 gmock_BINARY_DIR:STATIC=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/googletest/googlemock
 

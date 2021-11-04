@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_subdirectory(googletest)
 enable_testing()
-include_directories(googletest/googletest/include googletest/googletest)
+include_directories(googletest/googletest/include)
 
 add_executable(xcoin-test XBlockchain/tests/xblockchain-tests.cpp)
 target_link_libraries(xcoin-test gtest gtest_main)

@@ -21,16 +21,16 @@ public:
     //Manipulating blocks
     Block genesisBlock = Block(0, "816534932c2b7154836da6afc367695e6337db8a921823784c14378abed4f7d7", "", 1465154705, "my genesis block!!", 0, 0, "");
     Block getLatestBlock();                                                                             //returns the last block in the chain
-    Block generateNextBlock(string blockData, int difficulty, int minterBalance, string minterAddress); //generates the next block given its data, based on the last block in the chain
-    void appendBlock(Block block);                                                                      //Add a new node to the chain containing the new block
+    Block generateNextBlock(const string& blockData, int new_difficulty, int minterBalance, string minterAddress); //generates the next block given its data, based on the last block in the chain
+    void appendBlock(const Block& block);                                                                      //Add a new node to the chain containing the new block
     bool isValidNewBlock(Block newBlock, Block previousBlock);
 
     //Implementing the chain
     ChainNode *head;
     ChainNode *tail;
-    ChainNode *previousAdjustmentNode;
+    ChainNode *previousAdjustmentNode{};
     int length;
-    int difficulty;
+    int difficulty{};
 
     //Validating the chain
     bool isValidChain();
@@ -46,7 +46,7 @@ public:
 
     //Staking
     void updateDifficulty();
-    int getAdjustedDifficulty(Block latestBlock);
+    int getAdjustedDifficulty(const Block& latestBlock);
     Block getPrevAdjustmentBlock();
 };
 

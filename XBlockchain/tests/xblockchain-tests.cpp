@@ -5,7 +5,22 @@
 #include "gtest/gtest.h"
 #include "../Blockchain.h"
 
-TEST(XBlockchainCore, BlockchainInit) {
-    Blockchain bc = Blockchain();
-    EXPECT_STREQ(bc.getLatestBlock().hash.c_str(), bc.genesisBlock.hash.c_str());
+class XBlockchainCoreTests: public ::testing::Test{
+protected:
+    Blockchain blockchain;
+    void SetUp() override{
+        blockchain = Blockchain();
+    }
+};
+
+TEST_F(XBlockchainCoreTests, BlockchainInit) {
+    EXPECT_EQ(blockchain.tail, blockchain.head);
+    EXPECT_EQ(blockchain.getLatestBlock().index, 0);
+    EXPECT_STREQ(blockchain.getLatestBlock().data.c_str(), blockchain.genesisBlock.data.c_str());
+    EXPECT_EQ(blockchain.getLatestBlock().hash, blockchain.genesisBlock.hash);
+    EXPECT_EQ(blockchain.isValidChain(), true);
+}
+
+TEST_F(XBlockchainCoreTests, BlockchainAddBlock){
+
 }

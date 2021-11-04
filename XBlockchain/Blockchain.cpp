@@ -20,22 +20,21 @@ ChainNode::ChainNode(const Block& block, ChainNode *prev) : block(block)
 
 Blockchain::Blockchain()
 {
-    ChainNode genesisNode = ChainNode(genesisBlock, nullptr);
-    ChainNode *genesisNode_p = &genesisNode;
-    head = genesisNode_p;
-    tail = genesisNode_p;
+    ChainNode* genesisNode = new ChainNode(genesisBlock, nullptr);
+    head = genesisNode;
+    tail = genesisNode;
     length = 1;
 }
 
 //Generating Blocks
 
-Block Blockchain::generateNextBlock(string blockData, int difficulty, int minterBalance, string minterAddress)
+Block Blockchain::generateNextBlock(const string& blockData, int new_difficulty, int minterBalance, string minterAddress)
 {
     const Block previousBlock = getLatestBlock();
     const int nextIndex = previousBlock.index + 1;
     const long long nextTimestamp = getCurrentTimestamp();
-    const string nextHash = calculateHash(nextIndex, previousBlock.hash, nextTimestamp, blockData, difficulty, minterBalance, minterAddress);
-    const Block newBlock = Block(nextIndex, nextHash, previousBlock.hash, nextTimestamp, blockData, difficulty, minterBalance, minterAddress);
+    const string nextHash = calculateHash(nextIndex, previousBlock.hash, nextTimestamp, blockData, new_difficulty, minterBalance, minterAddress);
+    const Block newBlock = Block(nextIndex, nextHash, previousBlock.hash, nextTimestamp, blockData, new_difficulty, minterBalance, minterAddress);
     return newBlock;
 }
 
@@ -44,7 +43,7 @@ Block Blockchain::getLatestBlock()
     return (*tail).block;
 }
 
-void Blockchain::appendBlock(Block block)
+void Blockchain::appendBlock(const Block& block)
 {
     ChainNode *prev = tail;
     ChainNode newNode = ChainNode(block, prev);
@@ -139,7 +138,7 @@ Block Blockchain::getPrevAdjustmentBlock()
     return (*previousAdjustmentNode).block;
 } // Implement this
 
-int Blockchain::getAdjustedDifficulty(Block latestBlock)
+int Blockchain::getAdjustedDifficulty(const Block& latestBlock)
 {
     const Block prevAdjustmentBlock = getPrevAdjustmentBlock();                          //Implement getPrevAdjustmentBlock using a third pointer pointing to the last block where we checked difficulty
     const int timeExpected = BLOCK_GENERATION_INTERVAL * DIFFICULTY_ADJUSTMENT_INTERVAL; //Check long long type otherwise this makes no sense

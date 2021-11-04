@@ -19,7 +19,6 @@ set(CMAKE_CXX_COMPILER_ID "AppleClang")
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../googletest/googletest/include"
-  "../googletest/googletest"
   )
 
 # The set of dependency files which are needed:
