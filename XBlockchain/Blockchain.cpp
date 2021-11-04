@@ -46,8 +46,8 @@ Block Blockchain::getLatestBlock()
 void Blockchain::appendBlock(const Block& block)
 {
     ChainNode *prev = tail;
-    ChainNode newNode = ChainNode(block, prev);
-    tail = &newNode;
+    ChainNode* newNode = new ChainNode(block, prev);
+    tail = newNode;
     length++;
     updateDifficulty();
 }
