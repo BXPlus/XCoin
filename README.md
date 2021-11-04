@@ -18,7 +18,7 @@ On top of this, we will dedicate 3 additional research teams for the **[front-en
 - Malo Lahogue [malo-lahogue](https://github.com/malo-lahogue), Malo
 - Salma Zainana [salmazainana](https://github.com/salmazainana),
 - Clara Schneuwly [claraschneuwly](https://github.com/claraschneuwly),
-- Lio Elalouf [lio-elalouf](https://github.com/lio-elalouf),
+- Lio Elalouf [lio-elalouf](https://github.com/lio-elalouf),Lio
 - Pierre-Chanel Mangin [pierrechanel-mangin](https://github.com/pierrechanel-mangin), Picha
 - Arthur Failler, [arthur-failler](https://github.com/arthur-failler), arthur
 - Mamoune Mouchtaki, [mamoune-mouchtaki](https://github.com/mamoune-mouchtaki), Mamoune Mouchtaki
