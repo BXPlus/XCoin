@@ -84,6 +84,16 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+.PHONY : edit_cache/fast
+
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -105,16 +115,6 @@ test:
 # Special rule for the target test
 test/fast: test
 .PHONY : test/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-.PHONY : edit_cache/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
@@ -170,6 +170,19 @@ preinstall/fast:
 depend:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
+
+#=============================================================================
+# Target rules for targets named xnode
+
+# Build rule for target.
+xnode: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 xnode
+.PHONY : xnode
+
+# fast build rule for target.
+xnode/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/build
+.PHONY : xnode/fast
 
 #=============================================================================
 # Target rules for targets named xcoin
@@ -394,6 +407,30 @@ XBlockchain/tests/xblockchain-tests.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoin-test.dir/build.make CMakeFiles/xcoin-test.dir/XBlockchain/tests/xblockchain-tests.cpp.s
 .PHONY : XBlockchain/tests/xblockchain-tests.cpp.s
 
+XNode/main.o: XNode/main.cpp.o
+.PHONY : XNode/main.o
+
+# target to build an object file
+XNode/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/XNode/main.cpp.o
+.PHONY : XNode/main.cpp.o
+
+XNode/main.i: XNode/main.cpp.i
+.PHONY : XNode/main.i
+
+# target to preprocess a source file
+XNode/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/XNode/main.cpp.i
+.PHONY : XNode/main.cpp.i
+
+XNode/main.s: XNode/main.cpp.s
+.PHONY : XNode/main.s
+
+# target to generate assembly for a file
+XNode/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/XNode/main.cpp.s
+.PHONY : XNode/main.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -438,6 +475,7 @@ help:
 	@echo "... xcoin"
 	@echo "... xcoin-test"
 	@echo "... xcoinlib"
+	@echo "... xnode"
 	@echo "... XBlockchain/Blockchain.o"
 	@echo "... XBlockchain/Blockchain.i"
 	@echo "... XBlockchain/Blockchain.s"
@@ -453,6 +491,9 @@ help:
 	@echo "... XBlockchain/tests/xblockchain-tests.o"
 	@echo "... XBlockchain/tests/xblockchain-tests.i"
 	@echo "... XBlockchain/tests/xblockchain-tests.s"
+	@echo "... XNode/main.o"
+	@echo "... XNode/main.i"
+	@echo "... XNode/main.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

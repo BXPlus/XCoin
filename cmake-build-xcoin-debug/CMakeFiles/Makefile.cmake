@@ -82,6 +82,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
+  "CMakeFiles/xnode.dir/DependInfo.cmake"
   "CMakeFiles/xcoin.dir/DependInfo.cmake"
   "CMakeFiles/xcoinlib.dir/DependInfo.cmake"
   "CMakeFiles/xcoin-test.dir/DependInfo.cmake"

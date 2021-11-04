@@ -5,5 +5,5 @@
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
 add_test([=[xcoin-test]=] "xcoin-test")
-set_tests_properties([=[xcoin-test]=] PROPERTIES  _BACKTRACE_TRIPLES "/Users/cyruspellet/Desktop/xcoin/CMakeLists.txt;15;add_test;/Users/cyruspellet/Desktop/xcoin/CMakeLists.txt;0;")
+set_tests_properties([=[xcoin-test]=] PROPERTIES  _BACKTRACE_TRIPLES "/Users/cyruspellet/Desktop/xcoin/CMakeLists.txt;18;add_test;/Users/cyruspellet/Desktop/xcoin/CMakeLists.txt;0;")
 subdirs("googletest")

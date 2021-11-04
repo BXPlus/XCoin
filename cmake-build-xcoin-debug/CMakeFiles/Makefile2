@@ -63,6 +63,7 @@ CMAKE_BINARY_DIR = /Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: CMakeFiles/xnode.dir/all
 all: CMakeFiles/xcoin.dir/all
 all: CMakeFiles/xcoinlib.dir/all
 all: CMakeFiles/xcoin-test.dir/all
@@ -74,6 +75,7 @@ preinstall: googletest/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: CMakeFiles/xnode.dir/clean
 clean: CMakeFiles/xcoin.dir/clean
 clean: CMakeFiles/xcoinlib.dir/clean
 clean: CMakeFiles/xcoin-test.dir/clean
@@ -130,6 +132,32 @@ googletest/googletest/preinstall:
 googletest/googletest/clean: googletest/googletest/CMakeFiles/gtest_main.dir/clean
 googletest/googletest/clean: googletest/googletest/CMakeFiles/gtest.dir/clean
 .PHONY : googletest/googletest/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/xnode.dir
+
+# All Build rule for target.
+CMakeFiles/xnode.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/CMakeFiles --progress-num=22,23 "Built target xnode"
+.PHONY : CMakeFiles/xnode.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/xnode.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/xnode.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/CMakeFiles 0
+.PHONY : CMakeFiles/xnode.dir/rule
+
+# Convenience name for target.
+xnode: CMakeFiles/xnode.dir/rule
+.PHONY : xnode
+
+# clean rule for target.
+CMakeFiles/xnode.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/clean
+.PHONY : CMakeFiles/xnode.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/xcoin.dir

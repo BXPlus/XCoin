@@ -349,6 +349,12 @@ xcoin_BINARY_DIR:STATIC=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug
 //Value Computed by CMake
 xcoin_SOURCE_DIR:STATIC=/Users/cyruspellet/Desktop/xcoin
 
+//Value Computed by CMake
+xnode_BINARY_DIR:STATIC=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug
+
+//Value Computed by CMake
+xnode_SOURCE_DIR:STATIC=/Users/cyruspellet/Desktop/xcoin
+
 
 ########################
 # INTERNAL cache entries

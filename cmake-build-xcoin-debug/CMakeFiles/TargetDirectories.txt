@@ -1,10 +1,11 @@
 /Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/CMakeFiles/list_install_components.dir
 /Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/CMakeFiles/rebuild_cache.dir
+/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/CMakeFiles/edit_cache.dir
 /Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/CMakeFiles/install/local.dir
+/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/CMakeFiles/xnode.dir
 /Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/CMakeFiles/test.dir
 /Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/CMakeFiles/xcoin.dir
 /Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/CMakeFiles/xcoinlib.dir
-/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/CMakeFiles/edit_cache.dir
 /Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/CMakeFiles/install/strip.dir
 /Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/CMakeFiles/install.dir
 /Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/CMakeFiles/xcoin-test.dir
