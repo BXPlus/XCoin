@@ -12,9 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenuBar>
-#include <QtWidgets/QStatusBar>
-#include <QtWidgets/QTabWidget>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -23,48 +21,98 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
-    QTabWidget *tabWidget;
-    QWidget *tab_4;
-    QWidget *tab_5;
-    QWidget *tab_3;
-    QWidget *tab;
-    QWidget *tab_2;
-    QMenuBar *menubar;
-    QStatusBar *statusbar;
+    QPushButton *btnContacts;
+    QPushButton *pushButton_2;
+    QPushButton *btnBalance;
+    QPushButton *pushButton_4;
+    QPushButton *pushButton_5;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(800, 600);
+        MainWindow->resize(767, 401);
+        MainWindow->setAutoFillBackground(false);
+        MainWindow->setStyleSheet(QString::fromUtf8("QWidget {\n"
+"	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0.273, stop:0 rgba(255, 228, 225, 255), stop:1 rgba(224, 255, 255, 255));\n"
+"}"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        tabWidget = new QTabWidget(centralwidget);
-        tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        tabWidget->setGeometry(QRect(26, 29, 691, 331));
-        tab_4 = new QWidget();
-        tab_4->setObjectName(QString::fromUtf8("tab_4"));
-        tabWidget->addTab(tab_4, QString());
-        tab_5 = new QWidget();
-        tab_5->setObjectName(QString::fromUtf8("tab_5"));
-        tabWidget->addTab(tab_5, QString());
-        tab_3 = new QWidget();
-        tab_3->setObjectName(QString::fromUtf8("tab_3"));
-        tabWidget->addTab(tab_3, QString());
-        tab = new QWidget();
-        tab->setObjectName(QString::fromUtf8("tab"));
-        tabWidget->addTab(tab, QString());
-        tab_2 = new QWidget();
-        tab_2->setObjectName(QString::fromUtf8("tab_2"));
-        tabWidget->addTab(tab_2, QString());
+        btnContacts = new QPushButton(centralwidget);
+        btnContacts->setObjectName(QString::fromUtf8("btnContacts"));
+        btnContacts->setGeometry(QRect(100, 240, 102, 102));
+        btnContacts->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"position: absolute;\n"
+"background-color:  rgba(186, 85, 211, 220);\n"
+"border-style: solid;\n"
+"border-width:1px;\n"
+"border-radius:50px;\n"
+"border-color: rgba(255,0,255,100);\n"
+"max-width:100px;\n"
+"max-height:100px;\n"
+"min-width:100px;\n"
+"min-height:100px;\n"
+"}"));
+        pushButton_2 = new QPushButton(centralwidget);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        pushButton_2->setGeometry(QRect(350, 240, 102, 102));
+        pushButton_2->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"position: absolute;\n"
+"background-color:  rgba(186, 85, 211, 220);\n"
+"border-style: solid;\n"
+"border-width:1px;\n"
+"border-radius:50px;\n"
+"border-color: rgba(255,0,255,100);\n"
+"max-width:100px;\n"
+"max-height:100px;\n"
+"min-width:100px;\n"
+"min-height:100px;\n"
+"}"));
+        btnBalance = new QPushButton(centralwidget);
+        btnBalance->setObjectName(QString::fromUtf8("btnBalance"));
+        btnBalance->setGeometry(QRect(230, 270, 102, 102));
+        btnBalance->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"position: absolute;\n"
+"background-color:  rgba(186, 85, 211, 220);\n"
+"border-style: solid;\n"
+"border-width:1px;\n"
+"border-radius:50px;\n"
+"border-color: rgba(255,0,255,100);\n"
+"max-width:100px;\n"
+"max-height:100px;\n"
+"min-width:100px;\n"
+"min-height:100px;\n"
+"}"));
+        pushButton_4 = new QPushButton(centralwidget);
+        pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
+        pushButton_4->setGeometry(QRect(470, 240, 102, 102));
+        pushButton_4->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"position: absolute;\n"
+"background-color:  rgba(186, 85, 211, 220);\n"
+"border-style: solid;\n"
+"border-width:1px;\n"
+"border-radius:50px;\n"
+"border-color: rgba(255,0,255,100);\n"
+"max-width:100px;\n"
+"max-height:100px;\n"
+"min-width:100px;\n"
+"min-height:100px;\n"
+"}"));
+        pushButton_5 = new QPushButton(centralwidget);
+        pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
+        pushButton_5->setGeometry(QRect(590, 240, 102, 102));
+        pushButton_5->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"background-color:  rgba(186, 85, 211, 220);\n"
+"border-style: solid;\n"
+"border-width:1px;\n"
+"border-radius:50px;\n"
+"border-color: rgba(255,0,255,100);\n"
+"max-width:100px;\n"
+"max-height:100px;\n"
+"min-width:100px;\n"
+"min-height:100px;\n"
+"}"));
         MainWindow->setCentralWidget(centralwidget);
-        menubar = new QMenuBar(MainWindow);
-        menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 21));
-        MainWindow->setMenuBar(menubar);
-        statusbar = new QStatusBar(MainWindow);
-        statusbar->setObjectName(QString::fromUtf8("statusbar"));
-        MainWindow->setStatusBar(statusbar);
 
         retranslateUi(MainWindow);
 
@@ -74,11 +122,11 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("MainWindow", "Page", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_5), QApplication::translate("MainWindow", "Page", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindow", "Page", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "Tab 1", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Tab 2", nullptr));
+        btnContacts->setText(QApplication::translate("MainWindow", "Contacts", nullptr));
+        pushButton_2->setText(QApplication::translate("MainWindow", "Pay", nullptr));
+        btnBalance->setText(QApplication::translate("MainWindow", "Balance", nullptr));
+        pushButton_4->setText(QApplication::translate("MainWindow", "Live", nullptr));
+        pushButton_5->setText(QApplication::translate("MainWindow", "Graphs and Stats", nullptr));
     } // retranslateUi
 
 };

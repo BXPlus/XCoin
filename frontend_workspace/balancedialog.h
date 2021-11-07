@@ -1,0 +1,22 @@
+#ifndef BALANCEDIALOG_H
+#define BALANCEDIALOG_H
+
+#include <QDialog>
+
+namespace Ui {
+class BalanceDialog;
+}
+
+class BalanceDialog : public QDialog
+{
+    Q_OBJECT
+
+public:
+    explicit BalanceDialog(QWidget *parent = nullptr);
+    ~BalanceDialog();
+
+private:
+    Ui::BalanceDialog *ui;
+};
+
+#endif // BALANCEDIALOG_H

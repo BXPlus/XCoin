@@ -22,7 +22,7 @@
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="btnContacts">
     <property name="geometry">
      <rect>
       <x>200</x>
@@ -76,7 +76,7 @@ min-height:100px;
      <string>Pay</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="btnBalance">
     <property name="geometry">
      <rect>
       <x>200</x>
