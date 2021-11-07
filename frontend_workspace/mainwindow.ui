@@ -22,7 +22,7 @@
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="btnContacts">
     <property name="geometry">
      <rect>
       <x>100</x>

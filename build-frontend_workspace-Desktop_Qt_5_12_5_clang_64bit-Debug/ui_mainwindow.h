@@ -21,7 +21,7 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
-    QPushButton *pushButton;
+    QPushButton *btnContacts;
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
     QPushButton *pushButton_4;
@@ -38,10 +38,10 @@ public:
 "}"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(100, 240, 102, 102));
-        pushButton->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+        btnContacts = new QPushButton(centralwidget);
+        btnContacts->setObjectName(QString::fromUtf8("btnContacts"));
+        btnContacts->setGeometry(QRect(100, 240, 102, 102));
+        btnContacts->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "position: absolute;\n"
 "background-color:  rgba(186, 85, 211, 220);\n"
 "border-style: solid;\n"
@@ -122,7 +122,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
-        pushButton->setText(QApplication::translate("MainWindow", "Contacts", nullptr));
+        btnContacts->setText(QApplication::translate("MainWindow", "Contacts", nullptr));
         pushButton_2->setText(QApplication::translate("MainWindow", "Pay", nullptr));
         pushButton_3->setText(QApplication::translate("MainWindow", "Balance", nullptr));
         pushButton_4->setText(QApplication::translate("MainWindow", "Live", nullptr));

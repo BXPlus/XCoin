@@ -15,9 +15,10 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+private slots:
+    void contacts();
 private:
     Ui::MainWindow *ui;
-    QPropertyAnimation *animation;
+    QPropertyAnimation *contact_animation;
 };
 #endif // MAINWINDOW_H
