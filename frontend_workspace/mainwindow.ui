@@ -25,8 +25,8 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>240</y>
+      <x>200</x>
+      <y>250</y>
       <width>102</width>
       <height>102</height>
      </rect>
@@ -37,7 +37,7 @@ position: absolute;
 background-color:  rgba(186, 85, 211, 220);
 border-style: solid;
 border-width:1px;
-border-radius:50px;
+border-radius:26px;
 border-color: rgba(255,0,255,100);
 max-width:100px;
 max-height:100px;
@@ -52,8 +52,8 @@ min-height:100px;
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>240</y>
+      <x>320</x>
+      <y>160</y>
       <width>102</width>
       <height>102</height>
      </rect>
@@ -79,8 +79,8 @@ min-height:100px;
    <widget class="QPushButton" name="pushButton_3">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>270</y>
+      <x>200</x>
+      <y>60</y>
       <width>102</width>
       <height>102</height>
      </rect>
@@ -91,7 +91,7 @@ position: absolute;
 background-color:  rgba(186, 85, 211, 220);
 border-style: solid;
 border-width:1px;
-border-radius:50px;
+border-radius:26px;
 border-color: rgba(255,0,255,100);
 max-width:100px;
 max-height:100px;
@@ -106,8 +106,8 @@ min-height:100px;
    <widget class="QPushButton" name="pushButton_4">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>240</y>
+      <x>450</x>
+      <y>60</y>
       <width>102</width>
       <height>102</height>
      </rect>
@@ -118,7 +118,7 @@ position: absolute;
 background-color:  rgba(186, 85, 211, 220);
 border-style: solid;
 border-width:1px;
-border-radius:50px;
+border-radius:26px;
 border-color: rgba(255,0,255,100);
 max-width:100px;
 max-height:100px;
@@ -133,7 +133,7 @@ min-height:100px;
    <widget class="QPushButton" name="pushButton_5">
     <property name="geometry">
      <rect>
-      <x>590</x>
+      <x>440</x>
       <y>240</y>
       <width>102</width>
       <height>102</height>
@@ -144,7 +144,7 @@ min-height:100px;
 background-color:  rgba(186, 85, 211, 220);
 border-style: solid;
 border-width:1px;
-border-radius:50px;
+border-radius:26px;
 border-color: rgba(255,0,255,100);
 max-width:100px;
 max-height:100px;
