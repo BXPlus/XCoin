@@ -6,6 +6,12 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    animation = new QPropertyAnimation(ui->pushButton, "geometry");
+    animation->setDuration(10000);
+    animation->setStartValue(ui->pushButton->geometry());
+    animation->setEndValue(QRect(200, 200, 100, 50));
+    animation->start();
 }
 
 MainWindow::~MainWindow()

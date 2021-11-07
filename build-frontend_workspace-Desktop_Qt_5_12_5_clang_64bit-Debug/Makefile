@@ -222,6 +222,7 @@ DIST          = /Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/qt_config.prf \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/spec_post.prf \
+		../frontend_workspace/.qmake.stash \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/toolchain.prf \
@@ -438,6 +439,7 @@ Makefile: ../frontend_workspace/frontend_workspace.pro /Users/timvalencony/Insta
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/qt_config.prf \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/toolchain.prf \
@@ -635,6 +637,7 @@ Makefile: ../frontend_workspace/frontend_workspace.pro /Users/timvalencony/Insta
 /Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/qt_config.prf:
 /Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/macx-clang/qmake.conf:
 /Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/exclusive_builds.prf:
 /Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/mac/sdk.prf:
 /Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/toolchain.prf:
@@ -708,6 +711,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r frontend_workspace.app
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -738,6 +742,8 @@ compiler_moc_header_clean:
 moc_mainwindow.cpp: ../frontend_workspace/mainwindow.h \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QPropertyAnimation \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qpropertyanimation.h \
 		moc_predefs.h \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc
 	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc $(DEFINES) --include /Users/timvalencony/Desktop/CSE201/Project/XCoin/build-frontend_workspace-Desktop_Qt_5_12_5_clang_64bit-Debug/moc_predefs.h -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/macx-clang -I/Users/timvalencony/Desktop/CSE201/Project/XCoin/frontend_workspace -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib ../frontend_workspace/mainwindow.h -o moc_mainwindow.cpp
@@ -768,6 +774,8 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 main.o: ../frontend_workspace/main.cpp ../frontend_workspace/mainwindow.h \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QPropertyAnimation \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qpropertyanimation.h \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../frontend_workspace/main.cpp
@@ -775,6 +783,8 @@ main.o: ../frontend_workspace/main.cpp ../frontend_workspace/mainwindow.h \
 mainwindow.o: ../frontend_workspace/mainwindow.cpp ../frontend_workspace/mainwindow.h \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QPropertyAnimation \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qpropertyanimation.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../frontend_workspace/mainwindow.cpp
 
