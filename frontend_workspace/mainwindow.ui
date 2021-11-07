@@ -6,64 +6,157 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>767</width>
+    <height>401</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0.273, stop:0 rgba(255, 228, 225, 255), stop:1 rgba(224, 255, 255, 255));
+}</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTabWidget" name="tabWidget">
+   <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>6</x>
-      <y>-1</y>
-      <width>781</width>
-      <height>511</height>
+      <x>100</x>
+      <y>240</y>
+      <width>102</width>
+      <height>102</height>
      </rect>
     </property>
-    <property name="currentIndex">
-     <number>4</number>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+position: absolute;
+background-color:  rgba(186, 85, 211, 220);
+border-style: solid;
+border-width:1px;
+border-radius:50px;
+border-color: rgba(255,0,255,100);
+max-width:100px;
+max-height:100px;
+min-width:100px;
+min-height:100px;
+}</string>
     </property>
-    <widget class="QWidget" name="tab_4">
-     <attribute name="title">
-      <string>Contacts</string>
-     </attribute>
-    </widget>
-    <widget class="QWidget" name="tab_5">
-     <attribute name="title">
-      <string>Balance &amp; History</string>
-     </attribute>
-    </widget>
-    <widget class="QWidget" name="tab_3">
-     <attribute name="title">
-      <string>Payments</string>
-     </attribute>
-    </widget>
-    <widget class="QWidget" name="tab">
-     <attribute name="title">
-      <string>Live Stats</string>
-     </attribute>
-    </widget>
-    <widget class="QWidget" name="tab_2">
-     <attribute name="title">
-      <string>Graphs</string>
-     </attribute>
-    </widget>
+    <property name="text">
+     <string>Contacts</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>240</y>
+      <width>102</width>
+      <height>102</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+position: absolute;
+background-color:  rgba(186, 85, 211, 220);
+border-style: solid;
+border-width:1px;
+border-radius:50px;
+border-color: rgba(255,0,255,100);
+max-width:100px;
+max-height:100px;
+min-width:100px;
+min-height:100px;
+}</string>
+    </property>
+    <property name="text">
+     <string>Pay</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>270</y>
+      <width>102</width>
+      <height>102</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+position: absolute;
+background-color:  rgba(186, 85, 211, 220);
+border-style: solid;
+border-width:1px;
+border-radius:50px;
+border-color: rgba(255,0,255,100);
+max-width:100px;
+max-height:100px;
+min-width:100px;
+min-height:100px;
+}</string>
+    </property>
+    <property name="text">
+     <string>Balance</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>240</y>
+      <width>102</width>
+      <height>102</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+position: absolute;
+background-color:  rgba(186, 85, 211, 220);
+border-style: solid;
+border-width:1px;
+border-radius:50px;
+border-color: rgba(255,0,255,100);
+max-width:100px;
+max-height:100px;
+min-width:100px;
+min-height:100px;
+}</string>
+    </property>
+    <property name="text">
+     <string>Live</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>240</y>
+      <width>102</width>
+      <height>102</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-color:  rgba(186, 85, 211, 220);
+border-style: solid;
+border-width:1px;
+border-radius:50px;
+border-color: rgba(255,0,255,100);
+max-width:100px;
+max-height:100px;
+min-width:100px;
+min-height:100px;
+}</string>
+    </property>
+    <property name="text">
+     <string>Graphs and Stats</string>
+    </property>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>
