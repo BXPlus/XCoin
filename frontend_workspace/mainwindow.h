@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QPropertyAnimation>
+#include "balancedialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,8 +18,11 @@ public:
     ~MainWindow();
 private slots:
     void contacts();
+    void on_btnBalance_clicked();
+
 private:
     Ui::MainWindow *ui;
     QPropertyAnimation *contact_animation;
+    BalanceDialog *balancedial;
 };
 #endif // MAINWINDOW_H

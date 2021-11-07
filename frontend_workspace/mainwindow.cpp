@@ -22,3 +22,14 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+void MainWindow::on_btnBalance_clicked()
+{
+    //BalanceDialog balancedial;
+    //balancedial.setModal(true);
+    //balancedial.exec();
+    hide();
+    balancedial = new BalanceDialog(this);
+    balancedial->show();
+}
+

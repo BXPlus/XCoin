@@ -23,7 +23,7 @@ public:
     QWidget *centralwidget;
     QPushButton *btnContacts;
     QPushButton *pushButton_2;
-    QPushButton *pushButton_3;
+    QPushButton *btnBalance;
     QPushButton *pushButton_4;
     QPushButton *pushButton_5;
 
@@ -68,10 +68,10 @@ public:
 "min-width:100px;\n"
 "min-height:100px;\n"
 "}"));
-        pushButton_3 = new QPushButton(centralwidget);
-        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        pushButton_3->setGeometry(QRect(230, 270, 102, 102));
-        pushButton_3->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+        btnBalance = new QPushButton(centralwidget);
+        btnBalance->setObjectName(QString::fromUtf8("btnBalance"));
+        btnBalance->setGeometry(QRect(230, 270, 102, 102));
+        btnBalance->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "position: absolute;\n"
 "background-color:  rgba(186, 85, 211, 220);\n"
 "border-style: solid;\n"
@@ -124,7 +124,7 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
         btnContacts->setText(QApplication::translate("MainWindow", "Contacts", nullptr));
         pushButton_2->setText(QApplication::translate("MainWindow", "Pay", nullptr));
-        pushButton_3->setText(QApplication::translate("MainWindow", "Balance", nullptr));
+        btnBalance->setText(QApplication::translate("MainWindow", "Balance", nullptr));
         pushButton_4->setText(QApplication::translate("MainWindow", "Live", nullptr));
         pushButton_5->setText(QApplication::translate("MainWindow", "Graphs and Stats", nullptr));
     } // retranslateUi

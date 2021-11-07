@@ -76,7 +76,7 @@ min-height:100px;
      <string>Pay</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="btnBalance">
     <property name="geometry">
      <rect>
       <x>230</x>
