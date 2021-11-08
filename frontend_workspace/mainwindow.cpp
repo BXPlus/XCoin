@@ -8,13 +8,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 }
 
-void MainWindow::contacts(){
-    contact_animation = new QPropertyAnimation(ui->btnContacts, "geometry");
-    contact_animation->setDuration(10000);
-    contact_animation->setStartValue(ui->btnContacts->geometry());
-    contact_animation->setEndValue(QRect(200, 200, 100, 50));
-    contact_animation->start();
-}
 
 MainWindow::~MainWindow()
 {

@@ -17,12 +17,10 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 private slots:
-    void contacts();
     void on_btnPay_clicked();
 
 private:
     Ui::MainWindow *ui;
-    QPropertyAnimation *contact_animation;
     PayWindow *paywindow;
 };
 #endif // MAINWINDOW_H
