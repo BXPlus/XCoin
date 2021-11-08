@@ -52,13 +52,29 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../frontend_workspace/main.cpp \
+SOURCES       = ../frontend_workspace/balancewindow.cpp \
+		../frontend_workspace/contactswindow.cpp \
+		../frontend_workspace/graphwindow.cpp \
+		../frontend_workspace/livewindow.cpp \
+		../frontend_workspace/main.cpp \
 		../frontend_workspace/mainwindow.cpp \
-		../frontend_workspace/paywindow.cpp moc_mainwindow.cpp \
+		../frontend_workspace/paywindow.cpp moc_balancewindow.cpp \
+		moc_contactswindow.cpp \
+		moc_graphwindow.cpp \
+		moc_livewindow.cpp \
+		moc_mainwindow.cpp \
 		moc_paywindow.cpp
-OBJECTS       = main.o \
+OBJECTS       = balancewindow.o \
+		contactswindow.o \
+		graphwindow.o \
+		livewindow.o \
+		main.o \
 		mainwindow.o \
 		paywindow.o \
+		moc_balancewindow.o \
+		moc_contactswindow.o \
+		moc_graphwindow.o \
+		moc_livewindow.o \
 		moc_mainwindow.o \
 		moc_paywindow.o
 DIST          = /Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/spec_pre.prf \
@@ -254,8 +270,16 @@ DIST          = /Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/exceptions.prf \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/yacc.prf \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/lex.prf \
-		../frontend_workspace/frontend_workspace.pro ../frontend_workspace/mainwindow.h \
-		../frontend_workspace/paywindow.h ../frontend_workspace/main.cpp \
+		../frontend_workspace/frontend_workspace.pro ../frontend_workspace/balancewindow.h \
+		../frontend_workspace/contactswindow.h \
+		../frontend_workspace/graphwindow.h \
+		../frontend_workspace/livewindow.h \
+		../frontend_workspace/mainwindow.h \
+		../frontend_workspace/paywindow.h ../frontend_workspace/balancewindow.cpp \
+		../frontend_workspace/contactswindow.cpp \
+		../frontend_workspace/graphwindow.cpp \
+		../frontend_workspace/livewindow.cpp \
+		../frontend_workspace/main.cpp \
 		../frontend_workspace/mainwindow.cpp \
 		../frontend_workspace/paywindow.cpp
 QMAKE_TARGET  = frontend_workspace
@@ -276,7 +300,7 @@ include /Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/mac/sdk
 first: all
 ####### Build rules
 
-frontend_workspace.app/Contents/MacOS/frontend_workspace: ui_mainwindow.h ui_paywindow.h $(OBJECTS)  
+frontend_workspace.app/Contents/MacOS/frontend_workspace: ui_balancewindow.h ui_contactswindow.h ui_graphwindow.h ui_livewindow.h ui_mainwindow.h ui_paywindow.h $(OBJECTS)  
 	@test -d frontend_workspace.app/Contents/MacOS/ || mkdir -p frontend_workspace.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -705,9 +729,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../frontend_workspace/mainwindow.h ../frontend_workspace/paywindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../frontend_workspace/main.cpp ../frontend_workspace/mainwindow.cpp ../frontend_workspace/paywindow.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../frontend_workspace/mainwindow.ui ../frontend_workspace/paywindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../frontend_workspace/balancewindow.h ../frontend_workspace/contactswindow.h ../frontend_workspace/graphwindow.h ../frontend_workspace/livewindow.h ../frontend_workspace/mainwindow.h ../frontend_workspace/paywindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../frontend_workspace/balancewindow.cpp ../frontend_workspace/contactswindow.cpp ../frontend_workspace/graphwindow.cpp ../frontend_workspace/livewindow.cpp ../frontend_workspace/main.cpp ../frontend_workspace/mainwindow.cpp ../frontend_workspace/paywindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../frontend_workspace/balancewindow.ui ../frontend_workspace/contactswindow.ui ../frontend_workspace/graphwindow.ui ../frontend_workspace/livewindow.ui ../frontend_workspace/mainwindow.ui ../frontend_workspace/paywindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -742,15 +766,47 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/data/dummy.cpp
 	/Library/Developer/CommandLineTools/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mmacosx-version-min=10.12 -Wall -W -dM -E -o moc_predefs.h /Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_paywindow.cpp
+compiler_moc_header_make_all: moc_balancewindow.cpp moc_contactswindow.cpp moc_graphwindow.cpp moc_livewindow.cpp moc_mainwindow.cpp moc_paywindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_paywindow.cpp
+	-$(DEL_FILE) moc_balancewindow.cpp moc_contactswindow.cpp moc_graphwindow.cpp moc_livewindow.cpp moc_mainwindow.cpp moc_paywindow.cpp
+moc_balancewindow.cpp: ../frontend_workspace/balancewindow.h \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		moc_predefs.h \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc
+	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc $(DEFINES) --include /Users/timvalencony/Desktop/CSE201/Project/XCoin/build-frontend_workspace-Desktop_Qt_5_12_5_clang_64bit-Debug/moc_predefs.h -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/macx-clang -I/Users/timvalencony/Desktop/CSE201/Project/XCoin/frontend_workspace -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib ../frontend_workspace/balancewindow.h -o moc_balancewindow.cpp
+
+moc_contactswindow.cpp: ../frontend_workspace/contactswindow.h \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		moc_predefs.h \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc
+	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc $(DEFINES) --include /Users/timvalencony/Desktop/CSE201/Project/XCoin/build-frontend_workspace-Desktop_Qt_5_12_5_clang_64bit-Debug/moc_predefs.h -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/macx-clang -I/Users/timvalencony/Desktop/CSE201/Project/XCoin/frontend_workspace -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib ../frontend_workspace/contactswindow.h -o moc_contactswindow.cpp
+
+moc_graphwindow.cpp: ../frontend_workspace/graphwindow.h \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		moc_predefs.h \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc
+	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc $(DEFINES) --include /Users/timvalencony/Desktop/CSE201/Project/XCoin/build-frontend_workspace-Desktop_Qt_5_12_5_clang_64bit-Debug/moc_predefs.h -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/macx-clang -I/Users/timvalencony/Desktop/CSE201/Project/XCoin/frontend_workspace -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib ../frontend_workspace/graphwindow.h -o moc_graphwindow.cpp
+
+moc_livewindow.cpp: ../frontend_workspace/livewindow.h \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		moc_predefs.h \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc
+	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc $(DEFINES) --include /Users/timvalencony/Desktop/CSE201/Project/XCoin/build-frontend_workspace-Desktop_Qt_5_12_5_clang_64bit-Debug/moc_predefs.h -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/macx-clang -I/Users/timvalencony/Desktop/CSE201/Project/XCoin/frontend_workspace -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib ../frontend_workspace/livewindow.h -o moc_livewindow.cpp
+
 moc_mainwindow.cpp: ../frontend_workspace/mainwindow.h \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QPropertyAnimation \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qpropertyanimation.h \
 		../frontend_workspace/paywindow.h \
+		../frontend_workspace/balancewindow.h \
+		../frontend_workspace/contactswindow.h \
+		../frontend_workspace/livewindow.h \
+		../frontend_workspace/graphwindow.h \
 		moc_predefs.h \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc
 	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc $(DEFINES) --include /Users/timvalencony/Desktop/CSE201/Project/XCoin/build-frontend_workspace-Desktop_Qt_5_12_5_clang_64bit-Debug/moc_predefs.h -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/macx-clang -I/Users/timvalencony/Desktop/CSE201/Project/XCoin/frontend_workspace -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib ../frontend_workspace/mainwindow.h -o moc_mainwindow.cpp
@@ -766,9 +822,25 @@ compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_paywindow.h
+compiler_uic_make_all: ui_balancewindow.h ui_contactswindow.h ui_graphwindow.h ui_livewindow.h ui_mainwindow.h ui_paywindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_paywindow.h
+	-$(DEL_FILE) ui_balancewindow.h ui_contactswindow.h ui_graphwindow.h ui_livewindow.h ui_mainwindow.h ui_paywindow.h
+ui_balancewindow.h: ../frontend_workspace/balancewindow.ui \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/uic
+	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/uic ../frontend_workspace/balancewindow.ui -o ui_balancewindow.h
+
+ui_contactswindow.h: ../frontend_workspace/contactswindow.ui \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/uic
+	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/uic ../frontend_workspace/contactswindow.ui -o ui_contactswindow.h
+
+ui_graphwindow.h: ../frontend_workspace/graphwindow.ui \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/uic
+	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/uic ../frontend_workspace/graphwindow.ui -o ui_graphwindow.h
+
+ui_livewindow.h: ../frontend_workspace/livewindow.ui \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/uic
+	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/uic ../frontend_workspace/livewindow.ui -o ui_livewindow.h
+
 ui_mainwindow.h: ../frontend_workspace/mainwindow.ui \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/uic
 	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/uic ../frontend_workspace/mainwindow.ui -o ui_mainwindow.h
@@ -789,12 +861,40 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 ####### Compile
 
+balancewindow.o: ../frontend_workspace/balancewindow.cpp ../frontend_workspace/balancewindow.h \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		ui_balancewindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o balancewindow.o ../frontend_workspace/balancewindow.cpp
+
+contactswindow.o: ../frontend_workspace/contactswindow.cpp ../frontend_workspace/contactswindow.h \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		ui_contactswindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o contactswindow.o ../frontend_workspace/contactswindow.cpp
+
+graphwindow.o: ../frontend_workspace/graphwindow.cpp ../frontend_workspace/graphwindow.h \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		ui_graphwindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o graphwindow.o ../frontend_workspace/graphwindow.cpp
+
+livewindow.o: ../frontend_workspace/livewindow.cpp ../frontend_workspace/livewindow.h \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		ui_livewindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o livewindow.o ../frontend_workspace/livewindow.cpp
+
 main.o: ../frontend_workspace/main.cpp ../frontend_workspace/mainwindow.h \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QPropertyAnimation \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qpropertyanimation.h \
 		../frontend_workspace/paywindow.h \
+		../frontend_workspace/balancewindow.h \
+		../frontend_workspace/contactswindow.h \
+		../frontend_workspace/livewindow.h \
+		../frontend_workspace/graphwindow.h \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../frontend_workspace/main.cpp
@@ -805,6 +905,10 @@ mainwindow.o: ../frontend_workspace/mainwindow.cpp ../frontend_workspace/mainwin
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QPropertyAnimation \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qpropertyanimation.h \
 		../frontend_workspace/paywindow.h \
+		../frontend_workspace/balancewindow.h \
+		../frontend_workspace/contactswindow.h \
+		../frontend_workspace/livewindow.h \
+		../frontend_workspace/graphwindow.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../frontend_workspace/mainwindow.cpp
 
@@ -813,6 +917,18 @@ paywindow.o: ../frontend_workspace/paywindow.cpp ../frontend_workspace/paywindow
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		ui_paywindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o paywindow.o ../frontend_workspace/paywindow.cpp
+
+moc_balancewindow.o: moc_balancewindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_balancewindow.o moc_balancewindow.cpp
+
+moc_contactswindow.o: moc_contactswindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_contactswindow.o moc_contactswindow.cpp
+
+moc_graphwindow.o: moc_graphwindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_graphwindow.o moc_graphwindow.cpp
+
+moc_livewindow.o: moc_livewindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_livewindow.o moc_livewindow.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

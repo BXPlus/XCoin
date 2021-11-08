@@ -9,15 +9,27 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    balancewindow.cpp \
+    contactswindow.cpp \
+    graphwindow.cpp \
+    livewindow.cpp \
     main.cpp \
     mainwindow.cpp \
     paywindow.cpp
 
 HEADERS += \
+    balancewindow.h \
+    contactswindow.h \
+    graphwindow.h \
+    livewindow.h \
     mainwindow.h \
     paywindow.h
 
 FORMS += \
+    balancewindow.ui \
+    contactswindow.ui \
+    graphwindow.ui \
+    livewindow.ui \
     mainwindow.ui \
     paywindow.ui
 
