@@ -22,7 +22,7 @@ class Ui_MainWindow
 public:
     QWidget *centralwidget;
     QPushButton *btnContacts;
-    QPushButton *pushButton_2;
+    QPushButton *btnPay;
     QPushButton *btnBalance;
     QPushButton *pushButton_4;
     QPushButton *pushButton_5;
@@ -31,7 +31,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(767, 401);
+        MainWindow->resize(856, 611);
         MainWindow->setAutoFillBackground(false);
         MainWindow->setStyleSheet(QString::fromUtf8("QWidget {\n"
 "	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0.273, stop:0 rgba(255, 228, 225, 255), stop:1 rgba(224, 255, 255, 255));\n"
@@ -40,23 +40,23 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         btnContacts = new QPushButton(centralwidget);
         btnContacts->setObjectName(QString::fromUtf8("btnContacts"));
-        btnContacts->setGeometry(QRect(100, 240, 102, 102));
+        btnContacts->setGeometry(QRect(200, 250, 102, 102));
         btnContacts->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "position: absolute;\n"
 "background-color:  rgba(186, 85, 211, 220);\n"
 "border-style: solid;\n"
 "border-width:1px;\n"
-"border-radius:50px;\n"
+"border-radius:26px;\n"
 "border-color: rgba(255,0,255,100);\n"
 "max-width:100px;\n"
 "max-height:100px;\n"
 "min-width:100px;\n"
 "min-height:100px;\n"
 "}"));
-        pushButton_2 = new QPushButton(centralwidget);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(350, 240, 102, 102));
-        pushButton_2->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+        btnPay = new QPushButton(centralwidget);
+        btnPay->setObjectName(QString::fromUtf8("btnPay"));
+        btnPay->setGeometry(QRect(320, 160, 102, 102));
+        btnPay->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "position: absolute;\n"
 "background-color:  rgba(186, 85, 211, 220);\n"
 "border-style: solid;\n"
@@ -70,13 +70,13 @@ public:
 "}"));
         btnBalance = new QPushButton(centralwidget);
         btnBalance->setObjectName(QString::fromUtf8("btnBalance"));
-        btnBalance->setGeometry(QRect(230, 270, 102, 102));
+        btnBalance->setGeometry(QRect(200, 60, 102, 102));
         btnBalance->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "position: absolute;\n"
 "background-color:  rgba(186, 85, 211, 220);\n"
 "border-style: solid;\n"
 "border-width:1px;\n"
-"border-radius:50px;\n"
+"border-radius:26px;\n"
 "border-color: rgba(255,0,255,100);\n"
 "max-width:100px;\n"
 "max-height:100px;\n"
@@ -85,13 +85,13 @@ public:
 "}"));
         pushButton_4 = new QPushButton(centralwidget);
         pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
-        pushButton_4->setGeometry(QRect(470, 240, 102, 102));
+        pushButton_4->setGeometry(QRect(450, 60, 102, 102));
         pushButton_4->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "position: absolute;\n"
 "background-color:  rgba(186, 85, 211, 220);\n"
 "border-style: solid;\n"
 "border-width:1px;\n"
-"border-radius:50px;\n"
+"border-radius:26px;\n"
 "border-color: rgba(255,0,255,100);\n"
 "max-width:100px;\n"
 "max-height:100px;\n"
@@ -100,12 +100,12 @@ public:
 "}"));
         pushButton_5 = new QPushButton(centralwidget);
         pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
-        pushButton_5->setGeometry(QRect(590, 240, 102, 102));
+        pushButton_5->setGeometry(QRect(440, 240, 102, 102));
         pushButton_5->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "background-color:  rgba(186, 85, 211, 220);\n"
 "border-style: solid;\n"
 "border-width:1px;\n"
-"border-radius:50px;\n"
+"border-radius:26px;\n"
 "border-color: rgba(255,0,255,100);\n"
 "max-width:100px;\n"
 "max-height:100px;\n"
@@ -123,7 +123,7 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
         btnContacts->setText(QApplication::translate("MainWindow", "Contacts", nullptr));
-        pushButton_2->setText(QApplication::translate("MainWindow", "Pay", nullptr));
+        btnPay->setText(QApplication::translate("MainWindow", "Pay", nullptr));
         btnBalance->setText(QApplication::translate("MainWindow", "Balance", nullptr));
         pushButton_4->setText(QApplication::translate("MainWindow", "Live", nullptr));
         pushButton_5->setText(QApplication::translate("MainWindow", "Graphs and Stats", nullptr));

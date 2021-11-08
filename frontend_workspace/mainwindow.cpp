@@ -33,3 +33,11 @@ void MainWindow::on_btnBalance_clicked()
     balancedial->show();
 }
 
+
+void MainWindow::on_btnPay_clicked()
+{
+    hide();
+    paywindow = new PayWindow(this);
+    paywindow->show();
+}
+

@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>BalanceDialog</class>
- <widget class="QDialog" name="BalanceDialog">
+ <class>PayWindow</class>
+ <widget class="QMainWindow" name="PayWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>724</width>
-    <height>418</height>
+    <width>856</width>
+    <height>611</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>MainWindow</string>
   </property>
+  <widget class="QWidget" name="centralwidget"/>
  </widget>
  <resources/>
  <connections/>

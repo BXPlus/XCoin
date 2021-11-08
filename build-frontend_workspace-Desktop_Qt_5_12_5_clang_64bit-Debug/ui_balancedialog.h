@@ -23,7 +23,7 @@ public:
     {
         if (BalanceDialog->objectName().isEmpty())
             BalanceDialog->setObjectName(QString::fromUtf8("BalanceDialog"));
-        BalanceDialog->resize(400, 300);
+        BalanceDialog->resize(724, 418);
 
         retranslateUi(BalanceDialog);
 

@@ -54,13 +54,17 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../frontend_workspace/balancedialog.cpp \
 		../frontend_workspace/main.cpp \
-		../frontend_workspace/mainwindow.cpp moc_balancedialog.cpp \
-		moc_mainwindow.cpp
+		../frontend_workspace/mainwindow.cpp \
+		../frontend_workspace/paywindow.cpp moc_balancedialog.cpp \
+		moc_mainwindow.cpp \
+		moc_paywindow.cpp
 OBJECTS       = balancedialog.o \
 		main.o \
 		mainwindow.o \
+		paywindow.o \
 		moc_balancedialog.o \
-		moc_mainwindow.o
+		moc_mainwindow.o \
+		moc_paywindow.o
 DIST          = /Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/spec_pre.prf \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/qdevice.pri \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/device_config.prf \
@@ -255,9 +259,11 @@ DIST          = /Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/yacc.prf \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/lex.prf \
 		../frontend_workspace/frontend_workspace.pro ../frontend_workspace/balancedialog.h \
-		../frontend_workspace/mainwindow.h ../frontend_workspace/balancedialog.cpp \
+		../frontend_workspace/mainwindow.h \
+		../frontend_workspace/paywindow.h ../frontend_workspace/balancedialog.cpp \
 		../frontend_workspace/main.cpp \
-		../frontend_workspace/mainwindow.cpp
+		../frontend_workspace/mainwindow.cpp \
+		../frontend_workspace/paywindow.cpp
 QMAKE_TARGET  = frontend_workspace
 DESTDIR       = 
 TARGET        = frontend_workspace.app/Contents/MacOS/frontend_workspace
@@ -276,7 +282,7 @@ include /Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/mac/sdk
 first: all
 ####### Build rules
 
-frontend_workspace.app/Contents/MacOS/frontend_workspace: ui_balancedialog.h ui_mainwindow.h $(OBJECTS)  
+frontend_workspace.app/Contents/MacOS/frontend_workspace: ui_balancedialog.h ui_mainwindow.h ui_paywindow.h $(OBJECTS)  
 	@test -d frontend_workspace.app/Contents/MacOS/ || mkdir -p frontend_workspace.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -705,9 +711,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../frontend_workspace/balancedialog.h ../frontend_workspace/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../frontend_workspace/balancedialog.cpp ../frontend_workspace/main.cpp ../frontend_workspace/mainwindow.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../frontend_workspace/balancedialog.ui ../frontend_workspace/mainwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../frontend_workspace/balancedialog.h ../frontend_workspace/mainwindow.h ../frontend_workspace/paywindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../frontend_workspace/balancedialog.cpp ../frontend_workspace/main.cpp ../frontend_workspace/mainwindow.cpp ../frontend_workspace/paywindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../frontend_workspace/balancedialog.ui ../frontend_workspace/mainwindow.ui ../frontend_workspace/paywindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -742,9 +748,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/data/dummy.cpp
 	/Library/Developer/CommandLineTools/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mmacosx-version-min=10.12 -Wall -W -dM -E -o moc_predefs.h /Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_balancedialog.cpp moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_balancedialog.cpp moc_mainwindow.cpp moc_paywindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_balancedialog.cpp moc_mainwindow.cpp
+	-$(DEL_FILE) moc_balancedialog.cpp moc_mainwindow.cpp moc_paywindow.cpp
 moc_balancedialog.cpp: ../frontend_workspace/balancedialog.h \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
@@ -760,17 +766,25 @@ moc_mainwindow.cpp: ../frontend_workspace/mainwindow.h \
 		../frontend_workspace/balancedialog.h \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../frontend_workspace/paywindow.h \
 		moc_predefs.h \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc
 	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc $(DEFINES) --include /Users/timvalencony/Desktop/CSE201/Project/XCoin/build-frontend_workspace-Desktop_Qt_5_12_5_clang_64bit-Debug/moc_predefs.h -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/macx-clang -I/Users/timvalencony/Desktop/CSE201/Project/XCoin/frontend_workspace -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib ../frontend_workspace/mainwindow.h -o moc_mainwindow.cpp
+
+moc_paywindow.cpp: ../frontend_workspace/paywindow.h \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		moc_predefs.h \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc
+	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc $(DEFINES) --include /Users/timvalencony/Desktop/CSE201/Project/XCoin/build-frontend_workspace-Desktop_Qt_5_12_5_clang_64bit-Debug/moc_predefs.h -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/macx-clang -I/Users/timvalencony/Desktop/CSE201/Project/XCoin/frontend_workspace -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib ../frontend_workspace/paywindow.h -o moc_paywindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_balancedialog.h ui_mainwindow.h
+compiler_uic_make_all: ui_balancedialog.h ui_mainwindow.h ui_paywindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_balancedialog.h ui_mainwindow.h
+	-$(DEL_FILE) ui_balancedialog.h ui_mainwindow.h ui_paywindow.h
 ui_balancedialog.h: ../frontend_workspace/balancedialog.ui \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/uic
 	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/uic ../frontend_workspace/balancedialog.ui -o ui_balancedialog.h
@@ -778,6 +792,10 @@ ui_balancedialog.h: ../frontend_workspace/balancedialog.ui \
 ui_mainwindow.h: ../frontend_workspace/mainwindow.ui \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/uic
 	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/uic ../frontend_workspace/mainwindow.ui -o ui_mainwindow.h
+
+ui_paywindow.h: ../frontend_workspace/paywindow.ui \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/uic
+	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/uic ../frontend_workspace/paywindow.ui -o ui_paywindow.h
 
 compiler_rez_source_make_all:
 compiler_rez_source_clean:
@@ -805,6 +823,7 @@ main.o: ../frontend_workspace/main.cpp ../frontend_workspace/mainwindow.h \
 		../frontend_workspace/balancedialog.h \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../frontend_workspace/paywindow.h \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../frontend_workspace/main.cpp
@@ -817,14 +836,24 @@ mainwindow.o: ../frontend_workspace/mainwindow.cpp ../frontend_workspace/mainwin
 		../frontend_workspace/balancedialog.h \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../frontend_workspace/paywindow.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../frontend_workspace/mainwindow.cpp
+
+paywindow.o: ../frontend_workspace/paywindow.cpp ../frontend_workspace/paywindow.h \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		ui_paywindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o paywindow.o ../frontend_workspace/paywindow.cpp
 
 moc_balancedialog.o: moc_balancedialog.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_balancedialog.o moc_balancedialog.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_paywindow.o: moc_paywindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_paywindow.o moc_paywindow.cpp
 
 ####### Install
 

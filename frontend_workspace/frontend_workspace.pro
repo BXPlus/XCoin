@@ -11,15 +11,18 @@ CONFIG += c++11
 SOURCES += \
     balancedialog.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    paywindow.cpp
 
 HEADERS += \
     balancedialog.h \
-    mainwindow.h
+    mainwindow.h \
+    paywindow.h
 
 FORMS += \
     balancedialog.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    paywindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
