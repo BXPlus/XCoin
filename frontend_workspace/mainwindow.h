@@ -18,8 +18,6 @@ public:
     ~MainWindow();
 private slots:
     void contacts();
-    void on_btnBalance_clicked();
-
     void on_btnPay_clicked();
 
 private:
