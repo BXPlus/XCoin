@@ -6,7 +6,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    connect(ui->btnContacts, SIGNAL(clicked()), this, SLOT(contacts()));
 }
 
 void MainWindow::contacts(){
@@ -20,17 +19,6 @@ void MainWindow::contacts(){
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-
-void MainWindow::on_btnBalance_clicked()
-{
-    //BalanceDialog balancedial;
-    //balancedial.setModal(true);
-    //balancedial.exec();
-    hide();
-    balancedial = new BalanceDialog(this);
-    balancedial->show();
 }
 
 

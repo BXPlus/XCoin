@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include <QPropertyAnimation>
-#include "balancedialog.h"
 #include "paywindow.h"
 
 QT_BEGIN_NAMESPACE
@@ -26,7 +25,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QPropertyAnimation *contact_animation;
-    BalanceDialog *balancedial;
     PayWindow *paywindow;
 };
 #endif // MAINWINDOW_H
