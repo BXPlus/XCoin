@@ -63,11 +63,13 @@ Finished Tutorial 8 (cmake & qmake & build system)
 
 I searched for the definition of a currency and how we could implement it in our project.
 
-Added Mamoune to the currency project
+I found a tutorial that would be helpful to follow in order to start coding the currency
 
 **Next week:**
 
 I will continue to work on how implementing a currency to the token.
+
+I'll start the tutorial found about currency.
 
 @Tim Valencony 
 
