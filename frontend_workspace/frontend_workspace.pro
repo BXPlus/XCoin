@@ -9,18 +9,15 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    balancedialog.cpp \
     main.cpp \
     mainwindow.cpp \
     paywindow.cpp
 
 HEADERS += \
-    balancedialog.h \
     mainwindow.h \
     paywindow.h
 
 FORMS += \
-    balancedialog.ui \
     mainwindow.ui \
     paywindow.ui
 
