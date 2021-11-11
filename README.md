@@ -50,10 +50,13 @@ On top of this, we will dedicate 3 additional research teams for the **[front-en
 ### Currency
 - Pierre-Chanel Mangin
 - Thang Long Vu
+- Mamoune Mouchtaki
+- Timothé Ménard
 
 ### Frontend
 - Alexandre Misrahi
 - Arthur Failler
 - Tim Valencony
+- Pierre-Chanel Mangin
 
 
