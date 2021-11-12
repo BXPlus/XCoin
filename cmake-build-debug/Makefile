@@ -57,13 +57,22 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/cyruspellet/Desktop/XCoin
+CMAKE_SOURCE_DIR = /Users/malo/CLionProjects/XCoin
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/cyruspellet/Desktop/XCoin/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/malo/CLionProjects/XCoin/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -85,11 +94,57 @@ edit_cache:
 edit_cache/fast: edit_cache
 .PHONY : edit_cache/fast
 
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/Applications/CLion.app/Contents/bin/cmake/mac/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+.PHONY : test/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cyruspellet/Desktop/XCoin/cmake-build-debug/CMakeFiles /Users/cyruspellet/Desktop/XCoin/cmake-build-debug//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/malo/CLionProjects/XCoin/cmake-build-debug/CMakeFiles /Users/malo/CLionProjects/XCoin/cmake-build-debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/cyruspellet/Desktop/XCoin/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/malo/CLionProjects/XCoin/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -117,6 +172,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named xnode
+
+# Build rule for target.
+xnode: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 xnode
+.PHONY : xnode
+
+# fast build rule for target.
+xnode/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/build
+.PHONY : xnode/fast
+
+#=============================================================================
 # Target rules for targets named xcoin
 
 # Build rule for target.
@@ -129,12 +197,91 @@ xcoin/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoin.dir/build.make CMakeFiles/xcoin.dir/build
 .PHONY : xcoin/fast
 
+#=============================================================================
+# Target rules for targets named xcoinlib
+
+# Build rule for target.
+xcoinlib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 xcoinlib
+.PHONY : xcoinlib
+
+# fast build rule for target.
+xcoinlib/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoinlib.dir/build.make CMakeFiles/xcoinlib.dir/build
+.PHONY : xcoinlib/fast
+
+#=============================================================================
+# Target rules for targets named xcoin-test
+
+# Build rule for target.
+xcoin-test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 xcoin-test
+.PHONY : xcoin-test
+
+# fast build rule for target.
+xcoin-test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoin-test.dir/build.make CMakeFiles/xcoin-test.dir/build
+.PHONY : xcoin-test/fast
+
+#=============================================================================
+# Target rules for targets named gmock
+
+# Build rule for target.
+gmock: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock
+.PHONY : gmock
+
+# fast build rule for target.
+gmock/fast:
+	$(MAKE) $(MAKESILENT) -f googletest/googlemock/CMakeFiles/gmock.dir/build.make googletest/googlemock/CMakeFiles/gmock.dir/build
+.PHONY : gmock/fast
+
+#=============================================================================
+# Target rules for targets named gmock_main
+
+# Build rule for target.
+gmock_main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock_main
+.PHONY : gmock_main
+
+# fast build rule for target.
+gmock_main/fast:
+	$(MAKE) $(MAKESILENT) -f googletest/googlemock/CMakeFiles/gmock_main.dir/build.make googletest/googlemock/CMakeFiles/gmock_main.dir/build
+.PHONY : gmock_main/fast
+
+#=============================================================================
+# Target rules for targets named gtest_main
+
+# Build rule for target.
+gtest_main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest_main
+.PHONY : gtest_main
+
+# fast build rule for target.
+gtest_main/fast:
+	$(MAKE) $(MAKESILENT) -f googletest/googletest/CMakeFiles/gtest_main.dir/build.make googletest/googletest/CMakeFiles/gtest_main.dir/build
+.PHONY : gtest_main/fast
+
+#=============================================================================
+# Target rules for targets named gtest
+
+# Build rule for target.
+gtest: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest
+.PHONY : gtest
+
+# fast build rule for target.
+gtest/fast:
+	$(MAKE) $(MAKESILENT) -f googletest/googletest/CMakeFiles/gtest.dir/build.make googletest/googletest/CMakeFiles/gtest.dir/build
+.PHONY : gtest/fast
+
 XBlockchain/Blockchain.o: XBlockchain/Blockchain.cpp.o
 .PHONY : XBlockchain/Blockchain.o
 
 # target to build an object file
 XBlockchain/Blockchain.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoin.dir/build.make CMakeFiles/xcoin.dir/XBlockchain/Blockchain.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoinlib.dir/build.make CMakeFiles/xcoinlib.dir/XBlockchain/Blockchain.cpp.o
 .PHONY : XBlockchain/Blockchain.cpp.o
 
 XBlockchain/Blockchain.i: XBlockchain/Blockchain.cpp.i
@@ -143,6 +290,7 @@ XBlockchain/Blockchain.i: XBlockchain/Blockchain.cpp.i
 # target to preprocess a source file
 XBlockchain/Blockchain.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoin.dir/build.make CMakeFiles/xcoin.dir/XBlockchain/Blockchain.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoinlib.dir/build.make CMakeFiles/xcoinlib.dir/XBlockchain/Blockchain.cpp.i
 .PHONY : XBlockchain/Blockchain.cpp.i
 
 XBlockchain/Blockchain.s: XBlockchain/Blockchain.cpp.s
@@ -151,6 +299,7 @@ XBlockchain/Blockchain.s: XBlockchain/Blockchain.cpp.s
 # target to generate assembly for a file
 XBlockchain/Blockchain.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoin.dir/build.make CMakeFiles/xcoin.dir/XBlockchain/Blockchain.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoinlib.dir/build.make CMakeFiles/xcoinlib.dir/XBlockchain/Blockchain.cpp.s
 .PHONY : XBlockchain/Blockchain.cpp.s
 
 XBlockchain/bignumber.o: XBlockchain/bignumber.cpp.o
@@ -159,6 +308,7 @@ XBlockchain/bignumber.o: XBlockchain/bignumber.cpp.o
 # target to build an object file
 XBlockchain/bignumber.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoin.dir/build.make CMakeFiles/xcoin.dir/XBlockchain/bignumber.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoinlib.dir/build.make CMakeFiles/xcoinlib.dir/XBlockchain/bignumber.cpp.o
 .PHONY : XBlockchain/bignumber.cpp.o
 
 XBlockchain/bignumber.i: XBlockchain/bignumber.cpp.i
@@ -167,6 +317,7 @@ XBlockchain/bignumber.i: XBlockchain/bignumber.cpp.i
 # target to preprocess a source file
 XBlockchain/bignumber.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoin.dir/build.make CMakeFiles/xcoin.dir/XBlockchain/bignumber.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoinlib.dir/build.make CMakeFiles/xcoinlib.dir/XBlockchain/bignumber.cpp.i
 .PHONY : XBlockchain/bignumber.cpp.i
 
 XBlockchain/bignumber.s: XBlockchain/bignumber.cpp.s
@@ -175,6 +326,7 @@ XBlockchain/bignumber.s: XBlockchain/bignumber.cpp.s
 # target to generate assembly for a file
 XBlockchain/bignumber.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoin.dir/build.make CMakeFiles/xcoin.dir/XBlockchain/bignumber.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoinlib.dir/build.make CMakeFiles/xcoinlib.dir/XBlockchain/bignumber.cpp.s
 .PHONY : XBlockchain/bignumber.cpp.s
 
 XBlockchain/block.o: XBlockchain/block.cpp.o
@@ -183,6 +335,7 @@ XBlockchain/block.o: XBlockchain/block.cpp.o
 # target to build an object file
 XBlockchain/block.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoin.dir/build.make CMakeFiles/xcoin.dir/XBlockchain/block.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoinlib.dir/build.make CMakeFiles/xcoinlib.dir/XBlockchain/block.cpp.o
 .PHONY : XBlockchain/block.cpp.o
 
 XBlockchain/block.i: XBlockchain/block.cpp.i
@@ -191,6 +344,7 @@ XBlockchain/block.i: XBlockchain/block.cpp.i
 # target to preprocess a source file
 XBlockchain/block.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoin.dir/build.make CMakeFiles/xcoin.dir/XBlockchain/block.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoinlib.dir/build.make CMakeFiles/xcoinlib.dir/XBlockchain/block.cpp.i
 .PHONY : XBlockchain/block.cpp.i
 
 XBlockchain/block.s: XBlockchain/block.cpp.s
@@ -199,6 +353,7 @@ XBlockchain/block.s: XBlockchain/block.cpp.s
 # target to generate assembly for a file
 XBlockchain/block.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoin.dir/build.make CMakeFiles/xcoin.dir/XBlockchain/block.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoinlib.dir/build.make CMakeFiles/xcoinlib.dir/XBlockchain/block.cpp.s
 .PHONY : XBlockchain/block.cpp.s
 
 XBlockchain/sha256.o: XBlockchain/sha256.cpp.o
@@ -207,6 +362,7 @@ XBlockchain/sha256.o: XBlockchain/sha256.cpp.o
 # target to build an object file
 XBlockchain/sha256.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoin.dir/build.make CMakeFiles/xcoin.dir/XBlockchain/sha256.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoinlib.dir/build.make CMakeFiles/xcoinlib.dir/XBlockchain/sha256.cpp.o
 .PHONY : XBlockchain/sha256.cpp.o
 
 XBlockchain/sha256.i: XBlockchain/sha256.cpp.i
@@ -215,6 +371,7 @@ XBlockchain/sha256.i: XBlockchain/sha256.cpp.i
 # target to preprocess a source file
 XBlockchain/sha256.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoin.dir/build.make CMakeFiles/xcoin.dir/XBlockchain/sha256.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoinlib.dir/build.make CMakeFiles/xcoinlib.dir/XBlockchain/sha256.cpp.i
 .PHONY : XBlockchain/sha256.cpp.i
 
 XBlockchain/sha256.s: XBlockchain/sha256.cpp.s
@@ -223,7 +380,80 @@ XBlockchain/sha256.s: XBlockchain/sha256.cpp.s
 # target to generate assembly for a file
 XBlockchain/sha256.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoin.dir/build.make CMakeFiles/xcoin.dir/XBlockchain/sha256.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoinlib.dir/build.make CMakeFiles/xcoinlib.dir/XBlockchain/sha256.cpp.s
 .PHONY : XBlockchain/sha256.cpp.s
+
+XBlockchain/tests/xblockchain-tests.o: XBlockchain/tests/xblockchain-tests.cpp.o
+.PHONY : XBlockchain/tests/xblockchain-tests.o
+
+# target to build an object file
+XBlockchain/tests/xblockchain-tests.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoin-test.dir/build.make CMakeFiles/xcoin-test.dir/XBlockchain/tests/xblockchain-tests.cpp.o
+.PHONY : XBlockchain/tests/xblockchain-tests.cpp.o
+
+XBlockchain/tests/xblockchain-tests.i: XBlockchain/tests/xblockchain-tests.cpp.i
+.PHONY : XBlockchain/tests/xblockchain-tests.i
+
+# target to preprocess a source file
+XBlockchain/tests/xblockchain-tests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoin-test.dir/build.make CMakeFiles/xcoin-test.dir/XBlockchain/tests/xblockchain-tests.cpp.i
+.PHONY : XBlockchain/tests/xblockchain-tests.cpp.i
+
+XBlockchain/tests/xblockchain-tests.s: XBlockchain/tests/xblockchain-tests.cpp.s
+.PHONY : XBlockchain/tests/xblockchain-tests.s
+
+# target to generate assembly for a file
+XBlockchain/tests/xblockchain-tests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoin-test.dir/build.make CMakeFiles/xcoin-test.dir/XBlockchain/tests/xblockchain-tests.cpp.s
+.PHONY : XBlockchain/tests/xblockchain-tests.cpp.s
+
+XNode/main.o: XNode/main.cpp.o
+.PHONY : XNode/main.o
+
+# target to build an object file
+XNode/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/XNode/main.cpp.o
+.PHONY : XNode/main.cpp.o
+
+XNode/main.i: XNode/main.cpp.i
+.PHONY : XNode/main.i
+
+# target to preprocess a source file
+XNode/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/XNode/main.cpp.i
+.PHONY : XNode/main.cpp.i
+
+XNode/main.s: XNode/main.cpp.s
+.PHONY : XNode/main.s
+
+# target to generate assembly for a file
+XNode/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/XNode/main.cpp.s
+.PHONY : XNode/main.cpp.s
+
+XSDK/RSA_gen.o: XSDK/RSA_gen.cpp.o
+.PHONY : XSDK/RSA_gen.o
+
+# target to build an object file
+XSDK/RSA_gen.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoin.dir/build.make CMakeFiles/xcoin.dir/XSDK/RSA_gen.cpp.o
+.PHONY : XSDK/RSA_gen.cpp.o
+
+XSDK/RSA_gen.i: XSDK/RSA_gen.cpp.i
+.PHONY : XSDK/RSA_gen.i
+
+# target to preprocess a source file
+XSDK/RSA_gen.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoin.dir/build.make CMakeFiles/xcoin.dir/XSDK/RSA_gen.cpp.i
+.PHONY : XSDK/RSA_gen.cpp.i
+
+XSDK/RSA_gen.s: XSDK/RSA_gen.cpp.s
+.PHONY : XSDK/RSA_gen.s
+
+# target to generate assembly for a file
+XSDK/RSA_gen.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xcoin.dir/build.make CMakeFiles/xcoin.dir/XSDK/RSA_gen.cpp.s
+.PHONY : XSDK/RSA_gen.cpp.s
 
 main.o: main.cpp.o
 .PHONY : main.o
@@ -256,8 +486,20 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... test"
+	@echo "... gmock"
+	@echo "... gmock_main"
+	@echo "... gtest"
+	@echo "... gtest_main"
 	@echo "... xcoin"
+	@echo "... xcoin-test"
+	@echo "... xcoinlib"
+	@echo "... xnode"
 	@echo "... XBlockchain/Blockchain.o"
 	@echo "... XBlockchain/Blockchain.i"
 	@echo "... XBlockchain/Blockchain.s"
@@ -270,6 +512,15 @@ help:
 	@echo "... XBlockchain/sha256.o"
 	@echo "... XBlockchain/sha256.i"
 	@echo "... XBlockchain/sha256.s"
+	@echo "... XBlockchain/tests/xblockchain-tests.o"
+	@echo "... XBlockchain/tests/xblockchain-tests.i"
+	@echo "... XBlockchain/tests/xblockchain-tests.s"
+	@echo "... XNode/main.o"
+	@echo "... XNode/main.i"
+	@echo "... XNode/main.s"
+	@echo "... XSDK/RSA_gen.o"
+	@echo "... XSDK/RSA_gen.i"
+	@echo "... XSDK/RSA_gen.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

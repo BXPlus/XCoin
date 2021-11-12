@@ -14,6 +14,6 @@ target_link_libraries(xcoin-test gtest gtest_main)
 # TODO: Link server lib here
 target_link_libraries(xcoin-test xcoinlib)
 add_library(xcoinlib XBlockchain/block.h XBlockchain/block.cpp XBlockchain/Blockchain.cpp XBlockchain/Blockchain.h XBlockchain/sha256.cpp XBlockchain/sha256.h XBlockchain/bignumber.cpp XBlockchain/bignumber.h)
-add_executable(xcoin main.cpp XBlockchain/block.h XBlockchain/block.cpp XBlockchain/Blockchain.cpp XBlockchain/Blockchain.h XBlockchain/sha256.cpp XBlockchain/sha256.h XBlockchain/bignumber.cpp XBlockchain/bignumber.h)
+add_executable(xcoin main.cpp XBlockchain/block.h XBlockchain/block.cpp XBlockchain/Blockchain.cpp XBlockchain/Blockchain.h XBlockchain/sha256.cpp XBlockchain/sha256.h XBlockchain/bignumber.cpp XBlockchain/bignumber.h XNode/RSA_gen.h XNode/RSA_gen.cpp)
 add_executable(xnode XNode/main.cpp XNode/main.cpp)
 add_test(xcoin-test xcoin-test)

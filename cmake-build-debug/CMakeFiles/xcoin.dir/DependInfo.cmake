@@ -8,16 +8,18 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/cyruspellet/Desktop/XCoin/XBlockchain/Blockchain.cpp" "/Users/cyruspellet/Desktop/XCoin/cmake-build-debug/CMakeFiles/xcoin.dir/XBlockchain/Blockchain.cpp.o"
-  "/Users/cyruspellet/Desktop/XCoin/XBlockchain/bignumber.cpp" "/Users/cyruspellet/Desktop/XCoin/cmake-build-debug/CMakeFiles/xcoin.dir/XBlockchain/bignumber.cpp.o"
-  "/Users/cyruspellet/Desktop/XCoin/XBlockchain/block.cpp" "/Users/cyruspellet/Desktop/XCoin/cmake-build-debug/CMakeFiles/xcoin.dir/XBlockchain/block.cpp.o"
-  "/Users/cyruspellet/Desktop/XCoin/XBlockchain/sha256.cpp" "/Users/cyruspellet/Desktop/XCoin/cmake-build-debug/CMakeFiles/xcoin.dir/XBlockchain/sha256.cpp.o"
-  "/Users/cyruspellet/Desktop/XCoin/main.cpp" "/Users/cyruspellet/Desktop/XCoin/cmake-build-debug/CMakeFiles/xcoin.dir/main.cpp.o"
+  "/Users/malo/CLionProjects/XCoin/XBlockchain/Blockchain.cpp" "/Users/malo/CLionProjects/XCoin/cmake-build-debug/CMakeFiles/xcoin.dir/XBlockchain/Blockchain.cpp.o"
+  "/Users/malo/CLionProjects/XCoin/XBlockchain/bignumber.cpp" "/Users/malo/CLionProjects/XCoin/cmake-build-debug/CMakeFiles/xcoin.dir/XBlockchain/bignumber.cpp.o"
+  "/Users/malo/CLionProjects/XCoin/XBlockchain/block.cpp" "/Users/malo/CLionProjects/XCoin/cmake-build-debug/CMakeFiles/xcoin.dir/XBlockchain/block.cpp.o"
+  "/Users/malo/CLionProjects/XCoin/XBlockchain/sha256.cpp" "/Users/malo/CLionProjects/XCoin/cmake-build-debug/CMakeFiles/xcoin.dir/XBlockchain/sha256.cpp.o"
+  "/Users/malo/CLionProjects/XCoin/XSDK/RSA_gen.cpp" "/Users/malo/CLionProjects/XCoin/cmake-build-debug/CMakeFiles/xcoin.dir/XSDK/RSA_gen.cpp.o"
+  "/Users/malo/CLionProjects/XCoin/main.cpp" "/Users/malo/CLionProjects/XCoin/cmake-build-debug/CMakeFiles/xcoin.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "../googletest/googletest/include"
   )
 
 # The set of dependency files which are needed:

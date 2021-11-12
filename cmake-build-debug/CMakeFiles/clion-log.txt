@@ -1,4 +1,4 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /Users/cyruspellet/Desktop/XCoin
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /Users/malo/CLionProjects/XCoin
 -- Configuring done
 -- Generating done
--- Build files have been written to: /Users/cyruspellet/Desktop/XCoin/cmake-build-debug
+-- Build files have been written to: /Users/malo/CLionProjects/XCoin/cmake-build-debug
