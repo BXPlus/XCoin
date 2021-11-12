@@ -493,14 +493,14 @@
 		<Unit filename="/Users/malo/CLionProjects/XCoin/XBlockchain/tests/xblockchain-tests.cpp">
 			<Option target="xcoin-test"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/XNode/main.cpp">
+		<Unit filename="/Users/malo/CLionProjects/XCoin/XNode/RSA_gen.cpp">
 			<Option target="xnode"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/XSDK/RSA_gen.cpp">
-			<Option target="xcoin"/>
+		<Unit filename="/Users/malo/CLionProjects/XCoin/XNode/RSA_gen.h">
+			<Option target="xnode"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/XSDK/RSA_gen.h">
-			<Option target="xcoin"/>
+		<Unit filename="/Users/malo/CLionProjects/XCoin/XNode/main.cpp">
+			<Option target="xnode"/>
 		</Unit>
 		<Unit filename="/Users/malo/CLionProjects/XCoin/googletest/googlemock/src/gmock-all.cc">
 			<Option target="gmock"/>
