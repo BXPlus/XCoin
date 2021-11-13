@@ -3,6 +3,7 @@
 //
 
 #include<iostream>
+#include<drogon/drogon.h>
 
 std::string banner = " __   __   ____     _____    ______   __  __     \n"
                 "/\\ \\ /\\ \\ /\\  _`\\  /\\  __`\\ /\\__  _\\ /\\ \\/\\ \\    \n"
@@ -17,6 +18,6 @@ int main()
     std::cout << banner << std::endl;
     std::cout << "                                  Blockchain node    \n" << std::endl;
     std::cout << "Server will start..." << std::endl;
-    // TODO: Start server here
+    drogon::app().addListener("0.0.0.0",80).setThreadNum(16).enableRunAsDaemon().run();
     return 0;
 }
