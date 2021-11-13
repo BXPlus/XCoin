@@ -4,548 +4,565 @@
 	<Project>
 		<Option title="xcoin"/>
 		<Option makefile_is_custom="1"/>
-		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\googletest\;CMake Files\googletest\googlemock\;CMake Files\googletest\googlemock\cmake\;CMake Files\googletest\googletest\;CMake Files\googletest\googletest\cmake\;"/>
+		<Option compiler="msvc8"/>
+		<Option virtualFolders="CMake Files\;CMake Files\googletest\;CMake Files\googletest\googlemock\;CMake Files\googletest\googlemock\cmake\;CMake Files\googletest\googletest\;CMake Files\googletest\googletest\cmake\;CMake Files\vcpkg\;CMake Files\vcpkg\scripts\;CMake Files\vcpkg\scripts\buildsystems\;CMake Files\vcpkg\installed\;CMake Files\vcpkg\installed\x86-windows\;CMake Files\vcpkg\installed\x86-windows\share\;CMake Files\vcpkg\installed\x86-windows\share\openssl\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/malo/CLionProjects/XCoin/cmake-build-debug"/>
+				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="list_install_components">
-				<Option working_dir="/Users/malo/CLionProjects/XCoin/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 list_install_components"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 all"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/malo/CLionProjects/XCoin/cmake-build-debug"/>
+				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="/Users/malo/CLionProjects/XCoin/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="install/local">
-				<Option working_dir="/Users/malo/CLionProjects/XCoin/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/local"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="xnode">
-				<Option output="/Users/malo/CLionProjects/XCoin/cmake-build-debug/xnode" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/malo/CLionProjects/XCoin/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googletest/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 xnode"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="xnode/fast">
-				<Option output="/Users/malo/CLionProjects/XCoin/cmake-build-debug/xnode" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/malo/CLionProjects/XCoin/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googletest/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 xnode/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="test">
-				<Option working_dir="/Users/malo/CLionProjects/XCoin/cmake-build-debug"/>
+				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 test"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="xcoin">
-				<Option output="/Users/malo/CLionProjects/XCoin/cmake-build-debug/xcoin" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/malo/CLionProjects/XCoin/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googletest/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 xcoin"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="xcoin/fast">
-				<Option output="/Users/malo/CLionProjects/XCoin/cmake-build-debug/xcoin" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/malo/CLionProjects/XCoin/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googletest/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 xcoin/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="xcoinlib">
-				<Option output="/Users/malo/CLionProjects/XCoin/cmake-build-debug/libxcoinlib.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/malo/CLionProjects/XCoin/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="2"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googletest/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 xcoinlib"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="xcoinlib/fast">
-				<Option output="/Users/malo/CLionProjects/XCoin/cmake-build-debug/libxcoinlib.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/malo/CLionProjects/XCoin/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="2"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googletest/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 xcoinlib/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="install/strip">
-				<Option working_dir="/Users/malo/CLionProjects/XCoin/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/strip"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="install">
-				<Option working_dir="/Users/malo/CLionProjects/XCoin/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 install"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 test"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="xcoin-test">
-				<Option output="/Users/malo/CLionProjects/XCoin/cmake-build-debug/xcoin-test" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/malo/CLionProjects/XCoin/cmake-build-debug"/>
+				<Option output="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/xcoin-test.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
-				<Option compiler="gcc"/>
+				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googletest/include"/>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googletest"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 xcoin-test"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 xcoin-test"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="xcoin-test/fast">
-				<Option output="/Users/malo/CLionProjects/XCoin/cmake-build-debug/xcoin-test" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/malo/CLionProjects/XCoin/cmake-build-debug"/>
+				<Option output="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/xcoin-test.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
-				<Option compiler="gcc"/>
+				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googletest/include"/>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googletest"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 xcoin-test/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 xcoin-test/fast"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="gmock">
-				<Option output="/Users/malo/CLionProjects/XCoin/cmake-build-debug/lib/libgmockd.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googlemock"/>
+			<Target title="xcoinlib">
+				<Option output="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/xcoinlib.lib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
-				<Option compiler="gcc"/>
+				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googlemock/include"/>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googlemock"/>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googletest/include"/>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googletest"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googlemock/Makefile&quot;  VERBOSE=1 gmock"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 xcoinlib"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="gmock/fast">
-				<Option output="/Users/malo/CLionProjects/XCoin/cmake-build-debug/lib/libgmockd.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googlemock"/>
+			<Target title="xcoinlib/fast">
+				<Option output="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/xcoinlib.lib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
-				<Option compiler="gcc"/>
+				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googlemock/include"/>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googlemock"/>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googletest/include"/>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googletest"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googlemock/Makefile&quot;  VERBOSE=1 gmock/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 xcoinlib/fast"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="xcoin">
+				<Option output="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/xcoin.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/installed/x86-windows/include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 xcoin"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="xcoin/fast">
+				<Option output="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/xcoin.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/installed/x86-windows/include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 xcoin/fast"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="xnode">
+				<Option output="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/xnode.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 xnode"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="xnode/fast">
+				<Option output="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/xnode.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 xnode/fast"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 edit_cache"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="list_install_components">
+				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 list_install_components"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/local">
+				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 install/local"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install">
+				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 install"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="gmock_main">
-				<Option output="/Users/malo/CLionProjects/XCoin/cmake-build-debug/lib/libgmock_maind.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googlemock"/>
+				<Option output="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/lib/gmock_maind.lib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/googletest/googlemock"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
-				<Option compiler="gcc"/>
+				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googlemock/include"/>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googlemock"/>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googletest/include"/>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googletest"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googlemock/include"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googlemock"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googlemock/Makefile&quot;  VERBOSE=1 gmock_main"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googlemock\Makefile VERBOSE=1 gmock_main"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googlemock\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googlemock\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googlemock\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="gmock_main/fast">
-				<Option output="/Users/malo/CLionProjects/XCoin/cmake-build-debug/lib/libgmock_maind.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googlemock"/>
+				<Option output="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/lib/gmock_maind.lib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/googletest/googlemock"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
-				<Option compiler="gcc"/>
+				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googlemock/include"/>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googlemock"/>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googletest/include"/>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googletest"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googlemock/include"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googlemock"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googlemock/Makefile&quot;  VERBOSE=1 gmock_main/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googlemock\Makefile VERBOSE=1 gmock_main/fast"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googlemock\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googlemock\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googlemock\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="gtest_main">
-				<Option output="/Users/malo/CLionProjects/XCoin/cmake-build-debug/lib/libgtest_maind.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googletest"/>
+			<Target title="gmock">
+				<Option output="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/lib/gmockd.lib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/googletest/googlemock"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
-				<Option compiler="gcc"/>
+				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googletest/include"/>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googletest"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googlemock/include"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googlemock"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 gtest_main"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googlemock\Makefile VERBOSE=1 gmock"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googlemock\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googlemock\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googlemock\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="gtest_main/fast">
-				<Option output="/Users/malo/CLionProjects/XCoin/cmake-build-debug/lib/libgtest_maind.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googletest"/>
+			<Target title="gmock/fast">
+				<Option output="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/lib/gmockd.lib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/googletest/googlemock"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
-				<Option compiler="gcc"/>
+				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googletest/include"/>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googletest"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googlemock/include"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googlemock"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 gtest_main/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googlemock\Makefile VERBOSE=1 gmock/fast"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googlemock\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googlemock\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googlemock\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="gtest">
-				<Option output="/Users/malo/CLionProjects/XCoin/cmake-build-debug/lib/libgtestd.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googletest"/>
+				<Option output="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/lib/gtestd.lib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/googletest/googletest"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
-				<Option compiler="gcc"/>
+				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googletest/include"/>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googletest"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 gtest"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googletest\Makefile VERBOSE=1 gtest"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googletest\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googletest\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googletest\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="gtest/fast">
-				<Option output="/Users/malo/CLionProjects/XCoin/cmake-build-debug/lib/libgtestd.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googletest"/>
+				<Option output="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/lib/gtestd.lib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/googletest/googletest"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
-				<Option compiler="gcc"/>
+				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googletest/include"/>
-					<Add directory="/Users/malo/CLionProjects/XCoin/googletest/googletest"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 gtest/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/malo/CLionProjects/XCoin/cmake-build-debug/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googletest\Makefile VERBOSE=1 gtest/fast"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googletest\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googletest\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googletest\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest_main">
+				<Option output="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/lib/gtest_maind.lib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/googletest/googletest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googletest\Makefile VERBOSE=1 gtest_main"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googletest\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googletest\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googletest\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest_main/fast">
+				<Option output="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/lib/gtest_maind.lib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/googletest/googletest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googletest\Makefile VERBOSE=1 gtest_main/fast"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googletest\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googletest\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\googletest\googletest\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/XBlockchain/Blockchain.cpp">
-			<Option target="xcoin"/>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain/Blockchain.cpp">
 			<Option target="xcoinlib"/>
-		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/XBlockchain/Blockchain.h">
 			<Option target="xcoin"/>
-			<Option target="xcoinlib"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/XBlockchain/bignumber.cpp">
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain/Blockchain.h">
+			<Option target="xcoinlib"/>
 			<Option target="xcoin"/>
-			<Option target="xcoinlib"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/XBlockchain/bignumber.h">
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain/bignumber.cpp">
+			<Option target="xcoinlib"/>
 			<Option target="xcoin"/>
-			<Option target="xcoinlib"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/XBlockchain/block.cpp">
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain/bignumber.h">
+			<Option target="xcoinlib"/>
 			<Option target="xcoin"/>
-			<Option target="xcoinlib"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/XBlockchain/block.h">
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain/block.cpp">
+			<Option target="xcoinlib"/>
 			<Option target="xcoin"/>
-			<Option target="xcoinlib"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/XBlockchain/sha256.cpp">
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain/block.h">
+			<Option target="xcoinlib"/>
 			<Option target="xcoin"/>
-			<Option target="xcoinlib"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/XBlockchain/sha256.h">
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain/sha256.cpp">
+			<Option target="xcoinlib"/>
 			<Option target="xcoin"/>
-			<Option target="xcoinlib"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/XBlockchain/tests/xblockchain-tests.cpp">
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain/sha256.h">
+			<Option target="xcoinlib"/>
+			<Option target="xcoin"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain/tests/xblockchain-tests.cpp">
 			<Option target="xcoin-test"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/XNode/RSA_gen.cpp">
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XNode/RSA_gen.cpp">
 			<Option target="xnode"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/XNode/RSA_gen.h">
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XNode/RSA_gen.h">
 			<Option target="xnode"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/XNode/main.cpp">
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XNode/main.cpp">
 			<Option target="xnode"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/googletest/googlemock/src/gmock-all.cc">
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googlemock/src/gmock-all.cc">
+			<Option target="gmock_main"/>
 			<Option target="gmock"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/googletest/googlemock/src/gmock_main.cc">
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googlemock/src/gmock_main.cc">
 			<Option target="gmock_main"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/googletest/googletest/src/gtest-all.cc">
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/src/gtest-all.cc">
+			<Option target="gmock_main"/>
+			<Option target="gmock"/>
 			<Option target="gtest"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/googletest/googletest/src/gtest_main.cc">
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/src/gtest_main.cc">
 			<Option target="gtest_main"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/main.cpp">
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/main.cpp">
 			<Option target="xcoin"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/CMakeLists.txt">
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/googletest/CMakeLists.txt">
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/googletest/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\googletest\"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/googletest/googlemock/CMakeLists.txt">
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googlemock/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\googletest\googlemock\"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/googletest/googlemock/cmake/gmock.pc.in">
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googlemock/cmake/gmock.pc.in">
 			<Option virtualFolder="CMake Files\googletest\googlemock\cmake\"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/googletest/googlemock/cmake/gmock_main.pc.in">
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googlemock/cmake/gmock_main.pc.in">
 			<Option virtualFolder="CMake Files\googletest\googlemock\cmake\"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/googletest/googletest/CMakeLists.txt">
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\googletest\googletest\"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/googletest/googletest/cmake/Config.cmake.in">
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/cmake/Config.cmake.in">
 			<Option virtualFolder="CMake Files\googletest\googletest\cmake\"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/googletest/googletest/cmake/gtest.pc.in">
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/cmake/gtest.pc.in">
 			<Option virtualFolder="CMake Files\googletest\googletest\cmake\"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/googletest/googletest/cmake/gtest_main.pc.in">
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/cmake/gtest_main.pc.in">
 			<Option virtualFolder="CMake Files\googletest\googletest\cmake\"/>
 		</Unit>
-		<Unit filename="/Users/malo/CLionProjects/XCoin/googletest/googletest/cmake/internal_utils.cmake">
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/cmake/internal_utils.cmake">
 			<Option virtualFolder="CMake Files\googletest\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/scripts/buildsystems/vcpkg.cmake">
+			<Option virtualFolder="CMake Files\vcpkg\scripts\buildsystems\"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/installed/x86-windows/share/openssl/vcpkg-cmake-wrapper.cmake">
+			<Option virtualFolder="CMake Files\vcpkg\installed\x86-windows\share\openssl\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

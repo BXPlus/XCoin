@@ -8,17 +8,18 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/malo/CLionProjects/XCoin/XBlockchain/Blockchain.cpp" "/Users/malo/CLionProjects/XCoin/cmake-build-debug/CMakeFiles/xcoin.dir/XBlockchain/Blockchain.cpp.o"
-  "/Users/malo/CLionProjects/XCoin/XBlockchain/bignumber.cpp" "/Users/malo/CLionProjects/XCoin/cmake-build-debug/CMakeFiles/xcoin.dir/XBlockchain/bignumber.cpp.o"
-  "/Users/malo/CLionProjects/XCoin/XBlockchain/block.cpp" "/Users/malo/CLionProjects/XCoin/cmake-build-debug/CMakeFiles/xcoin.dir/XBlockchain/block.cpp.o"
-  "/Users/malo/CLionProjects/XCoin/XBlockchain/sha256.cpp" "/Users/malo/CLionProjects/XCoin/cmake-build-debug/CMakeFiles/xcoin.dir/XBlockchain/sha256.cpp.o"
-  "/Users/malo/CLionProjects/XCoin/main.cpp" "/Users/malo/CLionProjects/XCoin/cmake-build-debug/CMakeFiles/xcoin.dir/main.cpp.o"
+  "C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain/Blockchain.cpp" "C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/CMakeFiles/xcoin.dir/XBlockchain/Blockchain.cpp.obj"
+  "C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain/bignumber.cpp" "C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/CMakeFiles/xcoin.dir/XBlockchain/bignumber.cpp.obj"
+  "C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain/block.cpp" "C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/CMakeFiles/xcoin.dir/XBlockchain/block.cpp.obj"
+  "C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain/sha256.cpp" "C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/CMakeFiles/xcoin.dir/XBlockchain/sha256.cpp.obj"
+  "C:/Users/Cyrus/CLionProjects/XCoin/main.cpp" "C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/CMakeFiles/xcoin.dir/main.cpp.obj"
   )
-set(CMAKE_CXX_COMPILER_ID "AppleClang")
+set(CMAKE_CXX_COMPILER_ID "MSVC")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../googletest/googletest/include"
+  "../vcpkg/installed/x86-windows/include"
   )
 
 # The set of dependency files which are needed:
