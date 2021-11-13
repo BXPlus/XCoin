@@ -73,7 +73,7 @@ bool Blockchain::isValidChain()
     ChainNode currentNode = *tail;
     for (int i = 0; i < length - 1; i++)
     {
-        if (not(isValidNewBlock(currentNode.block, (*currentNode.prev).block)))
+        if (!(isValidNewBlock(currentNode.block, (*currentNode.prev).block)))
         {
             return false;
         };

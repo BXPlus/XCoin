@@ -1,15 +1,11 @@
-"C:\Program Files\JetBrains\CLion 2021.2.3\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - NMake Makefiles" C:\Users\Cyrus\CLionProjects\XCoin
+"C:\Program Files\JetBrains\CLion 2021.2.3\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/scripts/buildsystems/vcpkg.cmake -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - NMake Makefiles" C:\Users\Cyrus\CLionProjects\XCoin
 -- Running vcpkg install
+Detecting compiler hash for triplet x86-windows...
 Detecting compiler hash for triplet x64-windows...
 All requested packages are currently installed.
-Restored 0 packages from C:\Users\Cyrus\AppData\Local\vcpkg\archives in 138.8 us. Use --debug to see more details.
+Restored 0 packages from C:\Users\Cyrus\AppData\Local\vcpkg\archives in 140.9 us. Use --debug to see more details.
 
-Total elapsed time: 2.571 s
-
-The package openssl is compatible with built-in CMake targets:
-
-    find_package(OpenSSL REQUIRED)
-    target_link_libraries(main PRIVATE OpenSSL::SSL OpenSSL::Crypto)
+Total elapsed time: 4.881 s
 
 The package drogon provides CMake targets:
 

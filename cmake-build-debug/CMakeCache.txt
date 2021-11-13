@@ -14,8 +14,26 @@
 # EXTERNAL cache entries
 ########################
 
+//Path to a library.
+BROTLICOMMON_LIBRARY:FILEPATH=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/debug/lib/brotlicommon.lib
+
+//Path to a library.
+BROTLIDEC_LIBRARY:FILEPATH=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/debug/lib/brotlidec.lib
+
+//Path to a library.
+BROTLIENC_LIBRARY:FILEPATH=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/debug/lib/brotlienc.lib
+
+//Path to a file.
+BROTLI_INCLUDE_DIR:PATH=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/include
+
 //Builds the googlemock subproject
 BUILD_GMOCK:BOOL=ON
+
+//Path to a file.
+C-ARES_INCLUDE_DIRS:PATH=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/include
+
+//Path to a library.
+C-ARES_LIBRARIES:FILEPATH=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/debug/lib/cares.lib
 
 //Path to a program.
 CMAKE_AR:FILEPATH=C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.29.30133/bin/Hostx86/x86/lib.exe
@@ -267,8 +285,8 @@ CMAKE_STATIC_LINKER_FLAGS_RELEASE:STRING=
 // during RELWITHDEBINFO builds.
 CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
-//The CMake toolchain file
-CMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/scripts/buildsystems/vcpkg.cmake
+//Vcpkg toolchain file
+CMAKE_TOOLCHAIN_FILE:STRING=C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/scripts/buildsystems/vcpkg.cmake
 
 //If this value is on, makefiles will be generated without the
 // .SILENT directive, and all commands will be echoed to the console
@@ -276,12 +294,33 @@ CMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/scripts/b
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//TRUE if we have the C++ filesystem headers
+CXX_FILESYSTEM_HAVE_FS:BOOL=TRUE
+
+//The header that should be included to obtain the filesystem APIs
+CXX_FILESYSTEM_HEADER:STRING=filesystem
+
+//TRUE if the C++ filesystem library is the experimental version
+CXX_FILESYSTEM_IS_EXPERIMENTAL:BOOL=FALSE
+
+//The C++ namespace that contains the filesystem APIs
+CXX_FILESYSTEM_NAMESPACE:STRING=std::filesystem
+
 //The directory containing a CMake configuration file for Drogon.
-Drogon_DIR:PATH=Drogon_DIR-NOTFOUND
+Drogon_DIR:PATH=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/share/drogon
+
+//TRUE if we can run a program using std::filesystem
+Filesystem_FOUND:BOOL=TRUE
 
 //Enable installation of googletest. (Projects embedding googletest
 // may want to turn this OFF.)
 INSTALL_GTEST:BOOL=ON
+
+//jsoncpp include dir
+JSONCPP_INCLUDE_DIRS:PATH=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/include
+
+//jsoncpp library
+JSONCPP_LIBRARIES:FILEPATH=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/debug/lib/jsoncpp.lib
 
 //Path to a library.
 LIB_EAY_DEBUG:FILEPATH=LIB_EAY_DEBUG-NOTFOUND
@@ -290,13 +329,13 @@ LIB_EAY_DEBUG:FILEPATH=LIB_EAY_DEBUG-NOTFOUND
 LIB_EAY_LIBRARY_DEBUG:FILEPATH=LIB_EAY_LIBRARY_DEBUG-NOTFOUND
 
 //Path to a library.
-LIB_EAY_RELEASE:FILEPATH=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x64-windows/debug/lib/libcrypto.lib
+LIB_EAY_RELEASE:FILEPATH=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/debug/lib/libcrypto.lib
 
 //Path to a file.
-OPENSSL_APPLINK_SOURCE:FILEPATH=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x64-windows/include/openssl/applink.c
+OPENSSL_APPLINK_SOURCE:FILEPATH=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/include/openssl/applink.c
 
 //Path to a file.
-OPENSSL_INCLUDE_DIR:PATH=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x64-windows/include
+OPENSSL_INCLUDE_DIR:PATH=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/include
 
 //Path to a library.
 SSL_EAY_DEBUG:FILEPATH=SSL_EAY_DEBUG-NOTFOUND
@@ -305,7 +344,10 @@ SSL_EAY_DEBUG:FILEPATH=SSL_EAY_DEBUG-NOTFOUND
 SSL_EAY_LIBRARY_DEBUG:FILEPATH=SSL_EAY_LIBRARY_DEBUG-NOTFOUND
 
 //Path to a library.
-SSL_EAY_RELEASE:FILEPATH=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x64-windows/debug/lib/libssl.lib
+SSL_EAY_RELEASE:FILEPATH=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/debug/lib/libssl.lib
+
+//The directory containing a CMake configuration file for Trantor.
+Trantor_DIR:PATH=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/share/trantor
 
 //Automatically copy dependencies into the output directory for
 // executables.
@@ -346,7 +388,7 @@ VCPKG_OVERLAY_TRIPLETS:STRING=
 VCPKG_PREFER_SYSTEM_LIBS:BOOL=OFF
 
 //Vcpkg target triplet (ex. x86-windows)
-VCPKG_TARGET_TRIPLET:STRING=x64-windows
+VCPKG_TARGET_TRIPLET:STRING=x86-windows
 
 //Enables messages from the VCPKG toolchain for debugging purposes.
 VCPKG_VERBOSE:BOOL=OFF
@@ -359,8 +401,20 @@ X_VCPKG_APPLOCAL_DEPS_INSTALL:BOOL=OFF
 // serialization.
 X_VCPKG_APPLOCAL_DEPS_SERIALIZED:BOOL=OFF
 
+//Path to a file.
+ZLIB_INCLUDE_DIR:PATH=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/include
+
+//Path to a library.
+ZLIB_LIBRARY_DEBUG:FILEPATH=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/debug/lib/zlibd.lib
+
+//Path to a library.
+ZLIB_LIBRARY_RELEASE:FILEPATH=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/lib/zlib.lib
+
 //Path to a program.
 Z_VCPKG_BUILTIN_POWERSHELL_PATH:FILEPATH=C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe
+
+//Path to a program.
+Z_VCPKG_CL:FILEPATH=C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.29.30133/bin/Hostx86/x86/cl.exe
 
 //Path to a program.
 Z_VCPKG_PWSH_PATH:FILEPATH=Z_VCPKG_PWSH_PATH-NOTFOUND
@@ -417,6 +471,10 @@ xcoin_SOURCE_DIR:STATIC=C:/Users/Cyrus/CLionProjects/XCoin
 # INTERNAL cache entries
 ########################
 
+//ADVANCED property for variable: C-ARES_INCLUDE_DIRS
+C-ARES_INCLUDE_DIRS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: C-ARES_LIBRARIES
+C-ARES_LIBRARIES-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
 CMAKE_AR-ADVANCED:INTERNAL=1
 //This is the directory where this CMakeCache.txt was created
@@ -591,12 +649,30 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 CMAKE_TOOLCHAIN_FILE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Test CXX_FILESYSTEM_NO_LINK_NEEDED
+CXX_FILESYSTEM_NO_LINK_NEEDED:INTERNAL=1
+//Result of TRY_COMPILE
+CXX_FILESYSTEM_NO_LINK_NEEDED_COMPILED:INTERNAL=TRUE
+//Result of TRY_RUN
+CXX_FILESYSTEM_NO_LINK_NEEDED_EXITCODE:INTERNAL=0
+//Details about finding Brotli
+FIND_PACKAGE_MESSAGE_DETAILS_Brotli:INTERNAL=[C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/debug/lib/brotlidec.lib][C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/debug/lib/brotlienc.lib][C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/debug/lib/brotlicommon.lib][C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/include][v()]
+//Details about finding Jsoncpp
+FIND_PACKAGE_MESSAGE_DETAILS_Jsoncpp:INTERNAL=[C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/include][C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/debug/lib/jsoncpp.lib][v()]
 //Details about finding OpenSSL
-FIND_PACKAGE_MESSAGE_DETAILS_OpenSSL:INTERNAL=[C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x64-windows/debug/lib/libcrypto.lib][C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x64-windows/include][c ][v1.1.1l()]
+FIND_PACKAGE_MESSAGE_DETAILS_OpenSSL:INTERNAL=[C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/debug/lib/libcrypto.lib][C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/include][c ][v1.1.1l()]
 //Details about finding Python
 FIND_PACKAGE_MESSAGE_DETAILS_Python:INTERNAL=[C:/Python310/python.exe][cfound components: Interpreter ][v3.10.0()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
+//Details about finding ZLIB
+FIND_PACKAGE_MESSAGE_DETAILS_ZLIB:INTERNAL=[optimized;C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/lib/zlib.lib;debug;C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/debug/lib/zlibd.lib][C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/include][v1.2.11()]
+//Details about finding c-ares
+FIND_PACKAGE_MESSAGE_DETAILS_c-ares:INTERNAL=[C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/include][C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/debug/lib/cares.lib][v()]
+//ADVANCED property for variable: JSONCPP_INCLUDE_DIRS
+JSONCPP_INCLUDE_DIRS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: JSONCPP_LIBRARIES
+JSONCPP_LIBRARIES-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: LIB_EAY_LIBRARY_DEBUG
 LIB_EAY_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENSSL_INCLUDE_DIR
@@ -605,12 +681,22 @@ OPENSSL_INCLUDE_DIR-ADVANCED:INTERNAL=1
 SSL_EAY_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: VCPKG_VERBOSE
 VCPKG_VERBOSE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: ZLIB_INCLUDE_DIR
+ZLIB_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: ZLIB_LIBRARY_DEBUG
+ZLIB_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: ZLIB_LIBRARY_RELEASE
+ZLIB_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 //Making sure VCPKG_MANIFEST_MODE doesn't change
 Z_VCPKG_CHECK_MANIFEST_MODE:INTERNAL=ON
 //The path to the PowerShell implementation to use.
 Z_VCPKG_POWERSHELL_PATH:INTERNAL=C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe
 //Vcpkg root directory
 Z_VCPKG_ROOT_DIR:INTERNAL=C:/Users/Cyrus/CLionProjects/XCoin/vcpkg
+//ADVANCED property for variable: _CXX_FILESYSTEM_HAVE_HEADER
+_CXX_FILESYSTEM_HAVE_HEADER-ADVANCED:INTERNAL=1
+//Have include filesystem
+_CXX_FILESYSTEM_HAVE_HEADER:INTERNAL=1
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=C:/Program Files (x86)/xcoin
 //Path to a program.
