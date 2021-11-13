@@ -5,7 +5,7 @@
 		<Option title="xcoin"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="msvc8"/>
-		<Option virtualFolders="CMake Files\;CMake Files\googletest\;CMake Files\googletest\googlemock\;CMake Files\googletest\googlemock\cmake\;CMake Files\googletest\googletest\;CMake Files\googletest\googletest\cmake\;CMake Files\vcpkg\;CMake Files\vcpkg\scripts\;CMake Files\vcpkg\scripts\buildsystems\;CMake Files\vcpkg\installed\;CMake Files\vcpkg\installed\x86-windows\;CMake Files\vcpkg\installed\x86-windows\share\;CMake Files\vcpkg\installed\x86-windows\share\openssl\;CMake Files\vcpkg\installed\x86-windows\share\drogon\;CMake Files\vcpkg\installed\x86-windows\share\trantor\;CMake Files\vcpkg\installed\x86-windows\share\zlib\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\googletest\;CMake Files\googletest\googlemock\;CMake Files\googletest\googlemock\cmake\;CMake Files\googletest\googletest\;CMake Files\googletest\googletest\cmake\;CMake Files\vcpkg\;CMake Files\vcpkg\scripts\;CMake Files\vcpkg\scripts\buildsystems\;CMake Files\cmake-build-debug\;CMake Files\cmake-build-debug\vcpkg_installed\;CMake Files\cmake-build-debug\vcpkg_installed\x64-windows\;CMake Files\cmake-build-debug\vcpkg_installed\x64-windows\share\;CMake Files\cmake-build-debug\vcpkg_installed\x64-windows\share\openssl\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug"/>
@@ -139,7 +139,7 @@
 				<Option compiler="msvc8"/>
 				<Compiler>
 					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
-					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/installed/x86-windows/include"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x64-windows/include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
 					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
@@ -163,7 +163,7 @@
 				<Option compiler="msvc8"/>
 				<Compiler>
 					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
-					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/installed/x86-windows/include"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x64-windows/include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
 					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
@@ -531,6 +531,9 @@
 		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/vcpkg.json">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
 		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/googletest/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\googletest\"/>
 		</Unit>
@@ -561,59 +564,11 @@
 		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/scripts/buildsystems/vcpkg.cmake">
 			<Option virtualFolder="CMake Files\vcpkg\scripts\buildsystems\"/>
 		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/installed/x86-windows/share/openssl/vcpkg-cmake-wrapper.cmake">
-			<Option virtualFolder="CMake Files\vcpkg\installed\x86-windows\share\openssl\"/>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/.cmakestamp">
+			<Option virtualFolder="CMake Files\cmake-build-debug\vcpkg_installed\"/>
 		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/installed/x86-windows/share/drogon/DrogonConfig.cmake">
-			<Option virtualFolder="CMake Files\vcpkg\installed\x86-windows\share\drogon\"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/installed/x86-windows/share/drogon/DrogonConfigVersion.cmake">
-			<Option virtualFolder="CMake Files\vcpkg\installed\x86-windows\share\drogon\"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/installed/x86-windows/share/drogon/DrogonTargets-debug.cmake">
-			<Option virtualFolder="CMake Files\vcpkg\installed\x86-windows\share\drogon\"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/installed/x86-windows/share/drogon/DrogonTargets-release.cmake">
-			<Option virtualFolder="CMake Files\vcpkg\installed\x86-windows\share\drogon\"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/installed/x86-windows/share/drogon/DrogonTargets.cmake">
-			<Option virtualFolder="CMake Files\vcpkg\installed\x86-windows\share\drogon\"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/installed/x86-windows/share/drogon/DrogonUtilities.cmake">
-			<Option virtualFolder="CMake Files\vcpkg\installed\x86-windows\share\drogon\"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/installed/x86-windows/share/drogon/FindBrotli.cmake">
-			<Option virtualFolder="CMake Files\vcpkg\installed\x86-windows\share\drogon\"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/installed/x86-windows/share/drogon/FindFilesystem.cmake">
-			<Option virtualFolder="CMake Files\vcpkg\installed\x86-windows\share\drogon\"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/installed/x86-windows/share/drogon/FindJsoncpp.cmake">
-			<Option virtualFolder="CMake Files\vcpkg\installed\x86-windows\share\drogon\"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/installed/x86-windows/share/drogon/ParseAndAddDrogonTests.cmake">
-			<Option virtualFolder="CMake Files\vcpkg\installed\x86-windows\share\drogon\"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/installed/x86-windows/share/trantor/Findc-ares.cmake">
-			<Option virtualFolder="CMake Files\vcpkg\installed\x86-windows\share\trantor\"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/installed/x86-windows/share/trantor/TrantorConfig.cmake">
-			<Option virtualFolder="CMake Files\vcpkg\installed\x86-windows\share\trantor\"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/installed/x86-windows/share/trantor/TrantorConfigVersion.cmake">
-			<Option virtualFolder="CMake Files\vcpkg\installed\x86-windows\share\trantor\"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/installed/x86-windows/share/trantor/TrantorTargets-debug.cmake">
-			<Option virtualFolder="CMake Files\vcpkg\installed\x86-windows\share\trantor\"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/installed/x86-windows/share/trantor/TrantorTargets-release.cmake">
-			<Option virtualFolder="CMake Files\vcpkg\installed\x86-windows\share\trantor\"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/installed/x86-windows/share/trantor/TrantorTargets.cmake">
-			<Option virtualFolder="CMake Files\vcpkg\installed\x86-windows\share\trantor\"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/installed/x86-windows/share/zlib/vcpkg-cmake-wrapper.cmake">
-			<Option virtualFolder="CMake Files\vcpkg\installed\x86-windows\share\zlib\"/>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x64-windows/share/openssl/vcpkg-cmake-wrapper.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-debug\vcpkg_installed\x64-windows\share\openssl\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>
