@@ -51,4 +51,12 @@ UnspentTxOut findUnspentTxOut(string transactionId, int index, vector<UnspentTxO
 
 vector<UnspentTxOut> updateUnspentTxOuts(vector<Transaction> aTransactions, vector<UnspentTxOut> aUnspentTxOuts);
 
+bool isValidTxInStructure(TxIn txIn);
+
+bool isValidAddress(string address);
+
+bool isValidTxOutStructure(TxOut txOut);
+
+bool isValidTransactionStructure(Transaction transaction);
+
 #endif //XCOIN_TRANSACTION_H

@@ -102,3 +102,88 @@ vector<UnspentTxOut> updateUnspentTxOuts(vector<Transaction> aTransactions, vect
 
     return newUnspentTxOuts;
 }
+
+bool isValidTxInStructure(TxIn txIn) {
+    if ((*txIn) == nullptr) {
+        cout << "txIn is null";
+        return false;
+    }
+    else if (typeid(txIn.signature) != typeid("String")) {
+        cout << "invalid signature type in txIn";
+        return false;
+    }
+    else if (typeid(txIn.txOutId) != typeid("string")) {
+        cout << "invalid txOutId type in txIn";
+        return false;
+    }
+    else if (typeid(txIn.txOutIndex) !== typeid(0)) {
+        cout << "invalid txOutIndex type in txIn";
+        return false;
+    }
+    else
+        return true;
+}
+
+bool isValidAddress(string address) {
+    //TODO: Implement this function to verify an address
+    // valid address is a valid ecdsa public key in the 04 + X-coordinate + Y-coordinate format
+}
+
+bool isValidTxOutStructure(TxOut txOut) {
+    if ((*txOut) == nullptr) {
+        cout << "txOut is null";
+        return false;
+    }
+    else if (typeid(txOut.address) != typeid("String")) {
+        cout << "invalid address type in txOut";
+        return false;
+    }
+    else if (!isValidAddress(txOut.address)) {
+        cout << "invalid TxOut address";
+        return false;
+    }
+    else if (typeid(txOut.amount) != typeid(0)) {
+        cout << "invalid amount type in txOut";
+        return false;
+    }
+    else
+        return true;
+}
+
+bool isValidTransactionStructure(Transaction transaction) {
+    if (typeid(transaction.id) != typeid("string")) {
+        cout << "transactionId missing";
+        return false;
+    }
+
+    int thisisanarray[5]; //TODO: See if there's better way to validate array type.
+    if (typeid(transaction.txIns) != typeid(thisisanarray)) {
+        cout << "invalid txIns type in transaction";
+        return false;
+    }
+
+    bool isValid = 1;
+    for (int i = 0; i < transaction.txIns_current_length; i++)
+        isValid &= isValidTxInStructure(transaction.txIns_array[i]);
+
+    if (!isValid) {
+        cout << "invalid TxIns array";
+        return false;
+    }
+
+    if (typeid(transaction.txOuts) != typeid(thisisanarray)) {
+        cout << "invalid txOuts type in transaction";
+        return false;
+    }
+
+    isValid = 1;
+    for (int i = 0; i < transaction.txOuts_current_length; i++)
+        isValid &= isValidTxOutStructure(transaction.txOuts_array[i]);
+
+    if (!isValid) {
+        cout << "invalid TxOuts array";
+        return false;
+    }
+
+    return true;
+}
