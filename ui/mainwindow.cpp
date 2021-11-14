@@ -31,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
 
         CustomButton* btn = new CustomButton(titles[i], menuContainer);
         btn->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+        btn->setCursor(Qt::PointingHandCursor);
         menuLayout->addWidget(btn);
     }
 
