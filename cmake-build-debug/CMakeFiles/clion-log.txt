@@ -3,15 +3,20 @@
 Detecting compiler hash for triplet x86-windows...
 Detecting compiler hash for triplet x64-windows...
 All requested packages are currently installed.
-Restored 0 packages from C:\Users\Cyrus\AppData\Local\vcpkg\archives in 140.9 us. Use --debug to see more details.
+Restored 0 packages from C:\Users\Cyrus\AppData\Local\vcpkg\archives in 236.4 us. Use --debug to see more details.
 
-Total elapsed time: 4.881 s
+Total elapsed time: 4.906 s
 
 The package drogon provides CMake targets:
 
     find_package(Drogon CONFIG REQUIRED)
     # Note: 6 target(s) were omitted.
     target_link_libraries(main PRIVATE pg_lib UUID_lib coz::coz MySQL_lib)
+
+The package protobuf provides CMake targets:
+
+    find_package(protobuf CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
 
 -- Running vcpkg install - done
 -- Configuring done

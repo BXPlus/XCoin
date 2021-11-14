@@ -337,6 +337,12 @@ OPENSSL_APPLINK_SOURCE:FILEPATH=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-d
 //Path to a file.
 OPENSSL_INCLUDE_DIR:PATH=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/include
 
+//The directory containing a CMake configuration file for Protobuf.
+Protobuf_DIR:PATH=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/share/protobuf
+
+//Path to a program.
+Protobuf_PROTOC_EXECUTABLE:FILEPATH=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/tools/protobuf/protoc.exe
+
 //Path to a library.
 SSL_EAY_DEBUG:FILEPATH=SSL_EAY_DEBUG-NOTFOUND
 
@@ -459,6 +465,15 @@ gtest_force_shared_crt:BOOL=OFF
 
 //Build gtest with internal symbols hidden in shared libraries.
 gtest_hide_internal_symbols:BOOL=OFF
+
+//The directory containing a CMake configuration file for protobuf.
+protobuf_DIR:PATH=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/share/protobuf
+
+//CMake built-in FindProtobuf.cmake module compatible
+protobuf_MODULE_COMPATIBLE:BOOL=OFF
+
+//Enable for verbose output
+protobuf_VERBOSE:BOOL=OFF
 
 //Value Computed by CMake
 xcoin_BINARY_DIR:STATIC=C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug
@@ -661,6 +676,8 @@ FIND_PACKAGE_MESSAGE_DETAILS_Brotli:INTERNAL=[C:/Users/Cyrus/CLionProjects/XCoin
 FIND_PACKAGE_MESSAGE_DETAILS_Jsoncpp:INTERNAL=[C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/include][C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/debug/lib/jsoncpp.lib][v()]
 //Details about finding OpenSSL
 FIND_PACKAGE_MESSAGE_DETAILS_OpenSSL:INTERNAL=[C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/debug/lib/libcrypto.lib][C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/include][c ][v1.1.1l()]
+//Details about finding Protobuf
+FIND_PACKAGE_MESSAGE_DETAILS_Protobuf:INTERNAL=[C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/tools/protobuf/protoc.exe][optimized;C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/bin/libprotobuf.dll;debug;C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/debug/bin/libprotobufd.dll][C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/include][v3.18.0.0()]
 //Details about finding Python
 FIND_PACKAGE_MESSAGE_DETAILS_Python:INTERNAL=[C:/Python310/python.exe][cfound components: Interpreter ][v3.10.0()]
 //Details about finding Threads
@@ -718,5 +735,9 @@ gtest_disable_pthreads-ADVANCED:INTERNAL=1
 gtest_force_shared_crt-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: gtest_hide_internal_symbols
 gtest_hide_internal_symbols-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: protobuf_MODULE_COMPATIBLE
+protobuf_MODULE_COMPATIBLE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: protobuf_VERBOSE
+protobuf_VERBOSE-ADVANCED:INTERNAL=1
 targets_export_name:INTERNAL=GTestTargets
 

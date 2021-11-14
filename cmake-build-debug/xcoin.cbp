@@ -5,7 +5,7 @@
 		<Option title="xcoin"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="msvc8"/>
-		<Option virtualFolders="CMake Files\;CMake Files\googletest\;CMake Files\googletest\googlemock\;CMake Files\googletest\googlemock\cmake\;CMake Files\googletest\googletest\;CMake Files\googletest\googletest\cmake\;CMake Files\vcpkg\;CMake Files\vcpkg\scripts\;CMake Files\vcpkg\scripts\buildsystems\;CMake Files\cmake-build-debug\;CMake Files\cmake-build-debug\vcpkg_installed\;CMake Files\cmake-build-debug\vcpkg_installed\x86-windows\;CMake Files\cmake-build-debug\vcpkg_installed\x86-windows\share\;CMake Files\cmake-build-debug\vcpkg_installed\x86-windows\share\drogon\;CMake Files\cmake-build-debug\vcpkg_installed\x86-windows\share\trantor\;CMake Files\cmake-build-debug\vcpkg_installed\x86-windows\share\openssl\;CMake Files\cmake-build-debug\vcpkg_installed\x86-windows\share\zlib\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\googletest\;CMake Files\googletest\googlemock\;CMake Files\googletest\googlemock\cmake\;CMake Files\googletest\googletest\;CMake Files\googletest\googletest\cmake\;CMake Files\vcpkg\;CMake Files\vcpkg\scripts\;CMake Files\vcpkg\scripts\buildsystems\;CMake Files\cmake-build-debug\;CMake Files\cmake-build-debug\vcpkg_installed\;CMake Files\cmake-build-debug\vcpkg_installed\x86-windows\;CMake Files\cmake-build-debug\vcpkg_installed\x86-windows\share\;CMake Files\cmake-build-debug\vcpkg_installed\x86-windows\share\drogon\;CMake Files\cmake-build-debug\vcpkg_installed\x86-windows\share\trantor\;CMake Files\cmake-build-debug\vcpkg_installed\x86-windows\share\openssl\;CMake Files\cmake-build-debug\vcpkg_installed\x86-windows\share\zlib\;CMake Files\cmake-build-debug\vcpkg_installed\x86-windows\share\protobuf\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug"/>
@@ -190,6 +190,7 @@
 				<Option type="1"/>
 				<Option compiler="msvc8"/>
 				<Compiler>
+					<Add option="-DPROTOBUF_USE_DLLS"/>
 					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
 					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain"/>
 					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/include"/>
@@ -215,6 +216,7 @@
 				<Option type="1"/>
 				<Option compiler="msvc8"/>
 				<Compiler>
+					<Add option="-DPROTOBUF_USE_DLLS"/>
 					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
 					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain"/>
 					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/include"/>
@@ -509,6 +511,15 @@
 		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain/tests/xblockchain-tests.cpp">
 			<Option target="xcoin-test"/>
 		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XNode/blockchain.pb.cc">
+			<Option target="xnode"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XNode/interface.cpp">
+			<Option target="xnode"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XNode/interface.h">
+			<Option target="xnode"/>
+		</Unit>
 		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XNode/main.cpp">
 			<Option target="xnode"/>
 		</Unit>
@@ -622,6 +633,33 @@
 		</Unit>
 		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/share/zlib/vcpkg-cmake-wrapper.cmake">
 			<Option virtualFolder="CMake Files\cmake-build-debug\vcpkg_installed\x86-windows\share\zlib\"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/share/protobuf/protobuf-config-version.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-debug\vcpkg_installed\x86-windows\share\protobuf\"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/share/protobuf/protobuf-config.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-debug\vcpkg_installed\x86-windows\share\protobuf\"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/share/protobuf/protobuf-module.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-debug\vcpkg_installed\x86-windows\share\protobuf\"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/share/protobuf/protobuf-options.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-debug\vcpkg_installed\x86-windows\share\protobuf\"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/share/protobuf/protobuf-targets-debug.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-debug\vcpkg_installed\x86-windows\share\protobuf\"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/share/protobuf/protobuf-targets-release.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-debug\vcpkg_installed\x86-windows\share\protobuf\"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/share/protobuf/protobuf-targets-vcpkg-protoc.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-debug\vcpkg_installed\x86-windows\share\protobuf\"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/share/protobuf/protobuf-targets.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-debug\vcpkg_installed\x86-windows\share\protobuf\"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/share/protobuf/vcpkg-cmake-wrapper.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-debug\vcpkg_installed\x86-windows\share\protobuf\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

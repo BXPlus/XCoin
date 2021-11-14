@@ -384,6 +384,54 @@ XBlockchain\tests\xblockchain-tests.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin-test.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin-test.dir\XBlockchain\tests\xblockchain-tests.cpp.s
 .PHONY : XBlockchain\tests\xblockchain-tests.cpp.s
 
+XNode\blockchain.pb.obj: XNode\blockchain.pb.cc.obj
+.PHONY : XNode\blockchain.pb.obj
+
+# target to build an object file
+XNode\blockchain.pb.cc.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\XNode\blockchain.pb.cc.obj
+.PHONY : XNode\blockchain.pb.cc.obj
+
+XNode\blockchain.pb.i: XNode\blockchain.pb.cc.i
+.PHONY : XNode\blockchain.pb.i
+
+# target to preprocess a source file
+XNode\blockchain.pb.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\XNode\blockchain.pb.cc.i
+.PHONY : XNode\blockchain.pb.cc.i
+
+XNode\blockchain.pb.s: XNode\blockchain.pb.cc.s
+.PHONY : XNode\blockchain.pb.s
+
+# target to generate assembly for a file
+XNode\blockchain.pb.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\XNode\blockchain.pb.cc.s
+.PHONY : XNode\blockchain.pb.cc.s
+
+XNode\interface.obj: XNode\interface.cpp.obj
+.PHONY : XNode\interface.obj
+
+# target to build an object file
+XNode\interface.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\XNode\interface.cpp.obj
+.PHONY : XNode\interface.cpp.obj
+
+XNode\interface.i: XNode\interface.cpp.i
+.PHONY : XNode\interface.i
+
+# target to preprocess a source file
+XNode\interface.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\XNode\interface.cpp.i
+.PHONY : XNode\interface.cpp.i
+
+XNode\interface.s: XNode\interface.cpp.s
+.PHONY : XNode\interface.s
+
+# target to generate assembly for a file
+XNode\interface.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\XNode\interface.cpp.s
+.PHONY : XNode\interface.cpp.s
+
 XNode\main.obj: XNode\main.cpp.obj
 .PHONY : XNode\main.obj
 
@@ -467,6 +515,12 @@ help:
 	@echo ... XBlockchain/tests/xblockchain-tests.obj
 	@echo ... XBlockchain/tests/xblockchain-tests.i
 	@echo ... XBlockchain/tests/xblockchain-tests.s
+	@echo ... XNode/blockchain.pb.obj
+	@echo ... XNode/blockchain.pb.i
+	@echo ... XNode/blockchain.pb.s
+	@echo ... XNode/interface.obj
+	@echo ... XNode/interface.i
+	@echo ... XNode/interface.s
 	@echo ... XNode/main.obj
 	@echo ... XNode/main.i
 	@echo ... XNode/main.s
