@@ -22,7 +22,7 @@ find_package(Protobuf CONFIG REQUIRED)
 
 add_executable(xcoin-test src/XBlockchain/tests/xblockchain-tests.cpp)
 add_library(xcoinlib src/XBlockchain/block.h src/XBlockchain/block.cpp src/XBlockchain/Blockchain.cpp src/XBlockchain/Blockchain.h src/XBlockchain/sha256.cpp src/XBlockchain/sha256.h src/XBlockchain/bignumber.cpp src/XBlockchain/bignumber.h)
-add_executable(xcoin main.cpp src/XBlockchain/block.h src/XBlockchain/block.cpp src/XBlockchain/Blockchain.cpp src/XBlockchain/Blockchain.h src/XBlockchain/sha256.cpp src/XBlockchain/sha256.h src/XBlockchain/bignumber.cpp src/XBlockchain/bignumber.h)
+add_executable(xcoin main.cpp src/XBlockchain/block.h src/XBlockchain/block.cpp src/XBlockchain/Blockchain.cpp src/XBlockchain/Blockchain.h src/XBlockchain/sha256.cpp src/XBlockchain/sha256.h src/XBlockchain/bignumber.cpp src/XBlockchain/bignumber.h src/XNode/keys.cpp src/XNode/keys.h)
 add_executable(xnode src/XNode/main.cpp src/XNode/main.cpp src/XNode/blockchain.pb.cc src/XNode/interface.cpp src/XNode/interface.h)
 add_test(xcoin-test xcoin-test)
 
