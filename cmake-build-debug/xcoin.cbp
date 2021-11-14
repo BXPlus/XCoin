@@ -5,7 +5,7 @@
 		<Option title="xcoin"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\googletest\;CMake Files\googletest\googlemock\;CMake Files\googletest\googlemock\cmake\;CMake Files\googletest\googletest\;CMake Files\googletest\googletest\cmake\;CMake Files\vcpkg\;CMake Files\vcpkg\scripts\;CMake Files\vcpkg\scripts\buildsystems\;CMake Files\cmake-build-debug\;CMake Files\cmake-build-debug\vcpkg_installed\;CMake Files\cmake-build-debug\vcpkg_installed\x64-linux\;CMake Files\cmake-build-debug\vcpkg_installed\x64-linux\share\;CMake Files\cmake-build-debug\vcpkg_installed\x64-linux\share\drogon\;CMake Files\cmake-build-debug\vcpkg_installed\x64-linux\share\trantor\;CMake Files\cmake-build-debug\vcpkg_installed\x64-linux\share\openssl\;CMake Files\cmake-build-debug\vcpkg_installed\x64-linux\share\zlib\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\googletest\;CMake Files\googletest\googlemock\;CMake Files\googletest\googlemock\cmake\;CMake Files\googletest\googletest\;CMake Files\googletest\googletest\cmake\;CMake Files\vcpkg\;CMake Files\vcpkg\scripts\;CMake Files\vcpkg\scripts\buildsystems\;CMake Files\cmake-build-debug\;CMake Files\cmake-build-debug\vcpkg_installed\;CMake Files\cmake-build-debug\vcpkg_installed\x64-linux\;CMake Files\cmake-build-debug\vcpkg_installed\x64-linux\share\;CMake Files\cmake-build-debug\vcpkg_installed\x64-linux\share\drogon\;CMake Files\cmake-build-debug\vcpkg_installed\x64-linux\share\trantor\;CMake Files\cmake-build-debug\vcpkg_installed\x64-linux\share\openssl\;CMake Files\cmake-build-debug\vcpkg_installed\x64-linux\share\zlib\;CMake Files\cmake-build-debug\vcpkg_installed\x64-linux\share\protobuf\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug"/>
@@ -25,7 +25,9 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/googletest/googletest/include"/>
-					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/XBlockchain"/>
+					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/googletest/googletest"/>
+					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XBlockchain"/>
+					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XNode"/>
 					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/include"/>
 					<Add directory="/usr/include/c++/10"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/10"/>
@@ -50,7 +52,9 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/googletest/googletest/include"/>
-					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/XBlockchain"/>
+					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/googletest/googletest"/>
+					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XBlockchain"/>
+					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XNode"/>
 					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/include"/>
 					<Add directory="/usr/include/c++/10"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/10"/>
@@ -77,63 +81,18 @@
 					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="xcoin">
-				<Option output="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/xcoin" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/googletest/googletest/include"/>
-					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/XBlockchain"/>
-					<Add directory="/usr/include/c++/10"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/10"/>
-					<Add directory="/usr/include/c++/10/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/10/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 xcoin"/>
-					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="xcoin/fast">
-				<Option output="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/xcoin" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/googletest/googletest/include"/>
-					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/XBlockchain"/>
-					<Add directory="/usr/include/c++/10"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/10"/>
-					<Add directory="/usr/include/c++/10/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/10/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 xcoin/fast"/>
-					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="xcoinlib">
-				<Option output="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/libxcoinlib.a" prefix_auto="0" extension_auto="0"/>
+			<Target title="xblockchain-lib">
+				<Option output="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/libxblockchain-lib.a" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/googletest/googletest/include"/>
-					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/XBlockchain"/>
+					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/googletest/googletest"/>
+					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XBlockchain"/>
+					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XNode"/>
+					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/include"/>
 					<Add directory="/usr/include/c++/10"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/10"/>
 					<Add directory="/usr/include/c++/10/backward"/>
@@ -143,21 +102,24 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 xcoinlib"/>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 xblockchain-lib"/>
 					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="xcoinlib/fast">
-				<Option output="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/libxcoinlib.a" prefix_auto="0" extension_auto="0"/>
+			<Target title="xblockchain-lib/fast">
+				<Option output="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/libxblockchain-lib.a" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/googletest/googletest/include"/>
-					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/XBlockchain"/>
+					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/googletest/googletest"/>
+					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XBlockchain"/>
+					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XNode"/>
+					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/include"/>
 					<Add directory="/usr/include/c++/10"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/10"/>
 					<Add directory="/usr/include/c++/10/backward"/>
@@ -167,7 +129,59 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 xcoinlib/fast"/>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 xblockchain-lib/fast"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="xnode-tests">
+				<Option output="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/xnode-tests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/googletest/googletest/include"/>
+					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/googletest/googletest"/>
+					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XBlockchain"/>
+					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XNode"/>
+					<Add directory="/usr/include/c++/10"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/10"/>
+					<Add directory="/usr/include/c++/10/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/10/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 xnode-tests"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="xnode-tests/fast">
+				<Option output="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/xnode-tests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/googletest/googletest/include"/>
+					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/googletest/googletest"/>
+					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XBlockchain"/>
+					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XNode"/>
+					<Add directory="/usr/include/c++/10"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/10"/>
+					<Add directory="/usr/include/c++/10/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/10/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 xnode-tests/fast"/>
 					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -223,14 +237,15 @@
 					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="xcoin-test">
-				<Option output="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/xcoin-test" prefix_auto="0" extension_auto="0"/>
+			<Target title="xblockchain-tests">
+				<Option output="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/xblockchain-tests" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/XBlockchain"/>
+					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XBlockchain"/>
+					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XNode"/>
 					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/googletest/googletest/include"/>
 					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/googletest/googletest"/>
 					<Add directory="/usr/include/c++/10"/>
@@ -242,20 +257,21 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 xcoin-test"/>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 xblockchain-tests"/>
 					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="xcoin-test/fast">
-				<Option output="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/xcoin-test" prefix_auto="0" extension_auto="0"/>
+			<Target title="xblockchain-tests/fast">
+				<Option output="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/xblockchain-tests" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/XBlockchain"/>
+					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XBlockchain"/>
+					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XNode"/>
 					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/googletest/googletest/include"/>
 					<Add directory="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/googletest/googletest"/>
 					<Add directory="/usr/include/c++/10"/>
@@ -267,7 +283,7 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 xcoin-test/fast"/>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 xblockchain-tests/fast"/>
 					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -484,56 +500,6 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/XBlockchain/Blockchain.cpp">
-			<Option target="xcoin"/>
-			<Option target="xcoinlib"/>
-		</Unit>
-		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/XBlockchain/Blockchain.h">
-			<Option target="xcoin"/>
-			<Option target="xcoinlib"/>
-		</Unit>
-		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/XBlockchain/bignumber.cpp">
-			<Option target="xcoin"/>
-			<Option target="xcoinlib"/>
-		</Unit>
-		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/XBlockchain/bignumber.h">
-			<Option target="xcoin"/>
-			<Option target="xcoinlib"/>
-		</Unit>
-		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/XBlockchain/block.cpp">
-			<Option target="xcoin"/>
-			<Option target="xcoinlib"/>
-		</Unit>
-		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/XBlockchain/block.h">
-			<Option target="xcoin"/>
-			<Option target="xcoinlib"/>
-		</Unit>
-		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/XBlockchain/sha256.cpp">
-			<Option target="xcoin"/>
-			<Option target="xcoinlib"/>
-		</Unit>
-		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/XBlockchain/sha256.h">
-			<Option target="xcoin"/>
-			<Option target="xcoinlib"/>
-		</Unit>
-		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/XBlockchain/tests/xblockchain-tests.cpp">
-			<Option target="xcoin-test"/>
-		</Unit>
-		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/XNode/XNode.cpp">
-			<Option target="xnode"/>
-		</Unit>
-		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/XNode/XNode.h">
-			<Option target="xnode"/>
-		</Unit>
-		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/XNode/controllers/xnodectl.cpp">
-			<Option target="xnode"/>
-		</Unit>
-		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/XNode/controllers/xnodectl.h">
-			<Option target="xnode"/>
-		</Unit>
-		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/XNode/main.cpp">
-			<Option target="xnode"/>
-		</Unit>
 		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/googletest/googlemock/src/gmock-all.cc">
 			<Option target="gmock"/>
 		</Unit>
@@ -546,8 +512,56 @@
 		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/googletest/googletest/src/gtest_main.cc">
 			<Option target="gtest_main"/>
 		</Unit>
-		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/main.cpp">
-			<Option target="xcoin"/>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XBlockchain/Blockchain.cpp">
+			<Option target="xblockchain-lib"/>
+		</Unit>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XBlockchain/Blockchain.h">
+			<Option target="xblockchain-lib"/>
+		</Unit>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XBlockchain/bignumber.cpp">
+			<Option target="xblockchain-lib"/>
+		</Unit>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XBlockchain/bignumber.h">
+			<Option target="xblockchain-lib"/>
+		</Unit>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XBlockchain/block.cpp">
+			<Option target="xblockchain-lib"/>
+		</Unit>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XBlockchain/block.h">
+			<Option target="xblockchain-lib"/>
+		</Unit>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XBlockchain/sha256.cpp">
+			<Option target="xblockchain-lib"/>
+		</Unit>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XBlockchain/sha256.h">
+			<Option target="xblockchain-lib"/>
+		</Unit>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XBlockchain/tests/xblockchain-tests.cpp">
+			<Option target="xblockchain-tests"/>
+		</Unit>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XNode/blockchain.pb.cc">
+			<Option target="xnode"/>
+		</Unit>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XNode/blockchain.pb.h">
+			<Option target="xnode"/>
+		</Unit>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XNode/interface.cpp">
+			<Option target="xnode"/>
+		</Unit>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XNode/interface.h">
+			<Option target="xnode"/>
+		</Unit>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XNode/keys.cpp">
+			<Option target="xnode"/>
+		</Unit>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XNode/keys.h">
+			<Option target="xnode"/>
+		</Unit>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XNode/main.cpp">
+			<Option target="xnode"/>
+		</Unit>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/src/XNode/tests/xnode-tests.cpp">
+			<Option target="xnode-tests"/>
 		</Unit>
 		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
@@ -644,6 +658,30 @@
 		</Unit>
 		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/share/zlib/vcpkg-cmake-wrapper.cmake">
 			<Option virtualFolder="CMake Files\cmake-build-debug\vcpkg_installed\x64-linux\share\zlib\"/>
+		</Unit>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/share/protobuf/protobuf-config-version.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-debug\vcpkg_installed\x64-linux\share\protobuf\"/>
+		</Unit>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/share/protobuf/protobuf-config.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-debug\vcpkg_installed\x64-linux\share\protobuf\"/>
+		</Unit>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/share/protobuf/protobuf-module.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-debug\vcpkg_installed\x64-linux\share\protobuf\"/>
+		</Unit>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/share/protobuf/protobuf-options.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-debug\vcpkg_installed\x64-linux\share\protobuf\"/>
+		</Unit>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/share/protobuf/protobuf-targets-debug.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-debug\vcpkg_installed\x64-linux\share\protobuf\"/>
+		</Unit>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/share/protobuf/protobuf-targets-release.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-debug\vcpkg_installed\x64-linux\share\protobuf\"/>
+		</Unit>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/share/protobuf/protobuf-targets.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-debug\vcpkg_installed\x64-linux\share\protobuf\"/>
+		</Unit>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/share/protobuf/vcpkg-cmake-wrapper.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-debug\vcpkg_installed\x64-linux\share\protobuf\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

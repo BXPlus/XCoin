@@ -1,13 +1,13 @@
 /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/CMakeFiles/xnode.dir
 /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/CMakeFiles/xcoin.dir
-/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/CMakeFiles/xcoinlib.dir
+/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/CMakeFiles/xblockchain-lib.dir
+/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/CMakeFiles/xnode-tests.dir
 /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/CMakeFiles/rebuild_cache.dir
 /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/CMakeFiles/test.dir
 /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/CMakeFiles/install/strip.dir
 /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/CMakeFiles/list_install_components.dir
 /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/CMakeFiles/install.dir
-/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/CMakeFiles/xcoin-test.dir
+/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/CMakeFiles/xblockchain-tests.dir
 /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/CMakeFiles/install/local.dir
 /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/googletest/CMakeFiles/install/strip.dir
 /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/googletest/CMakeFiles/install/local.dir

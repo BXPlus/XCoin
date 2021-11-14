@@ -228,7 +228,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=xcoin
+CMAKE_PROJECT_NAME:STATIC=xblockchain
 
 //Value Computed by CMake
 CMAKE_PROJECT_VERSION:STATIC=1.11.0
@@ -359,6 +359,12 @@ ProcessorCount_cmd_nproc:FILEPATH=/usr/bin/nproc
 //Path to a program.
 ProcessorCount_cmd_sysctl:FILEPATH=/usr/sbin/sysctl
 
+//The directory containing a CMake configuration file for Protobuf.
+Protobuf_DIR:PATH=/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/share/protobuf
+
+//Path to a program.
+Protobuf_PROTOC_EXECUTABLE:FILEPATH=/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/tools/protobuf/protoc
+
 //The directory containing a CMake configuration file for Trantor.
 Trantor_DIR:PATH=/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/share/trantor
 
@@ -484,6 +490,18 @@ pkgcfg_lib__OPENSSL_dl:FILEPATH=/usr/lib/x86_64-linux-gnu/libdl.so
 
 //Path to a library.
 pkgcfg_lib__OPENSSL_ssl:FILEPATH=/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/debug/lib/libssl.a
+
+//CMake built-in FindProtobuf.cmake module compatible
+protobuf_MODULE_COMPATIBLE:BOOL=OFF
+
+//Enable for verbose output
+protobuf_VERBOSE:BOOL=OFF
+
+//Value Computed by CMake
+xblockchain_BINARY_DIR:STATIC=/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug
+
+//Value Computed by CMake
+xblockchain_SOURCE_DIR:STATIC=/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin
 
 //Value Computed by CMake
 xcoin_BINARY_DIR:STATIC=/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug
@@ -705,6 +723,8 @@ FIND_PACKAGE_MESSAGE_DETAILS_Brotli:INTERNAL=[/home/kevin/Documents/BX/Work/CSE2
 FIND_PACKAGE_MESSAGE_DETAILS_Jsoncpp:INTERNAL=[/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/include][/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/debug/lib/libjsoncpp.a][v()]
 //Details about finding OpenSSL
 FIND_PACKAGE_MESSAGE_DETAILS_OpenSSL:INTERNAL=[/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/debug/lib/libcrypto.a][/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/include][c ][v1.1.1l()]
+//Details about finding Protobuf
+FIND_PACKAGE_MESSAGE_DETAILS_Protobuf:INTERNAL=[/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/tools/protobuf/protoc-3.18.0.0][optimized;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/lib/libprotobuf.a;debug;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/debug/lib/libprotobufd.a][/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/include][v3.18.0.0()]
 //Details about finding Python
 FIND_PACKAGE_MESSAGE_DETAILS_Python:INTERNAL=[/usr/bin/python3.9][cfound components: Interpreter ][v3.9.7()]
 //Details about finding Threads
@@ -810,5 +830,9 @@ pkgcfg_lib__OPENSSL_dl-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: pkgcfg_lib__OPENSSL_ssl
 pkgcfg_lib__OPENSSL_ssl-ADVANCED:INTERNAL=1
 prefix_result:INTERNAL=/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/debug/lib/pkgconfig/../../lib
+//ADVANCED property for variable: protobuf_MODULE_COMPATIBLE
+protobuf_MODULE_COMPATIBLE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: protobuf_VERBOSE
+protobuf_VERBOSE-ADVANCED:INTERNAL=1
 targets_export_name:INTERNAL=GTestTargets
 

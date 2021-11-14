@@ -27,7 +27,7 @@ void XNode::start() {
     //       simultaneously since drogon().app().run() blocks the main thread.
     drogon::app()
             .addListener(this->ip, this->port)
-            .setDocumentRoot("../XNode/wwwroot")
+            .setDocumentRoot("../src/XNode/wwwroot")
             .setThreadNum(4)
             .run();
     // setupWebSocket(); We ignore this for now as we first implement a HttpController.

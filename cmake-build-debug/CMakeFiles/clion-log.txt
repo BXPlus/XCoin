@@ -2,15 +2,25 @@
 -- Running vcpkg install
 Detecting compiler hash for triplet x64-linux...
 All requested packages are currently installed.
-Restored 0 packages from /home/kevin/.cache/vcpkg/archives in 432 ns. Use --debug to see more details.
+Restored 0 packages from /home/kevin/.cache/vcpkg/archives in 363 ns. Use --debug to see more details.
 
-Total elapsed time: 338.2 ms
+Total elapsed time: 246.3 ms
+
+The package openssl is compatible with built-in CMake targets:
+
+    find_package(OpenSSL REQUIRED)
+    target_link_libraries(main PRIVATE OpenSSL::SSL OpenSSL::Crypto)
 
 The package drogon provides CMake targets:
 
     find_package(Drogon CONFIG REQUIRED)
     # Note: 6 target(s) were omitted.
     target_link_libraries(main PRIVATE pg_lib UUID_lib coz::coz MySQL_lib)
+
+The package protobuf provides CMake targets:
+
+    find_package(protobuf CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
 
 -- Running vcpkg install - done
 -- jsoncpp verson:1.9.4
