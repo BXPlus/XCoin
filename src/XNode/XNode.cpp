@@ -6,7 +6,6 @@
 #include "XNode.h"
 #include "controllers/xnodectl.h"
 #include <iostream>
-using namespace std::chrono_literals;
 /**
  * Constructor for the XNode class, sets the ip address and port.
  * @param ip is the ip address of the node.
