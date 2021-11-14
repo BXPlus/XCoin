@@ -17,11 +17,13 @@ std::string banner = " __   __   ____     _____    ______   __  __     \n"
 int main()
 {
     Blockchain blockchain;
+    const std::string ip = "0.0.0.0";
+    const int port = 80;
     std::cout << banner << std::endl;
     std::cout << "                                  Blockchain node    \n" << std::endl;
-    std::cout << "Server will start..." << std::endl;
+    std::cout << "Server will start on "<< ip << " and listens to the port " << port << std::endl;
 
-    XNode node = XNode("0.0.0.0", 80);
+    XNode node = XNode(ip, port);
     node.start();
     return 0;
 }
