@@ -20,6 +20,6 @@ int main()
     std::cout << banner << std::endl;
     std::cout << "                                  Blockchain node    \n" << std::endl;
     std::cout << "Server will start..." << std::endl;
-    drogon::app().addListener("0.0.0.0",80).enableRunAsDaemon().setThreadNum(16).run();
+    //drogon::app().addListener("0.0.0.0",80).enableRunAsDaemon().setThreadNum(16).run();
     return 0;
 }
