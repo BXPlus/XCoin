@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QStringList>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -12,7 +13,12 @@ MainWindow::MainWindow(QWidget *parent)
     mainWidget = new QWidget(this);
     setCentralWidget(mainWidget);
     mainLayout = new QHBoxLayout(mainWidget);
+    menuContainer = new QWidget(mainWidget);
+    menuLayout = new QVBoxLayout(mainWidget);
 
+    mainLayout->addWidget(menuContainer);
+
+    QStringList titles = {"Home", "Contacts", "History", "Pay", "Live", "Graphics"};
 
 }
 

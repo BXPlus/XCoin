@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QHBoxLayout>
 #include <QStackedWidget>
+#include <QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,9 +18,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    QWidget* mainWidget, menuContainer;
+    QWidget* mainWidget;
+    QWidget* menuContainer;
     QHBoxLayout* mainLayout;
     QStackedWidget* contentContainer;
+    QVBoxLayout* menuLayout;
 
 
 private:
