@@ -52,6 +52,17 @@ string Transaction::getTransactionId() {
     return sha256(txInsContent.str() + txOutsContent.str());
 }
 
+string Transaction::signTxIn(int txInIndex, string privateKey, vector<UnspentTxOut> aUnspentTxOuts) {
+    TxIn txIn = txIns_array[txInIndex];
+    string dataToSign = id;
+    UnspentTxOut referencedUnspentTxOut = findUnspentTxOut(txIn.txOutId, txIn.txOutIndex, aUnspentTxOuts);
+    string referencedAddress = referencedUnspentTxOut.address;
+    string key;
+    string signature; //TODO: Add ECDSA cryptography
+    return signature;
+
+}
+
 UnspentTxOut::UnspentTxOut(string txOutID, int txOutIndex, string address, int amount) {
     this -> txOutID = txOutID;
     this -> txOutIndex = txOutIndex;

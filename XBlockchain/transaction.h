@@ -34,6 +34,7 @@ public:
     int txOuts_current_length;
     int txOuts_max_length;
     string getTransactionId();
+    string signTxIn(int txInIndex, string privateKey, vector<UnspentTxOut> aUnspentTxOuts);
 };
 
 class UnspentTxOut {
