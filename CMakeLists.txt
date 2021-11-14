@@ -6,23 +6,26 @@ endif()
 set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake
         CACHE STRING "Vcpkg toolchain file")
 #set(VCPKG_TARGET_TRIPLET x64-windows)
-project(xcoin)
+project(xblockchain)
 
 set(CMAKE_CXX_STANDARD 17)
 
 add_subdirectory(googletest)
+
 enable_testing()
-include_directories(googletest/googletest/include)
-include_directories(XBlockchain)
+include_directories(googletest/googletest/include googletest/googletest)
+include_directories(src/XBlockchain src/XNode)
 
-#find_package(OpenSSL REQUIRED)
 find_package(Drogon CONFIG REQUIRED)
+find_package(Protobuf CONFIG REQUIRED)
+find_package(OpenSSL REQUIRED)
 
-add_executable(xcoin-test XBlockchain/tests/xblockchain-tests.cpp)
-add_library(xcoinlib XBlockchain/block.h XBlockchain/block.cpp XBlockchain/Blockchain.cpp XBlockchain/Blockchain.h XBlockchain/sha256.cpp XBlockchain/sha256.h XBlockchain/bignumber.cpp XBlockchain/bignumber.h)
-add_executable(xcoin main.cpp XBlockchain/block.h XBlockchain/block.cpp XBlockchain/Blockchain.cpp XBlockchain/Blockchain.h XBlockchain/sha256.cpp XBlockchain/sha256.h XBlockchain/bignumber.cpp XBlockchain/bignumber.h)
-add_executable(xnode XNode/main.cpp XNode/main.cpp XNode/XNode.cpp XNode/XNode.h XNode/controllers/xnodectl.cpp XNode/controllers/xnodectl.h)
-add_test(xcoin-test xcoin-test)
-target_link_libraries(xcoin-test gtest gtest_main)
-target_link_libraries(xnode PRIVATE Drogon::Drogon xcoinlib)
-target_link_libraries(xcoin-test xcoinlib)
+add_executable(xblockchain-tests src/XBlockchain/tests/xblockchain-tests.cpp)
+add_executable(xnode-tests src/XNode/tests/xnode-tests.cpp)
+add_library(xblockchain-lib src/XBlockchain/block.h src/XBlockchain/block.cpp src/XBlockchain/Blockchain.cpp src/XBlockchain/Blockchain.h src/XBlockchain/sha256.cpp src/XBlockchain/sha256.h src/XBlockchain/bignumber.cpp src/XBlockchain/bignumber.h)
+add_executable(xnode src/XNode/main.cpp src/XNode/main.cpp src/XNode/blockchain.pb.h src/XNode/blockchain.pb.cc src/XNode/interface.cpp src/XNode/interface.h src/XNode/keys.cpp src/XNode/keys.h)
+
+target_link_libraries(xblockchain-lib PRIVATE OpenSSL::SSL OpenSSL::Crypto)
+target_link_libraries(xblockchain-tests gtest gtest_main)
+target_link_libraries(xnode PRIVATE Drogon::Drogon protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite xblockchain-lib)
+target_link_libraries(xblockchain-tests xblockchain-lib)

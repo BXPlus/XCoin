@@ -124,6 +124,7 @@ bool isValidTxInStructure(TxIn txIn) {
         return true;
 }
 
+
 bool isValidAddress(string address) {
     //TODO: Implement this function to verify an address
     // valid address is a valid ecdsa public key in the 04 + X-coordinate + Y-coordinate format
