@@ -121,6 +121,7 @@ BigNumber hexToBigNumber(string number)
         };
         res = res.add(BigNumber(t));
     }
+    return res;
 }
 
 bool isBlockStakingValid(string previousHash, string address, long long timestamp, int balance, int difficulty, int index)
@@ -137,7 +138,7 @@ bool isBlockStakingValid(string previousHash, string address, long long timestam
     const BigNumber decimalStakingHash = hexToBigNumber(stakingHash);
     BigNumber difference = balanceOverDifficulty.subtract(decimalStakingHash);
 
-    return not(difference.isNegative());
+    return !(difference.isNegative());
 }
 
 Block findBlock(int index, string previousHash, string data, int difficulty, int accountBalance, string accountAddress)

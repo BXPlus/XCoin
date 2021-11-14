@@ -4,6 +4,7 @@
 
 #include<iostream>
 #include<drogon/drogon.h>
+#include "Blockchain.h"
 
 std::string banner = " __   __   ____     _____    ______   __  __     \n"
                 "/\\ \\ /\\ \\ /\\  _`\\  /\\  __`\\ /\\__  _\\ /\\ \\/\\ \\    \n"
@@ -15,9 +16,10 @@ std::string banner = " __   __   ____     _____    ______   __  __     \n"
 
 int main()
 {
+    Blockchain blockchain;
     std::cout << banner << std::endl;
     std::cout << "                                  Blockchain node    \n" << std::endl;
     std::cout << "Server will start..." << std::endl;
-    drogon::app().addListener("0.0.0.0",80).setThreadNum(16).enableRunAsDaemon().run();
+    drogon::app().addListener("0.0.0.0",80).setThreadNum(16).run();
     return 0;
 }
