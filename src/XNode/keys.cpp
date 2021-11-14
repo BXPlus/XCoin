@@ -6,22 +6,30 @@
 
 
 #include "keys.h"
-#include <openssl/obj_mac.h>
-#include <openssl/ec.h> //the elliptic curve library from openSSL
 
 
-keys::key(){
+
+Keys::Keys(){
     EC_KEY *key = EC_KEY_new_by_curve_name(NID_secp256k1);
 
-    if(NULL == (key )) //checks wether the EC_KEY (elliptical curve key object wes succesfully created)
-        handleErrors();
+    if(NULL == (key )){ //checks wether the EC_KEY (elliptical curve key object wes succesfully created) was succefully created
+        std::cout << "unsuccessful EC_KEY creation" << std::endl;
+    }
 
     //generate the key pair
-    if(1 != EC_KEY_generate_key(key)) handleErrors();
+    if(1 != EC_KEY_generate_key(key)) {
+        std::cout << " key generation problem" << std::endl;
+    }
 
     // Set up private key in prv
-    if(1 != EC_KEY_set_private_key(key, prv)) handleErrors();
+    prv = EC_KEY_get0_private_key(key);
+    if(!prv){
+        std::cout << "Error getting private key" << std::endl;
+    }
 
     // Set up public key in pub
-    if(1 != EC_KEY_set_public_key(key, pub)) handleErrors();
+    pub = EC_KEY_get0_public_key(key);
+    if(!pub){
+        std::cout << "Error getting public key" << std::endl;
+    }
 }
