@@ -431,6 +431,30 @@ XNode/XNode.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/XNode/XNode.cpp.s
 .PHONY : XNode/XNode.cpp.s
 
+XNode/controllers/xnodectl.o: XNode/controllers/xnodectl.cpp.o
+.PHONY : XNode/controllers/xnodectl.o
+
+# target to build an object file
+XNode/controllers/xnodectl.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/XNode/controllers/xnodectl.cpp.o
+.PHONY : XNode/controllers/xnodectl.cpp.o
+
+XNode/controllers/xnodectl.i: XNode/controllers/xnodectl.cpp.i
+.PHONY : XNode/controllers/xnodectl.i
+
+# target to preprocess a source file
+XNode/controllers/xnodectl.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/XNode/controllers/xnodectl.cpp.i
+.PHONY : XNode/controllers/xnodectl.cpp.i
+
+XNode/controllers/xnodectl.s: XNode/controllers/xnodectl.cpp.s
+.PHONY : XNode/controllers/xnodectl.s
+
+# target to generate assembly for a file
+XNode/controllers/xnodectl.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/XNode/controllers/xnodectl.cpp.s
+.PHONY : XNode/controllers/xnodectl.cpp.s
+
 XNode/main.o: XNode/main.cpp.o
 .PHONY : XNode/main.o
 
@@ -518,6 +542,9 @@ help:
 	@echo "... XNode/XNode.o"
 	@echo "... XNode/XNode.i"
 	@echo "... XNode/XNode.s"
+	@echo "... XNode/controllers/xnodectl.o"
+	@echo "... XNode/controllers/xnodectl.i"
+	@echo "... XNode/controllers/xnodectl.s"
 	@echo "... XNode/main.o"
 	@echo "... XNode/main.i"
 	@echo "... XNode/main.s"

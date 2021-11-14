@@ -2,9 +2,9 @@
 -- Running vcpkg install
 Detecting compiler hash for triplet x64-linux...
 All requested packages are currently installed.
-Restored 0 packages from /home/kevin/.cache/vcpkg/archives in 417 ns. Use --debug to see more details.
+Restored 0 packages from /home/kevin/.cache/vcpkg/archives in 432 ns. Use --debug to see more details.
 
-Total elapsed time: 271.4 ms
+Total elapsed time: 338.2 ms
 
 The package drogon provides CMake targets:
 

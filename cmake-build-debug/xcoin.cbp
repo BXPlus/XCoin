@@ -525,6 +525,12 @@
 		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/XNode/XNode.h">
 			<Option target="xnode"/>
 		</Unit>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/XNode/controllers/xnodectl.cpp">
+			<Option target="xnode"/>
+		</Unit>
+		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/XNode/controllers/xnodectl.h">
+			<Option target="xnode"/>
+		</Unit>
 		<Unit filename="/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/XNode/main.cpp">
 			<Option target="xnode"/>
 		</Unit>
