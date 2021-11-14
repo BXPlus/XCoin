@@ -135,54 +135,6 @@
 					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="xcoin">
-				<Option output="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/xcoin.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="msvc8"/>
-				<Compiler>
-					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
-					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain"/>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 xcoin"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="xcoin/fast">
-				<Option output="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/xcoin.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="msvc8"/>
-				<Compiler>
-					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
-					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain"/>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 xcoin/fast"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
 			<Target title="xnode">
 				<Option output="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/xnode.exe" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug"/>
@@ -235,26 +187,6 @@
 					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 edit_cache"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="list_install_components">
-				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 list_install_components"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
 			<Target title="install/local">
 				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug"/>
 				<Option type="4"/>
@@ -270,6 +202,26 @@
 				<Option type="4"/>
 				<MakeCommands>
 					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 install"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 edit_cache"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="list_install_components">
+				<Option working_dir="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 list_install_components"/>
 					<CompileFile command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 					<DistClean command="nmake /NOLOGO /f C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\Makefile VERBOSE=1 clean"/>
@@ -491,40 +443,29 @@
 		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/src/gtest_main.cc">
 			<Option target="gtest_main"/>
 		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/main.cpp">
-			<Option target="xcoin"/>
-		</Unit>
 		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain/Blockchain.cpp">
 			<Option target="xcoinlib"/>
-			<Option target="xcoin"/>
 		</Unit>
 		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain/Blockchain.h">
 			<Option target="xcoinlib"/>
-			<Option target="xcoin"/>
 		</Unit>
 		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain/bignumber.cpp">
 			<Option target="xcoinlib"/>
-			<Option target="xcoin"/>
 		</Unit>
 		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain/bignumber.h">
 			<Option target="xcoinlib"/>
-			<Option target="xcoin"/>
 		</Unit>
 		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain/block.cpp">
 			<Option target="xcoinlib"/>
-			<Option target="xcoin"/>
 		</Unit>
 		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain/block.h">
 			<Option target="xcoinlib"/>
-			<Option target="xcoin"/>
 		</Unit>
 		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain/sha256.cpp">
 			<Option target="xcoinlib"/>
-			<Option target="xcoin"/>
 		</Unit>
 		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain/sha256.h">
 			<Option target="xcoinlib"/>
-			<Option target="xcoin"/>
 		</Unit>
 		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain/tests/xblockchain-tests.cpp">
 			<Option target="xcoin-test"/>
