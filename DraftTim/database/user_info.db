@@ -1,0 +1,8 @@
+CREATE TABLE "Users" (
+    "User_id" INTEGER PRIMARY KEY,
+    "Username" mvarchar (20) NOT NULL,
+    "Password" mvarchar (10) NOT NULL,
+);
+
+INSERT INTO "Users"("User_id", "Username", "Password") VALUES(1, 'tim_vlc', 'Tim');
+INSERT INTO "Users"("User_id", "Username", "Password") VALUES(2, 'alex_msrh', 'Alex');
