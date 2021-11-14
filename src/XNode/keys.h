@@ -8,12 +8,10 @@
 
 class keys {
 public:
-    int private_key;
-    keys();
+    keys(); //constructor which creates the private and public key
 
-
+    BIGNUM *prv;        //private key (which is a big integer)
+    EC_POINT *pub;      //public key which is a point made of two coordinates and depending on the private key
 };
-
-
 
 #endif //XCOIN_KEYS_H
