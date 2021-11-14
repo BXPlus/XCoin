@@ -52,11 +52,29 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../frontend_workspace/main.cpp \
-		../frontend_workspace/mainwindow.cpp moc_mainwindow.cpp
-OBJECTS       = main.o \
+SOURCES       = ../frontend_workspace/balancewindow.cpp \
+		../frontend_workspace/contactswindow.cpp \
+		../frontend_workspace/graphwindow.cpp \
+		../frontend_workspace/livewindow.cpp \
+		../frontend_workspace/mainwindow.cpp \
+		../frontend_workspace/paywindow.cpp moc_balancewindow.cpp \
+		moc_contactswindow.cpp \
+		moc_graphwindow.cpp \
+		moc_livewindow.cpp \
+		moc_mainwindow.cpp \
+		moc_paywindow.cpp
+OBJECTS       = balancewindow.o \
+		contactswindow.o \
+		graphwindow.o \
+		livewindow.o \
 		mainwindow.o \
-		moc_mainwindow.o
+		paywindow.o \
+		moc_balancewindow.o \
+		moc_contactswindow.o \
+		moc_graphwindow.o \
+		moc_livewindow.o \
+		moc_mainwindow.o \
+		moc_paywindow.o
 DIST          = /Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/features/spec_pre.prf \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/features/device_config.prf \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/common/unix.conf \
@@ -195,8 +213,17 @@ DIST          = /Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/features/spec_pre
 		/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/features/exceptions.prf \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/features/yacc.prf \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/features/lex.prf \
-		../frontend_workspace/frontend_workspace.pro ../frontend_workspace/mainwindow.h ../frontend_workspace/main.cpp \
-		../frontend_workspace/mainwindow.cpp
+		../frontend_workspace/frontend_workspace.pro ../frontend_workspace/balancewindow.h \
+		../frontend_workspace/contactswindow.h \
+		../frontend_workspace/graphwindow.h \
+		../frontend_workspace/livewindow.h \
+		../frontend_workspace/mainwindow.h \
+		../frontend_workspace/paywindow.h ../frontend_workspace/balancewindow.cpp \
+		../frontend_workspace/contactswindow.cpp \
+		../frontend_workspace/graphwindow.cpp \
+		../frontend_workspace/livewindow.cpp \
+		../frontend_workspace/mainwindow.cpp \
+		../frontend_workspace/paywindow.cpp
 QMAKE_TARGET  = frontend_workspace
 DESTDIR       = 
 TARGET        = frontend_workspace.app/Contents/MacOS/frontend_workspace
@@ -217,7 +244,7 @@ include /Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/features/mac/sdk.mk
 first: all
 ####### Build rules
 
-frontend_workspace.app/Contents/MacOS/frontend_workspace: ui_mainwindow.h $(OBJECTS)  
+frontend_workspace.app/Contents/MacOS/frontend_workspace: ui_balancewindow.h ui_contactswindow.h ui_graphwindow.h ui_livewindow.h ui_mainwindow.h ui_paywindow.h $(OBJECTS)  
 	@test -d frontend_workspace.app/Contents/MacOS/ || mkdir -p frontend_workspace.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -535,9 +562,9 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../frontend_workspace/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../frontend_workspace/main.cpp ../frontend_workspace/mainwindow.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../frontend_workspace/mainwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../frontend_workspace/balancewindow.h ../frontend_workspace/contactswindow.h ../frontend_workspace/graphwindow.h ../frontend_workspace/livewindow.h ../frontend_workspace/mainwindow.h ../frontend_workspace/paywindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../frontend_workspace/balancewindow.cpp ../frontend_workspace/contactswindow.cpp ../frontend_workspace/graphwindow.cpp ../frontend_workspace/livewindow.cpp ../frontend_workspace/main.cpp ../frontend_workspace/mainwindow.cpp ../frontend_workspace/paywindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../frontend_workspace/balancewindow.ui ../frontend_workspace/contactswindow.ui ../frontend_workspace/graphwindow.ui ../frontend_workspace/livewindow.ui ../frontend_workspace/mainwindow.ui ../frontend_workspace/paywindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -566,25 +593,91 @@ benchmark: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_balancewindow.cpp moc_contactswindow.cpp moc_graphwindow.cpp moc_livewindow.cpp moc_mainwindow.cpp moc_paywindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp
-moc_mainwindow.cpp: ../frontend_workspace/mainwindow.h \
+	-$(DEL_FILE) moc_balancewindow.cpp moc_contactswindow.cpp moc_graphwindow.cpp moc_livewindow.cpp moc_mainwindow.cpp moc_paywindow.cpp
+moc_balancewindow.cpp: ../frontend_workspace/balancewindow.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/moc
+	/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=13 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/frontend_workspace -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/alexandremisrahi/Qt/6.2.0/macos/lib ../frontend_workspace/balancewindow.h -o moc_balancewindow.cpp
+
+moc_contactswindow.cpp: ../frontend_workspace/contactswindow.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/moc
+	/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=13 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/frontend_workspace -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/alexandremisrahi/Qt/6.2.0/macos/lib ../frontend_workspace/contactswindow.h -o moc_contactswindow.cpp
+
+moc_graphwindow.cpp: ../frontend_workspace/graphwindow.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/moc
+	/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=13 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/frontend_workspace -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/alexandremisrahi/Qt/6.2.0/macos/lib ../frontend_workspace/graphwindow.h -o moc_graphwindow.cpp
+
+moc_livewindow.cpp: ../frontend_workspace/livewindow.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/moc
+	/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=13 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/frontend_workspace -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/alexandremisrahi/Qt/6.2.0/macos/lib ../frontend_workspace/livewindow.h -o moc_livewindow.cpp
+
+moc_mainwindow.cpp: ../frontend_workspace/mainwindow.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QPropertyAnimation \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/qpropertyanimation.h \
+		../frontend_workspace/paywindow.h \
+		../frontend_workspace/mainwindow.h \
+		../frontend_workspace/balancewindow.h \
+		../frontend_workspace/contactswindow.h \
+		../frontend_workspace/livewindow.h \
+		../frontend_workspace/graphwindow.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/moc
 	/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=13 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/frontend_workspace -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/alexandremisrahi/Qt/6.2.0/macos/lib ../frontend_workspace/mainwindow.h -o moc_mainwindow.cpp
+
+moc_paywindow.cpp: ../frontend_workspace/paywindow.h \
+		../frontend_workspace/mainwindow.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QPropertyAnimation \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/qpropertyanimation.h \
+		../frontend_workspace/paywindow.h \
+		../frontend_workspace/balancewindow.h \
+		../frontend_workspace/contactswindow.h \
+		../frontend_workspace/livewindow.h \
+		../frontend_workspace/graphwindow.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/moc
+	/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=13 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/frontend_workspace -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/alexandremisrahi/Qt/6.2.0/macos/lib ../frontend_workspace/paywindow.h -o moc_paywindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h
+compiler_uic_make_all: ui_balancewindow.h ui_contactswindow.h ui_graphwindow.h ui_livewindow.h ui_mainwindow.h ui_paywindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h
+	-$(DEL_FILE) ui_balancewindow.h ui_contactswindow.h ui_graphwindow.h ui_livewindow.h ui_mainwindow.h ui_paywindow.h
+ui_balancewindow.h: ../frontend_workspace/balancewindow.ui \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/uic
+	/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/uic ../frontend_workspace/balancewindow.ui -o ui_balancewindow.h
+
+ui_contactswindow.h: ../frontend_workspace/contactswindow.ui \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/uic
+	/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/uic ../frontend_workspace/contactswindow.ui -o ui_contactswindow.h
+
+ui_graphwindow.h: ../frontend_workspace/graphwindow.ui \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/uic
+	/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/uic ../frontend_workspace/graphwindow.ui -o ui_graphwindow.h
+
+ui_livewindow.h: ../frontend_workspace/livewindow.ui \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/uic
+	/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/uic ../frontend_workspace/livewindow.ui -o ui_livewindow.h
+
 ui_mainwindow.h: ../frontend_workspace/mainwindow.ui \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/uic
 	/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/uic ../frontend_workspace/mainwindow.ui -o ui_mainwindow.h
+
+ui_paywindow.h: ../frontend_workspace/paywindow.ui \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/uic
+	/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/uic ../frontend_workspace/paywindow.ui -o ui_paywindow.h
 
 compiler_rez_source_make_all:
 compiler_rez_source_clean:
@@ -598,21 +691,76 @@ compiler_clean: compiler_moc_header_clean compiler_uic_clean
 
 ####### Compile
 
-main.o: ../frontend_workspace/main.cpp ../frontend_workspace/mainwindow.h \
+balancewindow.o: ../frontend_workspace/balancewindow.cpp ../frontend_workspace/balancewindow.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QApplication \
-		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qapplication.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../frontend_workspace/main.cpp
+		ui_balancewindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o balancewindow.o ../frontend_workspace/balancewindow.cpp
+
+contactswindow.o: ../frontend_workspace/contactswindow.cpp ../frontend_workspace/contactswindow.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		ui_contactswindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o contactswindow.o ../frontend_workspace/contactswindow.cpp
+
+graphwindow.o: ../frontend_workspace/graphwindow.cpp ../frontend_workspace/graphwindow.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		ui_graphwindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o graphwindow.o ../frontend_workspace/graphwindow.cpp
+
+livewindow.o: ../frontend_workspace/livewindow.cpp ../frontend_workspace/livewindow.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		ui_livewindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o livewindow.o ../frontend_workspace/livewindow.cpp
 
 mainwindow.o: ../frontend_workspace/mainwindow.cpp ../frontend_workspace/mainwindow.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QPropertyAnimation \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/qpropertyanimation.h \
+		../frontend_workspace/paywindow.h \
+		../frontend_workspace/balancewindow.h \
+		../frontend_workspace/contactswindow.h \
+		../frontend_workspace/livewindow.h \
+		../frontend_workspace/graphwindow.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../frontend_workspace/mainwindow.cpp
 
+paywindow.o: ../frontend_workspace/paywindow.cpp ../frontend_workspace/paywindow.h \
+		../frontend_workspace/mainwindow.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QPropertyAnimation \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/qpropertyanimation.h \
+		../frontend_workspace/balancewindow.h \
+		../frontend_workspace/contactswindow.h \
+		../frontend_workspace/livewindow.h \
+		../frontend_workspace/graphwindow.h \
+		ui_paywindow.h \
+		../frontend_workspace/main.cpp \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QApplication \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qapplication.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o paywindow.o ../frontend_workspace/paywindow.cpp
+
+moc_balancewindow.o: moc_balancewindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_balancewindow.o moc_balancewindow.cpp
+
+moc_contactswindow.o: moc_contactswindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_contactswindow.o moc_contactswindow.cpp
+
+moc_graphwindow.o: moc_graphwindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_graphwindow.o moc_graphwindow.cpp
+
+moc_livewindow.o: moc_livewindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_livewindow.o moc_livewindow.cpp
+
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_paywindow.o: moc_paywindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_paywindow.o moc_paywindow.cpp
 
 ####### Install
 
