@@ -252,210 +252,6 @@ gtest_main\fast:
 	$(MAKE) $(MAKESILENT) -f googletest\googletest\CMakeFiles\gtest_main.dir\build.make /nologo -$(MAKEFLAGS) googletest\googletest\CMakeFiles\gtest_main.dir\build
 .PHONY : gtest_main\fast
 
-XBlockchain\Blockchain.obj: XBlockchain\Blockchain.cpp.obj
-.PHONY : XBlockchain\Blockchain.obj
-
-# target to build an object file
-XBlockchain\Blockchain.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\XBlockchain\Blockchain.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\XBlockchain\Blockchain.cpp.obj
-.PHONY : XBlockchain\Blockchain.cpp.obj
-
-XBlockchain\Blockchain.i: XBlockchain\Blockchain.cpp.i
-.PHONY : XBlockchain\Blockchain.i
-
-# target to preprocess a source file
-XBlockchain\Blockchain.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\XBlockchain\Blockchain.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\XBlockchain\Blockchain.cpp.i
-.PHONY : XBlockchain\Blockchain.cpp.i
-
-XBlockchain\Blockchain.s: XBlockchain\Blockchain.cpp.s
-.PHONY : XBlockchain\Blockchain.s
-
-# target to generate assembly for a file
-XBlockchain\Blockchain.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\XBlockchain\Blockchain.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\XBlockchain\Blockchain.cpp.s
-.PHONY : XBlockchain\Blockchain.cpp.s
-
-XBlockchain\bignumber.obj: XBlockchain\bignumber.cpp.obj
-.PHONY : XBlockchain\bignumber.obj
-
-# target to build an object file
-XBlockchain\bignumber.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\XBlockchain\bignumber.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\XBlockchain\bignumber.cpp.obj
-.PHONY : XBlockchain\bignumber.cpp.obj
-
-XBlockchain\bignumber.i: XBlockchain\bignumber.cpp.i
-.PHONY : XBlockchain\bignumber.i
-
-# target to preprocess a source file
-XBlockchain\bignumber.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\XBlockchain\bignumber.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\XBlockchain\bignumber.cpp.i
-.PHONY : XBlockchain\bignumber.cpp.i
-
-XBlockchain\bignumber.s: XBlockchain\bignumber.cpp.s
-.PHONY : XBlockchain\bignumber.s
-
-# target to generate assembly for a file
-XBlockchain\bignumber.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\XBlockchain\bignumber.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\XBlockchain\bignumber.cpp.s
-.PHONY : XBlockchain\bignumber.cpp.s
-
-XBlockchain\block.obj: XBlockchain\block.cpp.obj
-.PHONY : XBlockchain\block.obj
-
-# target to build an object file
-XBlockchain\block.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\XBlockchain\block.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\XBlockchain\block.cpp.obj
-.PHONY : XBlockchain\block.cpp.obj
-
-XBlockchain\block.i: XBlockchain\block.cpp.i
-.PHONY : XBlockchain\block.i
-
-# target to preprocess a source file
-XBlockchain\block.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\XBlockchain\block.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\XBlockchain\block.cpp.i
-.PHONY : XBlockchain\block.cpp.i
-
-XBlockchain\block.s: XBlockchain\block.cpp.s
-.PHONY : XBlockchain\block.s
-
-# target to generate assembly for a file
-XBlockchain\block.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\XBlockchain\block.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\XBlockchain\block.cpp.s
-.PHONY : XBlockchain\block.cpp.s
-
-XBlockchain\sha256.obj: XBlockchain\sha256.cpp.obj
-.PHONY : XBlockchain\sha256.obj
-
-# target to build an object file
-XBlockchain\sha256.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\XBlockchain\sha256.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\XBlockchain\sha256.cpp.obj
-.PHONY : XBlockchain\sha256.cpp.obj
-
-XBlockchain\sha256.i: XBlockchain\sha256.cpp.i
-.PHONY : XBlockchain\sha256.i
-
-# target to preprocess a source file
-XBlockchain\sha256.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\XBlockchain\sha256.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\XBlockchain\sha256.cpp.i
-.PHONY : XBlockchain\sha256.cpp.i
-
-XBlockchain\sha256.s: XBlockchain\sha256.cpp.s
-.PHONY : XBlockchain\sha256.s
-
-# target to generate assembly for a file
-XBlockchain\sha256.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\XBlockchain\sha256.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\XBlockchain\sha256.cpp.s
-.PHONY : XBlockchain\sha256.cpp.s
-
-XBlockchain\tests\xblockchain-tests.obj: XBlockchain\tests\xblockchain-tests.cpp.obj
-.PHONY : XBlockchain\tests\xblockchain-tests.obj
-
-# target to build an object file
-XBlockchain\tests\xblockchain-tests.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin-test.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin-test.dir\XBlockchain\tests\xblockchain-tests.cpp.obj
-.PHONY : XBlockchain\tests\xblockchain-tests.cpp.obj
-
-XBlockchain\tests\xblockchain-tests.i: XBlockchain\tests\xblockchain-tests.cpp.i
-.PHONY : XBlockchain\tests\xblockchain-tests.i
-
-# target to preprocess a source file
-XBlockchain\tests\xblockchain-tests.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin-test.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin-test.dir\XBlockchain\tests\xblockchain-tests.cpp.i
-.PHONY : XBlockchain\tests\xblockchain-tests.cpp.i
-
-XBlockchain\tests\xblockchain-tests.s: XBlockchain\tests\xblockchain-tests.cpp.s
-.PHONY : XBlockchain\tests\xblockchain-tests.s
-
-# target to generate assembly for a file
-XBlockchain\tests\xblockchain-tests.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin-test.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin-test.dir\XBlockchain\tests\xblockchain-tests.cpp.s
-.PHONY : XBlockchain\tests\xblockchain-tests.cpp.s
-
-XNode\blockchain.pb.obj: XNode\blockchain.pb.cc.obj
-.PHONY : XNode\blockchain.pb.obj
-
-# target to build an object file
-XNode\blockchain.pb.cc.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\XNode\blockchain.pb.cc.obj
-.PHONY : XNode\blockchain.pb.cc.obj
-
-XNode\blockchain.pb.i: XNode\blockchain.pb.cc.i
-.PHONY : XNode\blockchain.pb.i
-
-# target to preprocess a source file
-XNode\blockchain.pb.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\XNode\blockchain.pb.cc.i
-.PHONY : XNode\blockchain.pb.cc.i
-
-XNode\blockchain.pb.s: XNode\blockchain.pb.cc.s
-.PHONY : XNode\blockchain.pb.s
-
-# target to generate assembly for a file
-XNode\blockchain.pb.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\XNode\blockchain.pb.cc.s
-.PHONY : XNode\blockchain.pb.cc.s
-
-XNode\interface.obj: XNode\interface.cpp.obj
-.PHONY : XNode\interface.obj
-
-# target to build an object file
-XNode\interface.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\XNode\interface.cpp.obj
-.PHONY : XNode\interface.cpp.obj
-
-XNode\interface.i: XNode\interface.cpp.i
-.PHONY : XNode\interface.i
-
-# target to preprocess a source file
-XNode\interface.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\XNode\interface.cpp.i
-.PHONY : XNode\interface.cpp.i
-
-XNode\interface.s: XNode\interface.cpp.s
-.PHONY : XNode\interface.s
-
-# target to generate assembly for a file
-XNode\interface.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\XNode\interface.cpp.s
-.PHONY : XNode\interface.cpp.s
-
-XNode\main.obj: XNode\main.cpp.obj
-.PHONY : XNode\main.obj
-
-# target to build an object file
-XNode\main.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\XNode\main.cpp.obj
-.PHONY : XNode\main.cpp.obj
-
-XNode\main.i: XNode\main.cpp.i
-.PHONY : XNode\main.i
-
-# target to preprocess a source file
-XNode\main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\XNode\main.cpp.i
-.PHONY : XNode\main.cpp.i
-
-XNode\main.s: XNode\main.cpp.s
-.PHONY : XNode\main.s
-
-# target to generate assembly for a file
-XNode\main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\XNode\main.cpp.s
-.PHONY : XNode\main.cpp.s
-
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -480,6 +276,210 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\main.cpp.s
 .PHONY : main.cpp.s
 
+src\XBlockchain\Blockchain.obj: src\XBlockchain\Blockchain.cpp.obj
+.PHONY : src\XBlockchain\Blockchain.obj
+
+# target to build an object file
+src\XBlockchain\Blockchain.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\src\XBlockchain\Blockchain.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\src\XBlockchain\Blockchain.cpp.obj
+.PHONY : src\XBlockchain\Blockchain.cpp.obj
+
+src\XBlockchain\Blockchain.i: src\XBlockchain\Blockchain.cpp.i
+.PHONY : src\XBlockchain\Blockchain.i
+
+# target to preprocess a source file
+src\XBlockchain\Blockchain.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\src\XBlockchain\Blockchain.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\src\XBlockchain\Blockchain.cpp.i
+.PHONY : src\XBlockchain\Blockchain.cpp.i
+
+src\XBlockchain\Blockchain.s: src\XBlockchain\Blockchain.cpp.s
+.PHONY : src\XBlockchain\Blockchain.s
+
+# target to generate assembly for a file
+src\XBlockchain\Blockchain.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\src\XBlockchain\Blockchain.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\src\XBlockchain\Blockchain.cpp.s
+.PHONY : src\XBlockchain\Blockchain.cpp.s
+
+src\XBlockchain\bignumber.obj: src\XBlockchain\bignumber.cpp.obj
+.PHONY : src\XBlockchain\bignumber.obj
+
+# target to build an object file
+src\XBlockchain\bignumber.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\src\XBlockchain\bignumber.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\src\XBlockchain\bignumber.cpp.obj
+.PHONY : src\XBlockchain\bignumber.cpp.obj
+
+src\XBlockchain\bignumber.i: src\XBlockchain\bignumber.cpp.i
+.PHONY : src\XBlockchain\bignumber.i
+
+# target to preprocess a source file
+src\XBlockchain\bignumber.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\src\XBlockchain\bignumber.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\src\XBlockchain\bignumber.cpp.i
+.PHONY : src\XBlockchain\bignumber.cpp.i
+
+src\XBlockchain\bignumber.s: src\XBlockchain\bignumber.cpp.s
+.PHONY : src\XBlockchain\bignumber.s
+
+# target to generate assembly for a file
+src\XBlockchain\bignumber.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\src\XBlockchain\bignumber.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\src\XBlockchain\bignumber.cpp.s
+.PHONY : src\XBlockchain\bignumber.cpp.s
+
+src\XBlockchain\block.obj: src\XBlockchain\block.cpp.obj
+.PHONY : src\XBlockchain\block.obj
+
+# target to build an object file
+src\XBlockchain\block.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\src\XBlockchain\block.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\src\XBlockchain\block.cpp.obj
+.PHONY : src\XBlockchain\block.cpp.obj
+
+src\XBlockchain\block.i: src\XBlockchain\block.cpp.i
+.PHONY : src\XBlockchain\block.i
+
+# target to preprocess a source file
+src\XBlockchain\block.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\src\XBlockchain\block.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\src\XBlockchain\block.cpp.i
+.PHONY : src\XBlockchain\block.cpp.i
+
+src\XBlockchain\block.s: src\XBlockchain\block.cpp.s
+.PHONY : src\XBlockchain\block.s
+
+# target to generate assembly for a file
+src\XBlockchain\block.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\src\XBlockchain\block.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\src\XBlockchain\block.cpp.s
+.PHONY : src\XBlockchain\block.cpp.s
+
+src\XBlockchain\sha256.obj: src\XBlockchain\sha256.cpp.obj
+.PHONY : src\XBlockchain\sha256.obj
+
+# target to build an object file
+src\XBlockchain\sha256.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\src\XBlockchain\sha256.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\src\XBlockchain\sha256.cpp.obj
+.PHONY : src\XBlockchain\sha256.cpp.obj
+
+src\XBlockchain\sha256.i: src\XBlockchain\sha256.cpp.i
+.PHONY : src\XBlockchain\sha256.i
+
+# target to preprocess a source file
+src\XBlockchain\sha256.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\src\XBlockchain\sha256.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\src\XBlockchain\sha256.cpp.i
+.PHONY : src\XBlockchain\sha256.cpp.i
+
+src\XBlockchain\sha256.s: src\XBlockchain\sha256.cpp.s
+.PHONY : src\XBlockchain\sha256.s
+
+# target to generate assembly for a file
+src\XBlockchain\sha256.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\src\XBlockchain\sha256.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\src\XBlockchain\sha256.cpp.s
+.PHONY : src\XBlockchain\sha256.cpp.s
+
+src\XBlockchain\tests\xblockchain-tests.obj: src\XBlockchain\tests\xblockchain-tests.cpp.obj
+.PHONY : src\XBlockchain\tests\xblockchain-tests.obj
+
+# target to build an object file
+src\XBlockchain\tests\xblockchain-tests.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin-test.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin-test.dir\src\XBlockchain\tests\xblockchain-tests.cpp.obj
+.PHONY : src\XBlockchain\tests\xblockchain-tests.cpp.obj
+
+src\XBlockchain\tests\xblockchain-tests.i: src\XBlockchain\tests\xblockchain-tests.cpp.i
+.PHONY : src\XBlockchain\tests\xblockchain-tests.i
+
+# target to preprocess a source file
+src\XBlockchain\tests\xblockchain-tests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin-test.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin-test.dir\src\XBlockchain\tests\xblockchain-tests.cpp.i
+.PHONY : src\XBlockchain\tests\xblockchain-tests.cpp.i
+
+src\XBlockchain\tests\xblockchain-tests.s: src\XBlockchain\tests\xblockchain-tests.cpp.s
+.PHONY : src\XBlockchain\tests\xblockchain-tests.s
+
+# target to generate assembly for a file
+src\XBlockchain\tests\xblockchain-tests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin-test.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin-test.dir\src\XBlockchain\tests\xblockchain-tests.cpp.s
+.PHONY : src\XBlockchain\tests\xblockchain-tests.cpp.s
+
+src\XNode\blockchain.pb.obj: src\XNode\blockchain.pb.cc.obj
+.PHONY : src\XNode\blockchain.pb.obj
+
+# target to build an object file
+src\XNode\blockchain.pb.cc.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\src\XNode\blockchain.pb.cc.obj
+.PHONY : src\XNode\blockchain.pb.cc.obj
+
+src\XNode\blockchain.pb.i: src\XNode\blockchain.pb.cc.i
+.PHONY : src\XNode\blockchain.pb.i
+
+# target to preprocess a source file
+src\XNode\blockchain.pb.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\src\XNode\blockchain.pb.cc.i
+.PHONY : src\XNode\blockchain.pb.cc.i
+
+src\XNode\blockchain.pb.s: src\XNode\blockchain.pb.cc.s
+.PHONY : src\XNode\blockchain.pb.s
+
+# target to generate assembly for a file
+src\XNode\blockchain.pb.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\src\XNode\blockchain.pb.cc.s
+.PHONY : src\XNode\blockchain.pb.cc.s
+
+src\XNode\interface.obj: src\XNode\interface.cpp.obj
+.PHONY : src\XNode\interface.obj
+
+# target to build an object file
+src\XNode\interface.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\src\XNode\interface.cpp.obj
+.PHONY : src\XNode\interface.cpp.obj
+
+src\XNode\interface.i: src\XNode\interface.cpp.i
+.PHONY : src\XNode\interface.i
+
+# target to preprocess a source file
+src\XNode\interface.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\src\XNode\interface.cpp.i
+.PHONY : src\XNode\interface.cpp.i
+
+src\XNode\interface.s: src\XNode\interface.cpp.s
+.PHONY : src\XNode\interface.s
+
+# target to generate assembly for a file
+src\XNode\interface.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\src\XNode\interface.cpp.s
+.PHONY : src\XNode\interface.cpp.s
+
+src\XNode\main.obj: src\XNode\main.cpp.obj
+.PHONY : src\XNode\main.obj
+
+# target to build an object file
+src\XNode\main.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\src\XNode\main.cpp.obj
+.PHONY : src\XNode\main.cpp.obj
+
+src\XNode\main.i: src\XNode\main.cpp.i
+.PHONY : src\XNode\main.i
+
+# target to preprocess a source file
+src\XNode\main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\src\XNode\main.cpp.i
+.PHONY : src\XNode\main.cpp.i
+
+src\XNode\main.s: src\XNode\main.cpp.s
+.PHONY : src\XNode\main.s
+
+# target to generate assembly for a file
+src\XNode\main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\src\XNode\main.cpp.s
+.PHONY : src\XNode\main.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -500,33 +500,33 @@ help:
 	@echo ... xcoin-test
 	@echo ... xcoinlib
 	@echo ... xnode
-	@echo ... XBlockchain/Blockchain.obj
-	@echo ... XBlockchain/Blockchain.i
-	@echo ... XBlockchain/Blockchain.s
-	@echo ... XBlockchain/bignumber.obj
-	@echo ... XBlockchain/bignumber.i
-	@echo ... XBlockchain/bignumber.s
-	@echo ... XBlockchain/block.obj
-	@echo ... XBlockchain/block.i
-	@echo ... XBlockchain/block.s
-	@echo ... XBlockchain/sha256.obj
-	@echo ... XBlockchain/sha256.i
-	@echo ... XBlockchain/sha256.s
-	@echo ... XBlockchain/tests/xblockchain-tests.obj
-	@echo ... XBlockchain/tests/xblockchain-tests.i
-	@echo ... XBlockchain/tests/xblockchain-tests.s
-	@echo ... XNode/blockchain.pb.obj
-	@echo ... XNode/blockchain.pb.i
-	@echo ... XNode/blockchain.pb.s
-	@echo ... XNode/interface.obj
-	@echo ... XNode/interface.i
-	@echo ... XNode/interface.s
-	@echo ... XNode/main.obj
-	@echo ... XNode/main.i
-	@echo ... XNode/main.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... src/XBlockchain/Blockchain.obj
+	@echo ... src/XBlockchain/Blockchain.i
+	@echo ... src/XBlockchain/Blockchain.s
+	@echo ... src/XBlockchain/bignumber.obj
+	@echo ... src/XBlockchain/bignumber.i
+	@echo ... src/XBlockchain/bignumber.s
+	@echo ... src/XBlockchain/block.obj
+	@echo ... src/XBlockchain/block.i
+	@echo ... src/XBlockchain/block.s
+	@echo ... src/XBlockchain/sha256.obj
+	@echo ... src/XBlockchain/sha256.i
+	@echo ... src/XBlockchain/sha256.s
+	@echo ... src/XBlockchain/tests/xblockchain-tests.obj
+	@echo ... src/XBlockchain/tests/xblockchain-tests.i
+	@echo ... src/XBlockchain/tests/xblockchain-tests.s
+	@echo ... src/XNode/blockchain.pb.obj
+	@echo ... src/XNode/blockchain.pb.i
+	@echo ... src/XNode/blockchain.pb.s
+	@echo ... src/XNode/interface.obj
+	@echo ... src/XNode/interface.i
+	@echo ... src/XNode/interface.s
+	@echo ... src/XNode/main.obj
+	@echo ... src/XNode/main.i
+	@echo ... src/XNode/main.s
 .PHONY : help
 
 

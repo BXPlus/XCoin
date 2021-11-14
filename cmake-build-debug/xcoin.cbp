@@ -44,7 +44,7 @@
 				<Option type="1"/>
 				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain"/>
 					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
 					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
@@ -69,7 +69,7 @@
 				<Option type="1"/>
 				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain"/>
 					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
 					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
@@ -95,7 +95,7 @@
 				<Option compiler="msvc8"/>
 				<Compiler>
 					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
-					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
 					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
@@ -119,7 +119,7 @@
 				<Option compiler="msvc8"/>
 				<Compiler>
 					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
-					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
 					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
@@ -143,7 +143,7 @@
 				<Option compiler="msvc8"/>
 				<Compiler>
 					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
-					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
 					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
@@ -167,7 +167,7 @@
 				<Option compiler="msvc8"/>
 				<Compiler>
 					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
-					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
 					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
@@ -192,7 +192,7 @@
 				<Compiler>
 					<Add option="-DPROTOBUF_USE_DLLS"/>
 					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
-					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain"/>
 					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
@@ -218,7 +218,7 @@
 				<Compiler>
 					<Add option="-DPROTOBUF_USE_DLLS"/>
 					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googletest/include"/>
-					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain"/>
+					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain"/>
 					<Add directory="C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug/vcpkg_installed/x86-windows/include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
@@ -476,53 +476,6 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain/Blockchain.cpp">
-			<Option target="xcoinlib"/>
-			<Option target="xcoin"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain/Blockchain.h">
-			<Option target="xcoinlib"/>
-			<Option target="xcoin"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain/bignumber.cpp">
-			<Option target="xcoinlib"/>
-			<Option target="xcoin"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain/bignumber.h">
-			<Option target="xcoinlib"/>
-			<Option target="xcoin"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain/block.cpp">
-			<Option target="xcoinlib"/>
-			<Option target="xcoin"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain/block.h">
-			<Option target="xcoinlib"/>
-			<Option target="xcoin"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain/sha256.cpp">
-			<Option target="xcoinlib"/>
-			<Option target="xcoin"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain/sha256.h">
-			<Option target="xcoinlib"/>
-			<Option target="xcoin"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XBlockchain/tests/xblockchain-tests.cpp">
-			<Option target="xcoin-test"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XNode/blockchain.pb.cc">
-			<Option target="xnode"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XNode/interface.cpp">
-			<Option target="xnode"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XNode/interface.h">
-			<Option target="xnode"/>
-		</Unit>
-		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/XNode/main.cpp">
-			<Option target="xnode"/>
-		</Unit>
 		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/googletest/googlemock/src/gmock-all.cc">
 			<Option target="gmock_main"/>
 			<Option target="gmock"/>
@@ -540,6 +493,53 @@
 		</Unit>
 		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/main.cpp">
 			<Option target="xcoin"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain/Blockchain.cpp">
+			<Option target="xcoinlib"/>
+			<Option target="xcoin"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain/Blockchain.h">
+			<Option target="xcoinlib"/>
+			<Option target="xcoin"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain/bignumber.cpp">
+			<Option target="xcoinlib"/>
+			<Option target="xcoin"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain/bignumber.h">
+			<Option target="xcoinlib"/>
+			<Option target="xcoin"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain/block.cpp">
+			<Option target="xcoinlib"/>
+			<Option target="xcoin"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain/block.h">
+			<Option target="xcoinlib"/>
+			<Option target="xcoin"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain/sha256.cpp">
+			<Option target="xcoinlib"/>
+			<Option target="xcoin"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain/sha256.h">
+			<Option target="xcoinlib"/>
+			<Option target="xcoin"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/src/XBlockchain/tests/xblockchain-tests.cpp">
+			<Option target="xcoin-test"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/src/XNode/blockchain.pb.cc">
+			<Option target="xnode"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/src/XNode/interface.cpp">
+			<Option target="xnode"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/src/XNode/interface.h">
+			<Option target="xnode"/>
+		</Unit>
+		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/src/XNode/main.cpp">
+			<Option target="xnode"/>
 		</Unit>
 		<Unit filename="C:/Users/Cyrus/CLionProjects/XCoin/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

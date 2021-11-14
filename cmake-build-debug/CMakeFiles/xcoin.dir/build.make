@@ -74,98 +74,98 @@ CMakeFiles\xcoin.dir\main.cpp.s: cmake_force
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\xcoin.dir\main.cpp.s /c C:\Users\Cyrus\CLionProjects\XCoin\main.cpp
 <<
 
-CMakeFiles\xcoin.dir\XBlockchain\block.cpp.obj: CMakeFiles\xcoin.dir\flags.make
-CMakeFiles\xcoin.dir\XBlockchain\block.cpp.obj: ..\XBlockchain\block.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/xcoin.dir/XBlockchain/block.cpp.obj"
+CMakeFiles\xcoin.dir\src\XBlockchain\block.cpp.obj: CMakeFiles\xcoin.dir\flags.make
+CMakeFiles\xcoin.dir\src\XBlockchain\block.cpp.obj: ..\src\XBlockchain\block.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/xcoin.dir/src/XBlockchain/block.cpp.obj"
 	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\Hostx86\x86\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\xcoin.dir\XBlockchain\block.cpp.obj /FdCMakeFiles\xcoin.dir\ /FS -c C:\Users\Cyrus\CLionProjects\XCoin\XBlockchain\block.cpp
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\xcoin.dir\src\XBlockchain\block.cpp.obj /FdCMakeFiles\xcoin.dir\ /FS -c C:\Users\Cyrus\CLionProjects\XCoin\src\XBlockchain\block.cpp
 <<
 
-CMakeFiles\xcoin.dir\XBlockchain\block.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/xcoin.dir/XBlockchain/block.cpp.i"
-	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\Hostx86\x86\cl.exe > CMakeFiles\xcoin.dir\XBlockchain\block.cpp.i @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Cyrus\CLionProjects\XCoin\XBlockchain\block.cpp
+CMakeFiles\xcoin.dir\src\XBlockchain\block.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/xcoin.dir/src/XBlockchain/block.cpp.i"
+	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\Hostx86\x86\cl.exe > CMakeFiles\xcoin.dir\src\XBlockchain\block.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Cyrus\CLionProjects\XCoin\src\XBlockchain\block.cpp
 <<
 
-CMakeFiles\xcoin.dir\XBlockchain\block.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/xcoin.dir/XBlockchain/block.cpp.s"
+CMakeFiles\xcoin.dir\src\XBlockchain\block.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/xcoin.dir/src/XBlockchain/block.cpp.s"
 	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\Hostx86\x86\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\xcoin.dir\XBlockchain\block.cpp.s /c C:\Users\Cyrus\CLionProjects\XCoin\XBlockchain\block.cpp
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\xcoin.dir\src\XBlockchain\block.cpp.s /c C:\Users\Cyrus\CLionProjects\XCoin\src\XBlockchain\block.cpp
 <<
 
-CMakeFiles\xcoin.dir\XBlockchain\Blockchain.cpp.obj: CMakeFiles\xcoin.dir\flags.make
-CMakeFiles\xcoin.dir\XBlockchain\Blockchain.cpp.obj: ..\XBlockchain\Blockchain.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/xcoin.dir/XBlockchain/Blockchain.cpp.obj"
+CMakeFiles\xcoin.dir\src\XBlockchain\Blockchain.cpp.obj: CMakeFiles\xcoin.dir\flags.make
+CMakeFiles\xcoin.dir\src\XBlockchain\Blockchain.cpp.obj: ..\src\XBlockchain\Blockchain.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/xcoin.dir/src/XBlockchain/Blockchain.cpp.obj"
 	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\Hostx86\x86\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\xcoin.dir\XBlockchain\Blockchain.cpp.obj /FdCMakeFiles\xcoin.dir\ /FS -c C:\Users\Cyrus\CLionProjects\XCoin\XBlockchain\Blockchain.cpp
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\xcoin.dir\src\XBlockchain\Blockchain.cpp.obj /FdCMakeFiles\xcoin.dir\ /FS -c C:\Users\Cyrus\CLionProjects\XCoin\src\XBlockchain\Blockchain.cpp
 <<
 
-CMakeFiles\xcoin.dir\XBlockchain\Blockchain.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/xcoin.dir/XBlockchain/Blockchain.cpp.i"
-	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\Hostx86\x86\cl.exe > CMakeFiles\xcoin.dir\XBlockchain\Blockchain.cpp.i @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Cyrus\CLionProjects\XCoin\XBlockchain\Blockchain.cpp
+CMakeFiles\xcoin.dir\src\XBlockchain\Blockchain.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/xcoin.dir/src/XBlockchain/Blockchain.cpp.i"
+	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\Hostx86\x86\cl.exe > CMakeFiles\xcoin.dir\src\XBlockchain\Blockchain.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Cyrus\CLionProjects\XCoin\src\XBlockchain\Blockchain.cpp
 <<
 
-CMakeFiles\xcoin.dir\XBlockchain\Blockchain.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/xcoin.dir/XBlockchain/Blockchain.cpp.s"
+CMakeFiles\xcoin.dir\src\XBlockchain\Blockchain.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/xcoin.dir/src/XBlockchain/Blockchain.cpp.s"
 	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\Hostx86\x86\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\xcoin.dir\XBlockchain\Blockchain.cpp.s /c C:\Users\Cyrus\CLionProjects\XCoin\XBlockchain\Blockchain.cpp
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\xcoin.dir\src\XBlockchain\Blockchain.cpp.s /c C:\Users\Cyrus\CLionProjects\XCoin\src\XBlockchain\Blockchain.cpp
 <<
 
-CMakeFiles\xcoin.dir\XBlockchain\sha256.cpp.obj: CMakeFiles\xcoin.dir\flags.make
-CMakeFiles\xcoin.dir\XBlockchain\sha256.cpp.obj: ..\XBlockchain\sha256.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/xcoin.dir/XBlockchain/sha256.cpp.obj"
+CMakeFiles\xcoin.dir\src\XBlockchain\sha256.cpp.obj: CMakeFiles\xcoin.dir\flags.make
+CMakeFiles\xcoin.dir\src\XBlockchain\sha256.cpp.obj: ..\src\XBlockchain\sha256.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/xcoin.dir/src/XBlockchain/sha256.cpp.obj"
 	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\Hostx86\x86\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\xcoin.dir\XBlockchain\sha256.cpp.obj /FdCMakeFiles\xcoin.dir\ /FS -c C:\Users\Cyrus\CLionProjects\XCoin\XBlockchain\sha256.cpp
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\xcoin.dir\src\XBlockchain\sha256.cpp.obj /FdCMakeFiles\xcoin.dir\ /FS -c C:\Users\Cyrus\CLionProjects\XCoin\src\XBlockchain\sha256.cpp
 <<
 
-CMakeFiles\xcoin.dir\XBlockchain\sha256.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/xcoin.dir/XBlockchain/sha256.cpp.i"
-	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\Hostx86\x86\cl.exe > CMakeFiles\xcoin.dir\XBlockchain\sha256.cpp.i @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Cyrus\CLionProjects\XCoin\XBlockchain\sha256.cpp
+CMakeFiles\xcoin.dir\src\XBlockchain\sha256.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/xcoin.dir/src/XBlockchain/sha256.cpp.i"
+	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\Hostx86\x86\cl.exe > CMakeFiles\xcoin.dir\src\XBlockchain\sha256.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Cyrus\CLionProjects\XCoin\src\XBlockchain\sha256.cpp
 <<
 
-CMakeFiles\xcoin.dir\XBlockchain\sha256.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/xcoin.dir/XBlockchain/sha256.cpp.s"
+CMakeFiles\xcoin.dir\src\XBlockchain\sha256.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/xcoin.dir/src/XBlockchain/sha256.cpp.s"
 	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\Hostx86\x86\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\xcoin.dir\XBlockchain\sha256.cpp.s /c C:\Users\Cyrus\CLionProjects\XCoin\XBlockchain\sha256.cpp
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\xcoin.dir\src\XBlockchain\sha256.cpp.s /c C:\Users\Cyrus\CLionProjects\XCoin\src\XBlockchain\sha256.cpp
 <<
 
-CMakeFiles\xcoin.dir\XBlockchain\bignumber.cpp.obj: CMakeFiles\xcoin.dir\flags.make
-CMakeFiles\xcoin.dir\XBlockchain\bignumber.cpp.obj: ..\XBlockchain\bignumber.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/xcoin.dir/XBlockchain/bignumber.cpp.obj"
+CMakeFiles\xcoin.dir\src\XBlockchain\bignumber.cpp.obj: CMakeFiles\xcoin.dir\flags.make
+CMakeFiles\xcoin.dir\src\XBlockchain\bignumber.cpp.obj: ..\src\XBlockchain\bignumber.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/xcoin.dir/src/XBlockchain/bignumber.cpp.obj"
 	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\Hostx86\x86\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\xcoin.dir\XBlockchain\bignumber.cpp.obj /FdCMakeFiles\xcoin.dir\ /FS -c C:\Users\Cyrus\CLionProjects\XCoin\XBlockchain\bignumber.cpp
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\xcoin.dir\src\XBlockchain\bignumber.cpp.obj /FdCMakeFiles\xcoin.dir\ /FS -c C:\Users\Cyrus\CLionProjects\XCoin\src\XBlockchain\bignumber.cpp
 <<
 
-CMakeFiles\xcoin.dir\XBlockchain\bignumber.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/xcoin.dir/XBlockchain/bignumber.cpp.i"
-	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\Hostx86\x86\cl.exe > CMakeFiles\xcoin.dir\XBlockchain\bignumber.cpp.i @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Cyrus\CLionProjects\XCoin\XBlockchain\bignumber.cpp
+CMakeFiles\xcoin.dir\src\XBlockchain\bignumber.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/xcoin.dir/src/XBlockchain/bignumber.cpp.i"
+	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\Hostx86\x86\cl.exe > CMakeFiles\xcoin.dir\src\XBlockchain\bignumber.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Cyrus\CLionProjects\XCoin\src\XBlockchain\bignumber.cpp
 <<
 
-CMakeFiles\xcoin.dir\XBlockchain\bignumber.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/xcoin.dir/XBlockchain/bignumber.cpp.s"
+CMakeFiles\xcoin.dir\src\XBlockchain\bignumber.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/xcoin.dir/src/XBlockchain/bignumber.cpp.s"
 	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1429~1.301\bin\Hostx86\x86\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\xcoin.dir\XBlockchain\bignumber.cpp.s /c C:\Users\Cyrus\CLionProjects\XCoin\XBlockchain\bignumber.cpp
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\xcoin.dir\src\XBlockchain\bignumber.cpp.s /c C:\Users\Cyrus\CLionProjects\XCoin\src\XBlockchain\bignumber.cpp
 <<
 
 # Object files for target xcoin
 xcoin_OBJECTS = \
 "CMakeFiles\xcoin.dir\main.cpp.obj" \
-"CMakeFiles\xcoin.dir\XBlockchain\block.cpp.obj" \
-"CMakeFiles\xcoin.dir\XBlockchain\Blockchain.cpp.obj" \
-"CMakeFiles\xcoin.dir\XBlockchain\sha256.cpp.obj" \
-"CMakeFiles\xcoin.dir\XBlockchain\bignumber.cpp.obj"
+"CMakeFiles\xcoin.dir\src\XBlockchain\block.cpp.obj" \
+"CMakeFiles\xcoin.dir\src\XBlockchain\Blockchain.cpp.obj" \
+"CMakeFiles\xcoin.dir\src\XBlockchain\sha256.cpp.obj" \
+"CMakeFiles\xcoin.dir\src\XBlockchain\bignumber.cpp.obj"
 
 # External object files for target xcoin
 xcoin_EXTERNAL_OBJECTS =
 
 xcoin.exe: CMakeFiles\xcoin.dir\main.cpp.obj
-xcoin.exe: CMakeFiles\xcoin.dir\XBlockchain\block.cpp.obj
-xcoin.exe: CMakeFiles\xcoin.dir\XBlockchain\Blockchain.cpp.obj
-xcoin.exe: CMakeFiles\xcoin.dir\XBlockchain\sha256.cpp.obj
-xcoin.exe: CMakeFiles\xcoin.dir\XBlockchain\bignumber.cpp.obj
+xcoin.exe: CMakeFiles\xcoin.dir\src\XBlockchain\block.cpp.obj
+xcoin.exe: CMakeFiles\xcoin.dir\src\XBlockchain\Blockchain.cpp.obj
+xcoin.exe: CMakeFiles\xcoin.dir\src\XBlockchain\sha256.cpp.obj
+xcoin.exe: CMakeFiles\xcoin.dir\src\XBlockchain\bignumber.cpp.obj
 xcoin.exe: CMakeFiles\xcoin.dir\build.make
 xcoin.exe: CMakeFiles\xcoin.dir\objects1.rsp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable xcoin.exe"

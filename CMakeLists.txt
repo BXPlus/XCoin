@@ -14,16 +14,16 @@ add_subdirectory(googletest)
 enable_testing()
 
 include_directories(googletest/googletest/include)
-include_directories(XBlockchain)
+include_directories(src/XBlockchain)
 
 #find_package(OpenSSL REQUIRED)
 find_package(Drogon CONFIG REQUIRED)
 find_package(Protobuf CONFIG REQUIRED)
 
-add_executable(xcoin-test XBlockchain/tests/xblockchain-tests.cpp)
-add_library(xcoinlib XBlockchain/block.h XBlockchain/block.cpp XBlockchain/Blockchain.cpp XBlockchain/Blockchain.h XBlockchain/sha256.cpp XBlockchain/sha256.h XBlockchain/bignumber.cpp XBlockchain/bignumber.h)
-add_executable(xcoin main.cpp XBlockchain/block.h XBlockchain/block.cpp XBlockchain/Blockchain.cpp XBlockchain/Blockchain.h XBlockchain/sha256.cpp XBlockchain/sha256.h XBlockchain/bignumber.cpp XBlockchain/bignumber.h)
-add_executable(xnode XNode/main.cpp XNode/main.cpp XNode/blockchain.pb.cc XNode/interface.cpp XNode/interface.h)
+add_executable(xcoin-test src/XBlockchain/tests/xblockchain-tests.cpp)
+add_library(xcoinlib src/XBlockchain/block.h src/XBlockchain/block.cpp src/XBlockchain/Blockchain.cpp src/XBlockchain/Blockchain.h src/XBlockchain/sha256.cpp src/XBlockchain/sha256.h src/XBlockchain/bignumber.cpp src/XBlockchain/bignumber.h)
+add_executable(xcoin main.cpp src/XBlockchain/block.h src/XBlockchain/block.cpp src/XBlockchain/Blockchain.cpp src/XBlockchain/Blockchain.h src/XBlockchain/sha256.cpp src/XBlockchain/sha256.h src/XBlockchain/bignumber.cpp src/XBlockchain/bignumber.h)
+add_executable(xnode src/XNode/main.cpp src/XNode/main.cpp src/XNode/blockchain.pb.cc src/XNode/interface.cpp src/XNode/interface.h)
 add_test(xcoin-test xcoin-test)
 
 target_link_libraries(xcoin-test gtest gtest_main)
