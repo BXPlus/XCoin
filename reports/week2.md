@@ -9,11 +9,11 @@ Next week I will finish my protobuf interchange classes and will work on some mo
 @Youssef Chaabouni 
 
 This week: - Defined the basics of the Transaction object (txIns and txOuts).
-           - Learned about the used encryption process: elliptic cryptography and ecdsa.
+           - Chose and learned about an encryption process to use: elliptic functions cryptography and ecdsa.
            - Implemented the transactionPool to manage unconfirmed transactions.
            - Implemented a tool to update the transactionPool.
 
-Next week: - Will work on validating before adding them to the transactionPool.
+Next week: - Will work on validating transactions before adding them to the transactionPool.
            - Will work on moving the transactions from the transactionPool into the Blockchain.
 
 @Kevin Messali 
