@@ -36,5 +36,18 @@ public:
     string getTransactionId();
 };
 
+class UnspentTxOut {
+public:
+    string txOutId;
+    int txOutIndex;
+    string address;
+    int amount;
+
+    UnspentTxOut(string txOutID, int txOutIndex, string address, int amount);
+}
+
+UnspentTxOut findUnspentTxOut(string transactionId, int index, vector<UnspentTxOut> aUnspentTxOuts);
+
+vector<UnspentTxOut> updateUnspentTxOuts(vector<Transaction> aTransactions, vector<UnspentTxOut> aUnspentTxOuts);
 
 #endif //XCOIN_TRANSACTION_H
