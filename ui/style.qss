@@ -1,0 +1,11 @@
+MainWindow{
+    background-color: rgba(75,92,154,255);
+}
+
+QPushButton{
+    border: 2px solid pink;
+    border-radius: 20px;
+    text-align: left;
+    padding: 10px;
+    margin: 0;
+}

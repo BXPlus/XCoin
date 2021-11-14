@@ -59,7 +59,8 @@ OBJECTS       = custombutton.o \
 		main.o \
 		mainwindow.o \
 		moc_mainwindow.o
-DIST          = /Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/features/spec_pre.prf \
+DIST          = ../ui/style.qss \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/features/spec_pre.prf \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/features/device_config.prf \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/common/unix.conf \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/common/mac.conf \
@@ -625,7 +626,13 @@ main.o: ../ui/main.cpp ../ui/mainwindow.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qstackedwidget.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QVBoxLayout \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QApplication \
-		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qapplication.h
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qapplication.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QFile \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/qfile.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QDir \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/qdir.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QDebug \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../ui/main.cpp
 
 mainwindow.o: ../ui/mainwindow.cpp ../ui/mainwindow.h \

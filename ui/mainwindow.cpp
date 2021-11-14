@@ -31,13 +31,6 @@ MainWindow::MainWindow(QWidget *parent)
 
         CustomButton* btn = new CustomButton(titles[i], menuContainer);
         btn->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
-        btn->setStyleSheet("QPushButton{border-radius: 30px;"
-                           "border-width: 2px;"
-                           "border: 2px solid pink;"
-                           "text-align: left;"
-                           "padding: 10px;"
-                           "margin: 0;}");
-                           //"QPushButton:hover{background: rgba(75, 86, 124, 255)};");
         menuLayout->addWidget(btn);
     }
 

@@ -101,7 +101,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // debugging and stylesheets
     this->setStyleSheet("background-color: rgba(75,92,154,255);");
-    menuContainer->setStyleSheet("border-radius: 20px;"
+    menuContainer->setStyleSheet("border: 20px solid blue;"
                                  "background-color: rgba(92,104,151,255);");
 
 }
