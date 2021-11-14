@@ -1,0 +1,87 @@
+Package: zlib
+Version: 1.2.11
+Port-Version: 13
+Architecture: x86-windows
+Multi-Arch: same
+Abi: 5963c726ce95901a86cf9e4a4664c1316873e00664701eef337827733a230ef4
+Description: A compression library
+Type: Port
+Status: install ok installed
+
+Package: vcpkg-cmake-config
+Version: 2021-11-01
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 5e87b960f58f6922a6180bf729f11527a13ee42a4a9735f1ae48b9f0a3be2419
+Type: Port
+Status: install ok installed
+
+Package: vcpkg-cmake
+Version: 2021-09-13
+Architecture: x64-windows
+Multi-Arch: same
+Abi: a0545efb624e86549bdf2c91b16f6d516e24dc1e79fa834ffc489b656103522d
+Type: Port
+Status: install ok installed
+
+Package: openssl
+Version: 1.1.1l
+Port-Version: 3
+Architecture: x86-windows
+Multi-Arch: same
+Abi: 1c9493b1ed7ac8a62b341f7fd893fe6865dc0b7cefd67f0cb2071d2d9c9210d0
+Description: OpenSSL is an open source project that provides a robust, commercial-grade, and full-featured toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocols. It is also a general-purpose cryptography library.
+Type: Port
+Status: install ok installed
+
+Package: c-ares
+Version: 1.17.2
+Port-Version: 1
+Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
+Architecture: x86-windows
+Multi-Arch: same
+Abi: b64421bd66d7eeec6a15e3f45216f26bbf8d9377ac3bb97dd75a4e0223825f84
+Description: A C library for asynchronous DNS requests
+Type: Port
+Status: install ok installed
+
+Package: trantor
+Version: 1.5.1
+Depends: c-ares, openssl, vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
+Architecture: x86-windows
+Multi-Arch: same
+Abi: 5dbcd3bd6ea46e419839819b5c6a8e625785ebbc87a20af727a072979419e2f0
+Description: A non-blocking I/O cross-platform TCP network library, using C++14
+Type: Port
+Status: install ok installed
+
+Package: jsoncpp
+Version: 1.9.4
+Port-Version: 1
+Architecture: x86-windows
+Multi-Arch: same
+Abi: 5fa5ce6178bf42850d6a1a7ef7ca0c103dc8be983ae2c7e8f65f2e45d809ea49
+Description: jsoncpp is an implementation of a JSON reader and writer in C++. JSON (JavaScript Object Notation) is a lightweight data-interchange format that it is easy to parse and redeable for human.
+Type: Port
+Status: install ok installed
+
+Package: brotli
+Version: 1.0.9
+Port-Version: 2
+Architecture: x86-windows
+Multi-Arch: same
+Abi: 906023311b91e7505fd94cd9009dd0411a60be167fcfd6124c18196e91b7ed40
+Description: a generic-purpose lossless compression algorithm that compresses data using a combination of a modern variant of the LZ77 algorithm, Huffman coding and 2nd order context modeling.
+Type: Port
+Status: install ok installed
+
+Package: drogon
+Version: 1.7.3
+Depends: brotli, jsoncpp, trantor, vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows, zlib
+Architecture: x86-windows
+Multi-Arch: same
+Abi: 693e0d6f45a40621bb2f04b27a0d9a86ae97f81cc6c5fa01d5418105751ec069
+Description: A C++14/17 based HTTP web application framework running on Linux/macOS/Unix/Windows
+Type: Port
+Status: install ok installed
+

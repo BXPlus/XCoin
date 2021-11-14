@@ -1,0 +1,87 @@
+Package: zlib
+Version: 1.2.11
+Port-Version: 13
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 5afbbef3194c80ca8103abbf50db86b0b451370bcc346ec707a4040713feee14
+Description: A compression library
+Type: Port
+Status: install ok installed
+
+Package: vcpkg-cmake-config
+Version: 2021-11-01
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 5e87b960f58f6922a6180bf729f11527a13ee42a4a9735f1ae48b9f0a3be2419
+Type: Port
+Status: install ok installed
+
+Package: vcpkg-cmake
+Version: 2021-09-13
+Architecture: x64-windows
+Multi-Arch: same
+Abi: a0545efb624e86549bdf2c91b16f6d516e24dc1e79fa834ffc489b656103522d
+Type: Port
+Status: install ok installed
+
+Package: openssl
+Version: 1.1.1l
+Port-Version: 3
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 0a90c20627c29374f6620233f938186bb939daf29c1685ff38f54fcbeebe702b
+Description: OpenSSL is an open source project that provides a robust, commercial-grade, and full-featured toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocols. It is also a general-purpose cryptography library.
+Type: Port
+Status: install ok installed
+
+Package: c-ares
+Version: 1.17.2
+Port-Version: 1
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: f8bfe84d8e9bbc7b6ca81686299142643d86722945524eb8a47e8e112b1d68ac
+Description: A C library for asynchronous DNS requests
+Type: Port
+Status: install ok installed
+
+Package: trantor
+Version: 1.5.1
+Depends: c-ares, openssl, vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 4453213bf69ec990e412ab649d72229d5a26f78f3a8b5329722116e3fba13456
+Description: A non-blocking I/O cross-platform TCP network library, using C++14
+Type: Port
+Status: install ok installed
+
+Package: jsoncpp
+Version: 1.9.4
+Port-Version: 1
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 9b0cdb82292faa76ae0fb1dec29016a55e58bdb5d4c20efd995e89631df0d570
+Description: jsoncpp is an implementation of a JSON reader and writer in C++. JSON (JavaScript Object Notation) is a lightweight data-interchange format that it is easy to parse and redeable for human.
+Type: Port
+Status: install ok installed
+
+Package: brotli
+Version: 1.0.9
+Port-Version: 2
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 41129b0fe2897712c9748c8ae7dedd6be8360eec16430585372879feba4fa0b5
+Description: a generic-purpose lossless compression algorithm that compresses data using a combination of a modern variant of the LZ77 algorithm, Huffman coding and 2nd order context modeling.
+Type: Port
+Status: install ok installed
+
+Package: drogon
+Version: 1.7.3
+Depends: brotli, jsoncpp, trantor, vcpkg-cmake, vcpkg-cmake-config, zlib
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 48dc8b910f6fbcbbaa171be30a283b2bde9561e36e3625eb118b9a030e93383f
+Description: A C++14/17 based HTTP web application framework running on Linux/macOS/Unix/Windows
+Type: Port
+Status: install ok installed
+
