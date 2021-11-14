@@ -5,6 +5,7 @@
 #include <QHBoxLayout>
 #include <QStackedWidget>
 #include <QVBoxLayout>
+#include "custombutton.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,13 +19,22 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    QList<CustomButton*> btnList;
+
     QWidget* mainWidget;
     QWidget* menuContainer;
     QHBoxLayout* mainLayout;
     QStackedWidget* contentContainer;
     QVBoxLayout* menuLayout;
 
-
+    QWidget* homeWidget;
+    QWidget* balanceWidget;
+    QWidget* paymentsWidget;
+    QWidget* contactsWidget;
+    QWidget* updatesWidget;
+    QWidget* graphsWidget;
+private slots:
+    void go_page(int);
 private:
     Ui::MainWindow *ui;
 };

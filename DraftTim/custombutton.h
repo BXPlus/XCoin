@@ -1,4 +1,4 @@
-#ifndef CUSTOMBUTTON_H
+y#ifndef CUSTOMBUTTON_H
 #define CUSTOMBUTTON_H
 
 #include <QPushButton>
