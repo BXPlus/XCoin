@@ -54,45 +54,6 @@ CMAKE_BINARY_DIR = C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	echo >nul && "C:\Program Files\JetBrains\CLion 2021.2.3\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache\fast: rebuild_cache
-.PHONY : rebuild_cache\fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	echo >nul && "C:\Program Files\JetBrains\CLion 2021.2.3\bin\cmake\win\bin\ctest.exe" --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test\fast: test
-.PHONY : test\fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	echo >nul && "C:\Program Files\JetBrains\CLion 2021.2.3\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available."
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache\fast: edit_cache
-.PHONY : edit_cache\fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components\fast: list_install_components
-.PHONY : list_install_components\fast
-
 # Special rule for the target install/local
 install\local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -116,6 +77,45 @@ install\fast: preinstall\fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
 	echo >nul && "C:\Program Files\JetBrains\CLion 2021.2.3\bin\cmake\win\bin\cmake.exe" -P cmake_install.cmake
 .PHONY : install\fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	echo >nul && "C:\Program Files\JetBrains\CLion 2021.2.3\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache\fast: edit_cache
+.PHONY : edit_cache\fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	echo >nul && "C:\Program Files\JetBrains\CLion 2021.2.3\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache\fast: rebuild_cache
+.PHONY : rebuild_cache\fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	echo >nul && "C:\Program Files\JetBrains\CLion 2021.2.3\bin\cmake\win\bin\ctest.exe" --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test\fast: test
+.PHONY : test\fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components\fast: list_install_components
+.PHONY : list_install_components\fast
 
 # The main all target
 all: cmake_check_build_system
@@ -149,43 +149,30 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named xcoin-test
+# Target rules for targets named xblockchain-test
 
 # Build rule for target.
-xcoin-test: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) xcoin-test
-.PHONY : xcoin-test
+xblockchain-test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) xblockchain-test
+.PHONY : xblockchain-test
 
 # fast build rule for target.
-xcoin-test\fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin-test.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin-test.dir\build
-.PHONY : xcoin-test\fast
+xblockchain-test\fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xblockchain-test.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xblockchain-test.dir\build
+.PHONY : xblockchain-test\fast
 
 #=============================================================================
-# Target rules for targets named xcoinlib
+# Target rules for targets named xblockchain-lib
 
 # Build rule for target.
-xcoinlib: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) xcoinlib
-.PHONY : xcoinlib
+xblockchain-lib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) xblockchain-lib
+.PHONY : xblockchain-lib
 
 # fast build rule for target.
-xcoinlib\fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\build
-.PHONY : xcoinlib\fast
-
-#=============================================================================
-# Target rules for targets named xcoin
-
-# Build rule for target.
-xcoin: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) xcoin
-.PHONY : xcoin
-
-# fast build rule for target.
-xcoin\fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\build
-.PHONY : xcoin\fast
+xblockchain-lib\fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xblockchain-lib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xblockchain-lib.dir\build
+.PHONY : xblockchain-lib\fast
 
 #=============================================================================
 # Target rules for targets named xnode
@@ -252,37 +239,12 @@ gtest_main\fast:
 	$(MAKE) $(MAKESILENT) -f googletest\googletest\CMakeFiles\gtest_main.dir\build.make /nologo -$(MAKEFLAGS) googletest\googletest\CMakeFiles\gtest_main.dir\build
 .PHONY : gtest_main\fast
 
-main.obj: main.cpp.obj
-.PHONY : main.obj
-
-# target to build an object file
-main.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\main.cpp.obj
-.PHONY : main.cpp.obj
-
-main.i: main.cpp.i
-.PHONY : main.i
-
-# target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\main.cpp.i
-.PHONY : main.cpp.i
-
-main.s: main.cpp.s
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\main.cpp.s
-.PHONY : main.cpp.s
-
 src\XBlockchain\Blockchain.obj: src\XBlockchain\Blockchain.cpp.obj
 .PHONY : src\XBlockchain\Blockchain.obj
 
 # target to build an object file
 src\XBlockchain\Blockchain.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\src\XBlockchain\Blockchain.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\src\XBlockchain\Blockchain.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xblockchain-lib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xblockchain-lib.dir\src\XBlockchain\Blockchain.cpp.obj
 .PHONY : src\XBlockchain\Blockchain.cpp.obj
 
 src\XBlockchain\Blockchain.i: src\XBlockchain\Blockchain.cpp.i
@@ -290,8 +252,7 @@ src\XBlockchain\Blockchain.i: src\XBlockchain\Blockchain.cpp.i
 
 # target to preprocess a source file
 src\XBlockchain\Blockchain.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\src\XBlockchain\Blockchain.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\src\XBlockchain\Blockchain.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xblockchain-lib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xblockchain-lib.dir\src\XBlockchain\Blockchain.cpp.i
 .PHONY : src\XBlockchain\Blockchain.cpp.i
 
 src\XBlockchain\Blockchain.s: src\XBlockchain\Blockchain.cpp.s
@@ -299,8 +260,7 @@ src\XBlockchain\Blockchain.s: src\XBlockchain\Blockchain.cpp.s
 
 # target to generate assembly for a file
 src\XBlockchain\Blockchain.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\src\XBlockchain\Blockchain.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\src\XBlockchain\Blockchain.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xblockchain-lib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xblockchain-lib.dir\src\XBlockchain\Blockchain.cpp.s
 .PHONY : src\XBlockchain\Blockchain.cpp.s
 
 src\XBlockchain\bignumber.obj: src\XBlockchain\bignumber.cpp.obj
@@ -308,8 +268,7 @@ src\XBlockchain\bignumber.obj: src\XBlockchain\bignumber.cpp.obj
 
 # target to build an object file
 src\XBlockchain\bignumber.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\src\XBlockchain\bignumber.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\src\XBlockchain\bignumber.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xblockchain-lib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xblockchain-lib.dir\src\XBlockchain\bignumber.cpp.obj
 .PHONY : src\XBlockchain\bignumber.cpp.obj
 
 src\XBlockchain\bignumber.i: src\XBlockchain\bignumber.cpp.i
@@ -317,8 +276,7 @@ src\XBlockchain\bignumber.i: src\XBlockchain\bignumber.cpp.i
 
 # target to preprocess a source file
 src\XBlockchain\bignumber.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\src\XBlockchain\bignumber.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\src\XBlockchain\bignumber.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xblockchain-lib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xblockchain-lib.dir\src\XBlockchain\bignumber.cpp.i
 .PHONY : src\XBlockchain\bignumber.cpp.i
 
 src\XBlockchain\bignumber.s: src\XBlockchain\bignumber.cpp.s
@@ -326,8 +284,7 @@ src\XBlockchain\bignumber.s: src\XBlockchain\bignumber.cpp.s
 
 # target to generate assembly for a file
 src\XBlockchain\bignumber.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\src\XBlockchain\bignumber.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\src\XBlockchain\bignumber.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xblockchain-lib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xblockchain-lib.dir\src\XBlockchain\bignumber.cpp.s
 .PHONY : src\XBlockchain\bignumber.cpp.s
 
 src\XBlockchain\block.obj: src\XBlockchain\block.cpp.obj
@@ -335,8 +292,7 @@ src\XBlockchain\block.obj: src\XBlockchain\block.cpp.obj
 
 # target to build an object file
 src\XBlockchain\block.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\src\XBlockchain\block.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\src\XBlockchain\block.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xblockchain-lib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xblockchain-lib.dir\src\XBlockchain\block.cpp.obj
 .PHONY : src\XBlockchain\block.cpp.obj
 
 src\XBlockchain\block.i: src\XBlockchain\block.cpp.i
@@ -344,8 +300,7 @@ src\XBlockchain\block.i: src\XBlockchain\block.cpp.i
 
 # target to preprocess a source file
 src\XBlockchain\block.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\src\XBlockchain\block.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\src\XBlockchain\block.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xblockchain-lib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xblockchain-lib.dir\src\XBlockchain\block.cpp.i
 .PHONY : src\XBlockchain\block.cpp.i
 
 src\XBlockchain\block.s: src\XBlockchain\block.cpp.s
@@ -353,8 +308,7 @@ src\XBlockchain\block.s: src\XBlockchain\block.cpp.s
 
 # target to generate assembly for a file
 src\XBlockchain\block.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\src\XBlockchain\block.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\src\XBlockchain\block.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xblockchain-lib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xblockchain-lib.dir\src\XBlockchain\block.cpp.s
 .PHONY : src\XBlockchain\block.cpp.s
 
 src\XBlockchain\sha256.obj: src\XBlockchain\sha256.cpp.obj
@@ -362,8 +316,7 @@ src\XBlockchain\sha256.obj: src\XBlockchain\sha256.cpp.obj
 
 # target to build an object file
 src\XBlockchain\sha256.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\src\XBlockchain\sha256.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\src\XBlockchain\sha256.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xblockchain-lib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xblockchain-lib.dir\src\XBlockchain\sha256.cpp.obj
 .PHONY : src\XBlockchain\sha256.cpp.obj
 
 src\XBlockchain\sha256.i: src\XBlockchain\sha256.cpp.i
@@ -371,8 +324,7 @@ src\XBlockchain\sha256.i: src\XBlockchain\sha256.cpp.i
 
 # target to preprocess a source file
 src\XBlockchain\sha256.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\src\XBlockchain\sha256.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\src\XBlockchain\sha256.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xblockchain-lib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xblockchain-lib.dir\src\XBlockchain\sha256.cpp.i
 .PHONY : src\XBlockchain\sha256.cpp.i
 
 src\XBlockchain\sha256.s: src\XBlockchain\sha256.cpp.s
@@ -380,8 +332,7 @@ src\XBlockchain\sha256.s: src\XBlockchain\sha256.cpp.s
 
 # target to generate assembly for a file
 src\XBlockchain\sha256.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoinlib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoinlib.dir\src\XBlockchain\sha256.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin.dir\src\XBlockchain\sha256.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xblockchain-lib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xblockchain-lib.dir\src\XBlockchain\sha256.cpp.s
 .PHONY : src\XBlockchain\sha256.cpp.s
 
 src\XBlockchain\tests\xblockchain-tests.obj: src\XBlockchain\tests\xblockchain-tests.cpp.obj
@@ -389,7 +340,7 @@ src\XBlockchain\tests\xblockchain-tests.obj: src\XBlockchain\tests\xblockchain-t
 
 # target to build an object file
 src\XBlockchain\tests\xblockchain-tests.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin-test.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin-test.dir\src\XBlockchain\tests\xblockchain-tests.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xblockchain-test.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xblockchain-test.dir\src\XBlockchain\tests\xblockchain-tests.cpp.obj
 .PHONY : src\XBlockchain\tests\xblockchain-tests.cpp.obj
 
 src\XBlockchain\tests\xblockchain-tests.i: src\XBlockchain\tests\xblockchain-tests.cpp.i
@@ -397,7 +348,7 @@ src\XBlockchain\tests\xblockchain-tests.i: src\XBlockchain\tests\xblockchain-tes
 
 # target to preprocess a source file
 src\XBlockchain\tests\xblockchain-tests.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin-test.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin-test.dir\src\XBlockchain\tests\xblockchain-tests.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xblockchain-test.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xblockchain-test.dir\src\XBlockchain\tests\xblockchain-tests.cpp.i
 .PHONY : src\XBlockchain\tests\xblockchain-tests.cpp.i
 
 src\XBlockchain\tests\xblockchain-tests.s: src\XBlockchain\tests\xblockchain-tests.cpp.s
@@ -405,7 +356,7 @@ src\XBlockchain\tests\xblockchain-tests.s: src\XBlockchain\tests\xblockchain-tes
 
 # target to generate assembly for a file
 src\XBlockchain\tests\xblockchain-tests.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xcoin-test.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xcoin-test.dir\src\XBlockchain\tests\xblockchain-tests.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xblockchain-test.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xblockchain-test.dir\src\XBlockchain\tests\xblockchain-tests.cpp.s
 .PHONY : src\XBlockchain\tests\xblockchain-tests.cpp.s
 
 src\XNode\blockchain.pb.obj: src\XNode\blockchain.pb.cc.obj
@@ -496,13 +447,9 @@ help:
 	@echo ... gmock_main
 	@echo ... gtest
 	@echo ... gtest_main
-	@echo ... xcoin
-	@echo ... xcoin-test
-	@echo ... xcoinlib
+	@echo ... xblockchain-lib
+	@echo ... xblockchain-test
 	@echo ... xnode
-	@echo ... main.obj
-	@echo ... main.i
-	@echo ... main.s
 	@echo ... src/XBlockchain/Blockchain.obj
 	@echo ... src/XBlockchain/Blockchain.i
 	@echo ... src/XBlockchain/Blockchain.s

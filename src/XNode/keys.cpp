@@ -3,3 +3,7 @@
 //
 
 #include "keys.h"
+
+keys::private_key(){
+    //generate random number
+}

@@ -6,9 +6,13 @@
 #define XCOIN_KEYS_H
 
 
-class keys {
+class private_keys {
+public:
+    private_key();
+
 
 };
+
 
 
 #endif //XCOIN_KEYS_H
