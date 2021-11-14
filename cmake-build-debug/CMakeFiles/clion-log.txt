@@ -1,11 +1,10 @@
-"C:\Program Files\JetBrains\CLion 2021.2.3\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=C:/Users/Cyrus/CLionProjects/XCoin/vcpkg/scripts/buildsystems/vcpkg.cmake -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - NMake Makefiles" C:\Users\Cyrus\CLionProjects\XCoin
+/snap/clion/169/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/vcpkg/scripts/buildsystems/vcpkg.cmake -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin
 -- Running vcpkg install
-Detecting compiler hash for triplet x86-windows...
-Detecting compiler hash for triplet x64-windows...
+Detecting compiler hash for triplet x64-linux...
 All requested packages are currently installed.
-Restored 0 packages from C:\Users\Cyrus\AppData\Local\vcpkg\archives in 140.9 us. Use --debug to see more details.
+Restored 0 packages from /home/kevin/.cache/vcpkg/archives in 417 ns. Use --debug to see more details.
 
-Total elapsed time: 4.881 s
+Total elapsed time: 271.4 ms
 
 The package drogon provides CMake targets:
 
@@ -14,6 +13,8 @@ The package drogon provides CMake targets:
     target_link_libraries(main PRIVATE pg_lib UUID_lib coz::coz MySQL_lib)
 
 -- Running vcpkg install - done
+-- jsoncpp verson:1.9.4
+-- Found UUID: /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/debug/lib/libuuid.a
 -- Configuring done
 -- Generating done
--- Build files have been written to: C:/Users/Cyrus/CLionProjects/XCoin/cmake-build-debug
+-- Build files have been written to: /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug
