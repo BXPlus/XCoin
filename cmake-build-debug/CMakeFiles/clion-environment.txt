@@ -1,4 +1,4 @@
-ToolSet: 16.0 (local)@C:\Program Files (x86)\Microsoft Visual Studio\2019\Community
+ToolSet: 5.0 (local)@C:\MinGW
 Options: 
 
-Options:
+Options:-DCMAKE_TOOLCHAIN_FILE=C:/Users/Dragon_Fly_02/Desktop/Year-2-Materials/CSE201/Project/XCoin/vcpkg/scripts/buildsystems/vcpkg.cmake
