@@ -14,7 +14,9 @@
  *  implementing the Networking.
  *  It is supposed to evolve in the near future into a WebSocket controller, but me (Kevin)
  *  will be in charge of converting it to a WebSocket controller.
- *
+ *  To access the page, use the following url: http://0.0.0.0/api/xnodectl/{*endpoint*}.
+ *  Be aware that the ip address 0.0.0.0 will be replaced by the actual ip address of the device,
+ *  in the future.
  *
  ************************************************************************************/
 namespace api {

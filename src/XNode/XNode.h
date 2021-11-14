@@ -20,7 +20,7 @@ class XNode {
 
         void start();
         void stop();
-        void setupWebSocket();
+        //void setupWebSocket();
 private:
     std::string ip;
     int port;
