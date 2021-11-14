@@ -8,6 +8,14 @@ Next week I will finish my protobuf interchange classes and will work on some mo
 
 @Youssef Chaabouni 
 
+This week: - Defined the basics of the Transaction object (txIns and txOuts).
+           - Learned about the used encryption process: elliptic cryptography and ecdsa.
+           - Implemented the transactionPool to manage unconfirmed transactions.
+           - Implemented a tool to update the transactionPool.
+
+Next week: - Will work on validating before adding them to the transactionPool.
+           - Will work on moving the transactions from the transactionPool into the Blockchain.
+
 @Kevin Messali 
 
 This week I found [vcpkg](https://github.com/microsoft/vcpkg), a library manager and decided to implement it to our project, especially when dealing with dependencies. Indeed, I have spent around 8h in total trying to add drogon, our library for networking and websockets. With @Cyrus Pellet we have set up [vcpkg](https://github.com/microsoft/vcpkg), added it as a submodule and edited our CMakeList.txt. We managed to install our libraries and created our first web server. I scaffolded XNode, that is the system that handles the connections and implemented the first class and functions. I made the documentation and created examples functions/endpoints to help the other member of the Networking team. 
