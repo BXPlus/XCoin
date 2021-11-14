@@ -6,8 +6,8 @@
 
 
 TxOut::TxOut(string address, int amount) {
-    this->address = address;
-    this->amount = amount;
+    this -> address = address;
+    this -> amount = amount;
 }
 
 <template> <typename T> T* extend_array(T* array, int length, int new_length)
@@ -15,7 +15,7 @@ TxOut::TxOut(string address, int amount) {
     // This was inspired from Tutorial 3
 {
     T* newArray = new T[new_length];
-    for (int i; i < new_size; i++) {
+    for (int i = 0; i < new_size; i++) {
         if (i < length) {
             newArray[i] = array[i];
         } else {
@@ -33,21 +33,22 @@ TxOut::TxOut(string address, int amount) {
     if (current_size == max_size) {
         array = extend_array(array, max_size, max_size+5);
         max_size += 5;
-    };
+    }
     array[current_size] = element;
     current_size += 1;
 }
 
 string Transaction::getTransactionId() {
     stringstream txInsContent;
-    for (int i; i < txIns_current_length; i++) {
+    for (int i = 0; i < txIns_current_length; i++) {
         element = txIns_array[i];
         txInsContent << element.txOutId << string(element.txOutIndex);
     }
     stringstream txOutsContent;
-    for (int i; i < txOuts_current_length; i++) {
+    for (int i = 0; i < txOuts_current_length; i++) {
         element = txOuts_array[i];
         txOutsContent << element.address << element.amount;
     }
     return sha256(txInsContent.str() + txOutsContent.str());
 }
+
