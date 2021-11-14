@@ -5,7 +5,7 @@
 
 #include "interface.h"
 
-string interface::encodeBlock(Block block) {
+string Interface::encodeBlock(Block block) {
     xcoin::interchange::Block encodedBlock;
     encodedBlock.set_index(block.index);
     encodedBlock.set_hash(block.hash);
@@ -19,16 +19,18 @@ string interface::encodeBlock(Block block) {
     return encodedBlock.SerializeAsString();
 }
 
-Block interface::decodeProtobuf(xcoin::interchange::Block block) {
+Block Interface::decodeProtobuf(string data) {
+    xcoin::interchange::Block block;
+    block.ParseFromString(data);
     return Block(block.index(), block.hash(), block.previoushash(), block.timestamp(), block.data(), block.difficulty(), block.minterbalance(), block.minteraddress());
 }
 
 
-bool interface::startup() {
+bool Interface::startup() {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
     return true;
 }
 
-void interface::shutdown() {
+void Interface::shutdown() {
     google::protobuf::ShutdownProtobufLibrary();
 }

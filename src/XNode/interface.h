@@ -9,11 +9,12 @@
 #include "blockchain.pb.h"
 #include "Blockchain.h"
 
-class interface {
+class Interface {
+public:
     string encodeBlock(Block block);
-    Block decodeProtobuf(xcoin::interchange::Block block);
-    bool startup();
+    Block decodeProtobuf(string data);
     void shutdown();
+    bool startup();
 };
 
 
