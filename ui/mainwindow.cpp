@@ -4,11 +4,15 @@
 #include <custombutton.h>
 #include <QAction>
 #include <QSignalMapper>
+#include "logindialog.cpp"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    //Login page
+    pop_login();
+
     ui->setupUi(this);
     setWindowTitle("XCoin");
     setMinimumSize(500,400);
@@ -73,8 +77,6 @@ MainWindow::MainWindow(QWidget *parent)
     // Creating main content
     mainLayout->addWidget(contentContainer);
 
-
-
 }
 
 MainWindow::~MainWindow()
@@ -86,4 +88,10 @@ void MainWindow::go_page(int i)
 {
     contentContainer->setCurrentIndex(i);
 }
+void MainWindow::pop_login()
 
+{
+    LoginDialog dialogLogin;
+    dialogLogin.setModal(true);
+    dialogLogin.exec();
+}

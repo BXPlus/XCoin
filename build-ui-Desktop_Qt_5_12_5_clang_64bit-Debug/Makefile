@@ -54,10 +54,12 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../ui/custombutton.cpp \
 		../ui/main.cpp \
-		../ui/mainwindow.cpp moc_mainwindow.cpp
+		../ui/mainwindow.cpp moc_logindialog.cpp \
+		moc_mainwindow.cpp
 OBJECTS       = custombutton.o \
 		main.o \
 		mainwindow.o \
+		moc_logindialog.o \
 		moc_mainwindow.o
 DIST          = ../ui/style.qss \
 		../../../../Installs/Qt/5.12.5/clang_64/mkspecs/features/spec_pre.prf \
@@ -254,6 +256,7 @@ DIST          = ../ui/style.qss \
 		../../../../Installs/Qt/5.12.5/clang_64/mkspecs/features/yacc.prf \
 		../../../../Installs/Qt/5.12.5/clang_64/mkspecs/features/lex.prf \
 		../ui/ui.pro ../ui/custombutton.h \
+		../ui/logindialog.h \
 		../ui/mainwindow.h ../ui/custombutton.cpp \
 		../ui/main.cpp \
 		../ui/mainwindow.cpp
@@ -275,7 +278,7 @@ include /Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/features/mac/sdk
 first: all
 ####### Build rules
 
-ui.app/Contents/MacOS/ui: ui_mainwindow.h $(OBJECTS)  
+ui.app/Contents/MacOS/ui: ui_logindialog.h ui_mainwindow.h $(OBJECTS)  
 	@test -d ui.app/Contents/MacOS/ || mkdir -p ui.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -704,9 +707,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Installs/Qt/5.12.5/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../ui/custombutton.h ../ui/mainwindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../ui/custombutton.h ../ui/logindialog.h ../ui/mainwindow.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../ui/custombutton.cpp ../ui/main.cpp ../ui/mainwindow.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../ui/mainwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../ui/logindialog.ui ../ui/mainwindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -741,9 +744,38 @@ compiler_moc_predefs_clean:
 moc_predefs.h: ../../../../Installs/Qt/5.12.5/clang_64/mkspecs/features/data/dummy.cpp
 	/Library/Developer/CommandLineTools/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mmacosx-version-min=10.12 -Wall -W -dM -E -o moc_predefs.h ../../../../Installs/Qt/5.12.5/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_logindialog.cpp moc_mainwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp
+	-$(DEL_FILE) moc_logindialog.cpp moc_mainwindow.cpp
+moc_logindialog.cpp: ../ui/logindialog.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGroupBox \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgroupbox.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		../ui/mainwindow.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QStackedWidget \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qstackedwidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		../ui/custombutton.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		moc_predefs.h \
+		../../../../Installs/Qt/5.12.5/clang_64/bin/moc
+	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc $(DEFINES) --include /Users/timvalencony/Desktop/CSE201/XCoin/build-ui-Desktop_Qt_5_12_5_clang_64bit-Debug/moc_predefs.h -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/macx-clang -I/Users/timvalencony/Desktop/CSE201/XCoin/ui -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib ../ui/logindialog.h -o moc_logindialog.cpp
+
 moc_mainwindow.cpp: ../ui/mainwindow.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
@@ -767,9 +799,13 @@ compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h
+compiler_uic_make_all: ui_logindialog.h ui_mainwindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h
+	-$(DEL_FILE) ui_logindialog.h ui_mainwindow.h
+ui_logindialog.h: ../ui/logindialog.ui \
+		../../../../Installs/Qt/5.12.5/clang_64/bin/uic
+	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/uic ../ui/logindialog.ui -o ui_logindialog.h
+
 ui_mainwindow.h: ../ui/mainwindow.ui \
 		../../../../Installs/Qt/5.12.5/clang_64/bin/uic
 	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/uic ../ui/mainwindow.ui -o ui_mainwindow.h
@@ -841,8 +877,25 @@ mainwindow.o: ../ui/mainwindow.cpp ../ui/mainwindow.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QAction \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qaction.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QSignalMapper \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h \
+		../ui/logindialog.cpp \
+		../ui/logindialog.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGroupBox \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgroupbox.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		ui_logindialog.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../ui/mainwindow.cpp
+
+moc_logindialog.o: moc_logindialog.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_logindialog.o moc_logindialog.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

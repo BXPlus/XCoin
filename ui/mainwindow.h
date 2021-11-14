@@ -37,5 +37,6 @@ private slots:
     void go_page(int);
 private:
     Ui::MainWindow *ui;
+    void pop_login();
 };
 #endif // MAINWINDOW_H
