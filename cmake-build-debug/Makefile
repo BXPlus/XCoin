@@ -54,6 +54,45 @@ CMAKE_BINARY_DIR = C:\Users\Cyrus\CLionProjects\XCoin\cmake-build-debug
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	echo >nul && "C:\Program Files\JetBrains\CLion 2021.2.3\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache\fast: rebuild_cache
+.PHONY : rebuild_cache\fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	echo >nul && "C:\Program Files\JetBrains\CLion 2021.2.3\bin\cmake\win\bin\ctest.exe" --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test\fast: test
+.PHONY : test\fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	echo >nul && "C:\Program Files\JetBrains\CLion 2021.2.3\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache\fast: edit_cache
+.PHONY : edit_cache\fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components\fast: list_install_components
+.PHONY : list_install_components\fast
+
 # Special rule for the target install/local
 install\local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -77,45 +116,6 @@ install\fast: preinstall\fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
 	echo >nul && "C:\Program Files\JetBrains\CLion 2021.2.3\bin\cmake\win\bin\cmake.exe" -P cmake_install.cmake
 .PHONY : install\fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	echo >nul && "C:\Program Files\JetBrains\CLion 2021.2.3\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available."
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache\fast: edit_cache
-.PHONY : edit_cache\fast
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	echo >nul && "C:\Program Files\JetBrains\CLion 2021.2.3\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache\fast: rebuild_cache
-.PHONY : rebuild_cache\fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	echo >nul && "C:\Program Files\JetBrains\CLion 2021.2.3\bin\cmake\win\bin\ctest.exe" --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test\fast: test
-.PHONY : test\fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components\fast: list_install_components
-.PHONY : list_install_components\fast
 
 # The main all target
 all: cmake_check_build_system
@@ -149,17 +149,43 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named xblockchain-test
+# Target rules for targets named xblockchain-tests
 
 # Build rule for target.
-xblockchain-test: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) xblockchain-test
-.PHONY : xblockchain-test
+xblockchain-tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) xblockchain-tests
+.PHONY : xblockchain-tests
 
 # fast build rule for target.
-xblockchain-test\fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xblockchain-test.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xblockchain-test.dir\build
-.PHONY : xblockchain-test\fast
+xblockchain-tests\fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xblockchain-tests.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xblockchain-tests.dir\build
+.PHONY : xblockchain-tests\fast
+
+#=============================================================================
+# Target rules for targets named xnode
+
+# Build rule for target.
+xnode: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) xnode
+.PHONY : xnode
+
+# fast build rule for target.
+xnode\fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\build
+.PHONY : xnode\fast
+
+#=============================================================================
+# Target rules for targets named xnode-tests
+
+# Build rule for target.
+xnode-tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) xnode-tests
+.PHONY : xnode-tests
+
+# fast build rule for target.
+xnode-tests\fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode-tests.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode-tests.dir\build
+.PHONY : xnode-tests\fast
 
 #=============================================================================
 # Target rules for targets named xblockchain-lib
@@ -175,17 +201,17 @@ xblockchain-lib\fast:
 .PHONY : xblockchain-lib\fast
 
 #=============================================================================
-# Target rules for targets named xnode
+# Target rules for targets named xnode-lib
 
 # Build rule for target.
-xnode: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) xnode
-.PHONY : xnode
+xnode-lib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) xnode-lib
+.PHONY : xnode-lib
 
 # fast build rule for target.
-xnode\fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\build
-.PHONY : xnode\fast
+xnode-lib\fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode-lib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode-lib.dir\build
+.PHONY : xnode-lib\fast
 
 #=============================================================================
 # Target rules for targets named gmock_main
@@ -340,7 +366,7 @@ src\XBlockchain\tests\xblockchain-tests.obj: src\XBlockchain\tests\xblockchain-t
 
 # target to build an object file
 src\XBlockchain\tests\xblockchain-tests.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xblockchain-test.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xblockchain-test.dir\src\XBlockchain\tests\xblockchain-tests.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xblockchain-tests.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xblockchain-tests.dir\src\XBlockchain\tests\xblockchain-tests.cpp.obj
 .PHONY : src\XBlockchain\tests\xblockchain-tests.cpp.obj
 
 src\XBlockchain\tests\xblockchain-tests.i: src\XBlockchain\tests\xblockchain-tests.cpp.i
@@ -348,7 +374,7 @@ src\XBlockchain\tests\xblockchain-tests.i: src\XBlockchain\tests\xblockchain-tes
 
 # target to preprocess a source file
 src\XBlockchain\tests\xblockchain-tests.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xblockchain-test.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xblockchain-test.dir\src\XBlockchain\tests\xblockchain-tests.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xblockchain-tests.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xblockchain-tests.dir\src\XBlockchain\tests\xblockchain-tests.cpp.i
 .PHONY : src\XBlockchain\tests\xblockchain-tests.cpp.i
 
 src\XBlockchain\tests\xblockchain-tests.s: src\XBlockchain\tests\xblockchain-tests.cpp.s
@@ -356,7 +382,7 @@ src\XBlockchain\tests\xblockchain-tests.s: src\XBlockchain\tests\xblockchain-tes
 
 # target to generate assembly for a file
 src\XBlockchain\tests\xblockchain-tests.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\xblockchain-test.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xblockchain-test.dir\src\XBlockchain\tests\xblockchain-tests.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xblockchain-tests.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xblockchain-tests.dir\src\XBlockchain\tests\xblockchain-tests.cpp.s
 .PHONY : src\XBlockchain\tests\xblockchain-tests.cpp.s
 
 src\XNode\blockchain.pb.obj: src\XNode\blockchain.pb.cc.obj
@@ -365,6 +391,7 @@ src\XNode\blockchain.pb.obj: src\XNode\blockchain.pb.cc.obj
 # target to build an object file
 src\XNode\blockchain.pb.cc.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\src\XNode\blockchain.pb.cc.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode-lib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode-lib.dir\src\XNode\blockchain.pb.cc.obj
 .PHONY : src\XNode\blockchain.pb.cc.obj
 
 src\XNode\blockchain.pb.i: src\XNode\blockchain.pb.cc.i
@@ -373,6 +400,7 @@ src\XNode\blockchain.pb.i: src\XNode\blockchain.pb.cc.i
 # target to preprocess a source file
 src\XNode\blockchain.pb.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\src\XNode\blockchain.pb.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode-lib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode-lib.dir\src\XNode\blockchain.pb.cc.i
 .PHONY : src\XNode\blockchain.pb.cc.i
 
 src\XNode\blockchain.pb.s: src\XNode\blockchain.pb.cc.s
@@ -381,6 +409,7 @@ src\XNode\blockchain.pb.s: src\XNode\blockchain.pb.cc.s
 # target to generate assembly for a file
 src\XNode\blockchain.pb.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\src\XNode\blockchain.pb.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode-lib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode-lib.dir\src\XNode\blockchain.pb.cc.s
 .PHONY : src\XNode\blockchain.pb.cc.s
 
 src\XNode\interface.obj: src\XNode\interface.cpp.obj
@@ -389,6 +418,7 @@ src\XNode\interface.obj: src\XNode\interface.cpp.obj
 # target to build an object file
 src\XNode\interface.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\src\XNode\interface.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode-lib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode-lib.dir\src\XNode\interface.cpp.obj
 .PHONY : src\XNode\interface.cpp.obj
 
 src\XNode\interface.i: src\XNode\interface.cpp.i
@@ -397,6 +427,7 @@ src\XNode\interface.i: src\XNode\interface.cpp.i
 # target to preprocess a source file
 src\XNode\interface.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\src\XNode\interface.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode-lib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode-lib.dir\src\XNode\interface.cpp.i
 .PHONY : src\XNode\interface.cpp.i
 
 src\XNode\interface.s: src\XNode\interface.cpp.s
@@ -405,6 +436,7 @@ src\XNode\interface.s: src\XNode\interface.cpp.s
 # target to generate assembly for a file
 src\XNode\interface.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\src\XNode\interface.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode-lib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode-lib.dir\src\XNode\interface.cpp.s
 .PHONY : src\XNode\interface.cpp.s
 
 src\XNode\main.obj: src\XNode\main.cpp.obj
@@ -413,6 +445,7 @@ src\XNode\main.obj: src\XNode\main.cpp.obj
 # target to build an object file
 src\XNode\main.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\src\XNode\main.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode-lib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode-lib.dir\src\XNode\main.cpp.obj
 .PHONY : src\XNode\main.cpp.obj
 
 src\XNode\main.i: src\XNode\main.cpp.i
@@ -421,6 +454,7 @@ src\XNode\main.i: src\XNode\main.cpp.i
 # target to preprocess a source file
 src\XNode\main.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\src\XNode\main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode-lib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode-lib.dir\src\XNode\main.cpp.i
 .PHONY : src\XNode\main.cpp.i
 
 src\XNode\main.s: src\XNode\main.cpp.s
@@ -429,7 +463,32 @@ src\XNode\main.s: src\XNode\main.cpp.s
 # target to generate assembly for a file
 src\XNode\main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode.dir\src\XNode\main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode-lib.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode-lib.dir\src\XNode\main.cpp.s
 .PHONY : src\XNode\main.cpp.s
+
+src\XNode\tests\xnode-tests.obj: src\XNode\tests\xnode-tests.cpp.obj
+.PHONY : src\XNode\tests\xnode-tests.obj
+
+# target to build an object file
+src\XNode\tests\xnode-tests.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode-tests.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode-tests.dir\src\XNode\tests\xnode-tests.cpp.obj
+.PHONY : src\XNode\tests\xnode-tests.cpp.obj
+
+src\XNode\tests\xnode-tests.i: src\XNode\tests\xnode-tests.cpp.i
+.PHONY : src\XNode\tests\xnode-tests.i
+
+# target to preprocess a source file
+src\XNode\tests\xnode-tests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode-tests.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode-tests.dir\src\XNode\tests\xnode-tests.cpp.i
+.PHONY : src\XNode\tests\xnode-tests.cpp.i
+
+src\XNode\tests\xnode-tests.s: src\XNode\tests\xnode-tests.cpp.s
+.PHONY : src\XNode\tests\xnode-tests.s
+
+# target to generate assembly for a file
+src\XNode\tests\xnode-tests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\xnode-tests.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\xnode-tests.dir\src\XNode\tests\xnode-tests.cpp.s
+.PHONY : src\XNode\tests\xnode-tests.cpp.s
 
 # Help Target
 help:
@@ -448,8 +507,10 @@ help:
 	@echo ... gtest
 	@echo ... gtest_main
 	@echo ... xblockchain-lib
-	@echo ... xblockchain-test
+	@echo ... xblockchain-tests
 	@echo ... xnode
+	@echo ... xnode-lib
+	@echo ... xnode-tests
 	@echo ... src/XBlockchain/Blockchain.obj
 	@echo ... src/XBlockchain/Blockchain.i
 	@echo ... src/XBlockchain/Blockchain.s
@@ -474,6 +535,9 @@ help:
 	@echo ... src/XNode/main.obj
 	@echo ... src/XNode/main.i
 	@echo ... src/XNode/main.s
+	@echo ... src/XNode/tests/xnode-tests.obj
+	@echo ... src/XNode/tests/xnode-tests.i
+	@echo ... src/XNode/tests/xnode-tests.s
 .PHONY : help
 
 

@@ -117,9 +117,11 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/xblockchain-test.dir/DependInfo.cmake"
-  "CMakeFiles/xblockchain-lib.dir/DependInfo.cmake"
+  "CMakeFiles/xblockchain-tests.dir/DependInfo.cmake"
   "CMakeFiles/xnode.dir/DependInfo.cmake"
+  "CMakeFiles/xnode-tests.dir/DependInfo.cmake"
+  "CMakeFiles/xblockchain-lib.dir/DependInfo.cmake"
+  "CMakeFiles/xnode-lib.dir/DependInfo.cmake"
   "googletest/googlemock/CMakeFiles/gmock_main.dir/DependInfo.cmake"
   "googletest/googlemock/CMakeFiles/gmock.dir/DependInfo.cmake"
   "googletest/googletest/CMakeFiles/gtest.dir/DependInfo.cmake"

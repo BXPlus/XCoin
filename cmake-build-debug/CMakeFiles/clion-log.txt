@@ -3,9 +3,14 @@
 Detecting compiler hash for triplet x86-windows...
 Detecting compiler hash for triplet x64-windows...
 All requested packages are currently installed.
-Restored 0 packages from C:\Users\Cyrus\AppData\Local\vcpkg\archives in 135.4 us. Use --debug to see more details.
+Restored 0 packages from C:\Users\Cyrus\AppData\Local\vcpkg\archives in 136 us. Use --debug to see more details.
 
-Total elapsed time: 5.054 s
+Total elapsed time: 4.854 s
+
+The package openssl is compatible with built-in CMake targets:
+
+    find_package(OpenSSL REQUIRED)
+    target_link_libraries(main PRIVATE OpenSSL::SSL OpenSSL::Crypto)
 
 The package drogon provides CMake targets:
 
