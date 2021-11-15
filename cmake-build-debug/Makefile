@@ -395,6 +395,30 @@ src/XBlockchain/tests/xblockchain-tests.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/xblockchain-tests.dir/build.make CMakeFiles/xblockchain-tests.dir/src/XBlockchain/tests/xblockchain-tests.cpp.s
 .PHONY : src/XBlockchain/tests/xblockchain-tests.cpp.s
 
+src/XBlockchain/transactionPool.o: src/XBlockchain/transactionPool.cpp.o
+.PHONY : src/XBlockchain/transactionPool.o
+
+# target to build an object file
+src/XBlockchain/transactionPool.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xblockchain-lib.dir/build.make CMakeFiles/xblockchain-lib.dir/src/XBlockchain/transactionPool.cpp.o
+.PHONY : src/XBlockchain/transactionPool.cpp.o
+
+src/XBlockchain/transactionPool.i: src/XBlockchain/transactionPool.cpp.i
+.PHONY : src/XBlockchain/transactionPool.i
+
+# target to preprocess a source file
+src/XBlockchain/transactionPool.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xblockchain-lib.dir/build.make CMakeFiles/xblockchain-lib.dir/src/XBlockchain/transactionPool.cpp.i
+.PHONY : src/XBlockchain/transactionPool.cpp.i
+
+src/XBlockchain/transactionPool.s: src/XBlockchain/transactionPool.cpp.s
+.PHONY : src/XBlockchain/transactionPool.s
+
+# target to generate assembly for a file
+src/XBlockchain/transactionPool.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xblockchain-lib.dir/build.make CMakeFiles/xblockchain-lib.dir/src/XBlockchain/transactionPool.cpp.s
+.PHONY : src/XBlockchain/transactionPool.cpp.s
+
 src/XNode/XNode.o: src/XNode/XNode.cpp.o
 .PHONY : src/XNode/XNode.o
 
@@ -623,6 +647,9 @@ help:
 	@echo "... src/XBlockchain/tests/xblockchain-tests.o"
 	@echo "... src/XBlockchain/tests/xblockchain-tests.i"
 	@echo "... src/XBlockchain/tests/xblockchain-tests.s"
+	@echo "... src/XBlockchain/transactionPool.o"
+	@echo "... src/XBlockchain/transactionPool.i"
+	@echo "... src/XBlockchain/transactionPool.s"
 	@echo "... src/XNode/XNode.o"
 	@echo "... src/XNode/XNode.i"
 	@echo "... src/XNode/XNode.s"

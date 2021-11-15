@@ -2,9 +2,9 @@
 -- Running vcpkg install
 Detecting compiler hash for triplet x64-linux...
 All requested packages are currently installed.
-Restored 0 packages from /home/kevin/.cache/vcpkg/archives in 346 ns. Use --debug to see more details.
+Restored 0 packages from /home/kevin/.cache/vcpkg/archives in 742 ns. Use --debug to see more details.
 
-Total elapsed time: 264 ms
+Total elapsed time: 381.3 ms
 
 The package openssl is compatible with built-in CMake targets:
 
@@ -23,8 +23,40 @@ The package protobuf provides CMake targets:
     target_link_libraries(main PRIVATE protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
 
 -- Running vcpkg install - done
+-- The C compiler identification is GNU 10.3.0
+-- The CXX compiler identification is GNU 10.3.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Python: /usr/bin/python3.9 (found version "3.9.7") found components: Interpreter 
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE  
+-- Found Jsoncpp: /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/include  
 -- jsoncpp verson:1.9.4
+-- Found OpenSSL: /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/debug/lib/libcrypto.a (found version "1.1.1l")  
+-- Found c-ares: /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/include  
 -- Found UUID: /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/debug/lib/libuuid.a
+-- Found ZLIB: optimized;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/lib/libz.a;debug;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/debug/lib/libz.a (found version "1.2.11") 
+-- Found Brotli: /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/debug/lib/libbrotlidec-static.a  
+-- Looking for C++ include filesystem
+-- Looking for C++ include filesystem - found
+-- Performing Test CXX_FILESYSTEM_NO_LINK_NEEDED
+-- Performing Test CXX_FILESYSTEM_NO_LINK_NEEDED - Success
+-- Found Protobuf: /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/tools/protobuf/protoc-3.18.0.0 (found version "3.18.0.0") 
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug
