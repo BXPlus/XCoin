@@ -9,17 +9,20 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    balancewidget.cpp \
     custombutton.cpp \
     logindialog.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    balancewidget.h \
     custombutton.h \
     logindialog.h \
     mainwindow.h
 
 FORMS += \
+    balancewidget.ui \
     logindialog.ui \
     mainwindow.ui
 
