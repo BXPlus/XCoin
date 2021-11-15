@@ -48,46 +48,64 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake
+CMAKE_COMMAND = /snap/clion/169/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
+RM = /snap/clion/169/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/malo/CLionProjects/XCoin
+CMAKE_SOURCE_DIR = /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/malo/CLionProjects/XCoin/cmake-build-debug
+CMAKE_BINARY_DIR = /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/snap/clion/169/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+.PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/snap/clion/169/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+.PHONY : rebuild_cache/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/snap/clion/169/bin/cmake/linux/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+.PHONY : test/fast
+
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	/snap/clion/169/bin/cmake/linux/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip
 
 # Special rule for the target install/strip
 install/strip/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	/snap/clion/169/bin/cmake/linux/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
 
 # Special rule for the target list_install_components
 list_install_components:
@@ -98,53 +116,35 @@ list_install_components:
 list_install_components/fast: list_install_components
 .PHONY : list_install_components/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/snap/clion/169/bin/cmake/linux/bin/cmake -P cmake_install.cmake
+.PHONY : install
 
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-.PHONY : rebuild_cache/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-.PHONY : edit_cache/fast
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/snap/clion/169/bin/cmake/linux/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	/snap/clion/169/bin/cmake/linux/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local
 
 # Special rule for the target install/local
 install/local/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	/snap/clion/169/bin/cmake/linux/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/Applications/CLion.app/Contents/bin/cmake/mac/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-.PHONY : test/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/malo/CLionProjects/XCoin/cmake-build-debug/CMakeFiles /Users/malo/CLionProjects/XCoin/cmake-build-debug//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/CMakeFiles /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/malo/CLionProjects/XCoin/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -198,30 +198,30 @@ xblockchain-lib/fast:
 .PHONY : xblockchain-lib/fast
 
 #=============================================================================
-# Target rules for targets named xblockchain-test
+# Target rules for targets named xnode-tests
 
 # Build rule for target.
-xblockchain-test: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 xblockchain-test
-.PHONY : xblockchain-test
+xnode-tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 xnode-tests
+.PHONY : xnode-tests
 
 # fast build rule for target.
-xblockchain-test/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/xblockchain-test.dir/build.make CMakeFiles/xblockchain-test.dir/build
-.PHONY : xblockchain-test/fast
+xnode-tests/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode-tests.dir/build.make CMakeFiles/xnode-tests.dir/build
+.PHONY : xnode-tests/fast
 
 #=============================================================================
-# Target rules for targets named gmock
+# Target rules for targets named xblockchain-tests
 
 # Build rule for target.
-gmock: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock
-.PHONY : gmock
+xblockchain-tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 xblockchain-tests
+.PHONY : xblockchain-tests
 
 # fast build rule for target.
-gmock/fast:
-	$(MAKE) $(MAKESILENT) -f googletest/googlemock/CMakeFiles/gmock.dir/build.make googletest/googlemock/CMakeFiles/gmock.dir/build
-.PHONY : gmock/fast
+xblockchain-tests/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xblockchain-tests.dir/build.make CMakeFiles/xblockchain-tests.dir/build
+.PHONY : xblockchain-tests/fast
 
 #=============================================================================
 # Target rules for targets named gmock_main
@@ -237,17 +237,17 @@ gmock_main/fast:
 .PHONY : gmock_main/fast
 
 #=============================================================================
-# Target rules for targets named gtest_main
+# Target rules for targets named gmock
 
 # Build rule for target.
-gtest_main: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest_main
-.PHONY : gtest_main
+gmock: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock
+.PHONY : gmock
 
 # fast build rule for target.
-gtest_main/fast:
-	$(MAKE) $(MAKESILENT) -f googletest/googletest/CMakeFiles/gtest_main.dir/build.make googletest/googletest/CMakeFiles/gtest_main.dir/build
-.PHONY : gtest_main/fast
+gmock/fast:
+	$(MAKE) $(MAKESILENT) -f googletest/googlemock/CMakeFiles/gmock.dir/build.make googletest/googlemock/CMakeFiles/gmock.dir/build
+.PHONY : gmock/fast
 
 #=============================================================================
 # Target rules for targets named gtest
@@ -261,6 +261,19 @@ gtest: cmake_check_build_system
 gtest/fast:
 	$(MAKE) $(MAKESILENT) -f googletest/googletest/CMakeFiles/gtest.dir/build.make googletest/googletest/CMakeFiles/gtest.dir/build
 .PHONY : gtest/fast
+
+#=============================================================================
+# Target rules for targets named gtest_main
+
+# Build rule for target.
+gtest_main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest_main
+.PHONY : gtest_main
+
+# fast build rule for target.
+gtest_main/fast:
+	$(MAKE) $(MAKESILENT) -f googletest/googletest/CMakeFiles/gtest_main.dir/build.make googletest/googletest/CMakeFiles/gtest_main.dir/build
+.PHONY : gtest_main/fast
 
 src/XBlockchain/Blockchain.o: src/XBlockchain/Blockchain.cpp.o
 .PHONY : src/XBlockchain/Blockchain.o
@@ -363,7 +376,7 @@ src/XBlockchain/tests/xblockchain-tests.o: src/XBlockchain/tests/xblockchain-tes
 
 # target to build an object file
 src/XBlockchain/tests/xblockchain-tests.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/xblockchain-test.dir/build.make CMakeFiles/xblockchain-test.dir/src/XBlockchain/tests/xblockchain-tests.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xblockchain-tests.dir/build.make CMakeFiles/xblockchain-tests.dir/src/XBlockchain/tests/xblockchain-tests.cpp.o
 .PHONY : src/XBlockchain/tests/xblockchain-tests.cpp.o
 
 src/XBlockchain/tests/xblockchain-tests.i: src/XBlockchain/tests/xblockchain-tests.cpp.i
@@ -371,7 +384,7 @@ src/XBlockchain/tests/xblockchain-tests.i: src/XBlockchain/tests/xblockchain-tes
 
 # target to preprocess a source file
 src/XBlockchain/tests/xblockchain-tests.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/xblockchain-test.dir/build.make CMakeFiles/xblockchain-test.dir/src/XBlockchain/tests/xblockchain-tests.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xblockchain-tests.dir/build.make CMakeFiles/xblockchain-tests.dir/src/XBlockchain/tests/xblockchain-tests.cpp.i
 .PHONY : src/XBlockchain/tests/xblockchain-tests.cpp.i
 
 src/XBlockchain/tests/xblockchain-tests.s: src/XBlockchain/tests/xblockchain-tests.cpp.s
@@ -379,8 +392,32 @@ src/XBlockchain/tests/xblockchain-tests.s: src/XBlockchain/tests/xblockchain-tes
 
 # target to generate assembly for a file
 src/XBlockchain/tests/xblockchain-tests.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/xblockchain-test.dir/build.make CMakeFiles/xblockchain-test.dir/src/XBlockchain/tests/xblockchain-tests.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xblockchain-tests.dir/build.make CMakeFiles/xblockchain-tests.dir/src/XBlockchain/tests/xblockchain-tests.cpp.s
 .PHONY : src/XBlockchain/tests/xblockchain-tests.cpp.s
+
+src/XNode/XNode.o: src/XNode/XNode.cpp.o
+.PHONY : src/XNode/XNode.o
+
+# target to build an object file
+src/XNode/XNode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/src/XNode/XNode.cpp.o
+.PHONY : src/XNode/XNode.cpp.o
+
+src/XNode/XNode.i: src/XNode/XNode.cpp.i
+.PHONY : src/XNode/XNode.i
+
+# target to preprocess a source file
+src/XNode/XNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/src/XNode/XNode.cpp.i
+.PHONY : src/XNode/XNode.cpp.i
+
+src/XNode/XNode.s: src/XNode/XNode.cpp.s
+.PHONY : src/XNode/XNode.s
+
+# target to generate assembly for a file
+src/XNode/XNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/src/XNode/XNode.cpp.s
+.PHONY : src/XNode/XNode.cpp.s
 
 src/XNode/blockchain.pb.o: src/XNode/blockchain.pb.cc.o
 .PHONY : src/XNode/blockchain.pb.o
@@ -406,6 +443,30 @@ src/XNode/blockchain.pb.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/src/XNode/blockchain.pb.cc.s
 .PHONY : src/XNode/blockchain.pb.cc.s
 
+src/XNode/controllers/xnodectl.o: src/XNode/controllers/xnodectl.cpp.o
+.PHONY : src/XNode/controllers/xnodectl.o
+
+# target to build an object file
+src/XNode/controllers/xnodectl.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/src/XNode/controllers/xnodectl.cpp.o
+.PHONY : src/XNode/controllers/xnodectl.cpp.o
+
+src/XNode/controllers/xnodectl.i: src/XNode/controllers/xnodectl.cpp.i
+.PHONY : src/XNode/controllers/xnodectl.i
+
+# target to preprocess a source file
+src/XNode/controllers/xnodectl.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/src/XNode/controllers/xnodectl.cpp.i
+.PHONY : src/XNode/controllers/xnodectl.cpp.i
+
+src/XNode/controllers/xnodectl.s: src/XNode/controllers/xnodectl.cpp.s
+.PHONY : src/XNode/controllers/xnodectl.s
+
+# target to generate assembly for a file
+src/XNode/controllers/xnodectl.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/src/XNode/controllers/xnodectl.cpp.s
+.PHONY : src/XNode/controllers/xnodectl.cpp.s
+
 src/XNode/interface.o: src/XNode/interface.cpp.o
 .PHONY : src/XNode/interface.o
 
@@ -429,6 +490,30 @@ src/XNode/interface.s: src/XNode/interface.cpp.s
 src/XNode/interface.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/src/XNode/interface.cpp.s
 .PHONY : src/XNode/interface.cpp.s
+
+src/XNode/keys.o: src/XNode/keys.cpp.o
+.PHONY : src/XNode/keys.o
+
+# target to build an object file
+src/XNode/keys.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/src/XNode/keys.cpp.o
+.PHONY : src/XNode/keys.cpp.o
+
+src/XNode/keys.i: src/XNode/keys.cpp.i
+.PHONY : src/XNode/keys.i
+
+# target to preprocess a source file
+src/XNode/keys.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/src/XNode/keys.cpp.i
+.PHONY : src/XNode/keys.cpp.i
+
+src/XNode/keys.s: src/XNode/keys.cpp.s
+.PHONY : src/XNode/keys.s
+
+# target to generate assembly for a file
+src/XNode/keys.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/src/XNode/keys.cpp.s
+.PHONY : src/XNode/keys.cpp.s
 
 src/XNode/main.o: src/XNode/main.cpp.o
 .PHONY : src/XNode/main.o
@@ -454,6 +539,30 @@ src/XNode/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/src/XNode/main.cpp.s
 .PHONY : src/XNode/main.cpp.s
 
+src/XNode/tests/xnode-tests.o: src/XNode/tests/xnode-tests.cpp.o
+.PHONY : src/XNode/tests/xnode-tests.o
+
+# target to build an object file
+src/XNode/tests/xnode-tests.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode-tests.dir/build.make CMakeFiles/xnode-tests.dir/src/XNode/tests/xnode-tests.cpp.o
+.PHONY : src/XNode/tests/xnode-tests.cpp.o
+
+src/XNode/tests/xnode-tests.i: src/XNode/tests/xnode-tests.cpp.i
+.PHONY : src/XNode/tests/xnode-tests.i
+
+# target to preprocess a source file
+src/XNode/tests/xnode-tests.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode-tests.dir/build.make CMakeFiles/xnode-tests.dir/src/XNode/tests/xnode-tests.cpp.i
+.PHONY : src/XNode/tests/xnode-tests.cpp.i
+
+src/XNode/tests/xnode-tests.s: src/XNode/tests/xnode-tests.cpp.s
+.PHONY : src/XNode/tests/xnode-tests.s
+
+# target to generate assembly for a file
+src/XNode/tests/xnode-tests.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode-tests.dir/build.make CMakeFiles/xnode-tests.dir/src/XNode/tests/xnode-tests.cpp.s
+.PHONY : src/XNode/tests/xnode-tests.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -472,8 +581,9 @@ help:
 	@echo "... gtest"
 	@echo "... gtest_main"
 	@echo "... xblockchain-lib"
-	@echo "... xblockchain-test"
+	@echo "... xblockchain-tests"
 	@echo "... xnode"
+	@echo "... xnode-tests"
 	@echo "... src/XBlockchain/Blockchain.o"
 	@echo "... src/XBlockchain/Blockchain.i"
 	@echo "... src/XBlockchain/Blockchain.s"
@@ -489,15 +599,27 @@ help:
 	@echo "... src/XBlockchain/tests/xblockchain-tests.o"
 	@echo "... src/XBlockchain/tests/xblockchain-tests.i"
 	@echo "... src/XBlockchain/tests/xblockchain-tests.s"
+	@echo "... src/XNode/XNode.o"
+	@echo "... src/XNode/XNode.i"
+	@echo "... src/XNode/XNode.s"
 	@echo "... src/XNode/blockchain.pb.o"
 	@echo "... src/XNode/blockchain.pb.i"
 	@echo "... src/XNode/blockchain.pb.s"
+	@echo "... src/XNode/controllers/xnodectl.o"
+	@echo "... src/XNode/controllers/xnodectl.i"
+	@echo "... src/XNode/controllers/xnodectl.s"
 	@echo "... src/XNode/interface.o"
 	@echo "... src/XNode/interface.i"
 	@echo "... src/XNode/interface.s"
+	@echo "... src/XNode/keys.o"
+	@echo "... src/XNode/keys.i"
+	@echo "... src/XNode/keys.s"
 	@echo "... src/XNode/main.o"
 	@echo "... src/XNode/main.i"
 	@echo "... src/XNode/main.s"
+	@echo "... src/XNode/tests/xnode-tests.o"
+	@echo "... src/XNode/tests/xnode-tests.i"
+	@echo "... src/XNode/tests/xnode-tests.s"
 .PHONY : help
 
 

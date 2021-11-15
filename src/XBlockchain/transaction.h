@@ -27,12 +27,8 @@ public:
 class Transaction {
 public:
     string id;
-    TxIn* txIns_array;
-    int txIns_current_length;
-    int txIns_max_length;
-    TxOut* txOuts_array;
-    int txOuts_current_length;
-    int txOuts_max_length;
+    vector<TxIn> txIns;
+    vector<TxOut> txOuts;
     string getTransactionId();
     string signTxIn(int txInIndex, string privateKey, vector<UnspentTxOut> aUnspentTxOuts);
 };

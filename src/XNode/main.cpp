@@ -2,9 +2,9 @@
 // Created by Cyrus Pellet on 04/11/2021.
 //
 
-#include<iostream>
-#include<drogon/drogon.h>
+#include <iostream>
 #include "Blockchain.h"
+#include "XNode.h"
 
 std::string banner = " __   __   ____     _____    ______   __  __     \n"
                 "/\\ \\ /\\ \\ /\\  _`\\  /\\  __`\\ /\\__  _\\ /\\ \\/\\ \\    \n"
@@ -17,9 +17,13 @@ std::string banner = " __   __   ____     _____    ______   __  __     \n"
 int main()
 {
     Blockchain blockchain;
+    const std::string ip = "0.0.0.0";
+    const int port = 80;
     std::cout << banner << std::endl;
     std::cout << "                                  Blockchain node    \n" << std::endl;
-    std::cout << "Server will start..." << std::endl;
-    //drogon::app().addListener("0.0.0.0",80).enableRunAsDaemon().setThreadNum(16).run();
+    std::cout << "Server will start on "<< ip << " and listens to the port " << port << std::endl;
+
+    XNode node = XNode(ip, port);
+    node.start();
     return 0;
 }

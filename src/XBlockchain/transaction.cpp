@@ -10,50 +10,22 @@ TxOut::TxOut(string address, int amount) {
     this -> amount = amount;
 }
 
-<template> <typename T> T* extend_array(T* array, int length, int new_length)
-    // This function will handle the txIns_array and the txOuts_array
-    // This was inspired from Tutorial 3
-{
-    T* newArray = new T[new_length];
-    for (int i = 0; i < new_size; i++) {
-        if (i < length) {
-            newArray[i] = array[i];
-        } else {
-            newArray[i] = 0;
-        }
-    }
-    delete[] array;
-    return newArray;
-}
-
-<template> <typename T> void T* append_to_array(T element, T* &array, int &current_size, int &max_size)
-    // This function will handle the txIns_array and the txOuts_array
-    // This was inspired from Tutorial 3
-{
-    if (current_size == max_size) {
-        array = extend_array(array, max_size, max_size+5);
-        max_size += 5;
-    }
-    array[current_size] = element;
-    current_size += 1;
-}
-
 string Transaction::getTransactionId() {
     stringstream txInsContent;
-    for (int i = 0; i < txIns_current_length; i++) {
-        element = txIns_array[i];
+    for (int i = 0; i < txIns.size(); i++) {
+        element = txIns[i];
         txInsContent << element.txOutId << string(element.txOutIndex);
     }
     stringstream txOutsContent;
-    for (int i = 0; i < txOuts_current_length; i++) {
-        element = txOuts_array[i];
+    for (int i = 0; i < (txOuts.size()); i++) {
+        element = txOuts[i];
         txOutsContent << element.address << element.amount;
     }
     return sha256(txInsContent.str() + txOutsContent.str());
 }
 
 string Transaction::signTxIn(int txInIndex, string privateKey, vector<UnspentTxOut> aUnspentTxOuts) {
-    TxIn txIn = txIns_array[txInIndex];
+    TxIn txIn = txIns[txInIndex];
     string dataToSign = id;
     UnspentTxOut referencedUnspentTxOut = findUnspentTxOut(txIn.txOutId, txIn.txOutIndex, aUnspentTxOuts);
     string referencedAddress = referencedUnspentTxOut.address;
@@ -82,15 +54,15 @@ vector<UnspentTxOut> updateUnspentTxOuts(vector<Transaction> aTransactions, vect
     vector<UnspentTxOut> newUnspentTxOuts;
     for (int i = 0; i < int(aTransactions.size()); i++) {
         Transaction T = aTransactions[i];
-        for (int j = 0; j < T.txOuts_current_length; j++)
-            newUnspentTxOuts.push_back(UnspentTxOut(T.id, j, T.txOuts_array[j].address, T.txOuts_array[j].amount);
+        for (int j = 0; j < T.(txOuts.size()); j++)
+            newUnspentTxOuts.push_back(UnspentTxOut(T.id, j, T.txOuts[j].address, T.txOuts[j].amount);
     }
 
     vector<UnspentTxOut> consumedTxOuts;
     for (int i = 0; i < int(aTransactions.size()); i++) {
         Transaction T = aTransactions[i];
-        for (int j = 0; j < T.txIns_current_length; j++)
-            consumedTxOuts.push_back(UnspentTxOut(T.txIns_array[j].txOutId, T.txIns_array[j].txOutIndex, "", 0);
+        for (int j = 0; j < T.(txIns.size()); j++)
+            consumedTxOuts.push_back(UnspentTxOut(T.txIns[j].txOutId, T.txIns[j].txOutIndex, "", 0);
     }
 
     //Removing the consumedTxOuts elements
@@ -164,8 +136,8 @@ bool isValidTransactionStructure(Transaction transaction) {
     }
 
     bool isValid = 1;
-    for (int i = 0; i < transaction.txIns_current_length; i++)
-        isValid &= isValidTxInStructure(transaction.txIns_array[i]);
+    for (int i = 0; i < transaction.(txIns.size()); i++)
+        isValid &= isValidTxInStructure(transaction.txIns[i]);
 
     if (!isValid) {
         cout << "invalid TxIns array";
@@ -178,8 +150,8 @@ bool isValidTransactionStructure(Transaction transaction) {
     }
 
     isValid = 1;
-    for (int i = 0; i < transaction.txOuts_current_length; i++)
-        isValid &= isValidTxOutStructure(transaction.txOuts_array[i]);
+    for (int i = 0; i < transaction.(txOuts.size()); i++)
+        isValid &= isValidTxOutStructure(transaction.txOuts[i]);
 
     if (!isValid) {
         cout << "invalid TxOuts array";
