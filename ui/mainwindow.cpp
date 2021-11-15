@@ -5,6 +5,8 @@
 #include <QAction>
 #include <QSignalMapper>
 #include "logindialog.cpp"
+#include <QLabel>
+#include <QDir>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -15,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->setupUi(this);
     setWindowTitle("XCoin");
-    setMinimumSize(500,400);
+    setMinimumSize(500,600);
 
 
     // Setting layouts
@@ -31,6 +33,49 @@ MainWindow::MainWindow(QWidget *parent)
     mainLayout->addWidget(menuContainer);
     menuContainer->setMaximumWidth(200);
 
+
+    // Creating userBlock
+
+    QWidget* userBlock = new QWidget(menuContainer);
+    QVBoxLayout* userBlockLayout = new QVBoxLayout(userBlock);
+    userBlock->setFixedHeight(150);
+    userBlock->setStyleSheet("border-radius: 15px;"
+                              "background-color: rgba(50, 79, 126, 255);");
+
+    // XCoin logo
+    QString path = QDir::currentPath();
+    int index = path.indexOf("XCoin");
+    QString subPath = path.mid(0,index+5);
+    subPath.append("/ui/xcoin.jpg");
+
+    QPixmap pic(subPath);
+    QLabel* imgLabel = new QLabel(userBlock);
+    imgLabel->setFixedSize(50, 50);
+    imgLabel->setPixmap(pic);
+
+    // XCoin title
+    QLabel* titleLabel = new QLabel(userBlock);
+    titleLabel->setText("XCoin");
+    titleLabel->setAlignment(Qt::AlignCenter);
+    titleLabel->setMaximumHeight(30);
+
+    // User Balance
+    QLabel* balanceLabel = new QLabel(userBlock);
+    balanceLabel->setText("964.52");
+    balanceLabel->setAlignment(Qt::AlignCenter);
+    balanceLabel->setStyleSheet("background-color: rgba(98, 130, 184, 255);"
+                                "border-radius: 10px;"
+                                "margin: 0;");
+    balanceLabel->setMaximumHeight(30);
+
+    userBlockLayout->addWidget(imgLabel);
+    userBlockLayout->addWidget(titleLabel);
+    userBlockLayout->addWidget(balanceLabel);
+
+    menuLayout->addWidget(userBlock);
+
+    // Creating remaining buttons
+
     QStringList titles = {"Home", "Contacts", "History", "Pay", "Live", "Graphics"};
 
     for (int i=0; i<6; i++){
@@ -44,6 +89,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     //Creating Stacked Widget
+
     contentContainer = new QStackedWidget(mainWidget);
     homeWidget = new QWidget(mainWidget);
     contentContainer->addWidget(homeWidget);
@@ -69,12 +115,13 @@ MainWindow::MainWindow(QWidget *parent)
         QSignalMapper* signalMapper = new QSignalMapper (this) ;
         connect(btnList[i], SIGNAL(clicked(bool)), signalMapper, SLOT(map()));
         signalMapper -> setMapping (btnList[i], i);
-        connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(go_page(int)));
+        connect(signalMapper, SIGNAL(mappedInt(int)), this, SLOT(go_page(int)));
     }
 
     contentContainer->setCurrentIndex(0);
 
     // Creating main content
+
     mainLayout->addWidget(contentContainer);
 
 }
