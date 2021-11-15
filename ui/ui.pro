@@ -12,16 +12,19 @@ SOURCES += \
     custombutton.cpp \
     logindialog.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    settingswidget.cpp
 
 HEADERS += \
     custombutton.h \
     logindialog.h \
-    mainwindow.h
+    mainwindow.h \
+    settingswidget.h
 
 FORMS += \
     logindialog.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    settingswidget.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
