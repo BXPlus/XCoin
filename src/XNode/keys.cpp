@@ -43,4 +43,5 @@ Keys::Keys(){
     pub_key = EC_POINT_point2hex(group, pub, POINT_CONVERSION_UNCOMPRESSED, ctx);
 
     EC_KEY_free(key); //we free the memory occupied by the useless 'key'
+
 }
