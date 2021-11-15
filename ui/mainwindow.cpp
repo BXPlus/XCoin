@@ -76,7 +76,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Creating remaining buttons
 
-    QStringList titles = {"Home", "Contacts", "History", "Pay", "Live", "Graphics"};
+    QStringList titles = {"Home", "Contacts", "History", "Pay", "Settings", "Graphics"};
 
     for (int i=0; i<6; i++){
 
@@ -99,8 +99,8 @@ MainWindow::MainWindow(QWidget *parent)
     contentContainer->addWidget(paymentsWidget);
     contactsWidget = new QWidget(mainWidget);
     contentContainer->addWidget(contactsWidget);
-    updatesWidget = new QWidget(mainWidget);
-    contentContainer->addWidget(updatesWidget);
+    settingsWidget = new SettingsWidget(mainWidget);
+    contentContainer->addWidget(settingsWidget);
     graphsWidget = new QWidget(mainWidget);
     contentContainer->addWidget(graphsWidget);
 
@@ -114,8 +114,8 @@ MainWindow::MainWindow(QWidget *parent)
 
         QSignalMapper* signalMapper = new QSignalMapper (this) ;
         connect(btnList[i], SIGNAL(clicked(bool)), signalMapper, SLOT(map()));
-        signalMapper -> setMapping (btnList[i], i);
-        connect(signalMapper, SIGNAL(mappedInt(int)), this, SLOT(go_page(int)));
+        signalMapper->setMapping (btnList[i], i);
+        connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(go_page(int)));
     }
 
     contentContainer->setCurrentIndex(0);
