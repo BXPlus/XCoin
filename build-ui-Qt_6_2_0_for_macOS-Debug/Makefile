@@ -582,6 +582,13 @@ moc_mainwindow.cpp: ../ui/mainwindow.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QStackedWidget \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qstackedwidget.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		../ui/custombutton.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QString \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/qstring.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QPushButton \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qpushbutton.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/moc
 	/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=13 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/ui -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/alexandremisrahi/Qt/6.2.0/macos/lib ../ui/mainwindow.h -o moc_mainwindow.cpp
 
@@ -625,6 +632,13 @@ main.o: ../ui/main.cpp ../ui/mainwindow.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QStackedWidget \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qstackedwidget.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		../ui/custombutton.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QString \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/qstring.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QPushButton \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qpushbutton.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QApplication \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qapplication.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QFile \
@@ -643,16 +657,24 @@ mainwindow.o: ../ui/mainwindow.cpp ../ui/mainwindow.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QStackedWidget \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qstackedwidget.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QVBoxLayout \
-		ui_mainwindow.h \
-		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QStringList \
-		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/qstringlist.h \
 		../ui/custombutton.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QString \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/qstring.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qwidget.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QPushButton \
-		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qpushbutton.h
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		ui_mainwindow.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QStringList \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/qstringlist.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers/QAction \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers/qaction.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QSignalMapper \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/qsignalmapper.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QLabel \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qlabel.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QDir \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/qdir.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../ui/mainwindow.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
