@@ -90,9 +90,10 @@ Next week I am planning to start implementing the slasher's algorithm( if Cyrus 
 
 @Alex 
 
-Front-end team experimented the Qt UI library, now ready to make the skeleton of the app with the main buttons. I was more focused on the styling and how we can make the app pleasant to see with style elements of the library
+The Front-end team experimented the Qt UI library. We all separately implemented some tests and played with the Qt Ui widgets. I was more focused on the styling and how we can make the app pleasant to see with style elements of the library. All the drafts are present in the frontend branch, each under Draft{name}.
+We are now ready to make the skeleton of the app with the main buttons and main structure.
 
-Next week: start coding the app with everyone (we just need to put everything "in common").
+Next week: we will start coding the app with everyone (we just need to put everything "in common").
 
 @Jean-Sebastien G. 
 
