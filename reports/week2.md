@@ -43,6 +43,15 @@ Newt week
 Depending on the rest of the team, I will either make an implementation of the signature of work for the security team by building a sandbox.
 
 @Lio 
+**This week**
+
+- I have read the documentation about Pistache and WebSockets, as planned.
+- Most importantly, I read documentation about peer discovery. Abstractly, P2P discovery is some function that takes a *topic*, and returns a list of peers, usually their IP and port information. Now the challenge will be to implement this, as our decentralised application require some way of discovering all the connected nodes.
+
+**Next week**
+
+- Search and choose a library for pear discovery which is suitable for our project
+- Find ideas of how we could implement peer discovery by ourselves (advanced) : constitute a set of ressources and if possible, think of a beginning of algorithm.
 
 @Picha 
 
