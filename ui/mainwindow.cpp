@@ -7,6 +7,7 @@
 #include "logindialog.cpp"
 #include <QLabel>
 #include <QDir>
+#include <homewidget.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -76,7 +77,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Creating remaining buttons
 
-    QStringList titles = {"Home", "Contacts", "History", "Pay", "Live", "Graphics"};
+    QStringList titles = {"Home", "Contacts", "Balance", "Pay", "Live", "Graphics"};
 
     for (int i=0; i<6; i++){
 
@@ -91,7 +92,7 @@ MainWindow::MainWindow(QWidget *parent)
     //Creating Stacked Widget
 
     contentContainer = new QStackedWidget(mainWidget);
-    homeWidget = new QWidget(mainWidget);
+    homeWidget = new HomeWidget(mainWidget);
     contentContainer->addWidget(homeWidget);
     balanceWidget = new QWidget(mainWidget);
     contentContainer->addWidget(balanceWidget);

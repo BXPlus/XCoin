@@ -10,17 +10,16 @@ CONFIG += c++11
 
 SOURCES += \
     custombutton.cpp \
-    logindialog.cpp \
+    homewidget.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     custombutton.h \
-    logindialog.h \
+    homewidget.h \
     mainwindow.h
 
 FORMS += \
-    logindialog.ui \
     mainwindow.ui
 
 # Default rules for deployment.
