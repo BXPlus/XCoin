@@ -6,14 +6,31 @@
 #include "XNode.h"
 #include "controllers/xnodectl.h"
 #include <iostream>
+#include <drogon/WebSocketClient.h>
+
 /**
- * Constructor for the XNode class, sets the ip address and port.
+ * Constructor for the XNode class for using HttpControllers, sets the ip address and port.
  * @param ip is the ip address of the node.
  * @param port is the port of the node.
  */
-XNode::XNode(const std::string &ip, const int port) {
+XNode::XNode(const std::string &ip, int port) {
     this->ip = ip;
     this->port = port;
+    this->isWebSocketServer = false;
+    this->isUsingWebSocketController = false;
+}
+
+/**
+ * Overload constructor for the XNode class for using WebSocket controllers, sets the ip address, port.
+ * @param ip is the ip address of the node.
+ * @param port is the port of the node.
+ * @param isWebSocketServer is a boolean value that determines if the node is a websocket server.
+ */
+XNode::XNode(const std::string &ip, const int port, const bool isUsingWebSocketController, const bool isWebSocketServer) {
+    this->ip = ip;
+    this->port = port;
+    this->isWebSocketServer = isWebSocketServer;
+    this->isUsingWebSocketController = isUsingWebSocketController;
 }
 
 /**
@@ -21,15 +38,18 @@ XNode::XNode(const std::string &ip, const int port) {
  */
 void XNode::start() {
     drogon::app().enableReusePort();
-
-    // TODO: Issue I am facing right now is that I cannot have a websocket server and websocket client running
-    //       simultaneously since drogon().app().run() blocks the main thread.
-    drogon::app()
+    if (!isUsingWebSocketController || isWebSocketServer)
+        drogon::app()
             .addListener(this->ip, this->port)
             .setDocumentRoot("../src/XNode/wwwroot")
             .setThreadNum(4)
             .run();
-    // setupWebSocket(); We ignore this for now as we first implement a HttpController.
+    else{
+        setupWebSocketClient();
+        // drogon::app().getLoop()->runAfter(15, [this]() { stop(); }); Stops the server after 15 seconds.
+        drogon::app().setThreadNum(4).run();
+
+    }
 }
 
 /**
@@ -40,52 +60,41 @@ void XNode::stop() {
     drogon::app().quit();
 }
 
-/**
- * This function aims to connect to a websocket server.
- * Code imported from the documentation of drogon.
- * Do not use it as we first implement a HttpController.
- */
-/*void XNode::setupWebSocket() {
-    std::string server;
-    std::string path;
-    drogon::optional<uint16_t> port2;
-    // Connect to a public echo server
-    server = "0.0.0.0";
-    port2 = 80;
-    path = "/hello";
 
-    std::string serverString;
-    if (port2.value_or(0) != 0)
-        serverString = server + ":" + std::to_string(port2.value());
-    else
-        serverString = server;
-    auto wsPtr = drogon::WebSocketClient::newWebSocketClient(serverString);
-    auto req = drogon::HttpRequest::newHttpRequest();
+
+/**
+ * This function sets up the WebSocketClient for the node.
+ */
+void XNode::setupWebSocketClient() {
+    const std::string wsUrl = "ws://" + this->ip + ":" + std::to_string(this->port);
+
+    // Example of a path to which the server sends you back the message you sent.
+    const std::string path("/hello");
+
+    // Establish a WebSocket connection to the server.
+    drogon::WebSocketClientPtr wsPtr = drogon::WebSocketClient::newWebSocketClient(ip);
+    // Create an Http request.
+    drogon::HttpRequestPtr req = drogon::HttpRequest::newHttpRequest();
+    // Set up the path for the request.
     req->setPath(path);
 
+    // Handle incoming messages from the server.
     wsPtr->setMessageHandler([](const std::string &message,
                                 const drogon::WebSocketClientPtr &,
                                 const drogon::WebSocketMessageType &type) {
-        std::string messageType = "Unknown";
-        if (type == drogon::WebSocketMessageType::Text)
-            messageType = "text";
-        else if (type == drogon::WebSocketMessageType::Pong)
-            messageType = "pong";
-        else if (type == drogon::WebSocketMessageType::Ping)
-            messageType = "ping";
-        else if (type == drogon::WebSocketMessageType::Binary)
-            messageType = "binary";
-        else if (type == drogon::WebSocketMessageType::Close)
-            messageType = "Close";
 
-        std::cout << "new message (" << messageType << "): " << message << std::endl;
+        std::cout << "new message " << message << std::endl;
+
     });
 
+    // Handle closing connection from server.
     wsPtr->setConnectionClosedHandler([](const drogon::WebSocketClientPtr &) {
         std::cout << "WebSocket connection closed!" << std::endl;
     });
 
-    std::cout << "Connecting to WebSocket at " << server << std::endl;
+    std::cout << "Connecting to WebSocket at " << ip << std::endl;
+
+    // Connect to the WebSocket server.
     wsPtr->connectToServer(
             req,
             [](drogon::ReqResult r,
@@ -98,8 +107,10 @@ void XNode::stop() {
                     return;
                 }
                 std::cout << "WebSocket connected!" << std::endl;
-                wsPtr->getConnection()->setPingMessage("", 2s);
+                // wsPtr->getConnection()->setPingMessage("", 2s); Sends a message every 2 seconds.
+
+                // Send hello to the server.
                 wsPtr->getConnection()->send("hello!");
             });
-}*/
+}
 

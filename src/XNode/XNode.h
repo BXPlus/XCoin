@@ -14,16 +14,19 @@
  */
 class XNode {
     public:
-    XNode(const std::string &ip, const int port);
+    XNode(const std::string &ip, int port);
+    XNode(const std::string &ip, int port, bool isUsingWebSocketController, bool isWebSocketServer);
 
     ~XNode() = default;
 
         void start();
         void stop();
-        //void setupWebSocket();
+        void setupWebSocketClient();
 private:
     std::string ip;
     int port;
+    bool isUsingWebSocketController;
+    bool isWebSocketServer;
 };
 
 

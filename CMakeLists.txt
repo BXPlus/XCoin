@@ -23,7 +23,7 @@ find_package(OpenSSL REQUIRED)
 add_executable(xblockchain-tests src/XBlockchain/tests/xblockchain-tests.cpp)
 add_executable(xnode-tests src/XNode/tests/xnode-tests.cpp)
 add_library(xblockchain-lib src/XBlockchain/block.h src/XBlockchain/block.cpp src/XBlockchain/Blockchain.cpp src/XBlockchain/Blockchain.h src/XBlockchain/sha256.cpp src/XBlockchain/sha256.h src/XBlockchain/bignumber.cpp src/XBlockchain/bignumber.h)
-add_executable(xnode src/XNode/main.cpp src/XNode/XNode.h src/XNode/XNode.cpp src/XNode/controllers/xnodectl.h src/XNode/controllers/xnodectl.cpp src/XNode/blockchain.pb.h src/XNode/blockchain.pb.cc src/XNode/interface.cpp src/XNode/interface.h src/XNode/keys.cpp src/XNode/keys.h)
+add_executable(xnode src/XNode/main.cpp src/XNode/XNode.h src/XNode/XNode.cpp src/XNode/controllers/xnodectl.h src/XNode/controllers/xnodectl.cpp src/XNode/blockchain.pb.h src/XNode/blockchain.pb.cc src/XNode/interface.cpp src/XNode/interface.h src/XNode/keys.cpp src/XNode/keys.h src/XNode/controllers/XNodeWS.cpp src/XNode/controllers/XNodeWS.h)
 
 target_link_libraries(xblockchain-lib PRIVATE OpenSSL::SSL OpenSSL::Crypto)
 target_link_libraries(xblockchain-tests gtest gtest_main)

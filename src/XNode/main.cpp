@@ -3,7 +3,6 @@
 //
 
 #include <iostream>
-#include "Blockchain.h"
 #include "XNode.h"
 
 std::string banner = " __   __   ____     _____    ______   __  __     \n"
@@ -16,14 +15,37 @@ std::string banner = " __   __   ____     _____    ______   __  __     \n"
 
 int main()
 {
-    Blockchain blockchain;
     const std::string ip = "0.0.0.0";
     const int port = 80;
     std::cout << banner << std::endl;
     std::cout << "                                  Blockchain node    \n" << std::endl;
-    std::cout << "Server will start on "<< ip << " and listens to the port " << port << std::endl;
 
-    XNode node = XNode(ip, port);
+    /**************************************************************************************/
+    // To set up a classical HttpController, uncomment the following lines:
+
+    /*std::cout << "Server will start on "<< ip << " and listens to the port " << port << std::endl;
+    XNode node = XNode(ip, port);*/
+
+    /**************************************************************************************/
+
+    /**************************************************************************************/
+    // To set up a WebSocket client, uncomment the following lines:
+
+    /*std::cout << "Websocket client will connect to "<< ip << " on the port " << port << std::endl;
+    XNode node = XNode(ip, port, true, false);*/
+
+    /**************************************************************************************/
+
+    /**************************************************************************************/
+    // To set up a WebSocket server, uncomment the following lines:
+
+    std::cout << "Websocket server will start on "<< ip << " and listens to the port " << port << std::endl;
+    XNode node = XNode(ip, port, true, true);
+
+    /**************************************************************************************/
+
+    // Start the server
     node.start();
+
     return 0;
 }

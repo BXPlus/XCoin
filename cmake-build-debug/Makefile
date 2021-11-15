@@ -443,6 +443,30 @@ src/XNode/blockchain.pb.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/src/XNode/blockchain.pb.cc.s
 .PHONY : src/XNode/blockchain.pb.cc.s
 
+src/XNode/controllers/XNodeWS.o: src/XNode/controllers/XNodeWS.cpp.o
+.PHONY : src/XNode/controllers/XNodeWS.o
+
+# target to build an object file
+src/XNode/controllers/XNodeWS.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/src/XNode/controllers/XNodeWS.cpp.o
+.PHONY : src/XNode/controllers/XNodeWS.cpp.o
+
+src/XNode/controllers/XNodeWS.i: src/XNode/controllers/XNodeWS.cpp.i
+.PHONY : src/XNode/controllers/XNodeWS.i
+
+# target to preprocess a source file
+src/XNode/controllers/XNodeWS.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/src/XNode/controllers/XNodeWS.cpp.i
+.PHONY : src/XNode/controllers/XNodeWS.cpp.i
+
+src/XNode/controllers/XNodeWS.s: src/XNode/controllers/XNodeWS.cpp.s
+.PHONY : src/XNode/controllers/XNodeWS.s
+
+# target to generate assembly for a file
+src/XNode/controllers/XNodeWS.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xnode.dir/build.make CMakeFiles/xnode.dir/src/XNode/controllers/XNodeWS.cpp.s
+.PHONY : src/XNode/controllers/XNodeWS.cpp.s
+
 src/XNode/controllers/xnodectl.o: src/XNode/controllers/xnodectl.cpp.o
 .PHONY : src/XNode/controllers/xnodectl.o
 
@@ -605,6 +629,9 @@ help:
 	@echo "... src/XNode/blockchain.pb.o"
 	@echo "... src/XNode/blockchain.pb.i"
 	@echo "... src/XNode/blockchain.pb.s"
+	@echo "... src/XNode/controllers/XNodeWS.o"
+	@echo "... src/XNode/controllers/XNodeWS.i"
+	@echo "... src/XNode/controllers/XNodeWS.s"
 	@echo "... src/XNode/controllers/xnodectl.o"
 	@echo "... src/XNode/controllers/xnodectl.i"
 	@echo "... src/XNode/controllers/xnodectl.s"

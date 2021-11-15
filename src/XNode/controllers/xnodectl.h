@@ -33,7 +33,7 @@ namespace api {
             // Example endpoint path
             METHOD_ADD(xnodectl::printHello, "/hello", drogon::Get);
             METHOD_ADD(xnodectl::printHelloComplex, "/hello/{name}", drogon::Get);
-            // Insert your endpoint paths here
+            // TODO: Insert your endpoint paths here
 
         METHOD_LIST_END
 
@@ -45,7 +45,7 @@ namespace api {
         void printHelloComplex(const drogon::HttpRequestPtr &req,
                                std::function<void(const drogon::HttpResponsePtr &)> &&callback,
                                const std::string &name) const;
-        // Insert your endpoint functions here
+        // TODO: Insert your endpoint functions here
 
     };
 }
