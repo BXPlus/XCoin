@@ -13,8 +13,8 @@ class Keys {
 public:
     Keys(); //constructor which creates the private and public key
 
-    BIGNUM const *prv;        //private key (which is a big integer)
-    EC_POINT const *pub;      //public key which is a point made of two coordinates and depending on the private key
+    BIGNUM const* prv;        //private key (which is a big integer)
+    EC_POINT const* pub;      //public key which is a point made of two coordinates and depending on the private key
 
 };
 
