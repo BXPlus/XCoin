@@ -36,9 +36,6 @@ jobs:
       - name: Run CMake+vcpkg+Ninja
         uses: lukka/run-cmake@v10
         id: runcmake
-        with:
-          configurePreset: 'ninja-multi-vcpkg'
-          buildPreset: 'ninja-multi-vcpkg'
       - name: List $RUNNER_WORKSPACE after build
         run: find $RUNNER_WORKSPACE
         shell: bash
