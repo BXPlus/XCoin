@@ -140,3 +140,11 @@ Next week, we will try to seperate the tasks between the front end team.
     - Researched on Transactions and Coins
 - Plan for the next week (week 2)
     - Work on [https://naivecoinstake.learn.uno/03-Transactions/](https://naivecoinstake.learn.uno/03-Transactions/)
+
+@Timothe
+
+This week I installed CLion, Notion and setup my environment for coding.
+
+Did some research about the project as a whole, looked over the NaiveCoin Tutorial.
+
+Next week I will do some more thorough research on transactions and using ECDSA encryption.
