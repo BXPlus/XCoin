@@ -37,7 +37,7 @@ jobs:
         uses: lukka/run-cmake@v10
         id: runcmake
         with:
-          cmakeListsTxtPath: 'CMakeLists.txt'
+          cmakeListsTxtPath: '{{ github.workspace }}/CMakeLists.txt'
           configurePreset: 'ninja-multi-vcpkg'
           buildPreset: 'ninja-multi-vcpkg'
       - name: List $RUNNER_WORKSPACE after build
