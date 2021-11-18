@@ -6,6 +6,8 @@
 #define XCOIN_XNODECTL_H
 
 #include <drogon/HttpController.h>
+#include "interface.h"
+#include "Blockchain.h"
 
 /************************************************************************************
  *
@@ -46,6 +48,9 @@ namespace api {
                                std::function<void(const drogon::HttpResponsePtr &)> &&callback,
                                const std::string &name) const;
         // TODO: Insert your endpoint functions here
+
+        void printBlocks(const drogon::HttpRequestPtr &req,
+                         std::function<void(const drogon::HttpResponsePtr &)> &&callback) const;
 
     };
 }

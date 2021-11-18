@@ -2,6 +2,7 @@
 #define XCOIN_BLOCKCHAIN_H
 
 #include "block.h"
+#include "interface.h"
 
 class ChainNode
 {
@@ -24,6 +25,8 @@ public:
     Block generateNextBlock(const string& blockData, int new_difficulty, int minterBalance, string minterAddress); //generates the next block given its data, based on the last block in the chain
     void appendBlock(const Block& block);                                                                      //Add a new node to the chain containing the new block
     bool isValidNewBlock(Block newBlock, Block previousBlock);
+    Block* GetBlocks(); // returns the blocks in the chain
+
 
     //Implementing the chain
     ChainNode *head;

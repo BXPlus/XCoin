@@ -1,62 +1,51 @@
-/snap/clion/169/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/vcpkg/scripts/buildsystems/vcpkg.cmake -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=/Users/claraschneuwly/CSE201/XCoin/vcpkg/scripts/buildsystems/vcpkg.cmake -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /Users/claraschneuwly/CSE201/XCoin
 -- Running vcpkg install
-Detecting compiler hash for triplet x64-linux...
-All requested packages are currently installed.
-Restored 0 packages from /home/kevin/.cache/vcpkg/archives in 742 ns. Use --debug to see more details.
+Detecting compiler hash for triplet x64-osx...
+The following packages will be built and installed:
+    drogon[core]:x64-osx -> 1.7.3
+Restored 0 packages from /Users/claraschneuwly/.cache/vcpkg/archives in 19.27 us. Use --debug to see more details.
+Starting package 1/1: drogon:x64-osx
+Building package drogon[core]:x64-osx...
+-- Using cached an-tao-drogon-v1.7.3.tar.gz.
+-- Cleaning sources at /Users/claraschneuwly/CSE201/XCoin/vcpkg/buildtrees/drogon/src/v1.7.3-819afff365.clean. Use --editable to skip cleaning for the packages you specify.
+-- Extracting source /Users/claraschneuwly/CSE201/XCoin/vcpkg/downloads/an-tao-drogon-v1.7.3.tar.gz
+-- Applying patch vcpkg.patch
+-- Applying patch drogon_config.patch
+-- Applying patch static-brotli.patch
+-- Applying patch Fix-Drogon-not-building-caused-by-FindFilesystem-105.patch
+-- Using source at /Users/claraschneuwly/CSE201/XCoin/vcpkg/buildtrees/drogon/src/v1.7.3-819afff365.clean
+-- Found external ninja('1.10.2').
+-- Configuring x64-osx-dbg
+CMake Error at scripts/cmake/vcpkg_execute_required_process.cmake:127 (message):
+    Command failed: /Users/claraschneuwly/CSE201/XCoin/vcpkg/downloads/tools/cmake-3.21.1-osx/cmake-3.21.1-macos-universal/CMake.app/Contents/bin/cmake /Users/claraschneuwly/CSE201/XCoin/vcpkg/buildtrees/drogon/src/v1.7.3-819afff365.clean -DBUILD_DROGON_SHARED=0 -DBUILD_EXAMPLES=OFF -DCMAKE_DISABLE_FIND_PACKAGE_Boost=ON -DBUILD_CTL=OFF -DBUILD_MYSQL=OFF -DBUILD_ORM=OFF -DBUILD_POSTGRESQL=OFF -DLIBPQ_BATCH_MODE=OFF -DBUILD_REDIS=OFF -DBUILD_SQLITE=OFF -DCMAKE_MAKE_PROGRAM=/usr/local/bin/ninja -DCMAKE_SYSTEM_NAME=Darwin -DBUILD_SHARED_LIBS=OFF -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=/Users/claraschneuwly/CSE201/XCoin/vcpkg/scripts/toolchains/osx.cmake -DVCPKG_TARGET_TRIPLET=x64-osx -DVCPKG_SET_CHARSET_FLAG=ON -DVCPKG_PLATFORM_TOOLSET=external -DCMAKE_EXPORT_NO_PACKAGE_REGISTRY=ON -DCMAKE_FIND_PACKAGE_NO_PACKAGE_REGISTRY=ON -DCMAKE_FIND_PACKAGE_NO_SYSTEM_PACKAGE_REGISTRY=ON -DCMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP=TRUE -DCMAKE_VERBOSE_MAKEFILE=ON -DVCPKG_APPLOCAL_DEPS=OFF -DCMAKE_TOOLCHAIN_FILE=/Users/claraschneuwly/CSE201/XCoin/vcpkg/scripts/buildsystems/vcpkg.cmake -DCMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION=ON -DVCPKG_CXX_FLAGS= -DVCPKG_CXX_FLAGS_RELEASE= -DVCPKG_CXX_FLAGS_DEBUG= -DVCPKG_C_FLAGS= -DVCPKG_C_FLAGS_RELEASE= -DVCPKG_C_FLAGS_DEBUG= -DVCPKG_CRT_LINKAGE=dynamic -DVCPKG_LINKER_FLAGS= -DVCPKG_LINKER_FLAGS_RELEASE= -DVCPKG_LINKER_FLAGS_DEBUG= -DVCPKG_TARGET_ARCHITECTURE=x64 -DCMAKE_INSTALL_LIBDIR:STRING=lib -DCMAKE_INSTALL_BINDIR:STRING=bin -D_VCPKG_ROOT_DIR=/Users/claraschneuwly/CSE201/XCoin/vcpkg -D_VCPKG_INSTALLED_DIR=/Users/claraschneuwly/CSE201/XCoin/cmake-build-debug/vcpkg_installed -DVCPKG_MANIFEST_INSTALL=OFF -DCMAKE_OSX_ARCHITECTURES=x86_64 -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/Users/claraschneuwly/CSE201/XCoin/vcpkg/packages/drogon_x64-osx/debug
+    Working Directory: /Users/claraschneuwly/CSE201/XCoin/vcpkg/buildtrees/drogon/x64-osx-dbg
+    Error code: 1
+    See logs for more information:
+      /Users/claraschneuwly/CSE201/XCoin/vcpkg/buildtrees/drogon/config-x64-osx-dbg-out.log
+      /Users/claraschneuwly/CSE201/XCoin/vcpkg/buildtrees/drogon/config-x64-osx-dbg-err.log
 
-Total elapsed time: 381.3 ms
+Call Stack (most recent call first):
+  /Users/claraschneuwly/CSE201/XCoin/cmake-build-debug/vcpkg_installed/x64-osx/share/vcpkg-cmake/vcpkg_cmake_configure.cmake:423 (vcpkg_execute_required_process)
+  ports/drogon/portfile.cmake:28 (vcpkg_cmake_configure)
+  scripts/ports.cmake:142 (include)
 
-The package openssl is compatible with built-in CMake targets:
 
-    find_package(OpenSSL REQUIRED)
-    target_link_libraries(main PRIVATE OpenSSL::SSL OpenSSL::Crypto)
+Error: Building package drogon:x64-osx failed with: BUILD_FAILED
+Please ensure you're using the latest portfiles with `git pull` and `./vcpkg update`, then
+submit an issue at https://github.com/Microsoft/vcpkg/issues including:
+  package: drogon[core]:x64-osx -> 1.7.3
+  vcpkg version: 2021-11-02-af04ebf6274fd6f7a941bff4662b3955c64f6f42
+  vcpkg-tool version: 8cfe80209 2021-11-12 (5 days ago)
 
-The package drogon provides CMake targets:
+Additionally, attach any relevant sections from the log files above.
+-- Running vcpkg install - failed
+CMake Error at vcpkg/scripts/buildsystems/vcpkg.cmake:831 (message):
+  vcpkg install failed.  See logs for more information:
+  /Users/claraschneuwly/CSE201/XCoin/cmake-build-debug/vcpkg-manifest-install.log
+Call Stack (most recent call first):
+  cmake-build-debug/CMakeFiles/3.20.2/CMakeSystem.cmake:6 (include)
+  CMakeLists.txt:9 (project)
 
-    find_package(Drogon CONFIG REQUIRED)
-    # Note: 6 target(s) were omitted.
-    target_link_libraries(main PRIVATE pg_lib UUID_lib coz::coz MySQL_lib)
 
-The package protobuf provides CMake targets:
-
-    find_package(protobuf CONFIG REQUIRED)
-    target_link_libraries(main PRIVATE protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
-
--- Running vcpkg install - done
--- The C compiler identification is GNU 10.3.0
--- The CXX compiler identification is GNU 10.3.0
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working C compiler: /usr/bin/cc - skipped
--- Detecting C compile features
--- Detecting C compile features - done
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: /usr/bin/c++ - skipped
--- Detecting CXX compile features
--- Detecting CXX compile features - done
--- Found Python: /usr/bin/python3.9 (found version "3.9.7") found components: Interpreter 
--- Looking for pthread.h
--- Looking for pthread.h - found
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
--- Looking for pthread_create in pthreads
--- Looking for pthread_create in pthreads - not found
--- Looking for pthread_create in pthread
--- Looking for pthread_create in pthread - found
--- Found Threads: TRUE  
--- Found Jsoncpp: /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/include  
--- jsoncpp verson:1.9.4
--- Found OpenSSL: /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/debug/lib/libcrypto.a (found version "1.1.1l")  
--- Found c-ares: /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/include  
--- Found UUID: /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/debug/lib/libuuid.a
--- Found ZLIB: optimized;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/lib/libz.a;debug;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/debug/lib/libz.a (found version "1.2.11") 
--- Found Brotli: /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/debug/lib/libbrotlidec-static.a  
--- Looking for C++ include filesystem
--- Looking for C++ include filesystem - found
--- Performing Test CXX_FILESYSTEM_NO_LINK_NEEDED
--- Performing Test CXX_FILESYSTEM_NO_LINK_NEEDED - Success
--- Found Protobuf: /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/tools/protobuf/protoc-3.18.0.0 (found version "3.18.0.0") 
--- Configuring done
--- Generating done
--- Build files have been written to: /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug
+-- Configuring incomplete, errors occurred!
+See also "/Users/claraschneuwly/CSE201/XCoin/cmake-build-debug/CMakeFiles/CMakeOutput.log".

@@ -162,3 +162,16 @@ bool Blockchain::isValidTimestamp(Block newBlock, Block previousBlock)
 {
     return (previousBlock.timestamp - 60000 < newBlock.timestamp && newBlock.timestamp - 60000 < getCurrentTimestamp());
 };
+
+// Returns a list of the Blockchain's blocks
+
+Block* Blockchain::GetBlocks(){
+    Block *res;
+    res = new Block[length];
+    ChainNode* t = tail;
+    for (int i = 0; i < length; i++){
+        res[i] = (*t)->block;
+        t = t.prev;
+    }
+    return res;
+}
