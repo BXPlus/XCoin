@@ -11,29 +11,22 @@ LoginDialog::LoginDialog(QWidget *parent) :
 
     groupBox = new QGroupBox(tr("Login"));
     login = new QPushButton("Login", this);
-    usernameLabel = new QLabel("Username:", this);
-    passwordLabel = new QLabel("Password:", this);
-    usernameText = new QLineEdit(this);
-    passwordText = new QLineEdit(this);
+    privateLabel = new QLabel("Private Key:", this);
+    privateText = new QLineEdit(this);
 
     mainLayout = new QVBoxLayout();
     usernameLayout = new QHBoxLayout();
-    passwordLayout = new QHBoxLayout();
-    mLayout = new QVBoxLayout();
 
-    passwordLayout->addWidget(passwordLabel );
-    usernameLayout->addWidget(usernameLabel);
-    passwordLayout->addWidget(passwordText);
-    usernameLayout->addWidget(usernameText);
+    usernameLayout->addWidget(privateLabel);
+    usernameLayout->addWidget(privateText);
 
-    mLayout->addLayout(usernameLayout);
-    mLayout->addLayout(passwordLayout);
-
-    groupBox->setLayout(mLayout);
+    groupBox->setLayout(usernameLayout);
     groupBox->setFlat(true);
     mainLayout->addWidget(groupBox);
     mainLayout->addWidget(login);
     setLayout(mainLayout);
+
+    connect(login, SIGNAL(clicked()), this, SLOT(check_credentials()));
 }
 
 LoginDialog::~LoginDialog()
@@ -41,18 +34,21 @@ LoginDialog::~LoginDialog()
     delete ui;
 }
 
-bool LoginDialog::get_login()
+bool LoginDialog::get_identified()
 {
-    return login;
+    return identified;
 }
 
 void LoginDialog::check_credentials()
 {
-    QString username = usernameText->text();
-    QString password = passwordText->text();
+    QString privatekey = privateText->text();
 
-    if (username == "tim_vlc" && password == "Tim") {
+    if (privatekey == "0123456") {
+        qDebug() << "works!";
         identified = true;
+        this->close();
     }
-    identified = false;
+    else {
+        identified = false;
+    }
 }

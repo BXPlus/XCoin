@@ -20,23 +20,19 @@ class LoginDialog : public QDialog
 public:
     explicit LoginDialog(QWidget *parent = nullptr);
     ~LoginDialog();
-    bool get_login();
+    bool get_identified();
 
 private:
     Ui::LoginDialog *ui;
     QGroupBox *groupBox;
-    QVBoxLayout *mLayout;
     QHBoxLayout *usernameLayout;
-    QHBoxLayout *passwordLayout;
     QVBoxLayout *mainLayout;
 
     QWidget *labelWidget;
     QWidget *textWidget;
 
-    QLabel *usernameLabel;
-    QLabel *passwordLabel;
-    QLineEdit *usernameText;
-    QLineEdit *passwordText;
+    QLabel *privateLabel;
+    QLineEdit *privateText;
     QPushButton *login;
 
     bool identified;

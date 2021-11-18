@@ -7,6 +7,7 @@
 #include <QVBoxLayout>
 #include "custombutton.h"
 #include "settingswidget.h"
+#include "logindialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -34,10 +35,12 @@ public:
     QWidget* contactsWidget;
     SettingsWidget* settingsWidget;
     QWidget* graphsWidget;
+
 private slots:
     void go_page(int);
+protected:
+    void closeEvent(QCloseEvent * event);
 private:
     Ui::MainWindow *ui;
-    void pop_login();
 };
 #endif // MAINWINDOW_H

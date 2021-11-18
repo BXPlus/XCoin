@@ -7,15 +7,15 @@
 #include "logindialog.cpp"
 #include <QLabel>
 #include <QDir>
+#include <QCloseEvent>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    //Login page
-    pop_login();
-
     ui->setupUi(this);
+
+    //HomePage setup
     setWindowTitle("XCoin");
     setMinimumSize(500,600);
 
@@ -109,8 +109,10 @@ MainWindow::MainWindow(QWidget *parent)
     for (int i = 0; i < 6; i++){
         contentContainer->setCurrentIndex(i);
         QWidget* widget = contentContainer->currentWidget();
-        QString style = QString("QWidget {border: 1px solid %1}").arg(color_list[i]);
-        widget->setStyleSheet(style);
+        if (i != 4){
+            QString style = QString("QWidget {border: 1px solid %1}").arg(color_list[i]);
+            widget->setStyleSheet(style);
+        }
 
         QSignalMapper* signalMapper = new QSignalMapper (this) ;
         connect(btnList[i], SIGNAL(clicked(bool)), signalMapper, SLOT(map()));
@@ -123,7 +125,6 @@ MainWindow::MainWindow(QWidget *parent)
     // Creating main content
 
     mainLayout->addWidget(contentContainer);
-
 }
 
 MainWindow::~MainWindow()
@@ -135,10 +136,8 @@ void MainWindow::go_page(int i)
 {
     contentContainer->setCurrentIndex(i);
 }
-void MainWindow::pop_login()
 
+void MainWindow::closeEvent(QCloseEvent *event)
 {
-    LoginDialog dialogLogin;
-    dialogLogin.setModal(true);
-    dialogLogin.exec();
+    event->accept();
 }
