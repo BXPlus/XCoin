@@ -39,10 +39,7 @@ public:
     vector<TxIn> txIns;
     vector<TxOut> txOuts;
     string getTransactionId();
-    string signTxIn(int txInIndex, string privateKey, vector<UnspentTxOut> aUnspentTxOuts);
 };
-
-UnspentTxOut findUnspentTxOut(string transactionId, int index, vector<UnspentTxOut> aUnspentTxOuts);
 
 vector<UnspentTxOut> updateUnspentTxOuts(vector<Transaction> aTransactions, vector<UnspentTxOut> aUnspentTxOuts);
 
@@ -53,5 +50,48 @@ bool isValidAddress(string address);
 bool isValidTxOutStructure(TxOut txOut);
 
 bool isValidTransactionStructure(Transaction transaction);
+
+bool validateTransaction(Transaction transaction, vector<UnspentTxOut> aUnspentTxOuts)
+{
+    return true;
+}
+
+bool validateBlockTransactions(vector<Transaction> aTransactions, vector<UnspentTxOut> aUnspentTxOuts, int blockIndex)
+{
+    return true;
+}
+
+bool hasDuplicates(vector<TxIn> txIns)
+{
+    return true;
+}
+
+bool validateCoinbaseTx(Transaction transaction, int blockIndex)
+{
+    return true;
+}
+
+bool validateTxIn(TxIn txIn, Transaction transaction, vector<UnspentTxOut> aUnspentTxOuts)
+{
+    return true;
+}
+
+int getTxInAmount(TxIn txIn, vector<UnspentTxOut> aUnspentTxOuts)
+{
+    return 0;
+}
+
+UnspentTxOut findUnspentTxOut(string transactionId, int index, vector<UnspentTxOut> aUnspentTxOuts);
+
+/*
+Transaction getCoinbaseTransaction(string address, int blockIndex)
+{
+  return
+}
+*/
+
+string signTxIn(Transaction transaction, int txInIndex, string privateKey, vector<UnspentTxOut> aUnspentTxOuts);
+
+
 
 #endif //XCOIN_TRANSACTION_H

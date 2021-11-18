@@ -24,15 +24,14 @@ string Transaction::getTransactionId() {
     return sha256(txInsContent.str() + txOutsContent.str());
 }
 
-string Transaction::signTxIn(int txInIndex, string privateKey, vector<UnspentTxOut> aUnspentTxOuts) {
-    TxIn txIn = txIns[txInIndex];
-    string dataToSign = id;
+string signTxIn(Transaction transaction, int txInIndex, string privateKey, vector<UnspentTxOut> aUnspentTxOuts) {
+    TxIn txIn = transaction.txIns[txInIndex];
+    string dataToSign = transaction.id;
     UnspentTxOut referencedUnspentTxOut = findUnspentTxOut(txIn.txOutId, txIn.txOutIndex, aUnspentTxOuts);
     string referencedAddress = referencedUnspentTxOut.address;
     string key;
     string signature; //TODO: Add ECDSA cryptography
     return signature;
-
 }
 
 UnspentTxOut::UnspentTxOut(string txOutID, int txOutIndex, string address, int amount) {

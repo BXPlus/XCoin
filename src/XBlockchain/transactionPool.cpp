@@ -2,6 +2,7 @@
 #include "wallet.cpp"
 
 /*
+ *
 vector<Transaction> transactionPool;
 
 vector<Transaction> getTransactionPool() {
@@ -72,4 +73,4 @@ void isValidTxForPool(){
     return
 }
 
-*/
+ */
