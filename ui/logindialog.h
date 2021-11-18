@@ -33,9 +33,11 @@ private:
 
     QLabel *privateLabel;
     QLineEdit *privateText;
+    QLabel *warningLabel;
     QPushButton *login;
 
-    bool identified;
+    bool identified = false;
+    int counter = 0;
 private slots:
     void check_credentials();
 };
