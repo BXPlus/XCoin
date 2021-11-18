@@ -1,12 +1,14 @@
 #include "transaction.h"
+#include "wallet.cpp"
 
+/*
 vector<Transaction> transactionPool;
 
-vertor<Transaction> getTransactionPool() {
+vector<Transaction> getTransactionPool() {
     return transactionPool;
 }
 
-Transaction sendTransaction(string address, number amount) {
+Transaction sendTransaction(string address, int amount) {
     Transaction tx = createTransaction(address, amount, getPrivateFromWallet(), getUnspentTxOuts(), getTransactionPool());
     addToTransactionPool(tx, getUnspentTxOuts());
     return tx;
@@ -15,11 +17,11 @@ Transaction sendTransaction(string address, number amount) {
 void addToTransactionPool(Transaction tx, vector<UnspentTxOut> unspentTxOuts) {
     if (!validateTransaction(tx, unspentTxOuts)) {
         cout << "Trying to add invalid tx to pool";
-        return false;
+        return;
     }
     if (!isValidTxForPool(tx, transactionPool)) {
         cout << "Trying to add invalid tx to pool";
-        return false;
+        return;
     }
     //Add a console log
     transactionPool.push_back(tx)
@@ -66,6 +68,8 @@ vector<TxIn> getTxPoolIns(vector<Transaction> aTransactionPool) {
     return res;
 }
 
-bool isValidTxForPool(){
+void isValidTxForPool(){
     return
 }
+
+*/

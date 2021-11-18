@@ -1,10 +1,63 @@
-/snap/clion/169/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/vcpkg/scripts/buildsystems/vcpkg.cmake -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin
+/home/youssef/Desktop/Files/Studies/Bachelor_201/CSE_201/Project/clion-2021.2.3/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug DCMAKE_TOOLCHAIN_FILE=<>/XCoin/vcpkg/scripts/buildsystems/vcpkg.cmake -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /home/youssef/Desktop/Files/Studies/Bachelor_201/CSE_201/Project/XCoin
 -- Running vcpkg install
+A suitable version of cmake was not found (required v3.21.1). Downloading portable cmake v3.21.1...
+Downloading cmake...
+  https://github.com/Kitware/CMake/releases/download/v3.21.1/cmake-3.21.1-Linux-x86_64.tar.gz -> /home/youssef/Desktop/Files/Studies/Bachelor_201/CSE_201/Project/XCoin/vcpkg/downloads/cmake-3.21.1-linux-x86_64.tar.gz
+Extracting cmake...
 Detecting compiler hash for triplet x64-linux...
-All requested packages are currently installed.
-Restored 0 packages from /home/kevin/.cache/vcpkg/archives in 742 ns. Use --debug to see more details.
+A suitable version of ninja was not found (required v1.10.2). Downloading portable ninja v1.10.2...
+Downloading ninja...
+  https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-linux.zip -> /home/youssef/Desktop/Files/Studies/Bachelor_201/CSE_201/Project/XCoin/vcpkg/downloads/ninja-linux-1.10.2.zip
+Extracting ninja...
+The following packages will be built and installed:
+  * brotli[core]:x64-linux -> 1.0.9#2
+  * c-ares[core]:x64-linux -> 1.17.2#1
+    drogon[core]:x64-linux -> 1.7.3
+  * jsoncpp[core]:x64-linux -> 1.9.4#1
+  * libuuid[core]:x64-linux -> 1.0.3#8
+    openssl[core]:x64-linux -> 1.1.1l#3
+    protobuf[core]:x64-linux -> 3.18.0
+  * trantor[core]:x64-linux -> 1.5.1
+  * vcpkg-cmake[core]:x64-linux -> 2021-09-13
+  * vcpkg-cmake-config[core]:x64-linux -> 2021-11-01
+  * zlib[core]:x64-linux -> 1.2.11#13
+Additional packages (*) will be modified to complete this operation.
+Restored 11 packages from /home/youssef/.cache/vcpkg/archives in 11.17 s. Use --debug to see more details.
+Starting package 1/11: zlib:x64-linux
+Installing package zlib[core]:x64-linux...
+Elapsed time for package zlib:x64-linux: 520.2 ms
+Starting package 2/11: vcpkg-cmake-config:x64-linux
+Installing package vcpkg-cmake-config[core]:x64-linux...
+Elapsed time for package vcpkg-cmake-config:x64-linux: 278.7 ms
+Starting package 3/11: vcpkg-cmake:x64-linux
+Installing package vcpkg-cmake[core]:x64-linux...
+Elapsed time for package vcpkg-cmake:x64-linux: 281.3 ms
+Starting package 4/11: openssl:x64-linux
+Installing package openssl[core]:x64-linux...
+Elapsed time for package openssl:x64-linux: 3.858 s
+Starting package 5/11: c-ares:x64-linux
+Installing package c-ares[core]:x64-linux...
+Elapsed time for package c-ares:x64-linux: 455.4 ms
+Starting package 6/11: trantor:x64-linux
+Installing package trantor[core]:x64-linux...
+Elapsed time for package trantor:x64-linux: 420.1 ms
+Starting package 7/11: libuuid:x64-linux
+Installing package libuuid[core]:x64-linux...
+Elapsed time for package libuuid:x64-linux: 1.852 ms
+Starting package 8/11: jsoncpp:x64-linux
+Installing package jsoncpp[core]:x64-linux...
+Elapsed time for package jsoncpp:x64-linux: 354.6 ms
+Starting package 9/11: brotli:x64-linux
+Installing package brotli[core]:x64-linux...
+Elapsed time for package brotli:x64-linux: 380.9 ms
+Starting package 10/11: drogon:x64-linux
+Installing package drogon[core]:x64-linux...
+Elapsed time for package drogon:x64-linux: 2.339 s
+Starting package 11/11: protobuf:x64-linux
+Installing package protobuf[core]:x64-linux...
+Elapsed time for package protobuf:x64-linux: 7.651 s
 
-Total elapsed time: 381.3 ms
+Total elapsed time: 1.826 min
 
 The package openssl is compatible with built-in CMake targets:
 
@@ -23,8 +76,8 @@ The package protobuf provides CMake targets:
     target_link_libraries(main PRIVATE protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
 
 -- Running vcpkg install - done
--- The C compiler identification is GNU 10.3.0
--- The CXX compiler identification is GNU 10.3.0
+-- The C compiler identification is GNU 9.3.0
+-- The CXX compiler identification is GNU 9.3.0
 -- Detecting C compiler ABI info
 -- Detecting C compiler ABI info - done
 -- Check for working C compiler: /usr/bin/cc - skipped
@@ -35,7 +88,7 @@ The package protobuf provides CMake targets:
 -- Check for working CXX compiler: /usr/bin/c++ - skipped
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
--- Found Python: /usr/bin/python3.9 (found version "3.9.7") found components: Interpreter 
+-- Found Python: /home/youssef/anaconda3/bin/python3.8 (found version "3.8.8") found components: Interpreter 
 -- Looking for pthread.h
 -- Looking for pthread.h - found
 -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
@@ -45,18 +98,18 @@ The package protobuf provides CMake targets:
 -- Looking for pthread_create in pthread
 -- Looking for pthread_create in pthread - found
 -- Found Threads: TRUE  
--- Found Jsoncpp: /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/include  
+-- Found Jsoncpp: /home/youssef/Desktop/Files/Studies/Bachelor_201/CSE_201/Project/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/include  
 -- jsoncpp verson:1.9.4
--- Found OpenSSL: /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/debug/lib/libcrypto.a (found version "1.1.1l")  
--- Found c-ares: /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/include  
--- Found UUID: /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/debug/lib/libuuid.a
--- Found ZLIB: optimized;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/lib/libz.a;debug;/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/debug/lib/libz.a (found version "1.2.11") 
--- Found Brotli: /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/debug/lib/libbrotlidec-static.a  
+-- Found OpenSSL: /home/youssef/Desktop/Files/Studies/Bachelor_201/CSE_201/Project/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/debug/lib/libcrypto.a (found version "1.1.1l")  
+-- Found c-ares: /home/youssef/Desktop/Files/Studies/Bachelor_201/CSE_201/Project/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/include  
+-- Found UUID: /home/youssef/Desktop/Files/Studies/Bachelor_201/CSE_201/Project/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/debug/lib/libuuid.a
+-- Found ZLIB: optimized;/home/youssef/Desktop/Files/Studies/Bachelor_201/CSE_201/Project/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/lib/libz.a;debug;/home/youssef/Desktop/Files/Studies/Bachelor_201/CSE_201/Project/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/debug/lib/libz.a (found version "1.2.11") 
+-- Found Brotli: /home/youssef/Desktop/Files/Studies/Bachelor_201/CSE_201/Project/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/debug/lib/libbrotlidec-static.a  
 -- Looking for C++ include filesystem
 -- Looking for C++ include filesystem - found
 -- Performing Test CXX_FILESYSTEM_NO_LINK_NEEDED
 -- Performing Test CXX_FILESYSTEM_NO_LINK_NEEDED - Success
--- Found Protobuf: /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/tools/protobuf/protoc-3.18.0.0 (found version "3.18.0.0") 
+-- Found Protobuf: /home/youssef/Desktop/Files/Studies/Bachelor_201/CSE_201/Project/XCoin/cmake-build-debug/vcpkg_installed/x64-linux/tools/protobuf/protoc-3.18.0.0 (found version "3.18.0.0") 
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug
+-- Build files have been written to: /home/youssef/Desktop/Files/Studies/Bachelor_201/CSE_201/Project/XCoin/cmake-build-debug

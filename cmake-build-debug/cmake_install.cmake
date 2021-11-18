@@ -1,4 +1,4 @@
-# Install script for directory: /home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin
+# Install script for directory: /home/youssef/Desktop/Files/Studies/Bachelor_201/CSE_201/Project/XCoin
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,7 +44,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/googletest/cmake_install.cmake")
+  include("/home/youssef/Desktop/Files/Studies/Bachelor_201/CSE_201/Project/XCoin/cmake-build-debug/googletest/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -55,5 +55,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/kevin/Documents/BX/Work/CSE201/ProjectXCoin/XCoin/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/youssef/Desktop/Files/Studies/Bachelor_201/CSE_201/Project/XCoin/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
