@@ -1,3 +1,0 @@
-/Users/cyruspellet/Desktop/XCoin/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/cyruspellet/Desktop/XCoin/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/cyruspellet/Desktop/XCoin/cmake-build-debug/CMakeFiles/xcoin.dir

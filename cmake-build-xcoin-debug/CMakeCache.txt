@@ -14,8 +14,26 @@
 # EXTERNAL cache entries
 ########################
 
+//Path to a library.
+BROTLICOMMON_LIBRARY:FILEPATH=/usr/local/lib/libbrotlicommon.dylib
+
+//Path to a library.
+BROTLIDEC_LIBRARY:FILEPATH=/usr/local/lib/libbrotlidec.dylib
+
+//Path to a library.
+BROTLIENC_LIBRARY:FILEPATH=/usr/local/lib/libbrotlienc.dylib
+
+//Path to a file.
+BROTLI_INCLUDE_DIR:PATH=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/include
+
 //Builds the googlemock subproject
 BUILD_GMOCK:BOOL=ON
+
+//Path to a file.
+C-ARES_INCLUDE_DIRS:PATH=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/include
+
+//Path to a library.
+C-ARES_LIBRARIES:FILEPATH=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/debug/lib/libcares.a
 
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=CMAKE_ADDR2LINE-NOTFOUND
@@ -281,36 +299,149 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 //Path to a program.
 CMAKE_STRIP:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip
 
+//Vcpkg toolchain file
+CMAKE_TOOLCHAIN_FILE:STRING=/Users/cyruspellet/Desktop/XCoin/vcpkg/scripts/buildsystems/vcpkg.cmake
+
 //If this value is on, makefiles will be generated without the
 // .SILENT directive, and all commands will be echoed to the console
 // during the make.  This is useful for debugging only. With Visual
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//TRUE if we have the C++ filesystem headers
+CXX_FILESYSTEM_HAVE_FS:BOOL=TRUE
+
+//The header that should be included to obtain the filesystem APIs
+CXX_FILESYSTEM_HEADER:STRING=filesystem
+
+//TRUE if the C++ filesystem library is the experimental version
+CXX_FILESYSTEM_IS_EXPERIMENTAL:BOOL=FALSE
+
+//The C++ namespace that contains the filesystem APIs
+CXX_FILESYSTEM_NAMESPACE:STRING=std::filesystem
+
+//The directory containing a CMake configuration file for Drogon.
+Drogon_DIR:PATH=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/share/drogon
+
+//TRUE if we can run a program using std::filesystem
+Filesystem_FOUND:BOOL=TRUE
+
 //Enable installation of googletest. (Projects embedding googletest
 // may want to turn this OFF.)
 INSTALL_GTEST:BOOL=ON
 
+//jsoncpp include dir
+JSONCPP_INCLUDE_DIRS:PATH=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/include
+
+//jsoncpp library
+JSONCPP_LIBRARIES:FILEPATH=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/debug/lib/libjsoncpp.a
+
+//Path to a library.
+OPENSSL_CRYPTO_LIBRARY:FILEPATH=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/debug/lib/libcrypto.a
+
+//Path to a library.
+OPENSSL_DL_LIBRARY:FILEPATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/lib/libdl.tbd
+
+//Path to a file.
+OPENSSL_INCLUDE_DIR:PATH=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/include
+
+//Path to a library.
+OPENSSL_SSL_LIBRARY:FILEPATH=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/debug/lib/libssl.a
+
+//pkg-config executable
+PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/local/bin/pkg-config
+
 //Path to a program.
 ProcessorCount_cmd_sysctl:FILEPATH=/usr/sbin/sysctl
 
-//The directory containing a CMake configuration file for Qt5.
-Qt5_DIR:PATH=Qt5_DIR-NOTFOUND
+//The directory containing a CMake configuration file for Trantor.
+Trantor_DIR:PATH=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/share/trantor
+
+//Path to a file.
+UUID_INCLUDE_DIR:PATH=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/include/uuid
+
+//Path to a library.
+UUID_LIBRARY:FILEPATH=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/debug/lib/libuuid.a
+
+//Path to a library.
+UUID_LIBRARY_DEBUG:FILEPATH=UUID_LIBRARY_DEBUG-NOTFOUND
+
+//Automatically copy dependencies into the output directory for
+// executables.
+VCPKG_APPLOCAL_DEPS:BOOL=ON
+
+//Additional options to bootstrap vcpkg
+VCPKG_BOOTSTRAP_OPTIONS:STRING=
+
+//The directory which contains the installed libraries for each
+// triplet
+VCPKG_INSTALLED_DIR:PATH=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed
+
+//Additional install options to pass to vcpkg
+VCPKG_INSTALL_OPTIONS:STRING=
+
+//The path to the vcpkg manifest directory.
+VCPKG_MANIFEST_DIR:PATH=/Users/cyruspellet/Desktop/xcoin
+
+//Install the dependencies listed in your manifest:
+//\n    If this is off, you will have to manually install your dependencies.
+//\n    See https://github.com/microsoft/vcpkg/tree/master/docs/specifications/manifests.md
+// for more info.
+//\n
+VCPKG_MANIFEST_INSTALL:BOOL=ON
+
+//Use manifest mode, as opposed to classic mode.
+VCPKG_MANIFEST_MODE:BOOL=ON
+
+//Overlay ports to use for vcpkg install in manifest mode
+VCPKG_OVERLAY_PORTS:STRING=
+
+//Overlay triplets to use for vcpkg install in manifest mode
+VCPKG_OVERLAY_TRIPLETS:STRING=
+
+//Appends the vcpkg paths to CMAKE_PREFIX_PATH, CMAKE_LIBRARY_PATH
+// and CMAKE_FIND_ROOT_PATH so that vcpkg libraries/packages are
+// found after toolchain/system libraries/packages.
+VCPKG_PREFER_SYSTEM_LIBS:BOOL=OFF
+
+//Vcpkg target triplet (ex. x86-windows)
+VCPKG_TARGET_TRIPLET:STRING=x64-osx
+
+//Enables messages from the VCPKG toolchain for debugging purposes.
+VCPKG_VERBOSE:BOOL=OFF
+
+//(experimental) Automatically copy dependencies into the install
+// target directory for executables. Requires CMake 3.14.
+X_VCPKG_APPLOCAL_DEPS_INSTALL:BOOL=OFF
+
+//(experimental) Add USES_TERMINAL to VCPKG_APPLOCAL_DEPS to force
+// serialization.
+X_VCPKG_APPLOCAL_DEPS_SERIALIZED:BOOL=OFF
+
+//Path to a file.
+ZLIB_INCLUDE_DIR:PATH=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/include
+
+//Path to a library.
+ZLIB_LIBRARY_DEBUG:FILEPATH=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/debug/lib/libz.a
+
+//Path to a library.
+ZLIB_LIBRARY_RELEASE:FILEPATH=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/lib/libz.a
+
+//Path to a program.
+Z_VCPKG_CL:FILEPATH=Z_VCPKG_CL-NOTFOUND
+
+//The directory which contains the installed libraries for each
+// triplet
+_VCPKG_INSTALLED_DIR:PATH=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed
 
 //Value Computed by CMake
 gmock_BINARY_DIR:STATIC=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/googletest/googlemock
-
-//Dependencies for the target
-gmock_LIB_DEPENDS:STATIC=general;gtest;
 
 //Value Computed by CMake
 gmock_SOURCE_DIR:STATIC=/Users/cyruspellet/Desktop/xcoin/googletest/googlemock
 
 //Build all of Google Mock's own tests.
 gmock_build_tests:BOOL=OFF
-
-//Dependencies for the target
-gmock_main_LIB_DEPENDS:STATIC=general;gmock;
 
 //Value Computed by CMake
 googletest-distribution_BINARY_DIR:STATIC=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/googletest
@@ -340,8 +471,11 @@ gtest_force_shared_crt:BOOL=OFF
 //Build gtest with internal symbols hidden in shared libraries.
 gtest_hide_internal_symbols:BOOL=OFF
 
-//Dependencies for the target
-gtest_main_LIB_DEPENDS:STATIC=general;gtest;
+//Path to a library.
+pkgcfg_lib__OPENSSL_crypto:FILEPATH=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/debug/lib/libcrypto.a
+
+//Path to a library.
+pkgcfg_lib__OPENSSL_ssl:FILEPATH=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/debug/lib/libssl.a
 
 //Value Computed by CMake
 xcoin_BINARY_DIR:STATIC=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug
@@ -349,17 +483,15 @@ xcoin_BINARY_DIR:STATIC=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug
 //Value Computed by CMake
 xcoin_SOURCE_DIR:STATIC=/Users/cyruspellet/Desktop/xcoin
 
-//Value Computed by CMake
-xnode_BINARY_DIR:STATIC=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug
-
-//Value Computed by CMake
-xnode_SOURCE_DIR:STATIC=/Users/cyruspellet/Desktop/xcoin
-
 
 ########################
 # INTERNAL cache entries
 ########################
 
+//ADVANCED property for variable: C-ARES_INCLUDE_DIRS
+C-ARES_INCLUDE_DIRS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: C-ARES_LIBRARIES
+C-ARES_LIBRARIES-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_ADDR2LINE
 CMAKE_ADDR2LINE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
@@ -535,23 +667,106 @@ CMAKE_STATIC_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_STRIP
 CMAKE_STRIP-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_TOOLCHAIN_FILE
+CMAKE_TOOLCHAIN_FILE-ADVANCED:INTERNAL=1
 //uname command
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Test CXX_FILESYSTEM_NO_LINK_NEEDED
+CXX_FILESYSTEM_NO_LINK_NEEDED:INTERNAL=1
+//Result of TRY_COMPILE
+CXX_FILESYSTEM_NO_LINK_NEEDED_COMPILED:INTERNAL=TRUE
+//Result of TRY_RUN
+CXX_FILESYSTEM_NO_LINK_NEEDED_EXITCODE:INTERNAL=0
+//Details about finding Brotli
+FIND_PACKAGE_MESSAGE_DETAILS_Brotli:INTERNAL=[/usr/local/lib/libbrotlidec.dylib][/usr/local/lib/libbrotlienc.dylib][/usr/local/lib/libbrotlicommon.dylib][/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/include][v()]
+//Details about finding Jsoncpp
+FIND_PACKAGE_MESSAGE_DETAILS_Jsoncpp:INTERNAL=[/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/include][/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/debug/lib/libjsoncpp.a][v()]
+//Details about finding OpenSSL
+FIND_PACKAGE_MESSAGE_DETAILS_OpenSSL:INTERNAL=[/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/debug/lib/libcrypto.a][/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/include][c ][v1.1.1l()]
 //Details about finding Python
 FIND_PACKAGE_MESSAGE_DETAILS_Python:INTERNAL=[/usr/local/Frameworks/Python.framework/Versions/3.9/bin/python3.9][cfound components: Interpreter ][v3.9.7()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
+//Details about finding ZLIB
+FIND_PACKAGE_MESSAGE_DETAILS_ZLIB:INTERNAL=[optimized;/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/lib/libz.a;debug;/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/debug/lib/libz.a][/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/include][v1.2.11()]
+//Details about finding c-ares
+FIND_PACKAGE_MESSAGE_DETAILS_c-ares:INTERNAL=[/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/include][/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/debug/lib/libcares.a][v()]
+//ADVANCED property for variable: JSONCPP_INCLUDE_DIRS
+JSONCPP_INCLUDE_DIRS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: JSONCPP_LIBRARIES
+JSONCPP_LIBRARIES-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OPENSSL_CRYPTO_LIBRARY
+OPENSSL_CRYPTO_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OPENSSL_INCLUDE_DIR
+OPENSSL_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OPENSSL_SSL_LIBRARY
+OPENSSL_SSL_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
+PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: ProcessorCount_cmd_sysctl
 ProcessorCount_cmd_sysctl-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: VCPKG_VERBOSE
+VCPKG_VERBOSE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: ZLIB_INCLUDE_DIR
+ZLIB_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: ZLIB_LIBRARY_DEBUG
+ZLIB_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: ZLIB_LIBRARY_RELEASE
+ZLIB_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
+//Making sure VCPKG_MANIFEST_MODE doesn't change
+Z_VCPKG_CHECK_MANIFEST_MODE:INTERNAL=ON
+//Vcpkg root directory
+Z_VCPKG_ROOT_DIR:INTERNAL=/Users/cyruspellet/Desktop/xcoin/vcpkg
+//ADVANCED property for variable: _CXX_FILESYSTEM_HAVE_HEADER
+_CXX_FILESYSTEM_HAVE_HEADER-ADVANCED:INTERNAL=1
+//Have include filesystem
+_CXX_FILESYSTEM_HAVE_HEADER:INTERNAL=1
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/usr/local
+_OPENSSL_CFLAGS:INTERNAL=-I/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/debug/lib/pkgconfig/../../../include
+_OPENSSL_CFLAGS_I:INTERNAL=
+_OPENSSL_CFLAGS_OTHER:INTERNAL=
+_OPENSSL_FOUND:INTERNAL=1
+_OPENSSL_INCLUDEDIR:INTERNAL=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/debug/lib/pkgconfig/../../../include
+_OPENSSL_INCLUDE_DIRS:INTERNAL=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/debug/lib/pkgconfig/../../../include
+_OPENSSL_LDFLAGS:INTERNAL=-L/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/debug/lib/pkgconfig/../../lib;-lssl;-lcrypto
+_OPENSSL_LDFLAGS_OTHER:INTERNAL=
+_OPENSSL_LIBDIR:INTERNAL=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/debug/lib/pkgconfig/../../lib
+_OPENSSL_LIBRARIES:INTERNAL=ssl;crypto
+_OPENSSL_LIBRARY_DIRS:INTERNAL=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/debug/lib/pkgconfig/../../lib
+_OPENSSL_LIBS:INTERNAL=
+_OPENSSL_LIBS_L:INTERNAL=
+_OPENSSL_LIBS_OTHER:INTERNAL=
+_OPENSSL_LIBS_PATHS:INTERNAL=
+_OPENSSL_MODULE_NAME:INTERNAL=openssl
+_OPENSSL_PREFIX:INTERNAL=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/debug/lib/pkgconfig/../..
+_OPENSSL_STATIC_CFLAGS:INTERNAL=-I/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/debug/lib/pkgconfig/../../../include
+_OPENSSL_STATIC_CFLAGS_I:INTERNAL=
+_OPENSSL_STATIC_CFLAGS_OTHER:INTERNAL=
+_OPENSSL_STATIC_INCLUDE_DIRS:INTERNAL=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/debug/lib/pkgconfig/../../../include
+_OPENSSL_STATIC_LDFLAGS:INTERNAL=-L/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/debug/lib/pkgconfig/../../lib;-lssl;-lcrypto
+_OPENSSL_STATIC_LDFLAGS_OTHER:INTERNAL=
+_OPENSSL_STATIC_LIBDIR:INTERNAL=
+_OPENSSL_STATIC_LIBRARIES:INTERNAL=ssl;crypto
+_OPENSSL_STATIC_LIBRARY_DIRS:INTERNAL=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/debug/lib/pkgconfig/../../lib
+_OPENSSL_STATIC_LIBS:INTERNAL=
+_OPENSSL_STATIC_LIBS_L:INTERNAL=
+_OPENSSL_STATIC_LIBS_OTHER:INTERNAL=
+_OPENSSL_STATIC_LIBS_PATHS:INTERNAL=
+_OPENSSL_VERSION:INTERNAL=1.1.1l
+_OPENSSL_openssl_INCLUDEDIR:INTERNAL=
+_OPENSSL_openssl_LIBDIR:INTERNAL=
+_OPENSSL_openssl_PREFIX:INTERNAL=
+_OPENSSL_openssl_VERSION:INTERNAL=
 //Path to a program.
 _Python_EXECUTABLE:INTERNAL=/usr/local/Frameworks/Python.framework/Versions/3.9/bin/python3.9
 //Python Properties
 _Python_INTERPRETER_PROPERTIES:INTERNAL=Python;3;9;7;64;;cpython-39-darwin;/usr/local/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/lib/python3.9;/usr/local/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/lib/python3.9;/usr/local/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages;/usr/local/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages
-_Python_INTERPRETER_SIGNATURE:INTERNAL=812c77f3074e40584c5bbc11833165c3
+_Python_INTERPRETER_SIGNATURE:INTERNAL=dc5f39ab03e352918fccc783b62176cd
+__pkg_config_arguments__OPENSSL:INTERNAL=QUIET;openssl
+__pkg_config_checked__OPENSSL:INTERNAL=1
 cmake_package_name:INTERNAL=GTest
 generated_dir:INTERNAL=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/googletest/googletest/generated
 //ADVANCED property for variable: gmock_build_tests
@@ -566,5 +781,10 @@ gtest_disable_pthreads-ADVANCED:INTERNAL=1
 gtest_force_shared_crt-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: gtest_hide_internal_symbols
 gtest_hide_internal_symbols-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib__OPENSSL_crypto
+pkgcfg_lib__OPENSSL_crypto-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib__OPENSSL_ssl
+pkgcfg_lib__OPENSSL_ssl-ADVANCED:INTERNAL=1
+prefix_result:INTERNAL=/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/debug/lib/pkgconfig/../../lib
 targets_export_name:INTERNAL=GTestTargets
 

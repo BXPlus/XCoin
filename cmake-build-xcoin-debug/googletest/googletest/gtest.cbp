@@ -5,7 +5,7 @@
 		<Option title="gtest"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\googletest\;CMake Files\googletest\googlemock\;CMake Files\googletest\googlemock\cmake\;CMake Files\googletest\googletest\;CMake Files\googletest\googletest\cmake\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\googletest\;CMake Files\googletest\googlemock\;CMake Files\googletest\googlemock\cmake\;CMake Files\googletest\googletest\;CMake Files\googletest\googletest\cmake\;CMake Files\vcpkg\;CMake Files\vcpkg\scripts\;CMake Files\vcpkg\scripts\buildsystems\;CMake Files\cmake-build-xcoin-debug\;CMake Files\cmake-build-xcoin-debug\vcpkg_installed\;CMake Files\cmake-build-xcoin-debug\vcpkg_installed\x64-osx\;CMake Files\cmake-build-xcoin-debug\vcpkg_installed\x64-osx\share\;CMake Files\cmake-build-xcoin-debug\vcpkg_installed\x64-osx\share\drogon\;CMake Files\cmake-build-xcoin-debug\vcpkg_installed\x64-osx\share\trantor\;CMake Files\cmake-build-xcoin-debug\vcpkg_installed\x64-osx\share\openssl\;CMake Files\cmake-build-xcoin-debug\vcpkg_installed\x64-osx\share\zlib\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/googletest/googletest"/>
@@ -119,6 +119,9 @@
 		<Unit filename="/Users/cyruspellet/Desktop/xcoin/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
+		<Unit filename="/Users/cyruspellet/Desktop/xcoin/vcpkg.json">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
 		<Unit filename="/Users/cyruspellet/Desktop/xcoin/googletest/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\googletest\"/>
 		</Unit>
@@ -145,6 +148,69 @@
 		</Unit>
 		<Unit filename="/Users/cyruspellet/Desktop/xcoin/googletest/googletest/cmake/internal_utils.cmake">
 			<Option virtualFolder="CMake Files\googletest\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/cyruspellet/Desktop/xcoin/vcpkg/scripts/buildsystems/vcpkg.cmake">
+			<Option virtualFolder="CMake Files\vcpkg\scripts\buildsystems\"/>
+		</Unit>
+		<Unit filename="/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/.cmakestamp">
+			<Option virtualFolder="CMake Files\cmake-build-xcoin-debug\vcpkg_installed\"/>
+		</Unit>
+		<Unit filename="/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/share/drogon/DrogonConfig.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-xcoin-debug\vcpkg_installed\x64-osx\share\drogon\"/>
+		</Unit>
+		<Unit filename="/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/share/drogon/DrogonConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-xcoin-debug\vcpkg_installed\x64-osx\share\drogon\"/>
+		</Unit>
+		<Unit filename="/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/share/drogon/DrogonTargets-debug.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-xcoin-debug\vcpkg_installed\x64-osx\share\drogon\"/>
+		</Unit>
+		<Unit filename="/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/share/drogon/DrogonTargets-release.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-xcoin-debug\vcpkg_installed\x64-osx\share\drogon\"/>
+		</Unit>
+		<Unit filename="/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/share/drogon/DrogonTargets.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-xcoin-debug\vcpkg_installed\x64-osx\share\drogon\"/>
+		</Unit>
+		<Unit filename="/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/share/drogon/DrogonUtilities.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-xcoin-debug\vcpkg_installed\x64-osx\share\drogon\"/>
+		</Unit>
+		<Unit filename="/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/share/drogon/FindBrotli.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-xcoin-debug\vcpkg_installed\x64-osx\share\drogon\"/>
+		</Unit>
+		<Unit filename="/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/share/drogon/FindFilesystem.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-xcoin-debug\vcpkg_installed\x64-osx\share\drogon\"/>
+		</Unit>
+		<Unit filename="/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/share/drogon/FindJsoncpp.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-xcoin-debug\vcpkg_installed\x64-osx\share\drogon\"/>
+		</Unit>
+		<Unit filename="/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/share/drogon/FindUUID.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-xcoin-debug\vcpkg_installed\x64-osx\share\drogon\"/>
+		</Unit>
+		<Unit filename="/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/share/drogon/ParseAndAddDrogonTests.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-xcoin-debug\vcpkg_installed\x64-osx\share\drogon\"/>
+		</Unit>
+		<Unit filename="/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/share/trantor/Findc-ares.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-xcoin-debug\vcpkg_installed\x64-osx\share\trantor\"/>
+		</Unit>
+		<Unit filename="/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/share/trantor/TrantorConfig.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-xcoin-debug\vcpkg_installed\x64-osx\share\trantor\"/>
+		</Unit>
+		<Unit filename="/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/share/trantor/TrantorConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-xcoin-debug\vcpkg_installed\x64-osx\share\trantor\"/>
+		</Unit>
+		<Unit filename="/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/share/trantor/TrantorTargets-debug.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-xcoin-debug\vcpkg_installed\x64-osx\share\trantor\"/>
+		</Unit>
+		<Unit filename="/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/share/trantor/TrantorTargets-release.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-xcoin-debug\vcpkg_installed\x64-osx\share\trantor\"/>
+		</Unit>
+		<Unit filename="/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/share/trantor/TrantorTargets.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-xcoin-debug\vcpkg_installed\x64-osx\share\trantor\"/>
+		</Unit>
+		<Unit filename="/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/share/openssl/vcpkg-cmake-wrapper.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-xcoin-debug\vcpkg_installed\x64-osx\share\openssl\"/>
+		</Unit>
+		<Unit filename="/Users/cyruspellet/Desktop/xcoin/cmake-build-xcoin-debug/vcpkg_installed/x64-osx/share/zlib/vcpkg-cmake-wrapper.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-xcoin-debug\vcpkg_installed\x64-osx\share\zlib\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>
