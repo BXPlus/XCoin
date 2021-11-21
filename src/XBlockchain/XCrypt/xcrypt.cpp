@@ -55,10 +55,10 @@ int encrypt(unsigned char *plaintext, int plaintext_len, unsigned char *key, uns
 }
 
 void handleErrors(void){
-/*ERR_print_errors() is a convenience function that prints the error strings for all errors that OpenSSL has recorded to bp, thus emptying the error queue.*/
- ERR_rint_errors_fp(stderr)
- /*stderr standard error*/
- abort();
+    /*ERR_print_errors() is a convenience function that prints the error strings for all errors that OpenSSL has recorded to bp, thus emptying the error queue.*/
+     ERR_rint_errors_fp(stderr)
+     /*stderr standard error*/
+     abort();
 }
 
 int main(void) {
