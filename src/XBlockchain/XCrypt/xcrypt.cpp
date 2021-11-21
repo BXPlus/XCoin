@@ -15,12 +15,44 @@ int encrypt(unsigned char *plaintext, int plaintext_len, unsigned char *key, uns
 
     /* initializing ctx
      */
-    if (!)
+    if not (ctx = ECP_CIPHER_CTX_new() ){
+        handleErros();
+    }
+    /* the encryption operation initialization
+       EVP_EncryptiInit_ex() sets up cipher context ctx for encryption  */
+    if ( EVP_EncryptiInit_ex(ctx, EVP_aes_256_cbc(), NULL , key, iv) != 1){
+        handleErrors();
+    }
+/* obtain the encrypted output
+ */
+    if ( EVP_EncryptUpdate(ctx, ciphertext, &len, plaintext, plaintext_len) != 1 ){
+        handleErrors();
+    }
+
+    ciphertext_len = len ;
+
+    /*finalize the process
+     * f padding is enabled (the default) then EVP_EncryptFinal_ex() encrypts
+     * the "final" data, that is any data that remains in a partial block.
+     * */
+
+    if ( EVP_EncryptFinal(ctx, ciphertext + len , &len ) != 1){
+        handleErrors();
+    }
+
+    ciphertext_len += len ;
 
 
+
+    /* cleaning up
+     * EVP_CIPHER_CTX_free() clears all information from a cipher context
+     * and free up any allocated memory associate with it, including ctx itself.
+     */
+    EVP_CIPHER_CTX_free(ctx);
+
+    return ciphertext_len;
 }
-
-
+;
 void handleErrors(void){
 /*ERR_print_errors() is a convenience function that prints the error strings for all errors that OpenSSL has recorded to bp, thus emptying the error queue.*/
  ERR_rint_errors_fp(stderr)
