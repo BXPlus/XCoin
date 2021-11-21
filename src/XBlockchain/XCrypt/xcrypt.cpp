@@ -66,10 +66,10 @@ int main(void) {
 
      /* 128 bit iv.
      */
-    unsigned char *iv=  ;
-    unsigned char *key= ;
+    unsigned char *iv= (unsigned char *)"0123456789012345" ;
+    unsigned char *key= (unsigned char *)"01234567890123456789012345678901";
 
-    unsigned char *plaintext;
+    unsigned char *plaintext = ???????????;
 
     /* pour stocker le ciphertext*/
     unsigned char ciphertext[128];
@@ -137,6 +137,5 @@ int decrypt(unsigned char *ciphertext, int ciphertext_len, unsigned char *key, u
     EVP_CIPHER_CTX_free(ctx);
 
     return plaintext_len;
-}-[]
-
 }
+
