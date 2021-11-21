@@ -22,6 +22,7 @@ public:
     string signature;
     int getTxInAmount(vector<UnspentTxOut> aUnspentTxOuts);
     bool validateTxIn(Transaction transaction, vector<UnspentTxOut> aUnspentTxOuts);
+    bool isValidTxInStructure();
 };
 
 class Transaction {

@@ -99,6 +99,27 @@ bool isValidTxInStructure(TxIn txIn) {
         return true;
 }
 
+bool isValidTxOutStructure(TxOut txOut) {
+    if ((*txOut) == nullptr) {
+        cout << "txIn is null";
+        return false;
+    }
+    else if (typeid(txOut.address) != typeid("string")) {
+        cout << "invalid signature type in txIn";
+        return false;
+    }
+    else if (!isValidAddress(txOut.address)) {
+        cout << "invalid txOutId type in txIn";
+        return false;
+    }
+    else if (typeid(txOut.amount) !== typeid(0)) {
+        cout << "invalid txOutIndex type in txIn";
+        return false;
+    }
+    else
+        return true;
+}
+
 bool isValidAddress(string address) {
     //TODO: Implement this function to verify an address
     // valid address is a valid ecdsa public key in the 04 + X-coordinate + Y-coordinate format
