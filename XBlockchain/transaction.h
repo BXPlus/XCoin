@@ -8,16 +8,14 @@ using namespace std;
 #ifndef XCOIN_TRANSACTION_H
 #define XCOIN_TRANSACTION_H
 
-class TxOut
-{
+class TxOut {
 public:
     string address;
     int amount;
     TxOut(string address, int amount);
 };
 
-class TxIn
-{
+class TxIn {
 public:
     string txOutId;
     int txOutIndex;
@@ -27,12 +25,8 @@ public:
 class Transaction {
 public:
     string id;
-    TxIn* txIns_array;
-    int txIns_current_length;
-    int txIns_max_length;
-    TxOut* txOuts_array;
-    int txOuts_current_length;
-    int txOuts_max_length;
+    vector<TxIn> txIns;
+    vector<TxOut> txOuts;
     string getTransactionId();
     string signTxIn(int txInIndex, string privateKey, vector<UnspentTxOut> aUnspentTxOuts);
 };
