@@ -3,6 +3,9 @@
 //
 
 #include "transaction.h"
+#include "XNode/keys.h"
+#include <regex.h>
+#include <stdexcept>
 
 const int COINBASE_AMOUNT = 50;
 
@@ -25,13 +28,27 @@ string Transaction::getTransactionId() {
     return sha256(txInsContent.str() + txOutsContent.str());
 }
 
+string getPublicKey(string aPrivateKey) {
+    return keyFromPrivate(aPrivateKey, 'hex').getPublic().encode('hex');
+}
+
 string Transaction::signTxIn(int txInIndex, string privateKey, vector<UnspentTxOut> aUnspentTxOuts) {
     TxIn txIn = txIns[txInIndex];
     string dataToSign = id;
-    UnspentTxOut referencedUnspentTxOut = findUnspentTxOut(txIn.txOutId, txIn.txOutIndex, aUnspentTxOuts);
+    vector<bool, UnspentTxOut> tmp = findUnspentTxOut(txIn.txOutId, txIn.txOutIndex, aUnspentTxOuts);
+    if (tmp.fi == 0)
+        throw invalid_argument( "could not find referenced txOut\n" );
+    string referencedUnspentTxOut = tmp.se;
     string referencedAddress = referencedUnspentTxOut.address;
-    string key;
-    string signature; //TODO: Add ECDSA cryptography
+
+    if (getPublicKey(privateKey) != referencedAddress) {
+        throw invalid_argument('trying to sign an input with private' +
+                    ' key that does not match the address that is referenced in txIn\n');
+    }
+
+    Keys key = keyFromPrivate(privateKey, 'hex');
+    string signature = toHexString(key.sign(dataToSign).toDER()); //TODO: Add ToHexString
+
     return signature;
 
 }
@@ -43,16 +60,16 @@ UnspentTxOut::UnspentTxOut(string txOutID, int txOutIndex, string address, int a
     this -> amount = amount;
 }
 
-UnspentTxOut findUnspentTxOut(string transactionId, int index, vector<UnspentTxOut>& aUnspentTxOuts) {
+pair<bool, UnspentTxOut> findUnspentTxOut(string transactionId, int index, vector<UnspentTxOut>& aUnspentTxOuts) {
     for (int id = 0; id < int(aUnspentTxOuts.size()); id++) {
         if (aUnspentTxOuts[id].txOutId == transactionId && aUnspentTxOuts[id].txOutIndex == index)
-            return aUnspentTxOuts[id];
+            return make_pair(1, aUnspentTxOuts[id]);
     }
-    return 0;
+    return make_pair(0, UnspentTxOut("", 0, "", 0));
 }
 
 int TxIn::getTxInAmount(vector<UnspentTxOut> aUnspentTxOuts) {
-    return findUnspentTxOut(txOutId, txOutIndex, aUnspentTxOuts).amount;
+    return findUnspentTxOut(txOutId, txOutIndex, aUnspentTxOuts).second.amount;
 }
 
 vector<UnspentTxOut> updateUnspentTxOuts(vector<Transaction> aTransactions, vector<UnspentTxOut> aUnspentTxOuts) {
@@ -72,7 +89,7 @@ vector<UnspentTxOut> updateUnspentTxOuts(vector<Transaction> aTransactions, vect
 
     //Removing the consumedTxOuts elements
     for (int i = 0; i < int(aUnspentTxOuts.size()); i++) {
-        if (findUnspentTxOut(aUnspentTxOuts[i].txOutId, aUnspentTxOuts[i].txOutIndex, consumedTxOuts) == 0)
+        if (findUnspentTxOut(aUnspentTxOuts[i].txOutId, aUnspentTxOuts[i].txOutIndex, consumedTxOuts).first == 0)
             newUnspentTxOuts.push_back(aUnspentTxOuts[i]);
     }
 
@@ -84,7 +101,7 @@ bool isValidTxInStructure(TxIn txIn) {
         cout << "txIn is null";
         return false;
     }
-    else if (typeid(txIn.signature) != typeid("String")) {
+    else if (typeid(txIn.signature) != typeid("string")) {
         cout << "invalid signature type in txIn";
         return false;
     }
@@ -197,8 +214,26 @@ bool Transaction::isValidTransactionStructure() {
     return true;
 }
 
+string TxIn::JSONStringify() {
+    //TODO: Implement later
+    return "";
+}
+
 bool TxIn::validateTxIn(string id, vector<UnspentTxOut> aUnspentTxOuts) {
-    //todo: implement this function
+    pair<bool, UnspentTxOut> tmp = findUnspentTxOut(txOutId, txOutIndex, aUnspentTxOuts);
+    if (tmp.first == 0) {
+        cout << "referenced txOut not found: " << JSONStringify() << "\n";
+        return false;
+    }
+    string referencedUTxOut = tmp.second;
+    string address = referencedUTxOut;
+
+    Keys key = keyFromPublic(address, "hex");
+    bool validSignature = key.verify(id, signature);
+    if (!validSignature) {
+        cout << "invalid txIn signature: " << signature << " txId: " << id << " address: " << address << "\n";
+        return false;
+    }
     return true;
 }
 

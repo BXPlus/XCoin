@@ -13,6 +13,7 @@ public:
     string address;
     int amount;
     TxOut(string address, int amount);
+    JSONStringify();
 };
 
 class TxIn {
@@ -22,7 +23,6 @@ public:
     string signature;
     int getTxInAmount(vector<UnspentTxOut> aUnspentTxOuts);
     bool validateTxIn(Transaction transaction, vector<UnspentTxOut> aUnspentTxOuts);
-    bool isValidTxInStructure();
 };
 
 class Transaction {
@@ -58,5 +58,7 @@ bool isValidAddress(string address);
 bool isValidTxOutStructure(TxOut txOut);
 
 Transaction getCoinbaseTransaction(string address, int blockIndex);
+
+string getPublicKey(string aPrivateKey);
 
 #endif //XCOIN_TRANSACTION_H
