@@ -4,7 +4,6 @@
 
 #include "transaction.h"
 
-
 TxOut::TxOut(string address, int amount) {
     this -> address = address;
     this -> amount = amount;
@@ -120,9 +119,21 @@ bool isValidTxOutStructure(TxOut txOut) {
         return true;
 }
 
+// valid address is a valid ecdsa public key in the 04 + X-coordinate + Y-coordinate format
 bool isValidAddress(string address) {
-    //TODO: Implement this function to verify an address
-    // valid address is a valid ecdsa public key in the 04 + X-coordinate + Y-coordinate format
+    if (int(address.length()) == 130) {
+        cout << address << "\n";
+        cout << "invalid public key length\n";
+        return false;
+    }
+    else if (!regex_match(address, regex("^[a-fA-F0-9]+$"))) {
+        cout << "public key must contain only hex characters\n";
+        return false;
+    }
+    else if (address.substr(0, 2) != "04") {
+        cout << "public key must start with 04\n";
+        return false;
+    }
     return true;
 }
 
