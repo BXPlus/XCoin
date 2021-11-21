@@ -35,6 +35,7 @@ public:
     bool hasValidTxIns();
     bool validateTransaction(vector<UnspentTxOut> aUnspentTxOuts);
     bool isValidTransactionStructure();
+    bool validateCoinbaseTx(int blockIndex);
 };
 
 class UnspentTxOut {
@@ -55,5 +56,7 @@ bool isValidTxInStructure(TxIn txIn);
 bool isValidAddress(string address);
 
 bool isValidTxOutStructure(TxOut txOut);
+
+Transaction getCoinbaseTransaction(string address, int blockIndex);
 
 #endif //XCOIN_TRANSACTION_H

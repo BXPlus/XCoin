@@ -4,6 +4,8 @@
 
 #include "transaction.h"
 
+const int COINBASE_AMOUNT = 50;
+
 TxOut::TxOut(string address, int amount) {
     this -> address = address;
     this -> amount = amount;
@@ -111,7 +113,7 @@ bool isValidTxOutStructure(TxOut txOut) {
         cout << "invalid txOutId type in txIn";
         return false;
     }
-    else if (typeid(txOut.amount) !== typeid(0)) {
+    else if (typeid(txOut.amount) != typeid(0)) {
         cout << "invalid txOutIndex type in txIn";
         return false;
     }
@@ -232,4 +234,41 @@ bool Transaction::validateTransaction(vector<UnspentTxOut> aUnspentTxOuts) {
     }
 
     return true;
+}
+
+bool Transaction::validateCoinbaseTx(int blockIndex) {
+    if (getTransactionId() != id) {
+        cout << "invalid coinbase tx id: " << id << "\n";
+        return false;
+    }
+    if (int(txIns.size()) != 1) {
+        cout << "one txIn must be specified in the coinbase transaction\n";
+        return false;
+    }
+    if (txIns[0].txOutIndex != blockIndex) {
+        cout << "the txIn index in coinbase tx must be the block height\n";
+        return false;
+    }
+    if (int(txOut.size()) != 1) {
+        cout << "invalid number of txOuts in coinbase transaction\n";
+        return false;
+    }
+    if (txOuts[0].amount != COINBASE_AMOUNT) {
+        cout << "invalid coinbase amount in coinbase transaction\n";
+        return false;
+    }
+    return true;
+}
+
+Transaction getCoinbaseTransaction(string address, int blockIndex) {
+    Transaction t();
+    TxIn txIn();
+    txIn.signature = "";
+    txIn.txOutId = "";
+    txIn.txOutIndex = blockIndex;
+
+    t.txIns = vector<TxIn>{txIn};
+    t.txOuts = vector<TxOut>{TxOut(address, COINBASE_AMOUNT)};
+    t.id = t.getTransactionId();
+    return t;
 }
