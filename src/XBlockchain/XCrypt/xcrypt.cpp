@@ -67,10 +67,10 @@ int main(void) {
 
      /* 128 bit iv.
      */
-    unsigned char *iv= ????????? ;
-    unsigned char *key= ????????????;
+    unsigned char *iv ;
+    unsigned char *key;
 
-    unsigned char *plaintext = ???????????;
+    unsigned char *plaintext;
 
     /* pour stocker le ciphertext*/
     unsigned char ciphertext[128];
