@@ -50,6 +50,10 @@ UnspentTxOut findUnspentTxOut(string transactionId, int index, vector<UnspentTxO
     return 0;
 }
 
+int TxIn::getTxInAmount(vector<UnspentTxOut> aUnspentTxOuts) {
+    return findUnspentTxOut(txOutId, txOutIndex, aUnspentTxOuts).amount;
+}
+
 vector<UnspentTxOut> updateUnspentTxOuts(vector<Transaction> aTransactions, vector<UnspentTxOut> aUnspentTxOuts) {
     vector<UnspentTxOut> newUnspentTxOuts;
     for (int i = 0; i < int(aTransactions.size()); i++) {
@@ -98,6 +102,7 @@ bool isValidTxInStructure(TxIn txIn) {
 bool isValidAddress(string address) {
     //TODO: Implement this function to verify an address
     // valid address is a valid ecdsa public key in the 04 + X-coordinate + Y-coordinate format
+    return true;
 }
 
 bool isValidTxOutStructure(TxOut txOut) {
@@ -121,37 +126,76 @@ bool isValidTxOutStructure(TxOut txOut) {
         return true;
 }
 
-bool isValidTransactionStructure(Transaction transaction) {
-    if (typeid(transaction.id) != typeid("string")) {
+bool Transaction::isValidTransactionStructure() {
+    if (typeid(id) != typeid("string")) {
         cout << "transactionId missing";
         return false;
     }
 
-    if (typeid(transaction.txIns) != typeid(vector<TxIn>())) {
+    if (typeid(txIns) != typeid(vector<TxIn>())) {
         cout << "invalid txIns type in transaction";
         return false;
     }
 
     bool isValid = 1;
-    for (int i = 0; i < int(transaction.txIns.size()); i++)
-        isValid &= isValidTxInStructure(transaction.txIns[i]);
+    for (int i = 0; i < int(txIns.size()); i++)
+        isValid &= isValidTxInStructure(txIns[i]);
 
     if (!isValid) {
         cout << "invalid TxIns array";
         return false;
     }
 
-    if (typeid(transaction.txOuts) != typeid(vector<TxOut>())) {
+    if (typeid(txOuts) != typeid(vector<TxOut>())) {
         cout << "invalid txOuts type in transaction";
         return false;
     }
 
     isValid = 1;
-    for (int i = 0; i < int(transaction.txOuts.size()); i++)
-        isValid &= isValidTxOutStructure(transaction.txOuts[i]);
+    for (int i = 0; i < int(txOuts.size()); i++)
+        isValid &= isValidTxOutStructure(txOuts[i]);
 
     if (!isValid) {
         cout << "invalid TxOuts array";
+        return false;
+    }
+
+    return true;
+}
+
+bool TxIn::validateTxIn(string id, vector<UnspentTxOut> aUnspentTxOuts) {
+    //todo: implement this function
+    return true;
+}
+
+bool Transaction::validateTransaction(vector<UnspentTxOut> aUnspentTxOuts) {
+    if (!isValidTxOutStructure())
+        return false;
+
+    if (getTransactionId() != id) {
+        cout << "Invalid tx id: " << id << "\n";
+        return false;
+    }
+
+    bool hasValidTxIns = true;
+    for (int i = 0; i < int(txIns.size()); i++)
+        hasValidTxIns &= txIns[i].validateTxIn(id, aUnspentTxOuts);
+
+    if (!hasValidTxIns) {
+        cout << "some of the txIns are invalid in tx: " << id << "\n";
+        return false;
+    }
+
+    int totalTxInValues = 0;
+    for (int i = 0; i < int(txIns.size()); i++)
+        totalTxInValues += txIns[i].getTxInAmount(aUnspentTxOuts);
+
+    int totalTxOutValues = 0;
+    for (int i = 0; i < int(txOuts.size()); i++)
+        totalTxOutValues += txOuts[i].amount;
+
+    if (totalTxInValues != totalTxOutValues) {
+        cout << "totalTxOutValues != totalTxInValues in tx: " << id << "\n";
         return false;
     }
 

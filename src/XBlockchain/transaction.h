@@ -20,6 +20,8 @@ public:
     string txOutId;
     int txOutIndex;
     string signature;
+    int getTxInAmount(vector<UnspentTxOut> aUnspentTxOuts);
+    bool validateTxIn(Transaction transaction, vector<UnspentTxOut> aUnspentTxOuts);
 };
 
 class Transaction {
@@ -29,6 +31,9 @@ public:
     vector<TxOut> txOuts;
     string getTransactionId();
     string signTxIn(int txInIndex, string privateKey, vector<UnspentTxOut> aUnspentTxOuts);
+    bool hasValidTxIns();
+    bool validateTransaction(vector<UnspentTxOut> aUnspentTxOuts);
+    bool isValidTransactionStructure();
 };
 
 class UnspentTxOut {
@@ -37,7 +42,6 @@ public:
     int txOutIndex;
     string address;
     int amount;
-
     UnspentTxOut(string txOutID, int txOutIndex, string address, int amount);
 }
 
@@ -50,7 +54,5 @@ bool isValidTxInStructure(TxIn txIn);
 bool isValidAddress(string address);
 
 bool isValidTxOutStructure(TxOut txOut);
-
-bool isValidTransactionStructure(Transaction transaction);
 
 #endif //XCOIN_TRANSACTION_H
