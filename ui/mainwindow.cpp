@@ -5,6 +5,7 @@
 #include <QAction>
 #include <QSignalMapper>
 #include "logindialog.cpp"
+#include "settingswidget.cpp"
 #include <QLabel>
 #include <QDir>
 #include <QCloseEvent>

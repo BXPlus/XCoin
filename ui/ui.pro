@@ -23,8 +23,7 @@ HEADERS += \
 
 FORMS += \
     logindialog.ui \
-    mainwindow.ui \
-    settingswidget.ui
+    mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

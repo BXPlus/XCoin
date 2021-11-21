@@ -9,7 +9,7 @@ LoginDialog::LoginDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    groupBox = new QGroupBox(tr("Login"));
+    groupBox = new QGroupBox();
     login = new QPushButton("Login", this);
     privateLabel = new QLabel("Private Key:", this);
     privateText = new QLineEdit(this);
@@ -48,7 +48,7 @@ void LoginDialog::check_credentials()
     QString privatekey = privateText->text();
     QStringList attemps = {"three", "two", "one"};
 
-    if (privatekey == "0123456") {
+    if (privatekey == "") {
         identified = true;
         this->close();
     }

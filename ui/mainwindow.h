@@ -6,8 +6,8 @@
 #include <QStackedWidget>
 #include <QVBoxLayout>
 #include "custombutton.h"
-#include "settingswidget.h"
 #include "logindialog.h"
+#include "settingswidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -33,7 +33,7 @@ public:
     QWidget* balanceWidget;
     QWidget* paymentsWidget;
     QWidget* contactsWidget;
-    SettingsWidget* settingsWidget;
+    QWidget* settingsWidget;
     QWidget* graphsWidget;
 
 private slots:
