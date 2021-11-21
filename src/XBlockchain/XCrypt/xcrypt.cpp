@@ -9,6 +9,7 @@
 
 int encrypt(unsigned char *plaintext, int plaintext_len, unsigned char *key, unsigned char *iv,
             unsigned char *ciphertext) {
+
     EVP_CIPHER_CTX *ctx;
     int len;
     int ciphertext_len;
@@ -20,12 +21,12 @@ int encrypt(unsigned char *plaintext, int plaintext_len, unsigned char *key, uns
     }
     /* the encryption operation initialization
        EVP_EncryptiInit_ex() sets up cipher context ctx for encryption  */
-    if ( EVP_EncryptiInit_ex(ctx, EVP_aes_256_cbc(), NULL , key, iv) != 1){
+    if ( EVP_EncryptiInit_ex(ctx, EVP_aes_256_cbc(), NULL , key, iv) == 0){
         handleErrors();
     }
 /* obtain the encrypted output
  */
-    if ( EVP_EncryptUpdate(ctx, ciphertext, &len, plaintext, plaintext_len) != 1 ){
+    if ( EVP_EncryptUpdate(ctx, ciphertext, &len, plaintext, plaintext_len) == 0 ){
         handleErrors();
     }
 
@@ -66,8 +67,8 @@ int main(void) {
 
      /* 128 bit iv.
      */
-    unsigned char *iv= (unsigned char *)"0123456789012345" ;
-    unsigned char *key= (unsigned char *)"01234567890123456789012345678901";
+    unsigned char *iv= ????????? ;
+    unsigned char *key= ????????????;
 
     unsigned char *plaintext = ???????????;
 
