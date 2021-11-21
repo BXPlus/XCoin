@@ -52,7 +52,7 @@ int encrypt(unsigned char *plaintext, int plaintext_len, unsigned char *key, uns
 
     return ciphertext_len;
 }
-;
+
 void handleErrors(void){
 /*ERR_print_errors() is a convenience function that prints the error strings for all errors that OpenSSL has recorded to bp, thus emptying the error queue.*/
  ERR_rint_errors_fp(stderr)
@@ -92,3 +92,51 @@ int main(void) {
 
     std::cout << " Decrypted text is : " << decryptedtext << ;
 };
+
+
+int decrypt(unsigned char *ciphertext, int ciphertext_len, unsigned char *key, unsigned char *iv,
+            unsigned char *plaintext){
+    EVP_CIPHER_CTX *ctx;
+    int len;
+    int ciphertext_len;
+
+    /* initializing ctx
+     */
+    if not (ctx = ECP_CIPHER_CTX_new() ){
+        handleErros();
+    }
+    /* the decryption operation initialization
+       EVP_DecryptiInit_ex() return 1 for success and 0 for failure  */
+    if ( EVP_DecryptiInit_ex(ctx, EVP_aes_256_cbc(), NULL , key, iv) == 0){
+        handleErrors();
+    }
+/* obtain the dencrypted output +plaintext output
+ */
+    if ( EVP_DecryptUpdate(ctx, plaintext, &len, ciphertext, ciphertext_len) == 0 ){
+        handleErrors();
+    }
+
+    plaintext_len = len ;
+
+    /*finalize the process
+     *EVP_DecryptFinal_ex() returns 0 if the decrypt failed or 1 for success.
+     */
+
+    if ( EVP_DecryptFinal(ctx, plaintext + len , &len ) == 0){
+        handleErrors();
+    }
+
+    plaintext_len += len ;
+
+
+
+    /* cleaning up
+     * EVP_CIPHER_CTX_free() clears all information from a cipher context
+     * and free up any allocated memory associate with it, including ctx itself.
+     */
+    EVP_CIPHER_CTX_free(ctx);
+
+    return plaintext_len;
+}-[]
+
+}
