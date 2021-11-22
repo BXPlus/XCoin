@@ -42,5 +42,7 @@ int main(){
     /* we close because we are a good programmers
      */
     file.close();
+
+    return 0 ;
 }
 
