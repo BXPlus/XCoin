@@ -23,8 +23,8 @@ int main()
     /**************************************************************************************/
     // To set up a classical HttpController, uncomment the following lines:
 
-    /*std::cout << "Server will start on "<< ip << " and listens to the port " << port << std::endl;
-    XNode node = XNode(ip, port);*/
+    std::cout << "Server will start on "<< ip << " and listens to the port " << port << std::endl;
+    XNode node = XNode(ip, port);
 
     /**************************************************************************************/
 
@@ -39,8 +39,8 @@ int main()
     /**************************************************************************************/
     // To set up a WebSocket server, uncomment the following lines:
 
-    std::cout << "Websocket server will start on "<< ip << " and listens to the port " << port << std::endl;
-    XNode node = XNode(ip, port, true, true);
+    /*std::cout << "Websocket server will start on "<< ip << " and listens to the port " << port << std::endl;
+    XNode node = XNode(ip, port, true, true);*/
 
     /**************************************************************************************/
 
