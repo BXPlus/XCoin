@@ -1,5 +1,5 @@
 //
-// Created by MIZIX on 18/11/2021.
+// Created by Kevin on 18/11/2021.
 //
 
 #include "XNodeSync.h"
@@ -11,9 +11,9 @@ void XNodeSync::headFirstDownload() {
     ChainNode *curBlockPtr = localBlockchain.head;
     Block curBlock = curBlockPtr->block;
     while (curBlockPtr != localBlockchain.tail) {
-        curBlockPtr = curBlockPtr->block;
+        //curBlockPtr = curBlockPtr->block;
         curBlock = curBlockPtr->block;
-        if (curBlock.getHash() != curBlock.getPrevHash()) {
+        if (curBlock.hash != curBlock.previousHash) {
             cout << "Error: The hash of the previous block is not the same as the hash of the current block." << endl;
             return;
         }
