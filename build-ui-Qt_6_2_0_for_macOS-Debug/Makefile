@@ -57,14 +57,16 @@ SOURCES       = ../ui/custombutton.cpp \
 		../ui/main.cpp \
 		../ui/mainwindow.cpp moc_homewidget.cpp \
 		moc_logindialog.cpp \
-		moc_mainwindow.cpp
+		moc_mainwindow.cpp \
+		moc_settingswidget.cpp
 OBJECTS       = custombutton.o \
 		homewidget.o \
 		main.o \
 		mainwindow.o \
 		moc_homewidget.o \
 		moc_logindialog.o \
-		moc_mainwindow.o
+		moc_mainwindow.o \
+		moc_settingswidget.o
 DIST          = ../ui/style.qss \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/features/spec_pre.prf \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/features/device_config.prf \
@@ -207,7 +209,8 @@ DIST          = ../ui/style.qss \
 		../ui/ui.pro ../ui/custombutton.h \
 		../ui/homewidget.h \
 		../ui/logindialog.h \
-		../ui/mainwindow.h ../ui/custombutton.cpp \
+		../ui/mainwindow.h \
+		../ui/settingswidget.h ../ui/custombutton.cpp \
 		../ui/homewidget.cpp \
 		../ui/main.cpp \
 		../ui/mainwindow.cpp
@@ -231,7 +234,7 @@ include /Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/features/mac/sdk.mk
 first: all
 ####### Build rules
 
-ui.app/Contents/MacOS/ui: ui_logindialog.h ui_mainwindow.h $(OBJECTS)  
+ui.app/Contents/MacOS/ui: ui_mainwindow.h $(OBJECTS)  
 	@test -d ui.app/Contents/MacOS/ || mkdir -p ui.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -549,9 +552,9 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../ui/custombutton.h ../ui/homewidget.h ../ui/logindialog.h ../ui/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../ui/custombutton.cpp ../ui/homewidget.cpp ../ui/logindialog.cpp ../ui/main.cpp ../ui/mainwindow.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../ui/logindialog.ui ../ui/mainwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../ui/custombutton.h ../ui/homewidget.h ../ui/logindialog.h ../ui/mainwindow.h ../ui/settingswidget.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../ui/custombutton.cpp ../ui/homewidget.cpp ../ui/main.cpp ../ui/mainwindow.cpp ../ui/settingswidget.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../ui/mainwindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -580,12 +583,18 @@ benchmark: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_homewidget.cpp moc_logindialog.cpp moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_homewidget.cpp moc_logindialog.cpp moc_mainwindow.cpp moc_settingswidget.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_homewidget.cpp moc_logindialog.cpp moc_mainwindow.cpp
+	-$(DEL_FILE) moc_homewidget.cpp moc_logindialog.cpp moc_mainwindow.cpp moc_settingswidget.cpp
 moc_homewidget.cpp: ../ui/homewidget.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QLabel \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qlabel.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QGridLayout \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qgridlayout.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/moc
 	/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=13 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/ui -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/alexandremisrahi/Qt/6.2.0/macos/lib ../ui/homewidget.h -o moc_homewidget.cpp
 
@@ -614,6 +623,12 @@ moc_logindialog.cpp: ../ui/logindialog.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qwidget.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QPushButton \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		../ui/logindialog.h \
+		../ui/settingswidget.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QComboBox \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qcombobox.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QScrollArea \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qscrollarea.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/moc
 	/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=13 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/ui -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/alexandremisrahi/Qt/6.2.0/macos/lib ../ui/logindialog.h -o moc_logindialog.cpp
 
@@ -632,20 +647,66 @@ moc_mainwindow.cpp: ../ui/mainwindow.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qwidget.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QPushButton \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		../ui/logindialog.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qdialog.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QBoxLayout \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QGroupBox \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qgroupbox.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QLabel \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qlabel.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QLineEdit \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qlineedit.h \
+		../ui/mainwindow.h \
+		../ui/settingswidget.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QComboBox \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qcombobox.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QScrollArea \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qscrollarea.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/moc
 	/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=13 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/ui -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/alexandremisrahi/Qt/6.2.0/macos/lib ../ui/mainwindow.h -o moc_mainwindow.cpp
+
+moc_settingswidget.cpp: ../ui/settingswidget.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qwidget.h \
+		../ui/mainwindow.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QHBoxLayout \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QStackedWidget \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qstackedwidget.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		../ui/custombutton.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QString \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/qstring.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QPushButton \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		../ui/logindialog.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qdialog.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QBoxLayout \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QGroupBox \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qgroupbox.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QLabel \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qlabel.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QLineEdit \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qlineedit.h \
+		../ui/settingswidget.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QComboBox \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qcombobox.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QScrollArea \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qscrollarea.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/moc
+	/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=13 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/ui -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/alexandremisrahi/Qt/6.2.0/macos/lib ../ui/settingswidget.h -o moc_settingswidget.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_logindialog.h ui_mainwindow.h
+compiler_uic_make_all: ui_mainwindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_logindialog.h ui_mainwindow.h
-ui_logindialog.h: ../ui/logindialog.ui \
-		/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/uic
-	/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/uic ../ui/logindialog.ui -o ui_logindialog.h
-
+	-$(DEL_FILE) ui_mainwindow.h
 ui_mainwindow.h: ../ui/mainwindow.ui \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/uic
 	/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/uic ../ui/mainwindow.ui -o ui_mainwindow.h
@@ -673,7 +734,19 @@ custombutton.o: ../ui/custombutton.cpp ../ui/custombutton.h \
 
 homewidget.o: ../ui/homewidget.cpp ../ui/homewidget.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qwidget.h
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QLabel \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qlabel.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QGridLayout \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qgridlayout.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QGraphicsWidget \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qgraphicswidget.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QScrollArea \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qscrollarea.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QScrollBar \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qscrollbar.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o homewidget.o ../ui/homewidget.cpp
 
 main.o: ../ui/main.cpp ../ui/mainwindow.h \
@@ -691,6 +764,21 @@ main.o: ../ui/main.cpp ../ui/mainwindow.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qwidget.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QPushButton \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		../ui/logindialog.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qdialog.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QBoxLayout \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QGroupBox \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qgroupbox.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QLabel \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qlabel.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QLineEdit \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qlineedit.h \
+		../ui/settingswidget.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QComboBox \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qcombobox.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QScrollArea \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qscrollarea.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QApplication \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qapplication.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QFile \
@@ -716,14 +804,6 @@ mainwindow.o: ../ui/mainwindow.cpp ../ui/mainwindow.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qwidget.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QPushButton \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qpushbutton.h \
-		ui_mainwindow.h \
-		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QStringList \
-		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/qstringlist.h \
-		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers/QAction \
-		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers/qaction.h \
-		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QSignalMapper \
-		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/qsignalmapper.h \
-		../ui/logindialog.cpp \
 		../ui/logindialog.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QDialog \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qdialog.h \
@@ -734,12 +814,30 @@ mainwindow.o: ../ui/mainwindow.cpp ../ui/mainwindow.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qlabel.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QLineEdit \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qlineedit.h \
+		../ui/settingswidget.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QComboBox \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qcombobox.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QScrollArea \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qscrollarea.h \
+		ui_mainwindow.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QStringList \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/qstringlist.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers/QAction \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers/qaction.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QSignalMapper \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/qsignalmapper.h \
+		../ui/logindialog.cpp \
 		ui_logindialog.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QDebug \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/qdebug.h \
+		../ui/settingswidget.cpp \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QDir \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/qdir.h \
-		../ui/homewidget.h
+		../ui/homewidget.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QGridLayout \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qgridlayout.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers/QCloseEvent \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers/qevent.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../ui/mainwindow.cpp
 
 moc_homewidget.o: moc_homewidget.cpp 
@@ -750,6 +848,9 @@ moc_logindialog.o: moc_logindialog.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_settingswidget.o: moc_settingswidget.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_settingswidget.o moc_settingswidget.cpp
 
 ####### Install
 

@@ -26,6 +26,8 @@ MainWindow::MainWindow(QWidget *parent)
     mainWidget = new QWidget(this);
     setCentralWidget(mainWidget);
     mainLayout = new QHBoxLayout(mainWidget);
+    mainLayout->setContentsMargins(0, 0, 0, 0);
+    mainLayout->setSpacing(0);
 
 
     // Creating menu
@@ -34,6 +36,8 @@ MainWindow::MainWindow(QWidget *parent)
     menuContainer->setLayout(menuLayout);
     mainLayout->addWidget(menuContainer);
     menuContainer->setMaximumWidth(200);
+    menuContainer->setObjectName("menuContainer");
+    menuContainer->setContentsMargins(0,0,0,0);
 
 
     // Creating userBlock
@@ -42,7 +46,7 @@ MainWindow::MainWindow(QWidget *parent)
     QVBoxLayout* userBlockLayout = new QVBoxLayout(userBlock);
     userBlock->setFixedHeight(150);
     userBlock->setStyleSheet("border-radius: 15px;"
-                              "background-color: rgba(50, 79, 126, 255);");
+                              "background-color: rgba(60, 72, 114, 255);");
 
     // XCoin logo
     QString path = QDir::currentPath();
@@ -52,6 +56,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     QPixmap pic(subPath);
     QLabel* imgLabel = new QLabel(userBlock);
+    imgLabel->setAlignment(Qt::AlignCenter);
     imgLabel->setFixedSize(50, 50);
     imgLabel->setPixmap(pic);
 
@@ -84,8 +89,10 @@ MainWindow::MainWindow(QWidget *parent)
 
         CustomButton* btn = new CustomButton(titles[i], menuContainer);
         btn->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+        btn->setFixedWidth(100);
         btn->setCursor(Qt::PointingHandCursor);
         btnList.append(btn);
+        btn->setObjectName("menuBtn");
         menuLayout->addWidget(btn);
     }
 
@@ -93,6 +100,8 @@ MainWindow::MainWindow(QWidget *parent)
     //Creating Stacked Widget
 
     contentContainer = new QStackedWidget(mainWidget);
+    contentContainer->setObjectName("contentContainer");
+
     homeWidget = new HomeWidget(mainWidget);
     contentContainer->addWidget(homeWidget);
     balanceWidget = new QWidget(mainWidget);
@@ -111,15 +120,13 @@ MainWindow::MainWindow(QWidget *parent)
     for (int i = 0; i < 6; i++){
         contentContainer->setCurrentIndex(i);
         QWidget* widget = contentContainer->currentWidget();
-        if (i != 4){
-            QString style = QString("QWidget {border: 1px solid %1}").arg(color_list[i]);
-            widget->setStyleSheet(style);
-        }
+        QString style = QString("QWidget {border: 1px solid %1}").arg(color_list[i]);
+        widget->setStyleSheet(style);
 
         QSignalMapper* signalMapper = new QSignalMapper (this) ;
         connect(btnList[i], SIGNAL(clicked(bool)), signalMapper, SLOT(map()));
         signalMapper->setMapping (btnList[i], i);
-        connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(go_page(int)));
+        connect(signalMapper, SIGNAL(mappedInt(int)), this, SLOT(go_page(int)));
     }
 
     contentContainer->setCurrentIndex(0);

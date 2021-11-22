@@ -1,5 +1,5 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'homewidget.h'
+** Meta object code from reading C++ file 'settingswidget.h'
 **
 ** Created by: The Qt Meta Object Compiler version 68 (Qt 6.2.0)
 **
@@ -7,12 +7,12 @@
 *****************************************************************************/
 
 #include <memory>
-#include "../ui/homewidget.h"
+#include "../ui/settingswidget.h"
 #include <QtGui/qtextcursor.h>
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'homewidget.h' doesn't include <QObject>."
+#error "The header file 'settingswidget.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 68
 #error "This file was generated using the moc from 6.2.0. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -22,22 +22,22 @@
 QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
-struct qt_meta_stringdata_HomeWidget_t {
+struct qt_meta_stringdata_SettingsWidget_t {
     const uint offsetsAndSize[2];
-    char stringdata0[11];
+    char stringdata0[15];
 };
 #define QT_MOC_LITERAL(ofs, len) \
-    uint(offsetof(qt_meta_stringdata_HomeWidget_t, stringdata0) + ofs), len 
-static const qt_meta_stringdata_HomeWidget_t qt_meta_stringdata_HomeWidget = {
+    uint(offsetof(qt_meta_stringdata_SettingsWidget_t, stringdata0) + ofs), len 
+static const qt_meta_stringdata_SettingsWidget_t qt_meta_stringdata_SettingsWidget = {
     {
-QT_MOC_LITERAL(0, 10) // "HomeWidget"
+QT_MOC_LITERAL(0, 14) // "SettingsWidget"
 
     },
-    "HomeWidget"
+    "SettingsWidget"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_HomeWidget[] = {
+static const uint qt_meta_data_SettingsWidget[] = {
 
  // content:
       10,       // revision
@@ -53,7 +53,7 @@ static const uint qt_meta_data_HomeWidget[] = {
        0        // eod
 };
 
-void HomeWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void SettingsWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     (void)_o;
     (void)_id;
@@ -61,14 +61,14 @@ void HomeWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
     (void)_a;
 }
 
-const QMetaObject HomeWidget::staticMetaObject = { {
+const QMetaObject SettingsWidget::staticMetaObject = { {
     QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
-    qt_meta_stringdata_HomeWidget.offsetsAndSize,
-    qt_meta_data_HomeWidget,
+    qt_meta_stringdata_SettingsWidget.offsetsAndSize,
+    qt_meta_data_SettingsWidget,
     qt_static_metacall,
     nullptr,
-qt_incomplete_metaTypeArray<qt_meta_stringdata_HomeWidget_t
-, QtPrivate::TypeAndForceComplete<HomeWidget, std::true_type>
+qt_incomplete_metaTypeArray<qt_meta_stringdata_SettingsWidget_t
+, QtPrivate::TypeAndForceComplete<SettingsWidget, std::true_type>
 
 
 
@@ -77,20 +77,20 @@ qt_incomplete_metaTypeArray<qt_meta_stringdata_HomeWidget_t
 } };
 
 
-const QMetaObject *HomeWidget::metaObject() const
+const QMetaObject *SettingsWidget::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *HomeWidget::qt_metacast(const char *_clname)
+void *SettingsWidget::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_HomeWidget.stringdata0))
+    if (!strcmp(_clname, qt_meta_stringdata_SettingsWidget.stringdata0))
         return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
-int HomeWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int SettingsWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QWidget::qt_metacall(_c, _id, _a);
     return _id;

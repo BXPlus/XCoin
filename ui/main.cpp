@@ -17,7 +17,6 @@ int main(int argc, char *argv[])
     int index = path.indexOf("XCoin");
     QString subPath = path.mid(0,index+5);
     subPath.append("/ui/style.qss");
-    qDebug() << "Stylesheet path: " << subPath;
 
         // loading
     QFile qss(subPath);
