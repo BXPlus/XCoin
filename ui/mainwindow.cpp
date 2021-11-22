@@ -5,18 +5,19 @@
 #include <QAction>
 #include <QSignalMapper>
 #include "logindialog.cpp"
+#include "settingswidget.cpp"
 #include <QLabel>
 #include <QDir>
 #include <homewidget.h>
+#include <QCloseEvent>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    //Login page
-    pop_login();
-
     ui->setupUi(this);
+
+    //HomePage setup
     setWindowTitle("XCoin");
     setMinimumSize(500,600);
 
@@ -77,7 +78,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Creating remaining buttons
 
-    QStringList titles = {"Home", "Contacts", "Balance", "Pay", "Live", "Graphics"};
+    QStringList titles = {"Home", "Contacts", "History", "Pay", "Settings", "Graphics"};
 
     for (int i=0; i<6; i++){
 
@@ -100,8 +101,8 @@ MainWindow::MainWindow(QWidget *parent)
     contentContainer->addWidget(paymentsWidget);
     contactsWidget = new QWidget(mainWidget);
     contentContainer->addWidget(contactsWidget);
-    updatesWidget = new QWidget(mainWidget);
-    contentContainer->addWidget(updatesWidget);
+    settingsWidget = new SettingsWidget(mainWidget);
+    contentContainer->addWidget(settingsWidget);
     graphsWidget = new QWidget(mainWidget);
     contentContainer->addWidget(graphsWidget);
 
@@ -110,13 +111,15 @@ MainWindow::MainWindow(QWidget *parent)
     for (int i = 0; i < 6; i++){
         contentContainer->setCurrentIndex(i);
         QWidget* widget = contentContainer->currentWidget();
-        QString style = QString("QWidget {border: 1px solid %1}").arg(color_list[i]);
-        widget->setStyleSheet(style);
+        if (i != 4){
+            QString style = QString("QWidget {border: 1px solid %1}").arg(color_list[i]);
+            widget->setStyleSheet(style);
+        }
 
         QSignalMapper* signalMapper = new QSignalMapper (this) ;
         connect(btnList[i], SIGNAL(clicked(bool)), signalMapper, SLOT(map()));
-        signalMapper -> setMapping (btnList[i], i);
-        connect(signalMapper, SIGNAL(mappedInt(int)), this, SLOT(go_page(int)));
+        signalMapper->setMapping (btnList[i], i);
+        connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(go_page(int)));
     }
 
     contentContainer->setCurrentIndex(0);
@@ -124,7 +127,6 @@ MainWindow::MainWindow(QWidget *parent)
     // Creating main content
 
     mainLayout->addWidget(contentContainer);
-
 }
 
 MainWindow::~MainWindow()
@@ -136,10 +138,8 @@ void MainWindow::go_page(int i)
 {
     contentContainer->setCurrentIndex(i);
 }
-void MainWindow::pop_login()
 
+void MainWindow::closeEvent(QCloseEvent *event)
 {
-    LoginDialog dialogLogin;
-    dialogLogin.setModal(true);
-    dialogLogin.exec();
+    event->accept();
 }

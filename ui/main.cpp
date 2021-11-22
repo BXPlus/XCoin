@@ -26,7 +26,15 @@ int main(int argc, char *argv[])
     a.setStyleSheet(styleSheet);
     qss.close();
 
-    MainWindow w;
-    w.show();
-    return a.exec();
+    //Login page
+    LoginDialog *dialogLogin = new LoginDialog();
+    dialogLogin->setModal(true);
+    dialogLogin->exec();
+    bool identified = dialogLogin->get_identified();
+
+    if (identified) {
+        MainWindow w;
+        w.show();
+        return a.exec();
+    }
 }
