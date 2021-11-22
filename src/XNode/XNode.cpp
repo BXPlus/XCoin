@@ -114,3 +114,15 @@ void XNode::setupWebSocketClient() {
             });
 }
 
+
+std::string XNode::giveIp(std::string name){
+    return name2ip[name];
+}
+
+void XNode::addNode(std::string name, std::string ip) {
+    name2ip[name] = ip;
+}
+
+std::map<std::string, std::string> XNode::shareListNode() {
+    return name2ip;
+}

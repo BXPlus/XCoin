@@ -101,7 +101,7 @@ Keys keyFromPublic(std::string adress, std::string form) {
 /*
 
 
-bool Keys::verify(string id, string txOutId, int txOutIndex, TxIn txIn, string signature, vector<UnspentTxOut> aUnspentTxOuts){
+bool Keys::verify(string id, string txOutId, int txOutIndex, string signature, vector<UnspentTxOut> aUnspentTxOuts){
 //We will create the signature which should be signing this TxIn and compare it to the one we have
 //We use an addapted version of signTxIn
 

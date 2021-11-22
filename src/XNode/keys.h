@@ -17,8 +17,9 @@ public:
     Keys(); //constructor which creates the private and public key
     Keys(std::string pubb); //constructor which creates the private and public key
 
+
     char const* keyFromPrivate(std::string priv_keyy, std::string form);//return the public key from the private one
-//    bool verify(string id, string txOutId, int txOutIndex, TxIn txIn, string signature, vector<UnspentTxOut> aUnspentTxOuts);
+//    bool verify(string id, string txOutId, int txOutIndex, string signature, vector<UnspentTxOut> aUnspentTxOuts);
 
     char const* getPriv(){
         //returns the hexadecimal fom of the private key
@@ -31,7 +32,7 @@ public:
 
 
 
-
+private:
     BIGNUM const* prv;        //private key (which is a big integer)
     char const* priv_key;         //private key in hexadecimal form
     EC_POINT const* pub;      //public key which is a point made of two coordinates and depending on the private key
@@ -39,5 +40,5 @@ public:
 
 
 };
-Keys keyFromPublic(std::string adress, std::string form); //returns a key whose public key is adress
+Keys keyFromPublic(std::string address, std::string form); //returns a key whose public key is adress
 #endif //XCOIN_KEYS_H
