@@ -46,7 +46,7 @@ struct TableStruct_src_2fXNode_2fblockchain_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[2]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[6]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -61,11 +61,27 @@ extern BlockDefaultTypeInternal _Block_default_instance_;
 class Blockchain;
 struct BlockchainDefaultTypeInternal;
 extern BlockchainDefaultTypeInternal _Blockchain_default_instance_;
+class GetHeaders;
+struct GetHeadersDefaultTypeInternal;
+extern GetHeadersDefaultTypeInternal _GetHeaders_default_instance_;
+class Header;
+struct HeaderDefaultTypeInternal;
+extern HeaderDefaultTypeInternal _Header_default_instance_;
+class Headers;
+struct HeadersDefaultTypeInternal;
+extern HeadersDefaultTypeInternal _Headers_default_instance_;
+class XNodeMessage;
+struct XNodeMessageDefaultTypeInternal;
+extern XNodeMessageDefaultTypeInternal _XNodeMessage_default_instance_;
 }  // namespace interchange
 }  // namespace xcoin
 PROTOBUF_NAMESPACE_OPEN
 template<> ::xcoin::interchange::Block* Arena::CreateMaybeMessage<::xcoin::interchange::Block>(Arena*);
 template<> ::xcoin::interchange::Blockchain* Arena::CreateMaybeMessage<::xcoin::interchange::Blockchain>(Arena*);
+template<> ::xcoin::interchange::GetHeaders* Arena::CreateMaybeMessage<::xcoin::interchange::GetHeaders>(Arena*);
+template<> ::xcoin::interchange::Header* Arena::CreateMaybeMessage<::xcoin::interchange::Header>(Arena*);
+template<> ::xcoin::interchange::Headers* Arena::CreateMaybeMessage<::xcoin::interchange::Headers>(Arena*);
+template<> ::xcoin::interchange::XNodeMessage* Arena::CreateMaybeMessage<::xcoin::interchange::XNodeMessage>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace xcoin {
 namespace interchange {
@@ -510,6 +526,790 @@ class Blockchain final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_src_2fXNode_2fblockchain_2eproto;
 };
+// -------------------------------------------------------------------
+
+class GetHeaders final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:xcoin.interchange.GetHeaders) */ {
+ public:
+  inline GetHeaders() : GetHeaders(nullptr) {}
+  ~GetHeaders() override;
+  explicit constexpr GetHeaders(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetHeaders(const GetHeaders& from);
+  GetHeaders(GetHeaders&& from) noexcept
+    : GetHeaders() {
+    *this = ::std::move(from);
+  }
+
+  inline GetHeaders& operator=(const GetHeaders& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetHeaders& operator=(GetHeaders&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetHeaders& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetHeaders* internal_default_instance() {
+    return reinterpret_cast<const GetHeaders*>(
+               &_GetHeaders_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(GetHeaders& a, GetHeaders& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetHeaders* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetHeaders* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline GetHeaders* New() const final {
+    return new GetHeaders();
+  }
+
+  GetHeaders* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<GetHeaders>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetHeaders& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetHeaders& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetHeaders* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "xcoin.interchange.GetHeaders";
+  }
+  protected:
+  explicit GetHeaders(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kBlockHeaderHashesFieldNumber = 4,
+    kStopHashFieldNumber = 3,
+    kVersionFieldNumber = 1,
+    kHashCountFieldNumber = 2,
+  };
+  // repeated string blockHeaderHashes = 4;
+  int blockheaderhashes_size() const;
+  private:
+  int _internal_blockheaderhashes_size() const;
+  public:
+  void clear_blockheaderhashes();
+  const std::string& blockheaderhashes(int index) const;
+  std::string* mutable_blockheaderhashes(int index);
+  void set_blockheaderhashes(int index, const std::string& value);
+  void set_blockheaderhashes(int index, std::string&& value);
+  void set_blockheaderhashes(int index, const char* value);
+  void set_blockheaderhashes(int index, const char* value, size_t size);
+  std::string* add_blockheaderhashes();
+  void add_blockheaderhashes(const std::string& value);
+  void add_blockheaderhashes(std::string&& value);
+  void add_blockheaderhashes(const char* value);
+  void add_blockheaderhashes(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& blockheaderhashes() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_blockheaderhashes();
+  private:
+  const std::string& _internal_blockheaderhashes(int index) const;
+  std::string* _internal_add_blockheaderhashes();
+  public:
+
+  // string stopHash = 3;
+  void clear_stophash();
+  const std::string& stophash() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_stophash(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_stophash();
+  PROTOBUF_MUST_USE_RESULT std::string* release_stophash();
+  void set_allocated_stophash(std::string* stophash);
+  private:
+  const std::string& _internal_stophash() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_stophash(const std::string& value);
+  std::string* _internal_mutable_stophash();
+  public:
+
+  // uint32 version = 1;
+  void clear_version();
+  ::PROTOBUF_NAMESPACE_ID::uint32 version() const;
+  void set_version(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_version() const;
+  void _internal_set_version(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // uint32 hashCount = 2;
+  void clear_hashcount();
+  ::PROTOBUF_NAMESPACE_ID::uint32 hashcount() const;
+  void set_hashcount(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_hashcount() const;
+  void _internal_set_hashcount(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:xcoin.interchange.GetHeaders)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> blockheaderhashes_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr stophash_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 version_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 hashcount_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_src_2fXNode_2fblockchain_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Header final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:xcoin.interchange.Header) */ {
+ public:
+  inline Header() : Header(nullptr) {}
+  ~Header() override;
+  explicit constexpr Header(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Header(const Header& from);
+  Header(Header&& from) noexcept
+    : Header() {
+    *this = ::std::move(from);
+  }
+
+  inline Header& operator=(const Header& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Header& operator=(Header&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Header& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Header* internal_default_instance() {
+    return reinterpret_cast<const Header*>(
+               &_Header_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(Header& a, Header& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Header* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Header* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Header* New() const final {
+    return new Header();
+  }
+
+  Header* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<Header>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Header& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const Header& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Header* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "xcoin.interchange.Header";
+  }
+  protected:
+  explicit Header(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPreviousBlockHeaderHashFieldNumber = 1,
+    kMerkleRootHashFieldNumber = 2,
+    kTimeFieldNumber = 3,
+  };
+  // string previousBlockHeaderHash = 1;
+  void clear_previousblockheaderhash();
+  const std::string& previousblockheaderhash() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_previousblockheaderhash(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_previousblockheaderhash();
+  PROTOBUF_MUST_USE_RESULT std::string* release_previousblockheaderhash();
+  void set_allocated_previousblockheaderhash(std::string* previousblockheaderhash);
+  private:
+  const std::string& _internal_previousblockheaderhash() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_previousblockheaderhash(const std::string& value);
+  std::string* _internal_mutable_previousblockheaderhash();
+  public:
+
+  // string merkleRootHash = 2;
+  void clear_merkleroothash();
+  const std::string& merkleroothash() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_merkleroothash(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_merkleroothash();
+  PROTOBUF_MUST_USE_RESULT std::string* release_merkleroothash();
+  void set_allocated_merkleroothash(std::string* merkleroothash);
+  private:
+  const std::string& _internal_merkleroothash() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_merkleroothash(const std::string& value);
+  std::string* _internal_mutable_merkleroothash();
+  public:
+
+  // uint32 time = 3;
+  void clear_time();
+  ::PROTOBUF_NAMESPACE_ID::uint32 time() const;
+  void set_time(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_time() const;
+  void _internal_set_time(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:xcoin.interchange.Header)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr previousblockheaderhash_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr merkleroothash_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 time_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_src_2fXNode_2fblockchain_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Headers final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:xcoin.interchange.Headers) */ {
+ public:
+  inline Headers() : Headers(nullptr) {}
+  ~Headers() override;
+  explicit constexpr Headers(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Headers(const Headers& from);
+  Headers(Headers&& from) noexcept
+    : Headers() {
+    *this = ::std::move(from);
+  }
+
+  inline Headers& operator=(const Headers& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Headers& operator=(Headers&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Headers& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Headers* internal_default_instance() {
+    return reinterpret_cast<const Headers*>(
+               &_Headers_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(Headers& a, Headers& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Headers* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Headers* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Headers* New() const final {
+    return new Headers();
+  }
+
+  Headers* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<Headers>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Headers& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const Headers& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Headers* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "xcoin.interchange.Headers";
+  }
+  protected:
+  explicit Headers(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kHeadersFieldNumber = 2,
+    kCountFieldNumber = 1,
+  };
+  // repeated .xcoin.interchange.Header headers = 2;
+  int headers_size() const;
+  private:
+  int _internal_headers_size() const;
+  public:
+  void clear_headers();
+  ::xcoin::interchange::Header* mutable_headers(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::xcoin::interchange::Header >*
+      mutable_headers();
+  private:
+  const ::xcoin::interchange::Header& _internal_headers(int index) const;
+  ::xcoin::interchange::Header* _internal_add_headers();
+  public:
+  const ::xcoin::interchange::Header& headers(int index) const;
+  ::xcoin::interchange::Header* add_headers();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::xcoin::interchange::Header >&
+      headers() const;
+
+  // uint32 count = 1;
+  void clear_count();
+  ::PROTOBUF_NAMESPACE_ID::uint32 count() const;
+  void set_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_count() const;
+  void _internal_set_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:xcoin.interchange.Headers)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::xcoin::interchange::Header > headers_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 count_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_src_2fXNode_2fblockchain_2eproto;
+};
+// -------------------------------------------------------------------
+
+class XNodeMessage final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:xcoin.interchange.XNodeMessage) */ {
+ public:
+  inline XNodeMessage() : XNodeMessage(nullptr) {}
+  ~XNodeMessage() override;
+  explicit constexpr XNodeMessage(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  XNodeMessage(const XNodeMessage& from);
+  XNodeMessage(XNodeMessage&& from) noexcept
+    : XNodeMessage() {
+    *this = ::std::move(from);
+  }
+
+  inline XNodeMessage& operator=(const XNodeMessage& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline XNodeMessage& operator=(XNodeMessage&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const XNodeMessage& default_instance() {
+    return *internal_default_instance();
+  }
+  enum ContentsCase {
+    kGetHeadersMessage = 5,
+    kHeadersMessage = 6,
+    CONTENTS_NOT_SET = 0,
+  };
+
+  static inline const XNodeMessage* internal_default_instance() {
+    return reinterpret_cast<const XNodeMessage*>(
+               &_XNodeMessage_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(XNodeMessage& a, XNodeMessage& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(XNodeMessage* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(XNodeMessage* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline XNodeMessage* New() const final {
+    return new XNodeMessage();
+  }
+
+  XNodeMessage* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<XNodeMessage>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const XNodeMessage& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const XNodeMessage& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(XNodeMessage* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "xcoin.interchange.XNodeMessage";
+  }
+  protected:
+  explicit XNodeMessage(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kStartStringFieldNumber = 1,
+    kCommandFieldNumber = 2,
+    kChecksumFieldNumber = 4,
+    kSizeFieldNumber = 3,
+    kGetHeadersMessageFieldNumber = 5,
+    kHeadersMessageFieldNumber = 6,
+  };
+  // string startString = 1;
+  void clear_startstring();
+  const std::string& startstring() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_startstring(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_startstring();
+  PROTOBUF_MUST_USE_RESULT std::string* release_startstring();
+  void set_allocated_startstring(std::string* startstring);
+  private:
+  const std::string& _internal_startstring() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_startstring(const std::string& value);
+  std::string* _internal_mutable_startstring();
+  public:
+
+  // string command = 2;
+  void clear_command();
+  const std::string& command() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_command(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_command();
+  PROTOBUF_MUST_USE_RESULT std::string* release_command();
+  void set_allocated_command(std::string* command);
+  private:
+  const std::string& _internal_command() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_command(const std::string& value);
+  std::string* _internal_mutable_command();
+  public:
+
+  // string checksum = 4;
+  void clear_checksum();
+  const std::string& checksum() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_checksum(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_checksum();
+  PROTOBUF_MUST_USE_RESULT std::string* release_checksum();
+  void set_allocated_checksum(std::string* checksum);
+  private:
+  const std::string& _internal_checksum() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_checksum(const std::string& value);
+  std::string* _internal_mutable_checksum();
+  public:
+
+  // uint32 size = 3;
+  void clear_size();
+  ::PROTOBUF_NAMESPACE_ID::uint32 size() const;
+  void set_size(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_size() const;
+  void _internal_set_size(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // .xcoin.interchange.GetHeaders getHeadersMessage = 5;
+  bool has_getheadersmessage() const;
+  private:
+  bool _internal_has_getheadersmessage() const;
+  public:
+  void clear_getheadersmessage();
+  const ::xcoin::interchange::GetHeaders& getheadersmessage() const;
+  PROTOBUF_MUST_USE_RESULT ::xcoin::interchange::GetHeaders* release_getheadersmessage();
+  ::xcoin::interchange::GetHeaders* mutable_getheadersmessage();
+  void set_allocated_getheadersmessage(::xcoin::interchange::GetHeaders* getheadersmessage);
+  private:
+  const ::xcoin::interchange::GetHeaders& _internal_getheadersmessage() const;
+  ::xcoin::interchange::GetHeaders* _internal_mutable_getheadersmessage();
+  public:
+  void unsafe_arena_set_allocated_getheadersmessage(
+      ::xcoin::interchange::GetHeaders* getheadersmessage);
+  ::xcoin::interchange::GetHeaders* unsafe_arena_release_getheadersmessage();
+
+  // .xcoin.interchange.Headers headersMessage = 6;
+  bool has_headersmessage() const;
+  private:
+  bool _internal_has_headersmessage() const;
+  public:
+  void clear_headersmessage();
+  const ::xcoin::interchange::Headers& headersmessage() const;
+  PROTOBUF_MUST_USE_RESULT ::xcoin::interchange::Headers* release_headersmessage();
+  ::xcoin::interchange::Headers* mutable_headersmessage();
+  void set_allocated_headersmessage(::xcoin::interchange::Headers* headersmessage);
+  private:
+  const ::xcoin::interchange::Headers& _internal_headersmessage() const;
+  ::xcoin::interchange::Headers* _internal_mutable_headersmessage();
+  public:
+  void unsafe_arena_set_allocated_headersmessage(
+      ::xcoin::interchange::Headers* headersmessage);
+  ::xcoin::interchange::Headers* unsafe_arena_release_headersmessage();
+
+  void clear_contents();
+  ContentsCase contents_case() const;
+  // @@protoc_insertion_point(class_scope:xcoin.interchange.XNodeMessage)
+ private:
+  class _Internal;
+  void set_has_getheadersmessage();
+  void set_has_headersmessage();
+
+  inline bool has_contents() const;
+  inline void clear_has_contents();
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr startstring_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr command_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr checksum_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 size_;
+  union ContentsUnion {
+    constexpr ContentsUnion() : _constinit_{} {}
+      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
+    ::xcoin::interchange::GetHeaders* getheadersmessage_;
+    ::xcoin::interchange::Headers* headersmessage_;
+  } contents_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 _oneof_case_[1];
+
+  friend struct ::TableStruct_src_2fXNode_2fblockchain_2eproto;
+};
 // ===================================================================
 
 
@@ -937,9 +1737,681 @@ Blockchain::blocks() const {
   return blocks_;
 }
 
+// -------------------------------------------------------------------
+
+// GetHeaders
+
+// uint32 version = 1;
+inline void GetHeaders::clear_version() {
+  version_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 GetHeaders::_internal_version() const {
+  return version_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 GetHeaders::version() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.GetHeaders.version)
+  return _internal_version();
+}
+inline void GetHeaders::_internal_set_version(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  version_ = value;
+}
+inline void GetHeaders::set_version(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_version(value);
+  // @@protoc_insertion_point(field_set:xcoin.interchange.GetHeaders.version)
+}
+
+// uint32 hashCount = 2;
+inline void GetHeaders::clear_hashcount() {
+  hashcount_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 GetHeaders::_internal_hashcount() const {
+  return hashcount_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 GetHeaders::hashcount() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.GetHeaders.hashCount)
+  return _internal_hashcount();
+}
+inline void GetHeaders::_internal_set_hashcount(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  hashcount_ = value;
+}
+inline void GetHeaders::set_hashcount(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_hashcount(value);
+  // @@protoc_insertion_point(field_set:xcoin.interchange.GetHeaders.hashCount)
+}
+
+// string stopHash = 3;
+inline void GetHeaders::clear_stophash() {
+  stophash_.ClearToEmpty();
+}
+inline const std::string& GetHeaders::stophash() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.GetHeaders.stopHash)
+  return _internal_stophash();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetHeaders::set_stophash(ArgT0&& arg0, ArgT... args) {
+ 
+ stophash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:xcoin.interchange.GetHeaders.stopHash)
+}
+inline std::string* GetHeaders::mutable_stophash() {
+  std::string* _s = _internal_mutable_stophash();
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.GetHeaders.stopHash)
+  return _s;
+}
+inline const std::string& GetHeaders::_internal_stophash() const {
+  return stophash_.Get();
+}
+inline void GetHeaders::_internal_set_stophash(const std::string& value) {
+  
+  stophash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* GetHeaders::_internal_mutable_stophash() {
+  
+  return stophash_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* GetHeaders::release_stophash() {
+  // @@protoc_insertion_point(field_release:xcoin.interchange.GetHeaders.stopHash)
+  return stophash_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void GetHeaders::set_allocated_stophash(std::string* stophash) {
+  if (stophash != nullptr) {
+    
+  } else {
+    
+  }
+  stophash_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), stophash,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.GetHeaders.stopHash)
+}
+
+// repeated string blockHeaderHashes = 4;
+inline int GetHeaders::_internal_blockheaderhashes_size() const {
+  return blockheaderhashes_.size();
+}
+inline int GetHeaders::blockheaderhashes_size() const {
+  return _internal_blockheaderhashes_size();
+}
+inline void GetHeaders::clear_blockheaderhashes() {
+  blockheaderhashes_.Clear();
+}
+inline std::string* GetHeaders::add_blockheaderhashes() {
+  std::string* _s = _internal_add_blockheaderhashes();
+  // @@protoc_insertion_point(field_add_mutable:xcoin.interchange.GetHeaders.blockHeaderHashes)
+  return _s;
+}
+inline const std::string& GetHeaders::_internal_blockheaderhashes(int index) const {
+  return blockheaderhashes_.Get(index);
+}
+inline const std::string& GetHeaders::blockheaderhashes(int index) const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.GetHeaders.blockHeaderHashes)
+  return _internal_blockheaderhashes(index);
+}
+inline std::string* GetHeaders::mutable_blockheaderhashes(int index) {
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.GetHeaders.blockHeaderHashes)
+  return blockheaderhashes_.Mutable(index);
+}
+inline void GetHeaders::set_blockheaderhashes(int index, const std::string& value) {
+  blockheaderhashes_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:xcoin.interchange.GetHeaders.blockHeaderHashes)
+}
+inline void GetHeaders::set_blockheaderhashes(int index, std::string&& value) {
+  blockheaderhashes_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:xcoin.interchange.GetHeaders.blockHeaderHashes)
+}
+inline void GetHeaders::set_blockheaderhashes(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  blockheaderhashes_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:xcoin.interchange.GetHeaders.blockHeaderHashes)
+}
+inline void GetHeaders::set_blockheaderhashes(int index, const char* value, size_t size) {
+  blockheaderhashes_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:xcoin.interchange.GetHeaders.blockHeaderHashes)
+}
+inline std::string* GetHeaders::_internal_add_blockheaderhashes() {
+  return blockheaderhashes_.Add();
+}
+inline void GetHeaders::add_blockheaderhashes(const std::string& value) {
+  blockheaderhashes_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:xcoin.interchange.GetHeaders.blockHeaderHashes)
+}
+inline void GetHeaders::add_blockheaderhashes(std::string&& value) {
+  blockheaderhashes_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:xcoin.interchange.GetHeaders.blockHeaderHashes)
+}
+inline void GetHeaders::add_blockheaderhashes(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  blockheaderhashes_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:xcoin.interchange.GetHeaders.blockHeaderHashes)
+}
+inline void GetHeaders::add_blockheaderhashes(const char* value, size_t size) {
+  blockheaderhashes_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:xcoin.interchange.GetHeaders.blockHeaderHashes)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+GetHeaders::blockheaderhashes() const {
+  // @@protoc_insertion_point(field_list:xcoin.interchange.GetHeaders.blockHeaderHashes)
+  return blockheaderhashes_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+GetHeaders::mutable_blockheaderhashes() {
+  // @@protoc_insertion_point(field_mutable_list:xcoin.interchange.GetHeaders.blockHeaderHashes)
+  return &blockheaderhashes_;
+}
+
+// -------------------------------------------------------------------
+
+// Header
+
+// string previousBlockHeaderHash = 1;
+inline void Header::clear_previousblockheaderhash() {
+  previousblockheaderhash_.ClearToEmpty();
+}
+inline const std::string& Header::previousblockheaderhash() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.Header.previousBlockHeaderHash)
+  return _internal_previousblockheaderhash();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Header::set_previousblockheaderhash(ArgT0&& arg0, ArgT... args) {
+ 
+ previousblockheaderhash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:xcoin.interchange.Header.previousBlockHeaderHash)
+}
+inline std::string* Header::mutable_previousblockheaderhash() {
+  std::string* _s = _internal_mutable_previousblockheaderhash();
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.Header.previousBlockHeaderHash)
+  return _s;
+}
+inline const std::string& Header::_internal_previousblockheaderhash() const {
+  return previousblockheaderhash_.Get();
+}
+inline void Header::_internal_set_previousblockheaderhash(const std::string& value) {
+  
+  previousblockheaderhash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* Header::_internal_mutable_previousblockheaderhash() {
+  
+  return previousblockheaderhash_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* Header::release_previousblockheaderhash() {
+  // @@protoc_insertion_point(field_release:xcoin.interchange.Header.previousBlockHeaderHash)
+  return previousblockheaderhash_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void Header::set_allocated_previousblockheaderhash(std::string* previousblockheaderhash) {
+  if (previousblockheaderhash != nullptr) {
+    
+  } else {
+    
+  }
+  previousblockheaderhash_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), previousblockheaderhash,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.Header.previousBlockHeaderHash)
+}
+
+// string merkleRootHash = 2;
+inline void Header::clear_merkleroothash() {
+  merkleroothash_.ClearToEmpty();
+}
+inline const std::string& Header::merkleroothash() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.Header.merkleRootHash)
+  return _internal_merkleroothash();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Header::set_merkleroothash(ArgT0&& arg0, ArgT... args) {
+ 
+ merkleroothash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:xcoin.interchange.Header.merkleRootHash)
+}
+inline std::string* Header::mutable_merkleroothash() {
+  std::string* _s = _internal_mutable_merkleroothash();
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.Header.merkleRootHash)
+  return _s;
+}
+inline const std::string& Header::_internal_merkleroothash() const {
+  return merkleroothash_.Get();
+}
+inline void Header::_internal_set_merkleroothash(const std::string& value) {
+  
+  merkleroothash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* Header::_internal_mutable_merkleroothash() {
+  
+  return merkleroothash_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* Header::release_merkleroothash() {
+  // @@protoc_insertion_point(field_release:xcoin.interchange.Header.merkleRootHash)
+  return merkleroothash_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void Header::set_allocated_merkleroothash(std::string* merkleroothash) {
+  if (merkleroothash != nullptr) {
+    
+  } else {
+    
+  }
+  merkleroothash_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), merkleroothash,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.Header.merkleRootHash)
+}
+
+// uint32 time = 3;
+inline void Header::clear_time() {
+  time_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 Header::_internal_time() const {
+  return time_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 Header::time() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.Header.time)
+  return _internal_time();
+}
+inline void Header::_internal_set_time(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  time_ = value;
+}
+inline void Header::set_time(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_time(value);
+  // @@protoc_insertion_point(field_set:xcoin.interchange.Header.time)
+}
+
+// -------------------------------------------------------------------
+
+// Headers
+
+// uint32 count = 1;
+inline void Headers::clear_count() {
+  count_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 Headers::_internal_count() const {
+  return count_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 Headers::count() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.Headers.count)
+  return _internal_count();
+}
+inline void Headers::_internal_set_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  count_ = value;
+}
+inline void Headers::set_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_count(value);
+  // @@protoc_insertion_point(field_set:xcoin.interchange.Headers.count)
+}
+
+// repeated .xcoin.interchange.Header headers = 2;
+inline int Headers::_internal_headers_size() const {
+  return headers_.size();
+}
+inline int Headers::headers_size() const {
+  return _internal_headers_size();
+}
+inline void Headers::clear_headers() {
+  headers_.Clear();
+}
+inline ::xcoin::interchange::Header* Headers::mutable_headers(int index) {
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.Headers.headers)
+  return headers_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::xcoin::interchange::Header >*
+Headers::mutable_headers() {
+  // @@protoc_insertion_point(field_mutable_list:xcoin.interchange.Headers.headers)
+  return &headers_;
+}
+inline const ::xcoin::interchange::Header& Headers::_internal_headers(int index) const {
+  return headers_.Get(index);
+}
+inline const ::xcoin::interchange::Header& Headers::headers(int index) const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.Headers.headers)
+  return _internal_headers(index);
+}
+inline ::xcoin::interchange::Header* Headers::_internal_add_headers() {
+  return headers_.Add();
+}
+inline ::xcoin::interchange::Header* Headers::add_headers() {
+  ::xcoin::interchange::Header* _add = _internal_add_headers();
+  // @@protoc_insertion_point(field_add:xcoin.interchange.Headers.headers)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::xcoin::interchange::Header >&
+Headers::headers() const {
+  // @@protoc_insertion_point(field_list:xcoin.interchange.Headers.headers)
+  return headers_;
+}
+
+// -------------------------------------------------------------------
+
+// XNodeMessage
+
+// string startString = 1;
+inline void XNodeMessage::clear_startstring() {
+  startstring_.ClearToEmpty();
+}
+inline const std::string& XNodeMessage::startstring() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.XNodeMessage.startString)
+  return _internal_startstring();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void XNodeMessage::set_startstring(ArgT0&& arg0, ArgT... args) {
+ 
+ startstring_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:xcoin.interchange.XNodeMessage.startString)
+}
+inline std::string* XNodeMessage::mutable_startstring() {
+  std::string* _s = _internal_mutable_startstring();
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.XNodeMessage.startString)
+  return _s;
+}
+inline const std::string& XNodeMessage::_internal_startstring() const {
+  return startstring_.Get();
+}
+inline void XNodeMessage::_internal_set_startstring(const std::string& value) {
+  
+  startstring_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* XNodeMessage::_internal_mutable_startstring() {
+  
+  return startstring_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* XNodeMessage::release_startstring() {
+  // @@protoc_insertion_point(field_release:xcoin.interchange.XNodeMessage.startString)
+  return startstring_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void XNodeMessage::set_allocated_startstring(std::string* startstring) {
+  if (startstring != nullptr) {
+    
+  } else {
+    
+  }
+  startstring_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), startstring,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.XNodeMessage.startString)
+}
+
+// string command = 2;
+inline void XNodeMessage::clear_command() {
+  command_.ClearToEmpty();
+}
+inline const std::string& XNodeMessage::command() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.XNodeMessage.command)
+  return _internal_command();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void XNodeMessage::set_command(ArgT0&& arg0, ArgT... args) {
+ 
+ command_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:xcoin.interchange.XNodeMessage.command)
+}
+inline std::string* XNodeMessage::mutable_command() {
+  std::string* _s = _internal_mutable_command();
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.XNodeMessage.command)
+  return _s;
+}
+inline const std::string& XNodeMessage::_internal_command() const {
+  return command_.Get();
+}
+inline void XNodeMessage::_internal_set_command(const std::string& value) {
+  
+  command_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* XNodeMessage::_internal_mutable_command() {
+  
+  return command_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* XNodeMessage::release_command() {
+  // @@protoc_insertion_point(field_release:xcoin.interchange.XNodeMessage.command)
+  return command_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void XNodeMessage::set_allocated_command(std::string* command) {
+  if (command != nullptr) {
+    
+  } else {
+    
+  }
+  command_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), command,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.XNodeMessage.command)
+}
+
+// uint32 size = 3;
+inline void XNodeMessage::clear_size() {
+  size_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 XNodeMessage::_internal_size() const {
+  return size_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 XNodeMessage::size() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.XNodeMessage.size)
+  return _internal_size();
+}
+inline void XNodeMessage::_internal_set_size(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  size_ = value;
+}
+inline void XNodeMessage::set_size(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_size(value);
+  // @@protoc_insertion_point(field_set:xcoin.interchange.XNodeMessage.size)
+}
+
+// string checksum = 4;
+inline void XNodeMessage::clear_checksum() {
+  checksum_.ClearToEmpty();
+}
+inline const std::string& XNodeMessage::checksum() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.XNodeMessage.checksum)
+  return _internal_checksum();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void XNodeMessage::set_checksum(ArgT0&& arg0, ArgT... args) {
+ 
+ checksum_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:xcoin.interchange.XNodeMessage.checksum)
+}
+inline std::string* XNodeMessage::mutable_checksum() {
+  std::string* _s = _internal_mutable_checksum();
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.XNodeMessage.checksum)
+  return _s;
+}
+inline const std::string& XNodeMessage::_internal_checksum() const {
+  return checksum_.Get();
+}
+inline void XNodeMessage::_internal_set_checksum(const std::string& value) {
+  
+  checksum_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* XNodeMessage::_internal_mutable_checksum() {
+  
+  return checksum_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* XNodeMessage::release_checksum() {
+  // @@protoc_insertion_point(field_release:xcoin.interchange.XNodeMessage.checksum)
+  return checksum_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void XNodeMessage::set_allocated_checksum(std::string* checksum) {
+  if (checksum != nullptr) {
+    
+  } else {
+    
+  }
+  checksum_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), checksum,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.XNodeMessage.checksum)
+}
+
+// .xcoin.interchange.GetHeaders getHeadersMessage = 5;
+inline bool XNodeMessage::_internal_has_getheadersmessage() const {
+  return contents_case() == kGetHeadersMessage;
+}
+inline bool XNodeMessage::has_getheadersmessage() const {
+  return _internal_has_getheadersmessage();
+}
+inline void XNodeMessage::set_has_getheadersmessage() {
+  _oneof_case_[0] = kGetHeadersMessage;
+}
+inline void XNodeMessage::clear_getheadersmessage() {
+  if (_internal_has_getheadersmessage()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete contents_.getheadersmessage_;
+    }
+    clear_has_contents();
+  }
+}
+inline ::xcoin::interchange::GetHeaders* XNodeMessage::release_getheadersmessage() {
+  // @@protoc_insertion_point(field_release:xcoin.interchange.XNodeMessage.getHeadersMessage)
+  if (_internal_has_getheadersmessage()) {
+    clear_has_contents();
+      ::xcoin::interchange::GetHeaders* temp = contents_.getheadersmessage_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    contents_.getheadersmessage_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::xcoin::interchange::GetHeaders& XNodeMessage::_internal_getheadersmessage() const {
+  return _internal_has_getheadersmessage()
+      ? *contents_.getheadersmessage_
+      : reinterpret_cast< ::xcoin::interchange::GetHeaders&>(::xcoin::interchange::_GetHeaders_default_instance_);
+}
+inline const ::xcoin::interchange::GetHeaders& XNodeMessage::getheadersmessage() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.XNodeMessage.getHeadersMessage)
+  return _internal_getheadersmessage();
+}
+inline ::xcoin::interchange::GetHeaders* XNodeMessage::unsafe_arena_release_getheadersmessage() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:xcoin.interchange.XNodeMessage.getHeadersMessage)
+  if (_internal_has_getheadersmessage()) {
+    clear_has_contents();
+    ::xcoin::interchange::GetHeaders* temp = contents_.getheadersmessage_;
+    contents_.getheadersmessage_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void XNodeMessage::unsafe_arena_set_allocated_getheadersmessage(::xcoin::interchange::GetHeaders* getheadersmessage) {
+  clear_contents();
+  if (getheadersmessage) {
+    set_has_getheadersmessage();
+    contents_.getheadersmessage_ = getheadersmessage;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:xcoin.interchange.XNodeMessage.getHeadersMessage)
+}
+inline ::xcoin::interchange::GetHeaders* XNodeMessage::_internal_mutable_getheadersmessage() {
+  if (!_internal_has_getheadersmessage()) {
+    clear_contents();
+    set_has_getheadersmessage();
+    contents_.getheadersmessage_ = CreateMaybeMessage< ::xcoin::interchange::GetHeaders >(GetArenaForAllocation());
+  }
+  return contents_.getheadersmessage_;
+}
+inline ::xcoin::interchange::GetHeaders* XNodeMessage::mutable_getheadersmessage() {
+  ::xcoin::interchange::GetHeaders* _msg = _internal_mutable_getheadersmessage();
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.XNodeMessage.getHeadersMessage)
+  return _msg;
+}
+
+// .xcoin.interchange.Headers headersMessage = 6;
+inline bool XNodeMessage::_internal_has_headersmessage() const {
+  return contents_case() == kHeadersMessage;
+}
+inline bool XNodeMessage::has_headersmessage() const {
+  return _internal_has_headersmessage();
+}
+inline void XNodeMessage::set_has_headersmessage() {
+  _oneof_case_[0] = kHeadersMessage;
+}
+inline void XNodeMessage::clear_headersmessage() {
+  if (_internal_has_headersmessage()) {
+    if (GetArenaForAllocation() == nullptr) {
+      delete contents_.headersmessage_;
+    }
+    clear_has_contents();
+  }
+}
+inline ::xcoin::interchange::Headers* XNodeMessage::release_headersmessage() {
+  // @@protoc_insertion_point(field_release:xcoin.interchange.XNodeMessage.headersMessage)
+  if (_internal_has_headersmessage()) {
+    clear_has_contents();
+      ::xcoin::interchange::Headers* temp = contents_.headersmessage_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    contents_.headersmessage_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::xcoin::interchange::Headers& XNodeMessage::_internal_headersmessage() const {
+  return _internal_has_headersmessage()
+      ? *contents_.headersmessage_
+      : reinterpret_cast< ::xcoin::interchange::Headers&>(::xcoin::interchange::_Headers_default_instance_);
+}
+inline const ::xcoin::interchange::Headers& XNodeMessage::headersmessage() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.XNodeMessage.headersMessage)
+  return _internal_headersmessage();
+}
+inline ::xcoin::interchange::Headers* XNodeMessage::unsafe_arena_release_headersmessage() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:xcoin.interchange.XNodeMessage.headersMessage)
+  if (_internal_has_headersmessage()) {
+    clear_has_contents();
+    ::xcoin::interchange::Headers* temp = contents_.headersmessage_;
+    contents_.headersmessage_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void XNodeMessage::unsafe_arena_set_allocated_headersmessage(::xcoin::interchange::Headers* headersmessage) {
+  clear_contents();
+  if (headersmessage) {
+    set_has_headersmessage();
+    contents_.headersmessage_ = headersmessage;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:xcoin.interchange.XNodeMessage.headersMessage)
+}
+inline ::xcoin::interchange::Headers* XNodeMessage::_internal_mutable_headersmessage() {
+  if (!_internal_has_headersmessage()) {
+    clear_contents();
+    set_has_headersmessage();
+    contents_.headersmessage_ = CreateMaybeMessage< ::xcoin::interchange::Headers >(GetArenaForAllocation());
+  }
+  return contents_.headersmessage_;
+}
+inline ::xcoin::interchange::Headers* XNodeMessage::mutable_headersmessage() {
+  ::xcoin::interchange::Headers* _msg = _internal_mutable_headersmessage();
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.XNodeMessage.headersMessage)
+  return _msg;
+}
+
+inline bool XNodeMessage::has_contents() const {
+  return contents_case() != CONTENTS_NOT_SET;
+}
+inline void XNodeMessage::clear_has_contents() {
+  _oneof_case_[0] = CONTENTS_NOT_SET;
+}
+inline XNodeMessage::ContentsCase XNodeMessage::contents_case() const {
+  return XNodeMessage::ContentsCase(_oneof_case_[0]);
+}
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 

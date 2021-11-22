@@ -1,6 +1,7 @@
 syntax = "proto3";
 package xcoin.interchange;
 
+// Basic messages
 message Block{
   optional int64 index = 1;
   optional string hash = 2;
@@ -16,3 +17,38 @@ message Block{
 message Blockchain{
   repeated Block blocks = 1;
 }
+
+// Interchange/Sync messages
+
+message GetHeaders{
+  uint32 version = 1;     // Protocol version for future backwards-compatibility
+  uint32 hashCount = 2;   // Number of hashes provided not including the stop hash (1-200)
+  string stopHash = 3;    // Header hash of last header hash being requested, set all 0 for non-stop
+  repeated string blockHeaderHashes = 4; // One or more header hashes in reverse order of block height.
+}
+
+message Header{
+  string previousBlockHeaderHash = 1;
+  string merkleRootHash = 2;  // Encompasses all the included transaction hashes
+  uint32 time = 3;
+}
+
+message Headers{
+  uint32 count = 1;
+  repeated Header headers = 2;
+}
+
+message XNodeMessage{
+  string startString = 1;
+  string command = 2;
+  uint32 size = 3;
+  string checksum = 4;
+  oneof contents{
+    GetHeaders getHeadersMessage = 5;
+    Headers headersMessage = 6;
+  }
+}
+
+
+
+

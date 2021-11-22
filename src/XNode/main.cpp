@@ -39,13 +39,13 @@ int main()
     /**************************************************************************************/
     // To set up a WebSocket server, uncomment the following lines:
 
-    std::cout << "Websocket server will start on "<< ip << " and listens to the port " << port << std::endl;
-    XNode node = XNode(ip, port, true, true);
+    //std::cout << "Websocket server will start on "<< ip << " and listens to the port " << port << std::endl;
+    //XNode node = XNode(ip, port, true, true);
 
     /**************************************************************************************/
 
     // Start the server
-    node.start();
+    //node.start();
 
     return 0;
 }
