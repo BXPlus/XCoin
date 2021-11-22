@@ -4,13 +4,33 @@
 
 #ifndef XCOIN_KEYS_H
 #define XCOIN_KEYS_H
+//#include "transaction.h"
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <openssl/ec.h>
 #include <openssl/obj_mac.h>
-#include <openssl/ec.h> //the elliptic curve library from openSSL
+#include <openssl/bn.h>
 
 class Keys {
 public:
     Keys(); //constructor which creates the private and public key
+    Keys(std::string pubb); //constructor which creates the private and public key
+
+    char const* keyFromPrivate(std::string priv_keyy, std::string form);//return the public key from the private one
+//    bool verify(string id, string txOutId, int txOutIndex, TxIn txIn, string signature, vector<UnspentTxOut> aUnspentTxOuts);
+
+    char const* getPriv(){
+        //returns the hexadecimal fom of the private key
+        return priv_key;
+    }
+    char const* getPub(){
+        //returns the hexadecimal fom of the public key
+        return pub_key;
+    }
+
+
+
 
     BIGNUM const* prv;        //private key (which is a big integer)
     char const* priv_key;         //private key in hexadecimal form
@@ -19,5 +39,5 @@ public:
 
 
 };
-
+Keys keyFromPublic(std::string adress, std::string form); //returns a key whose public key is adress
 #endif //XCOIN_KEYS_H
