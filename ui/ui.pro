@@ -18,7 +18,6 @@ SOURCES += \
 HEADERS += \
     custombutton.h \
     homewidget.h \
-    mainwindow.h
     logindialog.h \
     mainwindow.h \
     settingswidget.h
