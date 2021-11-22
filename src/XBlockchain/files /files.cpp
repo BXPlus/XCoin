@@ -24,7 +24,7 @@ int write(fstream file,char line = NULL ){
         file <<line << endl;}
     }
     file.close();
-    return 0
+    return 0;
 }
 
 int read(fstream file){
