@@ -38,6 +38,8 @@ public:
     string previousHash;
     long long timestamp; //time in milliseconds
     string data;
+    int32_t version;
+    char32_t merkle_root_hash;
 
     //Elements for proof of stake
     int difficulty;
