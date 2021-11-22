@@ -13,10 +13,8 @@
 using namespace std;
 
 
-
-
 int main(){
-    char line[200];
+    char line[100000];
 
     /* we open a file for both reading and writing purposes
      * ios::out
