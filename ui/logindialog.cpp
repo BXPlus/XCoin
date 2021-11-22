@@ -3,7 +3,7 @@
 #include "logindialog.h"
 #include <QDebug>
 
-LoginDialog::LoginDialog(QWidget *parent) :
+/*LoginDialog::LoginDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::LoginDialog)
 {
@@ -55,4 +55,4 @@ void LoginDialog::check_credentials()
         identified = true;
     }
     identified = false;
-}
+}*/

@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "balancewidget.h"
 #include <QApplication>
 #include <QFile>
 #include <QDir>
@@ -28,5 +29,7 @@ int main(int argc, char *argv[])
 
     MainWindow w;
     w.show();
+    //BalanceWidget b;
+    //b.show();
     return a.exec();
 }

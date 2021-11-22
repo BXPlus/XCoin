@@ -4,16 +4,16 @@
 #include <custombutton.h>
 #include <QAction>
 #include <QSignalMapper>
-#include "logindialog.cpp"
 #include <QLabel>
 #include <QDir>
+#include <balancewidget.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     //Login page
-    pop_login();
+    //pop_login();
 
     ui->setupUi(this);
     setWindowTitle("XCoin");
@@ -76,7 +76,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Creating remaining buttons
 
-    QStringList titles = {"Home", "Contacts", "History", "Pay", "Live", "Graphics"};
+    QStringList titles = {"Home", "Contacts", "Balance", "Pay", "Live", "Graphics"};
 
     for (int i=0; i<6; i++){
 
@@ -95,7 +95,7 @@ MainWindow::MainWindow(QWidget *parent)
     contentContainer->addWidget(homeWidget);
     balanceWidget = new QWidget(mainWidget);
     contentContainer->addWidget(balanceWidget);
-    paymentsWidget = new QWidget(mainWidget);
+    paymentsWidget = new BalanceWidget(mainWidget);
     contentContainer->addWidget(paymentsWidget);
     contactsWidget = new QWidget(mainWidget);
     contentContainer->addWidget(contactsWidget);
@@ -115,7 +115,7 @@ MainWindow::MainWindow(QWidget *parent)
         QSignalMapper* signalMapper = new QSignalMapper (this) ;
         connect(btnList[i], SIGNAL(clicked(bool)), signalMapper, SLOT(map()));
         signalMapper -> setMapping (btnList[i], i);
-        connect(signalMapper, SIGNAL(mappedInt(int)), this, SLOT(go_page(int)));
+        connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(go_page(int)));
     }
 
     contentContainer->setCurrentIndex(0);
@@ -135,10 +135,10 @@ void MainWindow::go_page(int i)
 {
     contentContainer->setCurrentIndex(i);
 }
-void MainWindow::pop_login()
+//void MainWindow::pop_login()
 
-{
-    LoginDialog dialogLogin;
-    dialogLogin.setModal(true);
-    dialogLogin.exec();
-}
+//{
+//    LoginDialog dialogLogin;
+//    dialogLogin.setModal(true);
+//    dialogLogin.exec();
+//}

@@ -11,19 +11,16 @@ CONFIG += c++11
 SOURCES += \
     balancewidget.cpp \
     custombutton.cpp \
-    logindialog.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     balancewidget.h \
     custombutton.h \
-    logindialog.h \
     mainwindow.h
 
 FORMS += \
     balancewidget.ui \
-    logindialog.ui \
     mainwindow.ui
 
 # Default rules for deployment.
