@@ -7,6 +7,7 @@
 
 #include <functional>
 #include <string>
+#include <map>
 
 /***
  * XNode is the main class for Networking part of XCoin.
@@ -17,16 +18,23 @@ class XNode {
     XNode(const std::string &ip, int port);
     XNode(const std::string &ip, int port, bool isUsingWebSocketController, bool isWebSocketServer);
 
-    ~XNode() = default;
+    static std::map<std::string, std::string>* name2ip;
+
+    ~XNode()=default;
 
         void start();
         void stop();
         void setupWebSocketClient();
+        std::string giveIp(std::string name);
+        void addNode(std::string name, std::string ip);
+        std::map<std::string, std::string> shareListNode();
 private:
     std::string ip;
     int port;
     bool isUsingWebSocketController;
     bool isWebSocketServer;
+
+
 };
 
 

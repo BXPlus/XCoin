@@ -8,29 +8,21 @@ using namespace std;
 #ifndef XCOIN_TRANSACTION_H
 #define XCOIN_TRANSACTION_H
 
-class UnspentTxOut {
-public:
-    string txOutId;
-    int txOutIndex;
-    string address;
-    int amount;
-    UnspentTxOut(string txOutID, int txOutIndex, string address, int amount);
-};
-
-class TxOut
-{
+class TxOut {
 public:
     string address;
     int amount;
     TxOut(string address, int amount);
+    JSONStringify();
 };
 
-class TxIn
-{
+class TxIn {
 public:
     string txOutId;
     int txOutIndex;
     string signature;
+    int getTxInAmount(vector<UnspentTxOut> aUnspentTxOuts);
+    bool validateTxIn(Transaction transaction, vector<UnspentTxOut> aUnspentTxOuts);
 };
 
 class Transaction {
@@ -40,7 +32,20 @@ public:
     vector<TxOut> txOuts;
     string getTransactionId();
     string signTxIn(int txInIndex, string privateKey, vector<UnspentTxOut> aUnspentTxOuts);
+    bool hasValidTxIns();
+    bool validateTransaction(vector<UnspentTxOut> aUnspentTxOuts);
+    bool isValidTransactionStructure();
+    bool validateCoinbaseTx(int blockIndex);
 };
+
+class UnspentTxOut {
+public:
+    string txOutId;
+    int txOutIndex;
+    string address;
+    int amount;
+    UnspentTxOut(string txOutID, int txOutIndex, string address, int amount);
+}
 
 UnspentTxOut findUnspentTxOut(string transactionId, int index, vector<UnspentTxOut> aUnspentTxOuts);
 
@@ -52,6 +57,8 @@ bool isValidAddress(string address);
 
 bool isValidTxOutStructure(TxOut txOut);
 
-bool isValidTransactionStructure(Transaction transaction);
+Transaction getCoinbaseTransaction(string address, int blockIndex);
+
+string getPublicKey(string aPrivateKey);
 
 #endif //XCOIN_TRANSACTION_H
