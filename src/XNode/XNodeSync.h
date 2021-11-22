@@ -1,5 +1,5 @@
 //
-// Created by MIZIX on 18/11/2021.
+// Created by Kevin on 18/11/2021.
 //
 
 #ifndef XBLOCKCHAIN_XNODESYNC_H
