@@ -161,4 +161,22 @@ int Blockchain::getAdjustedDifficulty(const Block& latestBlock)
 bool Blockchain::isValidTimestamp(Block newBlock, Block previousBlock)
 {
     return (previousBlock.timestamp - 60000 < newBlock.timestamp && newBlock.timestamp - 60000 < getCurrentTimestamp());
-};
+}
+
+/**
+ * Helper function to return the blockchain as a list of blocks.
+ * @return the blockchain as a list of blocks.
+ */
+vector<Block> Blockchain::toBlocks() {
+    ChainNode currentNode = *tail;
+    vector<Block> blockList;
+    for (int i = 0; i < length - 1; i++)
+    {
+        blockList.push_back(currentNode.block);
+        if (i < length - 2)
+        {
+            currentNode = *currentNode.prev;
+        }
+    }
+    return blockList;
+}

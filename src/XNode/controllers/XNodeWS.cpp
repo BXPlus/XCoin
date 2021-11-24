@@ -3,6 +3,8 @@
 //
 
 #include "XNodeWS.h"
+#include "XNode.h"
+#include "interface.h"
 
 /**
  * Function handling incoming messages from the client websocket.
@@ -24,6 +26,8 @@ void XNodeWS::handleNewMessage(const WebSocketConnectionPtr &wsConnPtr, std::str
 void XNodeWS::handleNewConnection(const HttpRequestPtr &req, const WebSocketConnectionPtr &wsConnPtr) {
     // Sends a message to the client indicating his address and that the connection was successful.
     wsConnPtr->send("Welcome " + req->getPeerAddr().toIpPort() + ". Successful connection!");
+
+    wsConnPtr->send(XNode::Interface::exportChain(XNode::XNode::getBlockchain().toBlocks()));
 }
 
 /**

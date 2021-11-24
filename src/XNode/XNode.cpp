@@ -13,11 +13,13 @@
  * @param ip is the ip address of the node.
  * @param port is the port of the node.
  */
-XNode::XNode(const std::string &ip, int port) {
+XNode::XNode::XNode(const std::string &ip, int port) {
     this->ip = ip;
     this->port = port;
     this->isWebSocketServer = false;
     this->isUsingWebSocketController = false;
+    //TODO : Fetch Blockchain from cache (file).
+    this->blockchain = Blockchain();
 }
 
 /**
@@ -26,7 +28,7 @@ XNode::XNode(const std::string &ip, int port) {
  * @param port is the port of the node.
  * @param isWebSocketServer is a boolean value that determines if the node is a websocket server.
  */
-XNode::XNode(const std::string &ip, const int port, const bool isUsingWebSocketController, const bool isWebSocketServer) {
+XNode::XNode::XNode(const std::string &ip, const int port, const bool isUsingWebSocketController, const bool isWebSocketServer) {
     this->ip = ip;
     this->port = port;
     this->isWebSocketServer = isWebSocketServer;
@@ -36,7 +38,7 @@ XNode::XNode(const std::string &ip, const int port, const bool isUsingWebSocketC
 /**
  * Starts the webserver of the node.
  */
-void XNode::start() {
+void XNode::XNode::start() {
     drogon::app().enableReusePort();
     if (!isUsingWebSocketController || isWebSocketServer)
         drogon::app()
@@ -55,7 +57,7 @@ void XNode::start() {
 /**
  * Stops the webserver of the node.
  */
-void XNode::stop() {
+void XNode::XNode::stop() {
     std::cout << "Server will stop..." << std::endl;
     drogon::app().quit();
 }
@@ -65,7 +67,7 @@ void XNode::stop() {
 /**
  * This function sets up the WebSocketClient for the node.
  */
-void XNode::setupWebSocketClient() {
+void XNode::XNode::setupWebSocketClient() {
     const std::string wsUrl = "ws://" + this->ip + ":" + std::to_string(this->port);
 
     // Example of a path to which the server sends you back the message you sent.
@@ -115,14 +117,20 @@ void XNode::setupWebSocketClient() {
 }
 
 
-std::string XNode::giveIp(std::string name){
-    return name2ip[name];
+std::string XNode::XNode::giveIp(std::string name){
+    return "";
+    //return name2ip[name];
 }
 
-void XNode::addNode(std::string name, std::string ip) {
-    name2ip[name] = ip;
+void XNode::XNode::addNode(std::string name, std::string ip) {
+    //name2ip[name] = ip;
 }
 
-std::map<std::string, std::string> XNode::shareListNode() {
-    return name2ip;
+std::map<std::string, std::string> XNode::XNode::shareListNode() {
+    return std::map<std::string, std::string>();
+    //return name2ip;
+}
+
+Blockchain XNode::XNode::getBlockchain() {
+    return XNode::blockchain;
 }

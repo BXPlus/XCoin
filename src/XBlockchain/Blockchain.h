@@ -48,6 +48,10 @@ public:
     void updateDifficulty();
     int getAdjustedDifficulty(const Block& latestBlock);
     Block getPrevAdjustmentBlock();
+
+
+    // Set up blockchain as a list of blocks.
+    vector<Block> toBlocks();
 };
 
 #endif //XCOIN_BLOCKCHAIN_H

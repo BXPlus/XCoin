@@ -16,6 +16,7 @@ std::string banner = " __   __   ____     _____    ______   __  __     \n"
 int main()
 {
     const std::string ip = "0.0.0.0";
+    // TODO: Only one port can be used at a time, otherwise return an error.
     const int port = 80;
     std::cout << banner << std::endl;
     std::cout << "                                  Blockchain node    \n" << std::endl;
