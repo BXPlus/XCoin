@@ -13,7 +13,7 @@ public:
     string address;
     int amount;
     TxOut(string address, int amount);
-    JSONStringify();
+    //JSONStringify();
 };
 
 class TxIn {
@@ -21,8 +21,8 @@ public:
     string txOutId;
     int txOutIndex;
     string signature;
-    int getTxInAmount(vector<UnspentTxOut> aUnspentTxOuts);
-    bool validateTxIn(Transaction transaction, vector<UnspentTxOut> aUnspentTxOuts);
+    //int getTxInAmount(vector<UnspentTxOut> aUnspentTxOuts);
+    //bool validateTxIn(Transaction transaction, vector<UnspentTxOut> aUnspentTxOuts);
 };
 
 class Transaction {
@@ -31,9 +31,9 @@ public:
     vector<TxIn> txIns;
     vector<TxOut> txOuts;
     string getTransactionId();
-    string signTxIn(int txInIndex, string privateKey, vector<UnspentTxOut> aUnspentTxOuts);
+    //string signTxIn(int txInIndex, string privateKey, vector<UnspentTxOut> aUnspentTxOuts);
     bool hasValidTxIns();
-    bool validateTransaction(vector<UnspentTxOut> aUnspentTxOuts);
+    //bool validateTransaction(vector<UnspentTxOut> aUnspentTxOuts);
     bool isValidTransactionStructure();
     bool validateCoinbaseTx(int blockIndex);
 };
@@ -45,9 +45,9 @@ public:
     string address;
     int amount;
     UnspentTxOut(string txOutID, int txOutIndex, string address, int amount);
-}
+};
 
-UnspentTxOut findUnspentTxOut(string transactionId, int index, vector<UnspentTxOut> aUnspentTxOuts);
+//UnspentTxOut findUnspentTxOut(string transactionId, int index, vector<UnspentTxOut> aUnspentTxOuts);
 
 vector<UnspentTxOut> updateUnspentTxOuts(vector<Transaction> aTransactions, vector<UnspentTxOut> aUnspentTxOuts);
 
