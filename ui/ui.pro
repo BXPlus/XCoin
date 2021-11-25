@@ -10,19 +10,16 @@ CONFIG += c++11
 
 SOURCES += \
     custombutton.cpp \
-    logindialog.cpp \
     main.cpp \
     mainwindow.cpp \
     payments.cpp
 
 HEADERS += \
     custombutton.h \
-    logindialog.h \
     mainwindow.h \
     payments.h
 
 FORMS += \
-    logindialog.ui \
     mainwindow.ui \
     payments.ui
 

@@ -6,6 +6,8 @@
 #include <QStackedWidget>
 #include <QVBoxLayout>
 #include "custombutton.h"
+#include "payments.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -37,6 +39,5 @@ private slots:
     void go_page(int);
 private:
     Ui::MainWindow *ui;
-    void pop_login();
 };
 #endif // MAINWINDOW_H

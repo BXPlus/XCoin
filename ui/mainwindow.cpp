@@ -4,20 +4,18 @@
 #include <custombutton.h>
 #include <QAction>
 #include <QSignalMapper>
-#include "logindialog.cpp"
 #include <QLabel>
 #include <QDir>
+#include <payments.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    //Login page
-    pop_login();
 
     ui->setupUi(this);
     setWindowTitle("XCoin");
-    setMinimumSize(500,600);
+    setMinimumSize(700,600);
 
 
     // Setting layouts
@@ -76,7 +74,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Creating remaining buttons
 
-    QStringList titles = {"Home", "Contacts", "History", "Pay", "Live", "Graphics"};
+    QStringList titles = {"Home", "Contacts", "Pay", "History", "Live", "Graphics"};
 
     for (int i=0; i<6; i++){
 
@@ -95,7 +93,7 @@ MainWindow::MainWindow(QWidget *parent)
     contentContainer->addWidget(homeWidget);
     balanceWidget = new QWidget(mainWidget);
     contentContainer->addWidget(balanceWidget);
-    paymentsWidget = new QWidget(mainWidget);
+    paymentsWidget = new Payments(mainWidget);
     contentContainer->addWidget(paymentsWidget);
     contactsWidget = new QWidget(mainWidget);
     contentContainer->addWidget(contactsWidget);
@@ -104,7 +102,7 @@ MainWindow::MainWindow(QWidget *parent)
     graphsWidget = new QWidget(mainWidget);
     contentContainer->addWidget(graphsWidget);
 
-    QStringList color_list = {"red", "yellow", "purple", "green", "white", "turquoise"};
+    QStringList color_list = {"red", "yellow", "pink", "green", "white", "turquoise"};
 
     for (int i = 0; i < 6; i++){
         contentContainer->setCurrentIndex(i);
@@ -115,7 +113,7 @@ MainWindow::MainWindow(QWidget *parent)
         QSignalMapper* signalMapper = new QSignalMapper (this) ;
         connect(btnList[i], SIGNAL(clicked(bool)), signalMapper, SLOT(map()));
         signalMapper -> setMapping (btnList[i], i);
-        connect(signalMapper, SIGNAL(mappedInt(int)), this, SLOT(go_page(int)));
+        connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(go_page(int)));
     }
 
     contentContainer->setCurrentIndex(0);
@@ -135,10 +133,4 @@ void MainWindow::go_page(int i)
 {
     contentContainer->setCurrentIndex(i);
 }
-void MainWindow::pop_login()
 
-{
-    LoginDialog dialogLogin;
-    dialogLogin.setModal(true);
-    dialogLogin.exec();
-}
