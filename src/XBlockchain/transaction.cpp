@@ -219,8 +219,8 @@ string TxIn::JSONStringify() {
     return "";
 }
 
-bool TxIn::validateTxIn(string id, vector<UnspentTxOut> aUnspentTxOuts) {
-    pair<bool, UnspentTxOut> tmp = findUnspentTxOut(txOutId, txOutIndex, aUnspentTxOuts);
+bool validateTxIn(TxIn txIn, string id, vector<UnspentTxOut> aUnspentTxOuts) {
+    pair<bool, UnspentTxOut> tmp = findUnspentTxOut(txOutId, txIn.txOutIndex, aUnspentTxOuts);
     if (tmp.first == 0) {
         cout << "referenced txOut not found: " << JSONStringify() << "\n";
         return false;
@@ -229,9 +229,9 @@ bool TxIn::validateTxIn(string id, vector<UnspentTxOut> aUnspentTxOuts) {
     string address = referencedUTxOut;
 
     Keys key = keyFromPublic(address, "hex");
-    bool validSignature = key.verify(id, signature);
+    bool validSignature = key.verify(id, txIn.signature);
     if (!validSignature) {
-        cout << "invalid txIn signature: " << signature << " txId: " << id << " address: " << address << "\n";
+        cout << "invalid txIn signature: " << txIn.signature << " txId: " << id << " address: " << address << "\n";
         return false;
     }
     return true;
