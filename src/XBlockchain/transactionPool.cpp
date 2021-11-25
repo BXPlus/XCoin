@@ -70,7 +70,7 @@ vector<TxIn> getTxPoolIns(vector<Transaction> aTransactionPool) {
 }
 
 void isValidTxForPool(){
-    return
+    return;
 }
 
  */
