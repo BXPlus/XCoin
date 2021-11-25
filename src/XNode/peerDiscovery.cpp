@@ -1,7 +1,7 @@
 //
 // Created by Malo Lahogue on 22/11/2021.
 //
-#include "XNode.h"
+#include "node.h"
 
 const std::string ip;
 int port;

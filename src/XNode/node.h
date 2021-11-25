@@ -8,22 +8,26 @@
 #include <functional>
 #include <string>
 #include <map>
-#include "../XBlockchain/Blockchain.h"
+#include "Blockchain.h"
+#include "controllers/xnodectl.h"
+#include <iostream>
+#include <drogon/WebSocketClient.h>
+#include <drogon/drogon.h>
 
 /***
- * XNode is the main class for Networking part of XCoin.
+ * node is the main class for Networking part of XCoin.
  * It Implements the basic functions for networking.
  */
 namespace XNode{
-    class XNode {
+    class node {
     public:
-        XNode(const std::string &ip, int port);
-        XNode(const std::string &ip, int port, bool isUsingWebSocketController, bool isWebSocketServer);
+        node(const std::string &ip, int port);
+        node(const std::string &ip, int port, bool isUsingWebSocketController, bool isWebSocketServer);
 
         static std::map<std::string, std::string>* name2ip;
-        static Blockchain getBlockchain();
+        Blockchain blockchain;
 
-        ~XNode()=default;
+        ~node()=default;
 
         void start();
         void stop();
@@ -36,7 +40,7 @@ namespace XNode{
         int port;
         bool isUsingWebSocketController;
         bool isWebSocketServer;
-        static Blockchain blockchain;
+
 
 
     };

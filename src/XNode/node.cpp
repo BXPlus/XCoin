@@ -1,19 +1,14 @@
 //
 // Created by kevin on 11/13/21.
 //
-
-#include <drogon/drogon.h>
-#include "XNode.h"
-#include "controllers/xnodectl.h"
-#include <iostream>
-#include <drogon/WebSocketClient.h>
+#include "node.h"
 
 /**
- * Constructor for the XNode class for using HttpControllers, sets the ip address and port.
+ * Constructor for the node class for using HttpControllers, sets the ip address and port.
  * @param ip is the ip address of the node.
  * @param port is the port of the node.
  */
-XNode::XNode::XNode(const std::string &ip, int port) {
+XNode::node::node(const std::string &ip, int port) {
     this->ip = ip;
     this->port = port;
     this->isWebSocketServer = false;
@@ -23,12 +18,12 @@ XNode::XNode::XNode(const std::string &ip, int port) {
 }
 
 /**
- * Overload constructor for the XNode class for using WebSocket controllers, sets the ip address, port.
+ * Overload constructor for the node class for using WebSocket controllers, sets the ip address, port.
  * @param ip is the ip address of the node.
  * @param port is the port of the node.
  * @param isWebSocketServer is a boolean value that determines if the node is a websocket server.
  */
-XNode::XNode::XNode(const std::string &ip, const int port, const bool isUsingWebSocketController, const bool isWebSocketServer) {
+XNode::node::node(const std::string &ip, const int port, const bool isUsingWebSocketController, const bool isWebSocketServer) {
     this->ip = ip;
     this->port = port;
     this->isWebSocketServer = isWebSocketServer;
@@ -38,12 +33,12 @@ XNode::XNode::XNode(const std::string &ip, const int port, const bool isUsingWeb
 /**
  * Starts the webserver of the node.
  */
-void XNode::XNode::start() {
+void XNode::node::start() {
     drogon::app().enableReusePort();
     if (!isUsingWebSocketController || isWebSocketServer)
         drogon::app()
             .addListener(this->ip, this->port)
-            .setDocumentRoot("../src/XNode/wwwroot")
+            .setDocumentRoot("../src/node/wwwroot")
             .setThreadNum(4)
             .run();
     else{
@@ -57,7 +52,7 @@ void XNode::XNode::start() {
 /**
  * Stops the webserver of the node.
  */
-void XNode::XNode::stop() {
+void XNode::node::stop() {
     std::cout << "Server will stop..." << std::endl;
     drogon::app().quit();
 }
@@ -67,7 +62,7 @@ void XNode::XNode::stop() {
 /**
  * This function sets up the WebSocketClient for the node.
  */
-void XNode::XNode::setupWebSocketClient() {
+void XNode::node::setupWebSocketClient() {
     const std::string wsUrl = "ws://" + this->ip + ":" + std::to_string(this->port);
 
     // Example of a path to which the server sends you back the message you sent.
@@ -117,20 +112,22 @@ void XNode::XNode::setupWebSocketClient() {
 }
 
 
-std::string XNode::XNode::giveIp(std::string name){
+std::string XNode::node::giveIp(std::string name){
     return "";
     //return name2ip[name];
 }
 
-void XNode::XNode::addNode(std::string name, std::string ip) {
+void XNode::node::addNode(std::string name, std::string ip) {
     //name2ip[name] = ip;
 }
 
-std::map<std::string, std::string> XNode::XNode::shareListNode() {
+std::map<std::string, std::string> XNode::node::shareListNode() {
     return std::map<std::string, std::string>();
     //return name2ip;
 }
 
-Blockchain XNode::XNode::getBlockchain() {
-    return XNode::blockchain;
+/*
+Blockchain node::node::getBlockchain() {
+    return node::blockchain;
 }
+*/
