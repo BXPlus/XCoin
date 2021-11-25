@@ -39,6 +39,7 @@ int main()
 
     /**************************************************************************************/
     // To set up a WebSocket server, uncomment the following lines:
+    // For those using "stealth mode" on their mac or any computer, please deactivate the setting.
 
     std::cout << "Websocket server will start on "<< ip << " and listens to the port " << port << std::endl;
     XNode::node node = XNode::node(ip, port, true, true);
