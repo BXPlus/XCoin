@@ -19,7 +19,7 @@ Transaction sendTransaction(string address, int amount) {
 
 bool isValidTxForPool(Transaction tx, vector<Transaction> transactionPool)
 {
-    return true; //To implement
+    return false; //To implement
 }
 
 void addToTransactionPool(Transaction tx, vector<UnspentTxOut> unspentTxOuts) {
@@ -59,11 +59,19 @@ void updateTransactionPool(vector<UnspentTxOut> unspentTxOuts) {
         }
     }
     if (invalidTxs.size() > 0){
+        //vector<Transaction> newPool;
         cout << "Removing the following transactions from txPool:"; //Here we add the elements in invalidTxs;
         for (int i = 0; i < int(invalidTxs.size()); i++) {
             Transaction tx = invalidTxs[i];
             //remove(transactionPool.begin(), transactionPool.end(), tx);
+            //for (int i = 0; i < int(transactionPool.size()); i++) {
+            //    Transaction tx = transactionPool[i];
+            //    if (find(invalidTxs.begin(), invalidTxs.end(), tx) == invalidTxs.end()) {
+            //        newPool.push_back(tx);
+            //    }
+            //}
         }
+        //transactionPool = newPool;
     }
 }
 
