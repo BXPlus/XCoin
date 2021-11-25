@@ -62,7 +62,7 @@ void updateTransactionPool(vector<UnspentTxOut> unspentTxOuts) {
         cout << "Removing the following transactions from txPool:"; //Here we add the elements in invalidTxs;
         for (int i = 0; i < int(invalidTxs.size()); i++) {
             Transaction tx = invalidTxs[i];
-            remove(transactionPool.begin(), transactionPool.end(), tx); //Test this
+            //remove(transactionPool.begin(), transactionPool.end(), tx);
         }
     }
 }
