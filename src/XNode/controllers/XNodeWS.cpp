@@ -23,11 +23,11 @@ void XNodeWS::handleNewMessage(const WebSocketConnectionPtr &wsConnPtr, std::str
  */
 void XNodeWS::handleNewConnection(const HttpRequestPtr &req, const WebSocketConnectionPtr &wsConnPtr) {
     // Sends a message to the client indicating his address and that the connection was successful.
-    wsConnPtr->send("Welcome " + req->getPeerAddr().toIpPort() + ". Successful connection!");
-
+    wsConnPtr->send("ACK:" + req->getPeerAddr().toIpPort() + ".OK");
+    std::cout << "Connected to new peer: " + req->getPeerAddr().toIpPort() << std::endl;
     vector<Block> blocks = vector<Block>();
     blocks.push_back(Blockchain().genesisBlock);
-    wsConnPtr->send(XNode::Interface::exportChain(blocks));
+    wsConnPtr->send(XNode::Interface::exportChain(blocks),WebSocketMessageType::Binary);
 }
 
 /**

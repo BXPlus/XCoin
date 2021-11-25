@@ -17,7 +17,7 @@ int main()
 {
     const std::string ip = "0.0.0.0";
     // TODO: Only one port can be used at a time, otherwise return an error.
-    const int port = 80;
+    const int port = 1234;
     std::cout << banner << std::endl;
     std::cout << "                                  Blockchain node    \n" << std::endl;
 
@@ -33,7 +33,7 @@ int main()
     // To set up a WebSocket client, uncomment the following lines:
 
     /*std::cout << "Websocket client will connect to "<< ip << " on the port " << port << std::endl;
-    node::node node = node::node(ip, port, true, false);*/
+    XNode::node node = XNode::node(ip, port, true, false);*/
 
     /**************************************************************************************/
 

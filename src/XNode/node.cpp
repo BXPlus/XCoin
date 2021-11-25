@@ -104,7 +104,7 @@ void XNode::node::setupWebSocketClient() {
                     return;
                 }
                 std::cout << "WebSocket connected!" << std::endl;
-                // wsPtr->getConnection()->setPingMessage("", 2s); Sends a message every 2 seconds.
+                wsPtr->getConnection()->setPingMessage("", 2s); //Sends a message every 2 seconds.
 
                 // Send hello to the server.
                 wsPtr->getConnection()->send("hello!");
