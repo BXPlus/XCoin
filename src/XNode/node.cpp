@@ -69,7 +69,7 @@ void XNode::node::setupWebSocketClient() {
     const std::string path("/hello");
 
     // Establish a WebSocket connection to the server.
-    drogon::WebSocketClientPtr wsPtr = drogon::WebSocketClient::newWebSocketClient(ip);
+    drogon::WebSocketClientPtr wsPtr = drogon::WebSocketClient::newWebSocketClient(wsUrl);
     // Create an Http request.
     drogon::HttpRequestPtr req = drogon::HttpRequest::newHttpRequest();
     // Set up the path for the request.
@@ -89,7 +89,7 @@ void XNode::node::setupWebSocketClient() {
         std::cout << "WebSocket connection closed!" << std::endl;
     });
 
-    std::cout << "Connecting to WebSocket at " << ip << std::endl;
+    std::cout << "Connecting to WebSocket at " << wsUrl << std::endl;
 
     // Connect to the WebSocket server.
     wsPtr->connectToServer(
