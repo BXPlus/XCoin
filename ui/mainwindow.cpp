@@ -4,9 +4,13 @@
 #include <custombutton.h>
 #include <QAction>
 #include <QSignalMapper>
+#include <payments.h>
+#include "logindialog.cpp"
+#include "settingswidget.cpp"
 #include <QLabel>
 #include <QDir>
-#include <payments.h>
+#include <homewidget.h>
+#include <QCloseEvent>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -14,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
 
     ui->setupUi(this);
+
+    //HomePage setup
     setWindowTitle("XCoin");
     setMinimumSize(700,600);
 
@@ -22,6 +28,8 @@ MainWindow::MainWindow(QWidget *parent)
     mainWidget = new QWidget(this);
     setCentralWidget(mainWidget);
     mainLayout = new QHBoxLayout(mainWidget);
+    mainLayout->setContentsMargins(0, 0, 0, 0);
+    mainLayout->setSpacing(0);
 
 
     // Creating menu
@@ -30,6 +38,8 @@ MainWindow::MainWindow(QWidget *parent)
     menuContainer->setLayout(menuLayout);
     mainLayout->addWidget(menuContainer);
     menuContainer->setMaximumWidth(200);
+    menuContainer->setObjectName("menuContainer");
+    menuContainer->setContentsMargins(0,0,0,0);
 
 
     // Creating userBlock
@@ -38,7 +48,7 @@ MainWindow::MainWindow(QWidget *parent)
     QVBoxLayout* userBlockLayout = new QVBoxLayout(userBlock);
     userBlock->setFixedHeight(150);
     userBlock->setStyleSheet("border-radius: 15px;"
-                              "background-color: rgba(50, 79, 126, 255);");
+                              "background-color: rgba(60, 72, 114, 255);");
 
     // XCoin logo
     QString path = QDir::currentPath();
@@ -48,6 +58,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     QPixmap pic(subPath);
     QLabel* imgLabel = new QLabel(userBlock);
+    imgLabel->setAlignment(Qt::AlignCenter);
     imgLabel->setFixedSize(50, 50);
     imgLabel->setPixmap(pic);
 
@@ -73,15 +84,16 @@ MainWindow::MainWindow(QWidget *parent)
     menuLayout->addWidget(userBlock);
 
     // Creating remaining buttons
-
-    QStringList titles = {"Home", "Contacts", "Pay", "History", "Live", "Graphics"};
+    QStringList titles = {"Home", "Contacts", "Pay", "History", "Settings", "Graphics"};
 
     for (int i=0; i<6; i++){
 
         CustomButton* btn = new CustomButton(titles[i], menuContainer);
         btn->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+        btn->setFixedWidth(100);
         btn->setCursor(Qt::PointingHandCursor);
         btnList.append(btn);
+        btn->setObjectName("menuBtn");
         menuLayout->addWidget(btn);
     }
 
@@ -89,7 +101,9 @@ MainWindow::MainWindow(QWidget *parent)
     //Creating Stacked Widget
 
     contentContainer = new QStackedWidget(mainWidget);
-    homeWidget = new QWidget(mainWidget);
+    contentContainer->setObjectName("contentContainer");
+
+    homeWidget = new HomeWidget(mainWidget);
     contentContainer->addWidget(homeWidget);
     balanceWidget = new QWidget(mainWidget);
     contentContainer->addWidget(balanceWidget);
@@ -97,8 +111,8 @@ MainWindow::MainWindow(QWidget *parent)
     contentContainer->addWidget(paymentsWidget);
     contactsWidget = new QWidget(mainWidget);
     contentContainer->addWidget(contactsWidget);
-    updatesWidget = new QWidget(mainWidget);
-    contentContainer->addWidget(updatesWidget);
+    settingsWidget = new SettingsWidget(mainWidget);
+    contentContainer->addWidget(settingsWidget);
     graphsWidget = new QWidget(mainWidget);
     contentContainer->addWidget(graphsWidget);
 
@@ -121,7 +135,6 @@ MainWindow::MainWindow(QWidget *parent)
     // Creating main content
 
     mainLayout->addWidget(contentContainer);
-
 }
 
 MainWindow::~MainWindow()
@@ -134,3 +147,7 @@ void MainWindow::go_page(int i)
     contentContainer->setCurrentIndex(i);
 }
 
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    event->accept();
+}

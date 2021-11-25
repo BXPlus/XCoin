@@ -17,7 +17,6 @@ int main(int argc, char *argv[])
     int index = path.indexOf("XCoin");
     QString subPath = path.mid(0,index+5);
     subPath.append("/ui/style.qss");
-    qDebug() << "Stylesheet path: " << subPath;
 
         // loading
     QFile qss(subPath);
@@ -26,7 +25,15 @@ int main(int argc, char *argv[])
     a.setStyleSheet(styleSheet);
     qss.close();
 
-    MainWindow w;
-    w.show();
-    return a.exec();
+    //Login page
+    LoginDialog *dialogLogin = new LoginDialog();
+    dialogLogin->setModal(true);
+    dialogLogin->exec();
+    bool identified = dialogLogin->get_identified();
+
+    if (identified) {
+        MainWindow w;
+        w.show();
+        return a.exec();
+    }
 }

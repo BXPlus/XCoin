@@ -10,18 +10,22 @@ CONFIG += c++11
 
 SOURCES += \
     custombutton.cpp \
+    homewidget.cpp \
     main.cpp \
     mainwindow.cpp \
+    settingswidget.cpp \
     payments.cpp
 
 HEADERS += \
     custombutton.h \
+    homewidget.h \
+    logindialog.h \
     mainwindow.h \
+    settingswidget.h \
     payments.h
 
 FORMS += \
-    mainwindow.ui \
-    payments.ui
+    mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
