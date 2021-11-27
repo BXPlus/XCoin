@@ -34,7 +34,7 @@ XNode::node::node(const std::string &ip, const int port, const bool isUsingWebSo
  * Starts the webserver of the node.
  */
 void XNode::node::start() {
-    drogon::app().enableReusePort();
+    //drogon::app().enableReusePort();
     if (!isUsingWebSocketController || isWebSocketServer)
         drogon::app()
             .addListener(this->ip, this->port)
@@ -42,9 +42,42 @@ void XNode::node::start() {
             .setThreadNum(4)
             .run();
     else{
-        setupWebSocketClient();
-        // drogon::app().getLoop()->runAfter(15, [this]() { stop(); }); Stops the server after 15 seconds.
-        drogon::app().setThreadNum(4).run();
+        std::string path;
+        path = "/terminate";
+
+        std::string serverString;
+        serverString = "ws://" + this->ip + ":" + std::to_string(this->port);
+        auto wsPtr = drogon::WebSocketClient::newWebSocketClient(serverString);
+        auto req = drogon::HttpRequest::newHttpRequest();
+        req->setPath(path);
+
+        wsPtr->setMessageHandler([](const std::string &message,
+                                    const drogon::WebSocketClientPtr &,
+                                    const drogon::WebSocketMessageType &type) {
+
+            std::cout << "new message: " << message;
+        });
+
+        wsPtr->setConnectionClosedHandler([](const drogon::WebSocketClientPtr &) {
+            std::cout << "WebSocket connection closed!";
+        });
+
+        std::cout << "Connecting to WebSocket at " << this->ip;
+        wsPtr->connectToServer(
+                req,
+                [](drogon::ReqResult r,
+                   const drogon::HttpResponsePtr &,
+                   const drogon::WebSocketClientPtr &wsPtr) {
+                    if (r != drogon::ReqResult::Ok)
+                    {
+                        std::cout << "Failed to establish WebSocket connection!";
+                        wsPtr->stop();
+                        return;
+                    }
+                    std::cout << "WebSocket connected!";
+                    wsPtr->getConnection()->send("hello!");
+                });
+        drogon::app().run();
 
     }
 }
@@ -104,7 +137,7 @@ void XNode::node::setupWebSocketClient() {
                     return;
                 }
                 std::cout << "WebSocket connected!" << std::endl;
-                wsPtr->getConnection()->setPingMessage("", 2s); //Sends a message every 2 seconds.
+                //wsPtr->getConnection()->setPingMessage("", 2s); //Sends a message every 2 seconds.
 
                 // Send hello to the server.
                 wsPtr->getConnection()->send("hello!");

@@ -12,7 +12,8 @@
 #include "controllers/xnodectl.h"
 #include <iostream>
 #include <drogon/WebSocketClient.h>
-#include <drogon/drogon.h>
+#include <drogon/HttpAppFramework.h>
+
 
 /***
  * node is the main class for Networking part of XCoin.
