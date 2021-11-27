@@ -15,6 +15,9 @@ XNode::node::node(const std::string &ip, int port) {
     this->isUsingWebSocketController = false;
     //TODO : Fetch Blockchain from cache (file).
     this->blockchain = Blockchain();
+    this->name2ip = std::map<std::string, std::string>();
+    this->name2ip["self"] = ip;
+
 }
 
 /**
@@ -146,17 +149,21 @@ void XNode::node::setupWebSocketClient() {
 
 
 std::string XNode::node::giveIp(std::string name){
-    return "";
-    //return name2ip[name];
+
+    return name2ip[name];
 }
 
 void XNode::node::addNode(std::string name, std::string ip) {
-    //name2ip[name] = ip;
+    name2ip[name] = ip;
 }
 
 std::map<std::string, std::string> XNode::node::shareListNode() {
-    return std::map<std::string, std::string>();
-    //return name2ip;
+    return name2ip;
+}
+
+int XNode::node::NBnodes() {
+
+    return name2ip.size();
 }
 
 /*

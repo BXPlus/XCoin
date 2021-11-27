@@ -42,3 +42,5 @@ private:
 };
 Keys keyFromPublic(std::string address, std::string form); //returns a key whose public key is adress
 #endif //XCOIN_KEYS_H
+
+//ECDSA_SIG()
