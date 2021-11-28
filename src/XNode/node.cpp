@@ -58,7 +58,7 @@ void XNode::node::start() {
             .run();
     else{
         std::string path;
-        path = "/terminate";
+        path = "/hello";
 
         std::string serverString;
         serverString = "ws://" + this->ip + ":" + std::to_string(this->port);
