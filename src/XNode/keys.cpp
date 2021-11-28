@@ -69,8 +69,7 @@ Keys:: Keys(std::string pubb){
 }
 
 
-char const* Keys::keyFromPrivate(std::string priv_keyy, std::string form){
-    //Note that 'form' is useless, it could be removed, I put it because Long uses the functions this way
+char const* Keys::keyFromPrivate(std::string priv_keyy){
     const char* priv_key = priv_keyy.c_str(); //converts from string to char
     BIGNUM *priv = NULL ;
     BN_hex2bn(&priv, priv_key); //the private key in BIGNUM form
@@ -91,7 +90,7 @@ char const* Keys::keyFromPrivate(std::string priv_keyy, std::string form){
 
 
 
-Keys keyFromPublic(std::string adress, std::string form) {
+Keys keyFromPublic(std::string adress) {
     Keys key = Keys(adress);
 
     return key;

@@ -57,41 +57,9 @@ void XNode::node::start() {
             .setThreadNum(4)
             .run();
     else{
-        std::string path;
-        path = "/hello";
-
-        std::string serverString;
-        serverString = "ws://" + this->ip + ":" + std::to_string(this->port);
-        auto wsPtr = drogon::WebSocketClient::newWebSocketClient(serverString);
-        auto req = drogon::HttpRequest::newHttpRequest();
-        req->setPath(path);
-
-        wsPtr->setMessageHandler([](const std::string &message,
-                                    const drogon::WebSocketClientPtr &,
-                                    const drogon::WebSocketMessageType &type) {
-
-            std::cout << "new message: " << message;
-        });
-
-        wsPtr->setConnectionClosedHandler([](const drogon::WebSocketClientPtr &) {
-            std::cout << "WebSocket connection closed!";
-        });
-
-        std::cout << "Connecting to WebSocket at " << this->ip;
-        wsPtr->connectToServer(
-                req,
-                [](drogon::ReqResult r,
-                   const drogon::HttpResponsePtr &,
-                   const drogon::WebSocketClientPtr &wsPtr) {
-                    if (r != drogon::ReqResult::Ok)
-                    {
-                        std::cout << "Failed to establish WebSocket connection!";
-                        wsPtr->stop();
-                        return;
-                    }
-                    std::cout << "WebSocket connected!";
-                    wsPtr->getConnection()->send("hello!");
-                });
+        // Set up the websocket client.
+        setupWebSocketClient();
+        // Run  the websocket client.
         drogon::app().run();
 
     }
@@ -111,35 +79,35 @@ void XNode::node::stop() {
  * This function sets up the WebSocketClient for the node.
  */
 void XNode::node::setupWebSocketClient() {
-    const std::string wsUrl = "ws://" + this->ip + ":" + std::to_string(this->port);
-
-    // Example of a path to which the server sends you back the message you sent.
+    // Set up the server string to which the client will connect to.
+    const std::string serverString("ws://" + this->ip + ":" + std::to_string(this->port));
     const std::string path("/hello");
 
-    // Establish a WebSocket connection to the server.
-    drogon::WebSocketClientPtr wsPtr = drogon::WebSocketClient::newWebSocketClient(wsUrl);
-    // Create an Http request.
+    // Initialize the WebSocketClient
+    drogon::WebSocketClientPtr wsPtr = drogon::WebSocketClient::newWebSocketClient(serverString);
+
+    // Initialize the Http request
     drogon::HttpRequestPtr req = drogon::HttpRequest::newHttpRequest();
-    // Set up the path for the request.
+
+    // Apply the path to the request.
     req->setPath(path);
 
-    // Handle incoming messages from the server.
+    //Handle the response from the websocket server.
     wsPtr->setMessageHandler([](const std::string &message,
                                 const drogon::WebSocketClientPtr &,
                                 const drogon::WebSocketMessageType &type) {
 
-        std::cout << "new message " << message << std::endl;
-
+        std::cout << "new message: " << message;
     });
 
-    // Handle closing connection from server.
+    // Handle the WebSocket connection closed event.
     wsPtr->setConnectionClosedHandler([](const drogon::WebSocketClientPtr &) {
-        std::cout << "WebSocket connection closed!" << std::endl;
+        std::cout << "WebSocket connection closed!";
     });
 
-    std::cout << "Connecting to WebSocket at " << wsUrl << std::endl;
+    std::cout << "Connecting to WebSocket at " << this->ip;
 
-    // Connect to the WebSocket server.
+    // Connect to the websocket server.
     wsPtr->connectToServer(
             req,
             [](drogon::ReqResult r,
@@ -147,14 +115,11 @@ void XNode::node::setupWebSocketClient() {
                const drogon::WebSocketClientPtr &wsPtr) {
                 if (r != drogon::ReqResult::Ok)
                 {
-                    std::cout << "Failed to establish WebSocket connection!" << std::endl;
+                    std::cout << "Failed to establish WebSocket connection!";
                     wsPtr->stop();
                     return;
                 }
-                std::cout << "WebSocket connected!" << std::endl;
-                //wsPtr->getConnection()->setPingMessage("", 2s); //Sends a message every 2 seconds.
-
-                // Send hello to the server.
+                std::cout << "WebSocket connected!";
                 wsPtr->getConnection()->send("hello!");
             });
 }
@@ -193,7 +158,7 @@ std::pair<std::string, std::string> XNode::node::connect(std::string name, std::
     addNode(name, ip);
     return std::pair(this->name, this->ip);
 }
-void sendNew(std::string ip, std::string new_name, std::string new_ip){
+void XNode::node::sendNew(std::string ip, std::string new_name, std::string new_ip){
     /*
      * To define
      *

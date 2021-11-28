@@ -18,7 +18,7 @@ public:
     Keys(std::string pubb); //constructor which creates the private and public key
 
 
-    char const* keyFromPrivate(std::string priv_keyy, std::string form);//return the public key from the private one
+    char const* keyFromPrivate(std::string priv_keyy);//return the public key from the private one
 //    bool verify(string id, string txOutId, int txOutIndex, string signature, vector<UnspentTxOut> aUnspentTxOuts);
 
     char const* getPriv(){
@@ -40,7 +40,7 @@ private:
 
 
 };
-Keys keyFromPublic(std::string address, std::string form); //returns a key whose public key is adress
+Keys keyFromPublic(std::string address); //returns a key whose public key is adress
 #endif //XCOIN_KEYS_H
 
 //ECDSA_SIG()
