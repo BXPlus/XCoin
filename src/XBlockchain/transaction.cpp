@@ -29,7 +29,7 @@ std::string Transaction::getTransactionId() {
 }
 
 std::string getPublicKey(std::string aPrivateKey) {
-    return keyFromPrivate(aPrivateKey, 'hex').getPublic().encode('hex');
+    return keyFromPrivate(aPrivateKey).getPublic().encode('hex');
 }
 
 string Transaction::signTxIn(int txInIndex, std::string privateKey, std::vector<UnspentTxOut> aUnspentTxOuts) {
@@ -46,7 +46,7 @@ string Transaction::signTxIn(int txInIndex, std::string privateKey, std::vector<
                     ' key that does not match the address that is referenced in txIn\n');
     }
 
-    Keys key = keyFromPrivate(privateKey, 'hex');
+    Keys key = keyFromPrivate(privateKey);
     std::string signature = toHexString(key.sign(dataToSign).toDER()); //TODO: Add ToHexString
 
     return signature;
@@ -228,7 +228,7 @@ bool validateTxIn(TxIn txIn, std::string id, std::vector<UnspentTxOut> aUnspentT
     std::string referencedUTxOut = tmp.second;
     std::string address = referencedUTxOut;
 
-    Keys key = keyFromPublic(address, "hex");
+    Keys key = keyFromPublic(address);
     bool validSignature = key.verify(id, txIn.signature);
     if (!validSignature) {
         cout << "invalid txIn signature: " << txIn.signature << " txId: " << id << " address: " << address << "\n";
