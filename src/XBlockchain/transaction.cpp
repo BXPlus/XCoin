@@ -35,7 +35,7 @@ std::string getPublicKey(std::string aPrivateKey) {
 string Transaction::signTxIn(int txInIndex, std::string privateKey, std::vector<UnspentTxOut> aUnspentTxOuts) {
     TxIn txIn = txIns[txInIndex];
     std::string dataToSign = id;
-    std::vector<bool, UnspentTxOut> tmp = findUnspentTxOut(txIn.txOutId, txIn.txOutIndex, aUnspentTxOuts);
+    std::pair<bool, UnspentTxOut> tmp = findUnspentTxOut(txIn.txOutId, txIn.txOutIndex, aUnspentTxOuts);
     if (tmp.fi == 0)
         throw invalid_argument( "could not find referenced txOut\n" );
     std::string referencedUnspentTxOut = tmp.se;
