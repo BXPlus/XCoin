@@ -114,13 +114,13 @@ This week I added the functions getPriv() and getPub() to Keys, and I understood
 
 - Achieved in this week (week 4)
     - Remove using namespace std; in transaction.h and transaction.cpp and add std:: to vector, string and cout methods.
-        -https://github.com/BXPlus/XCoin/commit/d3466611eaf43dd2ffae55b1bd658be9ee39b695
-        -https://github.com/BXPlus/XCoin/commit/11ca3ec3106a2bbd74673d39c05d30de28977f39
-        -https://github.com/BXPlus/XCoin/commit/380a9c36b9f5f7b8aa599c942fb20239d6ebbde5
-        -https://github.com/BXPlus/XCoin/commit/cb6b7de4f1a97f29d71f9507c45b5e82bce8db05
-        -https://github.com/BXPlus/XCoin/commit/a92cbb731df8a3f60552b8fc0176a81ca30165d3
+        https://github.com/BXPlus/XCoin/commit/d3466611eaf43dd2ffae55b1bd658be9ee39b695
+        https://github.com/BXPlus/XCoin/commit/11ca3ec3106a2bbd74673d39c05d30de28977f39
+        https://github.com/BXPlus/XCoin/commit/380a9c36b9f5f7b8aa599c942fb20239d6ebbde5
+        https://github.com/BXPlus/XCoin/commit/cb6b7de4f1a97f29d71f9507c45b5e82bce8db05
+        https://github.com/BXPlus/XCoin/commit/a92cbb731df8a3f60552b8fc0176a81ca30165d3
     - Modify the KeyFromPublic and KeyFromPrivate arguments in keys.h, keys.cpp code and transaction.h, transaction.cpp code.
-        -https://github.com/BXPlus/XCoin/commit/194fc19363e5c3a02e901fd353146b1b92540015
+        https://github.com/BXPlus/XCoin/commit/194fc19363e5c3a02e901fd353146b1b92540015
         
 - Plan for the next week (week 5)
     - Fix my configurations in order to compile my codes to fix bugs in transaction.h and transaction.cpp.
