@@ -27,12 +27,7 @@ void XNodeWS::handleNewConnection(const HttpRequestPtr &req, const WebSocketConn
     if(req->getPath() == "/terminate"){
         drogon::app().quit();
     }
-    wsConnPtr->send("ACK:" + req->getPeerAddr().toIpPort() + ".OK");
-    std::cout << "CONN:" + req->getPeerAddr().toIpPort() << std::endl;
-    std::vector<Block> blocks = std::vector<Block>();
-    blocks.push_back(Blockchain().genesisBlock);
-    blocks.push_back(Blockchain().generateNextBlock("This is the second block", 10, 0, ""));
-    wsConnPtr->send(XNode::Interface::exportChain(blocks),WebSocketMessageType::Binary);
+    std::cout << "local    " + wsConnPtr->peerAddr().toIpPort() + " connected successfully" << std::endl;
 }
 
 /**

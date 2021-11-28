@@ -25,18 +25,17 @@ void XNode::node::start(const std::vector<std::string>& DNSS) {
     //serverThread->detach();
     //log("Server is running!");
     for(std::string addr : DNSS){
-        attemptBindToNodeServer("ws://"+addr);
+        //attemptBindToNodeServer("ws://"+addr);
     }
     spawnServer();
 }
 
 void XNode::node::spawnServer() {
+    log("Server will start");
     drogon::app()
             .addListener("0.0.0.0", this->port)
-            .setDocumentRoot("../src/node/wwwroot")
             .setThreadNum(4)
             .run();
-    drogon::app().run();
 }
 
 
