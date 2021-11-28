@@ -3,7 +3,7 @@
 //
 
 #include "transaction.h"
-#include "XNode/keys.h"
+#include "../XNode/keys.h"
 #include <regex.h>
 #include <stdexcept>
 
@@ -17,12 +17,12 @@ TxOut::TxOut(std::string address, int amount) {
 std::string Transaction::getTransactionId() {
     std::stringstream txInsContent;
     for (int i = 0; i < int(txIns.size()); i++) {
-        element = txIns[i];
+        TxIn element = txIns[i];
         txInsContent << element.txOutId << std::string(element.txOutIndex);
     }
     std::stringstream txOutsContent;
     for (int i = 0; i < int(txOuts.size()); i++) {
-        element = txOuts[i];
+        TxOut element = txOuts[i];
         txOutsContent << element.address << element.amount;
     }
     return sha256(txInsContent.str() + txOutsContent.str());
@@ -43,7 +43,7 @@ string Transaction::signTxIn(int txInIndex, std::string privateKey, std::vector<
 
     if (getPublicKey(privateKey) != referencedAddress) {
         throw invalid_argument('trying to sign an input with private' +
-                    ' key that does not match the address that is referenced in txIn\n');
+                               ' key that does not match the address that is referenced in txIn\n');
     }
 
     Keys key = keyFromPrivate(privateKey);
