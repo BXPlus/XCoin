@@ -193,7 +193,7 @@ std::pair<std::string, std::string> XNode::node::connect(std::string name, std::
     addNode(name, ip);
     return std::pair(this->name, this->ip);
 }
-void sendNew(std::string ip, std::string new_name, std::string new_ip){
+void XNode::node::sendNew(std::string ip, std::string new_name, std::string new_ip){
     /*
      * To define
      *
