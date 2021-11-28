@@ -6,6 +6,15 @@
 #ifndef XCOIN_TRANSACTION_H
 #define XCOIN_TRANSACTION_H
 
+class UnspentTxOut {
+public:
+    const std::string txOutId;
+    const int txOutIndex;
+    const std::string address;
+    const int amount;
+    UnspentTxOut(std::string txOutID, int txOutIndex, std::string address, int amount);
+};
+
 class TxOut {
 public:
     std::string address;
@@ -35,15 +44,6 @@ public:
     bool validateCoinbaseTx(int blockIndex);
 };
 
-class UnspentTxOut {
-public:
-    const std::string txOutId;
-    const int txOutIndex;
-    const std::string address;
-    const int amount;
-    UnspentTxOut(std::string txOutID, int txOutIndex, std::string address, int amount);
-};
-
 pair<bool, UnspentTxOut> findUnspentTxOut(std::string transactionId, int index, std::vector<UnspentTxOut> aUnspentTxOuts);
 
 std::vector<UnspentTxOut> updateUnspentTxOuts(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts);
@@ -69,7 +69,7 @@ bool hasDuplicates(std::vector<TxIn> txIns) {
 bool validateTxIn(TxIn txIn, Transaction transaction, std::vector<UnspentTxOut> aUnspentTxOuts);
 
 void processTransactions(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts, int blockIndex){
-    return;
+    return; //To implement
 }
 
 #endif //XCOIN_TRANSACTION_H
