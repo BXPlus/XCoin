@@ -11,7 +11,6 @@ public:
     std::string address;
     int amount;
     TxOut(std::string address, int amount);
-    std::string JSONStringify();
 };
 
 class TxIn {
@@ -20,6 +19,7 @@ public:
     int txOutIndex;
     std::string signature;
     int getTxInAmount(std::vector<UnspentTxOut> aUnspentTxOuts);
+    std::string JSONStringify();
 };
 
 class Transaction {
