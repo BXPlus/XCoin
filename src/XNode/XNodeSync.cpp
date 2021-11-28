@@ -14,7 +14,7 @@ void XNodeSync::headFirstDownload() {
         //curBlockPtr = curBlockPtr->block;
         curBlock = curBlockPtr->block;
         if (curBlock.hash != curBlock.previousHash) {
-            cout << "Error: The hash of the previous block is not the same as the hash of the current block." << endl;
+            std::cout << "Error: The hash of the previous block is not the same as the hash of the current block." << std::endl;
             return;
         }
     }

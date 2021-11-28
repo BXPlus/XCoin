@@ -108,9 +108,35 @@ struct XNodeMessageDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT XNodeMessageDefaultTypeInternal _XNodeMessage_default_instance_;
+constexpr DNSEntry::DNSEntry(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : ipport_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , publickey_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct DNSEntryDefaultTypeInternal {
+  constexpr DNSEntryDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~DNSEntryDefaultTypeInternal() {}
+  union {
+    DNSEntry _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT DNSEntryDefaultTypeInternal _DNSEntry_default_instance_;
+constexpr DNSHandshake::DNSHandshake(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : entries_()
+  , expectreply_(false){}
+struct DNSHandshakeDefaultTypeInternal {
+  constexpr DNSHandshakeDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~DNSHandshakeDefaultTypeInternal() {}
+  union {
+    DNSHandshake _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT DNSHandshakeDefaultTypeInternal _DNSHandshake_default_instance_;
 }  // namespace interchange
 }  // namespace xcoin
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_src_2fXNode_2fblockchain_2eproto[6];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_src_2fXNode_2fblockchain_2eproto[8];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_src_2fXNode_2fblockchain_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_src_2fXNode_2fblockchain_2eproto = nullptr;
 
@@ -185,7 +211,24 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_src_2fXNode_2fblockchain_2epro
   PROTOBUF_FIELD_OFFSET(::xcoin::interchange::XNodeMessage, checksum_),
   ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   PROTOBUF_FIELD_OFFSET(::xcoin::interchange::XNodeMessage, contents_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::xcoin::interchange::DNSEntry, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::xcoin::interchange::DNSEntry, ipport_),
+  PROTOBUF_FIELD_OFFSET(::xcoin::interchange::DNSEntry, publickey_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::xcoin::interchange::DNSHandshake, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::xcoin::interchange::DNSHandshake, expectreply_),
+  PROTOBUF_FIELD_OFFSET(::xcoin::interchange::DNSHandshake, entries_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, 15, -1, sizeof(::xcoin::interchange::Block)},
@@ -194,6 +237,8 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 41, -1, -1, sizeof(::xcoin::interchange::Header)},
   { 50, -1, -1, sizeof(::xcoin::interchange::Headers)},
   { 58, -1, -1, sizeof(::xcoin::interchange::XNodeMessage)},
+  { 72, -1, -1, sizeof(::xcoin::interchange::DNSEntry)},
+  { 80, -1, -1, sizeof(::xcoin::interchange::DNSHandshake)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -203,6 +248,8 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::xcoin::interchange::_Header_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::xcoin::interchange::_Headers_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::xcoin::interchange::_XNodeMessage_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::xcoin::interchange::_DNSEntry_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::xcoin::interchange::_DNSHandshake_default_instance_),
 };
 
 const char descriptor_table_protodef_src_2fXNode_2fblockchain_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -223,17 +270,22 @@ const char descriptor_table_protodef_src_2fXNode_2fblockchain_2eproto[] PROTOBUF
   "BlockHeaderHash\030\001 \001(\t\022\026\n\016merkleRootHash\030"
   "\002 \001(\t\022\014\n\004time\030\003 \001(\r\"D\n\007Headers\022\r\n\005count\030"
   "\001 \001(\r\022*\n\007headers\030\002 \003(\0132\031.xcoin.interchan"
-  "ge.Header\"\322\001\n\014XNodeMessage\022\023\n\013startStrin"
+  "ge.Header\"\222\002\n\014XNodeMessage\022\023\n\013startStrin"
   "g\030\001 \001(\t\022\017\n\007command\030\002 \001(\t\022\014\n\004size\030\003 \001(\r\022\020"
   "\n\010checksum\030\004 \001(\t\022:\n\021getHeadersMessage\030\005 "
   "\001(\0132\035.xcoin.interchange.GetHeadersH\000\0224\n\016"
   "headersMessage\030\006 \001(\0132\032.xcoin.interchange"
-  ".HeadersH\000B\n\n\010contentsb\006proto3"
+  ".HeadersH\000\022>\n\023dnsHandshakeMessage\030\007 \001(\0132"
+  "\037.xcoin.interchange.DNSHandshakeH\000B\n\n\010co"
+  "ntents\"-\n\010DNSEntry\022\016\n\006ipport\030\001 \001(\t\022\021\n\tpu"
+  "blicKey\030\002 \001(\t\"Q\n\014DNSHandshake\022\023\n\013expectR"
+  "eply\030\001 \001(\010\022,\n\007entries\030\002 \003(\0132\033.xcoin.inte"
+  "rchange.DNSEntryb\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_src_2fXNode_2fblockchain_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_src_2fXNode_2fblockchain_2eproto = {
-  false, false, 910, descriptor_table_protodef_src_2fXNode_2fblockchain_2eproto, "src/XNode/blockchain.proto", 
-  &descriptor_table_src_2fXNode_2fblockchain_2eproto_once, nullptr, 0, 6,
+  false, false, 1104, descriptor_table_protodef_src_2fXNode_2fblockchain_2eproto, "src/XNode/blockchain.proto", 
+  &descriptor_table_src_2fXNode_2fblockchain_2eproto_once, nullptr, 0, 8,
   schemas, file_default_instances, TableStruct_src_2fXNode_2fblockchain_2eproto::offsets,
   file_level_metadata_src_2fXNode_2fblockchain_2eproto, file_level_enum_descriptors_src_2fXNode_2fblockchain_2eproto, file_level_service_descriptors_src_2fXNode_2fblockchain_2eproto,
 };
@@ -1720,6 +1772,7 @@ class XNodeMessage::_Internal {
  public:
   static const ::xcoin::interchange::GetHeaders& getheadersmessage(const XNodeMessage* msg);
   static const ::xcoin::interchange::Headers& headersmessage(const XNodeMessage* msg);
+  static const ::xcoin::interchange::DNSHandshake& dnshandshakemessage(const XNodeMessage* msg);
 };
 
 const ::xcoin::interchange::GetHeaders&
@@ -1729,6 +1782,10 @@ XNodeMessage::_Internal::getheadersmessage(const XNodeMessage* msg) {
 const ::xcoin::interchange::Headers&
 XNodeMessage::_Internal::headersmessage(const XNodeMessage* msg) {
   return *msg->contents_.headersmessage_;
+}
+const ::xcoin::interchange::DNSHandshake&
+XNodeMessage::_Internal::dnshandshakemessage(const XNodeMessage* msg) {
+  return *msg->contents_.dnshandshakemessage_;
 }
 void XNodeMessage::set_allocated_getheadersmessage(::xcoin::interchange::GetHeaders* getheadersmessage) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
@@ -1759,6 +1816,21 @@ void XNodeMessage::set_allocated_headersmessage(::xcoin::interchange::Headers* h
     contents_.headersmessage_ = headersmessage;
   }
   // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.XNodeMessage.headersMessage)
+}
+void XNodeMessage::set_allocated_dnshandshakemessage(::xcoin::interchange::DNSHandshake* dnshandshakemessage) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_contents();
+  if (dnshandshakemessage) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::xcoin::interchange::DNSHandshake>::GetOwningArena(dnshandshakemessage);
+    if (message_arena != submessage_arena) {
+      dnshandshakemessage = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, dnshandshakemessage, submessage_arena);
+    }
+    set_has_dnshandshakemessage();
+    contents_.dnshandshakemessage_ = dnshandshakemessage;
+  }
+  // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.XNodeMessage.dnsHandshakeMessage)
 }
 XNodeMessage::XNodeMessage(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
@@ -1796,6 +1868,10 @@ XNodeMessage::XNodeMessage(const XNodeMessage& from)
     }
     case kHeadersMessage: {
       _internal_mutable_headersmessage()->::xcoin::interchange::Headers::MergeFrom(from._internal_headersmessage());
+      break;
+    }
+    case kDnsHandshakeMessage: {
+      _internal_mutable_dnshandshakemessage()->::xcoin::interchange::DNSHandshake::MergeFrom(from._internal_dnshandshakemessage());
       break;
     }
     case CONTENTS_NOT_SET: {
@@ -1852,6 +1928,12 @@ void XNodeMessage::clear_contents() {
     case kHeadersMessage: {
       if (GetArenaForAllocation() == nullptr) {
         delete contents_.headersmessage_;
+      }
+      break;
+    }
+    case kDnsHandshakeMessage: {
+      if (GetArenaForAllocation() == nullptr) {
+        delete contents_.dnshandshakemessage_;
       }
       break;
     }
@@ -1937,6 +2019,14 @@ const char* XNodeMessage::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
         } else
           goto handle_unusual;
         continue;
+      // .xcoin.interchange.DNSHandshake dnsHandshakeMessage = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
+          ptr = ctx->ParseMessage(_internal_mutable_dnshandshakemessage(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -2018,6 +2108,14 @@ failure:
         6, _Internal::headersmessage(this), target, stream);
   }
 
+  // .xcoin.interchange.DNSHandshake dnsHandshakeMessage = 7;
+  if (_internal_has_dnshandshakemessage()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        7, _Internal::dnshandshakemessage(this), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -2075,6 +2173,13 @@ size_t XNodeMessage::ByteSizeLong() const {
           *contents_.headersmessage_);
       break;
     }
+    // .xcoin.interchange.DNSHandshake dnsHandshakeMessage = 7;
+    case kDnsHandshakeMessage: {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *contents_.dnshandshakemessage_);
+      break;
+    }
     case CONTENTS_NOT_SET: {
       break;
     }
@@ -2120,6 +2225,10 @@ void XNodeMessage::MergeFrom(const XNodeMessage& from) {
     }
     case kHeadersMessage: {
       _internal_mutable_headersmessage()->::xcoin::interchange::Headers::MergeFrom(from._internal_headersmessage());
+      break;
+    }
+    case kDnsHandshakeMessage: {
+      _internal_mutable_dnshandshakemessage()->::xcoin::interchange::DNSHandshake::MergeFrom(from._internal_dnshandshakemessage());
       break;
     }
     case CONTENTS_NOT_SET: {
@@ -2171,6 +2280,457 @@ void XNodeMessage::InternalSwap(XNodeMessage* other) {
       file_level_metadata_src_2fXNode_2fblockchain_2eproto[5]);
 }
 
+// ===================================================================
+
+class DNSEntry::_Internal {
+ public:
+};
+
+DNSEntry::DNSEntry(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  if (!is_message_owned) {
+    RegisterArenaDtor(arena);
+  }
+  // @@protoc_insertion_point(arena_constructor:xcoin.interchange.DNSEntry)
+}
+DNSEntry::DNSEntry(const DNSEntry& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ipport_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_ipport().empty()) {
+    ipport_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_ipport(), 
+      GetArenaForAllocation());
+  }
+  publickey_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_publickey().empty()) {
+    publickey_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_publickey(), 
+      GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:xcoin.interchange.DNSEntry)
+}
+
+void DNSEntry::SharedCtor() {
+ipport_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+publickey_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+DNSEntry::~DNSEntry() {
+  // @@protoc_insertion_point(destructor:xcoin.interchange.DNSEntry)
+  if (GetArenaForAllocation() != nullptr) return;
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+inline void DNSEntry::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ipport_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  publickey_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void DNSEntry::ArenaDtor(void* object) {
+  DNSEntry* _this = reinterpret_cast< DNSEntry* >(object);
+  (void)_this;
+}
+void DNSEntry::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void DNSEntry::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void DNSEntry::Clear() {
+// @@protoc_insertion_point(message_clear_start:xcoin.interchange.DNSEntry)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ipport_.ClearToEmpty();
+  publickey_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* DNSEntry::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string ipport = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_ipport();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "xcoin.interchange.DNSEntry.ipport"));
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string publicKey = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_publickey();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "xcoin.interchange.DNSEntry.publicKey"));
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* DNSEntry::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:xcoin.interchange.DNSEntry)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string ipport = 1;
+  if (!this->_internal_ipport().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_ipport().data(), static_cast<int>(this->_internal_ipport().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "xcoin.interchange.DNSEntry.ipport");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_ipport(), target);
+  }
+
+  // string publicKey = 2;
+  if (!this->_internal_publickey().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_publickey().data(), static_cast<int>(this->_internal_publickey().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "xcoin.interchange.DNSEntry.publicKey");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_publickey(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:xcoin.interchange.DNSEntry)
+  return target;
+}
+
+size_t DNSEntry::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:xcoin.interchange.DNSEntry)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string ipport = 1;
+  if (!this->_internal_ipport().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_ipport());
+  }
+
+  // string publicKey = 2;
+  if (!this->_internal_publickey().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_publickey());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DNSEntry::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    DNSEntry::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DNSEntry::GetClassData() const { return &_class_data_; }
+
+void DNSEntry::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<DNSEntry *>(to)->MergeFrom(
+      static_cast<const DNSEntry &>(from));
+}
+
+
+void DNSEntry::MergeFrom(const DNSEntry& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:xcoin.interchange.DNSEntry)
+  GOOGLE_DCHECK_NE(&from, this);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_ipport().empty()) {
+    _internal_set_ipport(from._internal_ipport());
+  }
+  if (!from._internal_publickey().empty()) {
+    _internal_set_publickey(from._internal_publickey());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void DNSEntry::CopyFrom(const DNSEntry& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:xcoin.interchange.DNSEntry)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool DNSEntry::IsInitialized() const {
+  return true;
+}
+
+void DNSEntry::InternalSwap(DNSEntry* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &ipport_, lhs_arena,
+      &other->ipport_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &publickey_, lhs_arena,
+      &other->publickey_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata DNSEntry::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_src_2fXNode_2fblockchain_2eproto_getter, &descriptor_table_src_2fXNode_2fblockchain_2eproto_once,
+      file_level_metadata_src_2fXNode_2fblockchain_2eproto[6]);
+}
+
+// ===================================================================
+
+class DNSHandshake::_Internal {
+ public:
+};
+
+DNSHandshake::DNSHandshake(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  entries_(arena) {
+  SharedCtor();
+  if (!is_message_owned) {
+    RegisterArenaDtor(arena);
+  }
+  // @@protoc_insertion_point(arena_constructor:xcoin.interchange.DNSHandshake)
+}
+DNSHandshake::DNSHandshake(const DNSHandshake& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      entries_(from.entries_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  expectreply_ = from.expectreply_;
+  // @@protoc_insertion_point(copy_constructor:xcoin.interchange.DNSHandshake)
+}
+
+void DNSHandshake::SharedCtor() {
+expectreply_ = false;
+}
+
+DNSHandshake::~DNSHandshake() {
+  // @@protoc_insertion_point(destructor:xcoin.interchange.DNSHandshake)
+  if (GetArenaForAllocation() != nullptr) return;
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+inline void DNSHandshake::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void DNSHandshake::ArenaDtor(void* object) {
+  DNSHandshake* _this = reinterpret_cast< DNSHandshake* >(object);
+  (void)_this;
+}
+void DNSHandshake::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void DNSHandshake::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void DNSHandshake::Clear() {
+// @@protoc_insertion_point(message_clear_start:xcoin.interchange.DNSHandshake)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  entries_.Clear();
+  expectreply_ = false;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* DNSHandshake::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bool expectReply = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          expectreply_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .xcoin.interchange.DNSEntry entries = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_entries(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* DNSHandshake::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:xcoin.interchange.DNSHandshake)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool expectReply = 1;
+  if (this->_internal_expectreply() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_expectreply(), target);
+  }
+
+  // repeated .xcoin.interchange.DNSEntry entries = 2;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->_internal_entries_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, this->_internal_entries(i), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:xcoin.interchange.DNSHandshake)
+  return target;
+}
+
+size_t DNSHandshake::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:xcoin.interchange.DNSHandshake)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .xcoin.interchange.DNSEntry entries = 2;
+  total_size += 1UL * this->_internal_entries_size();
+  for (const auto& msg : this->entries_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // bool expectReply = 1;
+  if (this->_internal_expectreply() != 0) {
+    total_size += 1 + 1;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DNSHandshake::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    DNSHandshake::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DNSHandshake::GetClassData() const { return &_class_data_; }
+
+void DNSHandshake::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<DNSHandshake *>(to)->MergeFrom(
+      static_cast<const DNSHandshake &>(from));
+}
+
+
+void DNSHandshake::MergeFrom(const DNSHandshake& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:xcoin.interchange.DNSHandshake)
+  GOOGLE_DCHECK_NE(&from, this);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  entries_.MergeFrom(from.entries_);
+  if (from._internal_expectreply() != 0) {
+    _internal_set_expectreply(from._internal_expectreply());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void DNSHandshake::CopyFrom(const DNSHandshake& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:xcoin.interchange.DNSHandshake)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool DNSHandshake::IsInitialized() const {
+  return true;
+}
+
+void DNSHandshake::InternalSwap(DNSHandshake* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  entries_.InternalSwap(&other->entries_);
+  swap(expectreply_, other->expectreply_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata DNSHandshake::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_src_2fXNode_2fblockchain_2eproto_getter, &descriptor_table_src_2fXNode_2fblockchain_2eproto_once,
+      file_level_metadata_src_2fXNode_2fblockchain_2eproto[7]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace interchange
 }  // namespace xcoin
@@ -2192,6 +2752,12 @@ template<> PROTOBUF_NOINLINE ::xcoin::interchange::Headers* Arena::CreateMaybeMe
 }
 template<> PROTOBUF_NOINLINE ::xcoin::interchange::XNodeMessage* Arena::CreateMaybeMessage< ::xcoin::interchange::XNodeMessage >(Arena* arena) {
   return Arena::CreateMessageInternal< ::xcoin::interchange::XNodeMessage >(arena);
+}
+template<> PROTOBUF_NOINLINE ::xcoin::interchange::DNSEntry* Arena::CreateMaybeMessage< ::xcoin::interchange::DNSEntry >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::xcoin::interchange::DNSEntry >(arena);
+}
+template<> PROTOBUF_NOINLINE ::xcoin::interchange::DNSHandshake* Arena::CreateMaybeMessage< ::xcoin::interchange::DNSHandshake >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::xcoin::interchange::DNSHandshake >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

@@ -14,10 +14,6 @@ TxOut::TxOut(std::string address, int amount) {
     this -> amount = amount;
 }
 
-
-/*
-
-
 std::string Transaction::getTransactionId() {
     std::stringstream txInsContent;
     for (int i = 0; i < int(txIns.size()); i++) {
@@ -33,7 +29,7 @@ std::string Transaction::getTransactionId() {
 }
 
 std::string getPublicKey(std::string aPrivateKey) {
-    return keyFromPrivate(aPrivateKey).getPublic().encode('hex');
+ return keyFromPrivate(aPrivateKey).getPublic().encode('hex');
 }
 
 string Transaction::signTxIn(int txInIndex, std::string privateKey, std::vector<UnspentTxOut> aUnspentTxOuts) {
@@ -52,7 +48,6 @@ string Transaction::signTxIn(int txInIndex, std::string privateKey, std::vector<
 
     Keys key = keyFromPrivate(privateKey);
     std::string signature = toHexString(key.sign(dataToSign).toDER()); //TODO: Add ToHexString
-
     return signature;
 
 }
@@ -218,7 +213,7 @@ bool Transaction::isValidTransactionStructure() {
     return true;
 }
 
-string TxIn::JSONStringify() {
+std::string TxIn::JSONstd::stringify() {
     //TODO: Implement later
     return "";
 }
