@@ -86,4 +86,4 @@ This week I defined new functions to the key class: keyFromPrivate() and keyFrom
 
 This week I finished fixing the web socket implementation, and discussed with @Cyrus Pellet about the challenges that we were encountering with our network implementation with servers and clients. We came together to the fact that we needed to use multi-threading to be able to achieve a bidirectional communication (nodes are both client and server now). So we implemented it and re-factorized the XNode architecture to implement a network in a decentralized fashion.
 
-Next week, I pursue my implementation of header-first sync for the blockchains and join the peer @Malo's peer discovery
+Next week, I pursue my implementation of header-first sync for the blockchains and merge the peer @Malo's peer discovery in the network.
