@@ -42,7 +42,7 @@ public:
     const std::string address;
     const int amount;
     UnspentTxOut(std::string txOutID, int txOutIndex, std::string address, int amount);
-}
+};
 
 pair<bool, UnspentTxOut> findUnspentTxOut(std::string transactionId, int index, std::vector<UnspentTxOut> aUnspentTxOuts);
 
