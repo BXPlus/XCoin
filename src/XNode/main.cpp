@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     std::vector<std::string> DNSS = std::vector<std::string>();
     for(int i = 1; i < argc; i++ )
         DNSS.emplace_back(argv[i]);
-    XNode::node node = XNode::node();
+    XNode::Node node = XNode::Node();
     node.start(DNSS);
     //std::getchar();
     return 0;

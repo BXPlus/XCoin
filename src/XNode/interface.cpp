@@ -136,6 +136,40 @@ std::vector<Block> XNode::Interface::importChain(const std::string& chainData) {
 }
 
 /**
+* Function serialising a DNS map to a std::string
+* @param dnsMap is map of ip/ports to public addresses
+* @returns an encoded protobuf string
+*/
+std::string XNode::Interface::encodeDNSHandshake(const std::map<std::string, std::string>& dnsMap, bool expectReply) {
+    xcoin::interchange::DNSHandshake encodedHandshake;
+    encodedHandshake.set_expectreply(expectReply);
+    for (auto const& x : dnsMap){
+        xcoin::interchange::DNSEntry *entry = encodedHandshake.add_entries();
+        entry->set_ipport(x.first);
+        entry->set_publickey(x.second);
+    }
+    return encodedHandshake.SerializeAsString();
+}
+
+/**
+* Function deserialising a std::string back to a DNS handshake
+* @param encodedHandshake is the encoded handshake
+* @returns a tuple containing the DNS ip/port to public address map and a bool set to true if the peer expects a reply
+*/
+std::pair<std::map<std::string, std::string>, bool> XNode::Interface::decodeDNSHandshake(const std::string& encodedHandshake) {
+    auto res = std::pair<std::map<std::string, std::string>, bool>();
+    auto dnsl = std::map<std::string, std::string>();
+    xcoin::interchange::DNSHandshake encodedObject;
+    encodedObject.ParseFromString(encodedHandshake);
+    res.second = encodedObject.expectreply();
+    for (xcoin::interchange::DNSEntry entry : encodedObject.entries()){
+        dnsl[entry.ipport()] = entry.publickey();
+    }
+    res.first = dnsl;
+    return res;
+}
+
+/**
 * Function that frees all memory used up by Protobuf during use
 */
 void XNode::Interface::shutdown() {

@@ -3,22 +3,19 @@
 //
 #include "node.h"
 
-#include <memory>
-
 /**
  * Constructor for the node class. Starts up a node on the XCoin network.
  * @param DNSS is a list of potential DNS seeds to query on startup
  * @param port is the port to use, 4143 by default
  */
 
-XNode::node::node(const int port) {
+XNode::Node::Node(const int port) {
     this->port = port;
     this->blockchain = Blockchain();
-    this->peerAddrs = std::map<std::string, std::string>();
-    this->peerSockets = std::map<std::string, drogon::WebSocketClientPtr>();
+    this->peers = std::map<std::string, XNodeClientData>();
 }
 
-void XNode::node::start(const std::vector<std::string>& DNSS) {
+void XNode::Node::start(const std::vector<std::string>& DNSS) {
     //TODO : Fetch Blockchain from cache (file).
     //TODO : Fetch dict from DNSS.
     //this->serverThread = std::make_unique<std::thread>(&XNode::node::spawnServer,this);
@@ -30,7 +27,7 @@ void XNode::node::start(const std::vector<std::string>& DNSS) {
     std::getchar();
 }
 
-void XNode::node::spawnServer() {
+void XNode::Node::spawnServer() {
     drogon::app()
             .addListener("0.0.0.0", this->port)
             .setThreadNum(4)
@@ -38,22 +35,13 @@ void XNode::node::spawnServer() {
 }
 
 
-void XNode::node::stop() {
+void XNode::Node::stop() {
     log("Server will shut down");
     drogon::app().quit();
     this->serverThread.release();
 }
 
-void XNode::node::handleIncomingMessage(const std::string &message, const drogon::WebSocketClientPtr &wsClPtr,
-                                        const drogon::WebSocketMessageType &wsMsType) {
-
-}
-
-void XNode::node::handleConnectionClosed(const drogon::WebSocketClientPtr &wsClPtr) {
-
-}
-
-void XNode::node::attemptBindToNodeServer(const std::string& wsUrl) {
+void XNode::Node::attemptBindToNodeServer(const std::string& wsUrl) {
     drogon::WebSocketClientPtr wsPtr = drogon::WebSocketClient::newWebSocketClient(wsUrl);
     wsPtr->setMessageHandler([](const std::string &message,
                                 const drogon::WebSocketClientPtr &wsClPtr,
@@ -61,35 +49,52 @@ void XNode::node::attemptBindToNodeServer(const std::string& wsUrl) {
             std::cout <<  message << std::endl;
     });
     wsPtr->setConnectionClosedHandler([this](const drogon::WebSocketClientPtr &wsClPtr){
-        this->handleConnectionClosed(wsClPtr);
+        this->handleConnectionClosed(wsClPtr->getConnection());
     });
     drogon::HttpRequestPtr req = drogon::HttpRequest::newHttpRequest();
     req->setPath("/hello");
     log("Will attempt to connect to: " + wsUrl);
-    wsPtr->connectToServer(req, [this](drogon::ReqResult r,
-    const drogon::HttpResponsePtr &,
+    wsPtr->connectToServer(req, [this, &req](drogon::ReqResult r,
+    const drogon::HttpResponsePtr &res,
     const drogon::WebSocketClientPtr &wsPtr){
         if (r != drogon::ReqResult::Ok){
             log("CONN_FAILED:"+wsPtr->getConnection()->peerAddr().toIpPort());
         }
-        std::string addr = wsPtr->getConnection()->peerAddr().toIpPort();
-        log(addr + " connected successfully");
-        this->peerAddrs[addr] = "<unknown>";
-        this->peerSockets[addr] = wsPtr;
-        attemptDNSSHandshake(wsPtr);
+        handleNewConnection(req,wsPtr->getConnection());
     });
     drogon::app().run();
 }
 
-std::map<std::string, std::string> XNode::node::attemptDNSSHandshake(drogon::WebSocketClientPtr wsPtr) {
-    wsPtr->getConnection()->send("XCO::DNSQUERY");
-    return std::map<std::string, std::string>();
+void XNode::Node::attemptDNSSHandshake(const drogon::WebSocketConnectionPtr& wsPtr) {
+    std::map<std::string, std::string> prunedDNSList = std::map<std::string, std::string>();
+    for (auto const& elem : this->peers){
+        prunedDNSList[elem.first] = elem.second.publicAddr;
+    }
+    std::string payload = XNode::Interface::encodeDNSHandshake(prunedDNSList, true);
+    wsPtr->send(payload,drogon::WebSocketMessageType::Binary);
 }
 
-std::map<std::string, std::string> XNode::node::attemptPublicAddrHandshake(drogon::WebSocketClientPtr wsPtr) {
-    return std::map<std::string, std::string>();
-}
-
-void XNode::node::log(const std::string& message, const std::string& host) {
+void XNode::Node::log(const std::string& message, const std::string& host) {
     std::cout << host + "    " + message << std::endl;
+}
+
+void XNode::Node::handleNewMessage(const drogon::WebSocketConnectionPtr &wsPtr, std::string &&message,
+                                   const drogon::WebSocketMessageType &msgType) {
+
+}
+
+void XNode::Node::handleNewConnection(const drogon::HttpRequestPtr &reqPtr, const drogon::WebSocketConnectionPtr &wsPtr) {
+    std::string addr = wsPtr->peerAddr().toIpPort();
+    log(addr + " connected successfully");
+    if (this->peers.count(addr) == 0){
+        this->peers[addr] = XNode::XNodeClientData(addr, wsPtr);
+    }
+    attemptDNSSHandshake(wsPtr);
+}
+
+void XNode::Node::handleConnectionClosed(const drogon::WebSocketConnectionPtr &wsPtr) {
+    std::string addr = wsPtr->peerAddr().toIpPort();
+    if (this->peers.count(addr) != 0){
+        this->peers.erase(addr);
+    }
 }
