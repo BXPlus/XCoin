@@ -9,7 +9,7 @@
 
 /************************************************************************************
  *
- *  xnodectl stands for XNode Controller and is the main Http controller for XNode.
+ *  xnodectl stands for node Controller and is the main Http controller for node.
  *  The purpose of this Http controller is to provide a simple interface for
  *  implementing the Networking.
  *  It is supposed to evolve in the near future into a WebSocket controller, but me (Kevin)

@@ -6,12 +6,14 @@
 #define XBLOCKCHAIN_XNODEWS_H
 
 #include <drogon/WebSocketController.h>
-
+#include "node.h"
+#include "interface.h"
+#include "Blockchain.h"
 using namespace drogon;
 
 /************************************************************************************
  *
- *  XNodeWS stands for XNode WebSocket and is the main Web Socket controller for XNode.
+ *  XNodeWS stands for node WebSocket and is the main Web Socket controller for node.
  *  It will be used by the WebSocket server to handle all WebSocket requests from clients.
  *  It will provide a simple interface for the client to interact with another user.
  *  To use it either as a websocket client or server, you need to uncomment de relevant

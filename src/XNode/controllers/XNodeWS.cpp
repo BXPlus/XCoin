@@ -14,6 +14,7 @@ void XNodeWS::handleNewMessage(const WebSocketConnectionPtr &wsConnPtr, std::str
                                const WebSocketMessageType &messageType) {
     // Sends back the message to the client.
     wsConnPtr->send("you sent me :" + message);
+    std::cout << "ACKMSG:" + wsConnPtr->peerAddr().toIpPort() + ":" + message;
 }
 
 /**
@@ -23,7 +24,12 @@ void XNodeWS::handleNewMessage(const WebSocketConnectionPtr &wsConnPtr, std::str
  */
 void XNodeWS::handleNewConnection(const HttpRequestPtr &req, const WebSocketConnectionPtr &wsConnPtr) {
     // Sends a message to the client indicating his address and that the connection was successful.
-    wsConnPtr->send("Welcome " + req->getPeerAddr().toIpPort() + ". Successful connection!");
+    wsConnPtr->send("ACK:" + req->getPeerAddr().toIpPort() + ".OK");
+    std::cout << "CONN:" + req->getPeerAddr().toIpPort() << std::endl;
+    vector<Block> blocks = vector<Block>();
+    blocks.push_back(Blockchain().genesisBlock);
+    blocks.push_back(Blockchain().generateNextBlock("This is the second block", 10, 0, ""));
+    wsConnPtr->send(XNode::Interface::exportChain(blocks),WebSocketMessageType::Binary);
 }
 
 /**
@@ -32,5 +38,5 @@ void XNodeWS::handleNewConnection(const HttpRequestPtr &req, const WebSocketConn
  */
 void XNodeWS::handleConnectionClosed(const WebSocketConnectionPtr &wsConnPtr) {
     // Sends a message to the client indicating that the connection was closed.
-    wsConnPtr->send("Connection closed!");
+    std::cout << "CLOSED: " + wsConnPtr->peerAddr().toIpPort() << std::endl;
 }

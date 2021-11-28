@@ -61,6 +61,39 @@ vector<Block> XNode::Interface::decodeChain(const xcoin::interchange::Blockchain
 }
 
 /**
+* Internal function to construct a getHeaders request object for another node to sync headers
+* @param hashCount is the number of hashes provided not including the stop hash (1 to 200)
+* @param stopHash is the last header hash being requested, set "" for non-stop
+* @param blockHeaderHashes is one or more header hashes in reverse order of block height.
+* @returns a getHeaders internal protobuf interchange message object
+*/
+xcoin::interchange::GetHeaders XNode::Interface::generateGetHeadersMessage(int hashCount, string stopHash, const vector<string>& blockHeaderHashes) {
+    xcoin::interchange::GetHeaders request;
+    request.set_hashcount(hashCount);
+    request.set_stophash(stopHash);
+    for (const string& headerHash : blockHeaderHashes){
+        request.add_blockheaderhashes(headerHash);
+    }
+    return request;
+}
+
+/**
+* Internal function to construct a Headers reply object for another node to sync headers
+* @param chain is the block chain to encode back to headers
+* @returns a Headers internal protobuf interchange message object
+*/
+xcoin::interchange::Headers XNode::Interface::generateHeadersReplyMessage(const vector<Block> &chain) {
+    xcoin::interchange::Headers reply;
+    for (Block block: chain){
+        xcoin::interchange::Header* header = reply.add_headers();
+        header->set_previousblockheaderhash(block.previousHash);
+        header->set_merkleroothash(block.hash);
+        header->set_time(block.timestamp);
+    }
+    return reply;
+}
+
+/**
 * Function serialising a block to a string
 * @param block is the block to convert
 * @returns a serialised string

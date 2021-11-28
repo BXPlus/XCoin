@@ -25,6 +25,8 @@ namespace XNode{
         static Block decodeBlock(const xcoin::interchange::Block& protoBlock);
         static xcoin::interchange::Blockchain encodeChain(const vector<Block>& chain);
         static vector<Block> decodeChain(const xcoin::interchange::Blockchain& protoChain);
+        static xcoin::interchange::GetHeaders generateGetHeadersMessage(int hashCount, string stopHash, const vector<string>& blockHeaderHashes);
+        static xcoin::interchange::Headers generateHeadersReplyMessage(const vector<Block>& chain);
     public:
         static string exportBlock(const Block& block);
         static Block importBlock(const string& blockData);

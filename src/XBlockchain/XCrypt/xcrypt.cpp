@@ -6,9 +6,11 @@
 #include <openssl/evp.h>
 #include <openssl/err.h>
 #include <string.h>
+#include "xcrypt.h"
 
 int encrypt(unsigned char *plaintext, int plaintext_len, unsigned char *key, unsigned char *iv,
             unsigned char *ciphertext) {
+
     EVP_CIPHER_CTX *ctx;
     int len;
     int ciphertext_len;
@@ -20,12 +22,12 @@ int encrypt(unsigned char *plaintext, int plaintext_len, unsigned char *key, uns
     }
     /* the encryption operation initialization
        EVP_EncryptiInit_ex() sets up cipher context ctx for encryption  */
-    if ( EVP_EncryptiInit_ex(ctx, EVP_aes_256_cbc(), NULL , key, iv) != 1){
+    if ( EVP_EncryptiInit_ex(ctx, EVP_aes_256_cbc(), NULL , key, iv) == 0){
         handleErrors();
     }
 /* obtain the encrypted output
  */
-    if ( EVP_EncryptUpdate(ctx, ciphertext, &len, plaintext, plaintext_len) != 1 ){
+    if ( EVP_EncryptUpdate(ctx, ciphertext, &len, plaintext, plaintext_len) == 0 ){
         handleErrors();
     }
 
@@ -54,10 +56,10 @@ int encrypt(unsigned char *plaintext, int plaintext_len, unsigned char *key, uns
 }
 
 void handleErrors(void){
-/*ERR_print_errors() is a convenience function that prints the error strings for all errors that OpenSSL has recorded to bp, thus emptying the error queue.*/
- ERR_rint_errors_fp(stderr)
- /*stderr standard error*/
- abort();
+    /*ERR_print_errors() is a convenience function that prints the error strings for all errors that OpenSSL has recorded to bp, thus emptying the error queue.*/
+     ERR_rint_errors_fp(stderr)
+     /*stderr standard error*/
+     abort();
 }
 
 int main(void) {
@@ -66,10 +68,10 @@ int main(void) {
 
      /* 128 bit iv.
      */
-    unsigned char *iv= (unsigned char *)"0123456789012345" ;
-    unsigned char *key= (unsigned char *)"01234567890123456789012345678901";
+    unsigned char *iv ;
+    unsigned char *key;
 
-    unsigned char *plaintext = ???????????;
+    unsigned char *plaintext;
 
     /* pour stocker le ciphertext*/
     unsigned char ciphertext[128];

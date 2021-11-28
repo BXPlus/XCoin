@@ -1,22 +1,29 @@
 #include "transaction.h"
 #include "wallet.cpp"
+#include <algorithm>
 
-/*
- *
 vector<Transaction> transactionPool;
 
 vector<Transaction> getTransactionPool() {
     return transactionPool;
 }
 
+/*
+ *
 Transaction sendTransaction(string address, int amount) {
     Transaction tx = createTransaction(address, amount, getPrivateFromWallet(), getUnspentTxOuts(), getTransactionPool());
     addToTransactionPool(tx, getUnspentTxOuts());
     return tx;
 }
+ */
+
+bool isValidTxForPool(Transaction tx, vector<Transaction> transactionPool)
+{
+    return false; //To implement
+}
 
 void addToTransactionPool(Transaction tx, vector<UnspentTxOut> unspentTxOuts) {
-    if (!validateTransaction(tx, unspentTxOuts)) {
+    if (!tx.validateTransaction(unspentTxOuts)) {
         cout << "Trying to add invalid tx to pool";
         return;
     }
@@ -25,13 +32,13 @@ void addToTransactionPool(Transaction tx, vector<UnspentTxOut> unspentTxOuts) {
         return;
     }
     //Add a console log
-    transactionPool.push_back(tx)
-    return
+    transactionPool.push_back(tx);
+    return;
 }
 
 bool hasTxIn(TxIn txIn, vector<UnspentTxOut> unspentTxOuts) {
     for (int i = 0; i < int(unspentTxOuts.size()); i++) {
-        unspentTxOut uTxO = unspentTxOuts[i];
+        UnspentTxOut uTxO = unspentTxOuts[i];
         if (uTxO.txOutId == txIn.txOutId && uTxO.txOutIndex == txIn.txOutIndex) {
             return true;
         }
@@ -42,9 +49,9 @@ bool hasTxIn(TxIn txIn, vector<UnspentTxOut> unspentTxOuts) {
 void updateTransactionPool(vector<UnspentTxOut> unspentTxOuts) {
     vector<Transaction> invalidTxs;
     for (int i = 0; i < int(transactionPool.size()); i++) {
-        tx = transactionPool[i];
+        Transaction tx = transactionPool[i];
         for (int j = 0; j < int((tx.txIns).size()); j++) {
-            txIn = (tx.txIns)[j];
+            TxIn txIn = (tx.txIns)[j];
             if (!hasTxIn(txIn, unspentTxOuts)) {
                 invalidTxs.push_back(tx);
                 break;
@@ -52,11 +59,19 @@ void updateTransactionPool(vector<UnspentTxOut> unspentTxOuts) {
         }
     }
     if (invalidTxs.size() > 0){
-        cout << "Removing the following transactions from txPool:" //Here we add the elements in invalidTxs;
+        //vector<Transaction> newPool;
+        cout << "Removing the following transactions from txPool:"; //Here we add the elements in invalidTxs;
         for (int i = 0; i < int(invalidTxs.size()); i++) {
-            tx = invalidTxs[i];
-            remove(transactionPool.begin(), transactionPool.end(), tx); //Test this
+            Transaction tx = invalidTxs[i];
+            //remove(transactionPool.begin(), transactionPool.end(), tx);
+            //for (int i = 0; i < int(transactionPool.size()); i++) {
+            //    Transaction tx = transactionPool[i];
+            //    if (find(invalidTxs.begin(), invalidTxs.end(), tx) == invalidTxs.end()) {
+            //        newPool.push_back(tx);
+            //    }
+            //}
         }
+        //transactionPool = newPool;
     }
 }
 
@@ -69,8 +84,3 @@ vector<TxIn> getTxPoolIns(vector<Transaction> aTransactionPool) {
     return res;
 }
 
-void isValidTxForPool(){
-    return
-}
-
- */
