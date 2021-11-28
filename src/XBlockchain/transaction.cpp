@@ -9,18 +9,18 @@
 
 const int COINBASE_AMOUNT = 50;
 
-TxOut::TxOut(string address, int amount) {
+TxOut::TxOut(std::string address, int amount) {
     this -> address = address;
     this -> amount = amount;
 }
 
-string Transaction::getTransactionId() {
-    stringstream txInsContent;
+std::string Transaction::getTransactionId() {
+    std::stringstream txInsContent;
     for (int i = 0; i < int(txIns.size()); i++) {
         element = txIns[i];
-        txInsContent << element.txOutId << string(element.txOutIndex);
+        txInsContent << element.txOutId << std::string(element.txOutIndex);
     }
-    stringstream txOutsContent;
+    std::stringstream txOutsContent;
     for (int i = 0; i < int(txOuts.size()); i++) {
         element = txOuts[i];
         txOutsContent << element.address << element.amount;
@@ -28,7 +28,7 @@ string Transaction::getTransactionId() {
     return sha256(txInsContent.str() + txOutsContent.str());
 }
 
-string getPublicKey(string aPrivateKey) {
+std::string getPublicKey(std::string aPrivateKey) {
     return keyFromPrivate(aPrivateKey, 'hex').getPublic().encode('hex');
 }
 
@@ -248,7 +248,7 @@ bool Transaction::validateTransaction(vector<UnspentTxOut> aUnspentTxOuts) {
 
     bool hasValidTxIns = true;
     for (int i = 0; i < int(txIns.size()); i++)
-        hasValidTxIns &= txIns[i].validateTxIn(id, aUnspentTxOuts);
+        hasValidTxIns &= validateTxIn(txIns[i], id, aUnspentTxOuts);
 
     if (!hasValidTxIns) {
         cout << "some of the txIns are invalid in tx: " << id << "\n";
