@@ -16,7 +16,19 @@ XNode::node::node(const std::string &ip, int port) {
     //TODO : Fetch Blockchain from cache (file).
     this->blockchain = Blockchain();
     this->name2ip = std::map<std::string, std::string>();
+
+
+    /*
+     *
+     * Request the list of Nodes of the DNS seed
+     *
+     */
+    std::map<std::string, std::string> received ;  //the received dictionary
+
+    name2ip = received;
     this->name2ip["self"] = ip;
+
+
 
 }
 
@@ -149,12 +161,23 @@ void XNode::node::setupWebSocketClient() {
 
 
 std::string XNode::node::giveIp(std::string name){
+    std::string ret = name2ip[name];
+    if (ret==""){
+        return "None";
+    }
+    return ret;
 
-    return name2ip[name];
 }
 
 void XNode::node::addNode(std::string name, std::string ip) {
+
+    if (name2ip.find("name") != name2ip.end()){
+        return;
+    }
     name2ip[name] = ip;
+    for (std::map<std::string, std::string>::iterator i = name2ip.begin(); i != name2ip.end(); ++i){
+        sendNew(i->second, name, ip);
+    }
 }
 
 std::map<std::string, std::string> XNode::node::shareListNode() {
@@ -166,6 +189,17 @@ int XNode::node::NBnodes() {
     return name2ip.size();
 }
 
+std::pair<std::string, std::string> XNode::node::connect(std::string name, std::string ip) {
+    addNode(name, ip);
+    return std::pair(this->name, this->ip);
+}
+void sendNew(std::string ip, std::string new_name, std::string new_ip){
+    /*
+     * To define
+     *
+     * Send to 'ip' the 'new_name' and 'new_ip' which is new for him
+     */
+}
 /*
 Blockchain node::node::getBlockchain() {
     return node::blockchain;

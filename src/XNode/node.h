@@ -25,7 +25,8 @@ namespace XNode{
         node(const std::string &ip, int port);
         node(const std::string &ip, int port, bool isUsingWebSocketController, bool isWebSocketServer);
 
-        std::map<std::string, std::string> name2ip;  //problem when we put it static
+        std::map<std::string, std::string> name2ip;  //problem when we put it static, to fix later
+        std::string DNSseedIP = ""; //a Node knows by default the adress of the DNS seed
         Blockchain blockchain;
 
         ~node()=default;
@@ -36,8 +37,11 @@ namespace XNode{
         std::string giveIp(std::string name);
         void addNode(std::string name, std::string ip);
         std::map<std::string, std::string> shareListNode();
+        void sendNew(std::string ip, std::string new_name, std::string new_ip);
         int NBnodes();
+       std:: pair<std::string, std::string> connect(std::string name, std::string ip);
     private:
+        std::string name = ""; //To put into the constructor
         std::string ip;
         int port;
         bool isUsingWebSocketController;
