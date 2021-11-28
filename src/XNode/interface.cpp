@@ -38,7 +38,7 @@ Block XNode::Interface::decodeBlock(const xcoin::interchange::Block& protoBlock)
 * @param chain is the list of blocks to convert
 * @returns a protobuf interchange blockchain object
 */
-xcoin::interchange::Blockchain XNode::Interface::encodeChain(const vector<Block>& chain) {
+xcoin::interchange::Blockchain XNode::Interface::encodeChain(const std::vector<Block>& chain) {
     xcoin::interchange::Blockchain encodedChain;
     for (const Block& block:chain) {
         xcoin::interchange::Block* encodedBlock = encodedChain.add_blocks();
@@ -52,8 +52,8 @@ xcoin::interchange::Blockchain XNode::Interface::encodeChain(const vector<Block>
 * @param protoChain is a protobuf interchange blockchain object
 * @returns a list of blocks
 */
-vector<Block> XNode::Interface::decodeChain(const xcoin::interchange::Blockchain& protoChain) {
-    vector<Block> decodedBlocks;
+std::vector<Block> XNode::Interface::decodeChain(const xcoin::interchange::Blockchain& protoChain) {
+    std::vector<Block> decodedBlocks;
     for (const xcoin::interchange::Block& block:protoChain.blocks()) {
         decodedBlocks.push_back(decodeBlock(block));
     }
@@ -67,11 +67,11 @@ vector<Block> XNode::Interface::decodeChain(const xcoin::interchange::Blockchain
 * @param blockHeaderHashes is one or more header hashes in reverse order of block height.
 * @returns a getHeaders internal protobuf interchange message object
 */
-xcoin::interchange::GetHeaders XNode::Interface::generateGetHeadersMessage(int hashCount, string stopHash, const vector<string>& blockHeaderHashes) {
+xcoin::interchange::GetHeaders XNode::Interface::generateGetHeadersMessage(int hashCount, std::string stopHash, const std::vector<std::string>& blockHeaderHashes) {
     xcoin::interchange::GetHeaders request;
     request.set_hashcount(hashCount);
     request.set_stophash(stopHash);
-    for (const string& headerHash : blockHeaderHashes){
+    for (const std::string& headerHash : blockHeaderHashes){
         request.add_blockheaderhashes(headerHash);
     }
     return request;
@@ -82,7 +82,7 @@ xcoin::interchange::GetHeaders XNode::Interface::generateGetHeadersMessage(int h
 * @param chain is the block chain to encode back to headers
 * @returns a Headers internal protobuf interchange message object
 */
-xcoin::interchange::Headers XNode::Interface::generateHeadersReplyMessage(const vector<Block> &chain) {
+xcoin::interchange::Headers XNode::Interface::generateHeadersReplyMessage(const std::vector<Block> &chain) {
     xcoin::interchange::Headers reply;
     for (Block block: chain){
         xcoin::interchange::Header* header = reply.add_headers();
@@ -94,42 +94,42 @@ xcoin::interchange::Headers XNode::Interface::generateHeadersReplyMessage(const 
 }
 
 /**
-* Function serialising a block to a string
+* Function serialising a block to a std::string
 * @param block is the block to convert
-* @returns a serialised string
+* @returns a serialised std::string
 */
-string XNode::Interface::exportBlock(const Block& block) {
+std::string XNode::Interface::exportBlock(const Block& block) {
     xcoin::interchange::Block encodedBlock = encodeBlock(block);
     return encodedBlock.SerializeAsString();
 }
 
 /**
-* Function deserialising a string back to a block
-* @param blockData is block data as a string
+* Function deserialising a std::string back to a block
+* @param blockData is block data as a std::string
 * @returns a block
 */
-Block XNode::Interface::importBlock(const string& blockData) {
+Block XNode::Interface::importBlock(const std::string& blockData) {
     xcoin::interchange::Block decodedBlock;
     decodedBlock.ParseFromString(blockData);
     return decodeBlock(decodedBlock);
 }
 
 /**
-* Function serialising a list of blocks to a string
+* Function serialising a list of blocks to a std::string
 * @param chain is the list of blocks to convert
-* @returns a serialised string
+* @returns a serialised std::string
 */
-string XNode::Interface::exportChain(const vector<Block>& chain) {
+std::string XNode::Interface::exportChain(const std::vector<Block>& chain) {
     xcoin::interchange::Blockchain encodedChain = encodeChain(chain);
     return encodedChain.SerializeAsString();
 }
 
 /**
-* Function deserialising a string back to a list of blocks
-* @param chainData is block list data as a string
+* Function deserialising a std::string back to a list of blocks
+* @param chainData is block list data as a std::string
 * @returns a list of blocks
 */
-vector<Block> XNode::Interface::importChain(const string& chainData) {
+std::vector<Block> XNode::Interface::importChain(const std::string& chainData) {
     xcoin::interchange::Blockchain encodedChain;
     encodedChain.ParseFromString(chainData);
     return decodeChain(encodedChain);

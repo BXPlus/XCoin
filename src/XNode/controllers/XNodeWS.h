@@ -33,6 +33,7 @@ public:
     WS_PATH_LIST_BEGIN
         // Example of a path
         WS_PATH_ADD("/hello");
+        WS_PATH_ADD("/terminate");
         // TODO: Add the paths here
     WS_PATH_LIST_END
 };

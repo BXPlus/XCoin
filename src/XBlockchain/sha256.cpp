@@ -3,6 +3,7 @@
 #include "sha256.h"
 #include <openssl/sha.h>
 #include <sstream>
+#include <iomanip>
 
 std::string sha256(std::string input)
 {

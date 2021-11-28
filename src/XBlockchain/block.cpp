@@ -1,10 +1,8 @@
 #include "block.h"
 
-using namespace std;
-
 //Constructor
 
-Block::Block(int index, string hash, string previousHash, long long timestamp, string data, int difficulty, int minterBalance, string minterAddress)
+Block::Block(int index, std::string hash, std::string previousHash, long long timestamp, std::string data, int difficulty, int minterBalance, std::string minterAddress)
 {
     //Elements for minimal working
     this->index = index;
@@ -20,7 +18,7 @@ Block::Block(int index, string hash, string previousHash, long long timestamp, s
 
 //Hash calculator
 
-string Block::calculateHashForBlock()
+std::string Block::calculateHashForBlock()
 {
     return calculateHash(index, previousHash, timestamp, data, difficulty, minterBalance, minterAddress);
 }
@@ -39,17 +37,17 @@ long long getCurrentTimestamp()
 
 //Hash Calculator
 
-string calculateHash(int index, string previousHash, long long timestamp, string data, int difficulty, int minterBalance, string minterAddress)
+std::string calculateHash(int index, std::string previousHash, long long timestamp, std::string data, int difficulty, int minterBalance, std::string minterAddress)
 {
-    stringstream ss;
+    std::stringstream ss;
     ss << index << previousHash << timestamp << data << difficulty << minterBalance << minterAddress;
     return sha256(ss.str());
 }
 
 //Staking
 
-//Converting a hexadecimal string into a BigNumber
-BigNumber hexToBigNumber(string number)
+//Converting a hexadecimal std::string into a BigNumber
+BigNumber hexToBigNumber(std::string number)
 {
     BigNumber res = BigNumber(0);
     for (int i = number.size(); i >= 0; i--)
@@ -124,7 +122,7 @@ BigNumber hexToBigNumber(string number)
     return res;
 }
 
-bool isBlockStakingValid(string previousHash, string address, long long timestamp, int balance, int difficulty, int index)
+bool isBlockStakingValid(std::string previousHash, std::string address, long long timestamp, int balance, int difficulty, int index)
 { //For the moment we are using the attached library to handle bignumbers, if we need a more advanced one in the future we should consider using the BIGNUM library of openssl
     difficulty++;
     if (index < mintingWithoutCoinIndex)
@@ -132,16 +130,16 @@ bool isBlockStakingValid(string previousHash, string address, long long timestam
         balance++;
     };
     BigNumber balanceOverDifficulty = (BigNumber(2).pow(256)).multiply(balance).divide(difficulty);
-    stringstream ss;
+    std::stringstream ss;
     ss << previousHash << address << timestamp;
-    const string stakingHash = sha256(ss.str());
+    const std::string stakingHash = sha256(ss.str());
     const BigNumber decimalStakingHash = hexToBigNumber(stakingHash);
     BigNumber difference = balanceOverDifficulty.subtract(decimalStakingHash);
 
     return !(difference.isNegative());
 }
 
-Block findBlock(int index, string previousHash, string data, int difficulty, int accountBalance, string accountAddress)
+Block findBlock(int index, std::string previousHash, std::string data, int difficulty, int accountBalance, std::string accountAddress)
 {
     long long pastTimestamp = 0;
     while (true)
@@ -149,7 +147,7 @@ Block findBlock(int index, string previousHash, string data, int difficulty, int
         long long timestamp = getCurrentTimestamp();
         if (pastTimestamp != timestamp)
         {
-            string hash = calculateHash(index, previousHash, timestamp, data, difficulty, accountBalance, accountAddress);
+            std::string hash = calculateHash(index, previousHash, timestamp, data, difficulty, accountBalance, accountAddress);
             if (isBlockStakingValid(previousHash, accountAddress, timestamp, accountBalance, difficulty, index))
             {
                 return Block(index, hash, previousHash, timestamp, data, difficulty, accountBalance, accountAddress);

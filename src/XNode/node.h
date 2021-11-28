@@ -11,6 +11,7 @@
 #include "Blockchain.h"
 #include "controllers/xnodectl.h"
 #include <iostream>
+#include <thread>
 #include <drogon/WebSocketClient.h>
 #include <drogon/HttpAppFramework.h>
 
@@ -22,33 +23,26 @@
 namespace XNode{
     class node {
     public:
-        node(const std::string &ip, int port);
-        node(const std::string &ip, int port, bool isUsingWebSocketController, bool isWebSocketServer);
-
-        std::map<std::string, std::string> name2ip;  //problem when we put it static, to fix later
-        std::string DNSseedIP = ""; //a Node knows by default the adress of the DNS seed
-        Blockchain blockchain;
+        explicit node(int port = 4143);
 
         ~node()=default;
-
-        void start();
+        void start(const std::vector<std::string>& DNSS);
         void stop();
-        void setupWebSocketClient();
-        std::string giveIp(std::string name);
-        void addNode(std::string name, std::string ip);
-        std::map<std::string, std::string> shareListNode();
-        void sendNew(std::string ip, std::string new_name, std::string new_ip);
-        int NBnodes();
-       std:: pair<std::string, std::string> connect(std::string name, std::string ip);
     private:
-        std::string name = ""; //To put into the constructor
-        std::string ip;
         int port;
-        bool isUsingWebSocketController;
-        bool isWebSocketServer;
-
-
-
+        std::map<std::string, std::string> peerAddrs;
+        std::map<std::string, drogon::WebSocketClientPtr> peerSockets;
+        Blockchain blockchain;
+        std::unique_ptr<std::thread> serverThread;
+        void spawnServer();
+        void handleIncomingMessage(const std::string &message,
+                                    const drogon::WebSocketClientPtr &wsClPtr,
+                                    const drogon::WebSocketMessageType &wsMsType);
+        void handleConnectionClosed(const drogon::WebSocketClientPtr &wsClPtr);
+        void attemptBindToNodeServer(const std::string& wsUrl);
+        std::map<std::string, std::string> attemptDNSSHandshake(drogon::WebSocketClientPtr wsPtr);
+        std::map<std::string, std::string> attemptPublicAddrHandshake(drogon::WebSocketClientPtr wsPtr);
+        static void log(const std::string& message, const std::string& host = "local");
     };
 }
 

@@ -23,15 +23,15 @@ namespace XNode{
     private:
         static xcoin::interchange::Block encodeBlock(Block block);
         static Block decodeBlock(const xcoin::interchange::Block& protoBlock);
-        static xcoin::interchange::Blockchain encodeChain(const vector<Block>& chain);
-        static vector<Block> decodeChain(const xcoin::interchange::Blockchain& protoChain);
-        static xcoin::interchange::GetHeaders generateGetHeadersMessage(int hashCount, string stopHash, const vector<string>& blockHeaderHashes);
-        static xcoin::interchange::Headers generateHeadersReplyMessage(const vector<Block>& chain);
+        static xcoin::interchange::Blockchain encodeChain(const std::vector<Block>& chain);
+        static std::vector<Block> decodeChain(const xcoin::interchange::Blockchain& protoChain);
+        static xcoin::interchange::GetHeaders generateGetHeadersMessage(int hashCount, std::string stopHash, const std::vector<std::string>& blockHeaderHashes);
+        static xcoin::interchange::Headers generateHeadersReplyMessage(const std::vector<Block>& chain);
     public:
-        static string exportBlock(const Block& block);
-        static Block importBlock(const string& blockData);
-        static string exportChain(const vector<Block>& chain);
-        static vector<Block> importChain(const string& chainData);
+        static std::string exportBlock(const Block& block);
+        static Block importBlock(const std::string& blockData);
+        static std::string exportChain(const std::vector<Block>& chain);
+        static std::vector<Block> importChain(const std::string& chainData);
         static void shutdown();
         static bool startup();
     };

@@ -28,12 +28,12 @@ Blockchain::Blockchain()
 
 //Generating Blocks
 
-Block Blockchain::generateNextBlock(const string& blockData, int new_difficulty, int minterBalance, string minterAddress)
+Block Blockchain::generateNextBlock(const std::string& blockData, int new_difficulty, int minterBalance, std::string minterAddress)
 {
     const Block previousBlock = getLatestBlock();
     const int nextIndex = previousBlock.index + 1;
     const long long nextTimestamp = getCurrentTimestamp();
-    const string nextHash = calculateHash(nextIndex, previousBlock.hash, nextTimestamp, blockData, new_difficulty, minterBalance, minterAddress);
+    const std::string nextHash = calculateHash(nextIndex, previousBlock.hash, nextTimestamp, blockData, new_difficulty, minterBalance, minterAddress);
     const Block newBlock = Block(nextIndex, nextHash, previousBlock.hash, nextTimestamp, blockData, new_difficulty, minterBalance, minterAddress);
     return newBlock;
 }
@@ -167,9 +167,9 @@ bool Blockchain::isValidTimestamp(Block newBlock, Block previousBlock)
  * Helper function to return the blockchain as a list of blocks.
  * @return the blockchain as a list of blocks.
  */
-vector<Block> Blockchain::toBlocks() {
+std::vector<Block> Blockchain::toBlocks() {
     ChainNode currentNode = *tail;
-    vector<Block> blockList;
+    std::vector<Block> blockList;
     for (int i = 0; i < length - 1; i++)
     {
         blockList.push_back(currentNode.block);
