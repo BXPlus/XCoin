@@ -15,21 +15,20 @@ public:
     UnspentTxOut(std::string txOutID, int txOutIndex, std::string address, int amount);
 };
 
+class TxOut {
+public:
+    std::string address;
+    int amount;
+    TxOut(std::string address, int amount);
+};
+
 class TxIn {
 public:
     std::string txOutId;
     int txOutIndex;
     std::string signature;
     int getTxInAmount(std::vector<UnspentTxOut> aUnspentTxOuts);
-};
-
-
-class TxOut {
-public:
-    std::string address;
-    int amount;
-    TxOut(std::string address, int amount);
-    //JSONstd::stringify();
+    std::string JSONStringify();
 };
 
 class Transaction {
@@ -40,10 +39,12 @@ public:
     std::string getTransactionId();
     std::string signTxIn(int txInIndex, std::string privateKey, std::vector<UnspentTxOut> aUnspentTxOuts);
     bool hasValidTxIns();
+    bool validateTransaction(std::vector<UnspentTxOut> aUnspentTxOuts);
     bool isValidTransactionStructure();
     bool validateCoinbaseTx(int blockIndex);
-    bool validateTransaction(std::vector<UnspentTxOut> aUnspentTxOuts);
 };
+
+pair<bool, UnspentTxOut> findUnspentTxOut(std::string transactionId, int index, std::vector<UnspentTxOut> aUnspentTxOuts);
 
 std::vector<UnspentTxOut> updateUnspentTxOuts(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts);
 
@@ -61,16 +62,14 @@ bool validateBlockTransactions(std::vector<Transaction> aTransactions, std::vect
     return true; //To Implement
 };
 
-bool hasDuplicates(std::vector<TxIn> txIns){
+bool hasDuplicates(std::vector<TxIn> txIns) {
     return true; //To Implement
 }
 
 bool validateTxIn(TxIn txIn, Transaction transaction, std::vector<UnspentTxOut> aUnspentTxOuts);
 
-std::pair<bool, UnspentTxOut> findUnspentTxOut(std::string transactionId, int index, std::vector<UnspentTxOut>& aUnspentTxOuts);
-
 void processTransactions(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts, int blockIndex){
-    return;
+    return; //To implement
 }
 
 #endif //XCOIN_TRANSACTION_H
