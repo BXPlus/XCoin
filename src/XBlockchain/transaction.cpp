@@ -14,6 +14,10 @@ TxOut::TxOut(std::string address, int amount) {
     this -> amount = amount;
 }
 
+
+/*
+
+
 std::string Transaction::getTransactionId() {
     std::stringstream txInsContent;
     for (int i = 0; i < int(txIns.size()); i++) {
@@ -182,7 +186,7 @@ bool Transaction::isValidTransactionStructure() {
         std::cout << "transactionId missing";
         return false;
     }
-
+ */
     if (typeid(txIns) != typeid(std::vector<TxIn>())) {
         std::cout << "invalid txIns type in transaction";
         return false;
@@ -307,3 +311,5 @@ Transaction getCoinbaseTransaction(std::string address, int blockIndex) {
     t.id = t.getTransactionId();
     return t;
 }
+
+ */
