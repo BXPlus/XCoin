@@ -73,7 +73,7 @@ void XNode::node::attemptBindToNodeServer(const std::string& wsUrl) {
             log("CONN_FAILED:"+wsPtr->getConnection()->peerAddr().toIpPort());
         }
         std::string addr = wsPtr->getConnection()->peerAddr().toIpPort();
-        log("CONNECTED:");
+        log(addr + " connected successfully");
         this->peerAddrs[addr] = "<unknown>";
         this->peerSockets[addr] = wsPtr;
         attemptDNSSHandshake(wsPtr);
