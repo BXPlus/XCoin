@@ -179,7 +179,7 @@ bool isValidTxOutStructure(TxOut txOut) {
 
 bool Transaction::isValidTransactionStructure() {
     if (typeid(id) != typeid("string")) {
-        cout << "transactionId missing";
+        std::cout << "transactionId missing";
         return false;
     }
 
@@ -207,7 +207,7 @@ bool Transaction::isValidTransactionStructure() {
         isValid &= isValidTxOutStructure(txOuts[i]);
 
     if (!isValid) {
-        cout << "invalid TxOuts array";
+        std::cout << "invalid TxOuts array";
         return false;
     }
 
@@ -222,7 +222,7 @@ string TxIn::JSONStringify() {
 bool validateTxIn(TxIn txIn, std::string id, std::vector<UnspentTxOut> aUnspentTxOuts) {
     pair<bool, UnspentTxOut> tmp = findUnspentTxOut(txOutId, txIn.txOutIndex, aUnspentTxOuts);
     if (tmp.first == 0) {
-        cout << "referenced txOut not found: " << TxIn.JSONStringify() << "\n";
+        std::cout << "referenced txOut not found: " << TxIn.JSONStringify() << "\n";
         return false;
     }
     std::string referencedUTxOut = tmp.second;
@@ -231,7 +231,7 @@ bool validateTxIn(TxIn txIn, std::string id, std::vector<UnspentTxOut> aUnspentT
     Keys key = keyFromPublic(address);
     bool validSignature = key.verify(id, txIn.signature);
     if (!validSignature) {
-        cout << "invalid txIn signature: " << txIn.signature << " txId: " << id << " address: " << address << "\n";
+        std::cout << "invalid txIn signature: " << txIn.signature << " txId: " << id << " address: " << address << "\n";
         return false;
     }
     return true;
@@ -242,7 +242,7 @@ bool Transaction::validateTransaction(std::vector<UnspentTxOut> aUnspentTxOuts) 
         return false;
 
     if (getTransactionId() != id) {
-        cout << "Invalid tx id: " << id << "\n";
+        std::cout << "Invalid tx id: " << id << "\n";
         return false;
     }
 
@@ -251,7 +251,7 @@ bool Transaction::validateTransaction(std::vector<UnspentTxOut> aUnspentTxOuts) 
         hasValidTxIns &= validateTxIn(txIns[i], id, aUnspentTxOuts);
 
     if (!hasValidTxIns) {
-        cout << "some of the txIns are invalid in tx: " << id << "\n";
+        std::cout << "some of the txIns are invalid in tx: " << id << "\n";
         return false;
     }
 
