@@ -13,7 +13,6 @@
 void XNodeWS::handleNewMessage(const WebSocketConnectionPtr &wsConnPtr, std::string &&message,
                                const WebSocketMessageType &messageType) {
     // Sends back the message to the client.
-    wsConnPtr->send("you sent me :" + message);
     std::cout << "ACKMSG:" + wsConnPtr->peerAddr().toIpPort() + ":" + message;
 }
 
