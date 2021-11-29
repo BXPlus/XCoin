@@ -112,14 +112,16 @@ This week I added the functions getPriv() and getPub() to Keys, and I understood
 
 @Thang Long VU 
 
-- Achieved in this week (week 3)
-    - Almost done with the Transaction part, only requires Keys-class specific functions from XNode
-    - Discussed with team member and changed the design txIns and txOuts in the transaction class from arrays to vectors (https://github.com/BXPlus/XCoin/commit/325025f19356768f31994f812b044d0235778713)
-    - Added validate Transaction (https://github.com/BXPlus/XCoin/commit/55c4bd671027249177b8b2afba57d11c883a77a7)
-    - Fixed isValidTxOutStructure method (https://github.com/BXPlus/XCoin/commit/202bd6dddc4e40e57219453e46143544100b95f2)
-    - Added isValidAddress method (https://github.com/BXPlus/XCoin/commit/3fe034bcd5f22c9b5e671716a6f4dcacf84b5a5d)
-    - Added the amount of coinbase output, the validation of coinbase transaction and getCoinbaseTransaction (https://github.com/BXPlus/XCoin/commit/2adc2747d971f1016e9ce829b48383418a16cfa9)
-    - Implemented signTxIn (creating signature) and validateTxIn (https://github.com/BXPlus/XCoin/commit/8b05a49cd6912a1c909391062b5f01fea8a70723)
-- Plan for the next week (week 4)
-    - Continue research on Wallet part ([https://naivecoinstake.learn.uno/04-Wallet/](https://naivecoinstake.learn.uno/04-Wallet/))
-    - Write unit tests for the Transaction part
+- Achieved in this week (week 4)
+    - Remove using namespace std; in transaction.h and transaction.cpp and add std:: to vector, string and cout methods.
+        https://github.com/BXPlus/XCoin/commit/d3466611eaf43dd2ffae55b1bd658be9ee39b695
+        https://github.com/BXPlus/XCoin/commit/11ca3ec3106a2bbd74673d39c05d30de28977f39
+        https://github.com/BXPlus/XCoin/commit/380a9c36b9f5f7b8aa599c942fb20239d6ebbde5
+        https://github.com/BXPlus/XCoin/commit/cb6b7de4f1a97f29d71f9507c45b5e82bce8db05
+        https://github.com/BXPlus/XCoin/commit/a92cbb731df8a3f60552b8fc0176a81ca30165d3
+    - Modify the KeyFromPublic and KeyFromPrivate arguments in keys.h, keys.cpp code and transaction.h, transaction.cpp code.
+        https://github.com/BXPlus/XCoin/commit/194fc19363e5c3a02e901fd353146b1b92540015
+        
+- Plan for the next week (week 5)
+    - Fix my configurations in order to compile my codes to fix bugs in transaction.h and transaction.cpp.
+    - Write unit tests for the Transaction part.

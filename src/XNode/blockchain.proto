@@ -46,9 +46,18 @@ message XNodeMessage{
   oneof contents{
     GetHeaders getHeadersMessage = 5;
     Headers headersMessage = 6;
+    DNSHandshake dnsHandshakeMessage = 7;
   }
 }
 
+message DNSEntry{
+  string ipport = 1;
+  string publicKey = 2;
+}
 
+message DNSHandshake{
+  bool expectReply = 1;
+  repeated DNSEntry entries = 2;
+}
 
 

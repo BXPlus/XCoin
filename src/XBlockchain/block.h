@@ -9,12 +9,10 @@
 #include <chrono>
 #include <cmath>
 
-using namespace std;
-
-using chrono::duration_cast;
-using chrono::milliseconds;
-using chrono::seconds;
-using chrono::system_clock;
+using std::chrono::duration_cast;
+using std::chrono::milliseconds;
+using std::chrono::seconds;
+using std::chrono::system_clock;
 
 //Constants //Find somewhere to put this
 const int mintingWithoutCoinIndex = 100; //change this
@@ -29,15 +27,15 @@ class Block
 {
 public:
     //Constructor
-    Block(int index, string hash, string previousHash, long long timestamp, string data, int difficulty, int minterBalance, string minterAddress);
+    Block(int index, std::string hash, std::string previousHash, long long timestamp, std::string data, int difficulty, int minterBalance, std::string minterAddress);
     ~Block(); //This has to be done
 
     //Elements for a minimal working block
     int index;
-    string hash;
-    string previousHash;
+    std::string hash;
+    std::string previousHash;
     long long timestamp; //time in milliseconds
-    string data;
+    std::string data;
     int32_t version;
     char32_t merkle_root_hash;
 
@@ -45,20 +43,20 @@ public:
     int difficulty;
     int nonce;
     int minterBalance;
-    string minterAddress;
+    std::string minterAddress;
 
     //Hash calculator
-    string calculateHashForBlock();
+    std::string calculateHashForBlock();
 };
 
 //Get current time in milliseconds
 long long getCurrentTimestamp();
 
 //Hash calculator
-string calculateHash(int index, string previousHash, long long timestamp, string data, int difficulty, int minterBalance, string minterAddress);
+std::string calculateHash(int index, std::string previousHash, long long timestamp, std::string data, int difficulty, int minterBalance, std::string minterAddress);
 
 //Staking
-bool isBlockStakingValid(string previousHash, string address, long long timestamp, int balance, int difficulty, int index); //Returns true if the block is valid for staking
-Block findBlock(int index, string previousHash, string data, int difficulty);
+bool isBlockStakingValid(std::string previousHash, std::string address, long long timestamp, int balance, int difficulty, int index); //Returns true if the block is valid for staking
+Block findBlock(int index, std::string previousHash, std::string data, int difficulty);
 
 #endif //XCOIN_BLOCK_H
