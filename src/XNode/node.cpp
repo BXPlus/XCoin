@@ -70,7 +70,7 @@ void XNode::Node::attemptDNSSHandshake(const drogon::WebSocketConnectionPtr& wsP
     for (auto const& elem : this->peers){
         prunedDNSList[elem.first] = elem.second.publicAddr;
     }
-    std::string payload = XNode::Interface::encodeDNSHandshake(prunedDNSList, true);
+    std::string payload = XNode::Interface::exportDNSHandshake(prunedDNSList, true);
     wsPtr->send(payload,drogon::WebSocketMessageType::Binary);
 }
 
@@ -80,7 +80,16 @@ void XNode::Node::log(const std::string& message, const std::string& host) {
 
 void XNode::Node::handleNewMessage(const drogon::WebSocketConnectionPtr &wsPtr, std::string &&message,
                                    const drogon::WebSocketMessageType &msgType) {
-
+    try{
+        XNodeMessageDecodingResult res = XNode::Interface::decodeXNodeMessageEnvelope(message);
+        if (res.messageType == 0){
+            log("Got DNS handshake from " + wsPtr->peerAddr().toIpPort());
+        } else if (res.messageType == -1){
+            log("Invalid message received from " + wsPtr->peerAddr().toIpPort());
+        }
+    } catch (std::exception &e){
+        log("Invalid message received from " + wsPtr->peerAddr().toIpPort());
+    }
 }
 
 void XNode::Node::handleNewConnection(const drogon::HttpRequestPtr &reqPtr, const drogon::WebSocketConnectionPtr &wsPtr) {
