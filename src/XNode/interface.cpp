@@ -141,19 +141,21 @@ std::vector<Block> XNode::Interface::importChain(const std::string& chainData) {
 * @returns an encoded protobuf string
 */
 std::string XNode::Interface::exportDNSHandshake(const std::map<std::string, std::string>& dnsMap, bool expectReply) {
-    xcoin::interchange::DNSHandshake *encodedHandshake;
-    encodedHandshake->set_expectreply(expectReply);
+    xcoin::interchange::DNSHandshake encodedHandshake;
+    encodedHandshake.set_expectreply(expectReply);
     for (auto const& x : dnsMap){
-        xcoin::interchange::DNSEntry *entry = encodedHandshake->add_entries();
-        entry->set_ipport(x.first);
-        entry->set_publickey(x.second);
+        xcoin::interchange::DNSEntry *entry = encodedHandshake.add_entries();
+        xcoin::interchange::DNSEntry encodedEntry;
+        encodedEntry.set_ipport(x.first);
+        encodedEntry.set_publickey(x.second);
+        entry->CopyFrom(encodedEntry);
     }
     xcoin::interchange::XNodeMessage encodedEnvelope;
-    std::string payload = encodedHandshake->SerializeAsString();
+    std::string payload = encodedHandshake.SerializeAsString();
     encodedEnvelope.set_startstring(payload.substr(0,5));
     encodedEnvelope.set_size(payload.size());
     encodedEnvelope.set_checksum(""); //TODO: Implement MD5 here
-    encodedEnvelope.set_allocated_dnshandshakemessage(encodedHandshake);
+    encodedEnvelope.mutable_dnshandshakemessage()->CopyFrom(encodedHandshake);
     return encodedEnvelope.SerializeAsString();
 }
 
@@ -186,11 +188,8 @@ XNode::XNodeMessageDecodingResult XNode::Interface::decodeXNodeMessageEnvelope(c
     res.messageType = -1;
     decodedEnvelope.ParseFromString(encodedEnvelope);
     if (decodedEnvelope.has_dnshandshakemessage()){
-        std::string payloadString = res.dnsHandshake.SerializeAsString();
-        if (decodedEnvelope.startstring() == payloadString.substr(0,5)){
-            res.messageType = 0;
-            res.dnsHandshake = decodedEnvelope.dnshandshakemessage();
-        }
+        res.messageType = 0;
+        res.dnsHandshake = decodedEnvelope.dnshandshakemessage();
         //TODO: also check for MD5 hash
     }
     return res;
