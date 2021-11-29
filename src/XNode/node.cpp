@@ -17,7 +17,8 @@ XNode::Node::Node(const int port) {
 
 void XNode::Node::start(const std::vector<std::string>& DNSS) {
     //TODO : Fetch Blockchain from cache (file).
-    //this->serverThread = std::make_unique<std::thread>(&XNode::Node::spawnServer,this);
+    //TODO : Fetch dict from DNSS.
+    //this->serverThread = std::make_unique<std::thread>(&XNode::node::spawnServer,this);
     //serverThread->detach();
     //log("Server is running!");
     for(const std::string& addr : DNSS){
@@ -42,10 +43,10 @@ void XNode::Node::stop() {
 
 void XNode::Node::attemptBindToNodeServer(const std::string& wsUrl) {
     drogon::WebSocketClientPtr wsPtr = drogon::WebSocketClient::newWebSocketClient(wsUrl);
-    wsPtr->setMessageHandler([this, &wsPtr](const std::string &message,
+    wsPtr->setMessageHandler([](const std::string &message,
                                 const drogon::WebSocketClientPtr &wsClPtr,
                                 const drogon::WebSocketMessageType &wsMsType) {
-            this->handleNewMessage(wsPtr->getConnection(), const_cast<std::string &&>(message), wsMsType);
+            std::cout <<  message << std::endl;
     });
     wsPtr->setConnectionClosedHandler([this](const drogon::WebSocketClientPtr &wsClPtr){
         this->handleConnectionClosed(wsClPtr->getConnection());
@@ -79,7 +80,6 @@ void XNode::Node::log(const std::string& message, const std::string& host) {
 
 void XNode::Node::handleNewMessage(const drogon::WebSocketConnectionPtr &wsPtr, std::string &&message,
                                    const drogon::WebSocketMessageType &msgType) {
-    log("Got message from " + wsPtr->peerAddr().toIpPort());
     try{
         XNodeMessageDecodingResult res = XNode::Interface::decodeXNodeMessageEnvelope(message);
         if (res.messageType == 0){
@@ -88,7 +88,7 @@ void XNode::Node::handleNewMessage(const drogon::WebSocketConnectionPtr &wsPtr, 
             log("Invalid message received from " + wsPtr->peerAddr().toIpPort());
         }
     } catch (std::exception &e){
-        log("Error decoding message from from " + wsPtr->peerAddr().toIpPort());
+        log("Invalid message received from " + wsPtr->peerAddr().toIpPort());
     }
 }
 
@@ -98,7 +98,7 @@ void XNode::Node::handleNewConnection(const drogon::HttpRequestPtr &reqPtr, cons
     if (this->peers.count(addr) == 0){
         this->peers[addr] = XNode::XNodeClientData(addr, wsPtr);
     }
-    //attemptDNSSHandshake(wsPtr);
+    attemptDNSSHandshake(wsPtr);
 }
 
 void XNode::Node::handleConnectionClosed(const drogon::WebSocketConnectionPtr &wsPtr) {

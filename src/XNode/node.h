@@ -31,7 +31,7 @@ struct XNodeClientData{
     std::string publicAddr;
     drogon::WebSocketConnectionPtr wsPtr;
 };
-class Node : public drogon::WebSocketController<XNode::Node, true>  {
+class Node : public drogon::WebSocketController<XNode::Node, false>  {
     public:
         explicit Node(int port = 4143);
 
