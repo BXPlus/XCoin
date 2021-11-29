@@ -13,6 +13,7 @@ XNode::Node::Node(const int port) {
     this->port = port;
     this->blockchain = Blockchain();
     this->peers = std::map<std::string, XNodeClientData>();
+    // COmmit
 }
 
 void XNode::Node::start(const std::vector<std::string>& DNSS) {
