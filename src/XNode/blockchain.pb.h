@@ -1625,10 +1625,9 @@ class DNSHandshake final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kEntriesFieldNumber = 2,
-    kExpectReplyFieldNumber = 1,
+    kEntriesFieldNumber = 1,
   };
-  // repeated .xcoin.interchange.DNSEntry entries = 2;
+  // repeated .xcoin.interchange.DNSEntry entries = 1;
   int entries_size() const;
   private:
   int _internal_entries_size() const;
@@ -1646,15 +1645,6 @@ class DNSHandshake final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::xcoin::interchange::DNSEntry >&
       entries() const;
 
-  // bool expectReply = 1;
-  void clear_expectreply();
-  bool expectreply() const;
-  void set_expectreply(bool value);
-  private:
-  bool _internal_expectreply() const;
-  void _internal_set_expectreply(bool value);
-  public:
-
   // @@protoc_insertion_point(class_scope:xcoin.interchange.DNSHandshake)
  private:
   class _Internal;
@@ -1663,7 +1653,6 @@ class DNSHandshake final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::xcoin::interchange::DNSEntry > entries_;
-  bool expectreply_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_src_2fXNode_2fblockchain_2eproto;
 };
@@ -2932,27 +2921,7 @@ inline void DNSEntry::set_allocated_publickey(std::string* publickey) {
 
 // DNSHandshake
 
-// bool expectReply = 1;
-inline void DNSHandshake::clear_expectreply() {
-  expectreply_ = false;
-}
-inline bool DNSHandshake::_internal_expectreply() const {
-  return expectreply_;
-}
-inline bool DNSHandshake::expectreply() const {
-  // @@protoc_insertion_point(field_get:xcoin.interchange.DNSHandshake.expectReply)
-  return _internal_expectreply();
-}
-inline void DNSHandshake::_internal_set_expectreply(bool value) {
-  
-  expectreply_ = value;
-}
-inline void DNSHandshake::set_expectreply(bool value) {
-  _internal_set_expectreply(value);
-  // @@protoc_insertion_point(field_set:xcoin.interchange.DNSHandshake.expectReply)
-}
-
-// repeated .xcoin.interchange.DNSEntry entries = 2;
+// repeated .xcoin.interchange.DNSEntry entries = 1;
 inline int DNSHandshake::_internal_entries_size() const {
   return entries_.size();
 }

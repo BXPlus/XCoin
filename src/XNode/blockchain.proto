@@ -56,8 +56,7 @@ message DNSEntry{
 }
 
 message DNSHandshake{
-  bool expectReply = 1;
-  repeated DNSEntry entries = 2;
+  repeated DNSEntry entries = 1;
 }
 
 
