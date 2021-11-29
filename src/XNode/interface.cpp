@@ -193,7 +193,7 @@ XNode::XNodeMessageDecodingResult XNode::Interface::decodeXNodeMessageEnvelope(c
         }
         //TODO: also check for MD5 hash
     }
-    return res
+    return res;
 }
 
 /**
