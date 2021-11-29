@@ -49,7 +49,7 @@ Keys::Keys(){
 
 }
 
-Keys:: Keys(std::string pubb){
+Keys::Keys(std::string pubb){
     prv = NULL;
     priv_key = NULL;
 
@@ -68,8 +68,32 @@ Keys:: Keys(std::string pubb){
     BN_CTX_free(ctx);
 }
 
+Keys::Keys(EC_KEY *key){
+    prv = EC_KEY_get0_private_key(key);
+    if(!prv){
+        std::cout << "Error getting private key" << std::endl;
+    }
+    //we get the hex form
+    priv_key = BN_bn2hex(prv);
 
-char const* Keys::keyFromPrivate(std::string priv_keyy){
+    // Set up public key in pub
+    pub = EC_KEY_get0_public_key(key);
+    //EC_KEY_set_public_key(key, pub);
+    if(!pub){
+        std::cout << "Error getting public key" << std::endl;
+    }
+    //we set the hex form
+    EC_KEY *eckey = NULL;
+    const EC_GROUP *group = NULL;
+    eckey = EC_KEY_new_by_curve_name(NID_secp256k1);
+    group = EC_KEY_get0_group(eckey);
+    BN_CTX *ctx;
+    ctx = BN_CTX_new(); // ctx is an optional buffer to save time from allocating and deallocating memory whenever required
+    pub_key = EC_POINT_point2hex(group, pub, POINT_CONVERSION_UNCOMPRESSED, ctx);
+}
+
+
+Keys keyFromPrivate(std::string priv_keyy){
     const char* priv_key = priv_keyy.c_str(); //converts from string to char
     BIGNUM *priv = NULL ;
     BN_hex2bn(&priv, priv_key); //the private key in BIGNUM form
@@ -84,7 +108,10 @@ char const* Keys::keyFromPrivate(std::string priv_keyy){
     publ = EC_POINT_new(group);
     EC_POINT_mul(group, publ, priv, NULL, NULL, ctx);
 
-    return  EC_POINT_point2hex(group, publ, POINT_CONVERSION_UNCOMPRESSED, ctx);
+    EC_KEY_set_private_key(key, priv);
+    EC_KEY_set_public_key(key, publ);
+
+    return  Keys(key);
 
 };
 
@@ -95,6 +122,14 @@ Keys keyFromPublic(std::string adress) {
 
     return key;
 }
+
+
+std::pair<std::string, std::string> sign(std::string pkey, std::string dataToSign){
+    /*
+     * TO IMPLEMENT
+     */
+}
+
 
 //Uncomment when ready
 /*
