@@ -26,14 +26,19 @@ int main(int argc, char *argv[])
     qss.close();
 
     //Login page
-    LoginDialog *dialogLogin = new LoginDialog();
-    dialogLogin->setModal(true);
-    dialogLogin->exec();
-    bool identified = dialogLogin->get_identified();
+//    LoginDialog *dialogLogin = new LoginDialog();
+//    dialogLogin->setModal(true);
+//    dialogLogin->exec();
+//    bool identified = dialogLogin->get_identified();
 
-    if (identified) {
-        MainWindow w;
-        w.show();
-        return a.exec();
-    }
+//    if (identified) {
+//        MainWindow w;
+//        w.show();
+//        return a.exec();
+//    }
+
+    //Économiser les doigts de picha en evitant d'avoir à cliquer à chaque fois sur le login
+    MainWindow w;
+    w.show();
+    return a.exec();
 }

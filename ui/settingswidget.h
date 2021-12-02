@@ -29,6 +29,8 @@ private:
     QVBoxLayout* infoLayout;
     QHBoxLayout* nameLayout;
 
+    QList<QWidget*> boxList;
+
 signals:
 
 };
