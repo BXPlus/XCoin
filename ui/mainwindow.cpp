@@ -10,6 +10,8 @@
 #include <QDir>
 #include <homewidget.h>
 #include <QCloseEvent>
+#include <QFontDatabase>
+#include <contactswidget.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -19,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     //HomePage setup
     setWindowTitle("XCoin");
-    setMinimumSize(500,600);
+    setMinimumSize(700,600);
 
 
     // Setting layouts
@@ -44,6 +46,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     QWidget* userBlock = new QWidget(menuContainer);
     QVBoxLayout* userBlockLayout = new QVBoxLayout(userBlock);
+    userBlockLayout->setAlignment(Qt::AlignHCenter);
     userBlock->setFixedHeight(150);
     userBlock->setStyleSheet("border-radius: 15px;"
                               "background-color: rgba(60, 72, 114, 255);");
@@ -52,7 +55,7 @@ MainWindow::MainWindow(QWidget *parent)
     QString path = QDir::currentPath();
     int index = path.indexOf("XCoin");
     QString subPath = path.mid(0,index+5);
-    subPath.append("/ui/xcoin.jpg");
+    subPath.append("/ui/xcoin3.jpg");
 
     QPixmap pic(subPath);
     QLabel* imgLabel = new QLabel(userBlock);
@@ -97,6 +100,14 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
 
+    // Creating central separating bar
+    QWidget* sepBar = new QWidget(this);
+    sepBar->setStyleSheet("background-color: rgba(45,58,82,255);");
+    sepBar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
+    sepBar->setFixedWidth(10);
+    mainLayout->addWidget(sepBar);
+
+
     //Creating Stacked Widget
 
     contentContainer = new QStackedWidget(mainWidget);
@@ -104,12 +115,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     homeWidget = new HomeWidget(mainWidget);
     contentContainer->addWidget(homeWidget);
+    contactsWidget = new ContactsWidget(mainWidget);
+    contentContainer->addWidget(contactsWidget);
     balanceWidget = new QWidget(mainWidget);
     contentContainer->addWidget(balanceWidget);
     paymentsWidget = new QWidget(mainWidget);
     contentContainer->addWidget(paymentsWidget);
-    contactsWidget = new QWidget(mainWidget);
-    contentContainer->addWidget(contactsWidget);
     settingsWidget = new SettingsWidget(mainWidget);
     contentContainer->addWidget(settingsWidget);
     graphsWidget = new QWidget(mainWidget);

@@ -9,7 +9,6 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
     // load global stylesheet
 
         // extracting stylesheet path

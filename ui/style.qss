@@ -1,3 +1,5 @@
+FontLoader { id: MontserratBold; source: "/fonts/Monserrat-Bold.ttf" }
+
 MainWindow {
     background-color: rgba(60,72,114,255);
 }
@@ -20,17 +22,17 @@ QPushButton#menuBtn:hover {
 }
 
 QWidget#contentContainer {
-    background-color: rgba(69, 97, 137, 255);
+    background-color: rgba(31,41,66,255);
 }
 
 QLabel#title {
     border: 2px solid green;
-    font: bold;
-    font-size: 60px;
+    font: MontserratBold;
+    font-size: 40px;
 }
 
 QLabel#subtitle {
     border: 2px solid green;
     font: italic;
-    font-size: 30px;
+    font-size: 20px;
 }

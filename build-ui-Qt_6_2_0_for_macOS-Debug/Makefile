@@ -52,22 +52,29 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../ui/custombutton.cpp \
+SOURCES       = ../ui/contactswidget.cpp \
+		../ui/custombutton.cpp \
 		../ui/homewidget.cpp \
 		../ui/main.cpp \
-		../ui/mainwindow.cpp moc_homewidget.cpp \
+		../ui/mainwindow.cpp qrc_test.cpp \
+		moc_contactswidget.cpp \
+		moc_homewidget.cpp \
 		moc_logindialog.cpp \
 		moc_mainwindow.cpp \
 		moc_settingswidget.cpp
-OBJECTS       = custombutton.o \
+OBJECTS       = contactswidget.o \
+		custombutton.o \
 		homewidget.o \
 		main.o \
 		mainwindow.o \
+		qrc_test.o \
+		moc_contactswidget.o \
 		moc_homewidget.o \
 		moc_logindialog.o \
 		moc_mainwindow.o \
 		moc_settingswidget.o
-DIST          = ../ui/style.qss \
+DIST          = ../ui/Montserrat-Bold.ttf \
+		../ui/style.qss \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/features/spec_pre.prf \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/features/device_config.prf \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/common/unix.conf \
@@ -206,11 +213,13 @@ DIST          = ../ui/style.qss \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/features/exceptions.prf \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/features/yacc.prf \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/features/lex.prf \
-		../ui/ui.pro ../ui/custombutton.h \
+		../ui/ui.pro ../ui/contactswidget.h \
+		../ui/custombutton.h \
 		../ui/homewidget.h \
 		../ui/logindialog.h \
 		../ui/mainwindow.h \
-		../ui/settingswidget.h ../ui/custombutton.cpp \
+		../ui/settingswidget.h ../ui/contactswidget.cpp \
+		../ui/custombutton.cpp \
 		../ui/homewidget.cpp \
 		../ui/main.cpp \
 		../ui/mainwindow.cpp
@@ -377,6 +386,7 @@ Makefile: ../ui/ui.pro /Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/macx-clang
 		/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/features/yacc.prf \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/features/lex.prf \
 		../ui/ui.pro \
+		../ui/test.qrc \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Resources/QtWidgets.prl \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Resources/QtGui.prl \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Resources/QtCore.prl
@@ -520,6 +530,7 @@ Makefile: ../ui/ui.pro /Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/macx-clang
 /Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/features/yacc.prf:
 /Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/features/lex.prf:
 ../ui/ui.pro:
+../ui/test.qrc:
 /Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Resources/QtWidgets.prl:
 /Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Resources/QtGui.prl:
 /Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Resources/QtCore.prl:
@@ -552,8 +563,9 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../ui/custombutton.h ../ui/homewidget.h ../ui/logindialog.h ../ui/mainwindow.h ../ui/settingswidget.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../ui/custombutton.cpp ../ui/homewidget.cpp ../ui/main.cpp ../ui/mainwindow.cpp ../ui/settingswidget.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../ui/test.qrc $(DISTDIR)/
+	$(COPY_FILE) --parents ../ui/contactswidget.h ../ui/custombutton.h ../ui/homewidget.h ../ui/logindialog.h ../ui/mainwindow.h ../ui/settingswidget.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../ui/contactswidget.cpp ../ui/custombutton.cpp ../ui/homewidget.cpp ../ui/main.cpp ../ui/mainwindow.cpp ../ui/settingswidget.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../ui/mainwindow.ui $(DISTDIR)/
 
 
@@ -581,11 +593,25 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_test.cpp
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_homewidget.cpp moc_logindialog.cpp moc_mainwindow.cpp moc_settingswidget.cpp
+	-$(DEL_FILE) qrc_test.cpp
+qrc_test.cpp: ../ui/test.qrc \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/rcc \
+		../ui/MontserratBold.ttf
+	/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/rcc -name test ../ui/test.qrc -o qrc_test.cpp
+
+compiler_moc_header_make_all: moc_contactswidget.cpp moc_homewidget.cpp moc_logindialog.cpp moc_mainwindow.cpp moc_settingswidget.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_homewidget.cpp moc_logindialog.cpp moc_mainwindow.cpp moc_settingswidget.cpp
+	-$(DEL_FILE) moc_contactswidget.cpp moc_homewidget.cpp moc_logindialog.cpp moc_mainwindow.cpp moc_settingswidget.cpp
+moc_contactswidget.cpp: ../ui/contactswidget.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QLabel \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qlabel.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/moc
+	/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=13 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/ui -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/alexandremisrahi/Qt/6.2.0/macos/lib ../ui/contactswidget.h -o moc_contactswidget.cpp
+
 moc_homewidget.cpp: ../ui/homewidget.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qwidget.h \
@@ -719,9 +745,16 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
+
+contactswidget.o: ../ui/contactswidget.cpp ../ui/contactswidget.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QLabel \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qlabel.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o contactswidget.o ../ui/contactswidget.cpp
 
 custombutton.o: ../ui/custombutton.cpp ../ui/custombutton.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QString \
@@ -746,7 +779,9 @@ homewidget.o: ../ui/homewidget.cpp ../ui/homewidget.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QScrollArea \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qscrollarea.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QScrollBar \
-		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qscrollbar.h
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qscrollbar.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers/QFontDatabase \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers/qfontdatabase.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o homewidget.o ../ui/homewidget.cpp
 
 main.o: ../ui/main.cpp ../ui/mainwindow.h \
@@ -837,8 +872,17 @@ mainwindow.o: ../ui/mainwindow.cpp ../ui/mainwindow.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QGridLayout \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qgridlayout.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers/QCloseEvent \
-		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers/qevent.h
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers/qevent.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers/QFontDatabase \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers/qfontdatabase.h \
+		../ui/contactswidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../ui/mainwindow.cpp
+
+qrc_test.o: qrc_test.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_test.o qrc_test.cpp
+
+moc_contactswidget.o: moc_contactswidget.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_contactswidget.o moc_contactswidget.cpp
 
 moc_homewidget.o: moc_homewidget.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_homewidget.o moc_homewidget.cpp
