@@ -16,9 +16,10 @@ class Keys {
 public:
     Keys(); //constructor which creates the private and public key
     Keys(std::string pubb); //constructor which creates the private and public key
+    Keys(EC_KEY *key); //constructor from an EC_KEY object
 
 
-    char const* keyFromPrivate(std::string priv_keyy);//return the public key from the private one
+
 //    bool verify(string id, string txOutId, int txOutIndex, string signature, vector<UnspentTxOut> aUnspentTxOuts);
 
     char const* getPriv(){
@@ -40,7 +41,10 @@ private:
 
 
 };
+Keys keyFromPrivate(std::string priv_keyy);//return a key from a private key
 Keys keyFromPublic(std::string address); //returns a key whose public key is adress
+
+std::pair<std::string, std::string> sign(std::string pkey, std::string dataToSign);
+
 #endif //XCOIN_KEYS_H
 
-//ECDSA_SIG()
