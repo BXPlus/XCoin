@@ -1,5 +1,4 @@
 #include "payments.h"
-#include "ui_payments.h"
 #include <QLabel>
 #include <QPushButton>
 #include <QSize>
@@ -7,10 +6,8 @@
 #include <QStaticText>
 
 Payments::Payments(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::Payments)
+    QWidget(parent)
 {
-    ui->setupUi(this);
     //QWidget* page_container = new QWidget(this);
     QVBoxLayout* page_layout = new QVBoxLayout(this);
     //page_container-> setMinimumSize(500,600);
@@ -76,5 +73,4 @@ Payments::Payments(QWidget *parent) :
 
 Payments::~Payments()
 {
-    delete ui;
 }

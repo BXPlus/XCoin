@@ -14,6 +14,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     settingswidget.cpp \
+    logindialog.cpp \
     payments.cpp
 
 HEADERS += \

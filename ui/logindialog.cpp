@@ -1,14 +1,10 @@
 #include "logindialog.h"
-#include "ui_logindialog.h"
 #include "logindialog.h"
 #include <QDebug>
 
 LoginDialog::LoginDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::LoginDialog)
+    QDialog(parent)
 {
-    ui->setupUi(this);
-
     groupBox = new QGroupBox();
     login = new QPushButton("Login", this);
     privateLabel = new QLabel("Private Key:", this);
@@ -30,12 +26,13 @@ LoginDialog::LoginDialog(QWidget *parent) :
 
     warningLabel->setVisible(false);
 
+    login->setObjectName("LoginButton");
+
     connect(login, SIGNAL(clicked()), this, SLOT(check_credentials()));
 }
 
 LoginDialog::~LoginDialog()
 {
-    delete ui;
 }
 
 bool LoginDialog::get_identified()
