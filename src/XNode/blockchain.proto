@@ -1,6 +1,10 @@
 syntax = "proto3";
 package xcoin.interchange;
 
+service DNS{
+  rpc GetPeerList(DNSHandshake) returns (DNSHandshake) {}
+}
+
 // Basic messages
 message Block{
   optional int64 index = 1;

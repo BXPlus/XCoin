@@ -14,9 +14,8 @@
 #include <thread>
 #include <memory>
 #include <utility>
-#include <drogon/WebSocketClient.h>
-#include <drogon/HttpAppFramework.h>
-#include <drogon/WebSocketController.h>
+#include <blockchain.grpc.pb.h>
+#include <grpcpp/server_builder.h>
 
 
 /***
@@ -25,36 +24,21 @@
  */
 namespace XNode{
     struct XNodeClientData{
-        XNodeClientData() : publicAddr(), wsPtr() {}
-        XNodeClientData( std::string  newPublicAddr, drogon::WebSocketConnectionPtr NewWsPtr)
-                : publicAddr(std::move(newPublicAddr)), wsPtr(std::move(NewWsPtr)) {}
+        XNodeClientData() : publicAddr() {}
+        XNodeClientData( std::string  newPublicAddr)
+                : publicAddr(std::move(newPublicAddr)) {}
         std::string publicAddr;
-        drogon::WebSocketConnectionPtr wsPtr;
     };
-    class Node : public drogon::WebSocketController<XNode::Node, false>  {
+class Node : public xcoin::interchange::DNS::Service {
     public:
         explicit Node(int port = 4143);
-
         ~Node()=default;
-        void start(const std::vector<std::string>& DNSS);
-        void stop();
-        WS_PATH_LIST_BEGIN
-            WS_PATH_ADD("/hello");
-        WS_PATH_LIST_END
+        void RunServer();
+        ::grpc::Status GetPeerList(::grpc::ServerContext* context, const ::xcoin::interchange::DNSHandshake* request, ::xcoin::interchange::DNSHandshake* response) override;
     private:
         int port;
         std::map<std::string, XNodeClientData> peers; // IP::port as key
         Blockchain blockchain;
-        std::unique_ptr<std::thread> serverThread;
-        void spawnServer() const;
-        virtual void handleNewMessage(const drogon::WebSocketConnectionPtr& wsPtr,
-                                      std::string && message,
-                                      const drogon::WebSocketMessageType &msgType) override;
-        virtual void handleNewConnection(const drogon::HttpRequestPtr & reqPtr,
-                                         const drogon::WebSocketConnectionPtr& wsPtr) override;
-        virtual void handleConnectionClosed(const drogon::WebSocketConnectionPtr& wsPtr) override;
-        void attemptBindToNodeServer(const std::string& wsUrl);
-        void attemptDNSSHandshake(const drogon::WebSocketConnectionPtr& wsPtr);
         static void log(const std::string& message, const std::string& host = "local");
     };
 }

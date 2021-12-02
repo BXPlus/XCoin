@@ -2,8 +2,8 @@
   "name": "xcoin",
   "version-string": "0.1.0",
   "dependencies": [
-    "drogon",
     "protobuf",
-    "openssl"
+    "openssl",
+    "grpc"
   ]
 }
