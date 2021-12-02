@@ -8,10 +8,10 @@
 
 class UnspentTxOut {
 public:
-    const std::string txOutId;
-    const int txOutIndex;
-    const std::string address;
-    const int amount;
+    std::string txOutId;
+    int txOutIndex;
+    std::string address;
+    int amount;
     UnspentTxOut(std::string txOutID, int txOutIndex, std::string address, int amount);
 };
 
@@ -44,7 +44,7 @@ public:
     bool validateCoinbaseTx(int blockIndex);
 };
 
-pair<bool, UnspentTxOut> findUnspentTxOut(std::string transactionId, int index, std::vector<UnspentTxOut> aUnspentTxOuts);
+std::pair<bool, UnspentTxOut> findUnspentTxOut(std::string transactionId, int index, std::vector<UnspentTxOut>& aUnspentTxOuts);
 
 std::vector<UnspentTxOut> updateUnspentTxOuts(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts);
 
