@@ -49,3 +49,6 @@ void createTxOuts(string receiverAddress, string myAddress, int amount, int left
 //        return [txOut1, leftOverTx];
     return;
 }
+
+
+//This is just a test I will delete in a bit
