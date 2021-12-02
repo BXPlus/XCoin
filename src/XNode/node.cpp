@@ -15,7 +15,6 @@ XNode::node::node(const std::string &ip, int port) {
     this->isUsingWebSocketController = false;
     //TODO : Fetch Blockchain from cache (file).
     this->blockchain = Blockchain();
-<<<<<<<<< Temporary merge branch 1
     this->name2ip = std::map<std::string, std::string>();
 
 
@@ -31,34 +30,21 @@ XNode::node::node(const std::string &ip, int port) {
 
 
 
-=========
-    this->peers = std::map<std::string, XNodeClientData>();
-    // COmmit
->>>>>>>>> Temporary merge branch 2
 }
 
-/**
- * Overload constructor for the node class for using WebSocket controllers, sets the ip address, port.
- * @param ip is the ip address of the node.
- * @param port is the port of the node.
- * @param isWebSocketServer is a boolean value that determines if the node is a websocket server.
- */
-XNode::node::node(const std::string &ip, const int port, const bool isUsingWebSocketController, const bool isWebSocketServer) {
-    this->ip = ip;
-    this->port = port;
-    this->isWebSocketServer = isWebSocketServer;
-    this->isUsingWebSocketController = isUsingWebSocketController;
+void XNode::Node::start(const std::vector<std::string>& DNSS) {
+    //TODO : Fetch Blockchain from cache (file).
+    this->serverThread = std::make_unique<std::thread>(&XNode::Node::spawnServer,this);
+    serverThread->detach();
+    log("Server is running!");
+    for(const std::string& addr : DNSS){
+        attemptBindToNodeServer("ws://"+addr);
+    }
 }
 
-/**
- * Starts the webserver of the node.
- */
-void XNode::node::start() {
-    //drogon::app().enableReusePort();
-    if (!isUsingWebSocketController || isWebSocketServer)
-        drogon::app()
-            .addListener(this->ip, this->port)
-            .setDocumentRoot("../src/node/wwwroot")
+void XNode::Node::spawnServer() const {
+    drogon::app()
+            .addListener("0.0.0.0", this->port)
             .setThreadNum(4)
             .run();
     else{
@@ -109,24 +95,6 @@ void XNode::node::setupWebSocketClient() {
     wsPtr->setConnectionClosedHandler([](const drogon::WebSocketClientPtr &) {
         std::cout << "WebSocket connection closed!";
     });
-
-    std::cout << "Connecting to WebSocket at " << this->ip;
-
-    // Connect to the websocket server.
-    wsPtr->connectToServer(
-            req,
-            [](drogon::ReqResult r,
-               const drogon::HttpResponsePtr &,
-               const drogon::WebSocketClientPtr &wsPtr) {
-                if (r != drogon::ReqResult::Ok)
-                {
-                    std::cout << "Failed to establish WebSocket connection!";
-                    wsPtr->stop();
-                    return;
-                }
-                std::cout << "WebSocket connected!";
-                wsPtr->getConnection()->send("hello!");
-            });
 }
 
 
@@ -135,17 +103,12 @@ std::string XNode::node::giveIp(std::string name){
     if (ret==""){
         return "None";
     }
-<<<<<<<<< Temporary merge branch 1
-    return ret;
-=========
-    std::string payload = XNode::Interface::exportDNSHandshake(prunedDNSList, true);
+    std::string payload = XNode::Interface::exportDNSHandshake(prunedDNSList);
     wsPtr->send(payload,drogon::WebSocketMessageType::Binary);
 }
->>>>>>>>> Temporary merge branch 2
 
 }
 
-<<<<<<<<< Temporary merge branch 1
 void XNode::node::addNode(std::string name, std::string ip) {
 
     if (name2ip.find("name") != name2ip.end()){
@@ -154,19 +117,6 @@ void XNode::node::addNode(std::string name, std::string ip) {
     name2ip[name] = ip;
     for (std::map<std::string, std::string>::iterator i = name2ip.begin(); i != name2ip.end(); ++i){
         sendNew(i->second, name, ip);
-=========
-void XNode::Node::handleNewMessage(const drogon::WebSocketConnectionPtr &wsPtr, std::string &&message,
-                                   const drogon::WebSocketMessageType &msgType) {
-    try{
-        XNodeMessageDecodingResult res = XNode::Interface::decodeXNodeMessageEnvelope(message);
-        if (res.messageType == 0){
-            log("Got DNS handshake from " + wsPtr->peerAddr().toIpPort());
-        } else if (res.messageType == -1){
-            log("Invalid message received from " + wsPtr->peerAddr().toIpPort());
-        }
-    } catch (std::exception &e){
-        log("Invalid message received from " + wsPtr->peerAddr().toIpPort());
->>>>>>>>> Temporary merge branch 2
     }
 }
 
