@@ -24,14 +24,14 @@
  * It Implements the basic functions for networking.
  */
 namespace XNode{
-struct XNodeClientData{
-    XNodeClientData() : publicAddr(), wsPtr() {}
-    XNodeClientData( std::string  newPublicAddr, drogon::WebSocketConnectionPtr NewWsPtr)
-            : publicAddr(std::move(newPublicAddr)), wsPtr(std::move(NewWsPtr)) {}
-    std::string publicAddr;
-    drogon::WebSocketConnectionPtr wsPtr;
-};
-class Node : public drogon::WebSocketController<XNode::Node, false>  {
+    struct XNodeClientData{
+        XNodeClientData() : publicAddr(), wsPtr() {}
+        XNodeClientData( std::string  newPublicAddr, drogon::WebSocketConnectionPtr NewWsPtr)
+                : publicAddr(std::move(newPublicAddr)), wsPtr(std::move(NewWsPtr)) {}
+        std::string publicAddr;
+        drogon::WebSocketConnectionPtr wsPtr;
+    };
+    class Node : public drogon::WebSocketController<XNode::Node, false>  {
     public:
         explicit Node(int port = 4143);
 
@@ -46,12 +46,12 @@ class Node : public drogon::WebSocketController<XNode::Node, false>  {
         std::map<std::string, XNodeClientData> peers; // IP::port as key
         Blockchain blockchain;
         std::unique_ptr<std::thread> serverThread;
-        void spawnServer();
+        void spawnServer() const;
         virtual void handleNewMessage(const drogon::WebSocketConnectionPtr& wsPtr,
                                       std::string && message,
                                       const drogon::WebSocketMessageType &msgType) override;
         virtual void handleNewConnection(const drogon::HttpRequestPtr & reqPtr,
-                                     const drogon::WebSocketConnectionPtr& wsPtr) override;
+                                         const drogon::WebSocketConnectionPtr& wsPtr) override;
         virtual void handleConnectionClosed(const drogon::WebSocketConnectionPtr& wsPtr) override;
         void attemptBindToNodeServer(const std::string& wsUrl);
         void attemptDNSSHandshake(const drogon::WebSocketConnectionPtr& wsPtr);

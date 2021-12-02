@@ -140,9 +140,8 @@ std::vector<Block> XNode::Interface::importChain(const std::string& chainData) {
 * @param dnsMap is map of ip/ports to public addresses
 * @returns an encoded protobuf string
 */
-std::string XNode::Interface::exportDNSHandshake(const std::map<std::string, std::string>& dnsMap, bool expectReply) {
+std::string XNode::Interface::exportDNSHandshake(const std::map<std::string, std::string>& dnsMap) {
     xcoin::interchange::DNSHandshake *encodedHandshake;
-    encodedHandshake->set_expectreply(expectReply);
     for (auto const& x : dnsMap){
         xcoin::interchange::DNSEntry *entry = encodedHandshake->add_entries();
         entry->set_ipport(x.first);
@@ -167,7 +166,6 @@ std::pair<std::map<std::string, std::string>, bool> XNode::Interface::decodeDNSH
     auto dnsl = std::map<std::string, std::string>();
     xcoin::interchange::DNSHandshake encodedObject;
     encodedObject.ParseFromString(encodedHandshake);
-    res.second = encodedObject.expectreply();
     for (xcoin::interchange::DNSEntry entry : encodedObject.entries()){
         dnsl[entry.ipport()] = entry.publickey();
     }
