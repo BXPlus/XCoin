@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QLabel>
+#include <QVBoxLayout>
 
 namespace Ui {
 class ContactsWidget;
@@ -14,6 +15,9 @@ class ContactsWidget : public QWidget
 public:
     explicit ContactsWidget(QWidget *parent = nullptr);
     QLabel* title;
+    QVBoxLayout* pageLayout;
+    QGridLayout* contactGrid;
+    QWidget* boxContainer;
 };
 
 #endif // CONTACTSWIDGET_H
