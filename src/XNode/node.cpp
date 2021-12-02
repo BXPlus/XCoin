@@ -32,28 +32,19 @@ XNode::node::node(const std::string &ip, int port) {
 
 }
 
-/**
- * Overload constructor for the node class for using WebSocket controllers, sets the ip address, port.
- * @param ip is the ip address of the node.
- * @param port is the port of the node.
- * @param isWebSocketServer is a boolean value that determines if the node is a websocket server.
- */
-XNode::node::node(const std::string &ip, const int port, const bool isUsingWebSocketController, const bool isWebSocketServer) {
-    this->ip = ip;
-    this->port = port;
-    this->isWebSocketServer = isWebSocketServer;
-    this->isUsingWebSocketController = isUsingWebSocketController;
+void XNode::Node::start(const std::vector<std::string>& DNSS) {
+    //TODO : Fetch Blockchain from cache (file).
+    this->serverThread = std::make_unique<std::thread>(&XNode::Node::spawnServer,this);
+    serverThread->detach();
+    log("Server is running!");
+    for(const std::string& addr : DNSS){
+        attemptBindToNodeServer("ws://"+addr);
+    }
 }
 
-/**
- * Starts the webserver of the node.
- */
-void XNode::node::start() {
-    //drogon::app().enableReusePort();
-    if (!isUsingWebSocketController || isWebSocketServer)
-        drogon::app()
-            .addListener(this->ip, this->port)
-            .setDocumentRoot("../src/node/wwwroot")
+void XNode::Node::spawnServer() const {
+    drogon::app()
+            .addListener("0.0.0.0", this->port)
             .setThreadNum(4)
             .run();
     else{
@@ -104,24 +95,6 @@ void XNode::node::setupWebSocketClient() {
     wsPtr->setConnectionClosedHandler([](const drogon::WebSocketClientPtr &) {
         std::cout << "WebSocket connection closed!";
     });
-
-    std::cout << "Connecting to WebSocket at " << this->ip;
-
-    // Connect to the websocket server.
-    wsPtr->connectToServer(
-            req,
-            [](drogon::ReqResult r,
-               const drogon::HttpResponsePtr &,
-               const drogon::WebSocketClientPtr &wsPtr) {
-                if (r != drogon::ReqResult::Ok)
-                {
-                    std::cout << "Failed to establish WebSocket connection!";
-                    wsPtr->stop();
-                    return;
-                }
-                std::cout << "WebSocket connected!";
-                wsPtr->getConnection()->send("hello!");
-            });
 }
 
 
@@ -130,7 +103,9 @@ std::string XNode::node::giveIp(std::string name){
     if (ret==""){
         return "None";
     }
-    return ret;
+    std::string payload = XNode::Interface::exportDNSHandshake(prunedDNSList);
+    wsPtr->send(payload,drogon::WebSocketMessageType::Binary);
+}
 
 }
 

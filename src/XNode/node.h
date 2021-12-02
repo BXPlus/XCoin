@@ -46,7 +46,7 @@ class Node : public drogon::WebSocketController<XNode::Node, false>  {
         std::map<std::string, XNodeClientData> peers; // IP::port as key
         Blockchain blockchain;
         std::unique_ptr<std::thread> serverThread;
-        void spawnServer();
+        void spawnServer() const;
         virtual void handleNewMessage(const drogon::WebSocketConnectionPtr& wsPtr,
                                       std::string && message,
                                       const drogon::WebSocketMessageType &msgType) override;
