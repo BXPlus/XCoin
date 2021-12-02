@@ -140,15 +140,21 @@ std::vector<Block> XNode::Interface::importChain(const std::string& chainData) {
 * @param dnsMap is map of ip/ports to public addresses
 * @returns an encoded protobuf string
 */
-std::string XNode::Interface::encodeDNSHandshake(const std::map<std::string, std::string>& dnsMap, bool expectReply) {
-    xcoin::interchange::DNSHandshake encodedHandshake;
-    encodedHandshake.set_expectreply(expectReply);
+std::string XNode::Interface::exportDNSHandshake(const std::map<std::string, std::string>& dnsMap, bool expectReply) {
+    xcoin::interchange::DNSHandshake *encodedHandshake;
+    encodedHandshake->set_expectreply(expectReply);
     for (auto const& x : dnsMap){
-        xcoin::interchange::DNSEntry *entry = encodedHandshake.add_entries();
+        xcoin::interchange::DNSEntry *entry = encodedHandshake->add_entries();
         entry->set_ipport(x.first);
         entry->set_publickey(x.second);
     }
-    return encodedHandshake.SerializeAsString();
+    xcoin::interchange::XNodeMessage encodedEnvelope;
+    std::string payload = encodedHandshake->SerializeAsString();
+    encodedEnvelope.set_startstring(payload.substr(0,5));
+    encodedEnvelope.set_size(payload.size());
+    encodedEnvelope.set_checksum(""); //TODO: Implement MD5 here
+    encodedEnvelope.set_allocated_dnshandshakemessage(encodedHandshake);
+    return encodedEnvelope.SerializeAsString();
 }
 
 /**
@@ -166,6 +172,27 @@ std::pair<std::map<std::string, std::string>, bool> XNode::Interface::decodeDNSH
         dnsl[entry.ipport()] = entry.publickey();
     }
     res.first = dnsl;
+    return res;
+}
+
+/**
+* Function deserialising a generic XNode message envelope into specialised message types
+* @param encodedEnvelope is the encoded envelope
+* @returns idk yet
+*/
+XNode::XNodeMessageDecodingResult XNode::Interface::decodeXNodeMessageEnvelope(const std::string &encodedEnvelope) {
+    xcoin::interchange::XNodeMessage decodedEnvelope;
+    XNode::XNodeMessageDecodingResult res;
+    res.messageType = -1;
+    decodedEnvelope.ParseFromString(encodedEnvelope);
+    if (decodedEnvelope.has_dnshandshakemessage()){
+        std::string payloadString = res.dnsHandshake.SerializeAsString();
+        if (decodedEnvelope.startstring() == payloadString.substr(0,5)){
+            res.messageType = 0;
+            res.dnsHandshake = decodedEnvelope.dnshandshakemessage();
+        }
+        //TODO: also check for MD5 hash
+    }
     return res;
 }
 
