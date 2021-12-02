@@ -124,10 +124,48 @@ Keys keyFromPublic(std::string adress) {
 }
 
 
-std::pair<std::string, std::string> sign(std::string pkey, std::string dataToSign){
-    /*
-     * TO IMPLEMENT
-     */
+std::string sign(std::string prv, std::string dataToSign){
+    const char *message = dataToSign.c_str();
+
+    const char* priv_key = prv.c_str(); //converts from string to char
+    BIGNUM *priv = NULL ;
+    BN_hex2bn(&priv, priv_key); //the private key in BIGNUM form
+
+    EC_POINT *publ = NULL;
+    EC_KEY *key;
+    const EC_GROUP *group;
+    BN_CTX *ctx;
+    ctx = BN_CTX_new();
+    key = EC_KEY_new_by_curve_name(NID_secp256k1);
+    group = EC_KEY_get0_group(key);
+    publ = EC_POINT_new(group);
+    EC_POINT_mul(group, publ, priv, NULL, NULL, ctx);
+
+    EC_KEY_set_private_key(key, priv);
+    EC_KEY_set_public_key(key, publ);
+
+    uint8_t *digest;
+    uint8_t *signature;
+    uint32_t signature_len;
+    int ret_error;
+    unsigned char   buffer_digest[SHA256_DIGEST_LENGTH];
+
+    signature_len = ECDSA_size(key); // the signature size depends on the key
+
+    signature     = (uint8_t *) OPENSSL_malloc(signature_len);
+    digest        = SHA256((const unsigned char *)message, strlen(message), buffer_digest);
+    ret_error     = ECDSA_sign(0, (const uint8_t *)digest, SHA256_DIGEST_LENGTH, signature, &signature_len, key);
+
+    static char hex[] = "0123456789ABCDEF";
+    std::string sgn = "";
+    for (size_t i = 0; i < signature_len; i++)
+    {
+        sgn = sgn + hex[((signature[i] & 0xF0) >> 4)];
+        sgn = sgn + hex[((signature[i] & 0x0F) >> 0)];
+
+    }
+    return sgn;
+
 }
 
 

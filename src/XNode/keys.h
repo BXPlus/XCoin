@@ -11,6 +11,7 @@
 #include <openssl/ec.h>
 #include <openssl/obj_mac.h>
 #include <openssl/bn.h>
+#include "openssl/sha.h"
 
 class Keys {
 public:
@@ -44,7 +45,7 @@ private:
 Keys keyFromPrivate(std::string priv_keyy);//return a key from a private key
 Keys keyFromPublic(std::string address); //returns a key whose public key is adress
 
-std::pair<std::string, std::string> sign(std::string pkey, std::string dataToSign);
+std::string sign(std::string pkey, std::string dataToSign);
 
 #endif //XCOIN_KEYS_H
 
