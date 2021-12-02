@@ -5,74 +5,110 @@
 #include <QSize>
 #include <QSizePolicy>
 #include <QStaticText>
+#include <QGroupBox>
+#include <QTextEdit>
+#include <QLineEdit>
+#include <custombutton.h>
+#include <QAction>
 
 Payments::Payments(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Payments)
 {
     ui->setupUi(this);
-    //QWidget* page_container = new QWidget(this);
+        //set up layout linked to the widget of the whole page
     QVBoxLayout* page_layout = new QVBoxLayout(this);
-    //page_container-> setMinimumSize(500,600);
-    //page_container->resize(400,600);
+    setLayout(page_layout);
+
 
 
         //Title of the Payments Page
-        QLabel* title_page_label = new QLabel(this);
+        title_page_label = new QLabel(this);
         page_layout->addWidget(title_page_label);
-        title_page_label->setObjectName("title_page_label");
-        title_page_label->setText(QString("Purchase XCoin"));
-        title_page_label->setMinimumSize(400,45);
-        title_page_label->setAlignment(Qt::AlignHCenter);
+        title_page_label->setMaximumHeight(45);
+
+            title_page_label->setObjectName("title_page_label");
+            title_page_label->setText(QString("Purchase XCoin"));
+            title_page_label->setAlignment(Qt::AlignCenter);
 
 
 
-        QWidget* purchasing_box = new QWidget(this);
+        purchasing_box = new QWidget(this);
         page_layout->addWidget(purchasing_box);
-        QVBoxLayout* purchasing_layout = new QVBoxLayout(purchasing_box);
-
-            QLabel* amount_title = new QLabel(purchasing_box);
-            purchasing_layout->addWidget(amount_title);
-                amount_title->setText(QString("Amount:"));
-                amount_title->setAlignment(Qt::AlignTop);
-                amount_title->move(0,250);
-
-    setLayout(page_layout);
-
-            //QWidget* money_value_box = new QWidget(purchasing_box);
-            //QHBoxLayout* money_value_layout = new QHBoxLayout(money_value_box);
-
-                /*QWidget* currency = new QWidget(money_value_box);
-                money_value_layout->addWidget(currency);
-                QHBoxLayout* currency_layout = new QHBoxLayout(currency);
-                    QLabel* euro = new QLabel(currency);
-                    QLabel* xco = new QLabel(currency);
-                        currency_layout->addWidget(euro);
-                        currency_layout->addWidget(xco);
-                        euro->setText(QString("€"));
-                        xco->setText(QString("XCO"));
-
-                QWidget* fill_value = new QWidget(money_value_box);
-                fill_value->setMinimumWidth(200);
-*/
+        purchasing_layout = new QVBoxLayout(purchasing_box);
 
 
 
+            QGroupBox* amount_group = new QGroupBox(purchasing_box);
+            amount_group->setTitle("Amount");
 
+            QHBoxLayout* amount_layout = new QHBoxLayout();
+            amount_group->setLayout(amount_layout);
+                // Set boxes in order to choose the currency i.e. € or XCOIN
+                QLabel* euro = new QLabel(amount_group);
+                    euro->setObjectName("euro");
+                    euro->setText(QString("€"));
+                    euro->setMaximumSize(30,30);
+                    euro->setAlignment(Qt::AlignTop);
+                QLabel* XCO = new QLabel(amount_group);
+                    XCO->setObjectName("XCO");
+                    XCO->setText(QString("XCO"));
+                    XCO->setMaximumSize(40,30);
+                    XCO->setAlignment(Qt::AlignTop);
+                // Set line to be filled with the amount desired to pay
+                QLineEdit* line_edit= new QLineEdit(amount_group);
+                //Set a Pay button that do an action once it's clicked
+                //(thanks to the handle button function)
+                pay_btn = new QPushButton(QString("PAY"), amount_group);
+//example of setgeo pay_btn->setGeometry(QRect(QPoint(100, 100), QSize(100, 100)));
+                    pay_btn->setMinimumSize(100,100);
+                    pay_btn->setStyleSheet("border-radius: 10px;"
+                                           "background-color: yellow;");
+                    connect(pay_btn, &QPushButton::released, this, &Payments::handlepay_btn);
 
+                amount_layout->addWidget(euro);
+                amount_layout->addWidget(XCO);
+                amount_layout->addWidget(line_edit);
+                amount_layout->addWidget(pay_btn);
 
+                QGroupBox* total_group = new QGroupBox(purchasing_box);
+                total_group->setTitle("Total");
 
+                QHBoxLayout* total_layout = new QHBoxLayout();
+                total_group->setLayout(total_layout);
 
+//                    //Set a Pay button that do an action once it's clicked
+//                    //(thanks to the handle button function)
+//                    pay_btn = new QPushButton(QString("PAY"), purchasing_box);
+//    //example of setgeo pay_btn->setGeometry(QRect(QPoint(100, 100), QSize(100, 100)));
+//                        pay_btn->setMinimumSize(100,100);
+//                        pay_btn->setStyleSheet("border-radius: 10px;"
+//                                               "background-color: yellow;");
+//                        connect(pay_btn, &QPushButton::released, this, &Payments::handlepay_btn);
 
+                total_layout->addWidget(euro);
+                total_layout->addWidget(line_edit);
+                total_layout->addWidget(XCO);
+                total_layout->addWidget(line_edit);
 
-    //page_layout->addWidget(purchasing_box);
-
+            purchasing_layout->addWidget(amount_group);
+            purchasing_layout->addWidget(total_group);
+            purchasing_layout->addWidget(pay_btn);
 
 
 
 
 
 }
+
+void Payments::handlepay_btn() {
+      // change the text
+      pay_btn->setText("Are you sure ?");
+      pay_btn->setStyleSheet("background-color:red;");
+      pay_btn->setMinimumSize(120,30);
+      // example resize button
+//      pay_btn->resize(110,30);
+    }
 
 Payments::~Payments()
 {

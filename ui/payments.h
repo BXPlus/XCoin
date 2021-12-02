@@ -5,6 +5,7 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QLabel>
+#include <QPushButton>
 
 
 namespace Ui {
@@ -18,12 +19,20 @@ class Payments : public QWidget
 public:
     explicit Payments(QWidget *parent = nullptr);
     ~Payments();
+    QLabel* title_page_label;
+    QWidget* purchasing_box;
+    QVBoxLayout* purchasing_layout;
+    QWidget* amount_box;
+    QVBoxLayout* amount_layout;
+    QLabel* amount;
+    QWidget* money_value_box ;
+    QHBoxLayout* money_value_layout;
+    QWidget* currency;
+    QPushButton* pay_btn;
 
-    QWidget* page_container;
-    QVBoxLayout* page_layout;
-    QSizePolicy* Expanding;
-
-
+//I add this for the pay_btn QPushButton
+private slots:
+    void handlepay_btn();
 
 private:
     Ui::Payments *ui;

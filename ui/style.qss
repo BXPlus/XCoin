@@ -20,3 +20,13 @@ QLabel#title_page_label {
     font-family: "Arial";
 
 }
+
+QLabel#euro:hover {
+background-color: rgba(0,150,255);
+}
+QLabel#XCO:hover {
+background-color: yellow
+}
+QLabel#XCO:visited {
+background-color:red;
+}

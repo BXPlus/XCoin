@@ -1,0 +1,10 @@
+release/custombutton.o
+release/homewidget.o
+release/main.o
+release/mainwindow.o
+release/payments.o
+release/moc_homewidget.o
+release/moc_logindialog.o
+release/moc_mainwindow.o
+release/moc_settingswidget.o
+release/moc_payments.o
