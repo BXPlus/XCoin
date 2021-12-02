@@ -6,7 +6,7 @@
 #include <QSignalMapper>
 #include <QLabel>
 #include <QDir>
-#include <payments.h>
+#include <paymentdialog.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -93,7 +93,7 @@ MainWindow::MainWindow(QWidget *parent)
     contentContainer->addWidget(homeWidget);
     balanceWidget = new QWidget(mainWidget);
     contentContainer->addWidget(balanceWidget);
-    paymentsWidget = new Payments(mainWidget);
+    paymentsWidget = new PaymentDialog(mainWidget);
     contentContainer->addWidget(paymentsWidget);
     contactsWidget = new QWidget(mainWidget);
     contentContainer->addWidget(contactsWidget);

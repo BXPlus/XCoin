@@ -6,7 +6,7 @@
 #include <QStackedWidget>
 #include <QVBoxLayout>
 #include "custombutton.h"
-#include "payments.h"
+#include "paymentdialog.h"
 
 
 QT_BEGIN_NAMESPACE

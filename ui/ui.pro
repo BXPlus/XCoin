@@ -12,15 +12,18 @@ SOURCES += \
     custombutton.cpp \
     main.cpp \
     mainwindow.cpp \
+    paymentdialog.cpp \
     payments.cpp
 
 HEADERS += \
     custombutton.h \
     mainwindow.h \
+    paymentdialog.h \
     payments.h
 
 FORMS += \
     mainwindow.ui \
+    paymentdialog.ui \
     payments.ui
 
 # Default rules for deployment.
