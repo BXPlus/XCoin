@@ -5,6 +5,8 @@
 #ifndef XCOIN_XNODE_H
 #define XCOIN_XNODE_H
 
+#define XNODE_PUBLICADDR_UNKNOWN "<unknown>"
+
 #include <functional>
 #include <string>
 #include <map>
@@ -41,6 +43,7 @@ class Node : public xcoin::interchange::XNodeControl::Service, xcoin::interchang
     private:
         ::grpc::Status DNSSyncPeerList(::grpc::ServerContext *context, const ::xcoin::interchange::DNSHandshake *request, ::xcoin::interchange::DNSHandshake *response) override;
         ::grpc::Status Ping(::grpc::ServerContext *context, const ::xcoin::interchange::PingHandshake *request, ::xcoin::interchange::PingHandshake *response) override;
+        void handleIncomingPeerData(const xcoin::interchange::DNSEntry& remotePeer);
         std::map<std::string, XNodeClientData> peers;
         std::unique_ptr<::grpc::Server> server;
         Blockchain blockchain;
