@@ -14,6 +14,7 @@
 #include <thread>
 #include <memory>
 #include <utility>
+#include <chrono>
 #include <blockchain.grpc.pb.h>
 #include <grpcpp/server_builder.h>
 #include <grpcpp/create_channel.h>
@@ -36,11 +37,12 @@ class Node : public xcoin::interchange::XNodeControl::Service, xcoin::interchang
         explicit Node();
         ~Node() override =default;
         void RunNode(const std::vector<std::string>& dnsSeedPeers);
-        void AttemptPeerConnection(const std::string& peerAddress);
+        bool AttemptPeerConnection(const std::string& peerAddress);
     private:
         ::grpc::Status DNSSyncPeerList(::grpc::ServerContext *context, const ::xcoin::interchange::DNSHandshake *request, ::xcoin::interchange::DNSHandshake *response) override;
         ::grpc::Status Ping(::grpc::ServerContext *context, const ::xcoin::interchange::PingHandshake *request, ::xcoin::interchange::PingHandshake *response) override;
-        std::map<std::string, XNodeClientData> peers; // IP::port as key
+        std::map<std::string, XNodeClientData> peers;
+        std::unique_ptr<::grpc::Server> server;
         Blockchain blockchain;
     };
 }
