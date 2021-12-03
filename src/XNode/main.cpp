@@ -20,6 +20,6 @@ int main(int argc, char *argv[])
     for(int i = 1; i < argc; i++ )
         DNSS.emplace_back(argv[i]);
     XNode::Node node = XNode::Node();
-    node.RunServer();
+    node.RunNode(DNSS);
     return 0;
 }

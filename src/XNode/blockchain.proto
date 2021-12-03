@@ -1,8 +1,13 @@
 syntax = "proto3";
 package xcoin.interchange;
 
-service DNS{
-  rpc GetPeerList(DNSHandshake) returns (DNSHandshake) {}
+service XNodeControl{
+  rpc Ping(PingHandshake) returns (PingHandshake) {}
+  rpc DNSSyncPeerList(DNSHandshake) returns (DNSHandshake) {}
+}
+
+service XNodeSync{
+
 }
 
 // Basic messages
@@ -59,8 +64,11 @@ message DNSEntry{
   string publicKey = 2;
 }
 
+message PingHandshake{
+  string data = 1;
+}
+
 message DNSHandshake{
   repeated DNSEntry entries = 2;
 }
-
 

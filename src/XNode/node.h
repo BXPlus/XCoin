@@ -16,6 +16,8 @@
 #include <utility>
 #include <blockchain.grpc.pb.h>
 #include <grpcpp/server_builder.h>
+#include <grpcpp/create_channel.h>
+#include <spdlog/spdlog.h>
 
 
 /***
@@ -25,21 +27,21 @@
 namespace XNode{
     struct XNodeClientData{
         XNodeClientData() : publicAddr() {}
-        XNodeClientData( std::string  newPublicAddr)
+        explicit XNodeClientData( std::string  newPublicAddr)
                 : publicAddr(std::move(newPublicAddr)) {}
         std::string publicAddr;
     };
-class Node : public xcoin::interchange::DNS::Service {
+class Node : public xcoin::interchange::XNodeControl::Service, xcoin::interchange::XNodeSync::Service{
     public:
-        explicit Node(int port = 4143);
-        ~Node()=default;
-        void RunServer();
-        ::grpc::Status GetPeerList(::grpc::ServerContext* context, const ::xcoin::interchange::DNSHandshake* request, ::xcoin::interchange::DNSHandshake* response) override;
+        explicit Node();
+        ~Node() override =default;
+        void RunNode(const std::vector<std::string>& dnsSeedPeers);
+        void AttemptPeerConnection(const std::string& peerAddress);
     private:
-        int port;
+        ::grpc::Status DNSSyncPeerList(::grpc::ServerContext *context, const ::xcoin::interchange::DNSHandshake *request, ::xcoin::interchange::DNSHandshake *response) override;
+        ::grpc::Status Ping(::grpc::ServerContext *context, const ::xcoin::interchange::PingHandshake *request, ::xcoin::interchange::PingHandshake *response) override;
         std::map<std::string, XNodeClientData> peers; // IP::port as key
         Blockchain blockchain;
-        static void log(const std::string& message, const std::string& host = "local");
     };
 }
 
