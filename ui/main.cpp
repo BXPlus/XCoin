@@ -30,8 +30,5 @@ int main(int argc, char *argv[])
     w.show();
     return a.exec();
 
-    PaymentDialog p;
-    p.setWindowTitle("Pay with XCOIN");
-    p.show();
 
 }

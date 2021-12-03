@@ -243,7 +243,7 @@ release/moc_mainwindow.cpp: ../ui/mainwindow.h \
 		C:/Qt/5.12.5/mingw73_64/include/QtWidgets/QPushButton \
 		C:/Qt/5.12.5/mingw73_64/include/QtWidgets/qpushbutton.h \
 		C:/Qt/5.12.5/mingw73_64/include/QtWidgets/qabstractbutton.h \
-		../ui/payments.h \
+		../ui/paymentdialog.h \
 		C:/Qt/5.12.5/mingw73_64/include/QtWidgets/QLabel \
 		C:/Qt/5.12.5/mingw73_64/include/QtWidgets/qlabel.h \
 		release/moc_predefs.h \
@@ -756,7 +756,7 @@ release/main.o: ../ui/main.cpp ../ui/mainwindow.h \
 		C:/Qt/5.12.5/mingw73_64/include/QtWidgets/QPushButton \
 		C:/Qt/5.12.5/mingw73_64/include/QtWidgets/qpushbutton.h \
 		C:/Qt/5.12.5/mingw73_64/include/QtWidgets/qabstractbutton.h \
-		../ui/payments.h \
+		../ui/paymentdialog.h \
 		C:/Qt/5.12.5/mingw73_64/include/QtWidgets/QLabel \
 		C:/Qt/5.12.5/mingw73_64/include/QtWidgets/qlabel.h \
 		C:/Qt/5.12.5/mingw73_64/include/QtWidgets/QApplication \
@@ -895,7 +895,7 @@ release/mainwindow.o: ../ui/mainwindow.cpp ../ui/mainwindow.h \
 		C:/Qt/5.12.5/mingw73_64/include/QtWidgets/QPushButton \
 		C:/Qt/5.12.5/mingw73_64/include/QtWidgets/qpushbutton.h \
 		C:/Qt/5.12.5/mingw73_64/include/QtWidgets/qabstractbutton.h \
-		../ui/payments.h \
+		../ui/paymentdialog.h \
 		C:/Qt/5.12.5/mingw73_64/include/QtWidgets/QLabel \
 		C:/Qt/5.12.5/mingw73_64/include/QtWidgets/qlabel.h \
 		ui_mainwindow.h \
@@ -915,8 +915,7 @@ release/mainwindow.o: ../ui/mainwindow.cpp ../ui/mainwindow.h \
 		C:/Qt/5.12.5/mingw73_64/include/QtCore/qsignalmapper.h \
 		C:/Qt/5.12.5/mingw73_64/include/QtCore/QDir \
 		C:/Qt/5.12.5/mingw73_64/include/QtCore/qdir.h \
-		C:/Qt/5.12.5/mingw73_64/include/QtCore/qfileinfo.h \
-		../ui/paymentdialog.h
+		C:/Qt/5.12.5/mingw73_64/include/QtCore/qfileinfo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o ..\ui\mainwindow.cpp
 
 release/paymentdialog.o: ../ui/paymentdialog.cpp ../ui/paymentdialog.h \
@@ -1037,6 +1036,14 @@ release/paymentdialog.o: ../ui/paymentdialog.cpp ../ui/paymentdialog.h \
 		C:/Qt/5.12.5/mingw73_64/include/QtWidgets/qabstractbutton.h \
 		C:/Qt/5.12.5/mingw73_64/include/QtGui/qicon.h \
 		ui_paymentdialog.h \
+		C:/Qt/5.12.5/mingw73_64/include/QtCore/QVariant \
+		C:/Qt/5.12.5/mingw73_64/include/QtWidgets/QApplication \
+		C:/Qt/5.12.5/mingw73_64/include/QtWidgets/qapplication.h \
+		C:/Qt/5.12.5/mingw73_64/include/QtCore/qcoreapplication.h \
+		C:/Qt/5.12.5/mingw73_64/include/QtCore/qeventloop.h \
+		C:/Qt/5.12.5/mingw73_64/include/QtWidgets/qdesktopwidget.h \
+		C:/Qt/5.12.5/mingw73_64/include/QtGui/qguiapplication.h \
+		C:/Qt/5.12.5/mingw73_64/include/QtGui/qinputmethod.h \
 		C:/Qt/5.12.5/mingw73_64/include/QtCore/QSize \
 		C:/Qt/5.12.5/mingw73_64/include/QtWidgets/QSizePolicy \
 		C:/Qt/5.12.5/mingw73_64/include/QtGui/QStaticText \

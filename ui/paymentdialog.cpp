@@ -22,8 +22,6 @@ PaymentDialog::PaymentDialog(QWidget *parent) :
     QVBoxLayout* page_layout = new QVBoxLayout(this);
     setLayout(page_layout);
 
-
-
         //Title of the Payments Page
         title_page_label = new QLabel(this);
         page_layout->addWidget(title_page_label);
@@ -62,7 +60,7 @@ PaymentDialog::PaymentDialog(QWidget *parent) :
                 //Set a Pay button that do an action once it's clicked
                 //(thanks to the handle button function)
                 pay_btn = new QPushButton(QString("PAY"), amount_group);
-    //example of setgeo pay_btn->setGeometry(QRect(QPoint(100, 100), QSize(100, 100)));
+//example of setgeo pay_btn->setGeometry(QRect(QPoint(100, 100), QSize(100, 100)));
                     pay_btn->setMinimumSize(100,100);
                     pay_btn->setStyleSheet("border-radius: 10px;"
                                            "background-color: yellow;");
