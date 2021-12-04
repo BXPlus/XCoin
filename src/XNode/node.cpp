@@ -87,11 +87,11 @@ bool XNode::Node::AttemptPeerConnection(const std::string& peerAddress) {
         }
         ::grpc::ClientContext dnsContext;
         ::grpc::Status dnsStatus = this->peers[peerAddress].controlStub->DNSSyncPeerList(&dnsContext, dnsRequest, &dnsReply);
-        spdlog::debug("Will attempt to sync DNS with " + peerAddress);
         if (dnsStatus.ok()){
             for(const xcoin::interchange::DNSEntry& remotePeer : dnsReply.entries())
                 this->handleIncomingPeerData(remotePeer, std::move(this->peers[peerAddress].controlStub));
-
+            spdlog::info("Successfully synced DNS peers with " + peerAddress);
+            return true;
         }else spdlog::warn("DNS peer sync with " + peerAddress + " failed");
         return true;
     }else{
