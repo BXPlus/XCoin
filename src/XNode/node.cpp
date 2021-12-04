@@ -30,7 +30,6 @@ void XNode::Node::RunNode(const std::vector<std::string>& dnsSeedPeers) {
 ::grpc::Status XNode::Node::Ping(::grpc::ServerContext *context, const ::xcoin::interchange::PingHandshake *request,
                                  ::xcoin::interchange::PingHandshake *response) {
     spdlog::debug("Ping received from " + context->peer());
-
     if (this->peers.count(context->peer())==0){
         std::shared_ptr<grpc::Channel> channel = grpc::CreateChannel(context->peer(), grpc::InsecureChannelCredentials());
         this->peers[context->peer()] = XNodeClient(channel);
@@ -42,6 +41,7 @@ void XNode::Node::RunNode(const std::vector<std::string>& dnsSeedPeers) {
 ::grpc::Status
 XNode::Node::DNSSyncPeerList(::grpc::ServerContext *context, const ::xcoin::interchange::DNSHandshake *request,
                              ::xcoin::interchange::DNSHandshake *response) {
+    spdlog::debug("DNS sync requested by " + context->peer());
     for (const xcoin::interchange::DNSEntry& remotePeer : request->entries())
         handleIncomingPeerData(remotePeer, std::unique_ptr<xcoin::interchange::XNodeControl::Stub>());
     for (auto const& x : this->peers){
