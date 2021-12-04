@@ -23,18 +23,18 @@
 #include <spdlog/spdlog.h>
 
 namespace XNode{
+    /// Class that contains locally resolved information about a peer
     class XNodeClient{
     public:
-        XNodeClient(){};
+        XNodeClient()= default;;
         explicit XNodeClient(const std::shared_ptr<::grpc::ChannelInterface>& channel) : controlStub(xcoin::interchange::XNodeControl::NewStub(channel)),
                                                                                 syncStub(xcoin::interchange::XNodeSync::NewStub(channel)){};
-        void setPublicKey(std::string newPublicKey){this->publicKey = std::move(newPublicKey);};
-        void setOnline(bool newOnline){this->online = newOnline;};
         std::string publicKey = XNODE_PUBLICADDR_UNKNOWN;
-        std::unique_ptr<xcoin::interchange::XNodeControl::Stub> controlStub;
-        std::unique_ptr<xcoin::interchange::XNodeSync::Stub> syncStub;
+        std::unique_ptr<xcoin::interchange::XNodeControl::Stub> controlStub;    // Stub used to issue requests to the peer's control service
+        std::unique_ptr<xcoin::interchange::XNodeSync::Stub> syncStub;          // Stub used to issue requests to the peer's sync service
         bool online = false;
     };
+    /// Base class that manages the local node's lifecycle
     class Node : public xcoin::interchange::XNodeControl::Service, xcoin::interchange::XNodeSync::Service{
     public:
         explicit Node();

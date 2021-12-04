@@ -1,13 +1,13 @@
 syntax = "proto3";
 package xcoin.interchange;
 
-service XNodeControl{
+service XNodeControl{ // Service responsible for node management and peer discovery
   rpc Ping(PingHandshake) returns (PingHandshake) {}
   rpc DNSSyncPeerList(DNSHandshake) returns (DNSHandshake) {}
   rpc NotifyPeerChange(DNSEntry) returns (DNSEntry) {}
 }
 
-service XNodeSync{
+service XNodeSync{ // Service responsible for blockchain and transactions synchronisation
 
 }
 
