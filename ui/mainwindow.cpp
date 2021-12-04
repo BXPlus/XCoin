@@ -101,11 +101,11 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     // Creating central separating bar
-    QWidget* sepBar = new QWidget(this);
-    sepBar->setStyleSheet("background-color: rgba(45,58,82,255);");
-    sepBar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
-    sepBar->setFixedWidth(10);
-    mainLayout->addWidget(sepBar);
+//    QWidget* sepBar = new QWidget(this);
+//    sepBar->setStyleSheet("background-color: rgba(45,58,82,255);");
+//    sepBar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
+//    sepBar->setFixedWidth(10);
+//    mainLayout->addWidget(sepBar);
 
 
     //Creating Stacked Widget
@@ -131,7 +131,7 @@ MainWindow::MainWindow(QWidget *parent)
     for (int i = 0; i < 6; i++){
         contentContainer->setCurrentIndex(i);
         QWidget* widget = contentContainer->currentWidget();
-        QString style = QString("QWidget {border: 1px solid %1}").arg(color_list[i]);
+        QString style = QString("QWidget {border: 1px}"); // solid %1}").arg(color_list[i]);
         widget->setStyleSheet(style);
 
         QSignalMapper* signalMapper = new QSignalMapper (this) ;

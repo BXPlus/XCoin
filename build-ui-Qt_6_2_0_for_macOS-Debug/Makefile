@@ -778,7 +778,9 @@ homewidget.o: ../ui/homewidget.cpp ../ui/homewidget.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QScrollBar \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qscrollbar.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers/QFontDatabase \
-		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers/qfontdatabase.h
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers/qfontdatabase.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QDir \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/qdir.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o homewidget.o ../ui/homewidget.cpp
 
 main.o: ../ui/main.cpp ../ui/mainwindow.h \

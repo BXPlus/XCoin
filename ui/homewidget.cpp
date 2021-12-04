@@ -4,22 +4,36 @@
 #include <QScrollArea>
 #include <QScrollBar>
 #include <QFontDatabase>
+#include <QDir>
 
 HomeWidget::HomeWidget(QWidget *parent) :
     QWidget(parent)
 {
     pageLayout = new QVBoxLayout(this);
-    pageLayout->setAlignment(Qt::AlignTop);
+    pageLayout->setAlignment(Qt::AlignCenter);
 
     title = new QLabel(this);
     title->setText("Welcome back.");
     title->setObjectName(QString("title"));
-    title->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+    title->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
 
-    subtitle = new QLabel(this);
-    subtitle->setText("Key #dk9174hdn57s");
-    subtitle->setObjectName(QString("subtitle"));
-    subtitle->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+    // logo
+    QString path = QDir::currentPath();
+    int index = path.indexOf("XCoin");
+    QString subPath = path.mid(0,index+5);
+    subPath.append("/ui/xcoinBig.jpg");
+
+    QPixmap pic(subPath);
+    QLabel* imgLabel = new QLabel(this);
+    imgLabel->setAlignment(Qt::AlignCenter);
+    //imgLabel->setFixedSize(50, 50);
+    imgLabel->setPixmap(pic);
+
+    // Uncomment to add subtitle
+//    subtitle = new QLabel(this);
+//    subtitle->setText("Key #dk9174hdn57s");
+//    subtitle->setObjectName(QString("subtitle"));
+//    subtitle->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
 
 
 
@@ -120,8 +134,10 @@ HomeWidget::HomeWidget(QWidget *parent) :
 //    chart4->setStyleSheet("background-color: red;");
 //    box4Layout->addWidget(chart4);
 
+
+    pageLayout->addWidget(imgLabel);
     pageLayout->addWidget(title);
-    pageLayout->addWidget(subtitle);
+    //pageLayout->addWidget(subtitle);
     //pageLayout->addWidget(boxContainer); // change to boxContainer or accessBox if grid box layout or scroll area, uncomment if want widget
     this->setLayout(pageLayout);
 
