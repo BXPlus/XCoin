@@ -25,6 +25,7 @@ namespace interchange {
 static const char* XNodeControl_method_names[] = {
   "/xcoin.interchange.XNodeControl/Ping",
   "/xcoin.interchange.XNodeControl/DNSSyncPeerList",
+  "/xcoin.interchange.XNodeControl/NotifyPeerChange",
 };
 
 std::unique_ptr< XNodeControl::Stub> XNodeControl::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -36,6 +37,7 @@ std::unique_ptr< XNodeControl::Stub> XNodeControl::NewStub(const std::shared_ptr
 XNodeControl::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_Ping_(XNodeControl_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_DNSSyncPeerList_(XNodeControl_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_NotifyPeerChange_(XNodeControl_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status XNodeControl::Stub::Ping(::grpc::ClientContext* context, const ::xcoin::interchange::PingHandshake& request, ::xcoin::interchange::PingHandshake* response) {
@@ -84,6 +86,29 @@ void XNodeControl::Stub::async::DNSSyncPeerList(::grpc::ClientContext* context, 
   return result;
 }
 
+::grpc::Status XNodeControl::Stub::NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::xcoin::interchange::DNSEntry* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::xcoin::interchange::DNSEntry, ::xcoin::interchange::DNSEntry, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_NotifyPeerChange_, context, request, response);
+}
+
+void XNodeControl::Stub::async::NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry* request, ::xcoin::interchange::DNSEntry* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::xcoin::interchange::DNSEntry, ::xcoin::interchange::DNSEntry, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_NotifyPeerChange_, context, request, response, std::move(f));
+}
+
+void XNodeControl::Stub::async::NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry* request, ::xcoin::interchange::DNSEntry* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_NotifyPeerChange_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::xcoin::interchange::DNSEntry>* XNodeControl::Stub::PrepareAsyncNotifyPeerChangeRaw(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::xcoin::interchange::DNSEntry, ::xcoin::interchange::DNSEntry, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_NotifyPeerChange_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::xcoin::interchange::DNSEntry>* XNodeControl::Stub::AsyncNotifyPeerChangeRaw(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncNotifyPeerChangeRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 XNodeControl::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       XNodeControl_method_names[0],
@@ -105,6 +130,16 @@ XNodeControl::Service::Service() {
              ::xcoin::interchange::DNSHandshake* resp) {
                return service->DNSSyncPeerList(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      XNodeControl_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< XNodeControl::Service, ::xcoin::interchange::DNSEntry, ::xcoin::interchange::DNSEntry, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](XNodeControl::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::xcoin::interchange::DNSEntry* req,
+             ::xcoin::interchange::DNSEntry* resp) {
+               return service->NotifyPeerChange(ctx, req, resp);
+             }, this)));
 }
 
 XNodeControl::Service::~Service() {
@@ -118,6 +153,13 @@ XNodeControl::Service::~Service() {
 }
 
 ::grpc::Status XNodeControl::Service::DNSSyncPeerList(::grpc::ServerContext* context, const ::xcoin::interchange::DNSHandshake* request, ::xcoin::interchange::DNSHandshake* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status XNodeControl::Service::NotifyPeerChange(::grpc::ServerContext* context, const ::xcoin::interchange::DNSEntry* request, ::xcoin::interchange::DNSEntry* response) {
   (void) context;
   (void) request;
   (void) response;

@@ -299,16 +299,18 @@ const char descriptor_table_protodef_blockchain_2eproto[] PROTOBUF_SECTION_VARIA
   "DNSEntry\022\016\n\006ipport\030\001 \001(\t\022\021\n\tpublicKey\030\002 "
   "\001(\t\"\035\n\rPingHandshake\022\014\n\004data\030\001 \001(\t\"<\n\014DN"
   "SHandshake\022,\n\007entries\030\002 \003(\0132\033.xcoin.inte"
-  "rchange.DNSEntry2\263\001\n\014XNodeControl\022L\n\004Pin"
+  "rchange.DNSEntry2\203\002\n\014XNodeControl\022L\n\004Pin"
   "g\022 .xcoin.interchange.PingHandshake\032 .xc"
   "oin.interchange.PingHandshake\"\000\022U\n\017DNSSy"
   "ncPeerList\022\037.xcoin.interchange.DNSHandsh"
-  "ake\032\037.xcoin.interchange.DNSHandshake\"\0002\013"
+  "ake\032\037.xcoin.interchange.DNSHandshake\"\000\022N"
+  "\n\020NotifyPeerChange\022\033.xcoin.interchange.D"
+  "NSEntry\032\033.xcoin.interchange.DNSEntry\"\0002\013"
   "\n\tXNodeSyncb\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_blockchain_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_blockchain_2eproto = {
-  false, false, 1299, descriptor_table_protodef_blockchain_2eproto, "blockchain.proto", 
+  false, false, 1379, descriptor_table_protodef_blockchain_2eproto, "blockchain.proto", 
   &descriptor_table_blockchain_2eproto_once, nullptr, 0, 9,
   schemas, file_default_instances, TableStruct_blockchain_2eproto::offsets,
   file_level_metadata_blockchain_2eproto, file_level_enum_descriptors_blockchain_2eproto, file_level_service_descriptors_blockchain_2eproto,

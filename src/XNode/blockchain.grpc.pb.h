@@ -50,6 +50,13 @@ class XNodeControl final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::DNSHandshake>> PrepareAsyncDNSSyncPeerList(::grpc::ClientContext* context, const ::xcoin::interchange::DNSHandshake& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::DNSHandshake>>(PrepareAsyncDNSSyncPeerListRaw(context, request, cq));
     }
+    virtual ::grpc::Status NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::xcoin::interchange::DNSEntry* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::DNSEntry>> AsyncNotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::DNSEntry>>(AsyncNotifyPeerChangeRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::DNSEntry>> PrepareAsyncNotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::DNSEntry>>(PrepareAsyncNotifyPeerChangeRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -57,6 +64,8 @@ class XNodeControl final {
       virtual void Ping(::grpc::ClientContext* context, const ::xcoin::interchange::PingHandshake* request, ::xcoin::interchange::PingHandshake* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void DNSSyncPeerList(::grpc::ClientContext* context, const ::xcoin::interchange::DNSHandshake* request, ::xcoin::interchange::DNSHandshake* response, std::function<void(::grpc::Status)>) = 0;
       virtual void DNSSyncPeerList(::grpc::ClientContext* context, const ::xcoin::interchange::DNSHandshake* request, ::xcoin::interchange::DNSHandshake* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry* request, ::xcoin::interchange::DNSEntry* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry* request, ::xcoin::interchange::DNSEntry* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -66,6 +75,8 @@ class XNodeControl final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::PingHandshake>* PrepareAsyncPingRaw(::grpc::ClientContext* context, const ::xcoin::interchange::PingHandshake& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::DNSHandshake>* AsyncDNSSyncPeerListRaw(::grpc::ClientContext* context, const ::xcoin::interchange::DNSHandshake& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::DNSHandshake>* PrepareAsyncDNSSyncPeerListRaw(::grpc::ClientContext* context, const ::xcoin::interchange::DNSHandshake& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::DNSEntry>* AsyncNotifyPeerChangeRaw(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::DNSEntry>* PrepareAsyncNotifyPeerChangeRaw(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -84,6 +95,13 @@ class XNodeControl final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::DNSHandshake>> PrepareAsyncDNSSyncPeerList(::grpc::ClientContext* context, const ::xcoin::interchange::DNSHandshake& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::DNSHandshake>>(PrepareAsyncDNSSyncPeerListRaw(context, request, cq));
     }
+    ::grpc::Status NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::xcoin::interchange::DNSEntry* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::DNSEntry>> AsyncNotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::DNSEntry>>(AsyncNotifyPeerChangeRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::DNSEntry>> PrepareAsyncNotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::DNSEntry>>(PrepareAsyncNotifyPeerChangeRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -91,6 +109,8 @@ class XNodeControl final {
       void Ping(::grpc::ClientContext* context, const ::xcoin::interchange::PingHandshake* request, ::xcoin::interchange::PingHandshake* response, ::grpc::ClientUnaryReactor* reactor) override;
       void DNSSyncPeerList(::grpc::ClientContext* context, const ::xcoin::interchange::DNSHandshake* request, ::xcoin::interchange::DNSHandshake* response, std::function<void(::grpc::Status)>) override;
       void DNSSyncPeerList(::grpc::ClientContext* context, const ::xcoin::interchange::DNSHandshake* request, ::xcoin::interchange::DNSHandshake* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry* request, ::xcoin::interchange::DNSEntry* response, std::function<void(::grpc::Status)>) override;
+      void NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry* request, ::xcoin::interchange::DNSEntry* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -106,8 +126,11 @@ class XNodeControl final {
     ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::PingHandshake>* PrepareAsyncPingRaw(::grpc::ClientContext* context, const ::xcoin::interchange::PingHandshake& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::DNSHandshake>* AsyncDNSSyncPeerListRaw(::grpc::ClientContext* context, const ::xcoin::interchange::DNSHandshake& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::DNSHandshake>* PrepareAsyncDNSSyncPeerListRaw(::grpc::ClientContext* context, const ::xcoin::interchange::DNSHandshake& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::DNSEntry>* AsyncNotifyPeerChangeRaw(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::DNSEntry>* PrepareAsyncNotifyPeerChangeRaw(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Ping_;
     const ::grpc::internal::RpcMethod rpcmethod_DNSSyncPeerList_;
+    const ::grpc::internal::RpcMethod rpcmethod_NotifyPeerChange_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -117,6 +140,7 @@ class XNodeControl final {
     virtual ~Service();
     virtual ::grpc::Status Ping(::grpc::ServerContext* context, const ::xcoin::interchange::PingHandshake* request, ::xcoin::interchange::PingHandshake* response);
     virtual ::grpc::Status DNSSyncPeerList(::grpc::ServerContext* context, const ::xcoin::interchange::DNSHandshake* request, ::xcoin::interchange::DNSHandshake* response);
+    virtual ::grpc::Status NotifyPeerChange(::grpc::ServerContext* context, const ::xcoin::interchange::DNSEntry* request, ::xcoin::interchange::DNSEntry* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_Ping : public BaseClass {
@@ -158,7 +182,27 @@ class XNodeControl final {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Ping<WithAsyncMethod_DNSSyncPeerList<Service > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_NotifyPeerChange : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_NotifyPeerChange() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_NotifyPeerChange() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status NotifyPeerChange(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::DNSEntry* /*request*/, ::xcoin::interchange::DNSEntry* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestNotifyPeerChange(::grpc::ServerContext* context, ::xcoin::interchange::DNSEntry* request, ::grpc::ServerAsyncResponseWriter< ::xcoin::interchange::DNSEntry>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Ping<WithAsyncMethod_DNSSyncPeerList<WithAsyncMethod_NotifyPeerChange<Service > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_Ping : public BaseClass {
    private:
@@ -213,7 +257,34 @@ class XNodeControl final {
     virtual ::grpc::ServerUnaryReactor* DNSSyncPeerList(
       ::grpc::CallbackServerContext* /*context*/, const ::xcoin::interchange::DNSHandshake* /*request*/, ::xcoin::interchange::DNSHandshake* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_Ping<WithCallbackMethod_DNSSyncPeerList<Service > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_NotifyPeerChange : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_NotifyPeerChange() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::xcoin::interchange::DNSEntry, ::xcoin::interchange::DNSEntry>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::xcoin::interchange::DNSEntry* request, ::xcoin::interchange::DNSEntry* response) { return this->NotifyPeerChange(context, request, response); }));}
+    void SetMessageAllocatorFor_NotifyPeerChange(
+        ::grpc::MessageAllocator< ::xcoin::interchange::DNSEntry, ::xcoin::interchange::DNSEntry>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::xcoin::interchange::DNSEntry, ::xcoin::interchange::DNSEntry>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_NotifyPeerChange() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status NotifyPeerChange(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::DNSEntry* /*request*/, ::xcoin::interchange::DNSEntry* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* NotifyPeerChange(
+      ::grpc::CallbackServerContext* /*context*/, const ::xcoin::interchange::DNSEntry* /*request*/, ::xcoin::interchange::DNSEntry* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Ping<WithCallbackMethod_DNSSyncPeerList<WithCallbackMethod_NotifyPeerChange<Service > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Ping : public BaseClass {
@@ -245,6 +316,23 @@ class XNodeControl final {
     }
     // disable synchronous version of this method
     ::grpc::Status DNSSyncPeerList(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::DNSHandshake* /*request*/, ::xcoin::interchange::DNSHandshake* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_NotifyPeerChange : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_NotifyPeerChange() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_NotifyPeerChange() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status NotifyPeerChange(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::DNSEntry* /*request*/, ::xcoin::interchange::DNSEntry* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -290,6 +378,26 @@ class XNodeControl final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_NotifyPeerChange : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_NotifyPeerChange() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_NotifyPeerChange() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status NotifyPeerChange(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::DNSEntry* /*request*/, ::xcoin::interchange::DNSEntry* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestNotifyPeerChange(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_Ping : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -331,6 +439,28 @@ class XNodeControl final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* DNSSyncPeerList(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_NotifyPeerChange : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_NotifyPeerChange() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->NotifyPeerChange(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_NotifyPeerChange() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status NotifyPeerChange(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::DNSEntry* /*request*/, ::xcoin::interchange::DNSEntry* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* NotifyPeerChange(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -387,9 +517,36 @@ class XNodeControl final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedDNSSyncPeerList(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::xcoin::interchange::DNSHandshake,::xcoin::interchange::DNSHandshake>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_Ping<WithStreamedUnaryMethod_DNSSyncPeerList<Service > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_NotifyPeerChange : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_NotifyPeerChange() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::xcoin::interchange::DNSEntry, ::xcoin::interchange::DNSEntry>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::xcoin::interchange::DNSEntry, ::xcoin::interchange::DNSEntry>* streamer) {
+                       return this->StreamedNotifyPeerChange(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_NotifyPeerChange() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status NotifyPeerChange(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::DNSEntry* /*request*/, ::xcoin::interchange::DNSEntry* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedNotifyPeerChange(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::xcoin::interchange::DNSEntry,::xcoin::interchange::DNSEntry>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Ping<WithStreamedUnaryMethod_DNSSyncPeerList<WithStreamedUnaryMethod_NotifyPeerChange<Service > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Ping<WithStreamedUnaryMethod_DNSSyncPeerList<Service > > StreamedService;
+  typedef WithStreamedUnaryMethod_Ping<WithStreamedUnaryMethod_DNSSyncPeerList<WithStreamedUnaryMethod_NotifyPeerChange<Service > > > StreamedService;
 };
 
 class XNodeSync final {

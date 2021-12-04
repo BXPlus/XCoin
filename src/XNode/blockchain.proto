@@ -4,6 +4,7 @@ package xcoin.interchange;
 service XNodeControl{
   rpc Ping(PingHandshake) returns (PingHandshake) {}
   rpc DNSSyncPeerList(DNSHandshake) returns (DNSHandshake) {}
+  rpc NotifyPeerChange(DNSEntry) returns (DNSEntry) {}
 }
 
 service XNodeSync{

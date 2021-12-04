@@ -22,19 +22,20 @@
 #include <grpcpp/create_channel.h>
 #include <spdlog/spdlog.h>
 
-
-/***
- * node is the main class for Networking part of XCoin.
- * It Implements the basic functions for networking.
- */
 namespace XNode{
-    struct XNodeClientData{
-        XNodeClientData() : publicAddr() {}
-        explicit XNodeClientData( std::string  newPublicAddr)
-                : publicAddr(std::move(newPublicAddr)) {}
-        std::string publicAddr;
+    class XNodeClient{
+    public:
+        XNodeClient(){};
+        explicit XNodeClient(const std::shared_ptr<::grpc::ChannelInterface>& channel) : controlStub(xcoin::interchange::XNodeControl::NewStub(channel)),
+                                                                                syncStub(xcoin::interchange::XNodeSync::NewStub(channel)){};
+        void setPublicKey(std::string newPublicKey){this->publicKey = std::move(newPublicKey);};
+        void setOnline(bool newOnline){this->online = newOnline;};
+        std::string publicKey = XNODE_PUBLICADDR_UNKNOWN;
+        std::unique_ptr<xcoin::interchange::XNodeControl::Stub> controlStub;
+        std::unique_ptr<xcoin::interchange::XNodeSync::Stub> syncStub;
+        bool online = false;
     };
-class Node : public xcoin::interchange::XNodeControl::Service, xcoin::interchange::XNodeSync::Service{
+    class Node : public xcoin::interchange::XNodeControl::Service, xcoin::interchange::XNodeSync::Service{
     public:
         explicit Node();
         ~Node() override =default;
@@ -43,13 +44,14 @@ class Node : public xcoin::interchange::XNodeControl::Service, xcoin::interchang
     private:
         ::grpc::Status DNSSyncPeerList(::grpc::ServerContext *context, const ::xcoin::interchange::DNSHandshake *request, ::xcoin::interchange::DNSHandshake *response) override;
         ::grpc::Status Ping(::grpc::ServerContext *context, const ::xcoin::interchange::PingHandshake *request, ::xcoin::interchange::PingHandshake *response) override;
-        void handleIncomingPeerData(const xcoin::interchange::DNSEntry& remotePeer);
-        std::map<std::string, XNodeClientData> peers;
+        ::grpc::Status NotifyPeerChange(::grpc::ServerContext *context, const ::xcoin::interchange::DNSEntry *request, ::xcoin::interchange::DNSEntry *response) override;
+        void handleIncomingPeerData(const xcoin::interchange::DNSEntry &remotePeer,
+                                    std::unique_ptr<xcoin::interchange::XNodeControl::Stub> peerStub);
+        std::map<std::string, XNodeClient> peers;
         std::unique_ptr<::grpc::Server> server;
         Blockchain blockchain;
     };
 }
-
 
 
 #endif //XCOIN_XNODE_H
