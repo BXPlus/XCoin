@@ -19,6 +19,12 @@
  ************************************************************************************/
 
 namespace XNode{
+    struct XNodeMessageDecodingResult{
+        int messageType;
+        xcoin::interchange::DNSHandshake dnsHandshake;
+        xcoin::interchange::GetHeaders getHeaders;
+        xcoin::interchange::Headers headers;
+    };
     class Interface {
     private:
         static xcoin::interchange::Block encodeBlock(Block block);
@@ -32,8 +38,9 @@ namespace XNode{
         static Block importBlock(const std::string& blockData);
         static std::string exportChain(const std::vector<Block>& chain);
         static std::vector<Block> importChain(const std::string& chainData);
-        static std::string encodeDNSHandshake(const std::map<std::string,std::string>& dnsMap, bool expectReply);
-        std::pair<std::map<std::string,std::string>,bool> decodeDNSHandshake(const std::string& encodedHandshake);
+        static std::string exportDNSHandshake(const std::map<std::string,std::string>& dnsMap);
+        static std::pair<std::map<std::string,std::string>,bool> decodeDNSHandshake(const std::string& encodedHandshake);
+        static XNodeMessageDecodingResult decodeXNodeMessageEnvelope(const std::string& encodedEnvelope);
         static void shutdown();
         static bool startup();
     };

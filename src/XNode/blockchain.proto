@@ -39,7 +39,7 @@ message Headers{
 }
 
 message XNodeMessage{
-  string startString = 1;
+  string startString = 1; // First 10 characters of payload
   string command = 2;
   uint32 size = 3;
   string checksum = 4;
@@ -56,7 +56,6 @@ message DNSEntry{
 }
 
 message DNSHandshake{
-  bool expectReply = 1;
   repeated DNSEntry entries = 2;
 }
 

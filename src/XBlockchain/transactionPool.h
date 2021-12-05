@@ -3,13 +3,14 @@
 //
 
 #include "transaction.h"
-#include "wallet.cpp"
+#include "wallet.h"
+#include <algorithm>
+
+std::vector<Transaction> transactionPool;
 
 std::vector<Transaction> getTransactionPool();
 
 //Transaction sendTransaction(std::string address, int amount);
-
-std::vector<TxIn> getTxPoolIns(std::vector<Transaction> aTransactionPool);
 
 bool isValidTxForPool(Transaction tx, std::vector<Transaction> aTransactionPool);
 
