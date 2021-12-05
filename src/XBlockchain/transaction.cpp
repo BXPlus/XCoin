@@ -98,6 +98,14 @@ std::vector<UnspentTxOut> updateUnspentTxOuts(std::vector<Transaction> aTransact
     return newUnspentTxOuts;
 }
 
+std::vector<UnspentTxOut> processTransactions(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts, int blockIndex) {
+    if (!validateBlockTransactions(aTransactions, aUnspentTxOuts, blockIndex)) {
+        std::cout << "invalid block transactions";
+        return std::vector<UnspentTxOut>();
+    }
+    return updateUnspentTxOuts(aTransactions, aUnspentTxOuts);
+}
+
 bool isValidTxInStructure(TxIn txIn) {
     if ((&txIn) == nullptr) {
         std::cout << "txIn is null";
