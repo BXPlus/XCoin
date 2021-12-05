@@ -43,7 +43,6 @@ std::string getBalance()
 
 
 
-
 void createTxOuts(std::string receiverAddress, std::string myAddress, int amount, int leftOverAmount) {
 //    TxOut txOut1 = new TxOut(receiverAddress, amount);
 //    if (leftOverAmount === 0) {
