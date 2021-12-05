@@ -44,6 +44,12 @@ std::string calculateHash(int index, std::string previousHash, long long timesta
     return sha256(ss.str());
 }
 
+std::string calculateHeaderHash(int32_t version, std::string previousBlockHeaderHash, std::string merkle_root_hash, long long time, int nonce){
+    std::stringstream ss;
+    ss << version << previousBlockHeaderHash << merkle_root_hash << time << nonce;
+    return sha256(ss.str());
+}
+
 //Staking
 
 //Converting a hexadecimal std::string into a BigNumber

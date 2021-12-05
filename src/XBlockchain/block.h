@@ -54,6 +54,7 @@ long long getCurrentTimestamp();
 
 //Hash calculator
 std::string calculateHash(int index, std::string previousHash, long long timestamp, std::string data, int difficulty, int minterBalance, std::string minterAddress);
+std::string calculateHeaderHash(int32_t version, std::string previousBlockHeaderHash, std::string merkle_root_hash, long long time, int nonce);
 
 //Staking
 bool isBlockStakingValid(std::string previousHash, std::string address, long long timestamp, int balance, int difficulty, int index); //Returns true if the block is valid for staking
