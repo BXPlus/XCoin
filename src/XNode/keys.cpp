@@ -119,7 +119,6 @@ Keys keyFromPrivate(std::string priv_keyy){
 
 Keys keyFromPublic(std::string adress) {
     Keys key = Keys(adress);
-
     return key;
 }
 

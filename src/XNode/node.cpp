@@ -8,7 +8,11 @@ XNode::Node::Node() {
     this->peers = std::map<std::string, XNode::XNodeClient>();
 }
 
-void XNode::Node::RunNode(const std::vector<std::string> &dnsSeedPeers) {
+/**
+* Function called to start up a node, initiate peer-discovery & synchronisation
+* @param dnsSeedPeers is a list of DNS seed node addresses to attempt initial connections
+*/
+void XNode::Node::RunNode(const std::vector<std::string>& dnsSeedPeers) {
     std::string server_address("0.0.0.0:50051");
     ::grpc::EnableDefaultHealthCheckService(true);
     ::grpc::ServerBuilder builder;
@@ -27,6 +31,10 @@ void XNode::Node::RunNode(const std::vector<std::string> &dnsSeedPeers) {
     server->Wait();
 }
 
+/**
+* Callback function executed by gRPC to process incoming Ping requests from peers
+* Add the peer to the list of known nodes if necessary and replies with ping data
+*/
 ::grpc::Status XNode::Node::Ping(::grpc::ServerContext *context, const ::xcoin::interchange::PingHandshake *request,
                                  ::xcoin::interchange::PingHandshake *response) {
     spdlog::debug("Ping received from " + context->peer());
@@ -39,6 +47,10 @@ void XNode::Node::RunNode(const std::vector<std::string> &dnsSeedPeers) {
     return ::grpc::Status::OK;
 }
 
+/**
+* Callback function executed by gRPC to process incoming DNS Sync requests from peers
+* Handles incoming peers and replies with own known peers
+*/
 ::grpc::Status
 XNode::Node::DNSSyncPeerList(::grpc::ServerContext *context, const ::xcoin::interchange::DNSHandshake *request,
                              ::xcoin::interchange::DNSHandshake *response) {
@@ -55,6 +67,10 @@ XNode::Node::DNSSyncPeerList(::grpc::ServerContext *context, const ::xcoin::inte
     return ::grpc::Status::OK;
 }
 
+/**
+* Callback function executed by gRPC to process incoming peer change notifications from peers
+* Handles new peer data and sends back to confirm
+*/
 ::grpc::Status
 XNode::Node::NotifyPeerChange(::grpc::ServerContext *context, const ::xcoin::interchange::DNSEntry *request,
                               ::xcoin::interchange::DNSEntry *response) {
@@ -63,6 +79,13 @@ XNode::Node::NotifyPeerChange(::grpc::ServerContext *context, const ::xcoin::int
     return ::grpc::Status::OK;
 }
 
+/**
+* Function called to try to connect to a remote peer
+* If ping request is successful, DNS sync is performed, and ping is calculated
+* @param peerAddress is an ipv4 or ipv6 address of a potential remote node to connect to
+* @returns true if the connection and handshake was successful
+*/
+bool XNode::Node::AttemptPeerConnection(const std::string& peerAddress) {
 ::grpc::Status
 XNode::Node::HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::interchange::GetHeaders *request,
                              ::xcoin::interchange::Headers *response) {
@@ -249,6 +272,13 @@ bool XNode::Node::AttemptHeaderSync(const std::string &peerAddress) {
     }
     return false;
 }
+
+/**
+* Function called to process incoming peer data
+* If the peer is known, resolve data conflicts if any, otherwise try to connect and add to known peers
+* @param remotePeer the incoming peer data
+* @param peerStub the control stub of the remote peer to follow up with other requests if necessary
+*/
 
 
 void XNode::Node::handleIncomingPeerData(const xcoin::interchange::DNSEntry &remotePeer) {
