@@ -12,6 +12,7 @@
 #include <map>
 #include "Blockchain.h"
 #include "interface.h"
+#include "archive.h"
 #include <iostream>
 #include <thread>
 #include <memory>
@@ -40,9 +41,12 @@ namespace XNode{
         explicit Node();
         ~Node() override =default;
         void RunNode(const std::vector<std::string>& dnsSeedPeers);
+        void Shutdown();
         bool AttemptPeerConnection(const std::string& peerAddress);
         bool AttemptHeaderSync(const std::string& peerAddress);
     private:
+        static const uint32_t XNODE_VERSION_INITIAL = 1.1;
+        const std::string XNODE_PEERS_SAVE_PATH = "localpeers.xnodebackup";
         ::grpc::Status DNSSyncPeerList(::grpc::ServerContext *context, const ::xcoin::interchange::DNSHandshake *request, ::xcoin::interchange::DNSHandshake *response) override;
         ::grpc::Status Ping(::grpc::ServerContext *context, const ::xcoin::interchange::PingHandshake *request, ::xcoin::interchange::PingHandshake *response) override;
         ::grpc::Status NotifyPeerChange(::grpc::ServerContext *context, const ::xcoin::interchange::DNSEntry *request, ::xcoin::interchange::DNSEntry *response) override;
@@ -52,6 +56,7 @@ namespace XNode{
         void handleIncomingPeerData(const xcoin::interchange::DNSEntry &remotePeer);
         void handleIncomingHeaderData(const xcoin::interchange::GetHeaders& request, const ::grpc::ClientContext& context,
                                       std::unique_ptr<xcoin::interchange::XNodeSync::Stub> peerStub);
+        void saveDataOnDisk();
         std::map<std::string, XNodeClient> peers;
         std::unique_ptr<::grpc::Server> server;
         Blockchain blockchain;

@@ -3,17 +3,17 @@
 
 //# Generate and store the private Key
 
-string generatePrivateKey()
+std::string generatePrivateKey()
 {
     return ""; //To implement using key
 }
 
-string getPrivateFromWallet()
+std::string getPrivateFromWallet()
 {
     return "";
 }
 
-string getPublicFromWallet()
+std::string getPublicFromWallet()
 {
     string privateKey = getPrivateFromWallet();
     string key; //add when implemented in transaction
@@ -32,7 +32,7 @@ void deleteWallet() {
 
 
 
-string getBalance()
+std::string getBalance()
 {
     return "";
 }

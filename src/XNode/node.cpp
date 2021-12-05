@@ -31,6 +31,24 @@ void XNode::Node::RunNode(const std::vector<std::string>& dnsSeedPeers) {
     server->Wait();
 }
 
+void XNode::Node::Shutdown() {
+    spdlog::info("Node will shut down");
+    saveDataOnDisk();
+    this->server->Shutdown();
+}
+
+void XNode::Node::saveDataOnDisk() {
+    spdlog::debug("Will save data on disk");
+    Archive localData = Archive(XNODE_PEERS_SAVE_PATH);
+    xcoin::interchange::DNSHandshake encodedPeers;
+    for (std::pair<const std::basic_string<char>, XNodeClient> &peer: this->peers) {
+        xcoin::interchange::DNSEntry *entry = encodedPeers.add_entries();
+        entry->set_ipport(peer.first);
+        entry->set_publickey(peer.second.publicKey);
+    }
+    localData.saveData(encodedPeers.SerializeAsString());
+}
+
 /**
 * Callback function executed by gRPC to process incoming Ping requests from peers
 * Add the peer to the list of known nodes if necessary and replies with ping data
@@ -79,47 +97,17 @@ XNode::Node::NotifyPeerChange(::grpc::ServerContext *context, const ::xcoin::int
     return ::grpc::Status::OK;
 }
 
+/**
+* Callback function executed by gRPC to process incoming header sync requests from peers
+* Handles new peer data and sends back to confirm
+*/
 ::grpc::Status
 XNode::Node::HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::interchange::GetHeaders *request,
                              ::xcoin::interchange::Headers *response) {
     spdlog::debug("Header first sync requested by " + context->peer());
-    ::grpc::ClientContext getHeaderContext;
-    xcoin::interchange::Header getHeaderRequest;
-    xcoin::interchange::Block getHeaderResponse;
-
-    // TODO: Delete this later
-    ::grpc::ClientContext getBlockChainContext;
-    xcoin::interchange::DNSEntry getBlockChainRequest;
-    xcoin::interchange::Blockchain getBlockChainResponse;
-
     for (int i = 1; i < request->blockheaderhashes_size(); i++) {
         if (request->blockheaderhashes(i) != this->blockchain.toBlocks()[i].headerHash) {
-            getHeaderRequest.set_previousblockheaderhash(request->blockheaderhashes(i - 1));
-            peers[context->peer()].syncStub->GetBlock(
-                    &getHeaderContext,
-                    getHeaderRequest,
-                    &getHeaderResponse);
             // TODO: Use the response to construct the new blockchain, right now we will just import the blockchain from the peer and check which one is valid.
-            getBlockChainRequest.set_ipport(context->peer()); // Not even useful to do this.
-            peers[context->peer()].syncStub->GetBlockchain(
-                    &getBlockChainContext,
-                    getBlockChainRequest,
-                    &getBlockChainResponse);
-            Blockchain peerBlockchain = Blockchain();
-            for (const xcoin::interchange::Block &block: getBlockChainResponse.blocks())
-                peerBlockchain.appendBlock((Block((int) block.index(),
-                                                  block.hash(),
-                                                  block.previoushash(),
-                                                  block.headerhash(),
-                                                  block.previousheaderhash(),
-                                                  block.timestamp(),
-                                                  block.data(),
-                                                  (int) block.difficulty(),
-                                                  (int) block.minterbalance(),
-                                                  block.minteraddress())));
-            this->blockchain.replaceChain(peerBlockchain);
-            break;
-
         }
     }
     for (const Block &block: this->blockchain.toBlocks()) {
@@ -214,9 +202,10 @@ bool XNode::Node::AttemptPeerConnection(const std::string &peerAddress) {
             for (const xcoin::interchange::DNSEntry &remotePeer: dnsReply.entries())
                 this->handleIncomingPeerData(remotePeer);
             spdlog::info("Successfully synced DNS peers with " + peerAddress);
+            saveDataOnDisk();
+            AttemptHeaderSync(peerAddress);
             return true;
         } else spdlog::warn("DNS peer sync with " + peerAddress + " failed");
-        return AttemptHeaderSync(peerAddress);
     } else {
         spdlog::warn("Connection with peer " + peerAddress + " failed");
         this->peers.erase(peerAddress);
@@ -225,45 +214,25 @@ bool XNode::Node::AttemptPeerConnection(const std::string &peerAddress) {
 }
 
 bool XNode::Node::AttemptHeaderSync(const std::string &peerAddress) {
-    spdlog::debug("Will attempt to proceed a header sync to the peer " + peerAddress);
+    spdlog::debug("Will attempt to sync headers with " + peerAddress);
     ::grpc::ClientContext headerFirstSyncContext;
     xcoin::interchange::GetHeaders headerFirstSyncRequest;
+    headerFirstSyncRequest.set_version(XNODE_VERSION_INITIAL);
+    // TODO: Split request into multiple messages if block count is greater than 200
+    headerFirstSyncRequest.set_hashcount(this->blockchain.length);
+    headerFirstSyncRequest.set_stophash(this->blockchain.getLatestBlock().headerHash);
+    for (Block block: this->blockchain.toBlocks()){
+        std::string* headerHash = headerFirstSyncRequest.add_blockheaderhashes();
+        headerHash = &block.headerHash;
+    }
     xcoin::interchange::Headers headerFirstSyncReply;
     ::grpc::Status headerFirstSyncStatus = this->peers[peerAddress].syncStub->HeaderFirstSync(
             &headerFirstSyncContext, headerFirstSyncRequest, &headerFirstSyncReply);
-    // TODO: Delete this later
-    ::grpc::ClientContext getBlockChainContext;
-    xcoin::interchange::DNSEntry getBlockChainRequest;
-    xcoin::interchange::Blockchain getBlockChainResponse;
     if (headerFirstSyncStatus.ok()) {
         for (int i = 1; i < headerFirstSyncRequest.blockheaderhashes_size(); i++) {
             if (headerFirstSyncRequest.blockheaderhashes(i) != this->blockchain.toBlocks()[i].headerHash) {
-//                getHeaderRequest.set_previousblockheaderhash(headerFirstSyncRequest.blockheaderhashes(i-1));
-//                peers[context->peer()].syncStub->GetBlock(
-//                        &getHeaderContext,
-//                        getHeaderRequest,
-//                        &getHeaderResponse);
                 // TODO: Use the response to construct the new blockchain, right now we will just import the blockchain from the peer and check which one is valid.
-                getBlockChainRequest.set_ipport(headerFirstSyncContext.peer()); // Not even useful to do this.
-                peers[headerFirstSyncContext.peer()].syncStub->GetBlockchain(
-                        &getBlockChainContext,
-                        getBlockChainRequest,
-                        &getBlockChainResponse);
-                Blockchain peerBlockchain = Blockchain();
-                for (const xcoin::interchange::Block &block: getBlockChainResponse.blocks())
-                    peerBlockchain.appendBlock((Block((int) block.index(),
-                                                      block.hash(),
-                                                      block.previoushash(),
-                                                      block.headerhash(),
-                                                      block.previousheaderhash(),
-                                                      block.timestamp(),
-                                                      block.data(),
-                                                      (int) block.difficulty(),
-                                                      (int) block.minterbalance(),
-                                                      block.minteraddress())));
-                this->blockchain.replaceChain(peerBlockchain);
-                break;
-
+                spdlog::debug("block desync detected");
             }
         }
         spdlog::info("Successfully synced headers with " + peerAddress);
