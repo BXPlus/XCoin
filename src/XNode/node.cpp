@@ -79,13 +79,6 @@ XNode::Node::NotifyPeerChange(::grpc::ServerContext *context, const ::xcoin::int
     return ::grpc::Status::OK;
 }
 
-/**
-* Function called to try to connect to a remote peer
-* If ping request is successful, DNS sync is performed, and ping is calculated
-* @param peerAddress is an ipv4 or ipv6 address of a potential remote node to connect to
-* @returns true if the connection and handshake was successful
-*/
-bool XNode::Node::AttemptPeerConnection(const std::string& peerAddress) {
 ::grpc::Status
 XNode::Node::HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::interchange::GetHeaders *request,
                              ::xcoin::interchange::Headers *response) {
@@ -185,6 +178,12 @@ XNode::Node::GetBlockchain(::grpc::ServerContext *context, const ::xcoin::interc
     return ::grpc::Status::OK;
 }
 
+/**
+* Function called to try to connect to a remote peer
+* If ping request is successful, DNS sync is performed, and ping is calculated
+* @param peerAddress is an ipv4 or ipv6 address of a potential remote node to connect to
+* @returns true if the connection and handshake was successful
+*/
 bool XNode::Node::AttemptPeerConnection(const std::string &peerAddress) {
     spdlog::debug("Will attempt to connect to new peer " + peerAddress);
     std::shared_ptr<grpc::Channel> channel = grpc::CreateChannel(peerAddress, grpc::InsecureChannelCredentials());
