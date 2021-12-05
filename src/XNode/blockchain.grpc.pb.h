@@ -557,21 +557,41 @@ class XNodeSync final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
+    virtual ::grpc::Status HeaderFirstSync(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders& request, ::xcoin::interchange::Headers* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::Headers>> AsyncHeaderFirstSync(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::Headers>>(AsyncHeaderFirstSyncRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::Headers>> PrepareAsyncHeaderFirstSync(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::Headers>>(PrepareAsyncHeaderFirstSyncRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
+      virtual void HeaderFirstSync(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders* request, ::xcoin::interchange::Headers* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void HeaderFirstSync(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders* request, ::xcoin::interchange::Headers* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::Headers>* AsyncHeaderFirstSyncRaw(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::Headers>* PrepareAsyncHeaderFirstSyncRaw(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    ::grpc::Status HeaderFirstSync(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders& request, ::xcoin::interchange::Headers* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::Headers>> AsyncHeaderFirstSync(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::Headers>>(AsyncHeaderFirstSyncRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::Headers>> PrepareAsyncHeaderFirstSync(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::Headers>>(PrepareAsyncHeaderFirstSyncRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
+      void HeaderFirstSync(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders* request, ::xcoin::interchange::Headers* response, std::function<void(::grpc::Status)>) override;
+      void HeaderFirstSync(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders* request, ::xcoin::interchange::Headers* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -583,6 +603,9 @@ class XNodeSync final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
+    ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::Headers>* AsyncHeaderFirstSyncRaw(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::Headers>* PrepareAsyncHeaderFirstSyncRaw(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_HeaderFirstSync_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -590,13 +613,147 @@ class XNodeSync final {
    public:
     Service();
     virtual ~Service();
+    virtual ::grpc::Status HeaderFirstSync(::grpc::ServerContext* context, const ::xcoin::interchange::GetHeaders* request, ::xcoin::interchange::Headers* response);
   };
-  typedef Service AsyncService;
-  typedef Service CallbackService;
+  template <class BaseClass>
+  class WithAsyncMethod_HeaderFirstSync : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_HeaderFirstSync() {
+      ::grpc::Service::MarkMethodAsync(0);
+    }
+    ~WithAsyncMethod_HeaderFirstSync() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status HeaderFirstSync(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::GetHeaders* /*request*/, ::xcoin::interchange::Headers* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestHeaderFirstSync(::grpc::ServerContext* context, ::xcoin::interchange::GetHeaders* request, ::grpc::ServerAsyncResponseWriter< ::xcoin::interchange::Headers>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_HeaderFirstSync<Service > AsyncService;
+  template <class BaseClass>
+  class WithCallbackMethod_HeaderFirstSync : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_HeaderFirstSync() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::xcoin::interchange::GetHeaders, ::xcoin::interchange::Headers>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::xcoin::interchange::GetHeaders* request, ::xcoin::interchange::Headers* response) { return this->HeaderFirstSync(context, request, response); }));}
+    void SetMessageAllocatorFor_HeaderFirstSync(
+        ::grpc::MessageAllocator< ::xcoin::interchange::GetHeaders, ::xcoin::interchange::Headers>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::xcoin::interchange::GetHeaders, ::xcoin::interchange::Headers>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_HeaderFirstSync() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status HeaderFirstSync(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::GetHeaders* /*request*/, ::xcoin::interchange::Headers* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* HeaderFirstSync(
+      ::grpc::CallbackServerContext* /*context*/, const ::xcoin::interchange::GetHeaders* /*request*/, ::xcoin::interchange::Headers* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_HeaderFirstSync<Service > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
-  typedef Service StreamedUnaryService;
+  template <class BaseClass>
+  class WithGenericMethod_HeaderFirstSync : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_HeaderFirstSync() {
+      ::grpc::Service::MarkMethodGeneric(0);
+    }
+    ~WithGenericMethod_HeaderFirstSync() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status HeaderFirstSync(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::GetHeaders* /*request*/, ::xcoin::interchange::Headers* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_HeaderFirstSync : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_HeaderFirstSync() {
+      ::grpc::Service::MarkMethodRaw(0);
+    }
+    ~WithRawMethod_HeaderFirstSync() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status HeaderFirstSync(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::GetHeaders* /*request*/, ::xcoin::interchange::Headers* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestHeaderFirstSync(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_HeaderFirstSync : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_HeaderFirstSync() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->HeaderFirstSync(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_HeaderFirstSync() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status HeaderFirstSync(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::GetHeaders* /*request*/, ::xcoin::interchange::Headers* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* HeaderFirstSync(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_HeaderFirstSync : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_HeaderFirstSync() {
+      ::grpc::Service::MarkMethodStreamed(0,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::xcoin::interchange::GetHeaders, ::xcoin::interchange::Headers>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::xcoin::interchange::GetHeaders, ::xcoin::interchange::Headers>* streamer) {
+                       return this->StreamedHeaderFirstSync(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_HeaderFirstSync() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status HeaderFirstSync(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::GetHeaders* /*request*/, ::xcoin::interchange::Headers* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedHeaderFirstSync(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::xcoin::interchange::GetHeaders,::xcoin::interchange::Headers>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_HeaderFirstSync<Service > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef Service StreamedService;
+  typedef WithStreamedUnaryMethod_HeaderFirstSync<Service > StreamedService;
 };
 
 }  // namespace interchange

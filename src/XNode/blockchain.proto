@@ -8,7 +8,7 @@ service XNodeControl{
 }
 
 service XNodeSync{
-
+  rpc HeaderFirstSync(GetHeaders) returns (Headers) {}
 }
 
 // Basic messages

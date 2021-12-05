@@ -305,12 +305,14 @@ const char descriptor_table_protodef_blockchain_2eproto[] PROTOBUF_SECTION_VARIA
   "ncPeerList\022\037.xcoin.interchange.DNSHandsh"
   "ake\032\037.xcoin.interchange.DNSHandshake\"\000\022N"
   "\n\020NotifyPeerChange\022\033.xcoin.interchange.D"
-  "NSEntry\032\033.xcoin.interchange.DNSEntry\"\0002\013"
-  "\n\tXNodeSyncb\006proto3"
+  "NSEntry\032\033.xcoin.interchange.DNSEntry\"\0002["
+  "\n\tXNodeSync\022N\n\017HeaderFirstSync\022\035.xcoin.i"
+  "nterchange.GetHeaders\032\032.xcoin.interchang"
+  "e.Headers\"\000b\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_blockchain_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_blockchain_2eproto = {
-  false, false, 1379, descriptor_table_protodef_blockchain_2eproto, "blockchain.proto", 
+  false, false, 1459, descriptor_table_protodef_blockchain_2eproto, "blockchain.proto", 
   &descriptor_table_blockchain_2eproto_once, nullptr, 0, 9,
   schemas, file_default_instances, TableStruct_blockchain_2eproto::offsets,
   file_level_metadata_blockchain_2eproto, file_level_enum_descriptors_blockchain_2eproto, file_level_service_descriptors_blockchain_2eproto,
