@@ -55,7 +55,7 @@ MainWindow::MainWindow(QWidget *parent)
     QString path = QDir::currentPath();
     int index = path.indexOf("XCoin");
     QString subPath = path.mid(0,index+5);
-    subPath.append("/ui/xcoin3.jpg");
+    subPath.append("/ui/xcoinSmall.png");
 
     QPixmap pic(subPath);
     QLabel* imgLabel = new QLabel(userBlock);

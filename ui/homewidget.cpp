@@ -21,7 +21,7 @@ HomeWidget::HomeWidget(QWidget *parent) :
     QString path = QDir::currentPath();
     int index = path.indexOf("XCoin");
     QString subPath = path.mid(0,index+5);
-    subPath.append("/ui/xcoinBig.jpg");
+    subPath.append("/ui/xcoin.png");
 
     QPixmap pic(subPath);
     QLabel* imgLabel = new QLabel(this);

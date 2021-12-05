@@ -12,6 +12,14 @@ ContactsWidget::ContactsWidget(QWidget *parent) :
     QMap<QString, QString> contactDict;
     contactDict[QString("John Lennon")] = QString("#dk9174hdn57s");
     contactDict[QString("Bob")] = QString("#dk9174hdn29s");
+    contactDict[QString("Alex")] = QString("#dk9174hdn57s");
+    contactDict[QString("Clara")] = QString("#dk9174hdn29s");
+    contactDict[QString("Picha")] = QString("#dk9174hdn57s");
+    contactDict[QString("Tim")] = QString("#dk9174hdn29s");
+    contactDict[QString("Cyrus")] = QString("#dk9174hdn57s");
+    contactDict[QString("Arthur")] = QString("#dk9174hdn29s");
+    contactDict[QString("Youssef")] = QString("#dk9174hdn57s");
+    contactDict[QString("Mamoune")] = QString("#dk9174hdn29s");
     //int n = contactDict.count();
 
     title = new QLabel(this);
