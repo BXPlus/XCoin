@@ -10,6 +10,7 @@
 #include "payments.h"
 #include "logindialog.h"
 #include "settingswidget.h"
+#include "togglebtn.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

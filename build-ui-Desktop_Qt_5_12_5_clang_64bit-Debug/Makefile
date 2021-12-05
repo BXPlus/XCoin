@@ -58,11 +58,13 @@ SOURCES       = ../ui/custombutton.cpp \
 		../ui/mainwindow.cpp \
 		../ui/settingswidget.cpp \
 		../ui/logindialog.cpp \
-		../ui/payments.cpp moc_homewidget.cpp \
+		../ui/payments.cpp \
+		../ui/togglebtn.cpp moc_homewidget.cpp \
 		moc_logindialog.cpp \
 		moc_mainwindow.cpp \
 		moc_settingswidget.cpp \
-		moc_payments.cpp
+		moc_payments.cpp \
+		moc_togglebtn.cpp
 OBJECTS       = custombutton.o \
 		homewidget.o \
 		main.o \
@@ -70,11 +72,13 @@ OBJECTS       = custombutton.o \
 		settingswidget.o \
 		logindialog.o \
 		payments.o \
+		togglebtn.o \
 		moc_homewidget.o \
 		moc_logindialog.o \
 		moc_mainwindow.o \
 		moc_settingswidget.o \
-		moc_payments.o
+		moc_payments.o \
+		moc_togglebtn.o
 DIST          = ../ui/style.qss \
 		../../../../Installs/Qt/5.12.5/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Installs/Qt/5.12.5/clang_64/mkspecs/qdevice.pri \
@@ -274,13 +278,15 @@ DIST          = ../ui/style.qss \
 		../ui/logindialog.h \
 		../ui/mainwindow.h \
 		../ui/settingswidget.h \
-		../ui/payments.h ../ui/custombutton.cpp \
+		../ui/payments.h \
+		../ui/togglebtn.h ../ui/custombutton.cpp \
 		../ui/homewidget.cpp \
 		../ui/main.cpp \
 		../ui/mainwindow.cpp \
 		../ui/settingswidget.cpp \
 		../ui/logindialog.cpp \
-		../ui/payments.cpp
+		../ui/payments.cpp \
+		../ui/togglebtn.cpp
 QMAKE_TARGET  = ui
 DESTDIR       = 
 TARGET        = ui.app/Contents/MacOS/ui
@@ -728,8 +734,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Installs/Qt/5.12.5/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../ui/custombutton.h ../ui/homewidget.h ../ui/logindialog.h ../ui/mainwindow.h ../ui/settingswidget.h ../ui/payments.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../ui/custombutton.cpp ../ui/homewidget.cpp ../ui/main.cpp ../ui/mainwindow.cpp ../ui/settingswidget.cpp ../ui/logindialog.cpp ../ui/payments.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../ui/custombutton.h ../ui/homewidget.h ../ui/logindialog.h ../ui/mainwindow.h ../ui/settingswidget.h ../ui/payments.h ../ui/togglebtn.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../ui/custombutton.cpp ../ui/homewidget.cpp ../ui/main.cpp ../ui/mainwindow.cpp ../ui/settingswidget.cpp ../ui/logindialog.cpp ../ui/payments.cpp ../ui/togglebtn.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../ui/mainwindow.ui $(DISTDIR)/
 
 
@@ -765,9 +771,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: ../../../../Installs/Qt/5.12.5/clang_64/mkspecs/features/data/dummy.cpp
 	/Library/Developer/CommandLineTools/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mmacosx-version-min=10.12 -Wall -W -dM -E -o moc_predefs.h ../../../../Installs/Qt/5.12.5/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_homewidget.cpp moc_logindialog.cpp moc_mainwindow.cpp moc_settingswidget.cpp moc_payments.cpp
+compiler_moc_header_make_all: moc_homewidget.cpp moc_logindialog.cpp moc_mainwindow.cpp moc_settingswidget.cpp moc_payments.cpp moc_togglebtn.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_homewidget.cpp moc_logindialog.cpp moc_mainwindow.cpp moc_settingswidget.cpp moc_payments.cpp
+	-$(DEL_FILE) moc_homewidget.cpp moc_logindialog.cpp moc_mainwindow.cpp moc_settingswidget.cpp moc_payments.cpp moc_togglebtn.cpp
 moc_homewidget.cpp: ../ui/homewidget.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
@@ -827,6 +833,7 @@ moc_mainwindow.cpp: ../ui/mainwindow.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
 		../ui/settingswidget.h \
 		../ui/mainwindow.h \
+		../ui/togglebtn.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
@@ -870,6 +877,7 @@ moc_settingswidget.cpp: ../ui/settingswidget.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
+		../ui/togglebtn.h \
 		moc_predefs.h \
 		../../../../Installs/Qt/5.12.5/clang_64/bin/moc
 	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc $(DEFINES) --include /Users/timvalencony/Desktop/CSE201/XCoin/build-ui-Desktop_Qt_5_12_5_clang_64bit-Debug/moc_predefs.h -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/macx-clang -I/Users/timvalencony/Desktop/CSE201/XCoin/ui -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib ../ui/settingswidget.h -o moc_settingswidget.cpp
@@ -885,6 +893,11 @@ moc_payments.cpp: ../ui/payments.h \
 		moc_predefs.h \
 		../../../../Installs/Qt/5.12.5/clang_64/bin/moc
 	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc $(DEFINES) --include /Users/timvalencony/Desktop/CSE201/XCoin/build-ui-Desktop_Qt_5_12_5_clang_64bit-Debug/moc_predefs.h -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/macx-clang -I/Users/timvalencony/Desktop/CSE201/XCoin/ui -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib ../ui/payments.h -o moc_payments.cpp
+
+moc_togglebtn.cpp: ../ui/togglebtn.h \
+		moc_predefs.h \
+		../../../../Installs/Qt/5.12.5/clang_64/bin/moc
+	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc $(DEFINES) --include /Users/timvalencony/Desktop/CSE201/XCoin/build-ui-Desktop_Qt_5_12_5_clang_64bit-Debug/moc_predefs.h -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/macx-clang -I/Users/timvalencony/Desktop/CSE201/XCoin/ui -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib ../ui/togglebtn.h -o moc_togglebtn.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -969,6 +982,7 @@ main.o: ../ui/main.cpp ../ui/mainwindow.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
+		../ui/togglebtn.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qapplication.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QFile \
@@ -1013,6 +1027,7 @@ mainwindow.o: ../ui/mainwindow.cpp ../ui/mainwindow.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
+		../ui/togglebtn.h \
 		ui_mainwindow.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QStringList \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstringlist.h \
@@ -1056,6 +1071,7 @@ settingswidget.o: ../ui/settingswidget.cpp ../ui/settingswidget.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgroupbox.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		../ui/togglebtn.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
@@ -1099,6 +1115,7 @@ logindialog.o: ../ui/logindialog.cpp ../ui/logindialog.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
+		../ui/togglebtn.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDebug \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o logindialog.o ../ui/logindialog.cpp
@@ -1121,6 +1138,9 @@ payments.o: ../ui/payments.cpp ../ui/payments.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/qstatictext.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o payments.o ../ui/payments.cpp
 
+togglebtn.o: ../ui/togglebtn.cpp ../ui/togglebtn.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o togglebtn.o ../ui/togglebtn.cpp
+
 moc_homewidget.o: moc_homewidget.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_homewidget.o moc_homewidget.cpp
 
@@ -1135,6 +1155,9 @@ moc_settingswidget.o: moc_settingswidget.cpp
 
 moc_payments.o: moc_payments.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_payments.o moc_payments.cpp
+
+moc_togglebtn.o: moc_togglebtn.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_togglebtn.o moc_togglebtn.cpp
 
 ####### Install
 

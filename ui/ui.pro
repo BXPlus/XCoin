@@ -15,7 +15,8 @@ SOURCES += \
     mainwindow.cpp \
     settingswidget.cpp \
     logindialog.cpp \
-    payments.cpp
+    payments.cpp \
+    togglebtn.cpp
 
 HEADERS += \
     custombutton.h \
@@ -23,7 +24,8 @@ HEADERS += \
     logindialog.h \
     mainwindow.h \
     settingswidget.h \
-    payments.h
+    payments.h \
+    togglebtn.h
 
 FORMS += \
     mainwindow.ui

@@ -14,27 +14,12 @@ public:
     explicit SettingsWidget(QWidget *parent = nullptr);
     QPushButton* get_homeBtn();
 private:
-    QWidget* profileWidget;
-    QWidget* nameWidget;
-    QWidget* infoWidget;
-    QWidget* hWidget;
-    QPushButton* goHomeBtn;
-    QComboBox* choiceBox;
-    QScrollArea* scrollArea;
+    QAbstractButton* appearanceBtn;
+    QAbstractButton* flNode;
 
-    QLabel* firstName;
-    QLabel* lastName;
-    QLabel* profileInfo1;
-    QLabel* profileInfo2;
-    QLabel* goHomeLabel;
-
-    QVBoxLayout* mainLayout;
-    QHBoxLayout* profileLayout;
-    QVBoxLayout* infoLayout;
-    QHBoxLayout* nameLayout;
-    QHBoxLayout* hLayout;
-
-    QList<QWidget*> boxList;
+    QLabel* nodePort;
+    QLabel* rDNSadd;
+    QLabel* publicadd;
 
 signals:
 
