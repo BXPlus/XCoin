@@ -89,3 +89,16 @@ This week I finished the implementation of the key class and the functions sign(
 Next week I will complete wallet and transaction with functions implemented with keys.
 
 @Kevin Messali
+
+@Thang Long VU 
+
+This week:
+
+- Fix remaining bugs in transaction.cpp and transaction.h (https://github.com/BXPlus/XCoin/commit/feec0fe5ce4eb0bca91bb86c8f2e40060e8008e6)
+- Implemented hasDuplicates in transaction.cpp (https://github.com/BXPlus/XCoin/commit/f77333b4db9f71311cc7068bf886bc65b4fd7bd4)
+- Implemented validateBlockTransactions in transaction.cpp (https://github.com/BXPlus/XCoin/commit/876ebef534405e6f07dee9f5e84f49cf3ef182d7)
+- Implemented processTransactions in transaction.cpp (https://github.com/BXPlus/XCoin/commit/a23cb7e2efdc2d83f0045b3121f14f723356caec)
+
+Next week:
+
+- Write tests for transaction.cpp, aiming for at least 90% coverage.
