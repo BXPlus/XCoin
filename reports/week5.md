@@ -89,7 +89,8 @@ This week I finished the implementation of the key class and the functions sign(
 Next week I will complete wallet and transaction with functions implemented with keys.
 
 @Kevin Messali
-
+This week I started to implement a very naive way of synchronizing the blockchain using the header first sync manner. I added it on the new implementation of the network connection protocol called gRPC.
+Next week I will finalize the header sync and make it production ready.
 @Thang Long VU 
 
 This week:
