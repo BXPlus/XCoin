@@ -27,6 +27,9 @@ LoginDialog::LoginDialog(QWidget *parent) :
     warningLabel->setVisible(false);
 
     login->setObjectName("LoginButton");
+    privateLabel->setObjectName("PrivateLabelT");
+    privateText->setObjectName("PrivateTextT");
+    groupBox->setObjectName("BoxGroup");
 
     connect(login, SIGNAL(clicked()), this, SLOT(check_credentials()));
 }

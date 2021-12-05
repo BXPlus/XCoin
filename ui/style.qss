@@ -41,3 +41,24 @@ QLabel#title_page_label {
     font-family: "Arial";
 
 }
+
+QPushButton#LoginButton {
+    background-color: pink;
+    border: 2px solid white;
+    height: 28px;
+    width: 30px;
+    border-radius: 10px;
+}
+
+QLabel#PrivateLabelT {
+    font-size: 15px;
+}
+
+QLineEdit#PrivateTextT {
+    width: 100px;
+}
+
+QGroupBox#BoxGroup {
+    width: 70px;
+    height: 50px;
+}
