@@ -10,6 +10,7 @@ service XNodeControl{
 service XNodeSync{
   rpc HeaderFirstSync(GetHeaders) returns (Headers) {}
   rpc GetBlock(Header) returns (Block) {}
+  rpc GetBlockchain(DNSEntry) returns (Blockchain) {}
 }
 
 // Basic messages

@@ -30,7 +30,7 @@ xcoin::interchange::Block XNode::Interface::encodeBlock(Block block) {
 * @returns a block
 */
 Block XNode::Interface::decodeBlock(const xcoin::interchange::Block& protoBlock) {
-    return {static_cast<int>(protoBlock.index()), protoBlock.hash(), protoBlock.previoushash(), protoBlock.timestamp(), protoBlock.data(), static_cast<int>(protoBlock.difficulty()), static_cast<int>(protoBlock.minterbalance()), protoBlock.minteraddress()};
+    return {static_cast<int>(protoBlock.index()), protoBlock.hash(), protoBlock.previoushash(), protoBlock.headerhash(), protoBlock.previousheaderhash(), protoBlock.timestamp(), protoBlock.data(), static_cast<int>(protoBlock.difficulty()), static_cast<int>(protoBlock.minterbalance()), protoBlock.minteraddress()};
 }
 
 /**

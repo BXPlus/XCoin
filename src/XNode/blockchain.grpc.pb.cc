@@ -170,6 +170,7 @@ XNodeControl::Service::~Service() {
 static const char* XNodeSync_method_names[] = {
   "/xcoin.interchange.XNodeSync/HeaderFirstSync",
   "/xcoin.interchange.XNodeSync/GetBlock",
+  "/xcoin.interchange.XNodeSync/GetBlockchain",
 };
 
 std::unique_ptr< XNodeSync::Stub> XNodeSync::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -181,6 +182,7 @@ std::unique_ptr< XNodeSync::Stub> XNodeSync::NewStub(const std::shared_ptr< ::gr
 XNodeSync::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_HeaderFirstSync_(XNodeSync_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetBlock_(XNodeSync_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetBlockchain_(XNodeSync_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status XNodeSync::Stub::HeaderFirstSync(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders& request, ::xcoin::interchange::Headers* response) {
@@ -229,6 +231,29 @@ void XNodeSync::Stub::async::GetBlock(::grpc::ClientContext* context, const ::xc
   return result;
 }
 
+::grpc::Status XNodeSync::Stub::GetBlockchain(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::xcoin::interchange::Blockchain* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::xcoin::interchange::DNSEntry, ::xcoin::interchange::Blockchain, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetBlockchain_, context, request, response);
+}
+
+void XNodeSync::Stub::async::GetBlockchain(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry* request, ::xcoin::interchange::Blockchain* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::xcoin::interchange::DNSEntry, ::xcoin::interchange::Blockchain, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetBlockchain_, context, request, response, std::move(f));
+}
+
+void XNodeSync::Stub::async::GetBlockchain(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry* request, ::xcoin::interchange::Blockchain* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetBlockchain_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::xcoin::interchange::Blockchain>* XNodeSync::Stub::PrepareAsyncGetBlockchainRaw(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::xcoin::interchange::Blockchain, ::xcoin::interchange::DNSEntry, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetBlockchain_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::xcoin::interchange::Blockchain>* XNodeSync::Stub::AsyncGetBlockchainRaw(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetBlockchainRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 XNodeSync::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       XNodeSync_method_names[0],
@@ -250,6 +275,16 @@ XNodeSync::Service::Service() {
              ::xcoin::interchange::Block* resp) {
                return service->GetBlock(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      XNodeSync_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< XNodeSync::Service, ::xcoin::interchange::DNSEntry, ::xcoin::interchange::Blockchain, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](XNodeSync::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::xcoin::interchange::DNSEntry* req,
+             ::xcoin::interchange::Blockchain* resp) {
+               return service->GetBlockchain(ctx, req, resp);
+             }, this)));
 }
 
 XNodeSync::Service::~Service() {
@@ -263,6 +298,13 @@ XNodeSync::Service::~Service() {
 }
 
 ::grpc::Status XNodeSync::Service::GetBlock(::grpc::ServerContext* context, const ::xcoin::interchange::Header* request, ::xcoin::interchange::Block* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status XNodeSync::Service::GetBlockchain(::grpc::ServerContext* context, const ::xcoin::interchange::DNSEntry* request, ::xcoin::interchange::Blockchain* response) {
   (void) context;
   (void) request;
   (void) response;

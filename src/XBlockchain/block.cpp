@@ -16,6 +16,8 @@ Block::Block(int index, std::string hash, std::string previousHash, std::string 
     this->difficulty = difficulty;
     this->minterBalance = minterBalance;
     this->minterAddress = minterAddress;
+    version = 1;
+    nonce = 1;
 }
 
 //Hash calculator

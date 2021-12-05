@@ -47,8 +47,10 @@ namespace XNode{
         ::grpc::Status Ping(::grpc::ServerContext *context, const ::xcoin::interchange::PingHandshake *request, ::xcoin::interchange::PingHandshake *response) override;
         ::grpc::Status NotifyPeerChange(::grpc::ServerContext *context, const ::xcoin::interchange::DNSEntry *request, ::xcoin::interchange::DNSEntry *response) override;
         ::grpc::Status HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::interchange::GetHeaders *request, ::xcoin::interchange::Headers* response) override;
+        ::grpc::Status GetBlock(::grpc::ServerContext *context, const ::xcoin::interchange::Header *request, ::xcoin::interchange::Block *response) override;
+        ::grpc::Status GetBlockchain(::grpc::ServerContext *context, const ::xcoin::interchange::DNSEntry *request, ::xcoin::interchange::Blockchain *response) override;
         void handleIncomingPeerData(const xcoin::interchange::DNSEntry &remotePeer);
-        void handleIncomingHeaderData(const std::basic_string<char> &remoteHeader,
+        void handleIncomingHeaderData(const xcoin::interchange::GetHeaders& request, const ::grpc::ClientContext& context,
                                       std::unique_ptr<xcoin::interchange::XNodeSync::Stub> peerStub);
         std::map<std::string, XNodeClient> peers;
         std::unique_ptr<::grpc::Server> server;
