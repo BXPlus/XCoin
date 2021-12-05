@@ -221,13 +221,16 @@ class Block final :
   enum : int {
     kHashFieldNumber = 2,
     kPreviousHashFieldNumber = 3,
-    kDataFieldNumber = 5,
-    kMinterAddressFieldNumber = 9,
+    kHeaderHashFieldNumber = 4,
+    kPreviousHeaderHashFieldNumber = 5,
+    kDataFieldNumber = 7,
+    kMinterAddressFieldNumber = 11,
+    kMerkleRootHashFieldNumber = 12,
     kIndexFieldNumber = 1,
-    kTimestampFieldNumber = 4,
-    kDifficultyFieldNumber = 6,
-    kNonceFieldNumber = 7,
-    kMinterBalanceFieldNumber = 8,
+    kTimestampFieldNumber = 6,
+    kDifficultyFieldNumber = 8,
+    kNonceFieldNumber = 9,
+    kMinterBalanceFieldNumber = 10,
   };
   // optional string hash = 2;
   bool has_hash() const;
@@ -265,7 +268,43 @@ class Block final :
   std::string* _internal_mutable_previoushash();
   public:
 
-  // optional string data = 5;
+  // optional string headerHash = 4;
+  bool has_headerhash() const;
+  private:
+  bool _internal_has_headerhash() const;
+  public:
+  void clear_headerhash();
+  const std::string& headerhash() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_headerhash(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_headerhash();
+  PROTOBUF_MUST_USE_RESULT std::string* release_headerhash();
+  void set_allocated_headerhash(std::string* headerhash);
+  private:
+  const std::string& _internal_headerhash() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_headerhash(const std::string& value);
+  std::string* _internal_mutable_headerhash();
+  public:
+
+  // optional string previousHeaderHash = 5;
+  bool has_previousheaderhash() const;
+  private:
+  bool _internal_has_previousheaderhash() const;
+  public:
+  void clear_previousheaderhash();
+  const std::string& previousheaderhash() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_previousheaderhash(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_previousheaderhash();
+  PROTOBUF_MUST_USE_RESULT std::string* release_previousheaderhash();
+  void set_allocated_previousheaderhash(std::string* previousheaderhash);
+  private:
+  const std::string& _internal_previousheaderhash() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_previousheaderhash(const std::string& value);
+  std::string* _internal_mutable_previousheaderhash();
+  public:
+
+  // optional string data = 7;
   bool has_data() const;
   private:
   bool _internal_has_data() const;
@@ -283,7 +322,7 @@ class Block final :
   std::string* _internal_mutable_data();
   public:
 
-  // optional string minterAddress = 9;
+  // optional string minterAddress = 11;
   bool has_minteraddress() const;
   private:
   bool _internal_has_minteraddress() const;
@@ -301,6 +340,24 @@ class Block final :
   std::string* _internal_mutable_minteraddress();
   public:
 
+  // optional string merkle_root_hash = 12;
+  bool has_merkle_root_hash() const;
+  private:
+  bool _internal_has_merkle_root_hash() const;
+  public:
+  void clear_merkle_root_hash();
+  const std::string& merkle_root_hash() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_merkle_root_hash(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_merkle_root_hash();
+  PROTOBUF_MUST_USE_RESULT std::string* release_merkle_root_hash();
+  void set_allocated_merkle_root_hash(std::string* merkle_root_hash);
+  private:
+  const std::string& _internal_merkle_root_hash() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_merkle_root_hash(const std::string& value);
+  std::string* _internal_mutable_merkle_root_hash();
+  public:
+
   // optional int64 index = 1;
   bool has_index() const;
   private:
@@ -314,7 +371,7 @@ class Block final :
   void _internal_set_index(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
-  // optional int64 timestamp = 4;
+  // optional int64 timestamp = 6;
   bool has_timestamp() const;
   private:
   bool _internal_has_timestamp() const;
@@ -327,7 +384,7 @@ class Block final :
   void _internal_set_timestamp(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
-  // optional int64 difficulty = 6;
+  // optional int64 difficulty = 8;
   bool has_difficulty() const;
   private:
   bool _internal_has_difficulty() const;
@@ -340,7 +397,7 @@ class Block final :
   void _internal_set_difficulty(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
-  // optional int64 nonce = 7;
+  // optional int64 nonce = 9;
   bool has_nonce() const;
   private:
   bool _internal_has_nonce() const;
@@ -353,7 +410,7 @@ class Block final :
   void _internal_set_nonce(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
-  // optional int64 minterBalance = 8;
+  // optional int64 minterBalance = 10;
   bool has_minterbalance() const;
   private:
   bool _internal_has_minterbalance() const;
@@ -377,8 +434,11 @@ class Block final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr hash_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr previoushash_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr headerhash_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr previousheaderhash_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr data_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr minteraddress_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr merkle_root_hash_;
   ::PROTOBUF_NAMESPACE_ID::int64 index_;
   ::PROTOBUF_NAMESPACE_ID::int64 timestamp_;
   ::PROTOBUF_NAMESPACE_ID::int64 difficulty_;
@@ -1821,7 +1881,7 @@ class DNSHandshake final :
 
 // optional int64 index = 1;
 inline bool Block::_internal_has_index() const {
-  bool value = (_has_bits_[0] & 0x00000010u) != 0;
+  bool value = (_has_bits_[0] & 0x00000080u) != 0;
   return value;
 }
 inline bool Block::has_index() const {
@@ -1829,7 +1889,7 @@ inline bool Block::has_index() const {
 }
 inline void Block::clear_index() {
   index_ = int64_t{0};
-  _has_bits_[0] &= ~0x00000010u;
+  _has_bits_[0] &= ~0x00000080u;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Block::_internal_index() const {
   return index_;
@@ -1839,7 +1899,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 Block::index() const {
   return _internal_index();
 }
 inline void Block::_internal_set_index(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _has_bits_[0] |= 0x00000010u;
+  _has_bits_[0] |= 0x00000080u;
   index_ = value;
 }
 inline void Block::set_index(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -1963,9 +2023,125 @@ inline void Block::set_allocated_previoushash(std::string* previoushash) {
   // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.Block.previousHash)
 }
 
-// optional int64 timestamp = 4;
+// optional string headerHash = 4;
+inline bool Block::_internal_has_headerhash() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline bool Block::has_headerhash() const {
+  return _internal_has_headerhash();
+}
+inline void Block::clear_headerhash() {
+  headerhash_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline const std::string& Block::headerhash() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.Block.headerHash)
+  return _internal_headerhash();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Block::set_headerhash(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000004u;
+ headerhash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:xcoin.interchange.Block.headerHash)
+}
+inline std::string* Block::mutable_headerhash() {
+  std::string* _s = _internal_mutable_headerhash();
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.Block.headerHash)
+  return _s;
+}
+inline const std::string& Block::_internal_headerhash() const {
+  return headerhash_.Get();
+}
+inline void Block::_internal_set_headerhash(const std::string& value) {
+  _has_bits_[0] |= 0x00000004u;
+  headerhash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* Block::_internal_mutable_headerhash() {
+  _has_bits_[0] |= 0x00000004u;
+  return headerhash_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* Block::release_headerhash() {
+  // @@protoc_insertion_point(field_release:xcoin.interchange.Block.headerHash)
+  if (!_internal_has_headerhash()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000004u;
+  return headerhash_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void Block::set_allocated_headerhash(std::string* headerhash) {
+  if (headerhash != nullptr) {
+    _has_bits_[0] |= 0x00000004u;
+  } else {
+    _has_bits_[0] &= ~0x00000004u;
+  }
+  headerhash_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), headerhash,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.Block.headerHash)
+}
+
+// optional string previousHeaderHash = 5;
+inline bool Block::_internal_has_previousheaderhash() const {
+  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline bool Block::has_previousheaderhash() const {
+  return _internal_has_previousheaderhash();
+}
+inline void Block::clear_previousheaderhash() {
+  previousheaderhash_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline const std::string& Block::previousheaderhash() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.Block.previousHeaderHash)
+  return _internal_previousheaderhash();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Block::set_previousheaderhash(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000008u;
+ previousheaderhash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:xcoin.interchange.Block.previousHeaderHash)
+}
+inline std::string* Block::mutable_previousheaderhash() {
+  std::string* _s = _internal_mutable_previousheaderhash();
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.Block.previousHeaderHash)
+  return _s;
+}
+inline const std::string& Block::_internal_previousheaderhash() const {
+  return previousheaderhash_.Get();
+}
+inline void Block::_internal_set_previousheaderhash(const std::string& value) {
+  _has_bits_[0] |= 0x00000008u;
+  previousheaderhash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* Block::_internal_mutable_previousheaderhash() {
+  _has_bits_[0] |= 0x00000008u;
+  return previousheaderhash_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* Block::release_previousheaderhash() {
+  // @@protoc_insertion_point(field_release:xcoin.interchange.Block.previousHeaderHash)
+  if (!_internal_has_previousheaderhash()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000008u;
+  return previousheaderhash_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void Block::set_allocated_previousheaderhash(std::string* previousheaderhash) {
+  if (previousheaderhash != nullptr) {
+    _has_bits_[0] |= 0x00000008u;
+  } else {
+    _has_bits_[0] &= ~0x00000008u;
+  }
+  previousheaderhash_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), previousheaderhash,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.Block.previousHeaderHash)
+}
+
+// optional int64 timestamp = 6;
 inline bool Block::_internal_has_timestamp() const {
-  bool value = (_has_bits_[0] & 0x00000020u) != 0;
+  bool value = (_has_bits_[0] & 0x00000100u) != 0;
   return value;
 }
 inline bool Block::has_timestamp() const {
@@ -1973,7 +2149,7 @@ inline bool Block::has_timestamp() const {
 }
 inline void Block::clear_timestamp() {
   timestamp_ = int64_t{0};
-  _has_bits_[0] &= ~0x00000020u;
+  _has_bits_[0] &= ~0x00000100u;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Block::_internal_timestamp() const {
   return timestamp_;
@@ -1983,7 +2159,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 Block::timestamp() const {
   return _internal_timestamp();
 }
 inline void Block::_internal_set_timestamp(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _has_bits_[0] |= 0x00000020u;
+  _has_bits_[0] |= 0x00000100u;
   timestamp_ = value;
 }
 inline void Block::set_timestamp(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -1991,9 +2167,9 @@ inline void Block::set_timestamp(::PROTOBUF_NAMESPACE_ID::int64 value) {
   // @@protoc_insertion_point(field_set:xcoin.interchange.Block.timestamp)
 }
 
-// optional string data = 5;
+// optional string data = 7;
 inline bool Block::_internal_has_data() const {
-  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  bool value = (_has_bits_[0] & 0x00000010u) != 0;
   return value;
 }
 inline bool Block::has_data() const {
@@ -2001,7 +2177,7 @@ inline bool Block::has_data() const {
 }
 inline void Block::clear_data() {
   data_.ClearToEmpty();
-  _has_bits_[0] &= ~0x00000004u;
+  _has_bits_[0] &= ~0x00000010u;
 }
 inline const std::string& Block::data() const {
   // @@protoc_insertion_point(field_get:xcoin.interchange.Block.data)
@@ -2010,7 +2186,7 @@ inline const std::string& Block::data() const {
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
 void Block::set_data(ArgT0&& arg0, ArgT... args) {
- _has_bits_[0] |= 0x00000004u;
+ _has_bits_[0] |= 0x00000010u;
  data_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
   // @@protoc_insertion_point(field_set:xcoin.interchange.Block.data)
 }
@@ -2023,11 +2199,11 @@ inline const std::string& Block::_internal_data() const {
   return data_.Get();
 }
 inline void Block::_internal_set_data(const std::string& value) {
-  _has_bits_[0] |= 0x00000004u;
+  _has_bits_[0] |= 0x00000010u;
   data_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
 }
 inline std::string* Block::_internal_mutable_data() {
-  _has_bits_[0] |= 0x00000004u;
+  _has_bits_[0] |= 0x00000010u;
   return data_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* Block::release_data() {
@@ -2035,23 +2211,23 @@ inline std::string* Block::release_data() {
   if (!_internal_has_data()) {
     return nullptr;
   }
-  _has_bits_[0] &= ~0x00000004u;
+  _has_bits_[0] &= ~0x00000010u;
   return data_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void Block::set_allocated_data(std::string* data) {
   if (data != nullptr) {
-    _has_bits_[0] |= 0x00000004u;
+    _has_bits_[0] |= 0x00000010u;
   } else {
-    _has_bits_[0] &= ~0x00000004u;
+    _has_bits_[0] &= ~0x00000010u;
   }
   data_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), data,
       GetArenaForAllocation());
   // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.Block.data)
 }
 
-// optional int64 difficulty = 6;
+// optional int64 difficulty = 8;
 inline bool Block::_internal_has_difficulty() const {
-  bool value = (_has_bits_[0] & 0x00000040u) != 0;
+  bool value = (_has_bits_[0] & 0x00000200u) != 0;
   return value;
 }
 inline bool Block::has_difficulty() const {
@@ -2059,7 +2235,7 @@ inline bool Block::has_difficulty() const {
 }
 inline void Block::clear_difficulty() {
   difficulty_ = int64_t{0};
-  _has_bits_[0] &= ~0x00000040u;
+  _has_bits_[0] &= ~0x00000200u;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Block::_internal_difficulty() const {
   return difficulty_;
@@ -2069,7 +2245,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 Block::difficulty() const {
   return _internal_difficulty();
 }
 inline void Block::_internal_set_difficulty(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _has_bits_[0] |= 0x00000040u;
+  _has_bits_[0] |= 0x00000200u;
   difficulty_ = value;
 }
 inline void Block::set_difficulty(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -2077,9 +2253,9 @@ inline void Block::set_difficulty(::PROTOBUF_NAMESPACE_ID::int64 value) {
   // @@protoc_insertion_point(field_set:xcoin.interchange.Block.difficulty)
 }
 
-// optional int64 nonce = 7;
+// optional int64 nonce = 9;
 inline bool Block::_internal_has_nonce() const {
-  bool value = (_has_bits_[0] & 0x00000080u) != 0;
+  bool value = (_has_bits_[0] & 0x00000400u) != 0;
   return value;
 }
 inline bool Block::has_nonce() const {
@@ -2087,7 +2263,7 @@ inline bool Block::has_nonce() const {
 }
 inline void Block::clear_nonce() {
   nonce_ = int64_t{0};
-  _has_bits_[0] &= ~0x00000080u;
+  _has_bits_[0] &= ~0x00000400u;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Block::_internal_nonce() const {
   return nonce_;
@@ -2097,7 +2273,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 Block::nonce() const {
   return _internal_nonce();
 }
 inline void Block::_internal_set_nonce(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _has_bits_[0] |= 0x00000080u;
+  _has_bits_[0] |= 0x00000400u;
   nonce_ = value;
 }
 inline void Block::set_nonce(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -2105,9 +2281,9 @@ inline void Block::set_nonce(::PROTOBUF_NAMESPACE_ID::int64 value) {
   // @@protoc_insertion_point(field_set:xcoin.interchange.Block.nonce)
 }
 
-// optional int64 minterBalance = 8;
+// optional int64 minterBalance = 10;
 inline bool Block::_internal_has_minterbalance() const {
-  bool value = (_has_bits_[0] & 0x00000100u) != 0;
+  bool value = (_has_bits_[0] & 0x00000800u) != 0;
   return value;
 }
 inline bool Block::has_minterbalance() const {
@@ -2115,7 +2291,7 @@ inline bool Block::has_minterbalance() const {
 }
 inline void Block::clear_minterbalance() {
   minterbalance_ = int64_t{0};
-  _has_bits_[0] &= ~0x00000100u;
+  _has_bits_[0] &= ~0x00000800u;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Block::_internal_minterbalance() const {
   return minterbalance_;
@@ -2125,7 +2301,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 Block::minterbalance() const {
   return _internal_minterbalance();
 }
 inline void Block::_internal_set_minterbalance(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _has_bits_[0] |= 0x00000100u;
+  _has_bits_[0] |= 0x00000800u;
   minterbalance_ = value;
 }
 inline void Block::set_minterbalance(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -2133,9 +2309,9 @@ inline void Block::set_minterbalance(::PROTOBUF_NAMESPACE_ID::int64 value) {
   // @@protoc_insertion_point(field_set:xcoin.interchange.Block.minterBalance)
 }
 
-// optional string minterAddress = 9;
+// optional string minterAddress = 11;
 inline bool Block::_internal_has_minteraddress() const {
-  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  bool value = (_has_bits_[0] & 0x00000020u) != 0;
   return value;
 }
 inline bool Block::has_minteraddress() const {
@@ -2143,7 +2319,7 @@ inline bool Block::has_minteraddress() const {
 }
 inline void Block::clear_minteraddress() {
   minteraddress_.ClearToEmpty();
-  _has_bits_[0] &= ~0x00000008u;
+  _has_bits_[0] &= ~0x00000020u;
 }
 inline const std::string& Block::minteraddress() const {
   // @@protoc_insertion_point(field_get:xcoin.interchange.Block.minterAddress)
@@ -2152,7 +2328,7 @@ inline const std::string& Block::minteraddress() const {
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
 void Block::set_minteraddress(ArgT0&& arg0, ArgT... args) {
- _has_bits_[0] |= 0x00000008u;
+ _has_bits_[0] |= 0x00000020u;
  minteraddress_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
   // @@protoc_insertion_point(field_set:xcoin.interchange.Block.minterAddress)
 }
@@ -2165,11 +2341,11 @@ inline const std::string& Block::_internal_minteraddress() const {
   return minteraddress_.Get();
 }
 inline void Block::_internal_set_minteraddress(const std::string& value) {
-  _has_bits_[0] |= 0x00000008u;
+  _has_bits_[0] |= 0x00000020u;
   minteraddress_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
 }
 inline std::string* Block::_internal_mutable_minteraddress() {
-  _has_bits_[0] |= 0x00000008u;
+  _has_bits_[0] |= 0x00000020u;
   return minteraddress_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
 inline std::string* Block::release_minteraddress() {
@@ -2177,18 +2353,76 @@ inline std::string* Block::release_minteraddress() {
   if (!_internal_has_minteraddress()) {
     return nullptr;
   }
-  _has_bits_[0] &= ~0x00000008u;
+  _has_bits_[0] &= ~0x00000020u;
   return minteraddress_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
 inline void Block::set_allocated_minteraddress(std::string* minteraddress) {
   if (minteraddress != nullptr) {
-    _has_bits_[0] |= 0x00000008u;
+    _has_bits_[0] |= 0x00000020u;
   } else {
-    _has_bits_[0] &= ~0x00000008u;
+    _has_bits_[0] &= ~0x00000020u;
   }
   minteraddress_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), minteraddress,
       GetArenaForAllocation());
   // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.Block.minterAddress)
+}
+
+// optional string merkle_root_hash = 12;
+inline bool Block::_internal_has_merkle_root_hash() const {
+  bool value = (_has_bits_[0] & 0x00000040u) != 0;
+  return value;
+}
+inline bool Block::has_merkle_root_hash() const {
+  return _internal_has_merkle_root_hash();
+}
+inline void Block::clear_merkle_root_hash() {
+  merkle_root_hash_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline const std::string& Block::merkle_root_hash() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.Block.merkle_root_hash)
+  return _internal_merkle_root_hash();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Block::set_merkle_root_hash(ArgT0&& arg0, ArgT... args) {
+ _has_bits_[0] |= 0x00000040u;
+ merkle_root_hash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:xcoin.interchange.Block.merkle_root_hash)
+}
+inline std::string* Block::mutable_merkle_root_hash() {
+  std::string* _s = _internal_mutable_merkle_root_hash();
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.Block.merkle_root_hash)
+  return _s;
+}
+inline const std::string& Block::_internal_merkle_root_hash() const {
+  return merkle_root_hash_.Get();
+}
+inline void Block::_internal_set_merkle_root_hash(const std::string& value) {
+  _has_bits_[0] |= 0x00000040u;
+  merkle_root_hash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* Block::_internal_mutable_merkle_root_hash() {
+  _has_bits_[0] |= 0x00000040u;
+  return merkle_root_hash_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* Block::release_merkle_root_hash() {
+  // @@protoc_insertion_point(field_release:xcoin.interchange.Block.merkle_root_hash)
+  if (!_internal_has_merkle_root_hash()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000040u;
+  return merkle_root_hash_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void Block::set_allocated_merkle_root_hash(std::string* merkle_root_hash) {
+  if (merkle_root_hash != nullptr) {
+    _has_bits_[0] |= 0x00000040u;
+  } else {
+    _has_bits_[0] &= ~0x00000040u;
+  }
+  merkle_root_hash_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), merkle_root_hash,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.Block.merkle_root_hash)
 }
 
 // -------------------------------------------------------------------

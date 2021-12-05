@@ -22,8 +22,11 @@ constexpr Block::Block(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : hash_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , previoushash_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , headerhash_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , previousheaderhash_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , data_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , minteraddress_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , merkle_root_hash_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , index_(int64_t{0})
   , timestamp_(int64_t{0})
   , difficulty_(int64_t{0})
@@ -161,21 +164,27 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_blockchain_2eproto::offsets[] 
   PROTOBUF_FIELD_OFFSET(::xcoin::interchange::Block, index_),
   PROTOBUF_FIELD_OFFSET(::xcoin::interchange::Block, hash_),
   PROTOBUF_FIELD_OFFSET(::xcoin::interchange::Block, previoushash_),
+  PROTOBUF_FIELD_OFFSET(::xcoin::interchange::Block, headerhash_),
+  PROTOBUF_FIELD_OFFSET(::xcoin::interchange::Block, previousheaderhash_),
   PROTOBUF_FIELD_OFFSET(::xcoin::interchange::Block, timestamp_),
   PROTOBUF_FIELD_OFFSET(::xcoin::interchange::Block, data_),
   PROTOBUF_FIELD_OFFSET(::xcoin::interchange::Block, difficulty_),
   PROTOBUF_FIELD_OFFSET(::xcoin::interchange::Block, nonce_),
   PROTOBUF_FIELD_OFFSET(::xcoin::interchange::Block, minterbalance_),
   PROTOBUF_FIELD_OFFSET(::xcoin::interchange::Block, minteraddress_),
-  4,
+  PROTOBUF_FIELD_OFFSET(::xcoin::interchange::Block, merkle_root_hash_),
+  7,
   0,
   1,
-  5,
   2,
-  6,
-  7,
-  8,
   3,
+  8,
+  4,
+  9,
+  10,
+  11,
+  5,
+  6,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::xcoin::interchange::Blockchain, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -248,15 +257,15 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_blockchain_2eproto::offsets[] 
   PROTOBUF_FIELD_OFFSET(::xcoin::interchange::DNSHandshake, entries_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, 15, -1, sizeof(::xcoin::interchange::Block)},
-  { 24, -1, -1, sizeof(::xcoin::interchange::Blockchain)},
-  { 31, -1, -1, sizeof(::xcoin::interchange::GetHeaders)},
-  { 41, -1, -1, sizeof(::xcoin::interchange::Header)},
-  { 50, -1, -1, sizeof(::xcoin::interchange::Headers)},
-  { 58, -1, -1, sizeof(::xcoin::interchange::XNodeMessage)},
-  { 72, -1, -1, sizeof(::xcoin::interchange::DNSEntry)},
-  { 80, -1, -1, sizeof(::xcoin::interchange::PingHandshake)},
-  { 87, -1, -1, sizeof(::xcoin::interchange::DNSHandshake)},
+  { 0, 18, -1, sizeof(::xcoin::interchange::Block)},
+  { 30, -1, -1, sizeof(::xcoin::interchange::Blockchain)},
+  { 37, -1, -1, sizeof(::xcoin::interchange::GetHeaders)},
+  { 47, -1, -1, sizeof(::xcoin::interchange::Header)},
+  { 56, -1, -1, sizeof(::xcoin::interchange::Headers)},
+  { 64, -1, -1, sizeof(::xcoin::interchange::XNodeMessage)},
+  { 78, -1, -1, sizeof(::xcoin::interchange::DNSEntry)},
+  { 86, -1, -1, sizeof(::xcoin::interchange::PingHandshake)},
+  { 93, -1, -1, sizeof(::xcoin::interchange::DNSHandshake)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -272,47 +281,52 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 };
 
 const char descriptor_table_protodef_blockchain_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\020blockchain.proto\022\021xcoin.interchange\"\321\002"
+  "\n\020blockchain.proto\022\021xcoin.interchange\"\345\003"
   "\n\005Block\022\022\n\005index\030\001 \001(\003H\000\210\001\001\022\021\n\004hash\030\002 \001("
-  "\tH\001\210\001\001\022\031\n\014previousHash\030\003 \001(\tH\002\210\001\001\022\026\n\ttim"
-  "estamp\030\004 \001(\003H\003\210\001\001\022\021\n\004data\030\005 \001(\tH\004\210\001\001\022\027\n\n"
-  "difficulty\030\006 \001(\003H\005\210\001\001\022\022\n\005nonce\030\007 \001(\003H\006\210\001"
-  "\001\022\032\n\rminterBalance\030\010 \001(\003H\007\210\001\001\022\032\n\rminterA"
-  "ddress\030\t \001(\tH\010\210\001\001B\010\n\006_indexB\007\n\005_hashB\017\n\r"
-  "_previousHashB\014\n\n_timestampB\007\n\005_dataB\r\n\013"
-  "_difficultyB\010\n\006_nonceB\020\n\016_minterBalanceB"
-  "\020\n\016_minterAddress\"6\n\nBlockchain\022(\n\006block"
-  "s\030\001 \003(\0132\030.xcoin.interchange.Block\"]\n\nGet"
-  "Headers\022\017\n\007version\030\001 \001(\r\022\021\n\thashCount\030\002 "
-  "\001(\r\022\020\n\010stopHash\030\003 \001(\t\022\031\n\021blockHeaderHash"
-  "es\030\004 \003(\t\"O\n\006Header\022\037\n\027previousBlockHeade"
-  "rHash\030\001 \001(\t\022\026\n\016merkleRootHash\030\002 \001(\t\022\014\n\004t"
-  "ime\030\003 \001(\r\"D\n\007Headers\022\r\n\005count\030\001 \001(\r\022*\n\007h"
-  "eaders\030\002 \003(\0132\031.xcoin.interchange.Header\""
-  "\222\002\n\014XNodeMessage\022\023\n\013startString\030\001 \001(\t\022\017\n"
-  "\007command\030\002 \001(\t\022\014\n\004size\030\003 \001(\r\022\020\n\010checksum"
-  "\030\004 \001(\t\022:\n\021getHeadersMessage\030\005 \001(\0132\035.xcoi"
-  "n.interchange.GetHeadersH\000\0224\n\016headersMes"
-  "sage\030\006 \001(\0132\032.xcoin.interchange.HeadersH\000"
-  "\022>\n\023dnsHandshakeMessage\030\007 \001(\0132\037.xcoin.in"
-  "terchange.DNSHandshakeH\000B\n\n\010contents\"-\n\010"
-  "DNSEntry\022\016\n\006ipport\030\001 \001(\t\022\021\n\tpublicKey\030\002 "
-  "\001(\t\"\035\n\rPingHandshake\022\014\n\004data\030\001 \001(\t\"<\n\014DN"
-  "SHandshake\022,\n\007entries\030\002 \003(\0132\033.xcoin.inte"
-  "rchange.DNSEntry2\203\002\n\014XNodeControl\022L\n\004Pin"
-  "g\022 .xcoin.interchange.PingHandshake\032 .xc"
-  "oin.interchange.PingHandshake\"\000\022U\n\017DNSSy"
-  "ncPeerList\022\037.xcoin.interchange.DNSHandsh"
-  "ake\032\037.xcoin.interchange.DNSHandshake\"\000\022N"
-  "\n\020NotifyPeerChange\022\033.xcoin.interchange.D"
-  "NSEntry\032\033.xcoin.interchange.DNSEntry\"\0002["
-  "\n\tXNodeSync\022N\n\017HeaderFirstSync\022\035.xcoin.i"
-  "nterchange.GetHeaders\032\032.xcoin.interchang"
-  "e.Headers\"\000b\006proto3"
+  "\tH\001\210\001\001\022\031\n\014previousHash\030\003 \001(\tH\002\210\001\001\022\027\n\nhea"
+  "derHash\030\004 \001(\tH\003\210\001\001\022\037\n\022previousHeaderHash"
+  "\030\005 \001(\tH\004\210\001\001\022\026\n\ttimestamp\030\006 \001(\003H\005\210\001\001\022\021\n\004d"
+  "ata\030\007 \001(\tH\006\210\001\001\022\027\n\ndifficulty\030\010 \001(\003H\007\210\001\001\022"
+  "\022\n\005nonce\030\t \001(\003H\010\210\001\001\022\032\n\rminterBalance\030\n \001"
+  "(\003H\t\210\001\001\022\032\n\rminterAddress\030\013 \001(\tH\n\210\001\001\022\035\n\020m"
+  "erkle_root_hash\030\014 \001(\tH\013\210\001\001B\010\n\006_indexB\007\n\005"
+  "_hashB\017\n\r_previousHashB\r\n\013_headerHashB\025\n"
+  "\023_previousHeaderHashB\014\n\n_timestampB\007\n\005_d"
+  "ataB\r\n\013_difficultyB\010\n\006_nonceB\020\n\016_minterB"
+  "alanceB\020\n\016_minterAddressB\023\n\021_merkle_root"
+  "_hash\"6\n\nBlockchain\022(\n\006blocks\030\001 \003(\0132\030.xc"
+  "oin.interchange.Block\"]\n\nGetHeaders\022\017\n\007v"
+  "ersion\030\001 \001(\r\022\021\n\thashCount\030\002 \001(\r\022\020\n\010stopH"
+  "ash\030\003 \001(\t\022\031\n\021blockHeaderHashes\030\004 \003(\t\"O\n\006"
+  "Header\022\037\n\027previousBlockHeaderHash\030\001 \001(\t\022"
+  "\026\n\016merkleRootHash\030\002 \001(\t\022\014\n\004time\030\003 \001(\r\"D\n"
+  "\007Headers\022\r\n\005count\030\001 \001(\r\022*\n\007headers\030\002 \003(\013"
+  "2\031.xcoin.interchange.Header\"\222\002\n\014XNodeMes"
+  "sage\022\023\n\013startString\030\001 \001(\t\022\017\n\007command\030\002 \001"
+  "(\t\022\014\n\004size\030\003 \001(\r\022\020\n\010checksum\030\004 \001(\t\022:\n\021ge"
+  "tHeadersMessage\030\005 \001(\0132\035.xcoin.interchang"
+  "e.GetHeadersH\000\0224\n\016headersMessage\030\006 \001(\0132\032"
+  ".xcoin.interchange.HeadersH\000\022>\n\023dnsHands"
+  "hakeMessage\030\007 \001(\0132\037.xcoin.interchange.DN"
+  "SHandshakeH\000B\n\n\010contents\"-\n\010DNSEntry\022\016\n\006"
+  "ipport\030\001 \001(\t\022\021\n\tpublicKey\030\002 \001(\t\"\035\n\rPingH"
+  "andshake\022\014\n\004data\030\001 \001(\t\"<\n\014DNSHandshake\022,"
+  "\n\007entries\030\002 \003(\0132\033.xcoin.interchange.DNSE"
+  "ntry2\203\002\n\014XNodeControl\022L\n\004Ping\022 .xcoin.in"
+  "terchange.PingHandshake\032 .xcoin.intercha"
+  "nge.PingHandshake\"\000\022U\n\017DNSSyncPeerList\022\037"
+  ".xcoin.interchange.DNSHandshake\032\037.xcoin."
+  "interchange.DNSHandshake\"\000\022N\n\020NotifyPeer"
+  "Change\022\033.xcoin.interchange.DNSEntry\032\033.xc"
+  "oin.interchange.DNSEntry\"\0002\236\001\n\tXNodeSync"
+  "\022N\n\017HeaderFirstSync\022\035.xcoin.interchange."
+  "GetHeaders\032\032.xcoin.interchange.Headers\"\000"
+  "\022A\n\010GetBlock\022\031.xcoin.interchange.Header\032"
+  "\030.xcoin.interchange.Block\"\000b\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_blockchain_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_blockchain_2eproto = {
-  false, false, 1459, descriptor_table_protodef_blockchain_2eproto, "blockchain.proto", 
+  false, false, 1675, descriptor_table_protodef_blockchain_2eproto, "blockchain.proto", 
   &descriptor_table_blockchain_2eproto_once, nullptr, 0, 9,
   schemas, file_default_instances, TableStruct_blockchain_2eproto::offsets,
   file_level_metadata_blockchain_2eproto, file_level_enum_descriptors_blockchain_2eproto, file_level_service_descriptors_blockchain_2eproto,
@@ -332,7 +346,7 @@ class Block::_Internal {
  public:
   using HasBits = decltype(std::declval<Block>()._has_bits_);
   static void set_has_index(HasBits* has_bits) {
-    (*has_bits)[0] |= 16u;
+    (*has_bits)[0] |= 128u;
   }
   static void set_has_hash(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
@@ -340,23 +354,32 @@ class Block::_Internal {
   static void set_has_previoushash(HasBits* has_bits) {
     (*has_bits)[0] |= 2u;
   }
-  static void set_has_timestamp(HasBits* has_bits) {
-    (*has_bits)[0] |= 32u;
-  }
-  static void set_has_data(HasBits* has_bits) {
+  static void set_has_headerhash(HasBits* has_bits) {
     (*has_bits)[0] |= 4u;
   }
-  static void set_has_difficulty(HasBits* has_bits) {
-    (*has_bits)[0] |= 64u;
+  static void set_has_previousheaderhash(HasBits* has_bits) {
+    (*has_bits)[0] |= 8u;
   }
-  static void set_has_nonce(HasBits* has_bits) {
-    (*has_bits)[0] |= 128u;
-  }
-  static void set_has_minterbalance(HasBits* has_bits) {
+  static void set_has_timestamp(HasBits* has_bits) {
     (*has_bits)[0] |= 256u;
   }
+  static void set_has_data(HasBits* has_bits) {
+    (*has_bits)[0] |= 16u;
+  }
+  static void set_has_difficulty(HasBits* has_bits) {
+    (*has_bits)[0] |= 512u;
+  }
+  static void set_has_nonce(HasBits* has_bits) {
+    (*has_bits)[0] |= 1024u;
+  }
+  static void set_has_minterbalance(HasBits* has_bits) {
+    (*has_bits)[0] |= 2048u;
+  }
   static void set_has_minteraddress(HasBits* has_bits) {
-    (*has_bits)[0] |= 8u;
+    (*has_bits)[0] |= 32u;
+  }
+  static void set_has_merkle_root_hash(HasBits* has_bits) {
+    (*has_bits)[0] |= 64u;
   }
 };
 
@@ -383,6 +406,16 @@ Block::Block(const Block& from)
     previoushash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_previoushash(), 
       GetArenaForAllocation());
   }
+  headerhash_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (from._internal_has_headerhash()) {
+    headerhash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_headerhash(), 
+      GetArenaForAllocation());
+  }
+  previousheaderhash_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (from._internal_has_previousheaderhash()) {
+    previousheaderhash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_previousheaderhash(), 
+      GetArenaForAllocation());
+  }
   data_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (from._internal_has_data()) {
     data_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_data(), 
@@ -391,6 +424,11 @@ Block::Block(const Block& from)
   minteraddress_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (from._internal_has_minteraddress()) {
     minteraddress_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_minteraddress(), 
+      GetArenaForAllocation());
+  }
+  merkle_root_hash_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (from._internal_has_merkle_root_hash()) {
+    merkle_root_hash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_merkle_root_hash(), 
       GetArenaForAllocation());
   }
   ::memcpy(&index_, &from.index_,
@@ -402,8 +440,11 @@ Block::Block(const Block& from)
 void Block::SharedCtor() {
 hash_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 previoushash_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+headerhash_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+previousheaderhash_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 data_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 minteraddress_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+merkle_root_hash_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&index_) - reinterpret_cast<char*>(this)),
     0, static_cast<size_t>(reinterpret_cast<char*>(&minterbalance_) -
@@ -421,8 +462,11 @@ inline void Block::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   hash_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   previoushash_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  headerhash_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  previousheaderhash_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   data_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   minteraddress_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  merkle_root_hash_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 void Block::ArenaDtor(void* object) {
@@ -442,7 +486,7 @@ void Block::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x0000000fu) {
+  if (cached_has_bits & 0x0000007fu) {
     if (cached_has_bits & 0x00000001u) {
       hash_.ClearNonDefaultToEmpty();
     }
@@ -450,18 +494,27 @@ void Block::Clear() {
       previoushash_.ClearNonDefaultToEmpty();
     }
     if (cached_has_bits & 0x00000004u) {
-      data_.ClearNonDefaultToEmpty();
+      headerhash_.ClearNonDefaultToEmpty();
     }
     if (cached_has_bits & 0x00000008u) {
+      previousheaderhash_.ClearNonDefaultToEmpty();
+    }
+    if (cached_has_bits & 0x00000010u) {
+      data_.ClearNonDefaultToEmpty();
+    }
+    if (cached_has_bits & 0x00000020u) {
       minteraddress_.ClearNonDefaultToEmpty();
     }
+    if (cached_has_bits & 0x00000040u) {
+      merkle_root_hash_.ClearNonDefaultToEmpty();
+    }
   }
-  if (cached_has_bits & 0x000000f0u) {
-    ::memset(&index_, 0, static_cast<size_t>(
-        reinterpret_cast<char*>(&nonce_) -
-        reinterpret_cast<char*>(&index_)) + sizeof(nonce_));
+  index_ = int64_t{0};
+  if (cached_has_bits & 0x00000f00u) {
+    ::memset(&timestamp_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&minterbalance_) -
+        reinterpret_cast<char*>(&timestamp_)) + sizeof(minterbalance_));
   }
-  minterbalance_ = int64_t{0};
   _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
@@ -502,18 +555,38 @@ const char* Block::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
         } else
           goto handle_unusual;
         continue;
-      // optional int64 timestamp = 4;
+      // optional string headerHash = 4;
       case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_headerhash();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "xcoin.interchange.Block.headerHash"));
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional string previousHeaderHash = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          auto str = _internal_mutable_previousheaderhash();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "xcoin.interchange.Block.previousHeaderHash"));
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional int64 timestamp = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
           _Internal::set_has_timestamp(&has_bits);
           timestamp_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // optional string data = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+      // optional string data = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
           auto str = _internal_mutable_data();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "xcoin.interchange.Block.data"));
@@ -521,39 +594,49 @@ const char* Block::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
         } else
           goto handle_unusual;
         continue;
-      // optional int64 difficulty = 6;
-      case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
+      // optional int64 difficulty = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 64)) {
           _Internal::set_has_difficulty(&has_bits);
           difficulty_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // optional int64 nonce = 7;
-      case 7:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 56)) {
+      // optional int64 nonce = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 72)) {
           _Internal::set_has_nonce(&has_bits);
           nonce_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // optional int64 minterBalance = 8;
-      case 8:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 64)) {
+      // optional int64 minterBalance = 10;
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 80)) {
           _Internal::set_has_minterbalance(&has_bits);
           minterbalance_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // optional string minterAddress = 9;
-      case 9:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 74)) {
+      // optional string minterAddress = 11;
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 90)) {
           auto str = _internal_mutable_minteraddress();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "xcoin.interchange.Block.minterAddress"));
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional string merkle_root_hash = 12;
+      case 12:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 98)) {
+          auto str = _internal_mutable_merkle_root_hash();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "xcoin.interchange.Block.merkle_root_hash"));
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -614,48 +697,78 @@ failure:
         3, this->_internal_previoushash(), target);
   }
 
-  // optional int64 timestamp = 4;
-  if (_internal_has_timestamp()) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(4, this->_internal_timestamp(), target);
+  // optional string headerHash = 4;
+  if (_internal_has_headerhash()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_headerhash().data(), static_cast<int>(this->_internal_headerhash().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "xcoin.interchange.Block.headerHash");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_headerhash(), target);
   }
 
-  // optional string data = 5;
+  // optional string previousHeaderHash = 5;
+  if (_internal_has_previousheaderhash()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_previousheaderhash().data(), static_cast<int>(this->_internal_previousheaderhash().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "xcoin.interchange.Block.previousHeaderHash");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_previousheaderhash(), target);
+  }
+
+  // optional int64 timestamp = 6;
+  if (_internal_has_timestamp()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(6, this->_internal_timestamp(), target);
+  }
+
+  // optional string data = 7;
   if (_internal_has_data()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_data().data(), static_cast<int>(this->_internal_data().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "xcoin.interchange.Block.data");
     target = stream->WriteStringMaybeAliased(
-        5, this->_internal_data(), target);
+        7, this->_internal_data(), target);
   }
 
-  // optional int64 difficulty = 6;
+  // optional int64 difficulty = 8;
   if (_internal_has_difficulty()) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(6, this->_internal_difficulty(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(8, this->_internal_difficulty(), target);
   }
 
-  // optional int64 nonce = 7;
+  // optional int64 nonce = 9;
   if (_internal_has_nonce()) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(7, this->_internal_nonce(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(9, this->_internal_nonce(), target);
   }
 
-  // optional int64 minterBalance = 8;
+  // optional int64 minterBalance = 10;
   if (_internal_has_minterbalance()) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(8, this->_internal_minterbalance(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(10, this->_internal_minterbalance(), target);
   }
 
-  // optional string minterAddress = 9;
+  // optional string minterAddress = 11;
   if (_internal_has_minteraddress()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_minteraddress().data(), static_cast<int>(this->_internal_minteraddress().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
       "xcoin.interchange.Block.minterAddress");
     target = stream->WriteStringMaybeAliased(
-        9, this->_internal_minteraddress(), target);
+        11, this->_internal_minteraddress(), target);
+  }
+
+  // optional string merkle_root_hash = 12;
+  if (_internal_has_merkle_root_hash()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_merkle_root_hash().data(), static_cast<int>(this->_internal_merkle_root_hash().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "xcoin.interchange.Block.merkle_root_hash");
+    target = stream->WriteStringMaybeAliased(
+        12, this->_internal_merkle_root_hash(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -690,46 +803,69 @@ size_t Block::ByteSizeLong() const {
           this->_internal_previoushash());
     }
 
-    // optional string data = 5;
+    // optional string headerHash = 4;
     if (cached_has_bits & 0x00000004u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_headerhash());
+    }
+
+    // optional string previousHeaderHash = 5;
+    if (cached_has_bits & 0x00000008u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_previousheaderhash());
+    }
+
+    // optional string data = 7;
+    if (cached_has_bits & 0x00000010u) {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
           this->_internal_data());
     }
 
-    // optional string minterAddress = 9;
-    if (cached_has_bits & 0x00000008u) {
+    // optional string minterAddress = 11;
+    if (cached_has_bits & 0x00000020u) {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
           this->_internal_minteraddress());
     }
 
+    // optional string merkle_root_hash = 12;
+    if (cached_has_bits & 0x00000040u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_merkle_root_hash());
+    }
+
     // optional int64 index = 1;
-    if (cached_has_bits & 0x00000010u) {
+    if (cached_has_bits & 0x00000080u) {
       total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64SizePlusOne(this->_internal_index());
     }
 
-    // optional int64 timestamp = 4;
-    if (cached_has_bits & 0x00000020u) {
+  }
+  if (cached_has_bits & 0x00000f00u) {
+    // optional int64 timestamp = 6;
+    if (cached_has_bits & 0x00000100u) {
       total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64SizePlusOne(this->_internal_timestamp());
     }
 
-    // optional int64 difficulty = 6;
-    if (cached_has_bits & 0x00000040u) {
+    // optional int64 difficulty = 8;
+    if (cached_has_bits & 0x00000200u) {
       total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64SizePlusOne(this->_internal_difficulty());
     }
 
-    // optional int64 nonce = 7;
-    if (cached_has_bits & 0x00000080u) {
+    // optional int64 nonce = 9;
+    if (cached_has_bits & 0x00000400u) {
       total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64SizePlusOne(this->_internal_nonce());
     }
 
-  }
-  // optional int64 minterBalance = 8;
-  if (cached_has_bits & 0x00000100u) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64SizePlusOne(this->_internal_minterbalance());
-  }
+    // optional int64 minterBalance = 10;
+    if (cached_has_bits & 0x00000800u) {
+      total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64SizePlusOne(this->_internal_minterbalance());
+    }
 
+  }
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -761,27 +897,39 @@ void Block::MergeFrom(const Block& from) {
       _internal_set_previoushash(from._internal_previoushash());
     }
     if (cached_has_bits & 0x00000004u) {
-      _internal_set_data(from._internal_data());
+      _internal_set_headerhash(from._internal_headerhash());
     }
     if (cached_has_bits & 0x00000008u) {
-      _internal_set_minteraddress(from._internal_minteraddress());
+      _internal_set_previousheaderhash(from._internal_previousheaderhash());
     }
     if (cached_has_bits & 0x00000010u) {
-      index_ = from.index_;
+      _internal_set_data(from._internal_data());
     }
     if (cached_has_bits & 0x00000020u) {
-      timestamp_ = from.timestamp_;
+      _internal_set_minteraddress(from._internal_minteraddress());
     }
     if (cached_has_bits & 0x00000040u) {
-      difficulty_ = from.difficulty_;
+      _internal_set_merkle_root_hash(from._internal_merkle_root_hash());
     }
     if (cached_has_bits & 0x00000080u) {
-      nonce_ = from.nonce_;
+      index_ = from.index_;
     }
     _has_bits_[0] |= cached_has_bits;
   }
-  if (cached_has_bits & 0x00000100u) {
-    _internal_set_minterbalance(from._internal_minterbalance());
+  if (cached_has_bits & 0x00000f00u) {
+    if (cached_has_bits & 0x00000100u) {
+      timestamp_ = from.timestamp_;
+    }
+    if (cached_has_bits & 0x00000200u) {
+      difficulty_ = from.difficulty_;
+    }
+    if (cached_has_bits & 0x00000400u) {
+      nonce_ = from.nonce_;
+    }
+    if (cached_has_bits & 0x00000800u) {
+      minterbalance_ = from.minterbalance_;
+    }
+    _has_bits_[0] |= cached_has_bits;
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -815,6 +963,16 @@ void Block::InternalSwap(Block* other) {
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &headerhash_, lhs_arena,
+      &other->headerhash_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &previousheaderhash_, lhs_arena,
+      &other->previousheaderhash_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       &data_, lhs_arena,
       &other->data_, rhs_arena
   );
@@ -822,6 +980,11 @@ void Block::InternalSwap(Block* other) {
       &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       &minteraddress_, lhs_arena,
       &other->minteraddress_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &merkle_root_hash_, lhs_arena,
+      &other->merkle_root_hash_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Block, minterbalance_)

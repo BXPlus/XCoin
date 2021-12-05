@@ -169,6 +169,7 @@ XNodeControl::Service::~Service() {
 
 static const char* XNodeSync_method_names[] = {
   "/xcoin.interchange.XNodeSync/HeaderFirstSync",
+  "/xcoin.interchange.XNodeSync/GetBlock",
 };
 
 std::unique_ptr< XNodeSync::Stub> XNodeSync::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -179,6 +180,7 @@ std::unique_ptr< XNodeSync::Stub> XNodeSync::NewStub(const std::shared_ptr< ::gr
 
 XNodeSync::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_HeaderFirstSync_(XNodeSync_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetBlock_(XNodeSync_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status XNodeSync::Stub::HeaderFirstSync(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders& request, ::xcoin::interchange::Headers* response) {
@@ -204,6 +206,29 @@ void XNodeSync::Stub::async::HeaderFirstSync(::grpc::ClientContext* context, con
   return result;
 }
 
+::grpc::Status XNodeSync::Stub::GetBlock(::grpc::ClientContext* context, const ::xcoin::interchange::Header& request, ::xcoin::interchange::Block* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::xcoin::interchange::Header, ::xcoin::interchange::Block, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetBlock_, context, request, response);
+}
+
+void XNodeSync::Stub::async::GetBlock(::grpc::ClientContext* context, const ::xcoin::interchange::Header* request, ::xcoin::interchange::Block* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::xcoin::interchange::Header, ::xcoin::interchange::Block, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetBlock_, context, request, response, std::move(f));
+}
+
+void XNodeSync::Stub::async::GetBlock(::grpc::ClientContext* context, const ::xcoin::interchange::Header* request, ::xcoin::interchange::Block* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetBlock_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::xcoin::interchange::Block>* XNodeSync::Stub::PrepareAsyncGetBlockRaw(::grpc::ClientContext* context, const ::xcoin::interchange::Header& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::xcoin::interchange::Block, ::xcoin::interchange::Header, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetBlock_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::xcoin::interchange::Block>* XNodeSync::Stub::AsyncGetBlockRaw(::grpc::ClientContext* context, const ::xcoin::interchange::Header& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetBlockRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 XNodeSync::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       XNodeSync_method_names[0],
@@ -215,12 +240,29 @@ XNodeSync::Service::Service() {
              ::xcoin::interchange::Headers* resp) {
                return service->HeaderFirstSync(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      XNodeSync_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< XNodeSync::Service, ::xcoin::interchange::Header, ::xcoin::interchange::Block, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](XNodeSync::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::xcoin::interchange::Header* req,
+             ::xcoin::interchange::Block* resp) {
+               return service->GetBlock(ctx, req, resp);
+             }, this)));
 }
 
 XNodeSync::Service::~Service() {
 }
 
 ::grpc::Status XNodeSync::Service::HeaderFirstSync(::grpc::ServerContext* context, const ::xcoin::interchange::GetHeaders* request, ::xcoin::interchange::Headers* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status XNodeSync::Service::GetBlock(::grpc::ServerContext* context, const ::xcoin::interchange::Header* request, ::xcoin::interchange::Block* response) {
   (void) context;
   (void) request;
   (void) response;

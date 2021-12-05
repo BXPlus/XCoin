@@ -9,6 +9,7 @@ service XNodeControl{
 
 service XNodeSync{
   rpc HeaderFirstSync(GetHeaders) returns (Headers) {}
+  rpc GetBlock(Header) returns (Block) {}
 }
 
 // Basic messages
@@ -16,12 +17,15 @@ message Block{
   optional int64 index = 1;
   optional string hash = 2;
   optional string previousHash = 3;
-  optional int64 timestamp = 4;
-  optional string data = 5;
-  optional int64 difficulty= 6;
-  optional int64 nonce = 7;
-  optional int64 minterBalance = 8;
-  optional string minterAddress = 9;
+  optional string headerHash = 4;
+  optional string previousHeaderHash = 5;
+  optional int64 timestamp = 6;
+  optional string data = 7;
+  optional int64 difficulty= 8;
+  optional int64 nonce = 9;
+  optional int64 minterBalance = 10;
+  optional string minterAddress = 11;
+  optional string merkle_root_hash = 12;
 }
 
 message Blockchain{
