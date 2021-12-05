@@ -1,22 +1,26 @@
-#include "transaction.h"
+//
+// Created by youssef on 12/5/21.
+//
 
+#include "transaction.h"
+#include "wallet.h"
 
 //# Generate and store the private Key
 
-string generatePrivateKey()
+std::string generatePrivateKey()
 {
     return ""; //To implement using key
 }
 
-string getPrivateFromWallet()
+std::string getPrivateFromWallet()
 {
     return "";
 }
 
-string getPublicFromWallet()
+std::string getPublicFromWallet()
 {
-    string privateKey = getPrivateFromWallet();
-    string key; //add when implemented in transaction
+    std::string privateKey = getPrivateFromWallet();
+    std::string key; //add when implemented in transaction
     return ""; //Public key in the keyPair encoded.
 }
 
@@ -32,7 +36,7 @@ void deleteWallet() {
 
 
 
-string getBalance()
+std::string getBalance()
 {
     return "";
 }
@@ -40,7 +44,7 @@ string getBalance()
 
 
 
-void createTxOuts(string receiverAddress, string myAddress, int amount, int leftOverAmount) {
+void createTxOuts(std::string receiverAddress, std::string myAddress, int amount, int leftOverAmount) {
 //    TxOut txOut1 = new TxOut(receiverAddress, amount);
 //    if (leftOverAmount === 0) {
 //        return [txOut1]
