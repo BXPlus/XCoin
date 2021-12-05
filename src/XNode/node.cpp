@@ -43,8 +43,8 @@ XNode::Node::DNSSyncPeerList(::grpc::ServerContext *context, const ::xcoin::inte
                              ::xcoin::interchange::DNSHandshake *response) {
     spdlog::debug("DNS sync requested by " + context->peer());
     for (const xcoin::interchange::DNSEntry& remotePeer : request->entries())
-        handleIncomingPeerData(remotePeer, std::unique_ptr<xcoin::interchange::XNodeControl::Stub>());
-    for (auto const& x : this->peers){
+        handleIncomingPeerData(remotePeer);
+    for (const std::pair<const std::basic_string<char>, XNodeClient>& x : this->peers){
         if (x.first != context->peer()){
             xcoin::interchange::DNSEntry *entry = response->add_entries();
             entry->set_ipport(x.first);
@@ -57,8 +57,23 @@ XNode::Node::DNSSyncPeerList(::grpc::ServerContext *context, const ::xcoin::inte
 ::grpc::Status
 XNode::Node::NotifyPeerChange(::grpc::ServerContext *context, const ::xcoin::interchange::DNSEntry *request,
                               ::xcoin::interchange::DNSEntry *response) {
-    this->handleIncomingPeerData(*request, std::unique_ptr<xcoin::interchange::XNodeControl::Stub>());
+    this->handleIncomingPeerData(*request);
     response->CopyFrom(*request);
+    return ::grpc::Status::OK;
+}
+
+::grpc::Status
+XNode::Node::HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::interchange::GetHeaders *request,
+                             ::xcoin::interchange::Headers *response) {
+    spdlog::debug("Header first sync requested by " + context->peer());
+    for (const std::basic_string<char>& remoteHeader : request->blockheaderhashes())
+        handleIncomingHeaderData(remoteHeader, std::unique_ptr<xcoin::interchange::XNodeSync::Stub>());
+    for (const Block &block : this->blockchain.toBlocks()){
+        xcoin::interchange::Header *header = response->add_headers();
+        header->set_previousblockheaderhash(block.previousHash);
+        header->set_merkleroothash(block.merkle_root_hash);
+        header->set_time(block.timestamp);
+    }
     return ::grpc::Status::OK;
 }
 
@@ -78,18 +93,18 @@ bool XNode::Node::AttemptPeerConnection(const std::string& peerAddress) {
         spdlog::info("Successfully established connection with " + peerAddress + " with ping: " + std::to_string(((float) end - start)/CLOCKS_PER_SEC) +  "s");
         xcoin::interchange::DNSHandshake dnsRequest;
         xcoin::interchange::DNSHandshake dnsReply;
-        for(auto it = peers.begin(); it != peers.end(); ++it){
-            if (it->first != peerAddress){
+        for(std::pair<const std::basic_string<char>, XNodeClient> & peer : peers){
+            if (peer.first != peerAddress){
                 xcoin::interchange::DNSEntry *entry = dnsRequest.add_entries();
-                entry->set_ipport(it->first);
-                entry->set_publickey(it->second.publicKey);
+                entry->set_ipport(peer.first);
+                entry->set_publickey(peer.second.publicKey);
             }
         }
         ::grpc::ClientContext dnsContext;
         ::grpc::Status dnsStatus = this->peers[peerAddress].controlStub->DNSSyncPeerList(&dnsContext, dnsRequest, &dnsReply);
         if (dnsStatus.ok()){
             for(const xcoin::interchange::DNSEntry& remotePeer : dnsReply.entries())
-                this->handleIncomingPeerData(remotePeer, std::move(this->peers[peerAddress].controlStub));
+                this->handleIncomingPeerData(remotePeer);
             spdlog::info("Successfully synced DNS peers with " + peerAddress);
             return true;
         }else spdlog::warn("DNS peer sync with " + peerAddress + " failed");
@@ -101,8 +116,12 @@ bool XNode::Node::AttemptPeerConnection(const std::string& peerAddress) {
     }
 }
 
-void XNode::Node::handleIncomingPeerData(const xcoin::interchange::DNSEntry &remotePeer,
-                                         std::unique_ptr<xcoin::interchange::XNodeControl::Stub> peerStub) {
+bool XNode::Node::AttemptHeaderSync(const std::string &peerAddress) {
+    return false;
+}
+
+
+void XNode::Node::handleIncomingPeerData(const xcoin::interchange::DNSEntry &remotePeer) {
     if (this->peers.count(remotePeer.ipport()) != 0){
         if (this->peers[remotePeer.ipport()].publicKey != remotePeer.publickey()){
             if(this->peers[remotePeer.ipport()].publicKey == XNODE_PUBLICADDR_UNKNOWN){
@@ -113,7 +132,7 @@ void XNode::Node::handleIncomingPeerData(const xcoin::interchange::DNSEntry &rem
                 ::grpc::ClientContext context;
                 xcoin::interchange::DNSEntry notificationRequest;
                 xcoin::interchange::DNSEntry notificationReply;
-                peerStub->NotifyPeerChange(&context,notificationRequest,&notificationReply);
+                peers[remotePeer.ipport()].controlStub->NotifyPeerChange(&context,notificationRequest,&notificationReply);
                 spdlog::debug("Notified peer about additional details for "+remotePeer.ipport() );
             }
             else
@@ -123,4 +142,9 @@ void XNode::Node::handleIncomingPeerData(const xcoin::interchange::DNSEntry &rem
         if(!this->AttemptPeerConnection(remotePeer.ipport()))
             spdlog::warn("Could not connect with new remote peer: " + remotePeer.ipport());
     }
+}
+
+void XNode::Node::handleIncomingHeaderData(const std::basic_string<char>& remoteHeader,
+                                           std::unique_ptr<xcoin::interchange::XNodeSync::Stub> peerStub) {
+
 }

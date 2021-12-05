@@ -37,7 +37,7 @@ public:
     long long timestamp; //time in milliseconds
     std::string data;
     int32_t version;
-    char32_t merkle_root_hash;
+    std::string merkle_root_hash;
 
     //Elements for proof of stake
     int difficulty;

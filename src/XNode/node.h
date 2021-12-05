@@ -41,12 +41,15 @@ namespace XNode{
         ~Node() override =default;
         void RunNode(const std::vector<std::string>& dnsSeedPeers);
         bool AttemptPeerConnection(const std::string& peerAddress);
+        bool AttemptHeaderSync(const std::string& peerAddress);
     private:
         ::grpc::Status DNSSyncPeerList(::grpc::ServerContext *context, const ::xcoin::interchange::DNSHandshake *request, ::xcoin::interchange::DNSHandshake *response) override;
         ::grpc::Status Ping(::grpc::ServerContext *context, const ::xcoin::interchange::PingHandshake *request, ::xcoin::interchange::PingHandshake *response) override;
         ::grpc::Status NotifyPeerChange(::grpc::ServerContext *context, const ::xcoin::interchange::DNSEntry *request, ::xcoin::interchange::DNSEntry *response) override;
-        void handleIncomingPeerData(const xcoin::interchange::DNSEntry &remotePeer,
-                                    std::unique_ptr<xcoin::interchange::XNodeControl::Stub> peerStub);
+        ::grpc::Status HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::interchange::GetHeaders *request, ::xcoin::interchange::Headers* response) override;
+        void handleIncomingPeerData(const xcoin::interchange::DNSEntry &remotePeer);
+        void handleIncomingHeaderData(const std::basic_string<char> &remoteHeader,
+                                      std::unique_ptr<xcoin::interchange::XNodeSync::Stub> peerStub);
         std::map<std::string, XNodeClient> peers;
         std::unique_ptr<::grpc::Server> server;
         Blockchain blockchain;
