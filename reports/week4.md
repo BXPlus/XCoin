@@ -16,6 +16,14 @@ This week: I tested out some layouts for the welcome page of the app: grid layou
 
 Next week: I will continue the implementation of the overall layout of the contacts page and maybe implement a "tricount" for the app. A tricount is an agenda used to keep track of payments in a group of people, and allows to see balance and ease payments in a large group of people. (It is an extra feature of the app).
 
+@Lio 
+
+**This week:**
+- Did research on MD5 hashing
+
+**Next week:**
+- Implement MD5 hashing
+
 @Picha 
 
 This week:

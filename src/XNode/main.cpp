@@ -21,6 +21,12 @@ int main(int argc, char *argv[])
         DNSS.emplace_back(argv[i]);
     XNode::Node node = XNode::Node();
     node.start(DNSS);
-    //std::getchar();
+    char u;
+    while (true){
+        std::cin >> std::ws >> u;
+        if (u == 'q')
+            std::cout << "Node will terminate..." << std::endl;
+        break;
+    }
     return 0;
 }
