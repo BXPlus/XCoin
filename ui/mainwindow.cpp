@@ -4,11 +4,8 @@
 #include <custombutton.h>
 #include <QAction>
 #include <QSignalMapper>
-#include "logindialog.cpp"
-#include "settingswidget.cpp"
 #include <QLabel>
 #include <QDir>
-#include <homewidget.h>
 #include <QCloseEvent>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -126,10 +123,14 @@ MainWindow::MainWindow(QWidget *parent)
         QSignalMapper* signalMapper = new QSignalMapper (this) ;
         connect(btnList[i], SIGNAL(clicked(bool)), signalMapper, SLOT(map()));
         signalMapper->setMapping (btnList[i], i);
-        connect(signalMapper, SIGNAL(mappedInt(int)), this, SLOT(go_page(int)));
+        connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(go_page(int)));
     }
 
     contentContainer->setCurrentIndex(0);
+
+    //Connecting go home buttons
+//    QPushButton* settingsHomeBtn = settingsWidget->get_homeBtn();
+//    connect(settingsHomeBtn, SIGNAL(clicked(bool)), this, SLOT(go_home()));
 
     // Creating main content
 
@@ -149,4 +150,9 @@ void MainWindow::go_page(int i)
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     event->accept();
+}
+
+void MainWindow::go_home()
+{
+    contentContainer->setCurrentIndex(0);
 }

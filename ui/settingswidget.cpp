@@ -5,11 +5,37 @@
 SettingsWidget::SettingsWidget(QWidget *parent) : QWidget(parent)
 {
   /* Ideas for the different pages of the settings page:
-        -Notifications
-        -Appearance
+        - Node Port(un nombre)
+        - Full/Light node (toggle)
+        - Public address (string)
+        - Root DNS address (string)
+        - Appearance
         -*/
 
-    //ComboBox Setup
+    //Header of Settings page setup
+    hWidget = new QWidget(this);
+
+        //Go Back Button Setup
+        goHomeBtn = new QPushButton(hWidget);
+
+        QString path = QDir::currentPath();
+        int index = path.indexOf("XCoin");
+        QString subPath = path.mid(0,index+5);
+        subPath.append("/ui/GoBackArrow.png");
+
+        QPixmap pic(subPath);
+        QIcon ButtonIcon(pic);
+        goHomeBtn->setIcon(ButtonIcon);
+        goHomeBtn->setIconSize(pic.rect().size());
+
+        //Layouts Setup
+        goHomeLabel = new QLabel("go Home", hWidget);
+        hLayout = new QHBoxLayout(hWidget);
+        hLayout->addWidget(goHomeBtn, 20);
+        hLayout->addWidget(goHomeLabel, 80);
+        hWidget->setLayout(hLayout);
+
+    //Combo Box Setup
     choiceBox = new QComboBox(this);
 
     // Scroll Area Setup
@@ -52,18 +78,18 @@ SettingsWidget::SettingsWidget(QWidget *parent) : QWidget(parent)
     infoLayout = new QVBoxLayout(infoWidget);
     nameLayout = new QHBoxLayout(nameWidget);
 
-        //XCoin Logo
+        //Settings Logo
         QWidget* logoWidget = new QWidget(profileWidget);
-        QString path = QDir::currentPath();
-        int index = path.indexOf("XCoin");
-        QString subPath = path.mid(0,index+5);
-        subPath.append("/ui/SettingsIcon.png");
+        QString path2 = QDir::currentPath();
+        int index2 = path2.indexOf("XCoin");
+        QString subPath2 = path2.mid(0,index2+5);
+        subPath2.append("/ui/SettingsIcon.png");
 
-        QPixmap pic(subPath);
-        QLabel* imgLabel = new QLabel(logoWidget);
-        imgLabel->setAlignment(Qt::AlignCenter);
-        imgLabel->setFixedSize(200, 200);
-        imgLabel->setPixmap(pic);
+        QPixmap pic2(subPath2);
+        QLabel* imgLabel2 = new QLabel(logoWidget);
+        imgLabel2->setAlignment(Qt::AlignCenter);
+        imgLabel2->setFixedSize(200, 200);
+        imgLabel2->setPixmap(pic2);
 
     infoLayout->addWidget(profileInfo1);
     infoLayout->addWidget(profileInfo2);
@@ -79,9 +105,15 @@ SettingsWidget::SettingsWidget(QWidget *parent) : QWidget(parent)
 
     //Main Layout Setup
     mainLayout = new QVBoxLayout(this);
-    mainLayout->addWidget(profileWidget, 50);
-    mainLayout->addWidget(choiceBox, 15);
-    mainLayout->addWidget(roundBox, 35);
+    mainLayout->addWidget(hWidget, 10);
+    mainLayout->addWidget(profileWidget, 45);
+    mainLayout->addWidget(choiceBox, 12);
+    mainLayout->addWidget(roundBox, 33);
 
     setLayout(mainLayout);
+}
+
+QPushButton* SettingsWidget::get_homeBtn()
+{
+    return goHomeBtn;
 }

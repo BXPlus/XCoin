@@ -1,6 +1,6 @@
 #include "logindialog.h"
 #include "ui_logindialog.h"
-#include "logindialog.h"
+#include "mainwindow.h"
 #include <QDebug>
 
 LoginDialog::LoginDialog(QWidget *parent) :

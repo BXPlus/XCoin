@@ -12,10 +12,13 @@ class SettingsWidget : public QWidget
     Q_OBJECT
 public:
     explicit SettingsWidget(QWidget *parent = nullptr);
+    QPushButton* get_homeBtn();
 private:
     QWidget* profileWidget;
     QWidget* nameWidget;
     QWidget* infoWidget;
+    QWidget* hWidget;
+    QPushButton* goHomeBtn;
     QComboBox* choiceBox;
     QScrollArea* scrollArea;
 
@@ -23,11 +26,13 @@ private:
     QLabel* lastName;
     QLabel* profileInfo1;
     QLabel* profileInfo2;
+    QLabel* goHomeLabel;
 
     QVBoxLayout* mainLayout;
     QHBoxLayout* profileLayout;
     QVBoxLayout* infoLayout;
     QHBoxLayout* nameLayout;
+    QHBoxLayout* hLayout;
 
     QList<QWidget*> boxList;
 

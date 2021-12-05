@@ -13,14 +13,17 @@ SOURCES += \
     homewidget.cpp \
     main.cpp \
     mainwindow.cpp \
-    settingswidget.cpp
+    settingswidget.cpp \
+    logindialog.cpp \
+    payments.cpp
 
 HEADERS += \
     custombutton.h \
     homewidget.h \
     logindialog.h \
     mainwindow.h \
-    settingswidget.h
+    settingswidget.h \
+    payments.h
 
 FORMS += \
     mainwindow.ui

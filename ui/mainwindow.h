@@ -6,6 +6,8 @@
 #include <QStackedWidget>
 #include <QVBoxLayout>
 #include "custombutton.h"
+#include "homewidget.h"
+#include "payments.h"
 #include "logindialog.h"
 #include "settingswidget.h"
 
@@ -37,6 +39,7 @@ public:
     QWidget* graphsWidget;
 
 private slots:
+    void go_home();
     void go_page(int);
 protected:
     void closeEvent(QCloseEvent * event);
