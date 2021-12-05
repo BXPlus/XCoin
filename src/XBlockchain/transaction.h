@@ -58,9 +58,7 @@ Transaction getCoinbaseTransaction(std::string address, int blockIndex);
 
 std::string getPublicKey(std::string aPrivateKey);
 
-bool validateBlockTransactions(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts, int blockIndex){
-    return true; //To Implement
-};
+bool validateBlockTransactions(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts, int blockIndex);
 
 bool hasDuplicates(std::vector<TxIn> txIns);
 

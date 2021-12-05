@@ -20,12 +20,12 @@ TxOut::TxOut(std::string address, int amount) {
 
 std::string Transaction::getTransactionId() {
     std::stringstream txInsContent;
-    for (int i = 0; i < int(txIns.size()); i++) {
+    for(int i = 0; i < int(txIns.size()); i++) {
         TxIn element = txIns[i];
         txInsContent << element.txOutId << element.txOutIndex;
     }
     std::stringstream txOutsContent;
-    for (int i = 0; i < int(txOuts.size()); i++) {
+    for(int i = 0; i < int(txOuts.size()); i++) {
         TxOut element = txOuts[i];
         txOutsContent << element.address << element.amount;
     }
@@ -33,15 +33,14 @@ std::string Transaction::getTransactionId() {
 }
 
 std::pair<bool, UnspentTxOut> findUnspentTxOut(std::string transactionId, int index, std::vector<UnspentTxOut>& aUnspentTxOuts) {
-    for (int id = 0; id < int(aUnspentTxOuts.size()); id++) {
+    for(int id = 0; id < int(aUnspentTxOuts.size()); id++) {
         if (aUnspentTxOuts[id].txOutId == transactionId && aUnspentTxOuts[id].txOutIndex == index)
             return std::make_pair(1, aUnspentTxOuts[id]);
     }
     return std::make_pair(0, UnspentTxOut("", 0, "", 0));
 }
 
-std::string getPublicKey(std::string aPrivateKey) //TODO: MALO
-{
+std::string getPublicKey(std::string aPrivateKey) {//TODO: MALO
         return "";//keyFromPrivate(aPrivateKey).getPublic(); //TODO: MALO
 }
 
@@ -249,6 +248,36 @@ bool hasDuplicates(std::vector<TxIn> txIns) {
         groups[elem] += 1;
     }
     return 0;
+}
+
+bool validateBlockTransactions(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts, int blockIndex) {
+    Transaction coinbaseTx = aTransactions[0];
+    if (!coinbaseTx.validateCoinbaseTx(blockIndex)) {
+        std::cout << "invalid coinbase transaction: "; //<< coinbaseTx.JSONStringify() << "\n";
+        return 0;
+    }
+
+    //check for duplicate txIns. Each txIn can be included only once
+    std::vector<TxIn> txIns;
+    std::map<TxIn, bool> used;
+    for (int i = 0; i < (int)(aTransactions.size()); i++) {
+        for (int j = 0; j < (int)(aTransactions[i].txIns.size()); j++) {
+            if (!used.count(aTransactions[i].txIns[j])) {
+                txIns.push_back(aTransactions[i].txIns[j]);
+                used[aTransactions[i].txIns[j]] = 1;
+            }
+        }
+    }
+
+    if (hasDuplicates(txIns))
+        return 0;
+
+    //all but coinbase transactions
+    bool validate = 1;
+    for (int i = 1; i < int(aTransactions.size()); i++)
+        validate &= aTransactions[i].validateTransaction(aUnspentTxOuts);
+
+    return validate;
 }
 
 bool Transaction::validateTransaction(std::vector<UnspentTxOut> aUnspentTxOuts) {
