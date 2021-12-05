@@ -62,7 +62,7 @@ Next week, I will work on the main design.
 
 @Laura Galindo 
 
-This week I mainly analysed in 
+This week I mainly analysed in depth the code written by the Blockchain team, to be able to edit it next week. This involved doing some (more) research, and asking specific questions to a fellow team member about his coding of the blockchain.
 
 @Youssef Chaabouni 
 
