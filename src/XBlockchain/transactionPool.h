@@ -3,8 +3,7 @@
 //
 
 #include "transaction.h"
-#include "wallet.cpp"
-#include "transactionPool.h"
+#include "wallet.h"
 #include <algorithm>
 
 std::vector<Transaction> transactionPool;

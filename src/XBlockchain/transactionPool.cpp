@@ -28,7 +28,7 @@ bool isValidTxForPool(Transaction tx, std::vector<Transaction> aTransactionPool)
             }
         }
         if (txPoolContainsTxIn){
-            cout << "txIn already found in the txPool";
+            std::cout << "txIn already found in the txPool";
             return false;
         };
     };
@@ -37,14 +37,14 @@ bool isValidTxForPool(Transaction tx, std::vector<Transaction> aTransactionPool)
 
 void addToTransactionPool(Transaction tx, std::vector<UnspentTxOut> unspentTxOuts) {
     if (!tx.validateTransaction(unspentTxOuts)) {
-        cout << "Trying to add invalid tx to pool";
+        std::cout << "Trying to add invalid tx to pool";
         return;
     }
     if (!isValidTxForPool(tx, transactionPool)) {
-        cout << "Trying to add invalid tx to pool";
+        std::cout << "Trying to add invalid tx to pool";
         return;
     }
-    cout << "Adding transaction to transactionPool"; //Add details about the transaction by implementing JSON.stringify(tx)
+    std::cout << "Adding transaction to transactionPool"; //Add details about the transaction by implementing JSON.stringify(tx)
     transactionPool.push_back(tx);
     return;
 }
@@ -78,7 +78,7 @@ void updateTransactionPool(std::vector<UnspentTxOut> unspentTxOuts) {
         }
     }
     if (invalidTxs.size() > 0){
-        cout << "Removing the following transactions from txPool:"; //Here we add the elements in invalidTxs;
+        std::cout << "Removing the following transactions from txPool:"; //Here we add the elements in invalidTxs;
         transactionPool = newPool;
     }
 }
