@@ -40,8 +40,9 @@ std::pair<bool, UnspentTxOut> findUnspentTxOut(std::string transactionId, int in
     return std::make_pair(0, UnspentTxOut("", 0, "", 0));
 }
 
-std::string getPublicKey(std::string aPrivateKey) {
- return "";//keyFromPrivate(aPrivateKey).getPublic();
+std::string getPublicKey(std::string aPrivateKey) //TODO: MALO
+{
+        return "";//keyFromPrivate(aPrivateKey).getPublic(); //TODO: MALO
 }
 
 std::string Transaction::signTxIn(int txInIndex, std::string privateKey, std::vector<UnspentTxOut> aUnspentTxOuts) {
@@ -57,8 +58,8 @@ std::string Transaction::signTxIn(int txInIndex, std::string privateKey, std::ve
         throw std::invalid_argument("trying to sign an input with private key that does not match the address that is referenced in txIn\n");
     }
 
-    Keys key = Keys();//keyFromPrivate(privateKey);
-    std::string signature = "";//toHexString(key.sign(dataToSign).toDER()); //TODO: Add ToHexString
+    Keys key = Keys();//keyFromPrivate(privateKey); //TODO: MALO
+    std::string signature = "";//toHexString(key.sign(dataToSign).toDER()); //TODO: Add ToHexString //MALO
     return signature;
 
 }
@@ -229,7 +230,7 @@ bool validateTxIn(TxIn txIn, std::string id, std::vector<UnspentTxOut> aUnspentT
     UnspentTxOut referencedUTxOut = tmp.second;
     std::string address = referencedUTxOut.address;
 
-    Keys key = keyFromPublic(address);
+    Keys key = keyFromPublic(address); //TODO: MALO
     bool validSignature = 0;//key.verify(id, txIn.signature);
     if (!validSignature) {
         std::cout << "invalid txIn signature: " << txIn.signature << " txId: " << id << " address: " << address << "\n";
