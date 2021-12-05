@@ -62,9 +62,7 @@ bool validateBlockTransactions(std::vector<Transaction> aTransactions, std::vect
     return true; //To Implement
 };
 
-bool hasDuplicates(std::vector<TxIn> txIns) {
-    return true; //To Implement
-}
+bool hasDuplicates(std::vector<TxIn> txIns);
 
 bool validateTxIn(TxIn txIn, Transaction transaction, std::vector<UnspentTxOut> aUnspentTxOuts);
 

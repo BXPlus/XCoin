@@ -238,6 +238,18 @@ bool validateTxIn(TxIn txIn, std::string id, std::vector<UnspentTxOut> aUnspentT
     return true;
 }
 
+bool hasDuplicates(std::vector<TxIn> txIns) {
+    std::map<std::string, int> groups;
+    int n = int(txIns.size());
+    for (int i = 0; i < n; i++) {
+        std::string elem = txIns[i].txOutId + std::to_string(txIns[i].txOutIndex);
+        if (groups.count(elem))
+            return 1;
+        groups[elem] += 1;
+    }
+    return 0;
+}
+
 bool Transaction::validateTransaction(std::vector<UnspentTxOut> aUnspentTxOuts) {
     if (!isValidTransactionStructure())
         return false;
