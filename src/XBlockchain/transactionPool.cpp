@@ -3,9 +3,6 @@
 //
 
 #include "transactionPool.h"
-#include <algorithm>
-
-std::vector<Transaction> transactionPool;
 
 std::vector<Transaction> getTransactionPool() {
     return transactionPool;
@@ -18,15 +15,6 @@ Transaction sendTransaction(std::string address, int amount) {
     return tx;
 }
 */
-
-std::vector<TxIn> getTxPoolIns(std::vector<Transaction> aTransactionPool) {
-    std::vector<TxIn> res;
-    for (int i = 0; i < aTransactionPool.size(); i++){
-        std::vector<TxIn> tx_txIns = aTransactionPool[i].txIns;
-        res.insert(res.end(), tx_txIns.begin(), tx_txIns.end());
-    }
-    return res;
-}
 
 bool isValidTxForPool(Transaction tx, std::vector<Transaction> aTransactionPool)
 {

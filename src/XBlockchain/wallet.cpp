@@ -1,11 +1,9 @@
 //
 // Created by youssef on 12/5/21.
 //
-
-#include "transaction.h"
 #include "wallet.h"
 
-//# Generate and store the private Key
+// Generate and store the private Key
 
 std::string generatePrivateKey()
 {
@@ -24,7 +22,7 @@ std::string getPublicFromWallet()
     return ""; //Public key in the keyPair encoded.
 }
 
-//# Wallet Balance
+// Wallet Balance
 
 void initWallet() {
     return;
@@ -82,4 +80,36 @@ void createTxOuts(std::string receiverAddress, std::string myAddress, int amount
 //        TxOut leftOverTx = new TxOut(myAddress, leftOverAmount);
 //        return [txOut1, leftOverTx];
     return;
+}
+
+std::vector<TxIn> getTxPoolIns(std::vector<Transaction> aTransactionPool) {
+    std::vector<TxIn> res;
+    for (int i = 0; i < aTransactionPool.size(); i++){
+        std::vector<TxIn> tx_txIns = aTransactionPool[i].txIns;
+        res.insert(res.end(), tx_txIns.begin(), tx_txIns.end());
+    }
+    return res;
+}
+
+std::vector<UnspentTxOut> filterTxPoolTxs(std::vector<UnspentTxOut> unspentTxOuts, std::vector<Transaction> transactionPool)
+{
+    std::vector<UnspentTxOut> newUnspentTxOuts;
+    std::vector<TxIn> txIns = getTxPoolIns(transactionPool);
+    for (int i = 0; i < unspentTxOuts.size(); i++){
+        UnspentTxOut unspentTxOut = unspentTxOuts[i];
+        bool removable = true;
+        for (int j = 0; j < txIns.size(); j++){
+            TxIn txIn = txIns[j];
+            if (txIn.txOutIndex == unspentTxOut.txOutIndex && txIn.txOutId == unspentTxOut.txOutId) {
+                removable = false;
+                break;
+            }
+        };
+        if (removable){
+            std::cout << "Removing unspentTxOut from unspentTxOuts" << std::endl;
+        } else {
+            newUnspentTxOuts.push_back(unspentTxOut);
+        }
+    }
+    return newUnspentTxOuts;
 }
