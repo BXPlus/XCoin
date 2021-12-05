@@ -47,6 +47,7 @@ namespace XNode{
     private:
         static const uint32_t XNODE_VERSION_INITIAL = 1.1;
         const std::string XNODE_PEERS_SAVE_PATH = "localpeers.xnodebackup";
+        const std::string XNODE_BLOCKCHAIN_SAVE_PATH = "localchain.xnodebackup";
         ::grpc::Status DNSSyncPeerList(::grpc::ServerContext *context, const ::xcoin::interchange::DNSHandshake *request, ::xcoin::interchange::DNSHandshake *response) override;
         ::grpc::Status Ping(::grpc::ServerContext *context, const ::xcoin::interchange::PingHandshake *request, ::xcoin::interchange::PingHandshake *response) override;
         ::grpc::Status NotifyPeerChange(::grpc::ServerContext *context, const ::xcoin::interchange::DNSEntry *request, ::xcoin::interchange::DNSEntry *response) override;
@@ -57,6 +58,7 @@ namespace XNode{
         void handleIncomingHeaderData(const xcoin::interchange::GetHeaders& request, const ::grpc::ClientContext& context,
                                       std::unique_ptr<xcoin::interchange::XNodeSync::Stub> peerStub);
         void saveDataOnDisk();
+        void loadDataFromDisk();
         std::map<std::string, XNodeClient> peers;
         std::unique_ptr<::grpc::Server> server;
         Blockchain blockchain;

@@ -21,6 +21,7 @@ void XNode::Node::RunNode(const std::vector<std::string>& dnsSeedPeers) {
     this->server = builder.BuildAndStart();
     spdlog::info("Server listening on " + server_address);
     bool couldPerformHandshakeWithDNSS = false;
+    loadDataFromDisk();
     for (const std::string &peer: dnsSeedPeers)
         couldPerformHandshakeWithDNSS |= this->AttemptPeerConnection(peer);
     if (!couldPerformHandshakeWithDNSS && !dnsSeedPeers.empty()) {
@@ -38,16 +39,33 @@ void XNode::Node::Shutdown() {
 }
 
 void XNode::Node::saveDataOnDisk() {
-    spdlog::debug("Will save data on disk");
-    Archive localData = Archive(XNODE_PEERS_SAVE_PATH);
+    spdlog::debug(std::string("Will save peers on disk"));
+    Archive localPeers = Archive(XNODE_PEERS_SAVE_PATH);
+    Archive localChain = Archive(XNODE_BLOCKCHAIN_SAVE_PATH);
     xcoin::interchange::DNSHandshake encodedPeers;
     for (std::pair<const std::basic_string<char>, XNodeClient> &peer: this->peers) {
         xcoin::interchange::DNSEntry *entry = encodedPeers.add_entries();
         entry->set_ipport(peer.first);
         entry->set_publickey(peer.second.publicKey);
     }
-    localData.saveData(encodedPeers.SerializeAsString());
+    localPeers.saveData(encodedPeers.SerializeAsString());
+    std::string encodedChain = XNode::Interface::exportChain(this->blockchain.toBlocks());
+    localChain.saveData(encodedChain);
 }
+
+void XNode::Node::loadDataFromDisk() {
+    Archive localData = Archive(XNODE_PEERS_SAVE_PATH);
+    Archive localChain = Archive(XNODE_BLOCKCHAIN_SAVE_PATH);
+    std::string encodedData = localData.loadData();
+    xcoin::interchange::DNSHandshake loadedPeers;
+    loadedPeers.ParseFromString(encodedData);
+    for (xcoin::interchange::DNSEntry peer: loadedPeers.entries()){
+        handleIncomingPeerData(peer);
+    }
+    std::string encodedChain = localChain.loadData();
+    XNode::Interface::importChain(encodedChain);
+}
+
 
 /**
 * Callback function executed by gRPC to process incoming Ping requests from peers
@@ -260,7 +278,7 @@ void XNode::Node::handleIncomingPeerData(const xcoin::interchange::DNSEntry &rem
                 ::grpc::ClientContext context;
                 xcoin::interchange::DNSEntry notificationRequest;
                 xcoin::interchange::DNSEntry notificationReply;
-                peers[remotePeer.ipport()].controlStub->NotifyPeerChange(&context, notificationRequest,
+                this->peers[remotePeer.ipport()].controlStub->NotifyPeerChange(&context, notificationRequest,
                                                                          &notificationReply);
                 spdlog::debug("Notified peer about additional details for " + remotePeer.ipport());
             } else
@@ -277,7 +295,6 @@ void XNode::Node::handleIncomingHeaderData(const xcoin::interchange::GetHeaders 
                                            std::unique_ptr<xcoin::interchange::XNodeSync::Stub> peerStub) {
 
 }
-
 
 
 

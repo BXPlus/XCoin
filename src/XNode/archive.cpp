@@ -13,7 +13,6 @@ bool Archive::exists() {
 }
 
 void Archive::saveData(const std::string& encodedData) {
-    std::filesystem::create_directories(this->localPath);
     std::ofstream ofs(this->localPath);
     ofs << encodedData;
     ofs.close();
