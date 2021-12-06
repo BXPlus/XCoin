@@ -9,3 +9,8 @@ Payments::Payments(QWidget *parent) : QWidget(parent)
 {
 
 }
+
+Payments::~Payments()
+{
+
+}

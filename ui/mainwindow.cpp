@@ -115,14 +115,12 @@ MainWindow::MainWindow(QWidget *parent)
     contentContainer->addWidget(contactsWidget);
     balanceWidget = new QWidget(mainWidget);
     contentContainer->addWidget(balanceWidget);
-    paymentsWidget = new Payments(mainWidget);
+    paymentsWidget = new QWidget(mainWidget);
     contentContainer->addWidget(paymentsWidget);
     settingsWidget = new SettingsWidget(mainWidget);
     contentContainer->addWidget(settingsWidget);
     graphsWidget = new QWidget(mainWidget);
     contentContainer->addWidget(graphsWidget);
-
-    QStringList color_list = {"red", "yellow", "pink", "green", "white", "turquoise"};
 
     for (int i = 0; i < 6; i++){
         QSignalMapper* signalMapper = new QSignalMapper (this) ;
