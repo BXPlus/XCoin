@@ -54,7 +54,7 @@ namespace XNode{
         ::grpc::Status HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::interchange::GetHeaders *request, ::xcoin::interchange::Headers* response) override;
         ::grpc::Status GetBlock(::grpc::ServerContext *context, const ::xcoin::interchange::Header *request, ::xcoin::interchange::Block *response) override;
         ::grpc::Status GetBlockchain(::grpc::ServerContext *context, const ::xcoin::interchange::DNSEntry *request, ::xcoin::interchange::Blockchain *response) override;
-        void handleIncomingPeerData(const xcoin::interchange::DNSEntry &remotePeer);
+        bool handleIncomingPeerData(const xcoin::interchange::DNSEntry &remotePeer);
         void handleIncomingHeaderData(const xcoin::interchange::GetHeaders& request, const ::grpc::ClientContext& context,
                                       std::unique_ptr<xcoin::interchange::XNodeSync::Stub> peerStub);
         void saveDataOnDisk();

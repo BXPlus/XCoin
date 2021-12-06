@@ -5,6 +5,7 @@
 
 XNode::Node::Node() {
     this->blockchain = Blockchain();
+    blockchain.appendBlock(blockchain.generateNextBlock("test block",0,0,"abcd"));
     this->peers = std::map<std::string, XNode::XNodeClient>();
 }
 
@@ -18,6 +19,7 @@ void XNode::Node::RunNode(const std::vector<std::string>& dnsSeedPeers) {
     ::grpc::ServerBuilder builder;
     builder.AddListeningPort(server_address, ::grpc::InsecureServerCredentials());
     builder.RegisterService(static_cast<xcoin::interchange::XNodeControl::Service *>(this));
+    builder.RegisterService(static_cast<xcoin::interchange::XNodeSync::Service *>(this));
     this->server = builder.BuildAndStart();
     spdlog::info("Server listening on " + server_address);
     bool couldPerformHandshakeWithDNSS = false;
@@ -65,18 +67,20 @@ void XNode::Node::saveDataOnDisk() {
 * Peer list and blockchain are updated from the save file contents
 */
 void XNode::Node::loadDataFromDisk() {
-    Archive localData = Archive(XNODE_PEERS_SAVE_PATH);
-    Archive localChain = Archive(XNODE_BLOCKCHAIN_SAVE_PATH);
-    if (localData.exists()){
-        std::string encodedData = localData.loadData();
+    Archive localDataArchive = Archive(XNODE_PEERS_SAVE_PATH);
+    Archive localChainArchive = Archive(XNODE_BLOCKCHAIN_SAVE_PATH);
+    if (localDataArchive.exists()){
+        std::string encodedData = localDataArchive.loadData();
         xcoin::interchange::DNSHandshake loadedPeers;
         loadedPeers.ParseFromString(encodedData);
-        for (xcoin::interchange::DNSEntry peer: loadedPeers.entries()){
-            handleIncomingPeerData(peer);
+        for (const xcoin::interchange::DNSEntry& peer: loadedPeers.entries()){
+            std::cout << peer.ipport() << std::endl;
+            if (handleIncomingPeerData(peer))
+                spdlog::debug("Reconnected to peer from cache: " + peer.ipport());
         }
     }
-    if (localChain.exists()){
-        std::string encodedChain = localChain.loadData();
+    if (localChainArchive.exists()){
+        std::string encodedChain = localChainArchive.loadData();
         XNode::Interface::importChain(encodedChain);
     }
 }
@@ -140,6 +144,7 @@ XNode::Node::HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::inte
     spdlog::debug("Header first sync requested by " + context->peer());
     for (int i = 1; i < request->blockheaderhashes_size(); i++) {
         if (request->blockheaderhashes(i) != this->blockchain.toBlocks()[i].headerHash) {
+            spdlog::debug("header desync detected");
             // TODO: Use the response to construct the new blockchain, right now we will just import the blockchain from the peer and check which one is valid.
         }
     }
@@ -230,7 +235,7 @@ bool XNode::Node::AttemptHeaderSync(const std::string &peerAddress) {
     headerFirstSyncRequest.set_version(XNODE_VERSION_INITIAL);
     // TODO: Split request into multiple messages if block count is greater than 200
     headerFirstSyncRequest.set_hashcount(this->blockchain.length);
-    headerFirstSyncRequest.set_stophash(this->blockchain.getLatestBlock().headerHash);
+    headerFirstSyncRequest.set_stophash("0");
     for (Block block: this->blockchain.toBlocks()){
         std::string* headerHash = headerFirstSyncRequest.add_blockheaderhashes();
         headerHash = &block.headerHash;
@@ -247,7 +252,7 @@ bool XNode::Node::AttemptHeaderSync(const std::string &peerAddress) {
         }
         spdlog::info("Successfully synced headers with " + peerAddress);
         return true;
-    }
+    }else spdlog::warn("Failed header sync with " + peerAddress);
     return false;
 }
 
@@ -257,14 +262,11 @@ bool XNode::Node::AttemptHeaderSync(const std::string &peerAddress) {
 * @param remotePeer the incoming peer data
 * @param peerStub the control stub of the remote peer to follow up with other requests if necessary
 */
-
-
-void XNode::Node::handleIncomingPeerData(const xcoin::interchange::DNSEntry &remotePeer) {
+bool XNode::Node::handleIncomingPeerData(const xcoin::interchange::DNSEntry &remotePeer) {
     if (this->peers.count(remotePeer.ipport()) != 0) {
         if (this->peers[remotePeer.ipport()].publicKey != remotePeer.publickey()) {
             if (this->peers[remotePeer.ipport()].publicKey == XNODE_PUBLICADDR_UNKNOWN) {
-                std::shared_ptr<grpc::Channel> channel = grpc::CreateChannel(remotePeer.ipport(),
-                                                                             grpc::InsecureChannelCredentials());
+                std::shared_ptr<grpc::Channel> channel = grpc::CreateChannel(remotePeer.ipport(),grpc::InsecureChannelCredentials());
                 this->peers[remotePeer.ipport()] = XNodeClient(channel);
             } else if (remotePeer.ipport() == XNODE_PUBLICADDR_UNKNOWN) {
                 ::grpc::ClientContext context;
@@ -273,12 +275,11 @@ void XNode::Node::handleIncomingPeerData(const xcoin::interchange::DNSEntry &rem
                 this->peers[remotePeer.ipport()].controlStub->NotifyPeerChange(&context, notificationRequest,
                                                                          &notificationReply);
                 spdlog::debug("Notified peer about additional details for " + remotePeer.ipport());
-            } else
-                return; //TODO: Ask peer directly for its details
+            } //TODO: Else ask peer directly for its details
         }
+        return true;
     } else {
-        if (!this->AttemptPeerConnection(remotePeer.ipport()))
-            spdlog::warn("Could not connect with new remote peer: " + remotePeer.ipport());
+        return this->AttemptPeerConnection(remotePeer.ipport());
     }
 }
 
