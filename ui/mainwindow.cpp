@@ -11,6 +11,8 @@
 #include <QDir>
 #include <homewidget.h>
 #include <QCloseEvent>
+#include <QFontDatabase>
+#include <contactswidget.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -46,6 +48,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     QWidget* userBlock = new QWidget(menuContainer);
     QVBoxLayout* userBlockLayout = new QVBoxLayout(userBlock);
+    userBlockLayout->setAlignment(Qt::AlignHCenter);
     userBlock->setFixedHeight(150);
     userBlock->setStyleSheet("border-radius: 15px;"
                               "background-color: rgba(60, 72, 114, 255);");
@@ -54,7 +57,7 @@ MainWindow::MainWindow(QWidget *parent)
     QString path = QDir::currentPath();
     int index = path.indexOf("XCoin");
     QString subPath = path.mid(0,index+5);
-    subPath.append("/ui/xcoin.jpg");
+    subPath.append("/ui/xcoinSmall.png");
 
     QPixmap pic(subPath);
     QLabel* imgLabel = new QLabel(userBlock);
@@ -98,6 +101,14 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
 
+    // Creating central separating bar
+//    QWidget* sepBar = new QWidget(this);
+//    sepBar->setStyleSheet("background-color: rgba(45,58,82,255);");
+//    sepBar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
+//    sepBar->setFixedWidth(10);
+//    mainLayout->addWidget(sepBar);
+
+
     //Creating Stacked Widget
 
     contentContainer = new QStackedWidget(mainWidget);
@@ -105,12 +116,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     homeWidget = new HomeWidget(mainWidget);
     contentContainer->addWidget(homeWidget);
+    contactsWidget = new ContactsWidget(mainWidget);
+    contentContainer->addWidget(contactsWidget);
     balanceWidget = new QWidget(mainWidget);
     contentContainer->addWidget(balanceWidget);
     paymentsWidget = new Payments(mainWidget);
     contentContainer->addWidget(paymentsWidget);
-    contactsWidget = new QWidget(mainWidget);
-    contentContainer->addWidget(contactsWidget);
     settingsWidget = new SettingsWidget(mainWidget);
     contentContainer->addWidget(settingsWidget);
     graphsWidget = new QWidget(mainWidget);
@@ -121,7 +132,7 @@ MainWindow::MainWindow(QWidget *parent)
     for (int i = 0; i < 6; i++){
         contentContainer->setCurrentIndex(i);
         QWidget* widget = contentContainer->currentWidget();
-        QString style = QString("QWidget {border: 1px solid %1}").arg(color_list[i]);
+        QString style = QString("QWidget {border: 1px}"); // solid %1}").arg(color_list[i]);
         widget->setStyleSheet(style);
 
         QSignalMapper* signalMapper = new QSignalMapper (this) ;
