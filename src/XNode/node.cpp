@@ -32,12 +32,19 @@ void XNode::Node::RunNode(const std::vector<std::string>& dnsSeedPeers) {
     server->Wait();
 }
 
+/**
+* Function called to shut down a node: terminates the gRPC thread gracefully and saves data on disk
+*/
 void XNode::Node::Shutdown() {
     spdlog::info("Node will shut down");
     saveDataOnDisk();
     this->server->Shutdown();
 }
 
+/**
+* Function called to persist node data on disk to speed up subsequent launches
+* Saves peers and chain in two different savefiles
+*/
 void XNode::Node::saveDataOnDisk() {
     spdlog::debug(std::string("Will save peers on disk"));
     Archive localPeers = Archive(XNODE_PEERS_SAVE_PATH);
@@ -53,17 +60,25 @@ void XNode::Node::saveDataOnDisk() {
     localChain.saveData(encodedChain);
 }
 
+/**
+* Function called to load savefile data from disk on launch
+* Peer list and blockchain are updated from the save file contents
+*/
 void XNode::Node::loadDataFromDisk() {
     Archive localData = Archive(XNODE_PEERS_SAVE_PATH);
     Archive localChain = Archive(XNODE_BLOCKCHAIN_SAVE_PATH);
-    std::string encodedData = localData.loadData();
-    xcoin::interchange::DNSHandshake loadedPeers;
-    loadedPeers.ParseFromString(encodedData);
-    for (xcoin::interchange::DNSEntry peer: loadedPeers.entries()){
-        handleIncomingPeerData(peer);
+    if (localData.exists()){
+        std::string encodedData = localData.loadData();
+        xcoin::interchange::DNSHandshake loadedPeers;
+        loadedPeers.ParseFromString(encodedData);
+        for (xcoin::interchange::DNSEntry peer: loadedPeers.entries()){
+            handleIncomingPeerData(peer);
+        }
     }
-    std::string encodedChain = localChain.loadData();
-    XNode::Interface::importChain(encodedChain);
+    if (localChain.exists()){
+        std::string encodedChain = localChain.loadData();
+        XNode::Interface::importChain(encodedChain);
+    }
 }
 
 
