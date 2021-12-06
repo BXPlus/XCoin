@@ -30,5 +30,17 @@ int main(int argc, char *argv[])
     w.show();
     return a.exec();
 
+    //Login page
+    PaymentDialog *payment_window = new PaymentDialog();
+    payment_window->setModal(true);
+    payment_window->exec();
+    bool identified = payment_window->get_identified();
+
+    if (identified) {
+        PaymentDialog P;
+        P.show();
+        return a.exec();
+    }
+}
 
 }
