@@ -1,6 +1,8 @@
 #include "contactswidget.h"
 #include <QMap>
 #include <QDebug>
+#include <QScrollArea>
+#include <QScrollBar>
 
 ContactsWidget::ContactsWidget(QWidget *parent) :
     QWidget(parent)
@@ -20,6 +22,13 @@ ContactsWidget::ContactsWidget(QWidget *parent) :
     contactDict[QString("Arthur")] = QString("#dk9174hdn29s");
     contactDict[QString("Youssef")] = QString("#dk9174hdn57s");
     contactDict[QString("Mamoune")] = QString("#dk9174hdn29s");
+    contactDict[QString("Long")] = QString("#dk9174hdn29s");
+    contactDict[QString("JS")] = QString("#dk9174hdn29s");
+    contactDict[QString("Laura")] = QString("#dk9174hdn29s");
+    contactDict[QString("Lio")] = QString("#dk9174hdn29s");
+    contactDict[QString("Timothé")] = QString("#dk9174hdn29s");
+    contactDict[QString("Salma")] = QString("#dk9174hdn29s");
+
     //int n = contactDict.count();
 
     title = new QLabel(this);
@@ -27,11 +36,16 @@ ContactsWidget::ContactsWidget(QWidget *parent) :
     title->setObjectName(QString("title"));
     title->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
 
-    boxContainer = new QWidget(this);
+    scrollContacts = new QScrollArea(this);
+    boxContainer = new QWidget(scrollContacts);
+    scrollContacts->setWidget(boxContainer);
+    scrollContacts->setWidgetResizable(true);
     boxContainer->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
     contactGrid = new QGridLayout(boxContainer);
     contactGrid->setContentsMargins(0, 0, 0, 0);
     contactGrid->setSpacing(0);
+
+
 
     for(auto e : contactDict.keys())
     {
@@ -42,18 +56,24 @@ ContactsWidget::ContactsWidget(QWidget *parent) :
         key->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
         value->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
         int count = contactGrid->rowCount();
-        if (count%2 == 0){
+        if (count%2 == 1){
             key->setStyleSheet("background-color: rgba(60, 72, 114, 255);"
                                "padding: 20;"
-                               "font: 15px;");
+                               "font: 15px;"
+                               "border-top-left-radius: 5px;"
+                               "border-bottom-left-radius: 5px;");
             value->setStyleSheet("background-color: rgba(60, 72, 114, 255);"
                                  "padding: 20;"
                                  "font: 15px;");
         }
         else{
-            key->setStyleSheet("padding: 20;"
-                               "font: 15px;");
-            value->setStyleSheet("padding: 20;"
+            key->setStyleSheet("background-color: rgba(31,41,66,255);"
+                               "padding: 20;"
+                               "font: 15px;"
+                               "border-top-left-radius: 5px;"
+                               "border-bottom-left-radius: 5px;");
+            value->setStyleSheet("background-color: rgba(31,41,66,255);"
+                                 "padding: 20;"
                                  "font: 15px;");
         }
         contactGrid->addWidget(key, count, 0);
@@ -61,6 +81,6 @@ ContactsWidget::ContactsWidget(QWidget *parent) :
     }
 
     pageLayout->addWidget(title);
-    pageLayout->addWidget(boxContainer);
+    pageLayout->addWidget(scrollContacts);
 
 }

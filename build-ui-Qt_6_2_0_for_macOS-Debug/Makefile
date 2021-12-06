@@ -600,6 +600,8 @@ moc_contactswidget.cpp: ../ui/contactswidget.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qlabel.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QVBoxLayout \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QScrollArea \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qscrollarea.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/moc
 	/Users/alexandremisrahi/Qt/6.2.0/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=13 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/alexandremisrahi/Qt/6.2.0/macos/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/ui -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/alexandremisrahi/Qt/6.2.0/macos/lib ../ui/contactswidget.h -o moc_contactswidget.cpp
 
@@ -747,10 +749,14 @@ contactswidget.o: ../ui/contactswidget.cpp ../ui/contactswidget.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qlabel.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QVBoxLayout \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QScrollArea \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qscrollarea.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QMap \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/qmap.h \
 		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/QDebug \
-		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/qdebug.h
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtCore.framework/Headers/qdebug.h \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/QScrollBar \
+		/Users/alexandremisrahi/Qt/6.2.0/macos/lib/QtWidgets.framework/Headers/qscrollbar.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o contactswidget.o ../ui/contactswidget.cpp
 
 custombutton.o: ../ui/custombutton.cpp ../ui/custombutton.h \

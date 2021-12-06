@@ -36,3 +36,37 @@ QLabel#subtitle {
     font: italic;
     font-size: 20px;
 }
+
+
+
+QScrollBar:vertical {
+    background: rgba(0,0,0,0);
+    width: 10px;
+}
+QScrollBar::handle:vertical {
+    background: rgba(195,195,195,200);
+    min-height: 20px;
+    border-radius: 5px;
+}
+QScrollBar::handle:hover {
+    background: rgba(150,150,150,150);
+}
+QScrollBar::add-line:vertical {
+    border: none;
+    background: none;
+}
+
+QScrollBar::sub-line:vertical {
+    border: none;
+    background: none;
+}
+
+
+
+
+
+
+
+
+
+

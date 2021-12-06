@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QLabel>
 #include <QVBoxLayout>
+#include <QScrollArea>
 
 namespace Ui {
 class ContactsWidget;
@@ -18,6 +19,7 @@ public:
     QVBoxLayout* pageLayout;
     QGridLayout* contactGrid;
     QWidget* boxContainer;
+    QScrollArea* scrollContacts;
 };
 
 #endif // CONTACTSWIDGET_H
