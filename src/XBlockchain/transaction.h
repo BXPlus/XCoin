@@ -58,18 +58,12 @@ Transaction getCoinbaseTransaction(std::string address, int blockIndex);
 
 std::string getPublicKey(std::string aPrivateKey);
 
-bool validateBlockTransactions(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts, int blockIndex){
-    return true; //To Implement
-};
+bool validateBlockTransactions(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts, int blockIndex);
 
-bool hasDuplicates(std::vector<TxIn> txIns) {
-    return true; //To Implement
-}
+bool hasDuplicates(std::vector<TxIn> txIns);
 
 bool validateTxIn(TxIn txIn, Transaction transaction, std::vector<UnspentTxOut> aUnspentTxOuts);
 
-void processTransactions(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts, int blockIndex){
-    return; //To implement
-}
+std::vector<UnspentTxOut> processTransactions(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts, int blockIndex);
 
 #endif //XCOIN_TRANSACTION_H
