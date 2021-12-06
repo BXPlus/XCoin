@@ -26,8 +26,7 @@ void XNode::Node::RunNode(const std::vector<std::string>& dnsSeedPeers) {
         couldPerformHandshakeWithDNSS |= this->AttemptPeerConnection(peer);
     if (!couldPerformHandshakeWithDNSS && !dnsSeedPeers.empty()) {
         spdlog::error("Could not establish connection with any DNSS, node will shut down...");
-        server->Shutdown();
-        exit(EXIT_SUCCESS);
+        Shutdown();
     }
     server->Wait();
 }
@@ -39,6 +38,7 @@ void XNode::Node::Shutdown() {
     spdlog::info("Node will shut down");
     saveDataOnDisk();
     this->server->Shutdown();
+    exit(EXIT_SUCCESS);
 }
 
 /**
@@ -158,19 +158,7 @@ XNode::Node::HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::inte
         if (block.previousHeaderHash == request->previousblockheaderhash() &&
             block.merkle_root_hash == request->merkleroothash() &&
             block.timestamp == request->time()) {
-            xcoin::interchange::Block *blockResponse = response->New();
-            blockResponse->set_index(block.index);
-            blockResponse->set_hash(block.hash);
-            blockResponse->set_previoushash(block.previousHash);
-            blockResponse->set_headerhash(block.headerHash);
-            blockResponse->set_previousheaderhash(block.previousHeaderHash);
-            blockResponse->set_timestamp(block.timestamp);
-            blockResponse->set_data(block.data);
-            blockResponse->set_difficulty(block.difficulty);
-            blockResponse->set_nonce(block.nonce);
-            blockResponse->set_minterbalance(block.minterBalance);
-            blockResponse->set_minteraddress(block.minterAddress);
-            blockResponse->set_merkle_root_hash(block.merkle_root_hash);
+            response->CopyFrom(XNode::Interface::encodeBlock(block));
             return ::grpc::Status::OK;
         }
     }
@@ -182,19 +170,8 @@ XNode::Node::GetBlockchain(::grpc::ServerContext *context, const ::xcoin::interc
                            ::xcoin::interchange::Blockchain *response) {
     xcoin::interchange::Blockchain *blockchainResponse = response->New();
     for (const Block &block: this->blockchain.toBlocks()) {
-        xcoin::interchange::Block *blockResponse = blockchainResponse->add_blocks();
-        blockResponse->set_index(block.index);
-        blockResponse->set_hash(block.hash);
-        blockResponse->set_previoushash(block.previousHash);
-        blockResponse->set_headerhash(block.headerHash);
-        blockResponse->set_previousheaderhash(block.previousHeaderHash);
-        blockResponse->set_timestamp(block.timestamp);
-        blockResponse->set_data(block.data);
-        blockResponse->set_difficulty(block.difficulty);
-        blockResponse->set_nonce(block.nonce);
-        blockResponse->set_minterbalance(block.minterBalance);
-        blockResponse->set_minteraddress(block.minterAddress);
-        blockResponse->set_merkle_root_hash(block.merkle_root_hash);
+        xcoin::interchange::Block *encodedBlock = blockchainResponse->add_blocks();
+        encodedBlock->CopyFrom(XNode::Interface::encodeBlock(block));
     }
     return ::grpc::Status::OK;
 }

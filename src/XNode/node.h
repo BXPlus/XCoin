@@ -45,7 +45,7 @@ namespace XNode{
         bool AttemptPeerConnection(const std::string& peerAddress);
         bool AttemptHeaderSync(const std::string& peerAddress);
     private:
-        static const uint32_t XNODE_VERSION_INITIAL = 1.1;
+        const uint32_t XNODE_VERSION_INITIAL = static_cast<const uint32_t>(1.1);
         const std::string XNODE_PEERS_SAVE_PATH = "localpeers.xnodebackup";
         const std::string XNODE_BLOCKCHAIN_SAVE_PATH = "localchain.xnodebackup";
         ::grpc::Status DNSSyncPeerList(::grpc::ServerContext *context, const ::xcoin::interchange::DNSHandshake *request, ::xcoin::interchange::DNSHandshake *response) override;
