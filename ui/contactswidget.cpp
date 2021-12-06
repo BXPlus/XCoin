@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QScrollArea>
 #include <QScrollBar>
+#include <QSignalMapper>
 
 ContactsWidget::ContactsWidget(QWidget *parent) :
     QWidget(parent)
@@ -29,12 +30,24 @@ ContactsWidget::ContactsWidget(QWidget *parent) :
     contactDict[QString("Timothé")] = QString("#dk9174hdn29s");
     contactDict[QString("Salma")] = QString("#dk9174hdn29s");
 
-    //int n = contactDict.count();
+    topBox = new QWidget();
+    topLayout = new QHBoxLayout();
+    topBox->setLayout(topLayout);
 
     title = new QLabel(this);
     title->setText("Contacts");
     title->setObjectName(QString("title"));
     title->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+
+    addContactButton = new QPushButton(this);
+    addContactButton->setText("Add Contact");
+    addContactButton->setObjectName("menuBtn");
+    addContactButton->setCursor(Qt::PointingHandCursor);
+    addContactButton->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+
+    topLayout->addWidget(title);
+    topLayout->addWidget(addContactButton);
+
 
     scrollContacts = new QScrollArea(this);
     boxContainer = new QWidget(scrollContacts);
@@ -80,7 +93,22 @@ ContactsWidget::ContactsWidget(QWidget *parent) :
         contactGrid->addWidget(value, count, 1);
     }
 
-    pageLayout->addWidget(title);
+    pageLayout->addWidget(topBox);
     pageLayout->addWidget(scrollContacts);
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

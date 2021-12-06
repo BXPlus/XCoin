@@ -12,6 +12,7 @@ SOURCES += \
     contactswidget.cpp \
     custombutton.cpp \
     homewidget.cpp \
+    logindialog.cpp \
     main.cpp \
     mainwindow.cpp \
     settingswidget.cpp
