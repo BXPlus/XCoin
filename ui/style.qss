@@ -21,12 +21,12 @@ QLabel#title_page_label {
 
 }
 
-QLabel#euro:hover {
+QPushButton#euro:hover {
 background-color: rgba(0,150,255);
 }
-QLabel#XCO:hover {
+QPushButton#XCO:hover {
 background-color: yellow
 }
-QLabel#XCO:visited {
+QLabel#XCO:active {
 background-color:red;
 }

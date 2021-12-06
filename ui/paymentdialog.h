@@ -19,15 +19,17 @@ public:
     explicit PaymentDialog(QWidget *parent = nullptr);
     ~PaymentDialog();
     QLabel* title_page_label;
-    QWidget* purchasing_box;
-    QVBoxLayout* purchasing_layout;
+    QWidget* main_box;
+    QVBoxLayout* main_layout;
     QWidget* amount_box;
     QVBoxLayout* amount_layout;
     QLabel* amount;
     QWidget* money_value_box ;
     QHBoxLayout* money_value_layout;
     QWidget* currency;
+    QPushButton* XCO2;
     QPushButton* pay_btn;
+
 
 //I add this for the pay_btn QPushButton
 private slots:
