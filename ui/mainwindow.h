@@ -6,6 +6,7 @@
 #include <QStackedWidget>
 #include <QVBoxLayout>
 #include "custombutton.h"
+#include "contactswidget.h"
 #include "homewidget.h"
 #include "payments.h"
 #include "logindialog.h"

@@ -22,6 +22,8 @@ public:
     QWidget* page_container;
     QVBoxLayout* page_layout;
     QSizePolicy* Expanding;
+private:
+    Ui::Payments *ui;
 };
 
 #endif // PAYMENTS_H

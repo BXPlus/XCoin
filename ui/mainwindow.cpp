@@ -7,16 +7,18 @@
 #include <QLabel>
 #include <QDir>
 #include <QCloseEvent>
+#include <QFontDatabase>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+
     ui->setupUi(this);
 
     //HomePage setup
     setWindowTitle("XCoin");
-    setMinimumSize(500,600);
+    setMinimumSize(700,600);
 
 
     // Setting layouts
@@ -41,6 +43,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     QWidget* userBlock = new QWidget(menuContainer);
     QVBoxLayout* userBlockLayout = new QVBoxLayout(userBlock);
+    userBlockLayout->setAlignment(Qt::AlignHCenter);
     userBlock->setFixedHeight(150);
     userBlock->setStyleSheet("border-radius: 15px;"
                               "background-color: rgba(60, 72, 114, 255);");
@@ -49,7 +52,7 @@ MainWindow::MainWindow(QWidget *parent)
     QString path = QDir::currentPath();
     int index = path.indexOf("XCoin");
     QString subPath = path.mid(0,index+5);
-    subPath.append("/ui/xcoin.jpg");
+    subPath.append("/ui/xcoinSmall.png");
 
     QPixmap pic(subPath);
     QLabel* imgLabel = new QLabel(userBlock);
@@ -79,8 +82,7 @@ MainWindow::MainWindow(QWidget *parent)
     menuLayout->addWidget(userBlock);
 
     // Creating remaining buttons
-
-    QStringList titles = {"Home", "Contacts", "History", "Pay", "Settings", "Graphics"};
+    QStringList titles = {"Home", "Contacts", "Pay", "History", "Settings", "Graphics"};
 
     for (int i=0; i<6; i++){
 
@@ -94,6 +96,14 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
 
+    // Creating central separating bar
+//    QWidget* sepBar = new QWidget(this);
+//    sepBar->setStyleSheet("background-color: rgba(45,58,82,255);");
+//    sepBar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
+//    sepBar->setFixedWidth(10);
+//    mainLayout->addWidget(sepBar);
+
+
     //Creating Stacked Widget
 
     contentContainer = new QStackedWidget(mainWidget);
@@ -101,18 +111,18 @@ MainWindow::MainWindow(QWidget *parent)
 
     homeWidget = new HomeWidget(mainWidget);
     contentContainer->addWidget(homeWidget);
+    contactsWidget = new ContactsWidget(mainWidget);
+    contentContainer->addWidget(contactsWidget);
     balanceWidget = new QWidget(mainWidget);
     contentContainer->addWidget(balanceWidget);
-    paymentsWidget = new QWidget(mainWidget);
+    paymentsWidget = new Payments(mainWidget);
     contentContainer->addWidget(paymentsWidget);
-    contactsWidget = new QWidget(mainWidget);
-    contentContainer->addWidget(contactsWidget);
     settingsWidget = new SettingsWidget(mainWidget);
     contentContainer->addWidget(settingsWidget);
     graphsWidget = new QWidget(mainWidget);
     contentContainer->addWidget(graphsWidget);
 
-    QStringList color_list = {"red", "yellow", "purple", "green", "white", "turquoise"};
+    QStringList color_list = {"red", "yellow", "pink", "green", "white", "turquoise"};
 
     for (int i = 0; i < 6; i++){
         QSignalMapper* signalMapper = new QSignalMapper (this) ;
