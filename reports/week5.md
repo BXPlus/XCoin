@@ -39,8 +39,14 @@ This week i was not able to work on the project for medical reasons. So in this 
 @Picha 
 
 This week:
+I finished the template of the payment page. But we have decided that this payment page won't be a page anymore but a new window so that we can open it from anywhere on the website.
+
+So, I now have to implement a QDialog to create a new window.
 
 Next week:
+On my template page, I still have to connect some button together. 
+
+I will continue to make the qdialog window.
 
 @Mamoune Mouchtaki 
 
