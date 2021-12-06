@@ -7,6 +7,7 @@ LoginDialog::LoginDialog(QWidget *parent) :
 {
     groupBox = new QGroupBox();
     login = new QPushButton("Login", this);
+
     privateLabel = new QLabel("Private Key:", this);
     privateText = new QLineEdit(this);
     warningLabel = new QLabel(this);

@@ -1,32 +1,38 @@
 MainWindow {
-    background-color: rgba(60,72,114,255);
+    background-color: rgb(173,216,230);
 }
 
 QWidget#menuContainer {
-    background-color: rgba(34,45,72,255);
+    background-color: rgb(173,216,230);
+
 }
 
 QPushButton#menuBtn {
-    border: 2px solid rgba(255,200,52,255);
+    border: 2px solid white;
     border-radius: 20px;
     text-align: left;
     padding: 12px;
     margin: 0;
     font: bold;
+    background-color: rgb(60,179,113);
+
 }
 
 QPushButton#menuBtn:hover {
-    background-color: rgba(255,200,52,100);
+    background-color: rgb(154,205,50);
 }
 
 QWidget#contentContainer {
-    background-color: rgba(69, 97, 137, 255);
+    background-color: rgb(245,245,220);
 }
 
 QLabel#title {
     border: 2px solid green;
+    font-family: avenir, sans-serif;
     font: bold;
     font-size: 60px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 QLabel#subtitle {
@@ -62,3 +68,4 @@ QGroupBox#BoxGroup {
     width: 70px;
     height: 50px;
 }
+
