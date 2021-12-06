@@ -7,6 +7,7 @@
 #include <stdexcept>
 #include "../XNode/keys.h"
 #include <regex>
+#include <map>
 
 #define fi first
 #define se second
@@ -260,7 +261,7 @@ bool hasDuplicates(std::vector<TxIn> txIns) {
     }
     return 0;
 }
-
+/* //TODO: solve the problem with 'used'
 bool validateBlockTransactions(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts, int blockIndex) {
     Transaction coinbaseTx = aTransactions[0];
     if (!coinbaseTx.validateCoinbaseTx(blockIndex)) {
@@ -290,6 +291,7 @@ bool validateBlockTransactions(std::vector<Transaction> aTransactions, std::vect
 
     return validate;
 }
+*/
 
 bool Transaction::validateTransaction(std::vector<UnspentTxOut> aUnspentTxOuts) {
     if (!isValidTransactionStructure())
