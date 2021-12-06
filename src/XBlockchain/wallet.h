@@ -3,6 +3,7 @@
 //
 
 #include "transaction.h"
+#include "keys.h"
 
 #ifndef XBLOCKCHAIN_WALLET_H
 #define XBLOCKCHAIN_WALLET_H

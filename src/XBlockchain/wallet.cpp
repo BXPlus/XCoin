@@ -4,11 +4,12 @@
 #include "wallet.h"
 #include <algorithm>
 
+
 // Generate and store the private Key
 
-std::string generatePrivateKey() //TODO: MALO
+std::string generatePrivateKey()
 {
-    return ""; //To implement using key
+    return Keys().getPriv();
 }
 
 std::string getPrivateFromWallet() //TODO: MALO
@@ -16,11 +17,10 @@ std::string getPrivateFromWallet() //TODO: MALO
     return "";
 }
 
-std::string getPublicFromWallet() //TODO: MALO
+std::string getPublicFromWallet()
 {
     std::string privateKey = getPrivateFromWallet();
-    std::string key; //add when implemented in transaction
-    return ""; //Public key in the keyPair encoded.
+    return keyFromPrivate(privateKey).getPub();
 }
 
 // Wallet Balance
