@@ -52,6 +52,7 @@ void ToggleBtn::paintEvent(QPaintEvent *)
     QPainter p(this);
     QPainter::RenderHints m_paintFlags = QPainter::RenderHints(QPainter::Antialiasing |
         QPainter::TextAntialiasing);
+
     p.setRenderHints(m_paintFlags, true);
     p.setPen(Qt::NoPen);
     bool check = isChecked();
@@ -127,6 +128,8 @@ void ToggleBtn::setChecked(bool checked)
     QAbstractButton::setChecked(checked);
     mOffset = mEndOffset.value(checked);
 }
+
+
 
 int ToggleBtn::offset()
 {

@@ -115,11 +115,6 @@ MainWindow::MainWindow(QWidget *parent)
     QStringList color_list = {"red", "yellow", "purple", "green", "white", "turquoise"};
 
     for (int i = 0; i < 6; i++){
-        contentContainer->setCurrentIndex(i);
-        QWidget* widget = contentContainer->currentWidget();
-        QString style = QString("QWidget {border: 1px solid %1}").arg(color_list[i]);
-        widget->setStyleSheet(style);
-
         QSignalMapper* signalMapper = new QSignalMapper (this) ;
         connect(btnList[i], SIGNAL(clicked(bool)), signalMapper, SLOT(map()));
         signalMapper->setMapping (btnList[i], i);
@@ -127,10 +122,6 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     contentContainer->setCurrentIndex(0);
-
-    //Connecting go home buttons
-//    QPushButton* settingsHomeBtn = settingsWidget->get_homeBtn();
-//    connect(settingsHomeBtn, SIGNAL(clicked(bool)), this, SLOT(go_home()));
 
     // Creating main content
 

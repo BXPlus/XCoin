@@ -1077,7 +1077,9 @@ settingswidget.o: ../ui/settingswidget.cpp ../ui/settingswidget.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDir \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdir.h
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdir.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QtDebug \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o settingswidget.o ../ui/settingswidget.cpp
 
 logindialog.o: ../ui/logindialog.cpp ../ui/logindialog.h \

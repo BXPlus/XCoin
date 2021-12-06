@@ -15,6 +15,7 @@ public:
     ~ToggleBtn();
 
     QSize sizeHint() const override;
+    void setOffset(int value);
 
 protected:
     void paintEvent(QPaintEvent *) override;
@@ -24,7 +25,6 @@ protected:
     void setChecked(bool checked);
 
     int offset();
-    void setOffset(int value);
 
 private:
     qreal mOffset;
