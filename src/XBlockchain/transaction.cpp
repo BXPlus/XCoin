@@ -40,12 +40,12 @@ std::pair<bool, UnspentTxOut> findUnspentTxOut(std::string transactionId, int in
     return std::make_pair(0, UnspentTxOut("", 0, "", 0));
 }
 
-std::string getPublicKey(std::string aPrivateKey) //TODO: MALO
+std::string getPublicKey(std::string aPrivateKey)
 {
-        return "";//keyFromPrivate(aPrivateKey).getPublic(); //TODO: MALO
+        return keyFromPrivate(aPrivateKey).getPub();
 }
 
-std::string Transaction::signTxIn(int txInIndex, std::string privateKey, std::vector<UnspentTxOut> aUnspentTxOuts) {
+std::pair<uint8_t*, uint32_t> Transaction::signTxIn(int txInIndex, std::string privateKey, std::vector<UnspentTxOut> aUnspentTxOuts) {
     TxIn txIn = txIns[txInIndex];
     std::string dataToSign = id;
     std::pair<bool, UnspentTxOut> tmp = findUnspentTxOut(txIn.txOutId, txIn.txOutIndex, aUnspentTxOuts);
@@ -58,8 +58,8 @@ std::string Transaction::signTxIn(int txInIndex, std::string privateKey, std::ve
         throw std::invalid_argument("trying to sign an input with private key that does not match the address that is referenced in txIn\n");
     }
 
-    Keys key = Keys();//keyFromPrivate(privateKey); //TODO: MALO
-    std::string signature = "";//toHexString(key.sign(dataToSign).toDER()); //TODO: Add ToHexString //MALO
+
+    std::pair<uint8_t*, uint32_t> signature = sign(privateKey, dataToSign);
     return signature;
 
 }
@@ -104,7 +104,9 @@ bool isValidTxInStructure(TxIn txIn) {
         std::cout << "txIn is null";
         return false;
     }
-    else if (typeid(txIn.signature) != typeid("string")) {
+    else if ((typeid(txIn.signature) != typeid(std::pair<uint8_t*, uint32_t>)) &&
+            (typeid(txIn.signature.first) != typeid(uint8_t*)) &&
+            (typeid(txIn.signature.second) !=typeid(uint32_t))) {
         std::cout << "invalid signature type in txIn";
         return false;
     }
@@ -126,7 +128,7 @@ bool isValidTxInStructure(TxOut txIn) {
         return false;
     }
     else if (typeid(txIn.address) != typeid("string")) {
-        std::cout << "invalid signature type in txIn";
+        std::cout << "invalid address type in txIn";
         return false;
     }
     else if (!isValidAddress(txIn.address)) {
@@ -230,10 +232,10 @@ bool validateTxIn(TxIn txIn, std::string id, std::vector<UnspentTxOut> aUnspentT
     UnspentTxOut referencedUTxOut = tmp.second;
     std::string address = referencedUTxOut.address;
 
-    Keys key = keyFromPublic(address); //TODO: MALO
-    bool validSignature = 0;//key.verify(id, txIn.signature);
+
+    bool validSignature = verify(txIn.signature, address, id);
     if (!validSignature) {
-        std::cout << "invalid txIn signature: " << txIn.signature << " txId: " << id << " address: " << address << "\n";
+        std::cout << "invalid txIn signature: " << txIn.signature.first << " txId: " << id << " address: " << address << "\n";
         return false;
     }
     return true;
@@ -300,7 +302,7 @@ bool Transaction::validateCoinbaseTx(int blockIndex) {
 Transaction getCoinbaseTransaction(std::string address, int blockIndex) {
     Transaction t;
     TxIn txIn;
-    txIn.signature = "";
+    txIn.signature = std::pair<uint8_t*, uint32_t>();
     txIn.txOutId = "";
     txIn.txOutIndex = blockIndex;
 

@@ -26,7 +26,7 @@ class TxIn {
 public:
     std::string txOutId;
     int txOutIndex;
-    std::string signature;
+    std::pair<uint8_t*, uint32_t> signature;
     int getTxInAmount(std::vector<UnspentTxOut> aUnspentTxOuts);
     std::string JSONStringify();
 };
@@ -37,7 +37,7 @@ public:
     std::vector<TxIn> txIns;
     std::vector<TxOut> txOuts;
     std::string getTransactionId();
-    std::string signTxIn(int txInIndex, std::string privateKey, std::vector<UnspentTxOut> aUnspentTxOuts);
+    std::pair<uint8_t*, uint32_t> signTxIn(int txInIndex, std::string privateKey, std::vector<UnspentTxOut> aUnspentTxOuts);
     bool hasValidTxIns();
     bool validateTransaction(std::vector<UnspentTxOut> aUnspentTxOuts);
     bool isValidTransactionStructure();
