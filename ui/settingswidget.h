@@ -16,30 +16,14 @@ public:
 private:
     QWidget* mainWidget;
 
-    QVBoxLayout* finalLayout;
     QVBoxLayout* mainLayout;
-    QHBoxLayout* nodePortLayout;
-    QHBoxLayout* rDNSaddLayout;
-    QHBoxLayout* publicaddLayout;
-    QHBoxLayout* appearanceLayout;
-    QHBoxLayout* flnodeLayout;
+    QWidget* emptyWidget;
 
-    QList<QVBoxLayout*> vList;
-    QList<QLabel*> lList;
-    QList<QLabel*> sList;
-    QList<QAbstractButton*> bList;
-
-    QLabel* nodePortString;
-    QLabel* rDNSaddString;
-    QLabel* publicaddString;
-    QAbstractButton* appearanceBtn;
-    QAbstractButton* flnodeBtn;
-
-    QLabel* nodePortLabel;
-    QLabel* rDNSaddLabel;
-    QLabel* publicaddLabel;
-    QLabel* appearanceLabel;
-    QLabel* flnodeLabel;
+    QList<QHBoxLayout*> hList;
+    QList<QLabel*> lList = {};
+    QList<QLabel*> sList = {};
+    QList<QAbstractButton*> bList= {};
+    QList<QString> stringList;
 
     int flNode_count = 0;
     int appearance_count = 0;

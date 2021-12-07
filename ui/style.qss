@@ -10,6 +10,7 @@ QWidget#menuContainer {
 
 QPushButton#menuBtn {
     border: 2px solid rgba(255,200,52,255);
+    color: white;
     border-radius: 20px;
     text-align: left;
     padding: 12px;
@@ -26,18 +27,21 @@ QWidget#contentContainer {
 }
 
 QLabel#title {
-    border: 2px solid green;
+    color: white;
     font: MontserratBold;
     font-size: 40px;
 }
 
 QLabel#subtitle {
+    color: white;
     border: 2px solid green;
     font: italic;
     font-size: 20px;
 }
 
-
+QLabel {
+    color: white;
+}
 
 QScrollBar:vertical {
     background: rgba(0,0,0,0);
@@ -65,6 +69,30 @@ QLabel#title_page_label {
     font-size: 30px;
     color: yellow;
     font-family: "Arial";
+}
+
+QLabel#settingslabel {
+    margin: 0px;
+    font: MontserratBold;
+    font-size: 15px;
+    background-color: rgba(29, 52, 101, 0.92);
+    color: white;
+    border-radius: 20px;
+    text-align: center;
+    padding: 12px;
+    margin: 0;
+    font: bold;
+}
+
+QLabel#settingslabel:hover {
+    border: 2px solid rgba(68, 92, 146, 0.92);
+}
+
+QLabel#settingsstring {
+    margin: 0px;
+    font: bold;
+    font: MontserratBold;
+    font-size: 20px;
 }
 
 

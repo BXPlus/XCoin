@@ -12,56 +12,45 @@ SettingsWidget::SettingsWidget(QWidget *parent) : QWidget(parent)
         - Root DNS address (string)
         - Appearance
         -*/
+    stringList = {"Node Port:", "Root DNS address:", "Public address:"
+                 , "Full/Light node:", "Dark/Light mode:", "30140",
+                 "123.456.78.90", "202.25.1.3"};
+
     mainLayout = new QVBoxLayout(this);
-    nodePortLayout = new QHBoxLayout();
-    rDNSaddLayout = new QHBoxLayout();
-    publicaddLayout = new QHBoxLayout();
-    appearanceLayout = new QHBoxLayout();
-    flnodeLayout = new QHBoxLayout();
+    emptyWidget = new QWidget(this);
 
-    nodePortLabel = new QLabel("Node Port:", this);
-    flnodeLabel = new QLabel("Full/Light node:", this);
-    publicaddLabel = new QLabel("Public address:", this);
-    rDNSaddLabel = new QLabel("Root DNS address:", this);
-    appearanceLabel = new QLabel("Dark/Light mode:", this);
+    for (int i = 0; i < 5; i++) {
+        QHBoxLayout* layout = new QHBoxLayout();
+        hList.append(layout);
 
-    nodePortString = new QLabel("30140", this);
-    rDNSaddString = new QLabel("123.456.78.90", this);
-    publicaddString = new QLabel("202.25.1.3", this);
-    flnodeBtn = new ToggleBtn(10, 10, this);
-    appearanceBtn = new ToggleBtn(10, 10, this);
+        QLabel* label = new QLabel(stringList[i], this);
+        label->setObjectName("settingslabel");
+        lList.append(label);
 
-    nodePortLayout->addWidget(nodePortLabel);
-    nodePortLayout->addWidget(nodePortString);
+        layout->addWidget(label);
 
-    rDNSaddLayout->addWidget(rDNSaddLabel);
-    rDNSaddLayout->addWidget(rDNSaddString);
+        if (i <= 2) {
+            QLabel* string = new QLabel(stringList[i+5], this);
+            string->setObjectName("settingsstring");
+            sList.append(string);
+            layout->addWidget(string);
+        }
+        else {
+            ToggleBtn* btn = new ToggleBtn(10, 10, this);
+            bList.append(btn);
+            layout->addWidget(btn);
+        }
+        label->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 
-    publicaddLayout->addWidget(publicaddLabel);
-    publicaddLayout->addWidget(publicaddString);
+        mainLayout->addLayout(layout, 12);
+    }
 
-    appearanceLayout->addWidget(appearanceLabel);
-    appearanceLayout->addWidget(appearanceBtn);
+    mainLayout->addWidget(emptyWidget, 40);
 
-    flnodeLayout->addWidget(flnodeLabel);
-    flnodeLayout->addWidget(flnodeBtn);
+    setLayout(mainLayout);
 
-    mainLayout->addLayout(nodePortLayout);
-    mainLayout->addLayout(rDNSaddLayout);
-    mainLayout->addLayout(publicaddLayout);
-    mainLayout->addLayout(flnodeLayout);
-    mainLayout->addLayout(appearanceLayout);
-
-    mainWidget = new QWidget();
-    mainWidget->setLayout(mainLayout);
-
-    mainWidget->setMaximumSize(300, 400);
-    finalLayout = new QVBoxLayout(this);
-    finalLayout->addWidget(mainWidget);
-    setLayout(finalLayout);
-
-    connect(flnodeBtn, SIGNAL(clicked(bool)), this, SLOT(flnode_state()));
-    connect(appearanceBtn, SIGNAL(clicked(bool)), this, SLOT(appearance_state()));
+    connect(bList[0], SIGNAL(clicked(bool)), this, SLOT(flnode_state()));
+    connect(bList[1], SIGNAL(clicked(bool)), this, SLOT(appearance_state()));
 }
 
 void SettingsWidget::flnode_state()
