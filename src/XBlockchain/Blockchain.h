@@ -52,6 +52,7 @@ public:
 
     // Set up blockchain as a list of blocks.
     std::vector<Block> toBlocks();
+    std::vector<std::string> toHeaderHashes();
 };
 
 #endif //XCOIN_BLOCKCHAIN_H

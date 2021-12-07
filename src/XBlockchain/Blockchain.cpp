@@ -203,3 +203,16 @@ std::vector<Block> Blockchain::toBlocks() {
     }
     return blockList;
 }
+
+std::vector<std::string> Blockchain::toHeaderHashes() {
+    ChainNode currentNode = *tail;
+    std::vector<std::string> hashList;
+    for (int i = 0; i < length - 1; i++)
+    {
+        hashList.push_back(currentNode.block.headerHash);
+        if (i < length - 2){
+            currentNode = *currentNode.prev;
+        }
+    }
+    return hashList;
+}

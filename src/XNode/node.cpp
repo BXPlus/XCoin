@@ -144,6 +144,9 @@ XNode::Node::NotifyPeerChange(::grpc::ServerContext *context, const ::xcoin::int
 XNode::Node::HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::interchange::GetHeaders *request,
                              ::xcoin::interchange::Headers *response) {
     spdlog::debug("Header first sync requested by " + context->peer());
+    if (request->stophash() == "0"){
+
+    }
     for (int i = 1; i < request->blockheaderhashes_size(); i++)
         if (request->blockheaderhashes(i) != this->blockchain.toBlocks()[i].headerHash) {
             spdlog::debug("header desync detected");
@@ -247,7 +250,9 @@ bool XNode::Node::AttemptHeaderSync(const std::string &peerAddress) {
         xcoin::interchange::GetHeaders headerFirstSyncRequest;
         headerFirstSyncRequest.set_version(XNODE_VERSION_INITIAL);
         headerFirstSyncRequest.set_hashcount(last-first);
-        headerFirstSyncRequest.set_stophash("0");
+        if (i+200 < blockVector.size())
+            headerFirstSyncRequest.set_stophash("0");
+        else headerFirstSyncRequest.set_stophash(blockBatch.back().headerHash);
         for (Block block: blockBatch){
             std::string* headerHash = headerFirstSyncRequest.add_blockheaderhashes();
             headerHash = &block.headerHash;
@@ -258,7 +263,7 @@ bool XNode::Node::AttemptHeaderSync(const std::string &peerAddress) {
         if (headerFirstSyncStatus.ok()) {
             // TODO: Handle reply
             break;
-        }else break; return false;
+        }else return false;
     }
     return true;
 }
