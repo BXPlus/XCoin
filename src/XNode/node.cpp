@@ -14,6 +14,8 @@ XNode::Node::Node() {
 * @param dnsSeedPeers is a list of DNS seed node addresses to attempt initial connections
 */
 void XNode::Node::RunNode(const std::vector<std::string>& dnsSeedPeers) {
+    if (this->sdkInstance == nullptr)
+        this->Shutdown("No SDK instance set to handle callbacks");
     std::string server_address("0.0.0.0:50051");
     ::grpc::EnableDefaultHealthCheckService(true);
     ::grpc::ServerBuilder builder;
@@ -22,22 +24,23 @@ void XNode::Node::RunNode(const std::vector<std::string>& dnsSeedPeers) {
     builder.RegisterService(static_cast<xcoin::interchange::XNodeSync::Service *>(this));
     this->server = builder.BuildAndStart();
     spdlog::info("Server listening on " + server_address);
+    sdkInstance->onStatusChanged(XNodeSDK::XNodeStatus::WaitingForDNSS);
     bool couldPerformHandshakeWithDNSS = false;
     loadDataFromDisk();
     for (const std::string &peer: dnsSeedPeers)
         couldPerformHandshakeWithDNSS |= this->AttemptPeerConnection(peer);
-    if (!couldPerformHandshakeWithDNSS && !dnsSeedPeers.empty()) {
-        spdlog::error("Could not establish connection with any DNSS, node will shut down...");
-        Shutdown();
-    }
+    if (!couldPerformHandshakeWithDNSS && !dnsSeedPeers.empty())
+        this->Shutdown("Could not establish connection with any DNSS");
+    else sdkInstance->onStatusChanged(XNodeSDK::XNodeStatus::SyncingBlockchain);
     server->Wait();
 }
 
 /**
-* Function called to shut down a node: terminates the gRPC thread gracefully and saves data on disk
+* Function called to shut down a node due to an error: terminates the gRPC thread gracefully and saves data on disk
 */
-void XNode::Node::Shutdown() {
-    spdlog::info("Node will shut down");
+void XNode::Node::Shutdown(const std::string& reason) {
+    sdkInstance->onStatusChanged(XNodeSDK::XNodeStatus::TerminatedWithError);
+    spdlog::info(reason + " : node will shut down");
     saveDataOnDisk();
     this->server->Shutdown();
     exit(EXIT_SUCCESS);
@@ -218,14 +221,15 @@ bool XNode::Node::AttemptPeerConnection(const std::string &peerAddress) {
                 this->handleIncomingPeerData(remotePeer);
             spdlog::info("Successfully synced DNS peers with " + peerAddress);
             saveDataOnDisk();
+            sdkInstance->onPeerListChanged();
             AttemptHeaderSync(peerAddress);
             return true;
         } else spdlog::warn("DNS peer sync with " + peerAddress + " failed");
     } else {
         spdlog::warn("Connection with peer " + peerAddress + " failed");
         this->peers.erase(peerAddress);
-        return false;
     }
+    return false;
 }
 
 bool XNode::Node::AttemptHeaderSync(const std::string &peerAddress) {
@@ -244,14 +248,7 @@ bool XNode::Node::AttemptHeaderSync(const std::string &peerAddress) {
     ::grpc::Status headerFirstSyncStatus = this->peers[peerAddress].syncStub->HeaderFirstSync(
             &headerFirstSyncContext, headerFirstSyncRequest, &headerFirstSyncReply);
     if (headerFirstSyncStatus.ok()) {
-        for (int i = 1; i < headerFirstSyncRequest.blockheaderhashes_size(); i++) {
-            if (headerFirstSyncRequest.blockheaderhashes(i) != this->blockchain.toBlocks()[i].headerHash) {
-                // TODO: Use the response to construct the new blockchain, right now we will just import the blockchain from the peer and check which one is valid.
-                spdlog::debug("block desync detected");
-            }
-        }
-        spdlog::info("Successfully synced headers with " + peerAddress);
-        return true;
+        sdkInstance->onStatusChanged(XNodeSDK::XNodeStatus::Ready);
     }else spdlog::warn("Failed header sync with " + peerAddress);
     return false;
 }
@@ -282,12 +279,4 @@ bool XNode::Node::handleIncomingPeerData(const xcoin::interchange::DNSEntry &rem
         return this->AttemptPeerConnection(remotePeer.ipport());
     }
 }
-
-void XNode::Node::handleIncomingHeaderData(const xcoin::interchange::GetHeaders &request,
-                                           const ::grpc::ClientContext &context,
-                                           std::unique_ptr<xcoin::interchange::XNodeSync::Stub> peerStub) {
-
-}
-
-
 

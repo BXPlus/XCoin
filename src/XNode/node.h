@@ -13,6 +13,7 @@
 #include "Blockchain.h"
 #include "interface.h"
 #include "archive.h"
+#include "XNodeSDK.h"
 #include <iostream>
 #include <thread>
 #include <memory>
@@ -41,9 +42,8 @@ namespace XNode{
         explicit Node();
         ~Node() override =default;
         void RunNode(const std::vector<std::string>& dnsSeedPeers);
-        void Shutdown();
-        bool AttemptPeerConnection(const std::string& peerAddress);
-        bool AttemptHeaderSync(const std::string& peerAddress);
+        void Shutdown(const std::string& reason);
+        void setSDK(XNodeSDK* SDK){this->sdkInstance = SDK;};
     private:
         const uint32_t XNODE_VERSION_INITIAL = static_cast<const uint32_t>(1.1);
         const std::string XNODE_PEERS_SAVE_PATH = "localpeers.xnodebackup";
@@ -54,14 +54,15 @@ namespace XNode{
         ::grpc::Status HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::interchange::GetHeaders *request, ::xcoin::interchange::Headers* response) override;
         ::grpc::Status GetBlock(::grpc::ServerContext *context, const ::xcoin::interchange::Header *request, ::xcoin::interchange::Block *response) override;
         ::grpc::Status GetBlockchain(::grpc::ServerContext *context, const ::xcoin::interchange::DNSEntry *request, ::xcoin::interchange::Blockchain *response) override;
+        bool AttemptPeerConnection(const std::string& peerAddress);
+        bool AttemptHeaderSync(const std::string& peerAddress);
         bool handleIncomingPeerData(const xcoin::interchange::DNSEntry &remotePeer);
-        void handleIncomingHeaderData(const xcoin::interchange::GetHeaders& request, const ::grpc::ClientContext& context,
-                                      std::unique_ptr<xcoin::interchange::XNodeSync::Stub> peerStub);
         void saveDataOnDisk();
         void loadDataFromDisk();
         std::map<std::string, XNodeClient> peers;
         std::unique_ptr<::grpc::Server> server;
         Blockchain blockchain;
+        XNodeSDK* sdkInstance;
     };
 }
 

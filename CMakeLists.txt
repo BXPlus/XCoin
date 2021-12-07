@@ -24,7 +24,7 @@ find_package(spdlog CONFIG REQUIRED)
 add_executable(xblockchain-tests src/XBlockchain/tests/xblockchain-tests.cpp)
 add_executable(xnode-tests src/XNode/tests/xnode-tests.cpp)
 add_library(xblockchain-lib src/XBlockchain/block.h src/XBlockchain/block.cpp src/XBlockchain/Blockchain.cpp src/XBlockchain/Blockchain.h src/XBlockchain/sha256.cpp src/XBlockchain/sha256.h src/XBlockchain/bignumber.cpp src/XBlockchain/bignumber.h)
-add_executable(xnode src/XNode/main.cpp src/XNode/node.h src/XNode/node.cpp src/XNode/interface.cpp src/XNode/interface.h src/XNode/XNodeSync.cpp src/XNode/XNodeSync.h src/XNode/blockchain.pb.h src/XNode/blockchain.pb.cc src/XNode/blockchain.grpc.pb.cc src/XNode/blockchain.grpc.pb.h src/XNode/archive.cpp src/XNode/archive.h)
+add_executable(xnode src/XNode/main.cpp src/XNode/node.h src/XNode/node.cpp src/XNode/interface.cpp src/XNode/interface.h src/XNode/XNodeSync.cpp src/XNode/XNodeSync.h src/XNode/blockchain.pb.h src/XNode/blockchain.pb.cc src/XNode/blockchain.grpc.pb.cc src/XNode/blockchain.grpc.pb.h src/XNode/archive.cpp src/XNode/archive.h src/XNode/XNodeSDK.h)
 
 target_link_libraries(xblockchain-lib PRIVATE OpenSSL::SSL OpenSSL::Crypto)
 target_link_libraries(xblockchain-tests gtest gtest_main)

@@ -20,7 +20,9 @@ int main(int argc, char *argv[])
     std::vector<std::string> DNSS = std::vector<std::string>();
     for(int i = 1; i < argc; i++ )
         DNSS.emplace_back(argv[i]);
+    XNodeSDK sdk;
     XNode::Node node = XNode::Node();
+    node.setSDK(&sdk);
     node.RunNode(DNSS);
     return 0;
 }
