@@ -115,13 +115,12 @@ XNode::Node::DNSSyncPeerList(::grpc::ServerContext *context, const ::xcoin::inte
     spdlog::debug("DNS sync requested by " + context->peer());
     for (const xcoin::interchange::DNSEntry &remotePeer: request->entries())
         handleIncomingPeerData(remotePeer);
-    for (const std::pair<const std::basic_string<char>, XNodeClient> &x: this->peers) {
+    for (const std::pair<const std::basic_string<char>, XNodeClient> &x: this->peers)
         if (x.first != context->peer()) {
             xcoin::interchange::DNSEntry *entry = response->add_entries();
             entry->set_ipport(x.first);
             entry->set_publickey(x.second.publicKey);
         }
-    }
     return ::grpc::Status::OK;
 }
 
@@ -145,12 +144,11 @@ XNode::Node::NotifyPeerChange(::grpc::ServerContext *context, const ::xcoin::int
 XNode::Node::HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::interchange::GetHeaders *request,
                              ::xcoin::interchange::Headers *response) {
     spdlog::debug("Header first sync requested by " + context->peer());
-    for (int i = 1; i < request->blockheaderhashes_size(); i++) {
+    for (int i = 1; i < request->blockheaderhashes_size(); i++)
         if (request->blockheaderhashes(i) != this->blockchain.toBlocks()[i].headerHash) {
             spdlog::debug("header desync detected");
             // TODO: Use the response to construct the new blockchain, right now we will just import the blockchain from the peer and check which one is valid.
         }
-    }
     for (const Block &block: this->blockchain.toBlocks()) {
         xcoin::interchange::Header *header = response->add_headers();
         header->set_previousblockheaderhash(block.previousHeaderHash);
@@ -162,14 +160,13 @@ XNode::Node::HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::inte
 
 ::grpc::Status XNode::Node::GetBlock(::grpc::ServerContext *context, const ::xcoin::interchange::Header *request,
                                      ::xcoin::interchange::Block *response) {
-    for (const Block &block: this->blockchain.toBlocks()) {
+    for (const Block &block: this->blockchain.toBlocks())
         if (block.previousHeaderHash == request->previousblockheaderhash() &&
             block.merkle_root_hash == request->merkleroothash() &&
             block.timestamp == request->time()) {
             response->CopyFrom(XNode::Interface::encodeBlock(block));
             return ::grpc::Status::OK;
         }
-    }
     return ::grpc::Status::CANCELLED;
 }
 
@@ -206,13 +203,12 @@ bool XNode::Node::AttemptPeerConnection(const std::string &peerAddress) {
                      std::to_string(((float) end - start) / CLOCKS_PER_SEC) + "s");
         xcoin::interchange::DNSHandshake dnsRequest;
         xcoin::interchange::DNSHandshake dnsReply;
-        for (std::pair<const std::basic_string<char>, XNodeClient> &peer: peers) {
-            if (peer.first != peerAddress) {
+        for (std::pair<const std::basic_string<char>, XNodeClient> &peer: peers)
+            if (peer.first != peerAddress){
                 xcoin::interchange::DNSEntry *entry = dnsRequest.add_entries();
                 entry->set_ipport(peer.first);
                 entry->set_publickey(peer.second.publicKey);
             }
-        }
         ::grpc::ClientContext dnsContext;
         ::grpc::Status dnsStatus = this->peers[peerAddress].controlStub->DNSSyncPeerList(&dnsContext, dnsRequest,
                                                                                          &dnsReply);
@@ -222,7 +218,8 @@ bool XNode::Node::AttemptPeerConnection(const std::string &peerAddress) {
             spdlog::info("Successfully synced DNS peers with " + peerAddress);
             saveDataOnDisk();
             sdkInstance->onPeerListChanged();
-            AttemptHeaderSync(peerAddress);
+            if(AttemptHeaderSync(peerAddress))
+                sdkInstance->onStatusChanged(XNodeSDK::XNodeStatus::Ready);
             return true;
         } else spdlog::warn("DNS peer sync with " + peerAddress + " failed");
     } else {
@@ -232,25 +229,38 @@ bool XNode::Node::AttemptPeerConnection(const std::string &peerAddress) {
     return false;
 }
 
+/**
+* Function called to initiate blockchain sync with a peer, using header first method
+* Block headers are divided into batches and compared with the peer's remote branch
+* @param peerAddress is an ipv4 or ipv6 address of the node to sync headers with
+* @returns true if the blockchain could be resolved on both ends
+*/
 bool XNode::Node::AttemptHeaderSync(const std::string &peerAddress) {
     spdlog::debug("Will attempt to sync headers with " + peerAddress);
-    ::grpc::ClientContext headerFirstSyncContext;
-    xcoin::interchange::GetHeaders headerFirstSyncRequest;
-    headerFirstSyncRequest.set_version(XNODE_VERSION_INITIAL);
-    // TODO: Split request into multiple messages if block count is greater than 200
-    headerFirstSyncRequest.set_hashcount(this->blockchain.length);
-    headerFirstSyncRequest.set_stophash("0");
-    for (Block block: this->blockchain.toBlocks()){
-        std::string* headerHash = headerFirstSyncRequest.add_blockheaderhashes();
-        headerHash = &block.headerHash;
+    std::vector<Block> blockVector = this->blockchain.toBlocks();
+    std::reverse(blockVector.begin(), blockVector.end());
+    for (size_t i = 0; i < blockVector.size(); i += 200){
+        std::vector<Block>::const_iterator first = blockVector.begin() + i;
+        std::vector<Block>::const_iterator last = blockVector.begin() +  std::min(blockVector.size(), i + 200);
+        std::vector<Block> blockBatch(first,last);
+        ::grpc::ClientContext headerFirstSyncContext;
+        xcoin::interchange::GetHeaders headerFirstSyncRequest;
+        headerFirstSyncRequest.set_version(XNODE_VERSION_INITIAL);
+        headerFirstSyncRequest.set_hashcount(last-first);
+        headerFirstSyncRequest.set_stophash("0");
+        for (Block block: blockBatch){
+            std::string* headerHash = headerFirstSyncRequest.add_blockheaderhashes();
+            headerHash = &block.headerHash;
+        }
+        xcoin::interchange::Headers headerFirstSyncReply;
+        ::grpc::Status headerFirstSyncStatus = this->peers[peerAddress].syncStub->HeaderFirstSync(
+                &headerFirstSyncContext, headerFirstSyncRequest, &headerFirstSyncReply);
+        if (headerFirstSyncStatus.ok()) {
+            // TODO: Handle reply
+            break;
+        }else break; return false;
     }
-    xcoin::interchange::Headers headerFirstSyncReply;
-    ::grpc::Status headerFirstSyncStatus = this->peers[peerAddress].syncStub->HeaderFirstSync(
-            &headerFirstSyncContext, headerFirstSyncRequest, &headerFirstSyncReply);
-    if (headerFirstSyncStatus.ok()) {
-        sdkInstance->onStatusChanged(XNodeSDK::XNodeStatus::Ready);
-    }else spdlog::warn("Failed header sync with " + peerAddress);
-    return false;
+    return true;
 }
 
 /**
