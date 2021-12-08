@@ -1,16 +1,16 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'contactswidget.h'
+** Meta object code from reading C++ file 'addcontactdialog.h'
 **
 ** Created by: The Qt Meta Object Compiler version 67 (Qt 5.12.5)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../ui/contactswidget.h"
+#include "../ui/addcontactdialog.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'contactswidget.h' doesn't include <QObject>."
+#error "The header file 'addcontactdialog.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
 #error "This file was generated using the moc from 5.12.5. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -20,27 +20,27 @@
 QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
-struct qt_meta_stringdata_ContactsWidget_t {
+struct qt_meta_stringdata_addContactDialog_t {
     QByteArrayData data[3];
-    char stringdata0[27];
+    char stringdata0[25];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_ContactsWidget_t, stringdata0) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_addContactDialog_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_ContactsWidget_t qt_meta_stringdata_ContactsWidget = {
+static const qt_meta_stringdata_addContactDialog_t qt_meta_stringdata_addContactDialog = {
     {
-QT_MOC_LITERAL(0, 0, 14), // "ContactsWidget"
-QT_MOC_LITERAL(1, 15, 10), // "addContact"
-QT_MOC_LITERAL(2, 26, 0) // ""
+QT_MOC_LITERAL(0, 0, 16), // "addContactDialog"
+QT_MOC_LITERAL(1, 17, 6), // "closed"
+QT_MOC_LITERAL(2, 24, 0) // ""
 
     },
-    "ContactsWidget\0addContact\0"
+    "addContactDialog\0closed\0"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_ContactsWidget[] = {
+static const uint qt_meta_data_addContactDialog[] = {
 
  // content:
        8,       // revision
@@ -62,45 +62,45 @@ static const uint qt_meta_data_ContactsWidget[] = {
        0        // eod
 };
 
-void ContactsWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void addContactDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        auto *_t = static_cast<ContactsWidget *>(_o);
+        auto *_t = static_cast<addContactDialog *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->addContact(); break;
+        case 0: _t->closed(); break;
         default: ;
         }
     }
     Q_UNUSED(_a);
 }
 
-QT_INIT_METAOBJECT const QMetaObject ContactsWidget::staticMetaObject = { {
-    &QWidget::staticMetaObject,
-    qt_meta_stringdata_ContactsWidget.data,
-    qt_meta_data_ContactsWidget,
+QT_INIT_METAOBJECT const QMetaObject addContactDialog::staticMetaObject = { {
+    &QDialog::staticMetaObject,
+    qt_meta_stringdata_addContactDialog.data,
+    qt_meta_data_addContactDialog,
     qt_static_metacall,
     nullptr,
     nullptr
 } };
 
 
-const QMetaObject *ContactsWidget::metaObject() const
+const QMetaObject *addContactDialog::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *ContactsWidget::qt_metacast(const char *_clname)
+void *addContactDialog::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_ContactsWidget.stringdata0))
+    if (!strcmp(_clname, qt_meta_stringdata_addContactDialog.stringdata0))
         return static_cast<void*>(this);
-    return QWidget::qt_metacast(_clname);
+    return QDialog::qt_metacast(_clname);
 }
 
-int ContactsWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int addContactDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QWidget::qt_metacall(_c, _id, _a);
+    _id = QDialog::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {

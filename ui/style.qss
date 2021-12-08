@@ -75,7 +75,7 @@ QLabel#settingslabel {
     margin: 0px;
     font: MontserratBold;
     font-size: 15px;
-    background-color: rgba(29, 52, 101, 0.92);
+    background-color: rgba(60, 72, 114, 255);
     color: white;
     border-radius: 20px;
     text-align: center;
@@ -95,7 +95,9 @@ QLabel#settingsstring {
     font-size: 20px;
 }
 
-
+QLabel#addContact {
+    color: black;
+}
 
 
 

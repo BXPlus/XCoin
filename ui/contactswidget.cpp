@@ -12,7 +12,6 @@ ContactsWidget::ContactsWidget(QWidget *parent) :
     pageLayout->setAlignment(Qt::AlignTop);
 
     // load Contacts dictionary later
-    QMap<QString, QString> contactDict;
     contactDict[QString("John Lennon")] = QString("#dk9174hdn57s");
     contactDict[QString("Bob")] = QString("#dk9174hdn29s");
     contactDict[QString("Alex")] = QString("#dk9174hdn57s");
@@ -45,6 +44,8 @@ ContactsWidget::ContactsWidget(QWidget *parent) :
     addContactButton->setCursor(Qt::PointingHandCursor);
     addContactButton->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
 
+    connect(addContactButton, SIGNAL(clicked(bool)), this, SLOT(addContact()));
+
     topLayout->addWidget(title);
     topLayout->addWidget(addContactButton);
 
@@ -58,8 +59,15 @@ ContactsWidget::ContactsWidget(QWidget *parent) :
     contactGrid->setContentsMargins(0, 0, 0, 0);
     contactGrid->setSpacing(0);
 
+    create_dictionnary();
 
+    pageLayout->addWidget(topBox);
+    pageLayout->addWidget(scrollContacts);
 
+}
+
+void ContactsWidget::create_dictionnary()
+{
     for(auto e : contactDict.keys())
     {
         QLabel* key = new QLabel;
@@ -92,23 +100,37 @@ ContactsWidget::ContactsWidget(QWidget *parent) :
         contactGrid->addWidget(key, count, 0);
         contactGrid->addWidget(value, count, 1);
     }
-
-    pageLayout->addWidget(topBox);
-    pageLayout->addWidget(scrollContacts);
-
 }
 
+void ContactsWidget::delete_widgets()
+{
+    if ( contactGrid != NULL )
+    {
+        QLayoutItem* item;
+        while ( ( item = contactGrid->takeAt( 0 ) ) != NULL )
+        {
+            delete item->widget();
+            delete item;
+        }
+    }
+}
 
+void ContactsWidget::addContact()
+{
+    addContactDialog* addDialog = new addContactDialog(this);
+    addDialog->setModal(true);
+    addDialog->exec();
 
+    QList<QString> sList = addDialog->get_info();
 
+    if (sList[0] == "true") {
+        QString key = sList[1]+" "+sList[2];
+        QString value = sList[3];
+        contactDict[key] = value;
 
-
-
-
-
-
-
-
-
+        delete_widgets();
+        create_dictionnary();
+    }
+}
 
 

@@ -7,6 +7,7 @@
 #include <QScrollArea>
 #include <QPushButton>
 #include <QDialog>
+#include "mainwindow.h"
 
 namespace Ui {
 class ContactsWidget;
@@ -25,7 +26,12 @@ public:
     QPushButton* addContactButton;
     QWidget* topBox;
     QHBoxLayout* topLayout;
-    QDialog* addContactDialog;
+    QMap<QString, QString> contactDict;
+
+    void create_dictionnary();
+    void delete_widgets();
+private slots:
+    void addContact();
 };
 
 #endif // CONTACTSWIDGET_H

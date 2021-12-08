@@ -4,11 +4,8 @@
 #include <QDebug>
 
 LoginDialog::LoginDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::LoginDialog)
+    QDialog(parent)
 {
-    ui->setupUi(this);
-
     groupBox = new QGroupBox();
     login = new QPushButton("Login", this);
     privateLabel = new QLabel("Private Key:", this);
@@ -35,7 +32,6 @@ LoginDialog::LoginDialog(QWidget *parent) :
 
 LoginDialog::~LoginDialog()
 {
-    delete ui;
 }
 
 bool LoginDialog::get_identified()

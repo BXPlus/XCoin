@@ -5,12 +5,14 @@
 #include <QHBoxLayout>
 #include <QStackedWidget>
 #include <QVBoxLayout>
+#include <QDebug>
 #include "custombutton.h"
 #include "contactswidget.h"
 #include "homewidget.h"
 #include "logindialog.h"
 #include "settingswidget.h"
 #include "togglebtn.h"
+#include "addcontactdialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
