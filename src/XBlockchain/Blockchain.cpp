@@ -122,7 +122,7 @@ void Blockchain::replaceChain(Blockchain newChain) {
 
 void Blockchain::replaceChain(Blockchain newChain)
 {
-    if (newChain.isValidChain()) //The chain with higher cumulative difficulty is the one that stays
+    if (newChain.isValidChain() && newChain.getCumulativeDifficulty() > getCumulativeDifficulty()) //The chain with higher cumulative difficulty is the one that stays
     {
         this->head = newChain.head;
         this->tail = newChain.tail;
