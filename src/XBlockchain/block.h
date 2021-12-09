@@ -27,17 +27,19 @@ class Block
 {
 public:
     //Constructor
-    Block(int index, std::string hash, std::string previousHash, long long timestamp, std::string data, int difficulty, int minterBalance, std::string minterAddress);
+    Block(int index, std::string hash, std::string previousHash, std::string headerHash, std::string previousHeaderHash, long long timestamp, std::string data, int difficulty, int minterBalance, std::string minterAddress);
     ~Block(); //This has to be done
 
     //Elements for a minimal working block
     int index;
     std::string hash;
     std::string previousHash;
+    std::string headerHash;
+    std::string previousHeaderHash;
     long long timestamp; //time in milliseconds
     std::string data;
     int32_t version;
-    char32_t merkle_root_hash;
+    std::string merkle_root_hash;
 
     //Elements for proof of stake
     int difficulty;
@@ -47,6 +49,8 @@ public:
 
     //Hash calculator
     std::string calculateHashForBlock();
+    std::string calculateHashForHeaders() const;
+    std::string calculateMerkleRootHash() const;
 };
 
 //Get current time in milliseconds
@@ -54,9 +58,10 @@ long long getCurrentTimestamp();
 
 //Hash calculator
 std::string calculateHash(int index, std::string previousHash, long long timestamp, std::string data, int difficulty, int minterBalance, std::string minterAddress);
-
+std::string calculateHeaderHash(int32_t version, const std::string& previousBlockHeaderHash, std::string merkle_root_hash, long long time, int nonce);
+std::string calculateMerkleHash(const std::string& previousMerkleRootHash, const std::string& transactionHash);
 //Staking
 bool isBlockStakingValid(std::string previousHash, std::string address, long long timestamp, int balance, int difficulty, int index); //Returns true if the block is valid for staking
-Block findBlock(int index, std::string previousHash, std::string data, int difficulty);
+Block findBlock(int index, std::string previousHash, std::string previousHeaderHash, std::string previousMerkleHash, std::string data, int difficulty, int nonce);
 
 #endif //XCOIN_BLOCK_H

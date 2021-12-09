@@ -1,17 +1,33 @@
 syntax = "proto3";
 package xcoin.interchange;
 
+service XNodeControl{ // Service responsible for node management and peer discovery
+  rpc Ping(PingHandshake) returns (PingHandshake) {}
+  rpc DNSSyncPeerList(DNSHandshake) returns (DNSHandshake) {}
+  rpc NotifyPeerChange(DNSEntry) returns (DNSEntry) {}
+}
+
+service XNodeSync{ // Service responsible for blockchain and transactions synchronisation
+  rpc PingPongSync(PingPong) returns (PingPong) {}
+  rpc HeaderFirstSync(GetHeaders) returns (Headers) {}
+  rpc GetBlock(Header) returns (Block) {}
+  rpc GetBlockchain(DNSEntry) returns (Blockchain) {}
+}
+
 // Basic messages
 message Block{
   optional int64 index = 1;
   optional string hash = 2;
   optional string previousHash = 3;
-  optional int64 timestamp = 4;
-  optional string data = 5;
-  optional int64 difficulty= 6;
-  optional int64 nonce = 7;
-  optional int64 minterBalance = 8;
-  optional string minterAddress = 9;
+  optional string headerHash = 4;
+  optional string previousHeaderHash = 5;
+  optional int64 timestamp = 6;
+  optional string data = 7;
+  optional int64 difficulty= 8;
+  optional int64 nonce = 9;
+  optional int64 minterBalance = 10;
+  optional string minterAddress = 11;
+  optional string merkle_root_hash = 12;
 }
 
 message Blockchain{
@@ -55,8 +71,15 @@ message DNSEntry{
   string publicKey = 2;
 }
 
+message PingHandshake{
+  string data = 1;
+}
+
 message DNSHandshake{
   repeated DNSEntry entries = 2;
 }
 
-
+message PingPong{
+  uint32 height = 1;
+  string lastHash = 2;
+}

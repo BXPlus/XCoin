@@ -7,6 +7,7 @@
 
 int main(int argc, char *argv[])
 {
+    spdlog::set_level(spdlog::level::debug);
     std::string banner = " __   __   ____     _____    ______   __  __     \n"
                          "/\\ \\ /\\ \\ /\\  _`\\  /\\  __`\\ /\\__  _\\ /\\ \\/\\ \\    \n"
                          "\\ `\\`\\/'/'\\ \\ \\/\\_\\\\ \\ \\/\\ \\\\/_/\\ \\/ \\ \\ `\\\\ \\   \n"
@@ -20,17 +21,9 @@ int main(int argc, char *argv[])
     std::vector<std::string> DNSS = std::vector<std::string>();
     for(int i = 1; i < argc; i++ )
         DNSS.emplace_back(argv[i]);
+    XNodeSDK sdk;
     XNode::Node node = XNode::Node();
-    node.start(DNSS);
-    char u;
-    while (true){
-        std::cin >> std::ws >> u;
-        if (u == 'q')
-            std::cout << "Node will terminate..." << std::endl;
-        break;
-    }
-
-
-
-
+    node.setSDK(&sdk);
+    node.RunNode(DNSS);
+    return 0;
 }

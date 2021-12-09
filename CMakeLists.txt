@@ -16,9 +16,10 @@ enable_testing()
 include_directories(googletest/googletest/include googletest/googletest)
 include_directories(src/XBlockchain src/XNode)
 
-find_package(Drogon CONFIG REQUIRED)
 find_package(Protobuf CONFIG REQUIRED)
 find_package(OpenSSL REQUIRED)
+find_package(gRPC CONFIG REQUIRED)
+find_package(spdlog CONFIG REQUIRED)
 
 add_executable(xblockchain-tests src/XBlockchain/tests/xblockchain-tests.cpp)
 add_executable(xnode-tests src/XNode/tests/xnode-tests.cpp)
@@ -27,5 +28,5 @@ add_executable(xnode src/XNode/main.cpp src/XNode/node.h src/XNode/node.cpp src/
 
 target_link_libraries(xblockchain-lib PRIVATE OpenSSL::SSL OpenSSL::Crypto)
 target_link_libraries(xblockchain-tests gtest gtest_main)
-target_link_libraries(xnode PRIVATE Drogon::Drogon protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite xblockchain-lib)
+target_link_libraries(xnode PRIVATE protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite xblockchain-lib gRPC::grpc++ spdlog::spdlog)
 target_link_libraries(xblockchain-tests xblockchain-lib)

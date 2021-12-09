@@ -33,8 +33,31 @@ Block Blockchain::generateNextBlock(const std::string& blockData, int new_diffic
     const Block previousBlock = getLatestBlock();
     const int nextIndex = previousBlock.index + 1;
     const long long nextTimestamp = getCurrentTimestamp();
-    const std::string nextHash = calculateHash(nextIndex, previousBlock.hash, nextTimestamp, blockData, new_difficulty, minterBalance, minterAddress);
-    const Block newBlock = Block(nextIndex, nextHash, previousBlock.hash, nextTimestamp, blockData, new_difficulty, minterBalance, minterAddress);
+    const std::string nextHash = calculateHash(
+            nextIndex,
+            previousBlock.hash,
+            nextTimestamp,
+            blockData,
+            new_difficulty,
+            minterBalance,
+            minterAddress);
+    const std::string nextHeaderHash = calculateHeaderHash(
+            1,
+            previousBlock.previousHeaderHash,
+            calculateMerkleHash(previousBlock.merkle_root_hash, nextHash),
+            nextTimestamp,
+            previousBlock.nonce);
+    const Block newBlock = Block(
+            nextIndex,
+            nextHash,
+            previousBlock.hash,
+            nextHeaderHash,
+            previousBlock.previousHeaderHash,
+            nextTimestamp,
+            blockData,
+            new_difficulty,
+            minterBalance,
+            minterAddress);
     return newBlock;
 }
 
@@ -179,4 +202,17 @@ std::vector<Block> Blockchain::toBlocks() {
         }
     }
     return blockList;
+}
+
+std::vector<std::string> Blockchain::toHeaderHashes() {
+    ChainNode currentNode = *tail;
+    std::vector<std::string> hashList;
+    for (int i = 0; i < length - 1; i++)
+    {
+        hashList.push_back(currentNode.block.headerHash);
+        if (i < length - 2){
+            currentNode = *currentNode.prev;
+        }
+    }
+    return hashList;
 }
