@@ -5,6 +5,7 @@
 
 XNode::Node::Node() {
     this->blockchain = Blockchain();
+    //this->blockchain.appendBlock(this->blockchain.generateNextBlock("hello",0,0,""));
     this->peers = std::map<std::string, XNode::XNodeClient>();
 }
 
@@ -50,7 +51,7 @@ void XNode::Node::Shutdown(const std::string& reason) {
 * Saves peers and chain in two different savefiles
 */
 void XNode::Node::saveDataOnDisk() {
-    spdlog::debug(std::string("Will save peers on disk"));
+    spdlog::debug(std::string("Will save data on disk"));
     Archive localPeers = Archive(XNODE_PEERS_SAVE_PATH);
     Archive localChain = Archive(XNODE_BLOCKCHAIN_SAVE_PATH);
     xcoin::interchange::DNSHandshake encodedPeers;
@@ -149,52 +150,32 @@ XNode::Node::NotifyPeerChange(::grpc::ServerContext *context, const ::xcoin::int
 XNode::Node::HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::interchange::GetHeaders *request,
                              ::xcoin::interchange::Headers *response) {
     spdlog::debug("Header first sync requested by " + context->peer());
-    std::vector<std::string> localHashes = this->blockchain.toHeaderHashes();
-    std::reverse(localHashes.begin(), localHashes.end());
-    auto remoteHashes = request->blockheaderhashes();
+    std::vector<Block> localBlocks = this->blockchain.toBlocks();
+    std::reverse(localBlocks.begin(), localBlocks.end());
     if (request->stophash() == "0"){
-        for (const std::string& hash : localHashes){
-            if (std::count(remoteHashes.begin(), remoteHashes.end(), hash) == 0){
-                xcoin::interchange::Header *header = response->add_headers();
-            }
+        for (const Block& block : localBlocks){
+            xcoin::interchange::Header *header = response->add_headers();
+            header->set_merkleroothash(block.merkle_root_hash);
+            header->set_blockheaderhash(block.headerHash);
+            header->set_time(block.timestamp);
         }
-    }
-    for (int i = 1; i < request->blockheaderhashes_size(); i++)
-        if (request->blockheaderhashes(i) != this->blockchain.toBlocks()[i].headerHash) {
-            spdlog::debug("header desync detected");
-            // TODO: Use the response to construct the new blockchain, right now we will just import the blockchain from the peer and check which one is valid.
-        }
-    for (const Block &block: this->blockchain.toBlocks()) {
-        xcoin::interchange::Header *header = response->add_headers();
-        header->set_previousblockheaderhash(block.previousHeaderHash);
-        header->set_merkleroothash(block.merkle_root_hash);
-        header->set_time(block.timestamp);
     }
     return ::grpc::Status::OK;
 }
 
-::grpc::Status XNode::Node::GetBlock(::grpc::ServerContext *context, const ::xcoin::interchange::Header *request,
-                                     ::xcoin::interchange::Block *response) {
-    for (const Block &block: this->blockchain.toBlocks())
-        if (block.previousHeaderHash == request->previousblockheaderhash() &&
-            block.merkle_root_hash == request->merkleroothash() &&
-            block.timestamp == request->time()) {
-            response->CopyFrom(XNode::Interface::encodeBlock(block));
-            return ::grpc::Status::OK;
-        }
-    return ::grpc::Status::CANCELLED;
-}
-
-::grpc::Status
-XNode::Node::GetBlockchain(::grpc::ServerContext *context, const ::xcoin::interchange::DNSEntry *request,
-                           ::xcoin::interchange::Blockchain *response) {
-    xcoin::interchange::Blockchain *blockchainResponse = response->New();
-    for (const Block &block: this->blockchain.toBlocks()) {
-        xcoin::interchange::Block *encodedBlock = blockchainResponse->add_blocks();
-        encodedBlock->CopyFrom(XNode::Interface::encodeBlock(block));
+::grpc::Status XNode::Node::GetBlockchainFromHeight(::grpc::ServerContext *context,
+                                                    const ::xcoin::interchange::GetBlockchainFromHeightRequest *request,
+                                                    ::xcoin::interchange::Blockchain *response) {
+    std::vector<Block> localBlocks = this->blockchain.toBlocks();
+    if (request->startheight() > localBlocks.size())
+        return ::grpc::Status::CANCELLED;
+    for (int i = request->startheight(); i < localBlocks.size(); i++){
+        auto newBlock = response->add_blocks();
+        newBlock->CopyFrom(XNode::Interface::encodeBlock(localBlocks[i]));
     }
     return ::grpc::Status::OK;
 }
+
 
 /**
 * Function called to try to connect to a remote peer
@@ -233,8 +214,11 @@ bool XNode::Node::AttemptPeerConnection(const std::string &peerAddress) {
             spdlog::info("Successfully synced DNS peers with " + peerAddress);
             saveDataOnDisk();
             sdkInstance->onPeerListChanged();
-            if(AttemptBlockchainSync(peerAddress))
+            if(AttemptBlockchainSync(peerAddress)){
+                this->peers[peerAddress].syncSuccess = true;
+                spdlog::info("Successfully synced blockchain with " + peerAddress);
                 sdkInstance->onStatusChanged(XNodeSDK::XNodeStatus::Ready);
+            }
             return true;
         } else spdlog::warn("DNS peer sync with " + peerAddress + " failed");
     } else {
@@ -276,37 +260,130 @@ XNode::Node::PingPongStatus XNode::Node::AttemptPingPongSync(const std::string &
 bool XNode::Node::AttemptBlockchainSync(const std::string &peerAddress) {
     spdlog::debug("Will attempt to sync headers with " + peerAddress);
     switch (AttemptPingPongSync(peerAddress)) {
-        case Synced: return true;
-        case ConnErr: return false;
-        case HashDiff:
-            break;
-        case HeightDiff:
-            break;
-    }
-    std::vector<Block> blockVector = this->blockchain.toBlocks();
-    std::reverse(blockVector.begin(), blockVector.end());
-    for (size_t i = 0; i < blockVector.size(); i += 200){
-        std::vector<Block>::const_iterator first = blockVector.begin() + i;
-        std::vector<Block>::const_iterator last = blockVector.begin() +  std::min(blockVector.size(), i + 200);
-        std::vector<Block> blockBatch(first,last);
-        ::grpc::ClientContext headerFirstSyncContext;
-        xcoin::interchange::GetHeaders headerFirstSyncRequest;
-        headerFirstSyncRequest.set_version(XNODE_VERSION_INITIAL);
-        headerFirstSyncRequest.set_hashcount(last-first);
-        if (i+200 < blockVector.size())
-            headerFirstSyncRequest.set_stophash("0");
-        else headerFirstSyncRequest.set_stophash(blockBatch.back().headerHash);
-        for (Block block: blockBatch){
-            std::string* headerHash = headerFirstSyncRequest.add_blockheaderhashes();
-            headerHash = &block.headerHash;
+        case Synced:
+            spdlog::warn("Synced");
+            return true;
+        case ConnErr:
+            spdlog::warn("Conn err");
+            return false;
+        case HashDiff : {
+            spdlog::warn("Hash diff");
+            std::vector<Block> blockVector = this->blockchain.toBlocks();
+            std::reverse(blockVector.begin(), blockVector.end());
+            if (SYNC_BATCHING_ENABLED){
+                // TODO: Enable block batching for large blockchains
+                for (size_t i = 0; i < blockVector.size(); i += 200) {
+                    auto first = blockVector.begin() + i;
+                    auto last = blockVector.begin() + std::min(blockVector.size(), i + 200);
+                    std::vector<Block> blockBatch(first, last);
+                    ::grpc::ClientContext headerFirstSyncContext;
+                    xcoin::interchange::GetHeaders headerFirstSyncRequest;
+                    headerFirstSyncRequest.set_version(XNODE_VERSION_INITIAL);
+                    headerFirstSyncRequest.set_hashcount(last - first);
+                    if (i + 200 < blockVector.size())
+                        headerFirstSyncRequest.set_stophash("0");
+                    else headerFirstSyncRequest.set_stophash(blockBatch.back().headerHash);
+                    for (Block block: blockBatch) {
+                        std::string *headerHash = headerFirstSyncRequest.add_blockheaderhashes();
+                        headerHash = &block.headerHash;
+                    }
+                    xcoin::interchange::Headers headerFirstSyncReply;
+                    ::grpc::Status headerFirstSyncStatus = this->peers[peerAddress].syncStub->HeaderFirstSync(
+                            &headerFirstSyncContext, headerFirstSyncRequest, &headerFirstSyncReply);
+                    if (headerFirstSyncStatus.ok()) {
+                        // TODO: Handle reply
+                        break;
+                    } else return false;
+                }
+            }else{
+                std::vector<std::string> hashVector = this->blockchain.toHeaderHashes();
+                ::grpc::ClientContext headerFirstSyncContext;
+                xcoin::interchange::GetHeaders headerFirstSyncRequest;
+                xcoin::interchange::Headers headerFirstSyncReply;
+                headerFirstSyncRequest.set_version(XNODE_VERSION_INITIAL);
+                headerFirstSyncRequest.set_hashcount(blockVector.size());
+                headerFirstSyncRequest.set_stophash("0");
+                for (std::string hash: hashVector){
+                    std::string *headerHash = headerFirstSyncRequest.add_blockheaderhashes();
+                    headerHash = &hash;
+                }
+                ::grpc::Status headerFirstSyncStatus = this->peers[peerAddress].syncStub->HeaderFirstSync(
+                        &headerFirstSyncContext, headerFirstSyncRequest, &headerFirstSyncReply);
+                if (headerFirstSyncStatus.ok()) {
+                    auto res = headerFirstSyncReply.headers();
+                    std::reverse(res.begin(), res.end());
+                    for (int i = 0; i < res.size(); i++){
+                        if (res[i].blockheaderhash() == hashVector[i]){
+                            ::grpc::ClientContext getBlockchainFromHeightContext;
+                            xcoin::interchange::GetBlockchainFromHeightRequest getBlockchainFromHeightRequest;
+                            xcoin::interchange::Blockchain getBlockchainFromHeightReply;
+                            getBlockchainFromHeightRequest.set_stophash("0");
+                            getBlockchainFromHeightRequest.set_startheight(res.size()-i);
+                            ::grpc::Status getBlockchainFromHeightStatus = this->peers[peerAddress].syncStub->GetBlockchainFromHeight(
+                                    &getBlockchainFromHeightContext, getBlockchainFromHeightRequest, &getBlockchainFromHeightReply);
+                            if (getBlockchainFromHeightStatus.ok()){
+                                Blockchain newBlockchain = Blockchain();
+                                std::vector<Block> newBlocks = XNode::Interface::decodeChain(getBlockchainFromHeightReply);
+                                for (Block block: newBlocks){
+                                    newBlockchain.appendBlock(block);
+                                }
+                                this->blockchain.replaceChain(newBlockchain);
+                                this->saveDataOnDisk();
+                                // TODO: Decide which branch is better and just rewrite the whole thing eventually
+                                return true;
+                            }else return false;
+                            break;
+                        }
+                    }
+                } else return false;
+            }
         }
-        xcoin::interchange::Headers headerFirstSyncReply;
-        ::grpc::Status headerFirstSyncStatus = this->peers[peerAddress].syncStub->HeaderFirstSync(
-                &headerFirstSyncContext, headerFirstSyncRequest, &headerFirstSyncReply);
-        if (headerFirstSyncStatus.ok()) {
-            // TODO: Handle reply
-            break;
-        }else return false;
+        case HeightDiff: {
+            spdlog::warn("Height diff");
+            // TODO: do something more complicated
+            std::vector<Block> blockVector = this->blockchain.toBlocks();
+            std::reverse(blockVector.begin(), blockVector.end());
+            std::vector<std::string> hashVector = this->blockchain.toHeaderHashes();
+            ::grpc::ClientContext headerFirstSyncContext;
+            xcoin::interchange::GetHeaders headerFirstSyncRequest;
+            xcoin::interchange::Headers headerFirstSyncReply;
+            headerFirstSyncRequest.set_version(XNODE_VERSION_INITIAL);
+            headerFirstSyncRequest.set_hashcount(blockVector.size());
+            headerFirstSyncRequest.set_stophash("0");
+            for (std::string hash: hashVector){
+                std::string *headerHash = headerFirstSyncRequest.add_blockheaderhashes();
+                headerHash = &hash;
+            }
+            ::grpc::Status headerFirstSyncStatus = this->peers[peerAddress].syncStub->HeaderFirstSync(
+                    &headerFirstSyncContext, headerFirstSyncRequest, &headerFirstSyncReply);
+            if (headerFirstSyncStatus.ok()) {
+                auto res = headerFirstSyncReply.headers();
+                std::reverse(res.begin(), res.end());
+                for (int i = 0; i < res.size(); i++){
+                    if (res[i].blockheaderhash() == hashVector[i]){
+                        ::grpc::ClientContext getBlockchainFromHeightContext;
+                        xcoin::interchange::GetBlockchainFromHeightRequest getBlockchainFromHeightRequest;
+                        xcoin::interchange::Blockchain getBlockchainFromHeightReply;
+                        getBlockchainFromHeightRequest.set_stophash("0");
+                        getBlockchainFromHeightRequest.set_startheight(res.size()-i);
+                        ::grpc::Status getBlockchainFromHeightStatus = this->peers[peerAddress].syncStub->GetBlockchainFromHeight(
+                                &getBlockchainFromHeightContext, getBlockchainFromHeightRequest, &getBlockchainFromHeightReply);
+                        if (getBlockchainFromHeightStatus.ok()){
+                            Blockchain newBlockchain = Blockchain();
+                            std::vector<Block> newBlocks = XNode::Interface::decodeChain(getBlockchainFromHeightReply);
+                            for (Block block: newBlocks){
+                                newBlockchain.appendBlock(block);
+                            }
+                            this->blockchain.replaceChain(newBlockchain);
+                            this->saveDataOnDisk();
+                            // TODO: Decide which branch is better and just rewrite the whole thing eventually
+                            return true;
+                        }else return false;
+                        break;
+                    }
+                }
+            } else return false;
+        }
     }
     return true;
 }
@@ -337,4 +414,3 @@ bool XNode::Node::handleIncomingPeerData(const xcoin::interchange::DNSEntry &rem
         return this->AttemptPeerConnection(remotePeer.ipport());
     }
 }
-

@@ -35,6 +35,7 @@ namespace XNode{
         std::unique_ptr<xcoin::interchange::XNodeControl::Stub> controlStub;    // Stub used to issue requests to the peer's control service
         std::unique_ptr<xcoin::interchange::XNodeSync::Stub> syncStub;          // Stub used to issue requests to the peer's sync service
         bool online = false;
+        bool syncSuccess = false;
     };
     /// Base class that manages the local node's lifecycle
     class Node : public xcoin::interchange::XNodeControl::Service, xcoin::interchange::XNodeSync::Service{
@@ -45,6 +46,7 @@ namespace XNode{
         void Shutdown(const std::string& reason);
         void setSDK(XNodeSDK* SDK){this->sdkInstance = SDK;};
     private:
+        const bool SYNC_BATCHING_ENABLED = false;
         enum PingPongStatus{Synced, HashDiff, HeightDiff, ConnErr};
         const uint32_t XNODE_VERSION_INITIAL = static_cast<const uint32_t>(1.1);
         const std::string XNODE_PEERS_SAVE_PATH = "localpeers.xnodebackup";
@@ -54,8 +56,7 @@ namespace XNode{
         ::grpc::Status NotifyPeerChange(::grpc::ServerContext *context, const ::xcoin::interchange::DNSEntry *request, ::xcoin::interchange::DNSEntry *response) override;
         ::grpc::Status PingPongSync(::grpc::ServerContext *context, const ::xcoin::interchange::PingPong *request, ::xcoin::interchange::PingPong *response) override;
         ::grpc::Status HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::interchange::GetHeaders *request, ::xcoin::interchange::Headers* response) override;
-        ::grpc::Status GetBlock(::grpc::ServerContext *context, const ::xcoin::interchange::Header *request, ::xcoin::interchange::Block *response) override;
-        ::grpc::Status GetBlockchain(::grpc::ServerContext *context, const ::xcoin::interchange::DNSEntry *request, ::xcoin::interchange::Blockchain *response) override;
+        ::grpc::Status GetBlockchainFromHeight(::grpc::ServerContext *context, const ::xcoin::interchange::GetBlockchainFromHeightRequest *request, ::xcoin::interchange::Blockchain *response) override;
         bool AttemptPeerConnection(const std::string& peerAddress);
         PingPongStatus AttemptPingPongSync(const std::string& peerAddress);
         bool AttemptBlockchainSync(const std::string& peerAddress);

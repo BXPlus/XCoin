@@ -70,7 +70,7 @@ struct GetHeadersDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT GetHeadersDefaultTypeInternal _GetHeaders_default_instance_;
 constexpr Header::Header(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : previousblockheaderhash_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  : blockheaderhash_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , merkleroothash_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , time_(0u){}
 struct HeaderDefaultTypeInternal {
@@ -161,9 +161,22 @@ struct PingPongDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PingPongDefaultTypeInternal _PingPong_default_instance_;
+constexpr GetBlockchainFromHeightRequest::GetBlockchainFromHeightRequest(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : stophash_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , startheight_(0u){}
+struct GetBlockchainFromHeightRequestDefaultTypeInternal {
+  constexpr GetBlockchainFromHeightRequestDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~GetBlockchainFromHeightRequestDefaultTypeInternal() {}
+  union {
+    GetBlockchainFromHeightRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT GetBlockchainFromHeightRequestDefaultTypeInternal _GetBlockchainFromHeightRequest_default_instance_;
 }  // namespace interchange
 }  // namespace xcoin
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_blockchain_2eproto[10];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_blockchain_2eproto[11];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_blockchain_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_blockchain_2eproto = nullptr;
 
@@ -221,7 +234,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_blockchain_2eproto::offsets[] 
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::xcoin::interchange::Header, previousblockheaderhash_),
+  PROTOBUF_FIELD_OFFSET(::xcoin::interchange::Header, blockheaderhash_),
   PROTOBUF_FIELD_OFFSET(::xcoin::interchange::Header, merkleroothash_),
   PROTOBUF_FIELD_OFFSET(::xcoin::interchange::Header, time_),
   ~0u,  // no _has_bits_
@@ -276,6 +289,14 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_blockchain_2eproto::offsets[] 
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::xcoin::interchange::PingPong, height_),
   PROTOBUF_FIELD_OFFSET(::xcoin::interchange::PingPong, lasthash_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::xcoin::interchange::GetBlockchainFromHeightRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::xcoin::interchange::GetBlockchainFromHeightRequest, startheight_),
+  PROTOBUF_FIELD_OFFSET(::xcoin::interchange::GetBlockchainFromHeightRequest, stophash_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, 18, -1, sizeof(::xcoin::interchange::Block)},
@@ -288,6 +309,7 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 86, -1, -1, sizeof(::xcoin::interchange::PingHandshake)},
   { 93, -1, -1, sizeof(::xcoin::interchange::DNSHandshake)},
   { 100, -1, -1, sizeof(::xcoin::interchange::PingPong)},
+  { 108, -1, -1, sizeof(::xcoin::interchange::GetBlockchainFromHeightRequest)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -301,6 +323,7 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::xcoin::interchange::_PingHandshake_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::xcoin::interchange::_DNSHandshake_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::xcoin::interchange::_PingPong_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::xcoin::interchange::_GetBlockchainFromHeightRequest_default_instance_),
 };
 
 const char descriptor_table_protodef_blockchain_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -320,42 +343,43 @@ const char descriptor_table_protodef_blockchain_2eproto[] PROTOBUF_SECTION_VARIA
   "_hash\"6\n\nBlockchain\022(\n\006blocks\030\001 \003(\0132\030.xc"
   "oin.interchange.Block\"]\n\nGetHeaders\022\017\n\007v"
   "ersion\030\001 \001(\r\022\021\n\thashCount\030\002 \001(\r\022\020\n\010stopH"
-  "ash\030\003 \001(\t\022\031\n\021blockHeaderHashes\030\004 \003(\t\"O\n\006"
-  "Header\022\037\n\027previousBlockHeaderHash\030\001 \001(\t\022"
-  "\026\n\016merkleRootHash\030\002 \001(\t\022\014\n\004time\030\003 \001(\r\"D\n"
-  "\007Headers\022\r\n\005count\030\001 \001(\r\022*\n\007headers\030\002 \003(\013"
-  "2\031.xcoin.interchange.Header\"\222\002\n\014XNodeMes"
-  "sage\022\023\n\013startString\030\001 \001(\t\022\017\n\007command\030\002 \001"
-  "(\t\022\014\n\004size\030\003 \001(\r\022\020\n\010checksum\030\004 \001(\t\022:\n\021ge"
-  "tHeadersMessage\030\005 \001(\0132\035.xcoin.interchang"
-  "e.GetHeadersH\000\0224\n\016headersMessage\030\006 \001(\0132\032"
-  ".xcoin.interchange.HeadersH\000\022>\n\023dnsHands"
-  "hakeMessage\030\007 \001(\0132\037.xcoin.interchange.DN"
-  "SHandshakeH\000B\n\n\010contents\"-\n\010DNSEntry\022\016\n\006"
-  "ipport\030\001 \001(\t\022\021\n\tpublicKey\030\002 \001(\t\"\035\n\rPingH"
-  "andshake\022\014\n\004data\030\001 \001(\t\"<\n\014DNSHandshake\022,"
-  "\n\007entries\030\002 \003(\0132\033.xcoin.interchange.DNSE"
-  "ntry\",\n\010PingPong\022\016\n\006height\030\001 \001(\r\022\020\n\010last"
-  "Hash\030\002 \001(\t2\203\002\n\014XNodeControl\022L\n\004Ping\022 .xc"
-  "oin.interchange.PingHandshake\032 .xcoin.in"
-  "terchange.PingHandshake\"\000\022U\n\017DNSSyncPeer"
-  "List\022\037.xcoin.interchange.DNSHandshake\032\037."
-  "xcoin.interchange.DNSHandshake\"\000\022N\n\020Noti"
-  "fyPeerChange\022\033.xcoin.interchange.DNSEntr"
-  "y\032\033.xcoin.interchange.DNSEntry\"\0002\271\002\n\tXNo"
-  "deSync\022J\n\014PingPongSync\022\033.xcoin.interchan"
-  "ge.PingPong\032\033.xcoin.interchange.PingPong"
-  "\"\000\022N\n\017HeaderFirstSync\022\035.xcoin.interchang"
-  "e.GetHeaders\032\032.xcoin.interchange.Headers"
-  "\"\000\022A\n\010GetBlock\022\031.xcoin.interchange.Heade"
-  "r\032\030.xcoin.interchange.Block\"\000\022M\n\rGetBloc"
-  "kchain\022\033.xcoin.interchange.DNSEntry\032\035.xc"
-  "oin.interchange.Blockchain\"\000b\006proto3"
+  "ash\030\003 \001(\t\022\031\n\021blockHeaderHashes\030\004 \003(\t\"G\n\006"
+  "Header\022\027\n\017blockHeaderHash\030\001 \001(\t\022\026\n\016merkl"
+  "eRootHash\030\002 \001(\t\022\014\n\004time\030\003 \001(\r\"D\n\007Headers"
+  "\022\r\n\005count\030\001 \001(\r\022*\n\007headers\030\002 \003(\0132\031.xcoin"
+  ".interchange.Header\"\222\002\n\014XNodeMessage\022\023\n\013"
+  "startString\030\001 \001(\t\022\017\n\007command\030\002 \001(\t\022\014\n\004si"
+  "ze\030\003 \001(\r\022\020\n\010checksum\030\004 \001(\t\022:\n\021getHeaders"
+  "Message\030\005 \001(\0132\035.xcoin.interchange.GetHea"
+  "dersH\000\0224\n\016headersMessage\030\006 \001(\0132\032.xcoin.i"
+  "nterchange.HeadersH\000\022>\n\023dnsHandshakeMess"
+  "age\030\007 \001(\0132\037.xcoin.interchange.DNSHandsha"
+  "keH\000B\n\n\010contents\"-\n\010DNSEntry\022\016\n\006ipport\030\001"
+  " \001(\t\022\021\n\tpublicKey\030\002 \001(\t\"\035\n\rPingHandshake"
+  "\022\014\n\004data\030\001 \001(\t\"<\n\014DNSHandshake\022,\n\007entrie"
+  "s\030\002 \003(\0132\033.xcoin.interchange.DNSEntry\",\n\010"
+  "PingPong\022\016\n\006height\030\001 \001(\r\022\020\n\010lastHash\030\002 \001"
+  "(\t\"G\n\036GetBlockchainFromHeightRequest\022\023\n\013"
+  "startheight\030\001 \001(\r\022\020\n\010stopHash\030\002 \001(\t2\203\002\n\014"
+  "XNodeControl\022L\n\004Ping\022 .xcoin.interchange"
+  ".PingHandshake\032 .xcoin.interchange.PingH"
+  "andshake\"\000\022U\n\017DNSSyncPeerList\022\037.xcoin.in"
+  "terchange.DNSHandshake\032\037.xcoin.interchan"
+  "ge.DNSHandshake\"\000\022N\n\020NotifyPeerChange\022\033."
+  "xcoin.interchange.DNSEntry\032\033.xcoin.inter"
+  "change.DNSEntry\"\0002\226\002\n\tXNodeSync\022J\n\014PingP"
+  "ongSync\022\033.xcoin.interchange.PingPong\032\033.x"
+  "coin.interchange.PingPong\"\000\022N\n\017HeaderFir"
+  "stSync\022\035.xcoin.interchange.GetHeaders\032\032."
+  "xcoin.interchange.Headers\"\000\022m\n\027GetBlockc"
+  "hainFromHeight\0221.xcoin.interchange.GetBl"
+  "ockchainFromHeightRequest\032\035.xcoin.interc"
+  "hange.Blockchain\"\000b\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_blockchain_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_blockchain_2eproto = {
-  false, false, 1876, descriptor_table_protodef_blockchain_2eproto, "blockchain.proto", 
-  &descriptor_table_blockchain_2eproto_once, nullptr, 0, 10,
+  false, false, 1906, descriptor_table_protodef_blockchain_2eproto, "blockchain.proto", 
+  &descriptor_table_blockchain_2eproto_once, nullptr, 0, 11,
   schemas, file_default_instances, TableStruct_blockchain_2eproto::offsets,
   file_level_metadata_blockchain_2eproto, file_level_enum_descriptors_blockchain_2eproto, file_level_service_descriptors_blockchain_2eproto,
 };
@@ -1526,9 +1550,9 @@ Header::Header(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 Header::Header(const Header& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  previousblockheaderhash_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_previousblockheaderhash().empty()) {
-    previousblockheaderhash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_previousblockheaderhash(), 
+  blockheaderhash_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_blockheaderhash().empty()) {
+    blockheaderhash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_blockheaderhash(), 
       GetArenaForAllocation());
   }
   merkleroothash_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
@@ -1541,7 +1565,7 @@ Header::Header(const Header& from)
 }
 
 void Header::SharedCtor() {
-previousblockheaderhash_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+blockheaderhash_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 merkleroothash_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 time_ = 0u;
 }
@@ -1555,7 +1579,7 @@ Header::~Header() {
 
 inline void Header::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  previousblockheaderhash_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  blockheaderhash_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   merkleroothash_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
@@ -1575,7 +1599,7 @@ void Header::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  previousblockheaderhash_.ClearToEmpty();
+  blockheaderhash_.ClearToEmpty();
   merkleroothash_.ClearToEmpty();
   time_ = 0u;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
@@ -1587,12 +1611,12 @@ const char* Header::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::int
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // string previousBlockHeaderHash = 1;
+      // string blockHeaderHash = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          auto str = _internal_mutable_previousblockheaderhash();
+          auto str = _internal_mutable_blockheaderhash();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "xcoin.interchange.Header.previousBlockHeaderHash"));
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "xcoin.interchange.Header.blockHeaderHash"));
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1644,14 +1668,14 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string previousBlockHeaderHash = 1;
-  if (!this->_internal_previousblockheaderhash().empty()) {
+  // string blockHeaderHash = 1;
+  if (!this->_internal_blockheaderhash().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_previousblockheaderhash().data(), static_cast<int>(this->_internal_previousblockheaderhash().length()),
+      this->_internal_blockheaderhash().data(), static_cast<int>(this->_internal_blockheaderhash().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "xcoin.interchange.Header.previousBlockHeaderHash");
+      "xcoin.interchange.Header.blockHeaderHash");
     target = stream->WriteStringMaybeAliased(
-        1, this->_internal_previousblockheaderhash(), target);
+        1, this->_internal_blockheaderhash(), target);
   }
 
   // string merkleRootHash = 2;
@@ -1686,11 +1710,11 @@ size_t Header::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string previousBlockHeaderHash = 1;
-  if (!this->_internal_previousblockheaderhash().empty()) {
+  // string blockHeaderHash = 1;
+  if (!this->_internal_blockheaderhash().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_previousblockheaderhash());
+        this->_internal_blockheaderhash());
   }
 
   // string merkleRootHash = 2;
@@ -1727,8 +1751,8 @@ void Header::MergeFrom(const Header& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_previousblockheaderhash().empty()) {
-    _internal_set_previousblockheaderhash(from._internal_previousblockheaderhash());
+  if (!from._internal_blockheaderhash().empty()) {
+    _internal_set_blockheaderhash(from._internal_blockheaderhash());
   }
   if (!from._internal_merkleroothash().empty()) {
     _internal_set_merkleroothash(from._internal_merkleroothash());
@@ -1757,8 +1781,8 @@ void Header::InternalSwap(Header* other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      &previousblockheaderhash_, lhs_arena,
-      &other->previousblockheaderhash_, rhs_arena
+      &blockheaderhash_, lhs_arena,
+      &other->blockheaderhash_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
@@ -3344,6 +3368,229 @@ void PingPong::InternalSwap(PingPong* other) {
       file_level_metadata_blockchain_2eproto[9]);
 }
 
+// ===================================================================
+
+class GetBlockchainFromHeightRequest::_Internal {
+ public:
+};
+
+GetBlockchainFromHeightRequest::GetBlockchainFromHeightRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  if (!is_message_owned) {
+    RegisterArenaDtor(arena);
+  }
+  // @@protoc_insertion_point(arena_constructor:xcoin.interchange.GetBlockchainFromHeightRequest)
+}
+GetBlockchainFromHeightRequest::GetBlockchainFromHeightRequest(const GetBlockchainFromHeightRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  stophash_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_stophash().empty()) {
+    stophash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_stophash(), 
+      GetArenaForAllocation());
+  }
+  startheight_ = from.startheight_;
+  // @@protoc_insertion_point(copy_constructor:xcoin.interchange.GetBlockchainFromHeightRequest)
+}
+
+void GetBlockchainFromHeightRequest::SharedCtor() {
+stophash_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+startheight_ = 0u;
+}
+
+GetBlockchainFromHeightRequest::~GetBlockchainFromHeightRequest() {
+  // @@protoc_insertion_point(destructor:xcoin.interchange.GetBlockchainFromHeightRequest)
+  if (GetArenaForAllocation() != nullptr) return;
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+inline void GetBlockchainFromHeightRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  stophash_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void GetBlockchainFromHeightRequest::ArenaDtor(void* object) {
+  GetBlockchainFromHeightRequest* _this = reinterpret_cast< GetBlockchainFromHeightRequest* >(object);
+  (void)_this;
+}
+void GetBlockchainFromHeightRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void GetBlockchainFromHeightRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetBlockchainFromHeightRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:xcoin.interchange.GetBlockchainFromHeightRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  stophash_.ClearToEmpty();
+  startheight_ = 0u;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetBlockchainFromHeightRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // uint32 startheight = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          startheight_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string stopHash = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_stophash();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "xcoin.interchange.GetBlockchainFromHeightRequest.stopHash"));
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* GetBlockchainFromHeightRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:xcoin.interchange.GetBlockchainFromHeightRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint32 startheight = 1;
+  if (this->_internal_startheight() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(1, this->_internal_startheight(), target);
+  }
+
+  // string stopHash = 2;
+  if (!this->_internal_stophash().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_stophash().data(), static_cast<int>(this->_internal_stophash().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "xcoin.interchange.GetBlockchainFromHeightRequest.stopHash");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_stophash(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:xcoin.interchange.GetBlockchainFromHeightRequest)
+  return target;
+}
+
+size_t GetBlockchainFromHeightRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:xcoin.interchange.GetBlockchainFromHeightRequest)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string stopHash = 2;
+  if (!this->_internal_stophash().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_stophash());
+  }
+
+  // uint32 startheight = 1;
+  if (this->_internal_startheight() != 0) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32SizePlusOne(this->_internal_startheight());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetBlockchainFromHeightRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetBlockchainFromHeightRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetBlockchainFromHeightRequest::GetClassData() const { return &_class_data_; }
+
+void GetBlockchainFromHeightRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetBlockchainFromHeightRequest *>(to)->MergeFrom(
+      static_cast<const GetBlockchainFromHeightRequest &>(from));
+}
+
+
+void GetBlockchainFromHeightRequest::MergeFrom(const GetBlockchainFromHeightRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:xcoin.interchange.GetBlockchainFromHeightRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_stophash().empty()) {
+    _internal_set_stophash(from._internal_stophash());
+  }
+  if (from._internal_startheight() != 0) {
+    _internal_set_startheight(from._internal_startheight());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetBlockchainFromHeightRequest::CopyFrom(const GetBlockchainFromHeightRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:xcoin.interchange.GetBlockchainFromHeightRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetBlockchainFromHeightRequest::IsInitialized() const {
+  return true;
+}
+
+void GetBlockchainFromHeightRequest::InternalSwap(GetBlockchainFromHeightRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &stophash_, lhs_arena,
+      &other->stophash_, rhs_arena
+  );
+  swap(startheight_, other->startheight_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetBlockchainFromHeightRequest::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_blockchain_2eproto_getter, &descriptor_table_blockchain_2eproto_once,
+      file_level_metadata_blockchain_2eproto[10]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace interchange
 }  // namespace xcoin
@@ -3377,6 +3624,9 @@ template<> PROTOBUF_NOINLINE ::xcoin::interchange::DNSHandshake* Arena::CreateMa
 }
 template<> PROTOBUF_NOINLINE ::xcoin::interchange::PingPong* Arena::CreateMaybeMessage< ::xcoin::interchange::PingPong >(Arena* arena) {
   return Arena::CreateMessageInternal< ::xcoin::interchange::PingPong >(arena);
+}
+template<> PROTOBUF_NOINLINE ::xcoin::interchange::GetBlockchainFromHeightRequest* Arena::CreateMaybeMessage< ::xcoin::interchange::GetBlockchainFromHeightRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::xcoin::interchange::GetBlockchainFromHeightRequest >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 
