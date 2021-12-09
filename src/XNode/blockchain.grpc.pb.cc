@@ -168,6 +168,7 @@ XNodeControl::Service::~Service() {
 
 
 static const char* XNodeSync_method_names[] = {
+  "/xcoin.interchange.XNodeSync/PingPongSync",
   "/xcoin.interchange.XNodeSync/HeaderFirstSync",
   "/xcoin.interchange.XNodeSync/GetBlock",
   "/xcoin.interchange.XNodeSync/GetBlockchain",
@@ -180,10 +181,34 @@ std::unique_ptr< XNodeSync::Stub> XNodeSync::NewStub(const std::shared_ptr< ::gr
 }
 
 XNodeSync::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_HeaderFirstSync_(XNodeSync_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetBlock_(XNodeSync_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetBlockchain_(XNodeSync_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_PingPongSync_(XNodeSync_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_HeaderFirstSync_(XNodeSync_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetBlock_(XNodeSync_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetBlockchain_(XNodeSync_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
+
+::grpc::Status XNodeSync::Stub::PingPongSync(::grpc::ClientContext* context, const ::xcoin::interchange::PingPong& request, ::xcoin::interchange::PingPong* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::xcoin::interchange::PingPong, ::xcoin::interchange::PingPong, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PingPongSync_, context, request, response);
+}
+
+void XNodeSync::Stub::async::PingPongSync(::grpc::ClientContext* context, const ::xcoin::interchange::PingPong* request, ::xcoin::interchange::PingPong* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::xcoin::interchange::PingPong, ::xcoin::interchange::PingPong, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PingPongSync_, context, request, response, std::move(f));
+}
+
+void XNodeSync::Stub::async::PingPongSync(::grpc::ClientContext* context, const ::xcoin::interchange::PingPong* request, ::xcoin::interchange::PingPong* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PingPongSync_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::xcoin::interchange::PingPong>* XNodeSync::Stub::PrepareAsyncPingPongSyncRaw(::grpc::ClientContext* context, const ::xcoin::interchange::PingPong& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::xcoin::interchange::PingPong, ::xcoin::interchange::PingPong, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PingPongSync_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::xcoin::interchange::PingPong>* XNodeSync::Stub::AsyncPingPongSyncRaw(::grpc::ClientContext* context, const ::xcoin::interchange::PingPong& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPingPongSyncRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
 
 ::grpc::Status XNodeSync::Stub::HeaderFirstSync(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders& request, ::xcoin::interchange::Headers* response) {
   return ::grpc::internal::BlockingUnaryCall< ::xcoin::interchange::GetHeaders, ::xcoin::interchange::Headers, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_HeaderFirstSync_, context, request, response);
@@ -258,6 +283,16 @@ XNodeSync::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       XNodeSync_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< XNodeSync::Service, ::xcoin::interchange::PingPong, ::xcoin::interchange::PingPong, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](XNodeSync::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::xcoin::interchange::PingPong* req,
+             ::xcoin::interchange::PingPong* resp) {
+               return service->PingPongSync(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      XNodeSync_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< XNodeSync::Service, ::xcoin::interchange::GetHeaders, ::xcoin::interchange::Headers, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](XNodeSync::Service* service,
              ::grpc::ServerContext* ctx,
@@ -266,7 +301,7 @@ XNodeSync::Service::Service() {
                return service->HeaderFirstSync(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      XNodeSync_method_names[1],
+      XNodeSync_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< XNodeSync::Service, ::xcoin::interchange::Header, ::xcoin::interchange::Block, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](XNodeSync::Service* service,
@@ -276,7 +311,7 @@ XNodeSync::Service::Service() {
                return service->GetBlock(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      XNodeSync_method_names[2],
+      XNodeSync_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< XNodeSync::Service, ::xcoin::interchange::DNSEntry, ::xcoin::interchange::Blockchain, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](XNodeSync::Service* service,
@@ -288,6 +323,13 @@ XNodeSync::Service::Service() {
 }
 
 XNodeSync::Service::~Service() {
+}
+
+::grpc::Status XNodeSync::Service::PingPongSync(::grpc::ServerContext* context, const ::xcoin::interchange::PingPong* request, ::xcoin::interchange::PingPong* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
 ::grpc::Status XNodeSync::Service::HeaderFirstSync(::grpc::ServerContext* context, const ::xcoin::interchange::GetHeaders* request, ::xcoin::interchange::Headers* response) {

@@ -148,9 +148,22 @@ struct DNSHandshakeDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT DNSHandshakeDefaultTypeInternal _DNSHandshake_default_instance_;
+constexpr PingPong::PingPong(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : lasthash_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , height_(0u){}
+struct PingPongDefaultTypeInternal {
+  constexpr PingPongDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~PingPongDefaultTypeInternal() {}
+  union {
+    PingPong _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PingPongDefaultTypeInternal _PingPong_default_instance_;
 }  // namespace interchange
 }  // namespace xcoin
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_blockchain_2eproto[9];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_blockchain_2eproto[10];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_blockchain_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_blockchain_2eproto = nullptr;
 
@@ -255,6 +268,14 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_blockchain_2eproto::offsets[] 
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::xcoin::interchange::DNSHandshake, entries_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::xcoin::interchange::PingPong, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::xcoin::interchange::PingPong, height_),
+  PROTOBUF_FIELD_OFFSET(::xcoin::interchange::PingPong, lasthash_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, 18, -1, sizeof(::xcoin::interchange::Block)},
@@ -266,6 +287,7 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 78, -1, -1, sizeof(::xcoin::interchange::DNSEntry)},
   { 86, -1, -1, sizeof(::xcoin::interchange::PingHandshake)},
   { 93, -1, -1, sizeof(::xcoin::interchange::DNSHandshake)},
+  { 100, -1, -1, sizeof(::xcoin::interchange::PingPong)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -278,6 +300,7 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::xcoin::interchange::_DNSEntry_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::xcoin::interchange::_PingHandshake_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::xcoin::interchange::_DNSHandshake_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::xcoin::interchange::_PingPong_default_instance_),
 };
 
 const char descriptor_table_protodef_blockchain_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -312,24 +335,27 @@ const char descriptor_table_protodef_blockchain_2eproto[] PROTOBUF_SECTION_VARIA
   "ipport\030\001 \001(\t\022\021\n\tpublicKey\030\002 \001(\t\"\035\n\rPingH"
   "andshake\022\014\n\004data\030\001 \001(\t\"<\n\014DNSHandshake\022,"
   "\n\007entries\030\002 \003(\0132\033.xcoin.interchange.DNSE"
-  "ntry2\203\002\n\014XNodeControl\022L\n\004Ping\022 .xcoin.in"
-  "terchange.PingHandshake\032 .xcoin.intercha"
-  "nge.PingHandshake\"\000\022U\n\017DNSSyncPeerList\022\037"
-  ".xcoin.interchange.DNSHandshake\032\037.xcoin."
-  "interchange.DNSHandshake\"\000\022N\n\020NotifyPeer"
-  "Change\022\033.xcoin.interchange.DNSEntry\032\033.xc"
-  "oin.interchange.DNSEntry\"\0002\355\001\n\tXNodeSync"
-  "\022N\n\017HeaderFirstSync\022\035.xcoin.interchange."
-  "GetHeaders\032\032.xcoin.interchange.Headers\"\000"
-  "\022A\n\010GetBlock\022\031.xcoin.interchange.Header\032"
-  "\030.xcoin.interchange.Block\"\000\022M\n\rGetBlockc"
-  "hain\022\033.xcoin.interchange.DNSEntry\032\035.xcoi"
-  "n.interchange.Blockchain\"\000b\006proto3"
+  "ntry\",\n\010PingPong\022\016\n\006height\030\001 \001(\r\022\020\n\010last"
+  "Hash\030\002 \001(\t2\203\002\n\014XNodeControl\022L\n\004Ping\022 .xc"
+  "oin.interchange.PingHandshake\032 .xcoin.in"
+  "terchange.PingHandshake\"\000\022U\n\017DNSSyncPeer"
+  "List\022\037.xcoin.interchange.DNSHandshake\032\037."
+  "xcoin.interchange.DNSHandshake\"\000\022N\n\020Noti"
+  "fyPeerChange\022\033.xcoin.interchange.DNSEntr"
+  "y\032\033.xcoin.interchange.DNSEntry\"\0002\271\002\n\tXNo"
+  "deSync\022J\n\014PingPongSync\022\033.xcoin.interchan"
+  "ge.PingPong\032\033.xcoin.interchange.PingPong"
+  "\"\000\022N\n\017HeaderFirstSync\022\035.xcoin.interchang"
+  "e.GetHeaders\032\032.xcoin.interchange.Headers"
+  "\"\000\022A\n\010GetBlock\022\031.xcoin.interchange.Heade"
+  "r\032\030.xcoin.interchange.Block\"\000\022M\n\rGetBloc"
+  "kchain\022\033.xcoin.interchange.DNSEntry\032\035.xc"
+  "oin.interchange.Blockchain\"\000b\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_blockchain_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_blockchain_2eproto = {
-  false, false, 1754, descriptor_table_protodef_blockchain_2eproto, "blockchain.proto", 
-  &descriptor_table_blockchain_2eproto_once, nullptr, 0, 9,
+  false, false, 1876, descriptor_table_protodef_blockchain_2eproto, "blockchain.proto", 
+  &descriptor_table_blockchain_2eproto_once, nullptr, 0, 10,
   schemas, file_default_instances, TableStruct_blockchain_2eproto::offsets,
   file_level_metadata_blockchain_2eproto, file_level_enum_descriptors_blockchain_2eproto, file_level_service_descriptors_blockchain_2eproto,
 };
@@ -3095,6 +3121,229 @@ void DNSHandshake::InternalSwap(DNSHandshake* other) {
       file_level_metadata_blockchain_2eproto[8]);
 }
 
+// ===================================================================
+
+class PingPong::_Internal {
+ public:
+};
+
+PingPong::PingPong(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  if (!is_message_owned) {
+    RegisterArenaDtor(arena);
+  }
+  // @@protoc_insertion_point(arena_constructor:xcoin.interchange.PingPong)
+}
+PingPong::PingPong(const PingPong& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  lasthash_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_lasthash().empty()) {
+    lasthash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_lasthash(), 
+      GetArenaForAllocation());
+  }
+  height_ = from.height_;
+  // @@protoc_insertion_point(copy_constructor:xcoin.interchange.PingPong)
+}
+
+void PingPong::SharedCtor() {
+lasthash_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+height_ = 0u;
+}
+
+PingPong::~PingPong() {
+  // @@protoc_insertion_point(destructor:xcoin.interchange.PingPong)
+  if (GetArenaForAllocation() != nullptr) return;
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+inline void PingPong::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  lasthash_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void PingPong::ArenaDtor(void* object) {
+  PingPong* _this = reinterpret_cast< PingPong* >(object);
+  (void)_this;
+}
+void PingPong::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void PingPong::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void PingPong::Clear() {
+// @@protoc_insertion_point(message_clear_start:xcoin.interchange.PingPong)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  lasthash_.ClearToEmpty();
+  height_ = 0u;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* PingPong::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // uint32 height = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          height_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string lastHash = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_lasthash();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "xcoin.interchange.PingPong.lastHash"));
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* PingPong::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:xcoin.interchange.PingPong)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint32 height = 1;
+  if (this->_internal_height() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(1, this->_internal_height(), target);
+  }
+
+  // string lastHash = 2;
+  if (!this->_internal_lasthash().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_lasthash().data(), static_cast<int>(this->_internal_lasthash().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "xcoin.interchange.PingPong.lastHash");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_lasthash(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:xcoin.interchange.PingPong)
+  return target;
+}
+
+size_t PingPong::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:xcoin.interchange.PingPong)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string lastHash = 2;
+  if (!this->_internal_lasthash().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_lasthash());
+  }
+
+  // uint32 height = 1;
+  if (this->_internal_height() != 0) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32SizePlusOne(this->_internal_height());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PingPong::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    PingPong::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PingPong::GetClassData() const { return &_class_data_; }
+
+void PingPong::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<PingPong *>(to)->MergeFrom(
+      static_cast<const PingPong &>(from));
+}
+
+
+void PingPong::MergeFrom(const PingPong& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:xcoin.interchange.PingPong)
+  GOOGLE_DCHECK_NE(&from, this);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_lasthash().empty()) {
+    _internal_set_lasthash(from._internal_lasthash());
+  }
+  if (from._internal_height() != 0) {
+    _internal_set_height(from._internal_height());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void PingPong::CopyFrom(const PingPong& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:xcoin.interchange.PingPong)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool PingPong::IsInitialized() const {
+  return true;
+}
+
+void PingPong::InternalSwap(PingPong* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &lasthash_, lhs_arena,
+      &other->lasthash_, rhs_arena
+  );
+  swap(height_, other->height_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata PingPong::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_blockchain_2eproto_getter, &descriptor_table_blockchain_2eproto_once,
+      file_level_metadata_blockchain_2eproto[9]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace interchange
 }  // namespace xcoin
@@ -3125,6 +3374,9 @@ template<> PROTOBUF_NOINLINE ::xcoin::interchange::PingHandshake* Arena::CreateM
 }
 template<> PROTOBUF_NOINLINE ::xcoin::interchange::DNSHandshake* Arena::CreateMaybeMessage< ::xcoin::interchange::DNSHandshake >(Arena* arena) {
   return Arena::CreateMessageInternal< ::xcoin::interchange::DNSHandshake >(arena);
+}
+template<> PROTOBUF_NOINLINE ::xcoin::interchange::PingPong* Arena::CreateMaybeMessage< ::xcoin::interchange::PingPong >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::xcoin::interchange::PingPong >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

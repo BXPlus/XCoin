@@ -548,6 +548,7 @@ class XNodeControl final {
   typedef Service SplitStreamedService;
   typedef WithStreamedUnaryMethod_Ping<WithStreamedUnaryMethod_DNSSyncPeerList<WithStreamedUnaryMethod_NotifyPeerChange<Service > > > StreamedService;
 };
+// Service responsible for node management and peer discovery
 
 class XNodeSync final {
  public:
@@ -557,6 +558,13 @@ class XNodeSync final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
+    virtual ::grpc::Status PingPongSync(::grpc::ClientContext* context, const ::xcoin::interchange::PingPong& request, ::xcoin::interchange::PingPong* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::PingPong>> AsyncPingPongSync(::grpc::ClientContext* context, const ::xcoin::interchange::PingPong& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::PingPong>>(AsyncPingPongSyncRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::PingPong>> PrepareAsyncPingPongSync(::grpc::ClientContext* context, const ::xcoin::interchange::PingPong& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::PingPong>>(PrepareAsyncPingPongSyncRaw(context, request, cq));
+    }
     virtual ::grpc::Status HeaderFirstSync(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders& request, ::xcoin::interchange::Headers* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::Headers>> AsyncHeaderFirstSync(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::Headers>>(AsyncHeaderFirstSyncRaw(context, request, cq));
@@ -581,6 +589,8 @@ class XNodeSync final {
     class async_interface {
      public:
       virtual ~async_interface() {}
+      virtual void PingPongSync(::grpc::ClientContext* context, const ::xcoin::interchange::PingPong* request, ::xcoin::interchange::PingPong* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void PingPongSync(::grpc::ClientContext* context, const ::xcoin::interchange::PingPong* request, ::xcoin::interchange::PingPong* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void HeaderFirstSync(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders* request, ::xcoin::interchange::Headers* response, std::function<void(::grpc::Status)>) = 0;
       virtual void HeaderFirstSync(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders* request, ::xcoin::interchange::Headers* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetBlock(::grpc::ClientContext* context, const ::xcoin::interchange::Header* request, ::xcoin::interchange::Block* response, std::function<void(::grpc::Status)>) = 0;
@@ -592,6 +602,8 @@ class XNodeSync final {
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::PingPong>* AsyncPingPongSyncRaw(::grpc::ClientContext* context, const ::xcoin::interchange::PingPong& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::PingPong>* PrepareAsyncPingPongSyncRaw(::grpc::ClientContext* context, const ::xcoin::interchange::PingPong& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::Headers>* AsyncHeaderFirstSyncRaw(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::Headers>* PrepareAsyncHeaderFirstSyncRaw(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::Block>* AsyncGetBlockRaw(::grpc::ClientContext* context, const ::xcoin::interchange::Header& request, ::grpc::CompletionQueue* cq) = 0;
@@ -602,6 +614,13 @@ class XNodeSync final {
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+    ::grpc::Status PingPongSync(::grpc::ClientContext* context, const ::xcoin::interchange::PingPong& request, ::xcoin::interchange::PingPong* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::PingPong>> AsyncPingPongSync(::grpc::ClientContext* context, const ::xcoin::interchange::PingPong& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::PingPong>>(AsyncPingPongSyncRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::PingPong>> PrepareAsyncPingPongSync(::grpc::ClientContext* context, const ::xcoin::interchange::PingPong& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::PingPong>>(PrepareAsyncPingPongSyncRaw(context, request, cq));
+    }
     ::grpc::Status HeaderFirstSync(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders& request, ::xcoin::interchange::Headers* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::Headers>> AsyncHeaderFirstSync(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::Headers>>(AsyncHeaderFirstSyncRaw(context, request, cq));
@@ -626,6 +645,8 @@ class XNodeSync final {
     class async final :
       public StubInterface::async_interface {
      public:
+      void PingPongSync(::grpc::ClientContext* context, const ::xcoin::interchange::PingPong* request, ::xcoin::interchange::PingPong* response, std::function<void(::grpc::Status)>) override;
+      void PingPongSync(::grpc::ClientContext* context, const ::xcoin::interchange::PingPong* request, ::xcoin::interchange::PingPong* response, ::grpc::ClientUnaryReactor* reactor) override;
       void HeaderFirstSync(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders* request, ::xcoin::interchange::Headers* response, std::function<void(::grpc::Status)>) override;
       void HeaderFirstSync(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders* request, ::xcoin::interchange::Headers* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetBlock(::grpc::ClientContext* context, const ::xcoin::interchange::Header* request, ::xcoin::interchange::Block* response, std::function<void(::grpc::Status)>) override;
@@ -643,12 +664,15 @@ class XNodeSync final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
+    ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::PingPong>* AsyncPingPongSyncRaw(::grpc::ClientContext* context, const ::xcoin::interchange::PingPong& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::PingPong>* PrepareAsyncPingPongSyncRaw(::grpc::ClientContext* context, const ::xcoin::interchange::PingPong& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::Headers>* AsyncHeaderFirstSyncRaw(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::Headers>* PrepareAsyncHeaderFirstSyncRaw(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::Block>* AsyncGetBlockRaw(::grpc::ClientContext* context, const ::xcoin::interchange::Header& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::Block>* PrepareAsyncGetBlockRaw(::grpc::ClientContext* context, const ::xcoin::interchange::Header& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::Blockchain>* AsyncGetBlockchainRaw(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::Blockchain>* PrepareAsyncGetBlockchainRaw(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_PingPongSync_;
     const ::grpc::internal::RpcMethod rpcmethod_HeaderFirstSync_;
     const ::grpc::internal::RpcMethod rpcmethod_GetBlock_;
     const ::grpc::internal::RpcMethod rpcmethod_GetBlockchain_;
@@ -659,9 +683,30 @@ class XNodeSync final {
    public:
     Service();
     virtual ~Service();
+    virtual ::grpc::Status PingPongSync(::grpc::ServerContext* context, const ::xcoin::interchange::PingPong* request, ::xcoin::interchange::PingPong* response);
     virtual ::grpc::Status HeaderFirstSync(::grpc::ServerContext* context, const ::xcoin::interchange::GetHeaders* request, ::xcoin::interchange::Headers* response);
     virtual ::grpc::Status GetBlock(::grpc::ServerContext* context, const ::xcoin::interchange::Header* request, ::xcoin::interchange::Block* response);
     virtual ::grpc::Status GetBlockchain(::grpc::ServerContext* context, const ::xcoin::interchange::DNSEntry* request, ::xcoin::interchange::Blockchain* response);
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_PingPongSync : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_PingPongSync() {
+      ::grpc::Service::MarkMethodAsync(0);
+    }
+    ~WithAsyncMethod_PingPongSync() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PingPongSync(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::PingPong* /*request*/, ::xcoin::interchange::PingPong* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPingPongSync(::grpc::ServerContext* context, ::xcoin::interchange::PingPong* request, ::grpc::ServerAsyncResponseWriter< ::xcoin::interchange::PingPong>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
   };
   template <class BaseClass>
   class WithAsyncMethod_HeaderFirstSync : public BaseClass {
@@ -669,7 +714,7 @@ class XNodeSync final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_HeaderFirstSync() {
-      ::grpc::Service::MarkMethodAsync(0);
+      ::grpc::Service::MarkMethodAsync(1);
     }
     ~WithAsyncMethod_HeaderFirstSync() override {
       BaseClassMustBeDerivedFromService(this);
@@ -680,7 +725,7 @@ class XNodeSync final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestHeaderFirstSync(::grpc::ServerContext* context, ::xcoin::interchange::GetHeaders* request, ::grpc::ServerAsyncResponseWriter< ::xcoin::interchange::Headers>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -689,7 +734,7 @@ class XNodeSync final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetBlock() {
-      ::grpc::Service::MarkMethodAsync(1);
+      ::grpc::Service::MarkMethodAsync(2);
     }
     ~WithAsyncMethod_GetBlock() override {
       BaseClassMustBeDerivedFromService(this);
@@ -700,7 +745,7 @@ class XNodeSync final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetBlock(::grpc::ServerContext* context, ::xcoin::interchange::Header* request, ::grpc::ServerAsyncResponseWriter< ::xcoin::interchange::Block>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -709,7 +754,7 @@ class XNodeSync final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetBlockchain() {
-      ::grpc::Service::MarkMethodAsync(2);
+      ::grpc::Service::MarkMethodAsync(3);
     }
     ~WithAsyncMethod_GetBlockchain() override {
       BaseClassMustBeDerivedFromService(this);
@@ -720,23 +765,50 @@ class XNodeSync final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetBlockchain(::grpc::ServerContext* context, ::xcoin::interchange::DNSEntry* request, ::grpc::ServerAsyncResponseWriter< ::xcoin::interchange::Blockchain>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_HeaderFirstSync<WithAsyncMethod_GetBlock<WithAsyncMethod_GetBlockchain<Service > > > AsyncService;
+  typedef WithAsyncMethod_PingPongSync<WithAsyncMethod_HeaderFirstSync<WithAsyncMethod_GetBlock<WithAsyncMethod_GetBlockchain<Service > > > > AsyncService;
+  template <class BaseClass>
+  class WithCallbackMethod_PingPongSync : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_PingPongSync() {
+      ::grpc::Service::MarkMethodCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::xcoin::interchange::PingPong, ::xcoin::interchange::PingPong>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::xcoin::interchange::PingPong* request, ::xcoin::interchange::PingPong* response) { return this->PingPongSync(context, request, response); }));}
+    void SetMessageAllocatorFor_PingPongSync(
+        ::grpc::MessageAllocator< ::xcoin::interchange::PingPong, ::xcoin::interchange::PingPong>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::xcoin::interchange::PingPong, ::xcoin::interchange::PingPong>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_PingPongSync() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PingPongSync(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::PingPong* /*request*/, ::xcoin::interchange::PingPong* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* PingPongSync(
+      ::grpc::CallbackServerContext* /*context*/, const ::xcoin::interchange::PingPong* /*request*/, ::xcoin::interchange::PingPong* /*response*/)  { return nullptr; }
+  };
   template <class BaseClass>
   class WithCallbackMethod_HeaderFirstSync : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_HeaderFirstSync() {
-      ::grpc::Service::MarkMethodCallback(0,
+      ::grpc::Service::MarkMethodCallback(1,
           new ::grpc::internal::CallbackUnaryHandler< ::xcoin::interchange::GetHeaders, ::xcoin::interchange::Headers>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::xcoin::interchange::GetHeaders* request, ::xcoin::interchange::Headers* response) { return this->HeaderFirstSync(context, request, response); }));}
     void SetMessageAllocatorFor_HeaderFirstSync(
         ::grpc::MessageAllocator< ::xcoin::interchange::GetHeaders, ::xcoin::interchange::Headers>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::xcoin::interchange::GetHeaders, ::xcoin::interchange::Headers>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -757,13 +829,13 @@ class XNodeSync final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetBlock() {
-      ::grpc::Service::MarkMethodCallback(1,
+      ::grpc::Service::MarkMethodCallback(2,
           new ::grpc::internal::CallbackUnaryHandler< ::xcoin::interchange::Header, ::xcoin::interchange::Block>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::xcoin::interchange::Header* request, ::xcoin::interchange::Block* response) { return this->GetBlock(context, request, response); }));}
     void SetMessageAllocatorFor_GetBlock(
         ::grpc::MessageAllocator< ::xcoin::interchange::Header, ::xcoin::interchange::Block>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::xcoin::interchange::Header, ::xcoin::interchange::Block>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -784,13 +856,13 @@ class XNodeSync final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetBlockchain() {
-      ::grpc::Service::MarkMethodCallback(2,
+      ::grpc::Service::MarkMethodCallback(3,
           new ::grpc::internal::CallbackUnaryHandler< ::xcoin::interchange::DNSEntry, ::xcoin::interchange::Blockchain>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::xcoin::interchange::DNSEntry* request, ::xcoin::interchange::Blockchain* response) { return this->GetBlockchain(context, request, response); }));}
     void SetMessageAllocatorFor_GetBlockchain(
         ::grpc::MessageAllocator< ::xcoin::interchange::DNSEntry, ::xcoin::interchange::Blockchain>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::xcoin::interchange::DNSEntry, ::xcoin::interchange::Blockchain>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -805,15 +877,32 @@ class XNodeSync final {
     virtual ::grpc::ServerUnaryReactor* GetBlockchain(
       ::grpc::CallbackServerContext* /*context*/, const ::xcoin::interchange::DNSEntry* /*request*/, ::xcoin::interchange::Blockchain* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_HeaderFirstSync<WithCallbackMethod_GetBlock<WithCallbackMethod_GetBlockchain<Service > > > CallbackService;
+  typedef WithCallbackMethod_PingPongSync<WithCallbackMethod_HeaderFirstSync<WithCallbackMethod_GetBlock<WithCallbackMethod_GetBlockchain<Service > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
+  template <class BaseClass>
+  class WithGenericMethod_PingPongSync : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_PingPongSync() {
+      ::grpc::Service::MarkMethodGeneric(0);
+    }
+    ~WithGenericMethod_PingPongSync() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PingPongSync(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::PingPong* /*request*/, ::xcoin::interchange::PingPong* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
   template <class BaseClass>
   class WithGenericMethod_HeaderFirstSync : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_HeaderFirstSync() {
-      ::grpc::Service::MarkMethodGeneric(0);
+      ::grpc::Service::MarkMethodGeneric(1);
     }
     ~WithGenericMethod_HeaderFirstSync() override {
       BaseClassMustBeDerivedFromService(this);
@@ -830,7 +919,7 @@ class XNodeSync final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetBlock() {
-      ::grpc::Service::MarkMethodGeneric(1);
+      ::grpc::Service::MarkMethodGeneric(2);
     }
     ~WithGenericMethod_GetBlock() override {
       BaseClassMustBeDerivedFromService(this);
@@ -847,7 +936,7 @@ class XNodeSync final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetBlockchain() {
-      ::grpc::Service::MarkMethodGeneric(2);
+      ::grpc::Service::MarkMethodGeneric(3);
     }
     ~WithGenericMethod_GetBlockchain() override {
       BaseClassMustBeDerivedFromService(this);
@@ -859,12 +948,32 @@ class XNodeSync final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_PingPongSync : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_PingPongSync() {
+      ::grpc::Service::MarkMethodRaw(0);
+    }
+    ~WithRawMethod_PingPongSync() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PingPongSync(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::PingPong* /*request*/, ::xcoin::interchange::PingPong* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPingPongSync(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_HeaderFirstSync : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_HeaderFirstSync() {
-      ::grpc::Service::MarkMethodRaw(0);
+      ::grpc::Service::MarkMethodRaw(1);
     }
     ~WithRawMethod_HeaderFirstSync() override {
       BaseClassMustBeDerivedFromService(this);
@@ -875,7 +984,7 @@ class XNodeSync final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestHeaderFirstSync(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -884,7 +993,7 @@ class XNodeSync final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetBlock() {
-      ::grpc::Service::MarkMethodRaw(1);
+      ::grpc::Service::MarkMethodRaw(2);
     }
     ~WithRawMethod_GetBlock() override {
       BaseClassMustBeDerivedFromService(this);
@@ -895,7 +1004,7 @@ class XNodeSync final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetBlock(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -904,7 +1013,7 @@ class XNodeSync final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetBlockchain() {
-      ::grpc::Service::MarkMethodRaw(2);
+      ::grpc::Service::MarkMethodRaw(3);
     }
     ~WithRawMethod_GetBlockchain() override {
       BaseClassMustBeDerivedFromService(this);
@@ -915,8 +1024,30 @@ class XNodeSync final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetBlockchain(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_PingPongSync : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_PingPongSync() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->PingPongSync(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_PingPongSync() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status PingPongSync(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::PingPong* /*request*/, ::xcoin::interchange::PingPong* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* PingPongSync(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithRawCallbackMethod_HeaderFirstSync : public BaseClass {
@@ -924,7 +1055,7 @@ class XNodeSync final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_HeaderFirstSync() {
-      ::grpc::Service::MarkMethodRawCallback(0,
+      ::grpc::Service::MarkMethodRawCallback(1,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->HeaderFirstSync(context, request, response); }));
@@ -946,7 +1077,7 @@ class XNodeSync final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetBlock() {
-      ::grpc::Service::MarkMethodRawCallback(1,
+      ::grpc::Service::MarkMethodRawCallback(2,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetBlock(context, request, response); }));
@@ -968,7 +1099,7 @@ class XNodeSync final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetBlockchain() {
-      ::grpc::Service::MarkMethodRawCallback(2,
+      ::grpc::Service::MarkMethodRawCallback(3,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetBlockchain(context, request, response); }));
@@ -985,12 +1116,39 @@ class XNodeSync final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_PingPongSync : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_PingPongSync() {
+      ::grpc::Service::MarkMethodStreamed(0,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::xcoin::interchange::PingPong, ::xcoin::interchange::PingPong>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::xcoin::interchange::PingPong, ::xcoin::interchange::PingPong>* streamer) {
+                       return this->StreamedPingPongSync(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_PingPongSync() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status PingPongSync(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::PingPong* /*request*/, ::xcoin::interchange::PingPong* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedPingPongSync(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::xcoin::interchange::PingPong,::xcoin::interchange::PingPong>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_HeaderFirstSync : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_HeaderFirstSync() {
-      ::grpc::Service::MarkMethodStreamed(0,
+      ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
           ::xcoin::interchange::GetHeaders, ::xcoin::interchange::Headers>(
             [this](::grpc::ServerContext* context,
@@ -1017,7 +1175,7 @@ class XNodeSync final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetBlock() {
-      ::grpc::Service::MarkMethodStreamed(1,
+      ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
           ::xcoin::interchange::Header, ::xcoin::interchange::Block>(
             [this](::grpc::ServerContext* context,
@@ -1044,7 +1202,7 @@ class XNodeSync final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetBlockchain() {
-      ::grpc::Service::MarkMethodStreamed(2,
+      ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
           ::xcoin::interchange::DNSEntry, ::xcoin::interchange::Blockchain>(
             [this](::grpc::ServerContext* context,
@@ -1065,10 +1223,11 @@ class XNodeSync final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetBlockchain(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::xcoin::interchange::DNSEntry,::xcoin::interchange::Blockchain>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_HeaderFirstSync<WithStreamedUnaryMethod_GetBlock<WithStreamedUnaryMethod_GetBlockchain<Service > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_PingPongSync<WithStreamedUnaryMethod_HeaderFirstSync<WithStreamedUnaryMethod_GetBlock<WithStreamedUnaryMethod_GetBlockchain<Service > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_HeaderFirstSync<WithStreamedUnaryMethod_GetBlock<WithStreamedUnaryMethod_GetBlockchain<Service > > > StreamedService;
+  typedef WithStreamedUnaryMethod_PingPongSync<WithStreamedUnaryMethod_HeaderFirstSync<WithStreamedUnaryMethod_GetBlock<WithStreamedUnaryMethod_GetBlockchain<Service > > > > StreamedService;
 };
+// Service responsible for blockchain and transactions synchronisation
 
 }  // namespace interchange
 }  // namespace xcoin

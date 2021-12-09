@@ -136,6 +136,12 @@ XNode::Node::NotifyPeerChange(::grpc::ServerContext *context, const ::xcoin::int
     return ::grpc::Status::OK;
 }
 
+::grpc::Status XNode::Node::PingPongSync(::grpc::ServerContext *context, const ::xcoin::interchange::PingPong *request,
+                                         ::xcoin::interchange::PingPong *response) {
+    response->set_height(this->blockchain.length);
+    return ::grpc::Status::OK;
+}
+
 /**
 * Callback function executed by gRPC to process incoming header sync requests from peers
 * Handles new peer data and sends back to confirm
@@ -144,8 +150,15 @@ XNode::Node::NotifyPeerChange(::grpc::ServerContext *context, const ::xcoin::int
 XNode::Node::HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::interchange::GetHeaders *request,
                              ::xcoin::interchange::Headers *response) {
     spdlog::debug("Header first sync requested by " + context->peer());
+    std::vector<std::string> localHashes = this->blockchain.toHeaderHashes();
+    std::reverse(localHashes.begin(), localHashes.end());
+    auto remoteHashes = request->blockheaderhashes();
     if (request->stophash() == "0"){
-
+        for (const std::string& hash : localHashes){
+            if (std::count(remoteHashes.begin(), remoteHashes.end(), hash) == 0){
+                xcoin::interchange::Header *header = response->add_headers();
+            }
+        }
     }
     for (int i = 1; i < request->blockheaderhashes_size(); i++)
         if (request->blockheaderhashes(i) != this->blockchain.toBlocks()[i].headerHash) {
@@ -233,6 +246,29 @@ bool XNode::Node::AttemptPeerConnection(const std::string &peerAddress) {
 }
 
 /**
+* Small sync utility to detect early on that two nodes are synced without exchanging header lists
+* Blockchain height and last hash are compared with peer node
+* @param peerAddress is an ipv4 or ipv6 address of the node to ping pong sync with
+* @returns a corresponding status depending on the differences in height and last hash
+*/
+XNode::Node::PingPongStatus XNode::Node::AttemptPingPongSync(const std::string &peerAddress) {
+    ::grpc::ClientContext pingPongContext;
+    xcoin::interchange::PingPong pingPongRequest;
+    xcoin::interchange::PingPong pingPongReply;
+    pingPongRequest.set_height(this->blockchain.length);
+    pingPongRequest.set_lasthash(this->blockchain.getLatestBlock().headerHash);
+    ::grpc::Status pingPongStatus = this->peers[peerAddress].syncStub->PingPongSync(&pingPongContext, pingPongRequest, &pingPongReply);
+    if (pingPongStatus.ok()){
+        if (pingPongReply.height() == pingPongRequest.height()){
+            if (pingPongReply.lasthash() == pingPongRequest.lasthash())
+                return XNode::Node::PingPongStatus::Synced;
+            else return XNode::Node::PingPongStatus::HashDiff;
+        }else return XNode::Node::PingPongStatus::HeightDiff;
+    }
+    return XNode::Node::PingPongStatus::ConnErr;
+}
+
+/**
 * Function called to initiate blockchain sync with a peer, using header first method
 * Block headers are divided into batches and compared with the peer's remote branch
 * @param peerAddress is an ipv4 or ipv6 address of the node to sync headers with
@@ -240,6 +276,8 @@ bool XNode::Node::AttemptPeerConnection(const std::string &peerAddress) {
 */
 bool XNode::Node::AttemptHeaderSync(const std::string &peerAddress) {
     spdlog::debug("Will attempt to sync headers with " + peerAddress);
+    if (AttemptPingPongSync(peerAddress))
+        return true;
     std::vector<Block> blockVector = this->blockchain.toBlocks();
     std::reverse(blockVector.begin(), blockVector.end());
     for (size_t i = 0; i < blockVector.size(); i += 200){

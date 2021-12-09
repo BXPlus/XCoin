@@ -46,7 +46,7 @@ struct TableStruct_blockchain_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[9]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[10]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -79,6 +79,9 @@ extern HeadersDefaultTypeInternal _Headers_default_instance_;
 class PingHandshake;
 struct PingHandshakeDefaultTypeInternal;
 extern PingHandshakeDefaultTypeInternal _PingHandshake_default_instance_;
+class PingPong;
+struct PingPongDefaultTypeInternal;
+extern PingPongDefaultTypeInternal _PingPong_default_instance_;
 class XNodeMessage;
 struct XNodeMessageDefaultTypeInternal;
 extern XNodeMessageDefaultTypeInternal _XNodeMessage_default_instance_;
@@ -93,6 +96,7 @@ template<> ::xcoin::interchange::GetHeaders* Arena::CreateMaybeMessage<::xcoin::
 template<> ::xcoin::interchange::Header* Arena::CreateMaybeMessage<::xcoin::interchange::Header>(Arena*);
 template<> ::xcoin::interchange::Headers* Arena::CreateMaybeMessage<::xcoin::interchange::Headers>(Arena*);
 template<> ::xcoin::interchange::PingHandshake* Arena::CreateMaybeMessage<::xcoin::interchange::PingHandshake>(Arena*);
+template<> ::xcoin::interchange::PingPong* Arena::CreateMaybeMessage<::xcoin::interchange::PingPong>(Arena*);
 template<> ::xcoin::interchange::XNodeMessage* Arena::CreateMaybeMessage<::xcoin::interchange::XNodeMessage>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace xcoin {
@@ -1868,6 +1872,165 @@ class DNSHandshake final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_blockchain_2eproto;
 };
+// -------------------------------------------------------------------
+
+class PingPong final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:xcoin.interchange.PingPong) */ {
+ public:
+  inline PingPong() : PingPong(nullptr) {}
+  ~PingPong() override;
+  explicit constexpr PingPong(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  PingPong(const PingPong& from);
+  PingPong(PingPong&& from) noexcept
+    : PingPong() {
+    *this = ::std::move(from);
+  }
+
+  inline PingPong& operator=(const PingPong& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PingPong& operator=(PingPong&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const PingPong& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const PingPong* internal_default_instance() {
+    return reinterpret_cast<const PingPong*>(
+               &_PingPong_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(PingPong& a, PingPong& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PingPong* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PingPong* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline PingPong* New() const final {
+    return new PingPong();
+  }
+
+  PingPong* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<PingPong>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const PingPong& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const PingPong& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(PingPong* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "xcoin.interchange.PingPong";
+  }
+  protected:
+  explicit PingPong(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLastHashFieldNumber = 2,
+    kHeightFieldNumber = 1,
+  };
+  // string lastHash = 2;
+  void clear_lasthash();
+  const std::string& lasthash() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_lasthash(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_lasthash();
+  PROTOBUF_MUST_USE_RESULT std::string* release_lasthash();
+  void set_allocated_lasthash(std::string* lasthash);
+  private:
+  const std::string& _internal_lasthash() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_lasthash(const std::string& value);
+  std::string* _internal_mutable_lasthash();
+  public:
+
+  // uint32 height = 1;
+  void clear_height();
+  ::PROTOBUF_NAMESPACE_ID::uint32 height() const;
+  void set_height(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_height() const;
+  void _internal_set_height(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:xcoin.interchange.PingPong)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr lasthash_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 height_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_blockchain_2eproto;
+};
 // ===================================================================
 
 
@@ -3397,9 +3560,81 @@ DNSHandshake::entries() const {
   return entries_;
 }
 
+// -------------------------------------------------------------------
+
+// PingPong
+
+// uint32 height = 1;
+inline void PingPong::clear_height() {
+  height_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 PingPong::_internal_height() const {
+  return height_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 PingPong::height() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.PingPong.height)
+  return _internal_height();
+}
+inline void PingPong::_internal_set_height(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  height_ = value;
+}
+inline void PingPong::set_height(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_height(value);
+  // @@protoc_insertion_point(field_set:xcoin.interchange.PingPong.height)
+}
+
+// string lastHash = 2;
+inline void PingPong::clear_lasthash() {
+  lasthash_.ClearToEmpty();
+}
+inline const std::string& PingPong::lasthash() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.PingPong.lastHash)
+  return _internal_lasthash();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PingPong::set_lasthash(ArgT0&& arg0, ArgT... args) {
+ 
+ lasthash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:xcoin.interchange.PingPong.lastHash)
+}
+inline std::string* PingPong::mutable_lasthash() {
+  std::string* _s = _internal_mutable_lasthash();
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.PingPong.lastHash)
+  return _s;
+}
+inline const std::string& PingPong::_internal_lasthash() const {
+  return lasthash_.Get();
+}
+inline void PingPong::_internal_set_lasthash(const std::string& value) {
+  
+  lasthash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* PingPong::_internal_mutable_lasthash() {
+  
+  return lasthash_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* PingPong::release_lasthash() {
+  // @@protoc_insertion_point(field_release:xcoin.interchange.PingPong.lastHash)
+  return lasthash_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void PingPong::set_allocated_lasthash(std::string* lasthash) {
+  if (lasthash != nullptr) {
+    
+  } else {
+    
+  }
+  lasthash_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), lasthash,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.PingPong.lastHash)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
