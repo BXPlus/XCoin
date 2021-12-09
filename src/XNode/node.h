@@ -58,7 +58,7 @@ namespace XNode{
         ::grpc::Status GetBlockchain(::grpc::ServerContext *context, const ::xcoin::interchange::DNSEntry *request, ::xcoin::interchange::Blockchain *response) override;
         bool AttemptPeerConnection(const std::string& peerAddress);
         PingPongStatus AttemptPingPongSync(const std::string& peerAddress);
-        bool AttemptHeaderSync(const std::string& peerAddress);
+        bool AttemptBlockchainSync(const std::string& peerAddress);
         bool handleIncomingPeerData(const xcoin::interchange::DNSEntry &remotePeer);
         void saveDataOnDisk();
         void loadDataFromDisk();

@@ -5,7 +5,6 @@
 
 XNode::Node::Node() {
     this->blockchain = Blockchain();
-    blockchain.appendBlock(blockchain.generateNextBlock("test block",0,0,"abcd"));
     this->peers = std::map<std::string, XNode::XNodeClient>();
 }
 
@@ -234,7 +233,7 @@ bool XNode::Node::AttemptPeerConnection(const std::string &peerAddress) {
             spdlog::info("Successfully synced DNS peers with " + peerAddress);
             saveDataOnDisk();
             sdkInstance->onPeerListChanged();
-            if(AttemptHeaderSync(peerAddress))
+            if(AttemptBlockchainSync(peerAddress))
                 sdkInstance->onStatusChanged(XNodeSDK::XNodeStatus::Ready);
             return true;
         } else spdlog::warn("DNS peer sync with " + peerAddress + " failed");
@@ -269,15 +268,21 @@ XNode::Node::PingPongStatus XNode::Node::AttemptPingPongSync(const std::string &
 }
 
 /**
-* Function called to initiate blockchain sync with a peer, using header first method
+* Function called to initiate blockchain sync with a peer, using ping pong method
 * Block headers are divided into batches and compared with the peer's remote branch
 * @param peerAddress is an ipv4 or ipv6 address of the node to sync headers with
 * @returns true if the blockchain could be resolved on both ends
 */
-bool XNode::Node::AttemptHeaderSync(const std::string &peerAddress) {
+bool XNode::Node::AttemptBlockchainSync(const std::string &peerAddress) {
     spdlog::debug("Will attempt to sync headers with " + peerAddress);
-    if (AttemptPingPongSync(peerAddress))
-        return true;
+    switch (AttemptPingPongSync(peerAddress)) {
+        case Synced: return true;
+        case ConnErr: return false;
+        case HashDiff:
+            break;
+        case HeightDiff:
+            break;
+    }
     std::vector<Block> blockVector = this->blockchain.toBlocks();
     std::reverse(blockVector.begin(), blockVector.end());
     for (size_t i = 0; i < blockVector.size(); i += 200){
