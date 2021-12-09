@@ -12,12 +12,12 @@ EQ            = =
 
 ####### Compiler, tools and options
 
-CC            = /Library/Developer/CommandLineTools/usr/bin/clang
-CXX           = /Library/Developer/CommandLineTools/usr/bin/clang++
+CC            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
+CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 DEFINES       = -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
-CFLAGS        = -pipe -g $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mmacosx-version-min=10.14 -Wall -Wextra -fPIC $(DEFINES)
-CXXFLAGS      = -pipe -stdlib=libc++ -g -std=gnu++1z $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mmacosx-version-min=10.14 -Wall -Wextra -fPIC $(DEFINES)
-INCPATH       = -I../ui -I. -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/AGL.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/macx-clang -F/Users/alexandremisrahi/Qt/6.2.2/macos/lib
+CFLAGS        = -pipe -g $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk -mmacosx-version-min=10.14 -Wall -Wextra -fPIC $(DEFINES)
+CXXFLAGS      = -pipe -stdlib=libc++ -g -std=gnu++1z $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk -mmacosx-version-min=10.14 -Wall -Wextra -fPIC $(DEFINES)
+INCPATH       = -I../ui -I. -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/System/Library/Frameworks/AGL.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/macx-clang -F/Users/alexandremisrahi/Qt/6.2.2/macos/lib
 QMAKE         = /Users/alexandremisrahi/Qt/6.2.2/macos/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -37,12 +37,12 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = ui1.0.0
-DISTDIR = /Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/build-ui-Desktop_Qt_5_12_5_clang_64bit-Debug/.tmp/ui1.0.0
-LINK          = /Library/Developer/CommandLineTools/usr/bin/clang++
-LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mmacosx-version-min=10.14 -Wl,-rpath,@executable_path/../Frameworks -Wl,-rpath,/Users/alexandremisrahi/Qt/6.2.2/macos/lib
+DISTDIR = /Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/build-ui-Qt_6_2_2_for_macOS-Debug/.tmp/ui1.0.0
+LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
+LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk -mmacosx-version-min=10.14 -Wl,-rpath,@executable_path/../Frameworks -Wl,-rpath,/Users/alexandremisrahi/Qt/6.2.2/macos/lib
 LIBS          = $(SUBLIBS) -F/Users/alexandremisrahi/Qt/6.2.2/macos/lib -framework QtWidgets -framework QtGui -framework AppKit -framework ImageIO -framework Metal -framework QtCore -framework DiskArbitration -framework IOKit -framework AGL -framework OpenGL   
-AR            = /Library/Developer/CommandLineTools/usr/bin/ar cq
-RANLIB        = /Library/Developer/CommandLineTools/usr/bin/ranlib -s
+AR            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar cq
+RANLIB        = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib -s
 SED           = sed
 STRIP         = strip
 
@@ -302,7 +302,6 @@ DIST          = ../ui/Montserrat-Bold.ttf \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/features/qt_config.prf \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/macx-clang/qmake.conf \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/features/spec_post.prf \
-		../ui/.qmake.stash \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/features/exclusive_builds.prf \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/features/mac/sdk.prf \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/features/toolchain.prf \
@@ -351,9 +350,9 @@ TARGET        = ui.app/Contents/MacOS/ui
 
 ####### Custom Variables
 EXPORT_QMAKE_MAC_SDK = macosx
-EXPORT_QMAKE_MAC_SDK_VERSION = 11.1
-EXPORT_QMAKE_XCODE_DEVELOPER_PATH = /Library/Developer/CommandLineTools
-EXPORT__QMAKE_STASH_ = /Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/build-ui-Desktop_Qt_5_12_5_clang_64bit-Debug/.qmake.stash
+EXPORT_QMAKE_MAC_SDK_VERSION = 12.0
+EXPORT_QMAKE_XCODE_DEVELOPER_PATH = /Applications/Xcode.app/Contents/Developer
+EXPORT__QMAKE_STASH_ = 
 EXPORT_VALID_ARCHS = x86_64 arm64
 EXPORT_DEFAULT_ARCHS = x86_64
 EXPORT_ARCHS = $(filter $(EXPORT_VALID_ARCHS), $(if $(ARCHS), $(ARCHS), $(if $(EXPORT_DEFAULT_ARCHS), $(EXPORT_DEFAULT_ARCHS), $(EXPORT_VALID_ARCHS))))
@@ -590,7 +589,6 @@ Makefile: ../ui/ui.pro /Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/macx-clang
 		/Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/features/qt_config.prf \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/macx-clang/qmake.conf \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/features/exclusive_builds.prf \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/features/mac/sdk.prf \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/features/toolchain.prf \
@@ -845,7 +843,6 @@ Makefile: ../ui/ui.pro /Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/macx-clang
 /Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/features/qt_config.prf:
 /Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/macx-clang/qmake.conf:
 /Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/features/spec_post.prf:
-.qmake.stash:
 /Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/features/exclusive_builds.prf:
 /Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/features/mac/sdk.prf:
 /Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/features/toolchain.prf:
@@ -919,7 +916,6 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r ui.app
-	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -955,7 +951,7 @@ moc_contactswidget.cpp: ../ui/contactswidget.h \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QDialog \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/qdialog.h \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/libexec/moc
-	/Users/alexandremisrahi/Qt/6.2.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=12 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/ui -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/alexandremisrahi/Qt/6.2.2/macos/lib ../ui/contactswidget.h -o moc_contactswidget.cpp
+	/Users/alexandremisrahi/Qt/6.2.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=13 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/ui -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/alexandremisrahi/Qt/6.2.2/macos/lib ../ui/contactswidget.h -o moc_contactswidget.cpp
 
 moc_homewidget.cpp: ../ui/homewidget.h \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QWidget \
@@ -967,7 +963,7 @@ moc_homewidget.cpp: ../ui/homewidget.h \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QGridLayout \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/qgridlayout.h \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/libexec/moc
-	/Users/alexandremisrahi/Qt/6.2.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=12 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/ui -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/alexandremisrahi/Qt/6.2.2/macos/lib ../ui/homewidget.h -o moc_homewidget.cpp
+	/Users/alexandremisrahi/Qt/6.2.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=13 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/ui -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/alexandremisrahi/Qt/6.2.2/macos/lib ../ui/homewidget.h -o moc_homewidget.cpp
 
 moc_logindialog.cpp: ../ui/logindialog.h \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QDialog \
@@ -981,7 +977,7 @@ moc_logindialog.cpp: ../ui/logindialog.h \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QLineEdit \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/qlineedit.h \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/libexec/moc
-	/Users/alexandremisrahi/Qt/6.2.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=12 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/ui -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/alexandremisrahi/Qt/6.2.2/macos/lib ../ui/logindialog.h -o moc_logindialog.cpp
+	/Users/alexandremisrahi/Qt/6.2.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=13 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/ui -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/alexandremisrahi/Qt/6.2.2/macos/lib ../ui/logindialog.h -o moc_logindialog.cpp
 
 moc_mainwindow.cpp: ../ui/mainwindow.h \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QMainWindow \
@@ -1020,7 +1016,7 @@ moc_mainwindow.cpp: ../ui/mainwindow.h \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QComboBox \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/qcombobox.h \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/libexec/moc
-	/Users/alexandremisrahi/Qt/6.2.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=12 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/ui -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/alexandremisrahi/Qt/6.2.2/macos/lib ../ui/mainwindow.h -o moc_mainwindow.cpp
+	/Users/alexandremisrahi/Qt/6.2.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=13 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/ui -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/alexandremisrahi/Qt/6.2.2/macos/lib ../ui/mainwindow.h -o moc_mainwindow.cpp
 
 moc_settingswidget.cpp: ../ui/settingswidget.h \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QMainWindow \
@@ -1059,11 +1055,11 @@ moc_settingswidget.cpp: ../ui/settingswidget.h \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/qcombobox.h \
 		../ui/togglebtn.h \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/libexec/moc
-	/Users/alexandremisrahi/Qt/6.2.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=12 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/ui -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/alexandremisrahi/Qt/6.2.2/macos/lib ../ui/settingswidget.h -o moc_settingswidget.cpp
+	/Users/alexandremisrahi/Qt/6.2.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=13 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/ui -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/alexandremisrahi/Qt/6.2.2/macos/lib ../ui/settingswidget.h -o moc_settingswidget.cpp
 
 moc_togglebtn.cpp: ../ui/togglebtn.h \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/libexec/moc
-	/Users/alexandremisrahi/Qt/6.2.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=12 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/ui -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/alexandremisrahi/Qt/6.2.2/macos/lib ../ui/togglebtn.h -o moc_togglebtn.cpp
+	/Users/alexandremisrahi/Qt/6.2.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=13 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/alexandremisrahi/Qt/6.2.2/macos/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/ui -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/alexandremisrahi/Qt/6.2.2/macos/lib ../ui/togglebtn.h -o moc_togglebtn.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1152,7 +1148,6 @@ logindialog.o: ../ui/logindialog.cpp ../ui/logindialog.h \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/qlabel.h \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QLineEdit \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/qlineedit.h \
-		ui_logindialog.h \
 		../ui/mainwindow.h \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/alexandremisrahi/Qt/6.2.2/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
