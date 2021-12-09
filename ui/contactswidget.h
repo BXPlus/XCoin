@@ -7,6 +7,7 @@
 #include <QScrollArea>
 #include <QPushButton>
 #include <QDialog>
+#include <QMap>
 
 namespace Ui {
 class ContactsWidget;

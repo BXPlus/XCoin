@@ -46,7 +46,7 @@ private slots:
     void go_page(int);
 protected:
     void closeEvent(QCloseEvent * event);
-//    void on_pushButton_clicked();
+    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;
