@@ -7,6 +7,7 @@
 #include <stdexcept>
 #include "../XNode/keys.h"
 #include <regex>
+#include <map>
 
 #define fi first
 #define se second
@@ -20,12 +21,12 @@ TxOut::TxOut(std::string address, int amount) {
 
 std::string Transaction::getTransactionId() {
     std::stringstream txInsContent;
-    for (int i = 0; i < int(txIns.size()); i++) {
+    for(int i = 0; i < int(txIns.size()); i++) {
         TxIn element = txIns[i];
         txInsContent << element.txOutId << element.txOutIndex;
     }
     std::stringstream txOutsContent;
-    for (int i = 0; i < int(txOuts.size()); i++) {
+    for(int i = 0; i < int(txOuts.size()); i++) {
         TxOut element = txOuts[i];
         txOutsContent << element.address << element.amount;
     }
@@ -33,18 +34,19 @@ std::string Transaction::getTransactionId() {
 }
 
 std::pair<bool, UnspentTxOut> findUnspentTxOut(std::string transactionId, int index, std::vector<UnspentTxOut>& aUnspentTxOuts) {
-    for (int id = 0; id < int(aUnspentTxOuts.size()); id++) {
+    for(int id = 0; id < int(aUnspentTxOuts.size()); id++) {
         if (aUnspentTxOuts[id].txOutId == transactionId && aUnspentTxOuts[id].txOutIndex == index)
             return std::make_pair(1, aUnspentTxOuts[id]);
     }
     return std::make_pair(0, UnspentTxOut("", 0, "", 0));
 }
 
-std::string getPublicKey(std::string aPrivateKey) {
- return "";//keyFromPrivate(aPrivateKey).getPublic();
+std::string getPublicKey(std::string aPrivateKey)
+{
+        return keyFromPrivate(aPrivateKey).getPub();
 }
 
-std::string Transaction::signTxIn(int txInIndex, std::string privateKey, std::vector<UnspentTxOut> aUnspentTxOuts) {
+std::pair<uint8_t*, uint32_t> Transaction::signTxIn(int txInIndex, std::string privateKey, std::vector<UnspentTxOut> aUnspentTxOuts) {
     TxIn txIn = txIns[txInIndex];
     std::string dataToSign = id;
     std::pair<bool, UnspentTxOut> tmp = findUnspentTxOut(txIn.txOutId, txIn.txOutIndex, aUnspentTxOuts);
@@ -57,8 +59,8 @@ std::string Transaction::signTxIn(int txInIndex, std::string privateKey, std::ve
         throw std::invalid_argument("trying to sign an input with private key that does not match the address that is referenced in txIn\n");
     }
 
-    Keys key = Keys();//keyFromPrivate(privateKey);
-    std::string signature = "";//toHexString(key.sign(dataToSign).toDER()); //TODO: Add ToHexString
+
+    std::pair<uint8_t*, uint32_t> signature = sign(privateKey, dataToSign);
     return signature;
 
 }
@@ -98,12 +100,22 @@ std::vector<UnspentTxOut> updateUnspentTxOuts(std::vector<Transaction> aTransact
     return newUnspentTxOuts;
 }
 
+std::vector<UnspentTxOut> processTransactions(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts, int blockIndex) {
+    if (!validateBlockTransactions(aTransactions, aUnspentTxOuts, blockIndex)) {
+        std::cout << "invalid block transactions";
+        return std::vector<UnspentTxOut>();
+    }
+    return updateUnspentTxOuts(aTransactions, aUnspentTxOuts);
+}
+
 bool isValidTxInStructure(TxIn txIn) {
     if ((&txIn) == nullptr) {
         std::cout << "txIn is null";
         return false;
     }
-    else if (typeid(txIn.signature) != typeid("string")) {
+    else if ((typeid(txIn.signature) != typeid(std::pair<uint8_t*, uint32_t>)) &&
+            (typeid(txIn.signature.first) != typeid(uint8_t*)) &&
+            (typeid(txIn.signature.second) !=typeid(uint32_t))) {
         std::cout << "invalid signature type in txIn";
         return false;
     }
@@ -125,7 +137,7 @@ bool isValidTxInStructure(TxOut txIn) {
         return false;
     }
     else if (typeid(txIn.address) != typeid("string")) {
-        std::cout << "invalid signature type in txIn";
+        std::cout << "invalid address type in txIn";
         return false;
     }
     else if (!isValidAddress(txIn.address)) {
@@ -229,14 +241,57 @@ bool validateTxIn(TxIn txIn, std::string id, std::vector<UnspentTxOut> aUnspentT
     UnspentTxOut referencedUTxOut = tmp.second;
     std::string address = referencedUTxOut.address;
 
-    Keys key = keyFromPublic(address);
-    bool validSignature = 0;//key.verify(id, txIn.signature);
+
+    bool validSignature = verify(txIn.signature, address, id);
     if (!validSignature) {
-        std::cout << "invalid txIn signature: " << txIn.signature << " txId: " << id << " address: " << address << "\n";
+        std::cout << "invalid txIn signature: " << txIn.signature.first << " txId: " << id << " address: " << address << "\n";
         return false;
     }
     return true;
 }
+
+bool hasDuplicates(std::vector<TxIn> txIns) {
+    std::map<std::string, int> groups;
+    int n = int(txIns.size());
+    for (int i = 0; i < n; i++) {
+        std::string elem = txIns[i].txOutId + std::to_string(txIns[i].txOutIndex);
+        if (groups.count(elem))
+            return 1;
+        groups[elem] += 1;
+    }
+    return 0;
+}
+/* //TODO: solve the problem with 'used'
+bool validateBlockTransactions(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts, int blockIndex) {
+    Transaction coinbaseTx = aTransactions[0];
+    if (!coinbaseTx.validateCoinbaseTx(blockIndex)) {
+        std::cout << "invalid coinbase transaction: "; //<< coinbaseTx.JSONStringify() << "\n";
+        return 0;
+    }
+
+    //check for duplicate txIns. Each txIn can be included only once
+    std::vector<TxIn> txIns;
+    std::map<TxIn, bool> used;
+    for (int i = 0; i < (int)(aTransactions.size()); i++) {
+        for (int j = 0; j < (int)(aTransactions[i].txIns.size()); j++) {
+            if (!used.count(aTransactions[i].txIns[j])) {
+                txIns.push_back(aTransactions[i].txIns[j]);
+                used[aTransactions[i].txIns[j]] = 1;
+            }
+        }
+    }
+
+    if (hasDuplicates(txIns))
+        return 0;
+
+    //all but coinbase transactions
+    bool validate = 1;
+    for (int i = 1; i < int(aTransactions.size()); i++)
+        validate &= aTransactions[i].validateTransaction(aUnspentTxOuts);
+
+    return validate;
+}
+*/
 
 bool Transaction::validateTransaction(std::vector<UnspentTxOut> aUnspentTxOuts) {
     if (!isValidTransactionStructure())
@@ -299,7 +354,7 @@ bool Transaction::validateCoinbaseTx(int blockIndex) {
 Transaction getCoinbaseTransaction(std::string address, int blockIndex) {
     Transaction t;
     TxIn txIn;
-    txIn.signature = "";
+    txIn.signature = std::pair<uint8_t*, uint32_t>();
     txIn.txOutId = "";
     txIn.txOutIndex = blockIndex;
 

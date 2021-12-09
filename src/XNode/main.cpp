@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
                          "    /\\_\\\\ \\_\\\\ \\____/ \\ \\_____\\ /\\_____\\\\ \\_\\ \\_\\\n"
                          "    \\/_/ \\/_/ \\/___/   \\/_____/ \\/_____/ \\/_/\\/_/";
     std::cout << banner << std::endl;
+
     std::cout << "                                  Blockchain node    \n" << std::endl;
     std::vector<std::string> DNSS = std::vector<std::string>();
     for(int i = 1; i < argc; i++ )

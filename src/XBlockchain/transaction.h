@@ -26,9 +26,10 @@ class TxIn {
 public:
     std::string txOutId;
     int txOutIndex;
-    std::string signature;
+    std::pair<uint8_t*, uint32_t> signature;
     int getTxInAmount(std::vector<UnspentTxOut> aUnspentTxOuts);
     std::string JSONStringify();
+    TxIn();
 };
 
 class Transaction {
@@ -37,7 +38,7 @@ public:
     std::vector<TxIn> txIns;
     std::vector<TxOut> txOuts;
     std::string getTransactionId();
-    std::string signTxIn(int txInIndex, std::string privateKey, std::vector<UnspentTxOut> aUnspentTxOuts);
+    std::pair<uint8_t*, uint32_t> signTxIn(int txInIndex, std::string privateKey, std::vector<UnspentTxOut> aUnspentTxOuts);
     bool hasValidTxIns();
     bool validateTransaction(std::vector<UnspentTxOut> aUnspentTxOuts);
     bool isValidTransactionStructure();
@@ -58,18 +59,12 @@ Transaction getCoinbaseTransaction(std::string address, int blockIndex);
 
 std::string getPublicKey(std::string aPrivateKey);
 
-bool validateBlockTransactions(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts, int blockIndex){
-    return true; //To Implement
-};
+bool validateBlockTransactions(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts, int blockIndex);
 
-bool hasDuplicates(std::vector<TxIn> txIns) {
-    return true; //To Implement
-}
+bool hasDuplicates(std::vector<TxIn> txIns);
 
 bool validateTxIn(TxIn txIn, Transaction transaction, std::vector<UnspentTxOut> aUnspentTxOuts);
 
-void processTransactions(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts, int blockIndex){
-    return; //To implement
-}
+std::vector<UnspentTxOut> processTransactions(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts, int blockIndex);
 
 #endif //XCOIN_TRANSACTION_H

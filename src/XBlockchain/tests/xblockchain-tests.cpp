@@ -5,6 +5,9 @@
 #include "gtest/gtest.h"
 #include "../Blockchain.h"
 
+//#include "../transaction.h"
+
+
 class XBlockchainCoreTests: public ::testing::Test{
 protected:
     Blockchain blockchain;
@@ -40,3 +43,58 @@ TEST_F(XBlockchainCoreTests, BlockchainAddBlock){
     EXPECT_EQ(blockchain.length, oldLength + 1);
     EXPECT_EQ(blockchain.difficulty , 0); // TODO: Make some more extensive tests for this when it works
 }
+
+/*
+
+class XTransactionCoreTests: public ::testing::Test{
+protected:
+    Transaction transaction;
+    TxIn txIn1;
+    TxIn txIn2;
+    TxOut txOut1;
+    TxOut txOut2;
+    void SetUp() override{
+
+        txIn1 = TxIn();
+        txIn1.txOutId = "firstTxOutId";
+        txIn1.txOutIndex = 34;
+        u_int8_t* x1;
+        *x1 = 10;
+        u_int32_t y1 = 52;
+        std::pair<u_int8_t*, u_int32_t> signature1 = std::make_pair(x1, y1);
+        txIn1.signature = signature1;
+
+        txIn2 = TxIn();
+        txIn2.txOutId = "secondTxOutId";
+        txIn2.txOutIndex = 37;
+        u_int8_t* x2;
+        *x2 = 20;
+        u_int32_t y2 = 154;
+        std::pair<u_int8_t*, u_int32_t> signature2 = std::make_pair(x2, y2);
+        txIn1.signature = signature2;
+
+        txOut1 = TxOut("firstAddress", 1000);
+        txOut2 = TxOut("secondAddress", 2000);
+
+        std::vector<TxIn> txIns;
+        txIns.push_back(txIn1);
+        txIns.push_back(txIn2);
+        std::vector<TxOut> txOuts;
+        txOuts.push_back(txOut1);
+        txOuts.push_back(txOut2);
+
+        std::string txId = "myTransactionId";
+
+        transaction = Transaction();
+        transaction.id = txId;
+        transaction.txIns = txIns;
+        transaction.txOuts = txOuts;
+    }
+};
+
+// Initialisation test: checking the transaction has the right structure when it is created
+TEST_F(XTransactionCoreTests, ??) {
+    EXPECT_STREQ(transaction.id, txId);
+}
+
+*/
