@@ -29,6 +29,7 @@ public:
     std::pair<uint8_t*, uint32_t> signature;
     int getTxInAmount(std::vector<UnspentTxOut> aUnspentTxOuts);
     std::string JSONStringify();
+    TxIn();
 };
 
 class Transaction {
