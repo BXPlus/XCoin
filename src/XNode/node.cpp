@@ -5,6 +5,7 @@
 
 XNode::Node::Node() {
     this->blockchain = Blockchain();
+    //this->blockchain.appendBlock(this->blockchain.generateNextBlock("hello",0,0,""));
     this->peers = std::map<std::string, XNode::XNodeClient>();
 }
 
@@ -50,7 +51,7 @@ void XNode::Node::Shutdown(const std::string& reason) {
 * Saves peers and chain in two different savefiles
 */
 void XNode::Node::saveDataOnDisk() {
-    spdlog::debug(std::string("Will save peers on disk"));
+    spdlog::debug(std::string("Will save data on disk"));
     Archive localPeers = Archive(XNODE_PEERS_SAVE_PATH);
     Archive localChain = Archive(XNODE_BLOCKCHAIN_SAVE_PATH);
     xcoin::interchange::DNSHandshake encodedPeers;
@@ -215,6 +216,7 @@ bool XNode::Node::AttemptPeerConnection(const std::string &peerAddress) {
             sdkInstance->onPeerListChanged();
             if(AttemptBlockchainSync(peerAddress)){
                 this->peers[peerAddress].syncSuccess = true;
+                spdlog::info("Successfully synced blockchain with " + peerAddress);
                 sdkInstance->onStatusChanged(XNodeSDK::XNodeStatus::Ready);
             }
             return true;
@@ -259,10 +261,13 @@ bool XNode::Node::AttemptBlockchainSync(const std::string &peerAddress) {
     spdlog::debug("Will attempt to sync headers with " + peerAddress);
     switch (AttemptPingPongSync(peerAddress)) {
         case Synced:
+            spdlog::warn("Synced");
             return true;
         case ConnErr:
+            spdlog::warn("Conn err");
             return false;
         case HashDiff : {
+            spdlog::warn("Hash diff");
             std::vector<Block> blockVector = this->blockchain.toBlocks();
             std::reverse(blockVector.begin(), blockVector.end());
             if (SYNC_BATCHING_ENABLED){
@@ -323,6 +328,7 @@ bool XNode::Node::AttemptBlockchainSync(const std::string &peerAddress) {
                                     newBlockchain.appendBlock(block);
                                 }
                                 this->blockchain.replaceChain(newBlockchain);
+                                this->saveDataOnDisk();
                                 // TODO: Decide which branch is better and just rewrite the whole thing eventually
                                 return true;
                             }else return false;
@@ -333,6 +339,7 @@ bool XNode::Node::AttemptBlockchainSync(const std::string &peerAddress) {
             }
         }
         case HeightDiff: {
+            spdlog::warn("Height diff");
             // TODO: do something more complicated
             std::vector<Block> blockVector = this->blockchain.toBlocks();
             std::reverse(blockVector.begin(), blockVector.end());
@@ -368,6 +375,7 @@ bool XNode::Node::AttemptBlockchainSync(const std::string &peerAddress) {
                                 newBlockchain.appendBlock(block);
                             }
                             this->blockchain.replaceChain(newBlockchain);
+                            this->saveDataOnDisk();
                             // TODO: Decide which branch is better and just rewrite the whole thing eventually
                             return true;
                         }else return false;
