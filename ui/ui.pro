@@ -16,7 +16,9 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     settingswidget.cpp \
-    togglebtn.cpp
+    togglebtn.cpp \
+    paymentdialog.cpp \
+    purchase_xcoin.cpp
 
 HEADERS += \
     contactswidget.h \
@@ -25,10 +27,17 @@ HEADERS += \
     logindialog.h \
     mainwindow.h \
     settingswidget.h \
-    togglebtn.h
+    togglebtn.h \
+    paymentdialog.h \
+    purchase_xcoin.h
 
 FORMS += \
     mainwindow.ui
+
+FORMS += \
+    mainwindow.ui \
+    paymentdialog.ui \
+    purchase_xcoin.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

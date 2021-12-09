@@ -1,0 +1,10 @@
+debug/custombutton.o
+debug/homewidget.o
+debug/main.o
+debug/mainwindow.o
+debug/payments.o
+debug/moc_homewidget.o
+debug/moc_logindialog.o
+debug/moc_mainwindow.o
+debug/moc_settingswidget.o
+debug/moc_payments.o
