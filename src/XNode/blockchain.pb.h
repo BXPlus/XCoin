@@ -46,7 +46,7 @@ struct TableStruct_blockchain_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[10]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[11]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -67,6 +67,9 @@ extern DNSEntryDefaultTypeInternal _DNSEntry_default_instance_;
 class DNSHandshake;
 struct DNSHandshakeDefaultTypeInternal;
 extern DNSHandshakeDefaultTypeInternal _DNSHandshake_default_instance_;
+class GetBlockchainFromHeightRequest;
+struct GetBlockchainFromHeightRequestDefaultTypeInternal;
+extern GetBlockchainFromHeightRequestDefaultTypeInternal _GetBlockchainFromHeightRequest_default_instance_;
 class GetHeaders;
 struct GetHeadersDefaultTypeInternal;
 extern GetHeadersDefaultTypeInternal _GetHeaders_default_instance_;
@@ -92,6 +95,7 @@ template<> ::xcoin::interchange::Block* Arena::CreateMaybeMessage<::xcoin::inter
 template<> ::xcoin::interchange::Blockchain* Arena::CreateMaybeMessage<::xcoin::interchange::Blockchain>(Arena*);
 template<> ::xcoin::interchange::DNSEntry* Arena::CreateMaybeMessage<::xcoin::interchange::DNSEntry>(Arena*);
 template<> ::xcoin::interchange::DNSHandshake* Arena::CreateMaybeMessage<::xcoin::interchange::DNSHandshake>(Arena*);
+template<> ::xcoin::interchange::GetBlockchainFromHeightRequest* Arena::CreateMaybeMessage<::xcoin::interchange::GetBlockchainFromHeightRequest>(Arena*);
 template<> ::xcoin::interchange::GetHeaders* Arena::CreateMaybeMessage<::xcoin::interchange::GetHeaders>(Arena*);
 template<> ::xcoin::interchange::Header* Arena::CreateMaybeMessage<::xcoin::interchange::Header>(Arena*);
 template<> ::xcoin::interchange::Headers* Arena::CreateMaybeMessage<::xcoin::interchange::Headers>(Arena*);
@@ -919,22 +923,22 @@ class Header final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kPreviousBlockHeaderHashFieldNumber = 1,
+    kBlockHeaderHashFieldNumber = 1,
     kMerkleRootHashFieldNumber = 2,
     kTimeFieldNumber = 3,
   };
-  // string previousBlockHeaderHash = 1;
-  void clear_previousblockheaderhash();
-  const std::string& previousblockheaderhash() const;
+  // string blockHeaderHash = 1;
+  void clear_blockheaderhash();
+  const std::string& blockheaderhash() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_previousblockheaderhash(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_previousblockheaderhash();
-  PROTOBUF_MUST_USE_RESULT std::string* release_previousblockheaderhash();
-  void set_allocated_previousblockheaderhash(std::string* previousblockheaderhash);
+  void set_blockheaderhash(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_blockheaderhash();
+  PROTOBUF_MUST_USE_RESULT std::string* release_blockheaderhash();
+  void set_allocated_blockheaderhash(std::string* blockheaderhash);
   private:
-  const std::string& _internal_previousblockheaderhash() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_previousblockheaderhash(const std::string& value);
-  std::string* _internal_mutable_previousblockheaderhash();
+  const std::string& _internal_blockheaderhash() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_blockheaderhash(const std::string& value);
+  std::string* _internal_mutable_blockheaderhash();
   public:
 
   // string merkleRootHash = 2;
@@ -967,7 +971,7 @@ class Header final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr previousblockheaderhash_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr blockheaderhash_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr merkleroothash_;
   ::PROTOBUF_NAMESPACE_ID::uint32 time_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -2031,6 +2035,165 @@ class PingPong final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_blockchain_2eproto;
 };
+// -------------------------------------------------------------------
+
+class GetBlockchainFromHeightRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:xcoin.interchange.GetBlockchainFromHeightRequest) */ {
+ public:
+  inline GetBlockchainFromHeightRequest() : GetBlockchainFromHeightRequest(nullptr) {}
+  ~GetBlockchainFromHeightRequest() override;
+  explicit constexpr GetBlockchainFromHeightRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetBlockchainFromHeightRequest(const GetBlockchainFromHeightRequest& from);
+  GetBlockchainFromHeightRequest(GetBlockchainFromHeightRequest&& from) noexcept
+    : GetBlockchainFromHeightRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetBlockchainFromHeightRequest& operator=(const GetBlockchainFromHeightRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetBlockchainFromHeightRequest& operator=(GetBlockchainFromHeightRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetBlockchainFromHeightRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetBlockchainFromHeightRequest* internal_default_instance() {
+    return reinterpret_cast<const GetBlockchainFromHeightRequest*>(
+               &_GetBlockchainFromHeightRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    10;
+
+  friend void swap(GetBlockchainFromHeightRequest& a, GetBlockchainFromHeightRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetBlockchainFromHeightRequest* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetBlockchainFromHeightRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline GetBlockchainFromHeightRequest* New() const final {
+    return new GetBlockchainFromHeightRequest();
+  }
+
+  GetBlockchainFromHeightRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<GetBlockchainFromHeightRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetBlockchainFromHeightRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetBlockchainFromHeightRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetBlockchainFromHeightRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "xcoin.interchange.GetBlockchainFromHeightRequest";
+  }
+  protected:
+  explicit GetBlockchainFromHeightRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kStopHashFieldNumber = 2,
+    kStartheightFieldNumber = 1,
+  };
+  // string stopHash = 2;
+  void clear_stophash();
+  const std::string& stophash() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_stophash(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_stophash();
+  PROTOBUF_MUST_USE_RESULT std::string* release_stophash();
+  void set_allocated_stophash(std::string* stophash);
+  private:
+  const std::string& _internal_stophash() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_stophash(const std::string& value);
+  std::string* _internal_mutable_stophash();
+  public:
+
+  // uint32 startheight = 1;
+  void clear_startheight();
+  ::PROTOBUF_NAMESPACE_ID::uint32 startheight() const;
+  void set_startheight(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_startheight() const;
+  void _internal_set_startheight(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:xcoin.interchange.GetBlockchainFromHeightRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr stophash_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 startheight_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_blockchain_2eproto;
+};
 // ===================================================================
 
 
@@ -2801,50 +2964,50 @@ GetHeaders::mutable_blockheaderhashes() {
 
 // Header
 
-// string previousBlockHeaderHash = 1;
-inline void Header::clear_previousblockheaderhash() {
-  previousblockheaderhash_.ClearToEmpty();
+// string blockHeaderHash = 1;
+inline void Header::clear_blockheaderhash() {
+  blockheaderhash_.ClearToEmpty();
 }
-inline const std::string& Header::previousblockheaderhash() const {
-  // @@protoc_insertion_point(field_get:xcoin.interchange.Header.previousBlockHeaderHash)
-  return _internal_previousblockheaderhash();
+inline const std::string& Header::blockheaderhash() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.Header.blockHeaderHash)
+  return _internal_blockheaderhash();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void Header::set_previousblockheaderhash(ArgT0&& arg0, ArgT... args) {
+void Header::set_blockheaderhash(ArgT0&& arg0, ArgT... args) {
  
- previousblockheaderhash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:xcoin.interchange.Header.previousBlockHeaderHash)
+ blockheaderhash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:xcoin.interchange.Header.blockHeaderHash)
 }
-inline std::string* Header::mutable_previousblockheaderhash() {
-  std::string* _s = _internal_mutable_previousblockheaderhash();
-  // @@protoc_insertion_point(field_mutable:xcoin.interchange.Header.previousBlockHeaderHash)
+inline std::string* Header::mutable_blockheaderhash() {
+  std::string* _s = _internal_mutable_blockheaderhash();
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.Header.blockHeaderHash)
   return _s;
 }
-inline const std::string& Header::_internal_previousblockheaderhash() const {
-  return previousblockheaderhash_.Get();
+inline const std::string& Header::_internal_blockheaderhash() const {
+  return blockheaderhash_.Get();
 }
-inline void Header::_internal_set_previousblockheaderhash(const std::string& value) {
+inline void Header::_internal_set_blockheaderhash(const std::string& value) {
   
-  previousblockheaderhash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+  blockheaderhash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
 }
-inline std::string* Header::_internal_mutable_previousblockheaderhash() {
+inline std::string* Header::_internal_mutable_blockheaderhash() {
   
-  return previousblockheaderhash_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+  return blockheaderhash_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
-inline std::string* Header::release_previousblockheaderhash() {
-  // @@protoc_insertion_point(field_release:xcoin.interchange.Header.previousBlockHeaderHash)
-  return previousblockheaderhash_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+inline std::string* Header::release_blockheaderhash() {
+  // @@protoc_insertion_point(field_release:xcoin.interchange.Header.blockHeaderHash)
+  return blockheaderhash_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
-inline void Header::set_allocated_previousblockheaderhash(std::string* previousblockheaderhash) {
-  if (previousblockheaderhash != nullptr) {
+inline void Header::set_allocated_blockheaderhash(std::string* blockheaderhash) {
+  if (blockheaderhash != nullptr) {
     
   } else {
     
   }
-  previousblockheaderhash_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), previousblockheaderhash,
+  blockheaderhash_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), blockheaderhash,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.Header.previousBlockHeaderHash)
+  // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.Header.blockHeaderHash)
 }
 
 // string merkleRootHash = 2;
@@ -3630,9 +3793,81 @@ inline void PingPong::set_allocated_lasthash(std::string* lasthash) {
   // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.PingPong.lastHash)
 }
 
+// -------------------------------------------------------------------
+
+// GetBlockchainFromHeightRequest
+
+// uint32 startheight = 1;
+inline void GetBlockchainFromHeightRequest::clear_startheight() {
+  startheight_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 GetBlockchainFromHeightRequest::_internal_startheight() const {
+  return startheight_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 GetBlockchainFromHeightRequest::startheight() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.GetBlockchainFromHeightRequest.startheight)
+  return _internal_startheight();
+}
+inline void GetBlockchainFromHeightRequest::_internal_set_startheight(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  startheight_ = value;
+}
+inline void GetBlockchainFromHeightRequest::set_startheight(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_startheight(value);
+  // @@protoc_insertion_point(field_set:xcoin.interchange.GetBlockchainFromHeightRequest.startheight)
+}
+
+// string stopHash = 2;
+inline void GetBlockchainFromHeightRequest::clear_stophash() {
+  stophash_.ClearToEmpty();
+}
+inline const std::string& GetBlockchainFromHeightRequest::stophash() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.GetBlockchainFromHeightRequest.stopHash)
+  return _internal_stophash();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void GetBlockchainFromHeightRequest::set_stophash(ArgT0&& arg0, ArgT... args) {
+ 
+ stophash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:xcoin.interchange.GetBlockchainFromHeightRequest.stopHash)
+}
+inline std::string* GetBlockchainFromHeightRequest::mutable_stophash() {
+  std::string* _s = _internal_mutable_stophash();
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.GetBlockchainFromHeightRequest.stopHash)
+  return _s;
+}
+inline const std::string& GetBlockchainFromHeightRequest::_internal_stophash() const {
+  return stophash_.Get();
+}
+inline void GetBlockchainFromHeightRequest::_internal_set_stophash(const std::string& value) {
+  
+  stophash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* GetBlockchainFromHeightRequest::_internal_mutable_stophash() {
+  
+  return stophash_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* GetBlockchainFromHeightRequest::release_stophash() {
+  // @@protoc_insertion_point(field_release:xcoin.interchange.GetBlockchainFromHeightRequest.stopHash)
+  return stophash_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void GetBlockchainFromHeightRequest::set_allocated_stophash(std::string* stophash) {
+  if (stophash != nullptr) {
+    
+  } else {
+    
+  }
+  stophash_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), stophash,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.GetBlockchainFromHeightRequest.stopHash)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

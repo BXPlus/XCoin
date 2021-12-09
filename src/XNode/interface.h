@@ -28,10 +28,10 @@ namespace XNode{
     class Interface {
     private:
         static xcoin::interchange::Blockchain encodeChain(const std::vector<Block>& chain);
-        static std::vector<Block> decodeChain(const xcoin::interchange::Blockchain& protoChain);
         static xcoin::interchange::GetHeaders generateGetHeadersMessage(int hashCount, std::string stopHash, const std::vector<std::string>& blockHeaderHashes);
         static xcoin::interchange::Headers generateHeadersReplyMessage(const std::vector<Block>& chain);
     public:
+        static std::vector<Block> decodeChain(const xcoin::interchange::Blockchain& protoChain);
         static xcoin::interchange::Block encodeBlock(Block block);
         static Block decodeBlock(const xcoin::interchange::Block& protoBlock);
         static std::string exportBlock(const Block& block);
