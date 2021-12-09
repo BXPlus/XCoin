@@ -12,6 +12,20 @@ PaymentDialog::PaymentDialog(QDialog *parent) :
     ui(new Ui::PaymentDialog)
 {
     ui->setupUi(this);
+//to activate the pay btn
+    //    QPushButton* pay_btn = new QPushButton(QString("PAY NOW"), mainWidget);
+    //        pay_btn->setMinimumSize(100,100);
+    //        pay_btn->setStyleSheet("border-radius: 10px;"
+    //                               "background-color: green;");
+    //        connect(pay_btn, &QPushButton::released, this, &MainWindow::on_pushButton_clicked);
+
+//    void MainWindow::on_pushButton_clicked()
+//    {
+//        PaymentDialog payment_window;
+//        payment_window.setModal(true);
+//        payment_window.exec();
+//    }
+
 
     //set up layout linked to the widget of the whole page
 QVBoxLayout* page_layout = new QVBoxLayout(this);
