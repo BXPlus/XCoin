@@ -1044,10 +1044,10 @@ contactswidget.o: ../ui/contactswidget.cpp ../ui/contactswidget.h \
 		../ui/addcontactdialog.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QMap \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollBar \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollbar.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QSignalMapper \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollBar \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollbar.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o contactswidget.o ../ui/contactswidget.cpp
 
 custombutton.o: ../ui/custombutton.cpp ../ui/custombutton.h \

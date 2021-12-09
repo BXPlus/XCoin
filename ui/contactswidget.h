@@ -23,15 +23,27 @@ public:
     QGridLayout* contactGrid;
     QWidget* boxContainer;
     QScrollArea* scrollContacts;
+
     QPushButton* addContactButton;
+    CustomButton* editBtn;
+
     QWidget* topBox;
     QHBoxLayout* topLayout;
+
     QMap<QString, QString> contactDict;
+    QList<CustomButton*> delList;
+    QString elDelete;
 
     void create_dictionnary();
     void delete_widgets();
+    void edit_contact();
+
+    int editCount = 0;
 private slots:
     void addContact();
+    void deleteContact(int count);
+    void editStyle();
+    void get_key(QString key);
 };
 
 #endif // CONTACTSWIDGET_H

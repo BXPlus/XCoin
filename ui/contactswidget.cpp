@@ -1,5 +1,6 @@
 #include "contactswidget.h"
 #include <QMap>
+#include <QSignalMapper>
 #include <QDebug>
 #include <QScrollArea>
 #include <QScrollBar>
@@ -38,16 +39,25 @@ ContactsWidget::ContactsWidget(QWidget *parent) :
     title->setObjectName(QString("title"));
     title->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
 
+    //Add contact button creation
     addContactButton = new QPushButton(this);
     addContactButton->setText("Add Contact");
-    addContactButton->setObjectName("menuBtn");
+    addContactButton->setObjectName("ContactEdits");
     addContactButton->setCursor(Qt::PointingHandCursor);
     addContactButton->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
 
+    //Edit contact list button creation
+    editBtn = new CustomButton("Edit", this);
+    editBtn->setObjectName("ContactEdits");
+    editBtn->setCursor(Qt::PointingHandCursor);
+    editBtn->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+
     connect(addContactButton, SIGNAL(clicked(bool)), this, SLOT(addContact()));
+    connect(editBtn, SIGNAL(clicked(bool)), this, SLOT(editStyle()));
 
     topLayout->addWidget(title);
     topLayout->addWidget(addContactButton);
+    topLayout->addWidget(editBtn);
 
 
     scrollContacts = new QScrollArea(this);
@@ -115,6 +125,67 @@ void ContactsWidget::delete_widgets()
     }
 }
 
+void ContactsWidget::edit_contact()
+{
+    for(auto e : contactDict.keys())
+    {
+        QLabel* key = new QLabel;
+        key->setText(e);
+        QLabel* value = new QLabel;
+        value->setText(contactDict.value(e));
+        key->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+        value->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+        int count = contactGrid->rowCount();
+        if (count%2 == 1){
+            key->setStyleSheet("background-color: rgba(60, 72, 114, 255);"
+                               "padding: 20;"
+                               "font: 15px;"
+                               "border-top-left-radius: 5px;"
+                               "border-bottom-left-radius: 5px;");
+            value->setStyleSheet("background-color: rgba(60, 72, 114, 255);"
+                                 "padding: 20;"
+                                 "font: 15px;");
+        }
+        else{
+            key->setStyleSheet("background-color: rgba(31,41,66,255);"
+                               "padding: 20;"
+                               "font: 15px;"
+                               "border-top-left-radius: 5px;"
+                               "border-bottom-left-radius: 5px;");
+            value->setStyleSheet("background-color: rgba(31,41,66,255);"
+                                 "padding: 20;"
+                                 "font: 15px;");
+        }
+
+        //Creation of delete buttons
+        CustomButton* deleteBtn = new CustomButton("-", this);
+        deleteBtn->setObjectName("deleteBtn");
+        delList.append(deleteBtn);
+
+        //Connection of the buttons to deletion of the contact
+        QSignalMapper* signalMapper = new QSignalMapper (this) ;
+        connect(deleteBtn, SIGNAL(clicked(bool)), signalMapper, SLOT(map()));
+        signalMapper->setMapping (deleteBtn, count);
+        connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(deleteContact(int)));
+
+        QSignalMapper* signalMapper2 = new QSignalMapper (this) ;
+        connect(deleteBtn, SIGNAL(clicked(bool)), signalMapper2, SLOT(map()));
+        signalMapper2->setMapping (deleteBtn, key->text());
+        connect(signalMapper2, SIGNAL(mapped(QString)), this, SLOT(get_key(QString)));
+
+        //Put the buttons in the Layout
+        QHBoxLayout* key_countainer = new QHBoxLayout();
+        QWidget* key_widget = new QWidget();
+
+        key_countainer->addWidget(deleteBtn);
+        key_countainer->addWidget(key);
+        key_widget->setLayout(key_countainer);
+
+        contactGrid->addWidget(key_widget, count, 0);
+        contactGrid->addWidget(value, count, 1);
+    }
+}
+
 void ContactsWidget::addContact()
 {
     addContactDialog* addDialog = new addContactDialog(this);
@@ -123,14 +194,47 @@ void ContactsWidget::addContact()
 
     QList<QString> sList = addDialog->get_info();
 
-    if (sList[0] == "true") {
-        QString key = sList[1]+" "+sList[2];
-        QString value = sList[3];
-        contactDict[key] = value;
+    QString key = sList[1]+" "+sList[2];
+    QString value = sList[3];
 
-        delete_widgets();
+    if (sList[0] == "true") {
+        if (key != " " && value != ""){
+            contactDict[key] = value;
+            delete_widgets();
+            create_dictionnary();
+        }
+    }
+}
+
+void ContactsWidget::deleteContact(int count)
+{
+    contactGrid->removeWidget(contactGrid->itemAtPosition(count, 0)->widget());
+    contactGrid->removeWidget(contactGrid->itemAtPosition(count, 1)->widget());
+
+}
+
+void ContactsWidget::editStyle()
+{
+    delete_widgets();
+
+    if (editCount%2 == 0) {
+        editBtn->setText("Done");
+        edit_contact();
+    }
+    else {
+        editBtn->setText("Edit");
         create_dictionnary();
     }
+    editCount++;
+}
+
+void ContactsWidget::get_key(QString key_string)
+{
+    for (auto it = contactDict.begin(); it != contactDict.end(); it++)
+        if (it.key() == key_string) {
+            it = contactDict.erase(it);
+            break;
+        }
 }
 
 
