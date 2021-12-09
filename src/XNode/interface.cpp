@@ -86,7 +86,7 @@ xcoin::interchange::Headers XNode::Interface::generateHeadersReplyMessage(const 
     xcoin::interchange::Headers reply;
     for (Block block: chain){
         xcoin::interchange::Header* header = reply.add_headers();
-        header->set_blockheaderhash(block.previousHash);
+        header->set_blockheaderhash(block.headerHash);
         header->set_merkleroothash(block.merkle_root_hash);
         header->set_time(block.timestamp);
     }
