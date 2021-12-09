@@ -37,6 +37,8 @@ public:
     QWidget* graphsWidget;
 private slots:
     void go_page(int);
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

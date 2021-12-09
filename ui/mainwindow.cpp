@@ -7,6 +7,7 @@
 #include <QLabel>
 #include <QDir>
 #include <paymentdialog.h>
+#include <purchase_xcoin.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -93,7 +94,7 @@ MainWindow::MainWindow(QWidget *parent)
     contentContainer->addWidget(homeWidget);
     balanceWidget = new QWidget(mainWidget);
     contentContainer->addWidget(balanceWidget);
-    paymentsWidget = new PaymentDialog(mainWidget);
+    paymentsWidget = new Purchase_XCoin(mainWidget);
     contentContainer->addWidget(paymentsWidget);
     contactsWidget = new QWidget(mainWidget);
     contentContainer->addWidget(contactsWidget);
@@ -116,6 +117,13 @@ MainWindow::MainWindow(QWidget *parent)
         connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(go_page(int)));
     }
 
+    QPushButton* pay_btn = new QPushButton(QString("PAY NOW"), mainWidget);
+        pay_btn->setMinimumSize(100,100);
+        pay_btn->setStyleSheet("border-radius: 10px;"
+                               "background-color: green;");
+        connect(pay_btn, &QPushButton::released, this, &MainWindow::on_pushButton_clicked);
+
+
     contentContainer->setCurrentIndex(0);
 
     // Creating main content
@@ -134,3 +142,9 @@ void MainWindow::go_page(int i)
     contentContainer->setCurrentIndex(i);
 }
 
+void MainWindow::on_pushButton_clicked()
+{
+    PaymentDialog payment_window;
+    payment_window.setModal(true);
+    payment_window.exec();
+}

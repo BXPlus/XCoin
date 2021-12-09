@@ -1,26 +1,26 @@
-#ifndef PAYMENTDIALOG_H
-#define PAYMENTDIALOG_H
+#ifndef PURCHASE_XCOIN_H
+#define PURCHASE_XCOIN_H
 
-#include <QDialog>
+#include <QWidget>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QPushButton>
 
 namespace Ui {
-class PaymentDialog;
+class Purchase_XCoin;
 }
 
-class PaymentDialog : public QDialog
+class Purchase_XCoin : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit PaymentDialog(QDialog *parent = nullptr);
-    ~PaymentDialog();
-    QLabel* title_page_label;
-    QWidget* pay_box;
-    QVBoxLayout* pay_layout;
+    explicit Purchase_XCoin(QWidget *parent = nullptr);
+    ~Purchase_XCoin();
+
+    QWidget* main_box;
+    QVBoxLayout* main_layout;
     QWidget* amount_box;
     QVBoxLayout* amount_layout;
     QLabel* amount;
@@ -30,9 +30,8 @@ public:
     QPushButton* XCO2;
     QPushButton* pay_btn;
 
-
 private:
-    Ui::PaymentDialog *ui;
+    Ui::Purchase_XCoin *ui;
 };
 
-#endif // PAYMENTDIALOG_H
+#endif // PURCHASE_XCOIN_H
