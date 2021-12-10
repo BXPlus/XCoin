@@ -1,5 +1,4 @@
 #include "paymentdialog.h"
-#include "ui_paymentdialog.h"
 #include <QDialog>
 #include <QGroupBox>
 #include <QList>
@@ -8,10 +7,8 @@
 #include <QPushButton>
 
 PaymentDialog::PaymentDialog(QDialog *parent) :
-    QDialog(parent),
-    ui(new Ui::PaymentDialog)
+    QDialog(parent)
 {
-    ui->setupUi(this);
 //to activate the pay btn
     //    QPushButton* pay_btn = new QPushButton(QString("PAY NOW"), mainWidget);
     //        pay_btn->setMinimumSize(100,100);

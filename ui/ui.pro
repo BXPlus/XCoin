@@ -37,9 +37,7 @@ FORMS += \
     mainwindow.ui
 
 FORMS += \
-    mainwindow.ui \
-    paymentdialog.ui \
-    purchase_xcoin.ui
+    mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

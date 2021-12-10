@@ -8,6 +8,7 @@
 #include <QPushButton>
 #include <QDialog>
 #include <QMap>
+#include "custombutton.h"
 
 namespace Ui {
 class ContactsWidget;

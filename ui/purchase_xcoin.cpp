@@ -1,5 +1,4 @@
 #include "purchase_xcoin.h"
-#include "ui_purchase_xcoin.h"
 #include <QLabel>
 #include <QPushButton>
 #include <QSize>
@@ -13,10 +12,8 @@
 #include <QBoxLayout>
 
 Purchase_XCoin::Purchase_XCoin(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::Purchase_XCoin)
+    QWidget(parent)
 {
-    ui->setupUi(this);
 
     //set up layout linked to the widget of the whole page
 QVBoxLayout* page_layout = new QVBoxLayout(this);

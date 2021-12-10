@@ -1,5 +1,7 @@
 #include "contactswidget.h"
+#include "mainwindow.h"
 #include <QMap>
+#include <QBoxLayout>
 #include <QSignalMapper>
 #include <QDebug>
 #include <QScrollArea>
@@ -163,12 +165,12 @@ void ContactsWidget::edit_contact()
         delList.append(deleteBtn);
 
         //Connection of the buttons to deletion of the contact
-        QSignalMapper* signalMapper = new QSignalMapper (this) ;
+        QSignalMapper* signalMapper = new QSignalMapper(this) ;
         connect(deleteBtn, SIGNAL(clicked(bool)), signalMapper, SLOT(map()));
         signalMapper->setMapping (deleteBtn, count);
         connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(deleteContact(int)));
 
-        QSignalMapper* signalMapper2 = new QSignalMapper (this) ;
+        QSignalMapper* signalMapper2 = new QSignalMapper(this) ;
         connect(deleteBtn, SIGNAL(clicked(bool)), signalMapper2, SLOT(map()));
         signalMapper2->setMapping (deleteBtn, key->text());
         connect(signalMapper2, SIGNAL(mapped(QString)), this, SLOT(get_key(QString)));
