@@ -828,6 +828,9 @@ moc_contactswidget.cpp: ../ui/contactswidget.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QMap \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../ui/custombutton.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		moc_predefs.h \
 		../../../../Installs/Qt/5.12.5/clang_64/bin/moc
 	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc $(DEFINES) --include /Users/timvalencony/Desktop/CSE201/XCoin/build-ui-Desktop_Qt_5_12_5_clang_64bit-Debug/moc_predefs.h -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/macx-clang -I/Users/timvalencony/Desktop/CSE201/XCoin/ui -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib ../ui/contactswidget.h -o moc_contactswidget.cpp
@@ -1045,6 +1048,9 @@ contactswidget.o: ../ui/contactswidget.cpp ../ui/contactswidget.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QMap \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../ui/custombutton.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../ui/mainwindow.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
@@ -1053,9 +1059,6 @@ contactswidget.o: ../ui/contactswidget.cpp ../ui/contactswidget.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qstackedwidget.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDebug \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		../ui/custombutton.h \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../ui/homewidget.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
@@ -1071,10 +1074,10 @@ contactswidget.o: ../ui/contactswidget.cpp ../ui/contactswidget.h \
 		../ui/togglebtn.h \
 		../ui/addcontactdialog.h \
 		../ui/paymentdialog.h \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollBar \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollbar.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QSignalMapper \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollBar \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollbar.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o contactswidget.o ../ui/contactswidget.cpp
 
 custombutton.o: ../ui/custombutton.cpp ../ui/custombutton.h \
@@ -1316,7 +1319,6 @@ paymentdialog.o: ../ui/paymentdialog.cpp ../ui/paymentdialog.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
-		ui_paymentdialog.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGroupBox \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgroupbox.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/QList \
@@ -1337,7 +1339,6 @@ purchase_xcoin.o: ../ui/purchase_xcoin.cpp ../ui/purchase_xcoin.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
-		ui_purchase_xcoin.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QSize \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qsize.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QSizePolicy \

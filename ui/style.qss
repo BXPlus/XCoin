@@ -109,3 +109,32 @@ background-color: yellow
 QLabel#XCO:active {
 background-color:red;
 }
+
+QPushButton#ContactEdits {
+    border: 2px solid rgba(255,200,52,255);
+    color: white;
+    border-radius: 20px;
+    text-align: left;
+    padding: 12px;
+    margin: 10;
+    font: bold;
+}
+
+QPushButton#ContactEdits:hover {
+    background-color: rgba(255,200,52,100);
+}
+
+QPushButton#deleteBtn {
+    border: 2px solid rgba(223, 8, 40, 0.8);
+    background-color: rgba(189, 14, 46, 0.8);
+    color: white;
+    border-radius: 20px;
+    text-align: center;
+    padding: 12px;
+    margin: 10;
+    font: bold;
+}
+
+QPushButton#deleteBtn:hover {
+    background-color: rgba(177, 8, 40, 0.44);
+}
