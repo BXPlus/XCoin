@@ -13,6 +13,7 @@
 #include "settingswidget.h"
 #include "togglebtn.h"
 #include "addcontactdialog.h"
+#include "paymentdialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -46,6 +47,8 @@ private slots:
     void go_page(int);
 protected:
     void closeEvent(QCloseEvent * event);
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

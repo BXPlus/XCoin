@@ -65,7 +65,7 @@ QScrollBar::sub-line:vertical {
     background: none;
 }
 
-QLabel#title_page_label {
+QLabel#purchase_title {
     font-size: 30px;
     color: yellow;
     font-family: "Arial";
@@ -99,5 +99,13 @@ QLabel#addContact {
     color: black;
 }
 
+QPushButton#euro:hover {
+background-color: rgba(0,150,255);
+}
 
-
+QPushButton#XCO:hover {
+background-color: yellow
+}
+QLabel#XCO:active {
+background-color:red;
+}
