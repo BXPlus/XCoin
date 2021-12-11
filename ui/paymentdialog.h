@@ -32,7 +32,6 @@ public:
 
 
 private:
-    Ui::PaymentDialog *ui;
 };
 
 #endif // PAYMENTDIALOG_H

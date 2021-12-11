@@ -15,6 +15,7 @@
 #include "togglebtn.h"
 #include "addcontactdialog.h"
 #include "paymentdialog.h"
+#include "purchase_xcoin.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

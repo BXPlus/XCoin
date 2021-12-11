@@ -40,8 +40,6 @@ int main(int argc, char *argv[])
     //Économiser les doigts de picha en evitant d'avoir à cliquer à chaque fois sur le login
     MainWindow w;
     w.show();
-    //BalanceWidget b;
-    //b.show();
     return a.exec();
 }
 
