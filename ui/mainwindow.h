@@ -14,6 +14,7 @@
 #include "togglebtn.h"
 #include "addcontactdialog.h"
 #include "paymentdialog.h"
+#include "balancewidget2.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

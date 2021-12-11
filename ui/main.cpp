@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     QString path = a.applicationDirPath();
     int index = path.indexOf("XCoin");
     QString subPath = path.mid(0,index+5);
-    subPath.append("/ui/styleLight.qss");
+    subPath.append("/ui/style.qss");
 
         // loading
     QFile qss(subPath);
@@ -40,12 +40,6 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
     return a.exec();
-
-    //Payment window
-    PaymentDialog* payment_window = new PaymentDialog();
-
-
-
 }
 
 

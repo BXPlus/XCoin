@@ -2,6 +2,7 @@
 #include <QScrollArea>
 #include <QDir>
 #include <QtDebug>
+#include <QApplication>
 
 SettingsWidget::SettingsWidget(QWidget *parent) : QWidget(parent)
 {
@@ -67,12 +68,33 @@ void SettingsWidget::flnode_state()
 
 void SettingsWidget::appearance_state()
 {
+    appearance_count ++;
     if (appearance_count % 2 == 0) {
-        appearance_count ++;
-        qDebug() << "appearance : on";
+        qDebug() << "appearance : off";
+        QString path = qApp->applicationDirPath();
+        int index = path.indexOf("XCoin");
+        QString subPath = path.mid(0,index+5);
+        subPath.append("/ui/style.qss");
+
+            // loading
+        QFile qss(subPath);
+        qss.open(QFile::ReadOnly);
+        QString styleSheet = QLatin1String(qss.readAll());
+        qApp->setStyleSheet(styleSheet);
+        qss.close();
     }
     else {
-        appearance_count ++;
-        qDebug() << "appearance : off";
+        qDebug() << "appearance : on";
+        QString path = qApp->applicationDirPath();
+        int index = path.indexOf("XCoin");
+        QString subPath = path.mid(0,index+5);
+        subPath.append("/ui/styleLight.qss");
+
+            // loading
+        QFile qss(subPath);
+        qss.open(QFile::ReadOnly);
+        QString styleSheet = QLatin1String(qss.readAll());
+        qApp->setStyleSheet(styleSheet);
+        qss.close();
     }
 }

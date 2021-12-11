@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     addcontactdialog.cpp \
+    balancewidget2.cpp \
     contactswidget.cpp \
     custombutton.cpp \
     homewidget.cpp \
@@ -23,6 +24,7 @@ SOURCES += \
 
 HEADERS += \
     addcontactdialog.h \
+    balancewidget2.h \
     contactswidget.h \
     custombutton.h \
     homewidget.h \

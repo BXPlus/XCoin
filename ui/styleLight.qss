@@ -1,15 +1,15 @@
 FontLoader { id: MontserratBold; source: "/fonts/Monserrat-Bold.ttf" }
 
 MainWindow {
-    background-color: rgba(60,72,114,255);
+    background-color: rgba(248, 35, 248, 0.8);
 }
 
 QWidget#menuContainer {
-    background-color: rgba(34,45,72,255);
+    background-color: rgba(248, 35, 248, 0.8);
 }
 
 QPushButton#menuBtn {
-    border: 2px solid rgba(255,200,52,255);
+    border: 2px solid rgba(248, 35, 248, 0.8);
     color: white;
     border-radius: 20px;
     text-align: left;
