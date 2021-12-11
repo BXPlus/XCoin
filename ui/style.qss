@@ -1,3 +1,5 @@
+FontLoader { id: MontserratBold; source: "/fonts/Monserrat-Bold.ttf" }
+
 MainWindow {
     background-color: rgba(60,72,114,255);
 }
@@ -8,6 +10,7 @@ QWidget#menuContainer {
 
 QPushButton#menuBtn {
     border: 2px solid rgba(255,200,52,255);
+    color: white;
     border-radius: 20px;
     text-align: left;
     padding: 12px;
@@ -20,24 +23,118 @@ QPushButton#menuBtn:hover {
 }
 
 QWidget#contentContainer {
-    background-color: rgba(69, 97, 137, 255);
+    background-color: rgba(31,41,66,255);
 }
 
 QLabel#title {
-    border: 2px solid green;
-    font: bold;
-    font-size: 60px;
+    color: white;
+    font: MontserratBold;
+    font-size: 40px;
 }
 
 QLabel#subtitle {
+    color: white;
     border: 2px solid green;
     font: italic;
-    font-size: 30px;
+    font-size: 20px;
 }
 
-QLabel#title_page_label {
+QLabel {
+    color: white;
+}
+
+QScrollBar:vertical {
+    background: rgba(0,0,0,0);
+    width: 10px;
+}
+QScrollBar::handle:vertical {
+    background: rgba(195,195,195,200);
+    min-height: 20px;
+    border-radius: 5px;
+}
+QScrollBar::handle:hover {
+    background: rgba(150,150,150,150);
+}
+QScrollBar::add-line:vertical {
+    border: none;
+    background: none;
+}
+
+QScrollBar::sub-line:vertical {
+    border: none;
+    background: none;
+}
+
+QLabel#purchase_title {
     font-size: 30px;
     color: yellow;
     font-family: "Arial";
+}
 
+QLabel#settingslabel {
+    margin: 0px;
+    font: MontserratBold;
+    font-size: 15px;
+    background-color: rgba(60, 72, 114, 255);
+    color: white;
+    border-radius: 20px;
+    text-align: center;
+    padding: 12px;
+    margin: 0;
+    font: bold;
+}
+
+QLabel#settingslabel:hover {
+    border: 2px solid rgba(68, 92, 146, 0.92);
+}
+
+QLabel#settingsstring {
+    margin: 0px;
+    font: bold;
+    font: MontserratBold;
+    font-size: 20px;
+}
+
+QLabel#addContact {
+    color: black;
+}
+
+QPushButton#euro:hover {
+background-color: rgba(0,150,255);
+}
+
+QPushButton#XCO:hover {
+background-color: yellow
+}
+QLabel#XCO:active {
+background-color:red;
+}
+
+QPushButton#ContactEdits {
+    border: 2px solid rgba(255,200,52,255);
+    color: white;
+    border-radius: 20px;
+    text-align: left;
+    padding: 12px;
+    margin: 10;
+    font: bold;
+}
+
+QPushButton#ContactEdits:hover {
+    background-color: rgba(255,200,52,100);
+}
+
+QPushButton#deleteBtn {
+    border: 2px solid rgba(223, 8, 40, 0.8);
+    background-color: rgba(189, 14, 46, 0.8);
+    color: white;
+    border-radius: 20px;
+    text-align: center;
+    padding: 12px;
+    margin: 10;
+    font: bold;
+}
+
+QPushButton#deleteBtn:hover {
+    background-color: rgba(177, 8, 40, 0.44);
 }

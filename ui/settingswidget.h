@@ -12,25 +12,24 @@ class SettingsWidget : public QWidget
     Q_OBJECT
 public:
     explicit SettingsWidget(QWidget *parent = nullptr);
+    QPushButton* get_homeBtn();
 private:
-    QWidget* profileWidget;
-    QWidget* nameWidget;
-    QWidget* infoWidget;
-    QComboBox* choiceBox;
-    QScrollArea* scrollArea;
-
-    QLabel* firstName;
-    QLabel* lastName;
-    QLabel* profileInfo1;
-    QLabel* profileInfo2;
+    QWidget* mainWidget;
 
     QVBoxLayout* mainLayout;
-    QHBoxLayout* profileLayout;
-    QVBoxLayout* infoLayout;
-    QHBoxLayout* nameLayout;
+    QWidget* emptyWidget;
 
-signals:
+    QList<QHBoxLayout*> hList;
+    QList<QLabel*> lList = {};
+    QList<QLabel*> sList = {};
+    QList<QAbstractButton*> bList= {};
+    QList<QString> stringList;
 
+    int flNode_count = 0;
+    int appearance_count = 0;
+private slots:
+    void flnode_state();
+    void appearance_state();
 };
 
 #endif // SETTINGSWIDGET_H

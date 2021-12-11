@@ -5,10 +5,15 @@
 #include <QHBoxLayout>
 #include <QStackedWidget>
 #include <QVBoxLayout>
+#include <QDebug>
 #include "custombutton.h"
-#include "payments.h"
+#include "contactswidget.h"
+#include "homewidget.h"
 #include "logindialog.h"
 #include "settingswidget.h"
+#include "togglebtn.h"
+#include "addcontactdialog.h"
+#include "paymentdialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -38,9 +43,12 @@ public:
     QWidget* graphsWidget;
 
 private slots:
+    void go_home();
     void go_page(int);
 protected:
     void closeEvent(QCloseEvent * event);
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

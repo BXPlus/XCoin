@@ -9,21 +9,32 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    addcontactdialog.cpp \
+    contactswidget.cpp \
     custombutton.cpp \
     homewidget.cpp \
+    logindialog.cpp \
     main.cpp \
     mainwindow.cpp \
     settingswidget.cpp \
-    logindialog.cpp \
-    payments.cpp
+    togglebtn.cpp \
+    paymentdialog.cpp \
+    purchase_xcoin.cpp
 
 HEADERS += \
+    addcontactdialog.h \
+    contactswidget.h \
     custombutton.h \
     homewidget.h \
     logindialog.h \
     mainwindow.h \
     settingswidget.h \
-    payments.h
+    togglebtn.h \
+    paymentdialog.h \
+    purchase_xcoin.h
+
+FORMS += \
+    mainwindow.ui
 
 FORMS += \
     mainwindow.ui
@@ -34,4 +45,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
+    Montserrat-Bold.ttf \
     style.qss
+
+RESOURCES +=

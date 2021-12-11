@@ -1,46 +1,78 @@
 #include "settingswidget.h"
+#include <QScrollArea>
+#include <QDir>
+#include <QtDebug>
 
 SettingsWidget::SettingsWidget(QWidget *parent) : QWidget(parent)
 {
-    setStyleSheet("border: 1px solid black");
-    profileWidget = new QWidget(this);
-    nameWidget = new QWidget(profileWidget);
-    infoWidget = new QWidget(profileWidget);
-//    profileWidget->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-//    profileWidget->setMinimumSize(200, 200);
-
-    choiceBox = new QComboBox(this);
-//    choiceBox->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-//    choiceBox->setMinimumSize(200, 200);
-
-    scrollArea = new QScrollArea(this);
-//    scrollArea->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-//    scrollArea->setMinimumSize(100, 200);
-
-    firstName = new QLabel("firstname");
-    lastName = new QLabel("lastname");
-    profileInfo1 = new QLabel("profileInfo1");
-    profileInfo2 = new QLabel("profileInfo2");
+  /* Ideas for the different elements of the settings page:
+        - Node Port(un nombre)
+        - Full/Light node (toggle)
+        - Public address (string)
+        - Root DNS address (string)
+        - Appearance
+        -*/
+    stringList = {"Node Port:", "Root DNS address:", "Public address:"
+                 , "Full/Light node:", "Dark/Light mode:", "30140",
+                 "123.456.78.90", "202.25.1.3"};
 
     mainLayout = new QVBoxLayout(this);
-    profileLayout = new QHBoxLayout(profileWidget);
-    infoLayout = new QVBoxLayout(infoWidget);
-    nameLayout = new QHBoxLayout(nameWidget);
+    emptyWidget = new QWidget(this);
 
-    infoLayout->addWidget(profileInfo1);
-    infoLayout->addWidget(profileInfo2);
-    nameLayout->addWidget(firstName);
-    nameLayout->addWidget(lastName);
+    for (int i = 0; i < 5; i++) {
+        QHBoxLayout* layout = new QHBoxLayout();
+        hList.append(layout);
 
-    infoWidget->setLayout(infoLayout);
-    nameWidget->setLayout(nameLayout);
-    profileLayout->addWidget(nameWidget);
-    profileLayout->addWidget(infoWidget);
-    profileWidget->setLayout(profileLayout);
+        QLabel* label = new QLabel(stringList[i], this);
+        label->setObjectName("settingslabel");
+        lList.append(label);
 
-    mainLayout->addWidget(profileWidget);
-    mainLayout->addWidget(choiceBox);
-    mainLayout->addWidget(scrollArea);
+        layout->addWidget(label);
+
+        if (i <= 2) {
+            QLabel* string = new QLabel(stringList[i+5], this);
+            string->setObjectName("settingsstring");
+            sList.append(string);
+            layout->addWidget(string);
+        }
+        else {
+            ToggleBtn* btn = new ToggleBtn(10, 10, this);
+            bList.append(btn);
+            layout->addWidget(btn);
+        }
+        label->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+
+        mainLayout->addLayout(layout, 12);
+    }
+
+    mainLayout->addWidget(emptyWidget, 40);
 
     setLayout(mainLayout);
+
+    connect(bList[0], SIGNAL(clicked(bool)), this, SLOT(flnode_state()));
+    connect(bList[1], SIGNAL(clicked(bool)), this, SLOT(appearance_state()));
+}
+
+void SettingsWidget::flnode_state()
+{
+    if (flNode_count % 2 == 0) {
+        flNode_count ++;
+        qDebug() << "flnode : on";
+    }
+    else {
+        flNode_count ++;
+        qDebug() << "flnode : off";
+    }
+}
+
+void SettingsWidget::appearance_state()
+{
+    if (appearance_count % 2 == 0) {
+        appearance_count ++;
+        qDebug() << "appearance : on";
+    }
+    else {
+        appearance_count ++;
+        qDebug() << "appearance : off";
+    }
 }

@@ -4,13 +4,12 @@
 #include <custombutton.h>
 #include <QAction>
 #include <QSignalMapper>
-#include <payments.h>
-#include "logindialog.cpp"
-#include "settingswidget.cpp"
 #include <QLabel>
 #include <QDir>
-#include <homewidget.h>
 #include <QCloseEvent>
+#include <QFontDatabase>
+#include <paymentdialog.h>
+#include <purchase_xcoin.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -46,6 +45,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     QWidget* userBlock = new QWidget(menuContainer);
     QVBoxLayout* userBlockLayout = new QVBoxLayout(userBlock);
+    userBlockLayout->setAlignment(Qt::AlignHCenter);
     userBlock->setFixedHeight(150);
     userBlock->setStyleSheet("border-radius: 15px;"
                               "background-color: rgba(60, 72, 114, 255);");
@@ -54,7 +54,7 @@ MainWindow::MainWindow(QWidget *parent)
     QString path = QDir::currentPath();
     int index = path.indexOf("XCoin");
     QString subPath = path.mid(0,index+5);
-    subPath.append("/ui/xcoin.jpg");
+    subPath.append("/ui/xcoinSmall.png");
 
     QPixmap pic(subPath);
     QLabel* imgLabel = new QLabel(userBlock);
@@ -98,6 +98,14 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
 
+    // Creating central separating bar
+//    QWidget* sepBar = new QWidget(this);
+//    sepBar->setStyleSheet("background-color: rgba(45,58,82,255);");
+//    sepBar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
+//    sepBar->setFixedWidth(10);
+//    mainLayout->addWidget(sepBar);
+
+
     //Creating Stacked Widget
 
     contentContainer = new QStackedWidget(mainWidget);
@@ -105,30 +113,30 @@ MainWindow::MainWindow(QWidget *parent)
 
     homeWidget = new HomeWidget(mainWidget);
     contentContainer->addWidget(homeWidget);
+    contactsWidget = new ContactsWidget(mainWidget);
+    contentContainer->addWidget(contactsWidget);
     balanceWidget = new QWidget(mainWidget);
     contentContainer->addWidget(balanceWidget);
-    paymentsWidget = new Payments(mainWidget);
+    paymentsWidget = new Purchase_XCoin(mainWidget);
     contentContainer->addWidget(paymentsWidget);
-    contactsWidget = new QWidget(mainWidget);
-    contentContainer->addWidget(contactsWidget);
     settingsWidget = new SettingsWidget(mainWidget);
     contentContainer->addWidget(settingsWidget);
     graphsWidget = new QWidget(mainWidget);
     contentContainer->addWidget(graphsWidget);
 
-    QStringList color_list = {"red", "yellow", "pink", "green", "white", "turquoise"};
-
     for (int i = 0; i < 6; i++){
-        contentContainer->setCurrentIndex(i);
-        QWidget* widget = contentContainer->currentWidget();
-        QString style = QString("QWidget {border: 1px solid %1}").arg(color_list[i]);
-        widget->setStyleSheet(style);
-
         QSignalMapper* signalMapper = new QSignalMapper (this) ;
         connect(btnList[i], SIGNAL(clicked(bool)), signalMapper, SLOT(map()));
-        signalMapper -> setMapping (btnList[i], i);
+        signalMapper->setMapping (btnList[i], i);
         connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(go_page(int)));
     }
+
+//    QPushButton* pay_btn = new QPushButton(QString("PAY NOW"), mainWidget);
+//        pay_btn->setMinimumSize(100,100);
+//        pay_btn->setStyleSheet("border-radius: 10px;"
+//                               "background-color: green;");
+//        connect(pay_btn, &QPushButton::released, this, &MainWindow::on_pushButton_clicked);
+
 
     contentContainer->setCurrentIndex(0);
 
@@ -150,4 +158,15 @@ void MainWindow::go_page(int i)
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     event->accept();
+}
+
+void MainWindow::go_home()
+{
+    contentContainer->setCurrentIndex(0);
+}
+void MainWindow::on_pushButton_clicked()
+{
+    PaymentDialog payment_window;
+    payment_window.setModal(true);
+    payment_window.exec();
 }

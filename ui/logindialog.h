@@ -6,8 +6,6 @@
 #include <QGroupBox>
 #include <QLabel>
 #include <QLineEdit>
-#include <mainwindow.h>
-#include <custombutton.h>
 
 namespace Ui {
 class LoginDialog;

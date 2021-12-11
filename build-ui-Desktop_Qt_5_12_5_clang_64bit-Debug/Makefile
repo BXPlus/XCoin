@@ -52,22 +52,47 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../ui/custombutton.cpp \
+SOURCES       = ../ui/addcontactdialog.cpp \
+		../ui/contactswidget.cpp \
+		../ui/custombutton.cpp \
 		../ui/homewidget.cpp \
+		../ui/logindialog.cpp \
 		../ui/main.cpp \
-		../ui/mainwindow.cpp moc_homewidget.cpp \
+		../ui/mainwindow.cpp \
+		../ui/settingswidget.cpp \
+		../ui/togglebtn.cpp \
+		../ui/paymentdialog.cpp \
+		../ui/purchase_xcoin.cpp moc_addcontactdialog.cpp \
+		moc_contactswidget.cpp \
+		moc_homewidget.cpp \
 		moc_logindialog.cpp \
 		moc_mainwindow.cpp \
-		moc_settingswidget.cpp
-OBJECTS       = custombutton.o \
+		moc_settingswidget.cpp \
+		moc_togglebtn.cpp \
+		moc_paymentdialog.cpp \
+		moc_purchase_xcoin.cpp
+OBJECTS       = addcontactdialog.o \
+		contactswidget.o \
+		custombutton.o \
 		homewidget.o \
+		logindialog.o \
 		main.o \
 		mainwindow.o \
+		settingswidget.o \
+		togglebtn.o \
+		paymentdialog.o \
+		purchase_xcoin.o \
+		moc_addcontactdialog.o \
+		moc_contactswidget.o \
 		moc_homewidget.o \
 		moc_logindialog.o \
 		moc_mainwindow.o \
-		moc_settingswidget.o
-DIST          = ../ui/style.qss \
+		moc_settingswidget.o \
+		moc_togglebtn.o \
+		moc_paymentdialog.o \
+		moc_purchase_xcoin.o
+DIST          = ../ui/Montserrat-Bold.ttf \
+		../ui/style.qss \
 		../../../../Installs/Qt/5.12.5/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Installs/Qt/5.12.5/clang_64/mkspecs/qdevice.pri \
 		../../../../Installs/Qt/5.12.5/clang_64/mkspecs/features/device_config.prf \
@@ -261,14 +286,26 @@ DIST          = ../ui/style.qss \
 		../../../../Installs/Qt/5.12.5/clang_64/mkspecs/features/exceptions.prf \
 		../../../../Installs/Qt/5.12.5/clang_64/mkspecs/features/yacc.prf \
 		../../../../Installs/Qt/5.12.5/clang_64/mkspecs/features/lex.prf \
-		../ui/ui.pro ../ui/custombutton.h \
+		../ui/ui.pro ../ui/addcontactdialog.h \
+		../ui/contactswidget.h \
+		../ui/custombutton.h \
 		../ui/homewidget.h \
 		../ui/logindialog.h \
 		../ui/mainwindow.h \
-		../ui/settingswidget.h ../ui/custombutton.cpp \
+		../ui/settingswidget.h \
+		../ui/togglebtn.h \
+		../ui/paymentdialog.h \
+		../ui/purchase_xcoin.h ../ui/addcontactdialog.cpp \
+		../ui/contactswidget.cpp \
+		../ui/custombutton.cpp \
 		../ui/homewidget.cpp \
+		../ui/logindialog.cpp \
 		../ui/main.cpp \
-		../ui/mainwindow.cpp
+		../ui/mainwindow.cpp \
+		../ui/settingswidget.cpp \
+		../ui/togglebtn.cpp \
+		../ui/paymentdialog.cpp \
+		../ui/purchase_xcoin.cpp
 QMAKE_TARGET  = ui
 DESTDIR       = 
 TARGET        = ui.app/Contents/MacOS/ui
@@ -716,9 +753,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Installs/Qt/5.12.5/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../ui/custombutton.h ../ui/homewidget.h ../ui/logindialog.h ../ui/mainwindow.h ../ui/settingswidget.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../ui/custombutton.cpp ../ui/homewidget.cpp ../ui/main.cpp ../ui/mainwindow.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../ui/mainwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../ui/addcontactdialog.h ../ui/contactswidget.h ../ui/custombutton.h ../ui/homewidget.h ../ui/logindialog.h ../ui/mainwindow.h ../ui/settingswidget.h ../ui/togglebtn.h ../ui/paymentdialog.h ../ui/purchase_xcoin.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../ui/addcontactdialog.cpp ../ui/contactswidget.cpp ../ui/custombutton.cpp ../ui/homewidget.cpp ../ui/logindialog.cpp ../ui/main.cpp ../ui/mainwindow.cpp ../ui/settingswidget.cpp ../ui/togglebtn.cpp ../ui/paymentdialog.cpp ../ui/purchase_xcoin.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../ui/mainwindow.ui ../ui/mainwindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -753,12 +790,60 @@ compiler_moc_predefs_clean:
 moc_predefs.h: ../../../../Installs/Qt/5.12.5/clang_64/mkspecs/features/data/dummy.cpp
 	/Library/Developer/CommandLineTools/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mmacosx-version-min=10.12 -Wall -W -dM -E -o moc_predefs.h ../../../../Installs/Qt/5.12.5/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_homewidget.cpp moc_logindialog.cpp moc_mainwindow.cpp moc_settingswidget.cpp
+compiler_moc_header_make_all: moc_addcontactdialog.cpp moc_contactswidget.cpp moc_homewidget.cpp moc_logindialog.cpp moc_mainwindow.cpp moc_settingswidget.cpp moc_togglebtn.cpp moc_paymentdialog.cpp moc_purchase_xcoin.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_homewidget.cpp moc_logindialog.cpp moc_mainwindow.cpp moc_settingswidget.cpp
+	-$(DEL_FILE) moc_addcontactdialog.cpp moc_contactswidget.cpp moc_homewidget.cpp moc_logindialog.cpp moc_mainwindow.cpp moc_settingswidget.cpp moc_togglebtn.cpp moc_paymentdialog.cpp moc_purchase_xcoin.cpp
+moc_addcontactdialog.cpp: ../ui/addcontactdialog.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		../ui/custombutton.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		moc_predefs.h \
+		../../../../Installs/Qt/5.12.5/clang_64/bin/moc
+	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc $(DEFINES) --include /Users/timvalencony/Desktop/CSE201/XCoin/build-ui-Desktop_Qt_5_12_5_clang_64bit-Debug/moc_predefs.h -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/macx-clang -I/Users/timvalencony/Desktop/CSE201/XCoin/ui -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib ../ui/addcontactdialog.h -o moc_addcontactdialog.cpp
+
+moc_contactswidget.cpp: ../ui/contactswidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../ui/custombutton.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		moc_predefs.h \
+		../../../../Installs/Qt/5.12.5/clang_64/bin/moc
+	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc $(DEFINES) --include /Users/timvalencony/Desktop/CSE201/XCoin/build-ui-Desktop_Qt_5_12_5_clang_64bit-Debug/moc_predefs.h -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/macx-clang -I/Users/timvalencony/Desktop/CSE201/XCoin/ui -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib ../ui/contactswidget.h -o moc_contactswidget.cpp
+
 moc_homewidget.cpp: ../ui/homewidget.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
 		moc_predefs.h \
 		../../../../Installs/Qt/5.12.5/clang_64/bin/moc
 	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc $(DEFINES) --include /Users/timvalencony/Desktop/CSE201/XCoin/build-ui-Desktop_Qt_5_12_5_clang_64bit-Debug/moc_predefs.h -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/macx-clang -I/Users/timvalencony/Desktop/CSE201/XCoin/ui -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib ../ui/homewidget.h -o moc_homewidget.cpp
@@ -774,26 +859,6 @@ moc_logindialog.cpp: ../ui/logindialog.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
-		../ui/mainwindow.h \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QStackedWidget \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qstackedwidget.h \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
-		../ui/custombutton.h \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
-		../ui/logindialog.h \
-		../ui/settingswidget.h \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
 		moc_predefs.h \
 		../../../../Installs/Qt/5.12.5/clang_64/bin/moc
 	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc $(DEFINES) --include /Users/timvalencony/Desktop/CSE201/XCoin/build-ui-Desktop_Qt_5_12_5_clang_64bit-Debug/moc_predefs.h -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/macx-clang -I/Users/timvalencony/Desktop/CSE201/XCoin/ui -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib ../ui/logindialog.h -o moc_logindialog.cpp
@@ -806,6 +871,8 @@ moc_mainwindow.cpp: ../ui/mainwindow.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QStackedWidget \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qstackedwidget.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		../ui/custombutton.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
@@ -813,22 +880,31 @@ moc_mainwindow.cpp: ../ui/mainwindow.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
-		../ui/logindialog.h \
+		../ui/contactswidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../ui/homewidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
+		../ui/logindialog.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGroupBox \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgroupbox.h \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
-		../ui/mainwindow.h \
 		../ui/settingswidget.h \
+		../ui/mainwindow.h \
+		../ui/togglebtn.h \
+		../ui/addcontactdialog.h \
+		../ui/paymentdialog.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
 		moc_predefs.h \
 		../../../../Installs/Qt/5.12.5/clang_64/bin/moc
 	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc $(DEFINES) --include /Users/timvalencony/Desktop/CSE201/XCoin/build-ui-Desktop_Qt_5_12_5_clang_64bit-Debug/moc_predefs.h -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/macx-clang -I/Users/timvalencony/Desktop/CSE201/XCoin/ui -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib ../ui/mainwindow.h -o moc_mainwindow.cpp
@@ -844,37 +920,85 @@ moc_settingswidget.cpp: ../ui/settingswidget.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QStackedWidget \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qstackedwidget.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		../ui/custombutton.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
-		../ui/logindialog.h \
+		../ui/contactswidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../ui/homewidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
+		../ui/logindialog.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGroupBox \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgroupbox.h \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
 		../ui/settingswidget.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
+		../ui/togglebtn.h \
+		../ui/addcontactdialog.h \
+		../ui/paymentdialog.h \
 		moc_predefs.h \
 		../../../../Installs/Qt/5.12.5/clang_64/bin/moc
 	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc $(DEFINES) --include /Users/timvalencony/Desktop/CSE201/XCoin/build-ui-Desktop_Qt_5_12_5_clang_64bit-Debug/moc_predefs.h -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/macx-clang -I/Users/timvalencony/Desktop/CSE201/XCoin/ui -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib ../ui/settingswidget.h -o moc_settingswidget.cpp
+
+moc_togglebtn.cpp: ../ui/togglebtn.h \
+		moc_predefs.h \
+		../../../../Installs/Qt/5.12.5/clang_64/bin/moc
+	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc $(DEFINES) --include /Users/timvalencony/Desktop/CSE201/XCoin/build-ui-Desktop_Qt_5_12_5_clang_64bit-Debug/moc_predefs.h -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/macx-clang -I/Users/timvalencony/Desktop/CSE201/XCoin/ui -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib ../ui/togglebtn.h -o moc_togglebtn.cpp
+
+moc_paymentdialog.cpp: ../ui/paymentdialog.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		moc_predefs.h \
+		../../../../Installs/Qt/5.12.5/clang_64/bin/moc
+	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc $(DEFINES) --include /Users/timvalencony/Desktop/CSE201/XCoin/build-ui-Desktop_Qt_5_12_5_clang_64bit-Debug/moc_predefs.h -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/macx-clang -I/Users/timvalencony/Desktop/CSE201/XCoin/ui -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib ../ui/paymentdialog.h -o moc_paymentdialog.cpp
+
+moc_purchase_xcoin.cpp: ../ui/purchase_xcoin.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		moc_predefs.h \
+		../../../../Installs/Qt/5.12.5/clang_64/bin/moc
+	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/moc $(DEFINES) --include /Users/timvalencony/Desktop/CSE201/XCoin/build-ui-Desktop_Qt_5_12_5_clang_64bit-Debug/moc_predefs.h -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/mkspecs/macx-clang -I/Users/timvalencony/Desktop/CSE201/XCoin/ui -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers -I/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/timvalencony/Installs/Qt/5.12.5/clang_64/lib ../ui/purchase_xcoin.h -o moc_purchase_xcoin.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h
+compiler_uic_make_all: ui_mainwindow.h ui_mainwindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h
+	-$(DEL_FILE) ui_mainwindow.h ui_mainwindow.h
+ui_mainwindow.h: ../ui/mainwindow.ui \
+		../../../../Installs/Qt/5.12.5/clang_64/bin/uic
+	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/uic ../ui/mainwindow.ui -o ui_mainwindow.h
+
 ui_mainwindow.h: ../ui/mainwindow.ui \
 		../../../../Installs/Qt/5.12.5/clang_64/bin/uic
 	/Users/timvalencony/Installs/Qt/5.12.5/clang_64/bin/uic ../ui/mainwindow.ui -o ui_mainwindow.h
@@ -891,6 +1015,71 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 ####### Compile
 
+addcontactdialog.o: ../ui/addcontactdialog.cpp ../ui/addcontactdialog.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		../ui/custombutton.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o addcontactdialog.o ../ui/addcontactdialog.cpp
+
+contactswidget.o: ../ui/contactswidget.cpp ../ui/contactswidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../ui/custombutton.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../ui/mainwindow.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QStackedWidget \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qstackedwidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../ui/homewidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
+		../ui/logindialog.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGroupBox \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgroupbox.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		../ui/settingswidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
+		../ui/togglebtn.h \
+		../ui/addcontactdialog.h \
+		../ui/paymentdialog.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QSignalMapper \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollBar \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollbar.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o contactswidget.o ../ui/contactswidget.cpp
+
 custombutton.o: ../ui/custombutton.cpp ../ui/custombutton.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
@@ -902,8 +1091,68 @@ custombutton.o: ../ui/custombutton.cpp ../ui/custombutton.h \
 
 homewidget.o: ../ui/homewidget.cpp ../ui/homewidget.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsWidget \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgraphicswidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollBar \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollbar.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/QFontDatabase \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/qfontdatabase.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDir \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdir.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o homewidget.o ../ui/homewidget.cpp
+
+logindialog.o: ../ui/logindialog.cpp ../ui/logindialog.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGroupBox \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgroupbox.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		ui_logindialog.h \
+		../ui/mainwindow.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QStackedWidget \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qstackedwidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../ui/custombutton.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		../ui/contactswidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../ui/homewidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
+		../ui/settingswidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
+		../ui/togglebtn.h \
+		../ui/addcontactdialog.h \
+		../ui/paymentdialog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o logindialog.o ../ui/logindialog.cpp
 
 main.o: ../ui/main.cpp ../ui/mainwindow.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
@@ -913,6 +1162,8 @@ main.o: ../ui/main.cpp ../ui/mainwindow.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QStackedWidget \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qstackedwidget.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		../ui/custombutton.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
@@ -920,29 +1171,36 @@ main.o: ../ui/main.cpp ../ui/mainwindow.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
-		../ui/logindialog.h \
+		../ui/contactswidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../ui/homewidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
+		../ui/logindialog.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGroupBox \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgroupbox.h \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
 		../ui/settingswidget.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
+		../ui/togglebtn.h \
+		../ui/addcontactdialog.h \
+		../ui/paymentdialog.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qapplication.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QFile \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDir \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdir.h \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDebug \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdir.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../ui/main.cpp
 
 mainwindow.o: ../ui/mainwindow.cpp ../ui/mainwindow.h \
@@ -953,6 +1211,8 @@ mainwindow.o: ../ui/mainwindow.cpp ../ui/mainwindow.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QStackedWidget \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qstackedwidget.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		../ui/custombutton.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
@@ -960,21 +1220,30 @@ mainwindow.o: ../ui/mainwindow.cpp ../ui/mainwindow.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
-		../ui/logindialog.h \
+		../ui/contactswidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../ui/homewidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
+		../ui/logindialog.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGroupBox \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgroupbox.h \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
 		../ui/settingswidget.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
+		../ui/togglebtn.h \
+		../ui/addcontactdialog.h \
+		../ui/paymentdialog.h \
 		ui_mainwindow.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QStringList \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstringlist.h \
@@ -982,17 +1251,119 @@ mainwindow.o: ../ui/mainwindow.cpp ../ui/mainwindow.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qaction.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QSignalMapper \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h \
-		../ui/logindialog.cpp \
-		ui_logindialog.h \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDebug \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		../ui/settingswidget.cpp \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDir \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdir.h \
-		../ui/homewidget.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/QCloseEvent \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/qevent.h
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/QFontDatabase \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/qfontdatabase.h \
+		../ui/purchase_xcoin.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../ui/mainwindow.cpp
+
+settingswidget.o: ../ui/settingswidget.cpp ../ui/settingswidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../ui/mainwindow.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QStackedWidget \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qstackedwidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../ui/custombutton.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		../ui/contactswidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QMap \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../ui/homewidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
+		../ui/logindialog.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGroupBox \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgroupbox.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		../ui/togglebtn.h \
+		../ui/addcontactdialog.h \
+		../ui/paymentdialog.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDir \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdir.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QtDebug
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o settingswidget.o ../ui/settingswidget.cpp
+
+togglebtn.o: ../ui/togglebtn.cpp ../ui/togglebtn.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o togglebtn.o ../ui/togglebtn.cpp
+
+paymentdialog.o: ../ui/paymentdialog.cpp ../ui/paymentdialog.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGroupBox \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgroupbox.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/QList \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o paymentdialog.o ../ui/paymentdialog.cpp
+
+purchase_xcoin.o: ../ui/purchase_xcoin.cpp ../ui/purchase_xcoin.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QSize \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qsize.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QSizePolicy \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qsizepolicy.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/QStaticText \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/qstatictext.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGroupBox \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgroupbox.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QTextEdit \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qtextedit.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		../ui/custombutton.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QAction \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qaction.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o purchase_xcoin.o ../ui/purchase_xcoin.cpp
+
+moc_addcontactdialog.o: moc_addcontactdialog.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_addcontactdialog.o moc_addcontactdialog.cpp
+
+moc_contactswidget.o: moc_contactswidget.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_contactswidget.o moc_contactswidget.cpp
 
 moc_homewidget.o: moc_homewidget.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_homewidget.o moc_homewidget.cpp
@@ -1005,6 +1376,15 @@ moc_mainwindow.o: moc_mainwindow.cpp
 
 moc_settingswidget.o: moc_settingswidget.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_settingswidget.o moc_settingswidget.cpp
+
+moc_togglebtn.o: moc_togglebtn.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_togglebtn.o moc_togglebtn.cpp
+
+moc_paymentdialog.o: moc_paymentdialog.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_paymentdialog.o moc_paymentdialog.cpp
+
+moc_purchase_xcoin.o: moc_purchase_xcoin.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_purchase_xcoin.o moc_purchase_xcoin.cpp
 
 ####### Install
 
