@@ -15,7 +15,7 @@
 #include "togglebtn.h"
 #include "addcontactdialog.h"
 #include "paymentdialog.h"
-#include "balancewidget2.h"
+#include "balancewidget.h"
 #include "purchase_xcoin.h"
 
 QT_BEGIN_NAMESPACE

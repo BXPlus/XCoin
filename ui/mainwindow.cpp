@@ -113,7 +113,7 @@ MainWindow::MainWindow(QWidget *parent)
     contentContainer->addWidget(homeWidget);
     contactsWidget = new ContactsWidget(mainWidget);
     contentContainer->addWidget(contactsWidget);
-    balanceWidget = new BalanceWidget2(mainWidget);
+    balanceWidget = new BalanceWidget(mainWidget);
     contentContainer->addWidget(balanceWidget);
     paymentsWidget = new Purchase_XCoin(mainWidget);
     contentContainer->addWidget(paymentsWidget);
