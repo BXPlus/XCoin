@@ -1,7 +1,7 @@
 #include "balancewidget2.h"
 #include "mainwindow.h"
 
-BalanceWidget::BalanceWidget(QWidget *parent) : QWidget(parent)
+BalanceWidget2::BalanceWidget2(QWidget *parent) : QWidget(parent)
 {
     tabWidget = new QTabWidget(this);
     mainLayout = new QVBoxLayout();

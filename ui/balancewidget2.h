@@ -8,11 +8,11 @@
 #include <QScrollArea>
 #include <QMap>
 
-class BalanceWidget : public QWidget
+class BalanceWidget2 : public QWidget
 {
     Q_OBJECT
 public:
-    explicit BalanceWidget(QWidget *parent = nullptr);
+    explicit BalanceWidget2(QWidget *parent = nullptr);
 private:
     QTabWidget* tabWidget;
     QVBoxLayout* mainLayout;

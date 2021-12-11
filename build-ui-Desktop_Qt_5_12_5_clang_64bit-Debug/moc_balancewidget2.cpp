@@ -20,25 +20,25 @@
 QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
-struct qt_meta_stringdata_BalanceWidget_t {
+struct qt_meta_stringdata_BalanceWidget2_t {
     QByteArrayData data[1];
-    char stringdata0[14];
+    char stringdata0[15];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_BalanceWidget_t, stringdata0) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_BalanceWidget2_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_BalanceWidget_t qt_meta_stringdata_BalanceWidget = {
+static const qt_meta_stringdata_BalanceWidget2_t qt_meta_stringdata_BalanceWidget2 = {
     {
-QT_MOC_LITERAL(0, 0, 13) // "BalanceWidget"
+QT_MOC_LITERAL(0, 0, 14) // "BalanceWidget2"
 
     },
-    "BalanceWidget"
+    "BalanceWidget2"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_BalanceWidget[] = {
+static const uint qt_meta_data_BalanceWidget2[] = {
 
  // content:
        8,       // revision
@@ -54,7 +54,7 @@ static const uint qt_meta_data_BalanceWidget[] = {
        0        // eod
 };
 
-void BalanceWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void BalanceWidget2::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     Q_UNUSED(_o);
     Q_UNUSED(_id);
@@ -62,30 +62,30 @@ void BalanceWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
     Q_UNUSED(_a);
 }
 
-QT_INIT_METAOBJECT const QMetaObject BalanceWidget::staticMetaObject = { {
+QT_INIT_METAOBJECT const QMetaObject BalanceWidget2::staticMetaObject = { {
     &QWidget::staticMetaObject,
-    qt_meta_stringdata_BalanceWidget.data,
-    qt_meta_data_BalanceWidget,
+    qt_meta_stringdata_BalanceWidget2.data,
+    qt_meta_data_BalanceWidget2,
     qt_static_metacall,
     nullptr,
     nullptr
 } };
 
 
-const QMetaObject *BalanceWidget::metaObject() const
+const QMetaObject *BalanceWidget2::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *BalanceWidget::qt_metacast(const char *_clname)
+void *BalanceWidget2::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_BalanceWidget.stringdata0))
+    if (!strcmp(_clname, qt_meta_stringdata_BalanceWidget2.stringdata0))
         return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
-int BalanceWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int BalanceWidget2::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QWidget::qt_metacall(_c, _id, _a);
     return _id;
