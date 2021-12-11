@@ -93,6 +93,7 @@ OBJECTS       = addcontactdialog.o \
 		moc_purchase_xcoin.o
 DIST          = ../ui/Montserrat-Bold.ttf \
 		../ui/style.qss \
+		../ui/styleLight.qss \
 		../../../../Installs/Qt/5.12.5/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Installs/Qt/5.12.5/clang_64/mkspecs/qdevice.pri \
 		../../../../Installs/Qt/5.12.5/clang_64/mkspecs/features/device_config.prf \
@@ -1121,7 +1122,6 @@ logindialog.o: ../ui/logindialog.cpp ../ui/logindialog.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
-		ui_logindialog.h \
 		../ui/mainwindow.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \

@@ -46,6 +46,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     Montserrat-Bold.ttf \
-    style.qss
+    style.qss \
+    styleLight.qss
 
 RESOURCES +=

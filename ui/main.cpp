@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     QString path = a.applicationDirPath();
     int index = path.indexOf("XCoin");
     QString subPath = path.mid(0,index+5);
-    subPath.append("/ui/style.qss");
+    subPath.append("/ui/styleLight.qss");
 
         // loading
     QFile qss(subPath);
