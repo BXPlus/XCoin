@@ -2,6 +2,8 @@
 #define BALANCEWIDGET_H
 
 #include <QWidget>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
 
 namespace Ui {
 class BalanceWidget;
@@ -14,6 +16,11 @@ class BalanceWidget : public QWidget
 public:
     explicit BalanceWidget(QWidget *parent = nullptr);
     ~BalanceWidget();
+    QWidget* balanceWidget;
+    QWidget* transacContainer;
+    QHBoxLayout* hbalanceLayout;
+    QVBoxLayout* vbalanceLayout;
+    QVBoxLayout* transacLayout;
 
 private:
     Ui::BalanceWidget *ui;
