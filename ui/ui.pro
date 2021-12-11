@@ -9,6 +9,7 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    balancewidget.cpp \
     addcontactdialog.cpp \
     balancewidget2.cpp \
     contactswidget.cpp \
@@ -23,6 +24,7 @@ SOURCES += \
     purchase_xcoin.cpp
 
 HEADERS += \
+    balancewidget.h \
     addcontactdialog.h \
     balancewidget2.h \
     contactswidget.h \
@@ -34,9 +36,6 @@ HEADERS += \
     togglebtn.h \
     paymentdialog.h \
     purchase_xcoin.h
-
-FORMS += \
-    mainwindow.ui
 
 FORMS += \
     mainwindow.ui

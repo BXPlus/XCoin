@@ -100,5 +100,4 @@ setLayout(page_layout);
 
 PaymentDialog::~PaymentDialog()
 {
-    delete ui;
 }

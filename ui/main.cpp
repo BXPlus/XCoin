@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "balancewidget.h"
 #include <QApplication>
 #include <QFile>
 #include <QDir>

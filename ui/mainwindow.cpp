@@ -8,14 +8,12 @@
 #include <QDir>
 #include <QCloseEvent>
 #include <QFontDatabase>
-#include <paymentdialog.h>
-#include <purchase_xcoin.h>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-
     ui->setupUi(this);
 
     //HomePage setup
