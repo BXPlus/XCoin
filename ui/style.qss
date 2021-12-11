@@ -1,11 +1,12 @@
 FontLoader { id: MontserratBold; source: "/fonts/Monserrat-Bold.ttf" }
 
 MainWindow {
-    background-color: rgba(60,72,114,255);
+    background-color: rgb(173,216,230);
 }
 
 QWidget#menuContainer {
-    background-color: rgba(34,45,72,255);
+    background-color: rgb(173,216,230);
+
 }
 
 QPushButton#menuBtn {
@@ -16,10 +17,12 @@ QPushButton#menuBtn {
     padding: 12px;
     margin: 0;
     font: bold;
+    background-color: rgb(60,179,113);
+
 }
 
 QPushButton#menuBtn:hover {
-    background-color: rgba(255,200,52,100);
+    background-color: rgb(154,205,50);
 }
 
 QWidget#contentContainer {
@@ -106,6 +109,7 @@ background-color: rgba(0,150,255);
 QPushButton#XCO:hover {
 background-color: yellow
 }
+
 QLabel#XCO:active {
 background-color:red;
 }
@@ -138,3 +142,25 @@ QPushButton#deleteBtn {
 QPushButton#deleteBtn:hover {
     background-color: rgba(177, 8, 40, 0.44);
 }
+
+QPushButton#LoginButton {
+    background-color: pink;
+    border: 2px solid white;
+    height: 28px;
+    width: 30px;
+    border-radius: 10px;
+}
+
+QLabel#PrivateLabelT {
+    font-size: 15px;
+}
+
+QLineEdit#PrivateTextT {
+    width: 100px;
+}
+
+QGroupBox#BoxGroup {
+    width: 70px;
+    height: 50px;
+}
+

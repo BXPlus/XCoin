@@ -7,6 +7,7 @@ LoginDialog::LoginDialog(QWidget *parent) :
 {
     groupBox = new QGroupBox();
     login = new QPushButton("Login", this);
+
     privateLabel = new QLabel("Private Key:", this);
     privateText = new QLineEdit(this);
     warningLabel = new QLabel(this);
@@ -27,6 +28,9 @@ LoginDialog::LoginDialog(QWidget *parent) :
     warningLabel->setVisible(false);
 
     login->setObjectName("LoginButton");
+    privateLabel->setObjectName("PrivateLabelT");
+    privateText->setObjectName("PrivateTextT");
+    groupBox->setObjectName("BoxGroup");
 
     connect(login, SIGNAL(clicked()), this, SLOT(check_credentials()));
 }
