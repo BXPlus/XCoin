@@ -10,20 +10,35 @@ CONFIG += c++11
 
 SOURCES += \
     balancewidget.cpp \
+    addcontactdialog.cpp \
+    contactswidget.cpp \
     custombutton.cpp \
+    homewidget.cpp \
     logindialog.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    settingswidget.cpp \
+    togglebtn.cpp \
+    paymentdialog.cpp \
+    purchase_xcoin.cpp
 
 HEADERS += \
     balancewidget.h \
+    addcontactdialog.h \
+    contactswidget.h \
     custombutton.h \
+    homewidget.h \
     logindialog.h \
-    mainwindow.h
+    mainwindow.h \
+    settingswidget.h \
+    togglebtn.h \
+    paymentdialog.h \
+    purchase_xcoin.h
 
 FORMS += \
-    balancewidget.ui \
-    logindialog.ui \
+    mainwindow.ui
+
+FORMS += \
     mainwindow.ui
 
 # Default rules for deployment.
@@ -32,4 +47,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    style.qss
+    Montserrat-Bold.ttf \
+    style.qss \
+    styleLight.qss
+
+RESOURCES +=

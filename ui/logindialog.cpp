@@ -1,58 +1,77 @@
 #include "logindialog.h"
-#include "ui_logindialog.h"
-#include "logindialog.h"
+#include "mainwindow.h"
 #include <QDebug>
 
 LoginDialog::LoginDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::LoginDialog)
+    QDialog(parent)
 {
-    ui->setupUi(this);
-
-    groupBox = new QGroupBox(tr("Login"));
+    groupBox = new QGroupBox();
     login = new QPushButton("Login", this);
-    usernameLabel = new QLabel("Username:", this);
-    passwordLabel = new QLabel("Password:", this);
-    usernameText = new QLineEdit(this);
-    passwordText = new QLineEdit(this);
+
+    privateLabel = new QLabel("Private Key:", this);
+    privateText = new QLineEdit(this);
+    warningLabel = new QLabel(this);
 
     mainLayout = new QVBoxLayout();
     usernameLayout = new QHBoxLayout();
-    passwordLayout = new QHBoxLayout();
-    mLayout = new QVBoxLayout();
 
-    passwordLayout->addWidget(passwordLabel );
-    usernameLayout->addWidget(usernameLabel);
-    passwordLayout->addWidget(passwordText);
-    usernameLayout->addWidget(usernameText);
+    usernameLayout->addWidget(privateLabel);
+    usernameLayout->addWidget(privateText);
 
-    mLayout->addLayout(usernameLayout);
-    mLayout->addLayout(passwordLayout);
-
-    groupBox->setLayout(mLayout);
+    groupBox->setLayout(usernameLayout);
     groupBox->setFlat(true);
     mainLayout->addWidget(groupBox);
+    mainLayout->addWidget(warningLabel);
     mainLayout->addWidget(login);
     setLayout(mainLayout);
+
+    warningLabel->setVisible(false);
+
+    login->setObjectName("LoginButton");
+    privateLabel->setObjectName("PrivateLabelT");
+    privateText->setObjectName("PrivateTextT");
+    groupBox->setObjectName("BoxGroup");
+
+    connect(login, SIGNAL(clicked()), this, SLOT(check_credentials()));
 }
 
 LoginDialog::~LoginDialog()
 {
-    delete ui;
 }
 
-bool LoginDialog::get_login()
+bool LoginDialog::get_identified()
 {
-    return login;
+    return identified;
 }
 
 void LoginDialog::check_credentials()
 {
-    QString username = usernameText->text();
-    QString password = passwordText->text();
+    QString privatekey = privateText->text();
+    QStringList attemps = {"three", "two", "one"};
 
-    if (username == "tim_vlc" && password == "Tim") {
+    if (privatekey == "") {
         identified = true;
+        this->close();
     }
-    identified = false;
+    else {
+        warningLabel->setVisible(true);
+        warningLabel->setStyleSheet("color: red;"
+                                    "margin: 0;");
+
+        if (counter < 2) {
+            warningLabel->setText(QString("[WARNING] Only %1 attempts left!").arg(attemps[counter]));
+            counter ++;
+        }
+
+        else if (counter == 2) {
+            warningLabel->setText(QString("[WARNING] Only %1 attempt left!").arg(attemps[counter]));
+            counter ++;
+        }
+
+        else {
+            warningLabel->setText(QString("[WARNING] No more attemps allowed!"));
+            groupBox->setVisible(false);
+            login->hide();
+        }
+    }
 }
