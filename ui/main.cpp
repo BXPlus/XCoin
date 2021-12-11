@@ -40,12 +40,6 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
     return a.exec();
-
-    //Payment window
-    PaymentDialog* payment_window = new PaymentDialog();
-
-
-
 }
 
 

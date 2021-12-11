@@ -6,6 +6,7 @@
 #include <QStackedWidget>
 #include <QVBoxLayout>
 #include <QDebug>
+#include "balancewidget.h"
 #include "custombutton.h"
 #include "contactswidget.h"
 #include "homewidget.h"
