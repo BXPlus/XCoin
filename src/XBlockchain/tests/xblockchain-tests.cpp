@@ -74,7 +74,6 @@ TEST_F(XTransactionTests, TxOutInit){
 
 // Testing getTransactionId
 TEST_F(XTransactionTests, generateTransactionId){
-    Transaction t;
     std::string ans = "";
     ans += "txIn11";
     TxIn txIn1("txIn1", 1, std::pair<uint8_t*, uint32_t>());
@@ -84,10 +83,10 @@ TEST_F(XTransactionTests, generateTransactionId){
     TxOut txOut1("txOut1", 3);
     ans += "txOut24";
     TxOut txOut2("txOut2", 4);
-    t.txIns = std::vector<TxIn>{txIn1, txIn2};
-    t.txOuts = std::vector<TxOut>{txOut1, txOut2};
-    t.id = t.getTransactionId();
-    EXPECT_EQ(t.id, sha256(ans));
+    transaction.txIns = std::vector<TxIn>{txIn1, txIn2};
+    transaction.txOuts = std::vector<TxOut>{txOut1, txOut2};
+    transaction.id = transaction.getTransactionId();
+    EXPECT_EQ(transaction.id, sha256(ans));
 }
 /*
 
