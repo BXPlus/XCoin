@@ -96,7 +96,7 @@ TEST(getCoinbaseTransaction, handleCoinbaseTransaction) {
     transactionId += address;
     EXPECT_EQ(t.txOuts[0].amount, 50);
     transactionId += "50";
-    EXPECT_EQ(t.id, transactionId);
+    EXPECT_EQ(t.id, sha256(transactionId));
 }
 
 //testing findUnspentTxOut
