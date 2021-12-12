@@ -137,7 +137,9 @@ int Blockchain::getCumulativeDifficulty()
     for (int i = 0; i < length; i++)
     {
         res += pow(2, currentNode.block.difficulty);
-        currentNode = *currentNode.prev;
+        if (currentNode.prev != nullptr)
+            currentNode = *currentNode.prev;
+        else break;
     };
     return res;
 }
