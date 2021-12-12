@@ -68,6 +68,20 @@ TEST(isValidAddressTest, Handle04) {
     EXPECT_EQ(isValidAddress(address), 0);
 }
 
+//Testing hasDuplicates
+TEST(hasDuplicates, HandleDuplicate) {
+    std::vector<TxIn> txIns;
+    TxIn txIn1("txIn1", 1, std::pair<uint8_t*, uint32_t>());
+    txIns.push_back(txIn1);
+    TxIn txIn2("txIn2", 2, std::pair<uint8_t*, uint32_t>());
+    txIns.push_back(txIn2);
+    EXPECT_EQ(hasDuplicates(txIns), 1);
+    //adding duplicates
+    TxIn txIn3("txIn2", 2, std::pair<uint8_t*, uint32_t>());
+    txIns.push_back(txIn3);
+    EXPECT_EQ(hasDuplicates(txIns), 0);
+}
+
 class XTransactionTests: public ::testing::Test{
 protected:
     Transaction transaction;
