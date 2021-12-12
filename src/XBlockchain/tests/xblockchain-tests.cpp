@@ -48,15 +48,13 @@ protected:
     Transaction transaction;
     UnspentTxOut unspenttxout;
     TxOut txout;
-    std::string testAddress = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
     void SetUp() override{
         transaction = Transaction();
         unspenttxout = UnspentTxOut("txOutId",
                                     1,
-                                    testAddress,
+                                    "address",
                                     0);
-        txout = TxOut(testAddress,
-                      0);
+        txout = TxOut("address", 0);
     }
 };
 
@@ -64,16 +62,33 @@ protected:
 TEST_F(XTransactionTests, UnspentTxOutInit){
     EXPECT_EQ(unspenttxout.txOutId, "txOutId");
     EXPECT_EQ(unspenttxout.txOutIndex, 1);
-    EXPECT_EQ(unspenttxout.address, testAddress);
+    EXPECT_EQ(unspenttxout.address, "address");
     EXPECT_EQ(unspenttxout.amount, 0);
 }
 
 // Initialisation test: TxOut has the right initialisation
 TEST_F(XTransactionTests, TxOutInit){
-    EXPECT_EQ(txout.address, "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a");
+    EXPECT_EQ(txout.address, "address");
     EXPECT_EQ(txout.amount, 0);
 }
 
+// Testing getTransactionId
+TEST_F(XTransactionTests, generateTransactionId){
+    Transaction t;
+    std::string ans = "";
+    ans += "txIn11";
+    TxIn txIn1("txIn1", 1, std::pair<uint8_t*, uint32_t>());
+    ans += "txIn22";
+    TxIn txIn2("txIn2", 2, std::pair<uint8_t*, uint32_t>());
+    ans += "txOut13";
+    TxOut txOut1("txOut1", 3);
+    ans += "txOut24";
+    TxOut txOut2("txOut2", 4);
+    t.txIns = std::vector<TxIn>{txIn1, txIn2};
+    t.txOuts = std::vector<TxOut>{txOut1, txOut2};
+    t.id = t.getTransactionId();
+    EXPECT_EQ(t.id, sha256(ans));
+}
 /*
 
 class XTransactionCoreTests: public ::testing::Test{

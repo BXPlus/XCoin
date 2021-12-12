@@ -18,6 +18,12 @@ TxOut::TxOut(std::string address, int amount) {
     this -> amount = amount;
 }
 
+TxIn::TxIn(std::string txOutId, int txOutIndex, std::pair<uint8_t*, uint32_t> signature) {
+    this -> txOutId = txOutId;
+    this -> txOutIndex = txOutIndex;
+    this -> signature = signature;
+}
+
 std::string Transaction::getTransactionId() {
     std::stringstream txInsContent;
     for(int i = 0; i < int(txIns.size()); i++) {
@@ -350,10 +356,7 @@ bool Transaction::validateCoinbaseTx(int blockIndex) {
 
 Transaction getCoinbaseTransaction(std::string address, int blockIndex) {
     Transaction t;
-    TxIn txIn;
-    txIn.signature = std::pair<uint8_t*, uint32_t>();
-    txIn.txOutId = "";
-    txIn.txOutIndex = blockIndex;
+    TxIn txIn("", blockIndex, std::pair<uint8_t*, uint32_t>());
 
     t.txIns = std::vector<TxIn>{txIn};
     t.txOuts = std::vector<TxOut>{TxOut(address, COINBASE_AMOUNT)};
