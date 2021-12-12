@@ -162,6 +162,47 @@ TEST_F(XTransactionTests, generateTransactionId){
     transaction.id = transaction.getTransactionId();
     EXPECT_EQ(transaction.id, sha256(ans));
 }
+
+//testing validateCoinbaseTx
+TEST_F(XTransactionTests, ValidateCoinbaseTx) {
+    std::string ans = "";
+    int COINBASE_AMOUNT = 50;
+    int blockIndex = 1;
+
+    TxIn txIn("txIn", blockIndex, std::pair<uint8_t*, uint32_t>());
+    TxOut txOut("txOut", COINBASE_AMOUNT);
+    transaction.txIns = std::vector<TxIn>{txIn};
+    transaction.txOuts = std::vector<TxOut>{txOut};
+    transaction.id = transaction.getTransactionId();
+
+    EXPECT_EQ(transaction.validateCoinbaseTx(blockIndex), 1);
+
+    //invalid coinbase tx id
+    std::string id = transaction.id;
+    transaction.id[0] = '+';
+    EXPECT_EQ(transaction.validateCoinbaseTx(blockIndex), 0);
+    transaction.id = id;
+
+    //multiple txIns
+    transaction.txIns.push_back(txIn);
+    EXPECT_EQ(transaction.validateCoinbaseTx(blockIndex), 0);
+    transaction.txIns.pop_back();
+
+    //invalid txIn Index
+    transaction.txIns[0].txOutIndex = blockIndex - 1;
+    EXPECT_EQ(transaction.validateCoinbaseTx(blockIndex), 0);
+    transaction.txIns[0].txOutIndex = blockIndex;
+
+    //multiple txOuts
+    transaction.txOuts.push_back(txOut);
+    EXPECT_EQ(transaction.validateCoinbaseTx(blockIndex), 0);
+    transaction.txOuts.pop_back();
+
+    //invalid coinbase amount
+    transaction.txOuts[0].amount = COINBASE_AMOUNT - 1;
+    EXPECT_EQ(transaction.validateCoinbaseTx(blockIndex), 0);
+    transaction.txOuts[0].amount = COINBASE_AMOUNT;
+}
 /*
 
 class XTransactionCoreTests: public ::testing::Test{
