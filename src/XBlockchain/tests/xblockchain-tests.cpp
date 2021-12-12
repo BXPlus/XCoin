@@ -4,8 +4,7 @@
 
 #include "gtest/gtest.h"
 #include "../Blockchain.h"
-
-//#include "../transaction.h"
+#include "../transaction.h"
 
 
 class XBlockchainCoreTests: public ::testing::Test{
@@ -42,6 +41,36 @@ TEST_F(XBlockchainCoreTests, BlockchainAddBlock){
     EXPECT_EQ(blockchain.getLatestBlock().hash, newBlock.hash);
     EXPECT_EQ(blockchain.length, oldLength + 1);
     EXPECT_EQ(blockchain.difficulty , 0); // TODO: Make some more extensive tests for this when it works
+}
+
+class XTransactionTests: public ::testing::Test{
+protected:
+    Transaction transaction;
+    UnspentTxOut unspenttxout;
+    TxOut txout;
+    void SetUp() override{
+        transaction = Transaction();
+        unspenttxout = UnspentTxOut("txOutId",
+                                    1,
+                                    "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a",
+                                    0);
+        txout = TxOut("04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a",
+                      0);
+    }
+};
+
+// Initialisation test: UnspentTxOut has the right initialisation
+TEST_F(XTransactionTests, UnspentTxOutInit){
+    EXPECT_EQ(unspenttxout.txOutId, "txOutId");
+    EXPECT_EQ(unspenttxout.txOutIndex, 1);
+    EXPECT_EQ(unspenttxout.address, "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a");
+    EXPECT_EQ(unspenttxout.amount, 0);
+}
+
+// Initialisation test: TxOut has the right initialisation
+TEST_F(XTransactionTests, TxOutInit){
+    EXPECT_EQ(txout.address, "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a");
+    EXPECT_EQ(txout.amount, 0);
 }
 
 /*

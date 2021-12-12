@@ -5,7 +5,6 @@
 #include "transaction.h"
 #include "../XNode/keys.h"
 #include <stdexcept>
-#include "../XNode/keys.h"
 #include <regex>
 #include <map>
 #include <set>
