@@ -6,7 +6,7 @@
 XNode::Node::Node() {
     this->blockchain = Blockchain();
     this->peers = std::map<std::string, XNode::XNodeClient>();
-    this->blockchain.appendBlock(this->blockchain.generateNextBlock("Hello", 1, 0, ""));
+    //this->blockchain.appendBlock(this->blockchain.generateNextBlock("Hello", 1, 0, ""));
 }
 
 /**
@@ -221,10 +221,11 @@ bool XNode::Node::AttemptPeerConnection(const std::string &peerAddress) {
             saveDataOnDisk();
             sdkInstance->onPeerListChanged();
             std::pair<XNode::Node::PingPongStatus, int> pingPongStatus = AttemptPingPongSync(peerAddress);
-            std::cout<<this->blockchain.getLatestBlock().data<<std::endl;
             if(AttemptBlockchainSync(peerAddress, pingPongStatus.first, pingPongStatus.second)){
                 this->peers[peerAddress].syncSuccess = true;
                 spdlog::info("Successfully synced blockchain with " + peerAddress);
+                std::cout << this->blockchain.length << std::endl;
+                saveDataOnDisk();
                 sdkInstance->onStatusChanged(XNodeSDK::XNodeStatus::Ready);
             }
             return true;
@@ -358,8 +359,7 @@ bool XNode::Node::AttemptBlockchainSync(const std::string &peerAddress, PingPong
             if (getBlockchainFromHeightStatus.ok()){
                 std::vector<Block> newBlocks = XNode::Interface::decodeChain(getBlockchainFromHeightReply);
                 for (Block block: newBlocks){
-                    std::cout << block.headerHash << std::endl;
-                    std::cout << block.data << std::endl;
+                    std::cout << newBlocks.data() << std::endl;
                     this->blockchain.appendBlock(block);
                 }
                 return true;
