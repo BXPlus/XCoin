@@ -45,8 +45,7 @@ MainWindow::MainWindow(QWidget *parent)
     QVBoxLayout* userBlockLayout = new QVBoxLayout(userBlock);
     userBlockLayout->setAlignment(Qt::AlignHCenter);
     userBlock->setFixedHeight(150);
-    userBlock->setStyleSheet("border-radius: 15px;"
-                              "background-color: rgba(60, 72, 114, 255);");
+    userBlock->setObjectName("UserBlock");
 
     // XCoin logo
     QString path = QDir::currentPath();
@@ -70,9 +69,7 @@ MainWindow::MainWindow(QWidget *parent)
     QLabel* balanceLabel = new QLabel(userBlock);
     balanceLabel->setText("964.52");
     balanceLabel->setAlignment(Qt::AlignCenter);
-    balanceLabel->setStyleSheet("background-color: rgba(98, 130, 184, 255);"
-                                "border-radius: 10px;"
-                                "margin: 0;");
+    balanceLabel->setObjectName("BalanceLabel");
     balanceLabel->setMaximumHeight(30);
 
     userBlockLayout->addWidget(imgLabel);
