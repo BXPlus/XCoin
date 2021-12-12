@@ -8,7 +8,7 @@
 #include "../XNode/keys.h"
 #include <regex>
 #include <map>
-
+#include <set>
 #define fi first
 #define se second
 
@@ -261,7 +261,6 @@ bool hasDuplicates(std::vector<TxIn> txIns) {
     }
     return 0;
 }
-/* //TODO: solve the problem with 'used'
 bool validateBlockTransactions(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts, int blockIndex) {
     Transaction coinbaseTx = aTransactions[0];
     if (!coinbaseTx.validateCoinbaseTx(blockIndex)) {
@@ -271,12 +270,12 @@ bool validateBlockTransactions(std::vector<Transaction> aTransactions, std::vect
 
     //check for duplicate txIns. Each txIn can be included only once
     std::vector<TxIn> txIns;
-    std::map<TxIn, bool> used;
+    std::set<TxIn> used;
     for (int i = 0; i < (int)(aTransactions.size()); i++) {
         for (int j = 0; j < (int)(aTransactions[i].txIns.size()); j++) {
-            if (!used.count(aTransactions[i].txIns[j])) {
+            if (used.find(aTransactions[i].txIns[j]) != used.end()) {
                 txIns.push_back(aTransactions[i].txIns[j]);
-                used[aTransactions[i].txIns[j]] = 1;
+                used.insert(aTransactions[i].txIns[j]);
             }
         }
     }
@@ -291,7 +290,6 @@ bool validateBlockTransactions(std::vector<Transaction> aTransactions, std::vect
 
     return validate;
 }
-*/
 
 bool Transaction::validateTransaction(std::vector<UnspentTxOut> aUnspentTxOuts) {
     if (!isValidTransactionStructure())

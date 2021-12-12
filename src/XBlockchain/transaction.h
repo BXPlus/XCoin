@@ -27,6 +27,9 @@ public:
     std::string txOutId;
     int txOutIndex;
     std::pair<uint8_t*, uint32_t> signature;
+    friend bool operator<(const TxIn& txIn1, const TxIn& txIn2) {
+        return txIn1.txOutId < txIn2.txOutId;
+    }
     int getTxInAmount(std::vector<UnspentTxOut> aUnspentTxOuts);
     std::string JSONStringify();
     TxIn();
