@@ -1,16 +1,16 @@
 FontLoader { id: MontserratBold; source: "/fonts/Monserrat-Bold.ttf" }
 
 MainWindow {
-    background-color: rgba(248, 35, 248, 0.8);
+    background-color: rgb(240,248,250);
 }
 
 QWidget#menuContainer {
-    background-color: rgba(248, 35, 248, 0.8);
+    background-color: rgb(240,248,250);
 }
 
 QPushButton#menuBtn {
-    border: 2px solid rgba(248, 35, 248, 0.8);
-    color: white;
+    border: 2px solid rgb(176,196,222);
+    color: black;
     border-radius: 20px;
     text-align: left;
     padding: 12px;
@@ -19,15 +19,15 @@ QPushButton#menuBtn {
 }
 
 QPushButton#menuBtn:hover {
-    background-color: rgba(255,200,52,100);
+    background-color: rgb(190,239,249);
 }
 
 QWidget#contentContainer {
-    background-color: rgba(31,41,66,255);
+    background-color: rgb(240,248,250);
 }
 
 QLabel#title {
-    color: white;
+    color: black;
     font: MontserratBold;
     font-size: 40px;
 }
@@ -75,7 +75,7 @@ QLabel#settingslabel {
     margin: 0px;
     font: MontserratBold;
     font-size: 15px;
-    background-color: rgba(60, 72, 114, 255);
+    background-color: rgb(176,196,222);
     color: white;
     border-radius: 20px;
     text-align: center;
@@ -93,6 +93,7 @@ QLabel#settingsstring {
     font: bold;
     font: MontserratBold;
     font-size: 20px;
+    color: black;
 }
 
 QLabel#addContact {
@@ -111,8 +112,8 @@ background-color:red;
 }
 
 QPushButton#ContactEdits {
-    border: 2px solid rgba(255,200,52,255);
-    color: white;
+    border: 2px solid rgb(131, 199, 213);
+    color: black;
     border-radius: 20px;
     text-align: left;
     padding: 12px;
@@ -121,14 +122,15 @@ QPushButton#ContactEdits {
 }
 
 QPushButton#ContactEdits:hover {
-    background-color: rgba(255,200,52,100);
+    background-color: rgb(131, 199, 213);
 }
 
 QPushButton#deleteBtn {
     border: 2px solid rgba(223, 8, 40, 0.8);
     background-color: rgba(189, 14, 46, 0.8);
     color: white;
-    border-radius: 20px;
+    border-radius: 10px;
+    height: 10px;
     text-align: center;
     padding: 12px;
     margin: 10;
@@ -136,5 +138,122 @@ QPushButton#deleteBtn {
 }
 
 QPushButton#deleteBtn:hover {
-    background-color: rgba(177, 8, 40, 0.44);
+    background-color: rgba(177, 8, 40, 0.64);
+}
+
+QLabel#BalanceAmount {
+    margin: 0px;
+    font: bold;
+    font: MontserratBold;
+    font-size: 30px;
+
+    border: 2px solid white;
+    background-color: rgb(71, 154, 171);
+    border-radius: 20px;
+    padding: 12px;
+    margin: 0;
+}
+
+QWidget#BalanceWidget {
+    border: 2px solid white;
+    background-color: rgb(131, 199, 213);
+    border-radius: 20px;
+    text-align: center;
+    padding: 12px;
+    margin: 0;
+    font: bold;
+}
+
+QLabel#keyContacts1 {
+    background-color: rgb(209, 242, 249);
+    padding: 20px;
+    font: 15px;
+    border-radius: 25px;
+    color: black;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+QLabel#valueContacts1 {
+    color: black;
+    font-weight: bold;
+    font: 15px;
+    padding: 20px;
+}
+
+QLabel#keyContacts2 {
+    background-color: rgb(240,248,250);
+    padding: 20px;
+    font: 15px;
+    border-radius: 25px;
+    color: black;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+QLabel#valueContacts2 {
+    color: black;
+    font-weight: bold;
+    font: 15px;
+    padding: 20px;
+}
+
+QLabel#keyBalance1 {
+    background-color: rgb(209, 242, 249);
+    padding: 20px;
+    font: 15px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-top: 10px;
+    margin-left: 10px;
+    color: black;
+}
+
+QLabel#valueBalance1 {
+    background-color: rgb(209, 242, 249);
+    padding: 20px;
+    font: bold 15px;
+    margin-top: 10px;
+    margin-right: 10px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: black;
+}
+
+QLabel#keyBalance2 {
+    background-color: rgb(240,248,250);
+    padding: 20px;
+    font: 15px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-top: 10px;
+    margin-left: 10px;
+    color: black;
+}
+
+QLabel#valueBalance2 {
+    background-color: rgb(240,248,250);
+    padding: 20px;
+    font: bold 15px;
+    margin-top: 10px;
+    margin-right: 10px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: black;
+}
+
+QWidget#UserBlock {
+    border-radius: 15px;
+    background-color: rgb(131, 199, 213);
+}
+
+QLabel#BalanceLabel {
+    background-color: rgb(71, 154, 171);
+    border-radius: 10px;
+    margin: 0;
+}
+
+QWidget#ScrollBox {
+    background-color: rgb(230, 242, 247);
+    border-radius: 15px;
 }

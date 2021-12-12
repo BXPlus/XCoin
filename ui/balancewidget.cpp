@@ -78,6 +78,7 @@ BalanceWidget::BalanceWidget(QWidget *parent) : QWidget(parent)
     balanceGrid = new QGridLayout(boxContainer);
     balanceGrid->setContentsMargins(0, 0, 0, 0);
     balanceGrid->setSpacing(0);
+    boxContainer->setObjectName("ScrollBox");
 
     for(auto e : balanceDict.keys())
     {
@@ -89,25 +90,14 @@ BalanceWidget::BalanceWidget(QWidget *parent) : QWidget(parent)
         value->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
         int count = balanceGrid->rowCount();
         if (count%2 == 1){
-            key->setStyleSheet("background-color: rgba(60, 72, 114, 255);"
-                               "padding: 20;"
-                               "font: 15px;"
-                               "border-top-left-radius: 5px;"
-                               "border-bottom-left-radius: 5px;");
-            value->setStyleSheet("background-color: rgba(60, 72, 114, 255);"
-                                 "padding: 20;"
-                                 "font: bold 15px;");
+            key->setObjectName("keyBalance1");
+            value->setObjectName("valueBalance1");
         }
         else{
-            key->setStyleSheet("background-color: rgba(31,41,66,255);"
-                               "padding: 20;"
-                               "font: 15px;"
-                               "border-top-left-radius: 5px;"
-                               "border-bottom-left-radius: 5px;");
-            value->setStyleSheet("background-color: rgba(31,41,66,255);"
-                                 "padding: 20;"
-                                 "font: bold 15px;");
+            key->setObjectName("keyBalance2");
+            value->setObjectName("valueBalance2");
         }
+
         balanceGrid->addWidget(key, count, 0);
         balanceGrid->addWidget(value, count, 1);
     }
