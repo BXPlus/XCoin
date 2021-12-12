@@ -137,8 +137,12 @@ int Blockchain::getCumulativeDifficulty()
     for (int i = 0; i < length; i++)
     {
         res += pow(2, currentNode.block.difficulty);
-        currentNode = *currentNode.prev;
-    };
+        if (currentNode.prev != nullptr)
+        {
+            currentNode = *currentNode.prev;
+        } else
+            break;
+    }
     return res;
 }
 
@@ -191,28 +195,25 @@ bool Blockchain::isValidTimestamp(Block newBlock, Block previousBlock)
  * @return the blockchain as a list of blocks.
  */
 std::vector<Block> Blockchain::toBlocks() {
-    ChainNode currentNode = *tail;
     std::vector<Block> blockList;
-    for (int i = 0; i < length - 1; i++)
+    ChainNode* currentNode = tail;
+    while (currentNode != nullptr)
     {
-        blockList.push_back(currentNode.block);
-        if (i < length - 2)
-        {
-            currentNode = *currentNode.prev;
-        }
+        blockList.push_back(currentNode->block);
+        currentNode = currentNode->prev;
     }
+    std::reverse(blockList.begin(), blockList.end());
     return blockList;
 }
 
 std::vector<std::string> Blockchain::toHeaderHashes() {
-    ChainNode currentNode = *tail;
     std::vector<std::string> hashList;
-    for (int i = 0; i < length - 1; i++)
+    ChainNode* currentNode = tail;
+    while (currentNode != nullptr)
     {
-        hashList.push_back(currentNode.block.headerHash);
-        if (i < length - 2){
-            currentNode = *currentNode.prev;
-        }
+        hashList.push_back(currentNode->block.headerHash);
+        currentNode = currentNode->prev;
     }
+    std::reverse(hashList.begin(), hashList.end());
     return hashList;
 }

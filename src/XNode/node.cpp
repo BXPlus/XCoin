@@ -6,6 +6,7 @@
 XNode::Node::Node() {
     this->blockchain = Blockchain();
     this->peers = std::map<std::string, XNode::XNodeClient>();
+    this->blockchain.appendBlock(this->blockchain.generateNextBlock("Hello", 1, 0, ""));
 }
 
 /**
@@ -173,8 +174,9 @@ XNode::Node::HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::inte
     std::vector<Block> localBlocks = this->blockchain.toBlocks();
     if (request->startheight() > localBlocks.size())
         return ::grpc::Status::CANCELLED;
-    for (int i = request->startheight(); i < localBlocks.size(); i++){
+    for (int i = request->startheight(); i <= localBlocks.size(); i++){
         auto newBlock = response->add_blocks();
+        std::cout << "Adding block " << localBlocks[i].data << std::endl;
         newBlock->CopyFrom(XNode::Interface::encodeBlock(localBlocks[i]));
     }
     return ::grpc::Status::OK;
