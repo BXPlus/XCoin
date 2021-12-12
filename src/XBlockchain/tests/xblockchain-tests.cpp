@@ -82,6 +82,23 @@ TEST(hasDuplicates, HandleDuplicate) {
     EXPECT_EQ(hasDuplicates(txIns), 0);
 }
 
+//Testing getCoinbaseTransaction
+TEST(getCoinbaseTransaction, handleCoinbaseTransaction) {
+    std::string address = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
+    int blockIndex = 0;
+    Transaction t = getCoinbaseTransaction(address, blockIndex);
+    std::string transactionId = "";
+
+    EXPECT_EQ(t.txIns[0].txOutId, "");
+    EXPECT_EQ(t.txIns[0].txOutIndex, blockIndex);
+    transactionId += "0";
+    EXPECT_EQ(t.txOuts[0].address, address);
+    transactionId += address;
+    EXPECT_EQ(t.txOuts[0].amount, 50);
+    transactionId += "50";
+    EXPECT_EQ(t.id, transactionId);
+}
+
 class XTransactionTests: public ::testing::Test{
 protected:
     Transaction transaction;
