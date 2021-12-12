@@ -138,7 +138,7 @@ XNode::Node::NotifyPeerChange(::grpc::ServerContext *context, const ::xcoin::int
 ::grpc::Status XNode::Node::PingPongSync(::grpc::ServerContext *context, const ::xcoin::interchange::PingPong *request,
                                          ::xcoin::interchange::PingPong *response) {
     ::spdlog::warn("RECEIVED PING PONG");
-    if (this->blockchain.length - request->height()<0){ // We need to initate sync from here as our branch is late
+    if (this->blockchain.length - request->height()<0){ // We need to initiate sync from here as our branch is late
         PingPongStatus stat = this->pingPongStatusForProps(request->height(), this->blockchain.length, request->lasthash(),
                                                            this->blockchain.getLatestBlock().headerHash,false);
         this->AttemptBlockchainSync(context->peer(), stat, request->height());
@@ -221,6 +221,7 @@ bool XNode::Node::AttemptPeerConnection(const std::string &peerAddress) {
             saveDataOnDisk();
             sdkInstance->onPeerListChanged();
             std::pair<XNode::Node::PingPongStatus, int> pingPongStatus = AttemptPingPongSync(peerAddress);
+            std::cout<<this->blockchain.getLatestBlock().data<<std::endl;
             if(AttemptBlockchainSync(peerAddress, pingPongStatus.first, pingPongStatus.second)){
                 this->peers[peerAddress].syncSuccess = true;
                 spdlog::info("Successfully synced blockchain with " + peerAddress);
@@ -342,7 +343,7 @@ bool XNode::Node::AttemptBlockchainSync(const std::string &peerAddress, PingPong
         case HeightDiff: {
             spdlog::warn("Height diff");
             int n = remoteChainHeight - this->blockchain.length;
-            if (n <= 0){
+            if (n < 0){
                 return false; // Other peer must initiate sync from pingpong
             }
             std::vector<Block> blockVector = this->blockchain.toBlocks();
@@ -355,13 +356,12 @@ bool XNode::Node::AttemptBlockchainSync(const std::string &peerAddress, PingPong
             ::grpc::Status getBlockchainFromHeightStatus = this->peers[peerAddress].syncStub->GetBlockchainFromHeight(
                     &getBlockchainFromHeightContext, getBlockchainFromHeightRequest, &getBlockchainFromHeightReply);
             if (getBlockchainFromHeightStatus.ok()){
-                Blockchain newBlockchain = Blockchain();
                 std::vector<Block> newBlocks = XNode::Interface::decodeChain(getBlockchainFromHeightReply);
                 for (Block block: newBlocks){
-                    newBlockchain.appendBlock(block);
+                    std::cout << block.headerHash << std::endl;
+                    std::cout << block.data << std::endl;
+                    this->blockchain.appendBlock(block);
                 }
-                this->blockchain.replaceChain(newBlockchain);
-                this->saveDataOnDisk();
                 return true;
             }else return false;
         }
