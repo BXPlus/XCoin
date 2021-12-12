@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     addcontactdialog.cpp \
+    balancewidget.cpp \
     contactswidget.cpp \
     custombutton.cpp \
     homewidget.cpp \
@@ -25,6 +26,7 @@ SOURCES += \
 
 HEADERS += \
     addcontactdialog.h \
+    balancewidget.h \
     contactswidget.h \
     custombutton.h \
     homewidget.h \
@@ -40,9 +42,6 @@ HEADERS += \
 FORMS += \
     mainwindow.ui
 
-FORMS += \
-    mainwindow.ui
-
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
@@ -50,6 +49,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     Montserrat-Bold.ttf \
-    style.qss
+    style.qss \
+    styleLight.qss
 
 RESOURCES +=

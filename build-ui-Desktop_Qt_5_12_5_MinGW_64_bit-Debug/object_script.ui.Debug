@@ -1,3 +1,5 @@
+debug/balancewidget.o
+debug/addcontactdialog.o
 debug/contactswidget.o
 debug/custombutton.o
 debug/homewidget.o
@@ -8,6 +10,8 @@ debug/settingswidget.o
 debug/togglebtn.o
 debug/paymentdialog.o
 debug/purchase_xcoin.o
+debug/moc_balancewidget.o
+debug/moc_addcontactdialog.o
 debug/moc_contactswidget.o
 debug/moc_homewidget.o
 debug/moc_logindialog.o

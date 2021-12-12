@@ -2,6 +2,7 @@
 #include <QScrollArea>
 #include <QDir>
 #include <QtDebug>
+#include <QApplication>
 
 SettingsWidget::SettingsWidget(QWidget *parent) : QWidget(parent)
 {
@@ -68,15 +69,33 @@ void SettingsWidget::flnode_state()
 
 void SettingsWidget::appearance_state()
 {
-    //mainWindow->toggleStyleSheet();
-//    if (appearance_count % 2 == 0) {
-//        appearance_count ++;
-//        qDebug() << "appearance : on";
-//        mainWindow->setStyleSheet("background-color: rgba(255,255,255,255);");
-//    }
-//    else {
-//        appearance_count ++;
-//        qDebug() << "appearance : off";
-//        mainWindow->toggleStyleSheet();
-//    }
+    appearance_count ++;
+    if (appearance_count % 2 == 0) {
+        qDebug() << "appearance : off";
+        QString path = qApp->applicationDirPath();
+        int index = path.indexOf("XCoin");
+        QString subPath = path.mid(0,index+5);
+        subPath.append("/ui/style.qss");
+
+            // loading
+        QFile qss(subPath);
+        qss.open(QFile::ReadOnly);
+        QString styleSheet = QLatin1String(qss.readAll());
+        qApp->setStyleSheet(styleSheet);
+        qss.close();
+    }
+    else {
+        qDebug() << "appearance : on";
+        QString path = qApp->applicationDirPath();
+        int index = path.indexOf("XCoin");
+        QString subPath = path.mid(0,index+5);
+        subPath.append("/ui/styleLight.qss");
+
+            // loading
+        QFile qss(subPath);
+        qss.open(QFile::ReadOnly);
+        QString styleSheet = QLatin1String(qss.readAll());
+        qApp->setStyleSheet(styleSheet);
+        qss.close();
+    }
 }

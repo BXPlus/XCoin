@@ -6,6 +6,7 @@
 #include <QStackedWidget>
 #include <QVBoxLayout>
 #include <QDebug>
+#include "balancewidget.h"
 #include "custombutton.h"
 #include "contactswidget.h"
 #include "homewidget.h"
@@ -15,6 +16,8 @@
 #include "addcontactdialog.h"
 #include "paymentdialog.h"
 #include "paywidget.h"
+#include "balancewidget.h"
+#include "purchase_xcoin.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

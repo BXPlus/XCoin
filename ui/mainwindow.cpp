@@ -8,14 +8,12 @@
 #include <QDir>
 #include <QCloseEvent>
 #include <QFontDatabase>
-#include <paymentdialog.h>
-#include <purchase_xcoin.h>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-
     ui->setupUi(this);
 
     //HomePage setup
@@ -115,7 +113,7 @@ MainWindow::MainWindow(QWidget *parent)
     contentContainer->addWidget(homeWidget);
     contactsWidget = new ContactsWidget(mainWidget);
     contentContainer->addWidget(contactsWidget);
-    balanceWidget = new QWidget(mainWidget);
+    balanceWidget = new BalanceWidget(mainWidget);
     contentContainer->addWidget(balanceWidget);
     paymentsWidget = new PayWidget(mainWidget);
     contentContainer->addWidget(paymentsWidget);
@@ -130,13 +128,6 @@ MainWindow::MainWindow(QWidget *parent)
         signalMapper->setMapping (btnList[i], i);
         connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(go_page(int)));
     }
-
-//    QPushButton* pay_btn = new QPushButton(QString("PAY NOW"), mainWidget);
-//        pay_btn->setMinimumSize(100,100);
-//        pay_btn->setStyleSheet("border-radius: 10px;"
-//                               "background-color: green;");
-//        connect(pay_btn, &QPushButton::released, this, &MainWindow::on_pushButton_clicked);
-
 
     contentContainer->setCurrentIndex(0);
 

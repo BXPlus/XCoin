@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "balancewidget.h"
 #include <QApplication>
 #include <QFile>
 #include <QDir>
@@ -40,12 +41,6 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
     return a.exec();
-
-    //Payment window
-    PaymentDialog* payment_window = new PaymentDialog();
-
-
-
 }
 
 

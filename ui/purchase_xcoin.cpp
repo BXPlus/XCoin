@@ -130,5 +130,4 @@ setLayout(page_layout);
 
 Purchase_XCoin::~Purchase_XCoin()
 {
-    delete ui;
 }

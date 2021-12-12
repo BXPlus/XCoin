@@ -149,3 +149,27 @@ QPushButton#deleteBtn {
 QPushButton#deleteBtn:hover {
     background-color: rgba(42,55,88,255);
 }
+
+
+QLabel#BalanceAmount {
+    margin: 0px;
+    font: bold;
+    font: MontserratBold;
+    font-size: 30px;
+
+    border: 2px solid rgba(34,45,72,255);
+    background-color: rgba(31,41,66,255);
+    border-radius: 20px;
+    padding: 12px;
+    margin: 0;
+}
+
+QWidget#BalanceWidget {
+    border: 2px solid rgba(68, 92, 146, 0.92);
+    background-color: rgba(60, 72, 114, 255);
+    border-radius: 20px;
+    text-align: center;
+    padding: 12px;
+    margin: 0;
+    font: bold;
+}
