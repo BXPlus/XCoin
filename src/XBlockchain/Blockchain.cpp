@@ -120,26 +120,14 @@ void Blockchain::replaceChain(Blockchain newChain) {
 }
 */
 
-void Blockchain::replaceChain(Blockchain newChain) {
-    if (newChain.isValidChain() && newChain.getCumulativeDifficulty() > getCumulativeDifficulty()) { //The chain with higher cumulative difficulty is the one that stays
-        std::vector<std::string> knownHashes;
-        ChainNode* node = tail;
-        for (int i = 0; node && i < 10; i++, node = node->prev) {
-            knownHashes.emplace_back(node->hash);
-        }
-        bool found = false;
-        for (node = newChain.tail; node; node = node->prev) {
-            if (std::find(knownHashes.begin(), knownHashes.end(), node->hash) != knownHashes.end()) {
-                found = true;
-                break;
-            }
-        }
-        if (found) {
-            this->head = newChain.head;
-            this->tail = newChain.tail;
-            this->length = newChain.length;
-        }
-    }
+void Blockchain::replaceChain(Blockchain newChain)
+{
+    if (newChain.isValidChain() && newChain.getCumulativeDifficulty() > getCumulativeDifficulty()) //The chain with higher cumulative difficulty is the one that stays
+    {
+        this->head = newChain.head;
+        this->tail = newChain.tail;
+        this->length = newChain.length;
+    };
 }
 
 int Blockchain::getCumulativeDifficulty()
