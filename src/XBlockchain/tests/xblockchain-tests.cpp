@@ -43,6 +43,31 @@ TEST_F(XBlockchainCoreTests, BlockchainAddBlock){
     EXPECT_EQ(blockchain.difficulty , 0); // TODO: Make some more extensive tests for this when it works
 }
 
+// Testing isValidAddress, checking the length of address
+TEST(isValidAddressTest, handleLength) {
+    std::string validAddress = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
+    EXPECT_EQ(isValidAddress(validAddress), 1);
+    validAddress = validAddress.substr(0, 22);
+    EXPECT_EQ(isValidAddress(validAddress), 0);
+}
+
+// Testing isValidAddress, checking the characters if it has only hex characters or not
+TEST(isValidAddressTest, HandleCharacters) {
+    std::string address = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
+    address[2] = 'g';
+    EXPECT_EQ(isValidAddress(address), 0);
+    address[2] = 'a';
+    EXPECT_EQ(isValidAddress(address), 1);
+}
+
+// Testing isValidAddress, checking if the string starts with "04"
+TEST(isValidAddressTest, Handle04) {
+    std::string address = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
+    EXPECT_EQ(isValidAddress(address), 1);
+    address[1] = '1';
+    EXPECT_EQ(isValidAddress(address), 0);
+}
+
 class XTransactionTests: public ::testing::Test{
 protected:
     Transaction transaction;
