@@ -66,6 +66,7 @@ ContactsWidget::ContactsWidget(QWidget *parent) :
     boxContainer = new QWidget(scrollContacts);
     scrollContacts->setWidget(boxContainer);
     scrollContacts->setWidgetResizable(true);
+    scrollContacts->setStyleSheet("background-color: rgba(31,41,66,255);");
     boxContainer->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
     contactGrid = new QGridLayout(boxContainer);
     contactGrid->setContentsMargins(0, 0, 0, 0);
@@ -160,8 +161,10 @@ void ContactsWidget::edit_contact()
         }
 
         //Creation of delete buttons
-        CustomButton* deleteBtn = new CustomButton("-", this);
+        QPushButton* deleteBtn = new QPushButton("–", this);
         deleteBtn->setObjectName("deleteBtn");
+        deleteBtn->setCursor(Qt::PointingHandCursor);
+        deleteBtn->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
         delList.append(deleteBtn);
 
         //Connection of the buttons to deletion of the contact
@@ -212,7 +215,6 @@ void ContactsWidget::deleteContact(int count)
 {
     contactGrid->removeWidget(contactGrid->itemAtPosition(count, 0)->widget());
     contactGrid->removeWidget(contactGrid->itemAtPosition(count, 1)->widget());
-
 }
 
 void ContactsWidget::editStyle()

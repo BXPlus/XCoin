@@ -10,11 +10,11 @@ PaymentDialog::PaymentDialog(QDialog *parent) :
     QDialog(parent)
 {
 //to activate the pay btn
-    //    QPushButton* pay_btn = new QPushButton(QString("PAY NOW"), mainWidget);
-    //        pay_btn->setMinimumSize(100,100);
-    //        pay_btn->setStyleSheet("border-radius: 10px;"
-    //                               "background-color: green;");
-    //        connect(pay_btn, &QPushButton::released, this, &MainWindow::on_pushButton_clicked);
+//        QPushButton* pay_btn = new QPushButton(QString("PAY NOW"), mainWidget);
+//            pay_btn->setMinimumSize(100,100);
+//            pay_btn->setStyleSheet("border-radius: 10px;"
+//                                   "background-color: green;");
+//            connect(pay_btn, &QPushButton::released, this, &MainWindow::on_pushButton_clicked);
 
 //    void MainWindow::on_pushButton_clicked()
 //    {
@@ -94,9 +94,6 @@ setLayout(page_layout);
         page_layout->addWidget(pay_btn);
 
 }
-
-
-
 
 PaymentDialog::~PaymentDialog()
 {

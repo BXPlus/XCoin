@@ -84,7 +84,7 @@ MainWindow::MainWindow(QWidget *parent)
     menuLayout->addWidget(userBlock);
 
     // Creating remaining buttons
-    QStringList titles = {"Home", "Contacts", "Pay", "History", "Settings", "Graphics"};
+    QStringList titles = {"Home", "Contacts", "Balance", "Pay", "Settings", "Graphics"};
 
     for (int i=0; i<6; i++){
 
@@ -117,7 +117,7 @@ MainWindow::MainWindow(QWidget *parent)
     contentContainer->addWidget(contactsWidget);
     balanceWidget = new QWidget(mainWidget);
     contentContainer->addWidget(balanceWidget);
-    paymentsWidget = new Purchase_XCoin(mainWidget);
+    paymentsWidget = new PayWidget(mainWidget);
     contentContainer->addWidget(paymentsWidget);
     settingsWidget = new SettingsWidget(mainWidget);
     contentContainer->addWidget(settingsWidget);
@@ -169,4 +169,15 @@ void MainWindow::on_pushButton_clicked()
     PaymentDialog payment_window;
     payment_window.setModal(true);
     payment_window.exec();
+}
+
+void MainWindow::toggleStyleSheet(){
+    if (style == 0) {
+        menuContainer->setStyleSheet("background-color: rgba(255,255,255,255);");
+        style = 1;
+    }
+    else if (style == 1) {
+        menuContainer->setStyleSheet("background-color: rgba(34,45,72,255);");
+        style = 0;
+    }
 }

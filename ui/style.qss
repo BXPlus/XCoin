@@ -1,5 +1,3 @@
-FontLoader { id: MontserratBold; source: "/fonts/Monserrat-Bold.ttf" }
-
 MainWindow {
     background-color: rgba(60,72,114,255);
 }
@@ -43,24 +41,37 @@ QLabel {
     color: white;
 }
 
+QSCrollArea {
+    border: none;
+}
+
 QScrollBar:vertical {
     background: rgba(0,0,0,0);
     width: 10px;
+}
+QScrollBar::horizontal {
+    background: rgba(0,0,0,0);
+    height: 10px;
 }
 QScrollBar::handle:vertical {
     background: rgba(195,195,195,200);
     min-height: 20px;
     border-radius: 5px;
 }
+QScrollBar::handle:horizontal {
+    background: rgba(195,195,195,200);
+    min-width: 20px;
+    border-radius: 5px;
+}
 QScrollBar::handle:hover {
     background: rgba(150,150,150,150);
 }
-QScrollBar::add-line:vertical {
+QScrollBar::add-line:vertical, QScrollBar::add-line:horizontal {
     border: none;
     background: none;
 }
 
-QScrollBar::sub-line:vertical {
+QScrollBar::sub-line:vertical, QScrollBar::sub-line:horizontal {
     border: none;
     background: none;
 }
@@ -128,13 +139,13 @@ QPushButton#deleteBtn {
     border: 2px solid rgba(223, 8, 40, 0.8);
     background-color: rgba(189, 14, 46, 0.8);
     color: white;
-    border-radius: 20px;
+    border-radius: 15px;
     text-align: center;
     padding: 12px;
-    margin: 10;
+    margin: 10px;
     font: bold;
 }
 
 QPushButton#deleteBtn:hover {
-    background-color: rgba(177, 8, 40, 0.44);
+    background-color: rgba(42,55,88,255);
 }

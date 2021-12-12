@@ -12,6 +12,7 @@ SettingsWidget::SettingsWidget(QWidget *parent) : QWidget(parent)
         - Root DNS address (string)
         - Appearance
         -*/
+    this->mainWindow = parent;
     stringList = {"Node Port:", "Root DNS address:", "Public address:"
                  , "Full/Light node:", "Dark/Light mode:", "30140",
                  "123.456.78.90", "202.25.1.3"};
@@ -67,12 +68,15 @@ void SettingsWidget::flnode_state()
 
 void SettingsWidget::appearance_state()
 {
-    if (appearance_count % 2 == 0) {
-        appearance_count ++;
-        qDebug() << "appearance : on";
-    }
-    else {
-        appearance_count ++;
-        qDebug() << "appearance : off";
-    }
+    //mainWindow->toggleStyleSheet();
+//    if (appearance_count % 2 == 0) {
+//        appearance_count ++;
+//        qDebug() << "appearance : on";
+//        mainWindow->setStyleSheet("background-color: rgba(255,255,255,255);");
+//    }
+//    else {
+//        appearance_count ++;
+//        qDebug() << "appearance : off";
+//        mainWindow->toggleStyleSheet();
+//    }
 }

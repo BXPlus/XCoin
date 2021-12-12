@@ -11,8 +11,9 @@ class SettingsWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit SettingsWidget(QWidget *parent = nullptr);
+    explicit SettingsWidget(QWidget *parentWidget = nullptr);
     QPushButton* get_homeBtn();
+    QWidget* mainWindow;
 private:
     QWidget* mainWidget;
 

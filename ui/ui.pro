@@ -16,6 +16,8 @@ SOURCES += \
     logindialog.cpp \
     main.cpp \
     mainwindow.cpp \
+    paycontactdialog.cpp \
+    paywidget.cpp \
     settingswidget.cpp \
     togglebtn.cpp \
     paymentdialog.cpp \
@@ -28,6 +30,8 @@ HEADERS += \
     homewidget.h \
     logindialog.h \
     mainwindow.h \
+    paycontactdialog.h \
+    paywidget.h \
     settingswidget.h \
     togglebtn.h \
     paymentdialog.h \

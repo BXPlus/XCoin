@@ -14,6 +14,7 @@
 #include "togglebtn.h"
 #include "addcontactdialog.h"
 #include "paymentdialog.h"
+#include "paywidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -41,6 +42,9 @@ public:
     QWidget* contactsWidget;
     QWidget* settingsWidget;
     QWidget* graphsWidget;
+
+    int style = 0;
+    void toggleStyleSheet();
 
 private slots:
     void go_home();

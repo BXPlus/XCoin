@@ -32,7 +32,7 @@ public:
     QHBoxLayout* topLayout;
 
     QMap<QString, QString> contactDict;
-    QList<CustomButton*> delList;
+    QList<QPushButton*> delList;
     QString elDelete;
 
     void create_dictionnary();
