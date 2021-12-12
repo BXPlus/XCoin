@@ -136,8 +136,11 @@ XNode::Node::NotifyPeerChange(::grpc::ServerContext *context, const ::xcoin::int
 
 ::grpc::Status XNode::Node::PingPongSync(::grpc::ServerContext *context, const ::xcoin::interchange::PingPong *request,
                                          ::xcoin::interchange::PingPong *response) {
-    if (this->blockchain.length - request->height()<=0){ // We need to initate sync from here as our branch is late
-        this->AttemptBlockchainSync(context->peer());
+    ::spdlog::warn("RECEIVED PING PONG");
+    if (this->blockchain.length - request->height()<0){ // We need to initate sync from here as our branch is late
+        PingPongStatus stat = this->pingPongStatusForProps(request->height(), this->blockchain.length, request->lasthash(),
+                                                           this->blockchain.getLatestBlock().headerHash,false);
+        this->AttemptBlockchainSync(context->peer(), stat, request->height());
     }
     response->set_height(this->blockchain.length);
     response->set_lasthash(this->blockchain.getLatestBlock().headerHash);
@@ -151,7 +154,6 @@ XNode::Node::NotifyPeerChange(::grpc::ServerContext *context, const ::xcoin::int
 ::grpc::Status
 XNode::Node::HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::interchange::GetHeaders *request,
                              ::xcoin::interchange::Headers *response) {
-    spdlog::debug("Header first sync requested by " + context->peer());
     std::vector<Block> localBlocks = this->blockchain.toBlocks();
     std::reverse(localBlocks.begin(), localBlocks.end());
     if (request->stophash() == "0"){
@@ -216,7 +218,8 @@ bool XNode::Node::AttemptPeerConnection(const std::string &peerAddress) {
             spdlog::info("Successfully synced DNS peers with " + peerAddress);
             saveDataOnDisk();
             sdkInstance->onPeerListChanged();
-            if(AttemptBlockchainSync(peerAddress)){
+            std::pair<XNode::Node::PingPongStatus, int> pingPongStatus = AttemptPingPongSync(peerAddress);
+            if(AttemptBlockchainSync(peerAddress, pingPongStatus.first, pingPongStatus.second)){
                 this->peers[peerAddress].syncSuccess = true;
                 spdlog::info("Successfully synced blockchain with " + peerAddress);
                 sdkInstance->onStatusChanged(XNodeSDK::XNodeStatus::Ready);
@@ -243,14 +246,7 @@ std::pair<XNode::Node::PingPongStatus, int> XNode::Node::AttemptPingPongSync(con
     pingPongRequest.set_height(this->blockchain.length);
     pingPongRequest.set_lasthash(this->blockchain.getLatestBlock().headerHash);
     ::grpc::Status pingPongStatus = this->peers[peerAddress].syncStub->PingPongSync(&pingPongContext, pingPongRequest, &pingPongReply);
-    if (pingPongStatus.ok()){
-        if (pingPongReply.height() == pingPongRequest.height()){
-            if (pingPongReply.lasthash() == pingPongRequest.lasthash())
-                return {XNode::Node::PingPongStatus::Synced, pingPongReply.height()};
-            else return {XNode::Node::PingPongStatus::HashDiff, pingPongReply.height()};
-        }else return {XNode::Node::PingPongStatus::HeightDiff, pingPongReply.height()};
-    }
-    return {XNode::Node::PingPongStatus::ConnErr, 0};
+    return {this->pingPongStatusForProps(pingPongReply.height(), pingPongRequest.height(), pingPongReply.lasthash(), pingPongRequest.lasthash(), !pingPongStatus.ok()), pingPongReply.height()};
 }
 
 /**
@@ -259,10 +255,10 @@ std::pair<XNode::Node::PingPongStatus, int> XNode::Node::AttemptPingPongSync(con
 * @param peerAddress is an ipv4 or ipv6 address of the node to sync headers with
 * @returns true if the blockchain could be resolved on both ends
 */
-bool XNode::Node::AttemptBlockchainSync(const std::string &peerAddress) {
+bool XNode::Node::AttemptBlockchainSync(const std::string &peerAddress, PingPongStatus pingPongStatus,
+                                        int remoteChainHeight) {
     spdlog::debug("Will attempt to sync headers with " + peerAddress);
-    std::pair<XNode::Node::PingPongStatus, int> pingPongRes = AttemptPingPongSync(peerAddress);
-    switch (pingPongRes.first) {
+    switch (pingPongStatus) {
         case Synced:
             spdlog::warn("Synced");
             return true;
@@ -343,7 +339,7 @@ bool XNode::Node::AttemptBlockchainSync(const std::string &peerAddress) {
         }
         case HeightDiff: {
             spdlog::warn("Height diff");
-            int n = pingPongRes.second - this->blockchain.length;
+            int n = remoteChainHeight - this->blockchain.length;
             if (n <= 0){
                 return false; // Other peer must initiate sync from pingpong
             }
@@ -396,4 +392,16 @@ bool XNode::Node::handleIncomingPeerData(const xcoin::interchange::DNSEntry &rem
     } else {
         return this->AttemptPeerConnection(remotePeer.ipport());
     }
+}
+
+XNode::Node::PingPongStatus
+XNode::Node::pingPongStatusForProps(int chainHeight1, int chainHeight2, const std::string& lastHash1, const std::string& lastHash2,
+                                    bool isErrored) {
+    if(isErrored)
+        return XNode::Node::PingPongStatus::ConnErr;
+    if (chainHeight1 == chainHeight2){
+        if (lastHash1 == lastHash2)
+            return XNode::Node::PingPongStatus::Synced;
+        else return XNode::Node::PingPongStatus::HashDiff;
+    }else return XNode::Node::PingPongStatus::HeightDiff;
 }

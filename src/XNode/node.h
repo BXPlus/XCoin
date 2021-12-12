@@ -58,8 +58,10 @@ namespace XNode{
         ::grpc::Status HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::interchange::GetHeaders *request, ::xcoin::interchange::Headers* response) override;
         ::grpc::Status GetBlockchainFromHeight(::grpc::ServerContext *context, const ::xcoin::interchange::GetBlockchainFromHeightRequest *request, ::xcoin::interchange::Blockchain *response) override;
         bool AttemptPeerConnection(const std::string& peerAddress);
+        PingPongStatus pingPongStatusForProps(int chainHeight1, int chainHeight2, const std::string& lastHash1, const std::string& lastHash2, bool isErrored);
         std::pair<XNode::Node::PingPongStatus, int> AttemptPingPongSync(const std::string& peerAddress);
-        bool AttemptBlockchainSync(const std::string& peerAddress);
+        bool AttemptBlockchainSync(const std::string &peerAddress, PingPongStatus pingPongStatus,
+                                   int remoteChainHeight);
         bool handleIncomingPeerData(const xcoin::interchange::DNSEntry &remotePeer);
         void saveDataOnDisk();
         void loadDataFromDisk();
