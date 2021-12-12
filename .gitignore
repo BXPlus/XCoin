@@ -376,3 +376,11 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 vcpkg_installed/
+/build-test_qt2-Qt_6_2_0_for_macOS-Debug/
+/build-ui.pro-Desktop_Qt_5_12_5_MinGW_64_bit-Debug/
+/build-ui-Desktop_Qt_5_12_5_clang_64bit-Debug/
+/build-ui-Desktop_Qt_5_12_5_clang_64bit-Profile/
+/build-ui-Desktop_Qt_5_12_5_MinGW_64_bit-Debug/
+/build-ui-Desktop_Qt_5_12_11_clang_64bit-Debug/
+/build-ui-Qt_6_2_0_for_macOS-Debug/
+/build-ui-Qt_6_2_2_for_macOS-Debug/
