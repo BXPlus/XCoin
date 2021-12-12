@@ -53,6 +53,7 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../ui/addcontactdialog.cpp \
+		../ui/balancewidget.cpp \
 		../ui/contactswidget.cpp \
 		../ui/custombutton.cpp \
 		../ui/homewidget.cpp \
@@ -65,6 +66,7 @@ SOURCES       = ../ui/addcontactdialog.cpp \
 		../ui/togglebtn.cpp \
 		../ui/paymentdialog.cpp \
 		../ui/purchase_xcoin.cpp moc_addcontactdialog.cpp \
+		moc_balancewidget.cpp \
 		moc_contactswidget.cpp \
 		moc_homewidget.cpp \
 		moc_logindialog.cpp \
@@ -75,6 +77,7 @@ SOURCES       = ../ui/addcontactdialog.cpp \
 		moc_paymentdialog.cpp \
 		moc_purchase_xcoin.cpp
 OBJECTS       = addcontactdialog.o \
+		balancewidget.o \
 		contactswidget.o \
 		custombutton.o \
 		homewidget.o \
@@ -88,6 +91,7 @@ OBJECTS       = addcontactdialog.o \
 		paymentdialog.o \
 		purchase_xcoin.o \
 		moc_addcontactdialog.o \
+		moc_balancewidget.o \
 		moc_contactswidget.o \
 		moc_homewidget.o \
 		moc_logindialog.o \
@@ -99,6 +103,7 @@ OBJECTS       = addcontactdialog.o \
 		moc_purchase_xcoin.o
 DIST          = ../ui/Montserrat-Bold.ttf \
 		../ui/style.qss \
+		../ui/styleLight.qss \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/mkspecs/features/spec_pre.prf \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/mkspecs/qdevice.pri \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/mkspecs/features/device_config.prf \
@@ -275,6 +280,7 @@ DIST          = ../ui/Montserrat-Bold.ttf \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/mkspecs/features/yacc.prf \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/mkspecs/features/lex.prf \
 		../ui/ui.pro ../ui/addcontactdialog.h \
+		../ui/balancewidget.h \
 		../ui/contactswidget.h \
 		../ui/custombutton.h \
 		../ui/homewidget.h \
@@ -286,6 +292,7 @@ DIST          = ../ui/Montserrat-Bold.ttf \
 		../ui/togglebtn.h \
 		../ui/paymentdialog.h \
 		../ui/purchase_xcoin.h ../ui/addcontactdialog.cpp \
+		../ui/balancewidget.cpp \
 		../ui/contactswidget.cpp \
 		../ui/custombutton.cpp \
 		../ui/homewidget.cpp \
@@ -712,9 +719,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/alexandremisrahi/Qt/5.12.5/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../ui/addcontactdialog.h ../ui/contactswidget.h ../ui/custombutton.h ../ui/homewidget.h ../ui/logindialog.h ../ui/mainwindow.h ../ui/paycontactdialog.h ../ui/paywidget.h ../ui/settingswidget.h ../ui/togglebtn.h ../ui/paymentdialog.h ../ui/purchase_xcoin.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../ui/addcontactdialog.cpp ../ui/contactswidget.cpp ../ui/custombutton.cpp ../ui/homewidget.cpp ../ui/logindialog.cpp ../ui/main.cpp ../ui/mainwindow.cpp ../ui/paycontactdialog.cpp ../ui/paywidget.cpp ../ui/settingswidget.cpp ../ui/togglebtn.cpp ../ui/paymentdialog.cpp ../ui/purchase_xcoin.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../ui/mainwindow.ui ../ui/mainwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../ui/addcontactdialog.h ../ui/balancewidget.h ../ui/contactswidget.h ../ui/custombutton.h ../ui/homewidget.h ../ui/logindialog.h ../ui/mainwindow.h ../ui/paycontactdialog.h ../ui/paywidget.h ../ui/settingswidget.h ../ui/togglebtn.h ../ui/paymentdialog.h ../ui/purchase_xcoin.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../ui/addcontactdialog.cpp ../ui/balancewidget.cpp ../ui/contactswidget.cpp ../ui/custombutton.cpp ../ui/homewidget.cpp ../ui/logindialog.cpp ../ui/main.cpp ../ui/mainwindow.cpp ../ui/paycontactdialog.cpp ../ui/paywidget.cpp ../ui/settingswidget.cpp ../ui/togglebtn.cpp ../ui/paymentdialog.cpp ../ui/purchase_xcoin.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../ui/mainwindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -754,9 +761,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /Users/alexandremisrahi/Qt/5.12.5/clang_64/mkspecs/features/data/dummy.cpp
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -O2 -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk -mmacosx-version-min=10.12 -Wall -W -dM -E -o moc_predefs.h /Users/alexandremisrahi/Qt/5.12.5/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_addcontactdialog.cpp moc_contactswidget.cpp moc_homewidget.cpp moc_logindialog.cpp moc_mainwindow.cpp moc_paywidget.cpp moc_settingswidget.cpp moc_togglebtn.cpp moc_paymentdialog.cpp moc_purchase_xcoin.cpp
+compiler_moc_header_make_all: moc_addcontactdialog.cpp moc_balancewidget.cpp moc_contactswidget.cpp moc_homewidget.cpp moc_logindialog.cpp moc_mainwindow.cpp moc_paywidget.cpp moc_settingswidget.cpp moc_togglebtn.cpp moc_paymentdialog.cpp moc_purchase_xcoin.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_addcontactdialog.cpp moc_contactswidget.cpp moc_homewidget.cpp moc_logindialog.cpp moc_mainwindow.cpp moc_paywidget.cpp moc_settingswidget.cpp moc_togglebtn.cpp moc_paymentdialog.cpp moc_purchase_xcoin.cpp
+	-$(DEL_FILE) moc_addcontactdialog.cpp moc_balancewidget.cpp moc_contactswidget.cpp moc_homewidget.cpp moc_logindialog.cpp moc_mainwindow.cpp moc_paywidget.cpp moc_settingswidget.cpp moc_togglebtn.cpp moc_paymentdialog.cpp moc_purchase_xcoin.cpp
 moc_addcontactdialog.cpp: ../ui/addcontactdialog.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
@@ -777,12 +784,29 @@ moc_addcontactdialog.cpp: ../ui/addcontactdialog.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/bin/moc
 	/Users/alexandremisrahi/Qt/5.12.5/clang_64/bin/moc $(DEFINES) --include /Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/build-ui-Desktop_Qt_5_12_5_clang_64bit-Profile/moc_predefs.h -I/Users/alexandremisrahi/Qt/5.12.5/clang_64/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/ui -I/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib ../ui/addcontactdialog.h -o moc_addcontactdialog.cpp
 
+moc_balancewidget.cpp: ../ui/balancewidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QTabWidget \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qtabwidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QMap \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		moc_predefs.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/bin/moc
+	/Users/alexandremisrahi/Qt/5.12.5/clang_64/bin/moc $(DEFINES) --include /Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/build-ui-Desktop_Qt_5_12_5_clang_64bit-Profile/moc_predefs.h -I/Users/alexandremisrahi/Qt/5.12.5/clang_64/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/ui -I/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib ../ui/balancewidget.h -o moc_balancewidget.cpp
+
 moc_contactswidget.cpp: ../ui/contactswidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
@@ -837,27 +861,30 @@ moc_mainwindow.cpp: ../ui/mainwindow.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDebug \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		../ui/custombutton.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../ui/balancewidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
-		../ui/contactswidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QTabWidget \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qtabwidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QMap \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../ui/custombutton.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		../ui/contactswidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../ui/homewidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
 		../ui/logindialog.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGroupBox \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgroupbox.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
@@ -870,6 +897,12 @@ moc_mainwindow.cpp: ../ui/mainwindow.h \
 		../ui/paywidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QSignalMapper \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h \
+		../ui/paycontactdialog.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLayout \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlayout.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/QList \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../ui/purchase_xcoin.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
 		moc_predefs.h \
@@ -893,6 +926,13 @@ moc_paywidget.cpp: ../ui/paywidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QSignalMapper \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h \
+		../ui/paycontactdialog.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLayout \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlayout.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/QList \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/qevent.h \
 		moc_predefs.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/bin/moc
 	/Users/alexandremisrahi/Qt/5.12.5/clang_64/bin/moc $(DEFINES) --include /Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/build-ui-Desktop_Qt_5_12_5_clang_64bit-Profile/moc_predefs.h -I/Users/alexandremisrahi/Qt/5.12.5/clang_64/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/ui -I/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib ../ui/paywidget.h -o moc_paywidget.cpp
@@ -910,25 +950,28 @@ moc_settingswidget.cpp: ../ui/settingswidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDebug \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../ui/balancewidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QTabWidget \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qtabwidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QMap \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qmap.h \
 		../ui/custombutton.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
 		../ui/contactswidget.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qmap.h \
 		../ui/homewidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
 		../ui/logindialog.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGroupBox \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgroupbox.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
@@ -942,6 +985,12 @@ moc_settingswidget.cpp: ../ui/settingswidget.h \
 		../ui/paywidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QSignalMapper \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h \
+		../ui/paycontactdialog.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLayout \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlayout.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/QList \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../ui/purchase_xcoin.h \
 		moc_predefs.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/bin/moc
 	/Users/alexandremisrahi/Qt/5.12.5/clang_64/bin/moc $(DEFINES) --include /Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/build-ui-Desktop_Qt_5_12_5_clang_64bit-Profile/moc_predefs.h -I/Users/alexandremisrahi/Qt/5.12.5/clang_64/mkspecs/macx-clang -I/Users/alexandremisrahi/Desktop/BX_Y2/CS/CSE201/XCoin/ui -I/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers -I/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib ../ui/settingswidget.h -o moc_settingswidget.cpp
@@ -983,13 +1032,9 @@ compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_mainwindow.h
+compiler_uic_make_all: ui_mainwindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_mainwindow.h
-ui_mainwindow.h: ../ui/mainwindow.ui \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/bin/uic
-	/Users/alexandremisrahi/Qt/5.12.5/clang_64/bin/uic ../ui/mainwindow.ui -o ui_mainwindow.h
-
+	-$(DEL_FILE) ui_mainwindow.h
 ui_mainwindow.h: ../ui/mainwindow.ui \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/bin/uic
 	/Users/alexandremisrahi/Qt/5.12.5/clang_64/bin/uic ../ui/mainwindow.ui -o ui_mainwindow.h
@@ -1024,12 +1069,67 @@ addcontactdialog.o: ../ui/addcontactdialog.cpp ../ui/addcontactdialog.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o addcontactdialog.o ../ui/addcontactdialog.cpp
 
+balancewidget.o: ../ui/balancewidget.cpp ../ui/balancewidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QTabWidget \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qtabwidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QMap \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../ui/mainwindow.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QStackedWidget \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qstackedwidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../ui/custombutton.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		../ui/contactswidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../ui/homewidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
+		../ui/logindialog.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGroupBox \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgroupbox.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		../ui/settingswidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
+		../ui/togglebtn.h \
+		../ui/addcontactdialog.h \
+		../ui/paymentdialog.h \
+		../ui/paywidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QSignalMapper \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h \
+		../ui/paycontactdialog.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLayout \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlayout.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/QList \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../ui/purchase_xcoin.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o balancewidget.o ../ui/balancewidget.cpp
+
 contactswidget.o: ../ui/contactswidget.cpp ../ui/contactswidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
@@ -1048,13 +1148,16 @@ contactswidget.o: ../ui/contactswidget.cpp ../ui/contactswidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QStackedWidget \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qstackedwidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDebug \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../ui/balancewidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QTabWidget \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qtabwidget.h \
 		../ui/homewidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
 		../ui/logindialog.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGroupBox \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgroupbox.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
@@ -1068,6 +1171,12 @@ contactswidget.o: ../ui/contactswidget.cpp ../ui/contactswidget.h \
 		../ui/paywidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QSignalMapper \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h \
+		../ui/paycontactdialog.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLayout \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlayout.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/QList \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../ui/purchase_xcoin.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollBar \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollbar.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o contactswidget.o ../ui/contactswidget.cpp
@@ -1122,18 +1231,21 @@ logindialog.o: ../ui/logindialog.cpp ../ui/logindialog.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDebug \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		../ui/custombutton.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../ui/balancewidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
-		../ui/contactswidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QTabWidget \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qtabwidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QMap \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../ui/custombutton.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		../ui/contactswidget.h \
 		../ui/homewidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
@@ -1145,7 +1257,13 @@ logindialog.o: ../ui/logindialog.cpp ../ui/logindialog.h \
 		../ui/paymentdialog.h \
 		../ui/paywidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QSignalMapper \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h \
+		../ui/paycontactdialog.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLayout \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlayout.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/QList \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../ui/purchase_xcoin.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o logindialog.o ../ui/logindialog.cpp
 
 main.o: ../ui/main.cpp ../ui/mainwindow.h \
@@ -1158,27 +1276,30 @@ main.o: ../ui/main.cpp ../ui/mainwindow.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDebug \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		../ui/custombutton.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../ui/balancewidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
-		../ui/contactswidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QTabWidget \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qtabwidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QMap \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../ui/custombutton.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		../ui/contactswidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../ui/homewidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
 		../ui/logindialog.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGroupBox \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgroupbox.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
@@ -1192,6 +1313,12 @@ main.o: ../ui/main.cpp ../ui/mainwindow.h \
 		../ui/paywidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QSignalMapper \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h \
+		../ui/paycontactdialog.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLayout \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlayout.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/QList \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../ui/purchase_xcoin.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qapplication.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QFile \
@@ -1210,27 +1337,30 @@ mainwindow.o: ../ui/mainwindow.cpp ../ui/mainwindow.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDebug \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		../ui/custombutton.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../ui/balancewidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
-		../ui/contactswidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QTabWidget \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qtabwidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QMap \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		../ui/custombutton.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		../ui/contactswidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../ui/homewidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
 		../ui/logindialog.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGroupBox \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgroupbox.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
@@ -1244,6 +1374,12 @@ mainwindow.o: ../ui/mainwindow.cpp ../ui/mainwindow.h \
 		../ui/paywidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QSignalMapper \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h \
+		../ui/paycontactdialog.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLayout \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlayout.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/QList \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../ui/purchase_xcoin.h \
 		ui_mainwindow.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QStringList \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstringlist.h \
@@ -1252,23 +1388,23 @@ mainwindow.o: ../ui/mainwindow.cpp ../ui/mainwindow.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDir \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdir.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/QCloseEvent \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/qevent.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/QFontDatabase \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/qfontdatabase.h \
-		../ui/purchase_xcoin.h
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/qfontdatabase.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../ui/mainwindow.cpp
 
 paycontactdialog.o: ../ui/paycontactdialog.cpp ../ui/paycontactdialog.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLayout \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlayout.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o paycontactdialog.o ../ui/paycontactdialog.cpp
 
 paywidget.o: ../ui/paywidget.cpp ../ui/paywidget.h \
@@ -1288,6 +1424,13 @@ paywidget.o: ../ui/paywidget.cpp ../ui/paywidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QSignalMapper \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h \
+		../ui/paycontactdialog.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLayout \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlayout.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/QList \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/qevent.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDebug \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o paywidget.o ../ui/paywidget.cpp
@@ -1305,25 +1448,28 @@ settingswidget.o: ../ui/settingswidget.cpp ../ui/settingswidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDebug \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../ui/balancewidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QTabWidget \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qtabwidget.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QMap \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qmap.h \
 		../ui/custombutton.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QString \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
 		../ui/contactswidget.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLabel \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QScrollArea \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QMap \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qmap.h \
 		../ui/homewidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
 		../ui/logindialog.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QGroupBox \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qgroupbox.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
@@ -1334,11 +1480,19 @@ settingswidget.o: ../ui/settingswidget.cpp ../ui/settingswidget.h \
 		../ui/paywidget.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QSignalMapper \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h \
+		../ui/paycontactdialog.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLayout \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlayout.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/QList \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../ui/purchase_xcoin.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QComboBox \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDir \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdir.h \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QtDebug
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QtDebug \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QApplication \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o settingswidget.o ../ui/settingswidget.cpp
 
 togglebtn.o: ../ui/togglebtn.cpp ../ui/togglebtn.h
@@ -1396,6 +1550,9 @@ purchase_xcoin.o: ../ui/purchase_xcoin.cpp ../ui/purchase_xcoin.h \
 
 moc_addcontactdialog.o: moc_addcontactdialog.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_addcontactdialog.o moc_addcontactdialog.cpp
+
+moc_balancewidget.o: moc_balancewidget.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_balancewidget.o moc_balancewidget.cpp
 
 moc_contactswidget.o: moc_contactswidget.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_contactswidget.o moc_contactswidget.cpp
