@@ -256,13 +256,13 @@ bool validateTxIn(TxIn txIn, std::string id, std::vector<UnspentTxOut> aUnspentT
 }
 
 bool hasDuplicates(std::vector<TxIn> txIns) {
-    std::map<std::string, int> groups;
+    std::set<std::string> groups;
     int n = int(txIns.size());
     for (int i = 0; i < n; i++) {
         std::string elem = txIns[i].txOutId + std::to_string(txIns[i].txOutIndex);
-        if (groups.count(elem))
+        if (groups.find(elem) != groups.end())
             return 1;
-        groups[elem] += 1;
+        groups.insert(elem);
     }
     return 0;
 }
