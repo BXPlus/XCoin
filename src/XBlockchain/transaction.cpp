@@ -5,7 +5,6 @@
 #include "transaction.h"
 #include "../XNode/keys.h"
 #include <stdexcept>
-#include "../XNode/keys.h"
 #include <regex>
 #include <map>
 #include <set>
@@ -17,6 +16,12 @@ const int COINBASE_AMOUNT = 50;
 TxOut::TxOut(std::string address, int amount) {
     this -> address = address;
     this -> amount = amount;
+}
+
+TxIn::TxIn(std::string txOutId, int txOutIndex, std::pair<uint8_t*, uint32_t> signature) {
+    this -> txOutId = txOutId;
+    this -> txOutIndex = txOutIndex;
+    this -> signature = signature;
 }
 
 std::string Transaction::getTransactionId() {
@@ -251,13 +256,13 @@ bool validateTxIn(TxIn txIn, std::string id, std::vector<UnspentTxOut> aUnspentT
 }
 
 bool hasDuplicates(std::vector<TxIn> txIns) {
-    std::map<std::string, int> groups;
+    std::set<std::string> groups;
     int n = int(txIns.size());
     for (int i = 0; i < n; i++) {
         std::string elem = txIns[i].txOutId + std::to_string(txIns[i].txOutIndex);
-        if (groups.count(elem))
+        if (groups.find(elem) != groups.end())
             return 1;
-        groups[elem] += 1;
+        groups.insert(elem);
     }
     return 0;
 }
@@ -351,10 +356,7 @@ bool Transaction::validateCoinbaseTx(int blockIndex) {
 
 Transaction getCoinbaseTransaction(std::string address, int blockIndex) {
     Transaction t;
-    TxIn txIn;
-    txIn.signature = std::pair<uint8_t*, uint32_t>();
-    txIn.txOutId = "";
-    txIn.txOutIndex = blockIndex;
+    TxIn txIn("", blockIndex, std::pair<uint8_t*, uint32_t>());
 
     t.txIns = std::vector<TxIn>{txIn};
     t.txOuts = std::vector<TxOut>{TxOut(address, COINBASE_AMOUNT)};
