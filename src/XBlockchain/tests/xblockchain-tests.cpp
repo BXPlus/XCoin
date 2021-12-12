@@ -96,7 +96,25 @@ TEST(getCoinbaseTransaction, handleCoinbaseTransaction) {
     transactionId += address;
     EXPECT_EQ(t.txOuts[0].amount, 50);
     transactionId += "50";
-    EXPECT_EQ(t.id, transactionId);
+    EXPECT_EQ(t.id, sha256(transactionId));
+}
+
+//testing findUnspentTxOut
+TEST(findUnspentTxOut, handleFindUnspentTxOut) {
+    std::string transactionId = "transactionId";
+    int index = 123;
+    UnspentTxOut UnspentTxOut1("0", index, "0", 0);
+    UnspentTxOut UnspentTxOut2(transactionId, 1, "0", 0);
+    UnspentTxOut UnspentTxOut3("0", 1, "0", 0);
+
+    std::vector<UnspentTxOut> aUnspentTxOuts{UnspentTxOut1, UnspentTxOut2, UnspentTxOut3};
+    EXPECT_EQ(findUnspentTxOut(transactionId, index, aUnspentTxOuts),
+              std::make_pair(0, UnspentTxOut("", 0, "", 0)));
+
+    UnspentTxOut UnspentTxOut4(transactionId, index, "0", 0);
+    aUnspentTxOuts.push_back(UnspentTxOut4);
+    EXPECT_EQ(findUnspentTxOut(transactionId, index, aUnspentTxOuts),
+              std::make_pair(1, UnspentTxOut4));
 }
 
 class XTransactionTests: public ::testing::Test{
