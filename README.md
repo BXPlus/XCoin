@@ -1,4 +1,5 @@
 # XCoin
+The green coin project
 
 ## Objectives
 
@@ -58,5 +59,3 @@ On top of this, we will dedicate 3 additional research teams for the **[front-en
 - Arthur Failler
 - Tim Valencony
 - Pierre-Chanel Mangin
-
-
