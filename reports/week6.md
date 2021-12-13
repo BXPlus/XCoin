@@ -31,13 +31,19 @@ I finish all my assigned tasks :
 
 I will try to fix the design issues of my page. I will also try to connect the line where the user inserts the amount of XCOIN they want with the line that summarizes their total amount before paying. I have to take into account the value of the currency as well.
 
-@Lio 
+
+@Lio
 
 **This week:**  
 
-waited for an assigned task 
+- Studied the UI code that was just merged with the master branch
+- Added two functions into `XNode/XNodeSDK.h`
 
-Studied the UI code that was just merged with the
+**Next week:**
+
+- Implement new properties & functions into `XNode/XNodeSDK.h`
+
+
 
 @Laura Galindo 
 
