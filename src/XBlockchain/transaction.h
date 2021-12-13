@@ -27,9 +27,12 @@ public:
     std::string txOutId;
     int txOutIndex;
     std::pair<uint8_t*, uint32_t> signature;
+    friend bool operator<(const TxIn& txIn1, const TxIn& txIn2) {
+        return txIn1.txOutId < txIn2.txOutId;
+    }
     int getTxInAmount(std::vector<UnspentTxOut> aUnspentTxOuts);
     std::string JSONStringify();
-    TxIn();
+    TxIn(std::string txOutId, int txOutIndex, std::pair<uint8_t*, uint32_t> signature);
 };
 
 class Transaction {
@@ -39,7 +42,6 @@ public:
     std::vector<TxOut> txOuts;
     std::string getTransactionId();
     std::pair<uint8_t*, uint32_t> signTxIn(int txInIndex, std::string privateKey, std::vector<UnspentTxOut> aUnspentTxOuts);
-    bool hasValidTxIns();
     bool validateTransaction(std::vector<UnspentTxOut> aUnspentTxOuts);
     bool isValidTransactionStructure();
     bool validateCoinbaseTx(int blockIndex);

@@ -66,11 +66,11 @@ ContactsWidget::ContactsWidget(QWidget *parent) :
     boxContainer = new QWidget(scrollContacts);
     scrollContacts->setWidget(boxContainer);
     scrollContacts->setWidgetResizable(true);
-    scrollContacts->setStyleSheet("background-color: rgba(31,41,66,255);");
     boxContainer->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
     contactGrid = new QGridLayout(boxContainer);
     contactGrid->setContentsMargins(0, 0, 0, 0);
     contactGrid->setSpacing(0);
+    boxContainer->setObjectName("ScrollBox");
 
     create_dictionnary();
 
@@ -91,24 +91,14 @@ void ContactsWidget::create_dictionnary()
         value->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
         int count = contactGrid->rowCount();
         if (count%2 == 1){
-            key->setStyleSheet("background-color: rgba(60, 72, 114, 255);"
-                               "padding: 20;"
-                               "font: 15px;"
-                               "border-top-left-radius: 5px;"
-                               "border-bottom-left-radius: 5px;");
-            value->setStyleSheet("background-color: rgba(60, 72, 114, 255);"
-                                 "padding: 20;"
-                                 "font: 15px;");
+            key->setObjectName("keyContacts1");
+
+            value->setObjectName("valueContacts1");
         }
         else{
-            key->setStyleSheet("background-color: rgba(31,41,66,255);"
-                               "padding: 20;"
-                               "font: 15px;"
-                               "border-top-left-radius: 5px;"
-                               "border-bottom-left-radius: 5px;");
-            value->setStyleSheet("background-color: rgba(31,41,66,255);"
-                                 "padding: 20;"
-                                 "font: 15px;");
+            key->setObjectName("keyContacts2");
+            value->setObjectName("valueContacts2");
+
         }
         contactGrid->addWidget(key, count, 0);
         contactGrid->addWidget(value, count, 1);
@@ -140,25 +130,14 @@ void ContactsWidget::edit_contact()
         value->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
         int count = contactGrid->rowCount();
         if (count%2 == 1){
-            key->setStyleSheet("background-color: rgba(60, 72, 114, 255);"
-                               "padding: 20;"
-                               "font: 15px;"
-                               "border-top-left-radius: 5px;"
-                               "border-bottom-left-radius: 5px;");
-            value->setStyleSheet("background-color: rgba(60, 72, 114, 255);"
-                                 "padding: 20;"
-                                 "font: 15px;");
+            key->setObjectName("keyContacts1");
+            value->setObjectName("valueContacts1");
         }
         else{
-            key->setStyleSheet("background-color: rgba(31,41,66,255);"
-                               "padding: 20;"
-                               "font: 15px;"
-                               "border-top-left-radius: 5px;"
-                               "border-bottom-left-radius: 5px;");
-            value->setStyleSheet("background-color: rgba(31,41,66,255);"
-                                 "padding: 20;"
-                                 "font: 15px;");
+            key->setObjectName("keyContacts2");
+            value->setObjectName("valueContacts2");
         }
+
 
         //Creation of delete buttons
         QPushButton* deleteBtn = new QPushButton("–", this);

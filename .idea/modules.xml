@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/XCoin.iml" filepath="$PROJECT_DIR$/.idea/XCoin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/xblockchain.iml" filepath="$PROJECT_DIR$/.idea/xblockchain.iml" />
     </modules>
   </component>
 </project>

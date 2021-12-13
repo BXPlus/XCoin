@@ -5,10 +5,9 @@
 #include "transaction.h"
 #include "../XNode/keys.h"
 #include <stdexcept>
-#include "../XNode/keys.h"
 #include <regex>
 #include <map>
-
+#include <set>
 #define fi first
 #define se second
 
@@ -17,6 +16,12 @@ const int COINBASE_AMOUNT = 50;
 TxOut::TxOut(std::string address, int amount) {
     this -> address = address;
     this -> amount = amount;
+}
+
+TxIn::TxIn(std::string txOutId, int txOutIndex, std::pair<uint8_t*, uint32_t> signature) {
+    this -> txOutId = txOutId;
+    this -> txOutIndex = txOutIndex;
+    this -> signature = signature;
 }
 
 std::string Transaction::getTransactionId() {
@@ -251,17 +256,16 @@ bool validateTxIn(TxIn txIn, std::string id, std::vector<UnspentTxOut> aUnspentT
 }
 
 bool hasDuplicates(std::vector<TxIn> txIns) {
-    std::map<std::string, int> groups;
+    std::set<std::string> groups;
     int n = int(txIns.size());
     for (int i = 0; i < n; i++) {
         std::string elem = txIns[i].txOutId + std::to_string(txIns[i].txOutIndex);
-        if (groups.count(elem))
+        if (groups.find(elem) != groups.end())
             return 1;
-        groups[elem] += 1;
+        groups.insert(elem);
     }
     return 0;
 }
-/* //TODO: solve the problem with 'used'
 bool validateBlockTransactions(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts, int blockIndex) {
     Transaction coinbaseTx = aTransactions[0];
     if (!coinbaseTx.validateCoinbaseTx(blockIndex)) {
@@ -271,12 +275,12 @@ bool validateBlockTransactions(std::vector<Transaction> aTransactions, std::vect
 
     //check for duplicate txIns. Each txIn can be included only once
     std::vector<TxIn> txIns;
-    std::map<TxIn, bool> used;
+    std::set<TxIn> used;
     for (int i = 0; i < (int)(aTransactions.size()); i++) {
         for (int j = 0; j < (int)(aTransactions[i].txIns.size()); j++) {
-            if (!used.count(aTransactions[i].txIns[j])) {
+            if (used.find(aTransactions[i].txIns[j]) != used.end()) {
                 txIns.push_back(aTransactions[i].txIns[j]);
-                used[aTransactions[i].txIns[j]] = 1;
+                used.insert(aTransactions[i].txIns[j]);
             }
         }
     }
@@ -291,7 +295,6 @@ bool validateBlockTransactions(std::vector<Transaction> aTransactions, std::vect
 
     return validate;
 }
-*/
 
 bool Transaction::validateTransaction(std::vector<UnspentTxOut> aUnspentTxOuts) {
     if (!isValidTransactionStructure())
@@ -353,10 +356,7 @@ bool Transaction::validateCoinbaseTx(int blockIndex) {
 
 Transaction getCoinbaseTransaction(std::string address, int blockIndex) {
     Transaction t;
-    TxIn txIn;
-    txIn.signature = std::pair<uint8_t*, uint32_t>();
-    txIn.txOutId = "";
-    txIn.txOutIndex = blockIndex;
+    TxIn txIn("", blockIndex, std::pair<uint8_t*, uint32_t>());
 
     t.txIns = std::vector<TxIn>{txIn};
     t.txOuts = std::vector<TxOut>{TxOut(address, COINBASE_AMOUNT)};
