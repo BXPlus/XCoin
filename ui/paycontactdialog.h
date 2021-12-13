@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QLineEdit>
+#include <QSignalMapper>
 
 class payContactDialog : public QDialog
 {
@@ -13,9 +14,6 @@ class payContactDialog : public QDialog
 public:
     explicit payContactDialog(QString publicKey, QWidget *parent = nullptr);
     ~payContactDialog();
-private slots:
-    void closed();
-    void pay();
 private:
     QVBoxLayout* mainLayout;
     QGridLayout* numberInputLayout;
@@ -25,6 +23,11 @@ private:
     QLineEdit* amountEnter;
     QString* toKey;
     QLabel* title;
+    QList<QPushButton>* digitBtnList;
+private slots:
+    void closed();
+    void pay();
+    void inputDigit(int);
 };
 
 #endif // PAYCONTACTDIALOG_H

@@ -1324,7 +1324,9 @@ main.o: ../ui/main.cpp ../ui/mainwindow.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QFile \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qfile.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDir \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdir.h
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdir.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QFileDialog \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../ui/main.cpp
 
 mainwindow.o: ../ui/mainwindow.cpp ../ui/mainwindow.h \
@@ -1403,8 +1405,12 @@ paycontactdialog.o: ../ui/paycontactdialog.cpp ../ui/paycontactdialog.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QSignalMapper \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h \
 		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QAction \
+		/Users/alexandremisrahi/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qaction.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o paycontactdialog.o ../ui/paycontactdialog.cpp
 
 paywidget.o: ../ui/paywidget.cpp ../ui/paywidget.h \
