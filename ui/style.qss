@@ -82,7 +82,7 @@ QLabel#purchase_title {
     font-family: "Arial";
 }
 
-QLabel#settingslabel {
+QWidget#settingswidget {
     margin: 0px;
     font: MontserratBold;
     font-size: 15px;
@@ -95,7 +95,7 @@ QLabel#settingslabel {
     font: bold;
 }
 
-QLabel#settingslabel:hover {
+QWidget#settingswidget:hover {
     border: 2px solid rgba(68, 92, 146, 0.92);
 }
 
@@ -104,6 +104,10 @@ QLabel#settingsstring {
     font: bold;
     font: MontserratBold;
     font-size: 20px;
+}
+
+QLabel#settingslabel {
+    font: bold;
 }
 
 QLabel#addContact {
