@@ -31,7 +31,6 @@ public:
         return txIn1.txOutId < txIn2.txOutId;
     }
     int getTxInAmount(std::vector<UnspentTxOut> aUnspentTxOuts);
-    std::string JSONStringify();
     TxIn();
     TxIn(std::string txOutId, int txOutIndex, std::pair<uint8_t*, uint32_t> signature);
 };

@@ -5,6 +5,7 @@
       <config projectName="xblockchain" targetName="xnode" />
       <config projectName="xblockchain" targetName="gtest_main" />
       <config projectName="xblockchain" targetName="gmock_main" />
+      <config projectName="xblockchain" targetName="xtricount" />
       <config projectName="xblockchain" targetName="xnode-tests" />
       <config projectName="xblockchain" targetName="xblockchain-lib" />
       <config projectName="xblockchain" targetName="gmock" />
@@ -18,12 +19,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62685c25-6d0e-4f4d-a4d8-ee5ced8bb340" name="Changes" comment="Adding test to validateCoinbaseTx.">
+    <list default="true" id="62685c25-6d0e-4f4d-a4d8-ee5ced8bb340" name="Changes" comment="- Reorganizing the functions in transaction.cpp to be the same order as transaction.h.&#10;- Adding enum findUnspentTxOutOutcome to make the findUnspentTxOut function more readable.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XBlockchain/Blockchain.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/Blockchain.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XBlockchain/transaction.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/transaction.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XBlockchain/transaction.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/transaction.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XNode/keys.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/keys.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,6 +120,11 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="xtricount" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="xblockchain" TARGET_NAME="xtricount" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="xblockchain" RUN_TARGET_NAME="xtricount">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="CMake Application.gmock" />
       <item itemvalue="CMake Application.gmock_main" />
@@ -128,6 +132,7 @@
       <item itemvalue="CMake Application.gtest_main" />
       <item itemvalue="CMake Application.xblockchain-lib" />
       <item itemvalue="CMake Application.xnode" />
+      <item itemvalue="CMake Application.xtricount" />
       <item itemvalue="Google Test.xblockchain-tests" />
       <item itemvalue="Google Test.xnode-tests" />
     </list>
@@ -143,7 +148,7 @@
       <workItem from="1636987247832" duration="50000" />
       <workItem from="1639324179715" duration="4000" />
       <workItem from="1639399172832" duration="52000" />
-      <workItem from="1639399310632" duration="2373000" />
+      <workItem from="1639399310632" duration="3175000" />
     </task>
     <task id="LOCAL-00001" summary="Adding test to validateCoinbaseTx.">
       <created>1639337790483</created>
@@ -152,7 +157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639337790483</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="- Reorganizing the functions in transaction.cpp to be the same order as transaction.h.&#10;- Adding enum findUnspentTxOutOutcome to make the findUnspentTxOut function more readable.">
+      <created>1639401795677</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1639401795677</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,6 +183,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Adding test to validateCoinbaseTx." />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding test to validateCoinbaseTx." />
+    <MESSAGE value="- Reorganizing the functions in transaction.cpp to be the same order as transaction.h.&#10;- Adding enum findUnspentTxOutOutcome to make the findUnspentTxOut function more readable." />
+    <option name="LAST_COMMIT_MESSAGE" value="- Reorganizing the functions in transaction.cpp to be the same order as transaction.h.&#10;- Adding enum findUnspentTxOutOutcome to make the findUnspentTxOut function more readable." />
   </component>
 </project>

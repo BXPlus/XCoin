@@ -33,12 +33,6 @@ int TxIn::getTxInAmount(std::vector<UnspentTxOut> aUnspentTxOuts) {
 }
 
 
-std::string TxIn::JSONStringify() {
-    //TODO: Implement later
-    return "";
-}
-
-
 TxIn::TxIn() {
 }
 
@@ -53,7 +47,7 @@ TxIn::TxIn(std::string txOutId, int txOutIndex, std::pair<uint8_t*, uint32_t> si
 bool validateTxIn(TxIn txIn, std::string id, std::vector<UnspentTxOut> aUnspentTxOuts) {
     std::pair<bool, UnspentTxOut> tmp = findUnspentTxOut(txIn.txOutId, txIn.txOutIndex, aUnspentTxOuts);
     if (tmp.first == NotFoundUnspentTxOut) {
-        std::cout << "referenced txOut not found: "; //<< TxIn.JSONStringify() << "\n";
+        std::cout << "referenced txOut not found";
         return false;
     }
     UnspentTxOut referencedUTxOut = tmp.second;
@@ -330,7 +324,7 @@ bool hasDuplicates(std::vector<TxIn> txIns) {
 bool validateBlockTransactions(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts, int blockIndex) {
     Transaction coinbaseTx = aTransactions[0];
     if (!coinbaseTx.validateCoinbaseTx(blockIndex)) {
-        std::cout << "invalid coinbase transaction: "; //<< coinbaseTx.JSONStringify() << "\n";
+        std::cout << "invalid coinbase transaction";
         return 0;
     }
 
