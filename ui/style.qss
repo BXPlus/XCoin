@@ -173,3 +173,93 @@ QWidget#BalanceWidget {
     margin: 0;
     font: bold;
 }
+
+QLabel#keyContacts1 {
+    background-color: rgba(60, 72, 114, 255);
+    padding: 20px;
+    font: 15px;
+    border-radius: 25px;
+    color: white;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+QLabel#valueContacts1 {
+    color: black;
+    font-weight: bold;
+    font: 15px;
+    padding: 20px;
+}
+
+QLabel#keyContacts2 {
+    background-color: rgba(31,41,66,255);
+    padding: 20px;
+    font: 15px;
+    border-radius: 25px;
+    color: white;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+QLabel#valueContacts2 {
+    color: black;
+    font-weight: bold;
+    font: 15px;
+    padding: 20px;
+}
+
+QLabel#keyBalance1 {
+    background-color: rgba(60, 72, 114, 255);
+    padding: 20px;
+    font: 15px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+QLabel#valueBalance1 {
+    background-color: rgba(60, 72, 114, 255);
+    padding: 20px;
+    font: bold 15px;
+    margin-top: 10px;
+    margin-right: 10px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+QLabel#keyBalance2 {
+    background-color: rgba(31,41,66,255);
+    padding: 20px;
+    font: 15px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+QLabel#valueBalance2 {
+    background-color: rgba(31,41,66,255);
+    padding: 20px;
+    font: bold 15px;
+    margin-top: 10px;
+    margin-right: 10px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+QWidget#UserBlock {
+    border-radius: 15px;
+    background-color: rgba(60, 72, 114, 255);
+}
+
+QLabel#BalanceLabel {
+    background-color: rgba(98, 130, 184, 255);
+    border-radius: 10px;
+    margin: 0;
+}
+
+QWidget#ScrollBox {
+    background-color: rgb(230, 242, 247);
+    border-radius: 15px;
+}
