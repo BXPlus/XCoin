@@ -66,7 +66,6 @@ ContactsWidget::ContactsWidget(QWidget *parent) :
     boxContainer = new QWidget(scrollContacts);
     scrollContacts->setWidget(boxContainer);
     scrollContacts->setWidgetResizable(true);
-    scrollContacts->setStyleSheet("background-color: rgba(31,41,66,255);");
     boxContainer->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
     contactGrid = new QGridLayout(boxContainer);
     contactGrid->setContentsMargins(0, 0, 0, 0);
