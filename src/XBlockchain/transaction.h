@@ -32,8 +32,11 @@ public:
     }
     int getTxInAmount(std::vector<UnspentTxOut> aUnspentTxOuts);
     std::string JSONStringify();
+    TxIn();
     TxIn(std::string txOutId, int txOutIndex, std::pair<uint8_t*, uint32_t> signature);
 };
+
+bool validateTxIn(TxIn txIn, std::string id, std::vector<UnspentTxOut> aUnspentTxOuts);
 
 class Transaction {
 public:
@@ -61,11 +64,9 @@ Transaction getCoinbaseTransaction(std::string address, int blockIndex);
 
 std::string getPublicKey(std::string aPrivateKey);
 
-bool validateBlockTransactions(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts, int blockIndex);
-
 bool hasDuplicates(std::vector<TxIn> txIns);
 
-bool validateTxIn(TxIn txIn, Transaction transaction, std::vector<UnspentTxOut> aUnspentTxOuts);
+bool validateBlockTransactions(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts, int blockIndex);
 
 std::vector<UnspentTxOut> processTransactions(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts, int blockIndex);
 

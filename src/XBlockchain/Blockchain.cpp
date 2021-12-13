@@ -1,5 +1,5 @@
 #include "Blockchain.h"
-
+#include <algorithm>
 /****************************
 **** ChainNode elements ****
 ****************************/

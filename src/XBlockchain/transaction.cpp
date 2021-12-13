@@ -1,28 +1,73 @@
-//
-// Created by youssef on 11/8/21.
-//
-
 #include "transaction.h"
 #include "../XNode/keys.h"
 #include <stdexcept>
 #include <regex>
-#include <map>
 #include <set>
-#define fi first
-#define se second
+
 
 const int COINBASE_AMOUNT = 50;
+
+
+enum findUnspentTxOutOutcome {
+    NotFoundUnspentTxOut = 0,
+    FoundUnspentTxOut = 1
+};
+
+
+UnspentTxOut::UnspentTxOut(std::string txOutId, int txOutIndex, std::string address, int amount) {
+    this -> txOutId = txOutId;
+    this -> txOutIndex = txOutIndex;
+    this -> address = address;
+    this -> amount = amount;
+}
+
 
 TxOut::TxOut(std::string address, int amount) {
     this -> address = address;
     this -> amount = amount;
 }
 
+
+int TxIn::getTxInAmount(std::vector<UnspentTxOut> aUnspentTxOuts) {
+    return findUnspentTxOut(txOutId, txOutIndex, aUnspentTxOuts).second.amount;
+}
+
+
+std::string TxIn::JSONStringify() {
+    //TODO: Implement later
+    return "";
+}
+
+
+TxIn::TxIn() {
+}
+
+
 TxIn::TxIn(std::string txOutId, int txOutIndex, std::pair<uint8_t*, uint32_t> signature) {
     this -> txOutId = txOutId;
     this -> txOutIndex = txOutIndex;
     this -> signature = signature;
 }
+
+
+bool validateTxIn(TxIn txIn, std::string id, std::vector<UnspentTxOut> aUnspentTxOuts) {
+    std::pair<bool, UnspentTxOut> tmp = findUnspentTxOut(txIn.txOutId, txIn.txOutIndex, aUnspentTxOuts);
+    if (tmp.first == NotFoundUnspentTxOut) {
+        std::cout << "referenced txOut not found: "; //<< TxIn.JSONStringify() << "\n";
+        return false;
+    }
+    UnspentTxOut referencedUTxOut = tmp.second;
+    std::string address = referencedUTxOut.address;
+
+
+    bool validSignature = verify(txIn.signature, address, id);
+    if (!validSignature) {
+        std::cout << "invalid txIn signature: " << txIn.signature.first << " txId: " << id << " address: " << address << "\n";
+        return false;
+    }
+    return true;
+}
+
 
 std::string Transaction::getTransactionId() {
     std::stringstream txInsContent;
@@ -38,163 +83,59 @@ std::string Transaction::getTransactionId() {
     return sha256(txInsContent.str() + txOutsContent.str());
 }
 
-std::pair<bool, UnspentTxOut> findUnspentTxOut(std::string transactionId, int index, std::vector<UnspentTxOut>& aUnspentTxOuts) {
-    for(int id = 0; id < int(aUnspentTxOuts.size()); id++) {
-        if (aUnspentTxOuts[id].txOutId == transactionId && aUnspentTxOuts[id].txOutIndex == index)
-            return std::make_pair(1, aUnspentTxOuts[id]);
-    }
-    return std::make_pair(0, UnspentTxOut("", 0, "", 0));
-}
-
-std::string getPublicKey(std::string aPrivateKey)
-{
-        return keyFromPrivate(aPrivateKey).getPub();
-}
 
 std::pair<uint8_t*, uint32_t> Transaction::signTxIn(int txInIndex, std::string privateKey, std::vector<UnspentTxOut> aUnspentTxOuts) {
     TxIn txIn = txIns[txInIndex];
     std::string dataToSign = id;
     std::pair<bool, UnspentTxOut> tmp = findUnspentTxOut(txIn.txOutId, txIn.txOutIndex, aUnspentTxOuts);
-    if (tmp.fi == 0)
+    if (tmp.first == NotFoundUnspentTxOut)
         throw std::invalid_argument( "could not find referenced txOut\n" );
-    UnspentTxOut referencedUnspentTxOut = tmp.se;
+    UnspentTxOut referencedUnspentTxOut = tmp.second;
     std::string referencedAddress = referencedUnspentTxOut.address;
 
-    if (getPublicKey(privateKey) != referencedAddress) {
+    if (getPublicKey(privateKey) != referencedAddress)
         throw std::invalid_argument("trying to sign an input with private key that does not match the address that is referenced in txIn\n");
-    }
-
 
     std::pair<uint8_t*, uint32_t> signature = sign(privateKey, dataToSign);
     return signature;
 
 }
 
-UnspentTxOut::UnspentTxOut(std::string txOutId, int txOutIndex, std::string address, int amount) {
-    this -> txOutId = txOutId;
-    this -> txOutIndex = txOutIndex;
-    this -> address = address;
-    this -> amount = amount;
-}
 
-int TxIn::getTxInAmount(std::vector<UnspentTxOut> aUnspentTxOuts) {
-    return findUnspentTxOut(txOutId, txOutIndex, aUnspentTxOuts).second.amount;
-}
+bool Transaction::validateTransaction(std::vector<UnspentTxOut> aUnspentTxOuts) {
+    if (!isValidTransactionStructure())
+        return false;
 
-std::vector<UnspentTxOut> updateUnspentTxOuts(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts) {
-    std::vector<UnspentTxOut> newUnspentTxOuts;
-    for (int i = 0; i < int(aTransactions.size()); i++) {
-        Transaction T = aTransactions[i];
-        for (int j = 0; j < int(T.txOuts.size()); j++)
-            newUnspentTxOuts.push_back(UnspentTxOut(T.id, j, T.txOuts[j].address, T.txOuts[j].amount));
+    if (getTransactionId() != id) {
+        std::cout << "Invalid tx id: " << id << "\n";
+        return false;
     }
 
-    std::vector<UnspentTxOut> consumedTxOuts;
-    for (int i = 0; i < int(aTransactions.size()); i++) {
-        Transaction T = aTransactions[i];
-        for (int j = 0; j < int(T.txIns.size()); j++)
-            consumedTxOuts.push_back(UnspentTxOut(T.txIns[j].txOutId, T.txIns[j].txOutIndex, "", 0));
+    bool hasValidTxIns = true;
+    for (int i = 0; i < int(txIns.size()); i++)
+        hasValidTxIns &= validateTxIn(txIns[i], id, aUnspentTxOuts);
+
+    if (!hasValidTxIns) {
+        std::cout << "some of the txIns are invalid in tx: " << id << "\n";
+        return false;
     }
 
-    //Removing the consumedTxOuts elements
-    for (int i = 0; i < int(aUnspentTxOuts.size()); i++) {
-        if (findUnspentTxOut(aUnspentTxOuts[i].txOutId, aUnspentTxOuts[i].txOutIndex, consumedTxOuts).first == 0)
-            newUnspentTxOuts.push_back(aUnspentTxOuts[i]);
+    int totalTxInValues = 0;
+    for (int i = 0; i < int(txIns.size()); i++)
+        totalTxInValues += txIns[i].getTxInAmount(aUnspentTxOuts);
+
+    int totalTxOutValues = 0;
+    for (int i = 0; i < int(txOuts.size()); i++)
+        totalTxOutValues += txOuts[i].amount;
+
+    if (totalTxInValues != totalTxOutValues) {
+        std::cout << "totalTxOutValues != totalTxInValues in tx: " << id << "\n";
+        return false;
     }
 
-    return newUnspentTxOuts;
-}
-
-std::vector<UnspentTxOut> processTransactions(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts, int blockIndex) {
-    if (!validateBlockTransactions(aTransactions, aUnspentTxOuts, blockIndex)) {
-        std::cout << "invalid block transactions";
-        return std::vector<UnspentTxOut>();
-    }
-    return updateUnspentTxOuts(aTransactions, aUnspentTxOuts);
-}
-
-bool isValidTxInStructure(TxIn txIn) {
-    if ((&txIn) == nullptr) {
-        std::cout << "txIn is null";
-        return false;
-    }
-    else if ((typeid(txIn.signature) != typeid(std::pair<uint8_t*, uint32_t>)) &&
-            (typeid(txIn.signature.first) != typeid(uint8_t*)) &&
-            (typeid(txIn.signature.second) !=typeid(uint32_t))) {
-        std::cout << "invalid signature type in txIn";
-        return false;
-    }
-    else if (typeid(txIn.txOutId) != typeid("string")) {
-        std::cout << "invalid txOutId type in txIn";
-        return false;
-    }
-    else if (typeid(txIn.txOutIndex) != typeid(0)) {
-        std::cout << "invalid txOutIndex type in txIn";
-        return false;
-    }
-    else
-        return true;
-}
-
-bool isValidTxInStructure(TxOut txIn) {
-    if ((&txIn) == nullptr) {
-        std::cout << "txIn is null";
-        return false;
-    }
-    else if (typeid(txIn.address) != typeid("string")) {
-        std::cout << "invalid address type in txIn";
-        return false;
-    }
-    else if (!isValidAddress(txIn.address)) {
-        std::cout << "invalid txOutId type in txIn";
-        return false;
-    }
-    else if (typeid(txIn.amount) != typeid(0)) {
-        std::cout << "invalid txOutIndex type in txIn";
-        return false;
-    }
-    else
-        return true;
-}
-
-// valid address is a valid ecdsa public key in the 04 + X-coordinate + Y-coordinate format
-bool isValidAddress(std::string address) {
-    if (int(address.length()) == 130) {
-        std::cout << address << "\n";
-        std::cout << "invalid public key length\n";
-        return false;
-    }
-    else if (!regex_match(address, std::regex("^[a-fA-F0-9]+$"))) {
-        std::cout << "public key must contain only hex characters\n";
-        return false;
-    }
-    else if (address.substr(0, 2) != "04") {
-        std::cout << "public key must start with 04\n";
-        return false;
-    }
     return true;
 }
 
-bool isValidTxOutStructure(TxOut txOut) {
-    if ((&txOut) == nullptr) {
-        std::cout << "txOut is null";
-        return false;
-    }
-    else if (typeid(txOut.address) != typeid("String")) {
-        std::cout << "invalid address type in txOut";
-        return false;
-    }
-    else if (!isValidAddress(txOut.address)) {
-        std::cout << "invalid TxOut address";
-        return false;
-    }
-    else if (typeid(txOut.amount) != typeid(0)) {
-        std::cout << "invalid amount type in txOut";
-        return false;
-    }
-    else
-        return true;
-}
 
 bool Transaction::isValidTransactionStructure() {
     if (typeid(id) != typeid("string")) {
@@ -232,28 +173,146 @@ bool Transaction::isValidTransactionStructure() {
     return true;
 }
 
-std::string TxIn::JSONStringify() {
-    //TODO: Implement later
-    return "";
-}
 
-bool validateTxIn(TxIn txIn, std::string id, std::vector<UnspentTxOut> aUnspentTxOuts) {
-    std::pair<bool, UnspentTxOut> tmp = findUnspentTxOut(txIn.txOutId, txIn.txOutIndex, aUnspentTxOuts);
-    if (tmp.first == 0) {
-        std::cout << "referenced txOut not found: "; //<< TxIn.JSONStringify() << "\n";
+bool Transaction::validateCoinbaseTx(int blockIndex) {
+    if (getTransactionId() != id) {
+        std::cout << "invalid coinbase tx id: " << id << "\n";
         return false;
     }
-    UnspentTxOut referencedUTxOut = tmp.second;
-    std::string address = referencedUTxOut.address;
-
-
-    bool validSignature = verify(txIn.signature, address, id);
-    if (!validSignature) {
-        std::cout << "invalid txIn signature: " << txIn.signature.first << " txId: " << id << " address: " << address << "\n";
+    if (int(txIns.size()) != 1) {
+        std::cout << "one txIn must be specified in the coinbase transaction\n";
+        return false;
+    }
+    if (txIns[0].txOutIndex != blockIndex) {
+        std::cout << "the txIn index in coinbase tx must be the block height\n";
+        return false;
+    }
+    if (int(txOuts.size()) != 1) {
+        std::cout << "invalid number of txOuts in coinbase transaction\n";
+        return false;
+    }
+    if (txOuts[0].amount != COINBASE_AMOUNT) {
+        std::cout << "invalid coinbase amount in coinbase transaction\n";
         return false;
     }
     return true;
 }
+
+
+std::pair<bool, UnspentTxOut> findUnspentTxOut(std::string transactionId, int index, std::vector<UnspentTxOut>& aUnspentTxOuts) {
+    for(int id = 0; id < int(aUnspentTxOuts.size()); id++) {
+        if (aUnspentTxOuts[id].txOutId == transactionId && aUnspentTxOuts[id].txOutIndex == index)
+            return std::make_pair(FoundUnspentTxOut, aUnspentTxOuts[id]);
+    }
+    return std::make_pair(NotFoundUnspentTxOut, UnspentTxOut("", 0, "", 0));
+}
+
+
+std::vector<UnspentTxOut> updateUnspentTxOuts(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts) {
+    std::vector<UnspentTxOut> newUnspentTxOuts;
+    for (int i = 0; i < int(aTransactions.size()); i++) {
+        Transaction T = aTransactions[i];
+        for (int j = 0; j < int(T.txOuts.size()); j++)
+            newUnspentTxOuts.push_back(UnspentTxOut(T.id, j, T.txOuts[j].address, T.txOuts[j].amount));
+    }
+
+    std::vector<UnspentTxOut> consumedTxOuts;
+    for (int i = 0; i < int(aTransactions.size()); i++) {
+        Transaction T = aTransactions[i];
+        for (int j = 0; j < int(T.txIns.size()); j++)
+            consumedTxOuts.push_back(UnspentTxOut(T.txIns[j].txOutId, T.txIns[j].txOutIndex, "", 0));
+    }
+
+    //Removing the consumedTxOuts elements
+    for (int i = 0; i < int(aUnspentTxOuts.size()); i++) {
+        if (findUnspentTxOut(aUnspentTxOuts[i].txOutId, aUnspentTxOuts[i].txOutIndex, consumedTxOuts).first == NotFoundUnspentTxOut)
+            newUnspentTxOuts.push_back(aUnspentTxOuts[i]);
+    }
+
+    return newUnspentTxOuts;
+}
+
+
+bool isValidTxInStructure(TxIn txIn) {
+    if ((&txIn) == nullptr) {
+        std::cout << "txIn is null";
+        return false;
+    }
+    else if ((typeid(txIn.signature) != typeid(std::pair<uint8_t*, uint32_t>)) &&
+            (typeid(txIn.signature.first) != typeid(uint8_t*)) &&
+            (typeid(txIn.signature.second) !=typeid(uint32_t))) {
+        std::cout << "invalid signature type in txIn";
+        return false;
+    }
+    else if (typeid(txIn.txOutId) != typeid("string")) {
+        std::cout << "invalid txOutId type in txIn";
+        return false;
+    }
+    else if (typeid(txIn.txOutIndex) != typeid(0)) {
+        std::cout << "invalid txOutIndex type in txIn";
+        return false;
+    }
+    else
+        return true;
+}
+
+
+// valid address is a valid ecdsa public key in the 04 + X-coordinate + Y-coordinate format
+bool isValidAddress(std::string address) {
+    if (int(address.length()) == 130) {
+        std::cout << address << "\n";
+        std::cout << "invalid public key length\n";
+        return false;
+    }
+    else if (!regex_match(address, std::regex("^[a-fA-F0-9]+$"))) {
+        std::cout << "public key must contain only hex characters\n";
+        return false;
+    }
+    else if (address.substr(0, 2) != "04") {
+        std::cout << "public key must start with 04\n";
+        return false;
+    }
+    return true;
+}
+
+
+bool isValidTxOutStructure(TxOut txOut) {
+    if ((&txOut) == nullptr) {
+        std::cout << "txOut is null";
+        return false;
+    }
+    else if (typeid(txOut.address) != typeid("String")) {
+        std::cout << "invalid address type in txOut";
+        return false;
+    }
+    else if (!isValidAddress(txOut.address)) {
+        std::cout << "invalid TxOut address";
+        return false;
+    }
+    else if (typeid(txOut.amount) != typeid(0)) {
+        std::cout << "invalid amount type in txOut";
+        return false;
+    }
+    else
+        return true;
+}
+
+
+Transaction getCoinbaseTransaction(std::string address, int blockIndex) {
+    Transaction t;
+    TxIn txIn("", blockIndex, std::pair<uint8_t*, uint32_t>());
+
+    t.txIns = std::vector<TxIn>{txIn};
+    t.txOuts = std::vector<TxOut>{TxOut(address, COINBASE_AMOUNT)};
+    t.id = t.getTransactionId();
+    return t;
+}
+
+
+std::string getPublicKey(std::string aPrivateKey) {
+    return keyFromPrivate(aPrivateKey).getPub();
+}
+
 
 bool hasDuplicates(std::vector<TxIn> txIns) {
     std::set<std::string> groups;
@@ -266,6 +325,8 @@ bool hasDuplicates(std::vector<TxIn> txIns) {
     }
     return 0;
 }
+
+
 bool validateBlockTransactions(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts, int blockIndex) {
     Transaction coinbaseTx = aTransactions[0];
     if (!coinbaseTx.validateCoinbaseTx(blockIndex)) {
@@ -296,71 +357,11 @@ bool validateBlockTransactions(std::vector<Transaction> aTransactions, std::vect
     return validate;
 }
 
-bool Transaction::validateTransaction(std::vector<UnspentTxOut> aUnspentTxOuts) {
-    if (!isValidTransactionStructure())
-        return false;
 
-    if (getTransactionId() != id) {
-        std::cout << "Invalid tx id: " << id << "\n";
-        return false;
+std::vector<UnspentTxOut> processTransactions(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts, int blockIndex) {
+    if (!validateBlockTransactions(aTransactions, aUnspentTxOuts, blockIndex)) {
+        std::cout << "invalid block transactions";
+        return std::vector<UnspentTxOut>();
     }
-
-    bool hasValidTxIns = true;
-    for (int i = 0; i < int(txIns.size()); i++)
-        hasValidTxIns &= validateTxIn(txIns[i], id, aUnspentTxOuts);
-
-    if (!hasValidTxIns) {
-        std::cout << "some of the txIns are invalid in tx: " << id << "\n";
-        return false;
-    }
-
-    int totalTxInValues = 0;
-    for (int i = 0; i < int(txIns.size()); i++)
-        totalTxInValues += txIns[i].getTxInAmount(aUnspentTxOuts);
-
-    int totalTxOutValues = 0;
-    for (int i = 0; i < int(txOuts.size()); i++)
-        totalTxOutValues += txOuts[i].amount;
-
-    if (totalTxInValues != totalTxOutValues) {
-        std::cout << "totalTxOutValues != totalTxInValues in tx: " << id << "\n";
-        return false;
-    }
-
-    return true;
+    return updateUnspentTxOuts(aTransactions, aUnspentTxOuts);
 }
-
-bool Transaction::validateCoinbaseTx(int blockIndex) {
-    if (getTransactionId() != id) {
-        std::cout << "invalid coinbase tx id: " << id << "\n";
-        return false;
-    }
-    if (int(txIns.size()) != 1) {
-        std::cout << "one txIn must be specified in the coinbase transaction\n";
-        return false;
-    }
-    if (txIns[0].txOutIndex != blockIndex) {
-        std::cout << "the txIn index in coinbase tx must be the block height\n";
-        return false;
-    }
-    if (int(txOuts.size()) != 1) {
-        std::cout << "invalid number of txOuts in coinbase transaction\n";
-        return false;
-    }
-    if (txOuts[0].amount != COINBASE_AMOUNT) {
-        std::cout << "invalid coinbase amount in coinbase transaction\n";
-        return false;
-    }
-    return true;
-}
-
-Transaction getCoinbaseTransaction(std::string address, int blockIndex) {
-    Transaction t;
-    TxIn txIn("", blockIndex, std::pair<uint8_t*, uint32_t>());
-
-    t.txIns = std::vector<TxIn>{txIn};
-    t.txOuts = std::vector<TxOut>{TxOut(address, COINBASE_AMOUNT)};
-    t.id = t.getTransactionId();
-    return t;
-}
-
