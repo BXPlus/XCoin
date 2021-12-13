@@ -85,3 +85,7 @@ We have merged with @Cyrus Pellet the gRPC branch into the master branch, and we
 Next week:
 
 We will be finishing fully the synchronization with @Cyrus Pellet and more precisely I will be doing the header synchronization.
+
+@Malo 
+
+This week I plugged the functions I make in keys into Wallet and transaction and I tried to debug code from Long Vu in transaction. Next week I will probably make the contact storage.
