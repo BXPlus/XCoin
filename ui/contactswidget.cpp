@@ -17,7 +17,7 @@ ContactsWidget::ContactsWidget(QWidget *parent) :
     // load Contacts dictionary later
     contactDict[QString("John Lennon")] = QString("#dk9174hdn57s");
     contactDict[QString("Bob")] = QString("#dk9174hdn29s");
-    contactDict[QString("Alex")] = QString("#dk9174hdn57s");
+    contactDict[QString("Alex")] = QString("04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a");
     contactDict[QString("Clara")] = QString("#dk9174hdn29s");
     contactDict[QString("Picha")] = QString("#dk9174hdn57s");
     contactDict[QString("Tim")] = QString("#dk9174hdn29s");
@@ -43,7 +43,7 @@ ContactsWidget::ContactsWidget(QWidget *parent) :
 
     //Add contact button creation
     addContactButton = new QPushButton(this);
-    addContactButton->setText("Add Contact");
+    addContactButton->setText("Add");
     addContactButton->setObjectName("ContactEdits");
     addContactButton->setCursor(Qt::PointingHandCursor);
     addContactButton->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
@@ -54,12 +54,19 @@ ContactsWidget::ContactsWidget(QWidget *parent) :
     editBtn->setCursor(Qt::PointingHandCursor);
     editBtn->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
 
+    //Search contact QLineEdit creation
+    contactSearch = new QLineEdit(this);
+    contactSearch->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+    contactSearch->setPlaceholderText("Search");
+
     connect(addContactButton, SIGNAL(clicked(bool)), this, SLOT(addContact()));
     connect(editBtn, SIGNAL(clicked(bool)), this, SLOT(editStyle()));
+    connect(contactSearch, &QLineEdit::textEdited, this, &ContactsWidget::contactSearchEdit);
 
     topLayout->addWidget(title);
     topLayout->addWidget(addContactButton);
     topLayout->addWidget(editBtn);
+    topLayout->addWidget(contactSearch);
 
 
     scrollContacts = new QScrollArea(this);
@@ -72,53 +79,55 @@ ContactsWidget::ContactsWidget(QWidget *parent) :
     contactGrid->setSpacing(0);
     boxContainer->setObjectName("ScrollBox");
 
-    create_dictionnary();
+    createDictionary(contactDict);
 
     pageLayout->addWidget(topBox);
     pageLayout->addWidget(scrollContacts);
 
 }
 
-void ContactsWidget::create_dictionnary()
+void ContactsWidget::createDictionary(QMap<QString, QString> contacts)
 {
-    for(auto e : contactDict.keys())
+    for(auto e : contacts.keys())
     {
         QLabel* key = new QLabel;
         key->setText(e);
         QLabel* value = new QLabel;
         value->setText(contactDict.value(e));
+        value->setWordWrap(true);
         key->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
         value->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
         int count = contactGrid->rowCount();
-        if (count%2 == 1){
-            key->setObjectName("keyContacts1");
 
+        QPushButton* coverRowBtn = new QPushButton(key);
+        coverRowBtn->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+        coverRowBtn->setCursor(Qt::PointingHandCursor);
+        coverRowBtn->setObjectName("coverRowBtn");
+
+        QSignalMapper* signalMapper = new QSignalMapper(this);
+        connect(coverRowBtn, SIGNAL(clicked()), signalMapper, SLOT(map()));
+        signalMapper->setMapping(coverRowBtn, key->text());
+        connect(signalMapper, SIGNAL(mapped(QString)), this, SLOT(openPayDialog(QString)));
+
+        if (count%2 == 1){
+            coverRowBtn->setStyleSheet("QPushButton#coverRowBtn{background-color: rgba(255,255,255,0);}"
+                                       "QPushButton#coverRowBtn:hover{background-color: rgba(211, 229, 255, 20);}");
+            key->setObjectName("keyContacts1");
             value->setObjectName("valueContacts1");
         }
         else{
+            coverRowBtn->setStyleSheet("QPushButton#coverRowBtn{background-color: rgba(255,255,255,0);}"
+                                       "QPushButton#coverRowBtn:hover{background-color: rgba(211, 229, 255, 20);}");
             key->setObjectName("keyContacts2");
             value->setObjectName("valueContacts2");
-
         }
         contactGrid->addWidget(key, count, 0);
         contactGrid->addWidget(value, count, 1);
+        contactGrid->addWidget(coverRowBtn, count, 0, 1, 2);
     }
 }
 
-void ContactsWidget::delete_widgets()
-{
-    if ( contactGrid != NULL )
-    {
-        QLayoutItem* item;
-        while ( ( item = contactGrid->takeAt( 0 ) ) != NULL )
-        {
-            delete item->widget();
-            delete item;
-        }
-    }
-}
-
-void ContactsWidget::edit_contact()
+void ContactsWidget::editContact()
 {
     for(auto e : contactDict.keys())
     {
@@ -137,14 +146,13 @@ void ContactsWidget::edit_contact()
             key->setObjectName("keyContacts2");
             value->setObjectName("valueContacts2");
         }
-
 
         //Creation of delete buttons
         QPushButton* deleteBtn = new QPushButton("–", this);
         deleteBtn->setObjectName("deleteBtn");
         deleteBtn->setCursor(Qt::PointingHandCursor);
         deleteBtn->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
-        delList.append(deleteBtn);
+        //delList.append(deleteBtn);
 
         //Connection of the buttons to deletion of the contact
         QSignalMapper* signalMapper = new QSignalMapper(this) ;
@@ -157,16 +165,9 @@ void ContactsWidget::edit_contact()
         signalMapper2->setMapping (deleteBtn, key->text());
         connect(signalMapper2, SIGNAL(mapped(QString)), this, SLOT(get_key(QString)));
 
-        //Put the buttons in the Layout
-        QHBoxLayout* key_countainer = new QHBoxLayout();
-        QWidget* key_widget = new QWidget();
-
-        key_countainer->addWidget(deleteBtn);
-        key_countainer->addWidget(key);
-        key_widget->setLayout(key_countainer);
-
-        contactGrid->addWidget(key_widget, count, 0);
-        contactGrid->addWidget(value, count, 1);
+        contactGrid->addWidget(deleteBtn, count, 0);
+        contactGrid->addWidget(key, count, 1);
+        contactGrid->addWidget(value, count, 2);
     }
 }
 
@@ -184,40 +185,71 @@ void ContactsWidget::addContact()
     if (sList[0] == "true") {
         if (key != " " && value != ""){
             contactDict[key] = value;
-            delete_widgets();
-            create_dictionnary();
+            deleteWidgets();
+            createDictionary(contactDict);
         }
     }
 }
 
-void ContactsWidget::deleteContact(int count)
-{
-    contactGrid->removeWidget(contactGrid->itemAtPosition(count, 0)->widget());
-    contactGrid->removeWidget(contactGrid->itemAtPosition(count, 1)->widget());
-}
+void ContactsWidget::editStyle(){
+    deleteWidgets();
 
-void ContactsWidget::editStyle()
-{
-    delete_widgets();
-
-    if (editCount%2 == 0) {
+    if (editCount == 0) {
         editBtn->setText("Done");
-        edit_contact();
+        editContact();
+        editCount ++;
     }
     else {
         editBtn->setText("Edit");
-        create_dictionnary();
+        createDictionary(contactDict);
+        editCount--;
     }
-    editCount++;
 }
 
-void ContactsWidget::get_key(QString key_string)
-{
-    for (auto it = contactDict.begin(); it != contactDict.end(); it++)
+void ContactsWidget::deleteContact(int count){
+    contactGrid->removeWidget(contactGrid->itemAtPosition(count, 0)->widget());
+    contactGrid->removeWidget(contactGrid->itemAtPosition(count, 1)->widget());
+    contactGrid->removeWidget(contactGrid->itemAtPosition(count, 2)->widget());
+}
+
+void ContactsWidget::get_key(QString key_string){
+    for (auto it = contactDict.begin(); it != contactDict.end(); it++){
         if (it.key() == key_string) {
             it = contactDict.erase(it);
             break;
         }
+    }
+    editContact();
 }
 
+void ContactsWidget::contactSearchEdit(){
+    QString* text = new QString(contactSearch->text().toLower());
+    QMap<QString, QString> tempContacts;
+    deleteWidgets();
+    for (auto e : contactDict.keys()){
+        if ((e.toLower().contains(text)) or contactDict.value(e).contains(text)){
+            tempContacts[e] = contactDict.value(e);
+        }
+    }
+    createDictionary(tempContacts);
+}
+
+void ContactsWidget::openPayDialog(QString value){
+    payContactDialog* dialog = new payContactDialog(value, this);
+    dialog->setModal(true);
+    dialog->exec();
+}
+
+void ContactsWidget::deleteWidgets()
+{
+    if ( contactGrid != NULL )
+    {
+        QLayoutItem* item;
+        while ( ( item = contactGrid->takeAt( 0 ) ) != NULL )
+        {
+            delete item->widget();
+            delete item;
+        }
+    }
+}
 

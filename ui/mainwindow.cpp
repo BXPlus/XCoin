@@ -79,9 +79,9 @@ MainWindow::MainWindow(QWidget *parent)
     menuLayout->addWidget(userBlock);
 
     // Creating remaining buttons
-    QStringList titles = {"Home", "Contacts", "Balance", "Pay", "Settings", "Graphics"};
+    QStringList titles = {"Home", "Contacts", "Balance", "Settings", "Graphics"};
 
-    for (int i=0; i<6; i++){
+    for (int i=0; i<5; i++){
 
         CustomButton* btn = new CustomButton(titles[i], menuContainer);
         btn->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
@@ -112,14 +112,12 @@ MainWindow::MainWindow(QWidget *parent)
     contentContainer->addWidget(contactsWidget);
     balanceWidget = new BalanceWidget(mainWidget);
     contentContainer->addWidget(balanceWidget);
-    paymentsWidget = new PayWidget(mainWidget);
-    contentContainer->addWidget(paymentsWidget);
     settingsWidget = new SettingsWidget(mainWidget);
     contentContainer->addWidget(settingsWidget);
     graphsWidget = new QWidget(mainWidget);
     contentContainer->addWidget(graphsWidget);
 
-    for (int i = 0; i < 6; i++){
+    for (int i = 0; i < 5; i++){
         QSignalMapper* signalMapper = new QSignalMapper (this) ;
         connect(btnList[i], SIGNAL(clicked(bool)), signalMapper, SLOT(map()));
         signalMapper->setMapping (btnList[i], i);
