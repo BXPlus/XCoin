@@ -1449,8 +1449,12 @@ paycontactdialog.o: ../ui/paycontactdialog.cpp ../ui/paycontactdialog.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QSignalMapper \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h \
 		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/QDebug \
-		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/QAction \
+		../../../../Installs/Qt/5.12.5/clang_64/lib/QtWidgets.framework/Headers/qaction.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o paycontactdialog.o ../ui/paycontactdialog.cpp
 
 paywidget.o: ../ui/paywidget.cpp ../ui/paywidget.h \
