@@ -26,7 +26,7 @@ void XNode::Node::RunNode(const std::vector<std::string>& dnsSeedPeers) {
     spdlog::info("Server listening on " + server_address);
     sdkInstance->onStatusChanged(XNodeSDK::XNodeStatus::WaitingForDNSS);
     bool couldPerformHandshakeWithDNSS = false;
-    loadDataFromDisk();
+    // loadDataFromDisk(); //TODO: READD ONCE READY
     for (const std::string &peer: dnsSeedPeers)
         couldPerformHandshakeWithDNSS |= this->AttemptPeerConnection(peer);
     if (!couldPerformHandshakeWithDNSS && !dnsSeedPeers.empty())
@@ -221,11 +221,10 @@ bool XNode::Node::AttemptPeerConnection(const std::string &peerAddress) {
             saveDataOnDisk();
             sdkInstance->onPeerListChanged();
             std::pair<XNode::Node::PingPongStatus, int> pingPongStatus = AttemptPingPongSync(peerAddress);
-            std::cout<<this->blockchain.getLatestBlock().data<<std::endl;
             if(AttemptBlockchainSync(peerAddress, pingPongStatus.first, pingPongStatus.second)){
                 this->peers[peerAddress].syncSuccess = true;
                 spdlog::info("Successfully synced blockchain with " + peerAddress);
-                std::cout << this->blockchain.length << std::endl;
+                std::cout << this->blockchain.getLatestBlock().hash << std::endl;
                 saveDataOnDisk();
                 sdkInstance->onStatusChanged(XNodeSDK::XNodeStatus::Ready);
             }
@@ -344,7 +343,7 @@ bool XNode::Node::AttemptBlockchainSync(const std::string &peerAddress, PingPong
         }
         case HeightDiff: {
             spdlog::warn("Height diff");
-            int n = remoteChainHeight - this->blockchain.length;
+            int n = this->blockchain.length;
             if (n < 0){
                 return false; // Other peer must initiate sync from pingpong
             }
@@ -357,10 +356,10 @@ bool XNode::Node::AttemptBlockchainSync(const std::string &peerAddress, PingPong
             getBlockchainFromHeightRequest.set_startheight(n);
             ::grpc::Status getBlockchainFromHeightStatus = this->peers[peerAddress].syncStub->GetBlockchainFromHeight(
                     &getBlockchainFromHeightContext, getBlockchainFromHeightRequest, &getBlockchainFromHeightReply);
+
             if (getBlockchainFromHeightStatus.ok()){
-                std::vector<Block> newBlocks = XNode::Interface::decodeChain(getBlockchainFromHeightReply);
-                for (Block block: newBlocks){
-                    std::cout << newBlocks.data() << std::endl;
+                for (xcoin::interchange::Block pblock: getBlockchainFromHeightReply.blocks()){
+                    Block block = XNode::Interface::decodeBlock(pblock);
                     this->blockchain.appendBlock(block);
                 }
                 return true;

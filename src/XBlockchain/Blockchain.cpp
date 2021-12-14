@@ -72,7 +72,7 @@ void Blockchain::appendBlock(const Block& block)
     ChainNode* newNode = new ChainNode(block, prev);
     tail = newNode;
     length++;
-    updateDifficulty();
+    //updateDifficulty();
 }
 
 bool Blockchain::isValidNewBlock(Block newBlock, Block previousBlock)
