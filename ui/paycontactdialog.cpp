@@ -1,5 +1,6 @@
 #include "paycontactdialog.h"
 #include <QDebug>
+#include <QAction>
 
 payContactDialog::payContactDialog(QString publicKey, QWidget* parent) :
     QDialog(parent)
@@ -17,15 +18,22 @@ payContactDialog::payContactDialog(QString publicKey, QWidget* parent) :
 
     numberInputLayout = new QGridLayout();
     QPushButton* zeroBtn = new QPushButton("0", this);
+    //digitBtnList->append(zeroBtn);
     numberInputLayout->addWidget(zeroBtn, 3, 1);
     for (int i=1; i<10; i++) {
         QPushButton* nbBtn = new QPushButton(QString::number(i), this);
         int y;
         if (i%3-1 == -1){y = 2;}
         else{y = i%3-1;}
+
+//        //connect(nbBtn,  &QPushButton::clicked, this, [this](int& i){inputDigit(j); });
+//        QSignalMapper* signalMapper = new QSignalMapper(this);
+//        connect(nbBtn, SIGNAL(clicked()), signalMapper, SLOT(map()));
+//        signalMapper->setMapping(nbBtn, i);
+//        connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(inputDigit(int)));
+
         numberInputLayout->addWidget(nbBtn, 2-int(i*0.33), y);
     }
-
 
     confirmBtn = new QPushButton("Confirm", this);
     confirmBtn->setObjectName("confirmPaymentButton");
@@ -45,12 +53,11 @@ payContactDialog::payContactDialog(QString publicKey, QWidget* parent) :
     mainLayout->addLayout(numberInputLayout);
     mainLayout->addLayout(bottomButtonsLayout);
 }
-payContactDialog::~payContactDialog(){
 
+payContactDialog::~payContactDialog(){
 }
 
-void payContactDialog::closed()
-{
+void payContactDialog::closed(){
     this->close();
 }
 
@@ -58,3 +65,15 @@ void payContactDialog::pay(){
     qDebug() << "Paying " << amountEnter->text().toInt() << "XCoins" << "to" << *toKey;
     this->close();
 }
+
+void payContactDialog::inputDigit(int i){
+    amountEnter->setText(amountEnter->text() + QString::number(i));
+}
+
+
+
+
+
+
+
+

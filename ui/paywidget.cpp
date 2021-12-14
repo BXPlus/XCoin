@@ -24,6 +24,7 @@ PayWidget::PayWidget(QWidget *parent)
     contactDict[QString("Lio")] = QString("#dk9174hdn29s");
     contactDict[QString("Timothé")] = QString("#dk9174hdn29s");
     contactDict[QString("Salma")] = QString("#dk9174hdn29s");
+    contactDict[QString("Hassiba le C")] = QString("undecipherable key");
 
     topBox = new QWidget();
     topLayout = new QHBoxLayout();
@@ -37,12 +38,7 @@ PayWidget::PayWidget(QWidget *parent)
     contactSearch = new QLineEdit(this);
     contactSearch->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
     contactSearch->setPlaceholderText("Search");
-
-    //QString* search = new QString;
-    //QSignalMapper* signalMapper = new QSignalMapper(this) ;
     connect(contactSearch, &QLineEdit::textEdited, this, &PayWidget::contactSearchEdit);
-//    signalMapper->setMapping(contactSearch, contactSearch->text());
-//    connect(signalMapper, QOverload<const QString &>::of(&QSignalMapper::mapped), this, &PayWidget::contactSearchEdit);
 
     topLayout->addWidget(title);
     topLayout->addWidget(contactSearch);
@@ -71,28 +67,28 @@ void PayWidget::create_dictionary(QMap<QString, QString> contacts)
         key->setText(e);
         QLabel* value = new QLabel;
         value->setText(contactDict.value(e));
+        value->setWordWrap(true);
+        value->setMaximumWidth(200);
         key->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
         value->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+        key->setObjectName("key");
         int count = contactGrid->rowCount();
 
-        //Creation of pay buttons
-        QPushButton* payButton = new QPushButton("Pay", this);
-        payButton->setCursor(Qt::PointingHandCursor);
-        payButton->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+        QPushButton* coverRowBtn = new QPushButton(key);
+        coverRowBtn->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+        //coverRowBtn->setFlat(true);
+        coverRowBtn->setCursor(Qt::PointingHandCursor);
+        coverRowBtn->setObjectName("coverRowBtn");
 
         //Connection of the pay button to opening a dialog for paying this specific contact
         QSignalMapper* signalMapper = new QSignalMapper(this);
-        connect(payButton, SIGNAL(clicked(bool)), signalMapper, SLOT(map()));
-        signalMapper->setMapping(payButton, key->text());
+        connect(coverRowBtn, SIGNAL(clicked()), signalMapper, SLOT(map()));
+        signalMapper->setMapping(coverRowBtn, key->text());
         connect(signalMapper, SIGNAL(mapped(QString)), this, SLOT(openPayDialog(QString)));
 
         if (count%2 == 1){
-            payButton->setStyleSheet("background-color: rgba(60, 72, 114, 255);"
-                                     "color: white;"
-                                     "padding: 20;"
-                                     "font: 15px;"
-                                     "border-top-left-radius: 5px;"
-                                     "border-bottom-left-radius: 5px;");
+            coverRowBtn->setStyleSheet("QPushButton#coverRowBtn{background-color: rgba(255,255,255,0);}"
+                                       "QPushButton#coverRowBtn:hover{background-color: rgba(211, 229, 255, 20);}");
             key->setStyleSheet("background-color: rgba(60, 72, 114, 255);"
                                "padding: 20;"
                                "font: 15px;");
@@ -101,12 +97,8 @@ void PayWidget::create_dictionary(QMap<QString, QString> contacts)
                                  "font: 15px;");
         }
         else{
-            payButton->setStyleSheet("background-color: rgba(31,41,66,255);"
-                                     "color: white;"
-                                     "padding: 20;"
-                                     "font: 15px;"
-                                     "border-top-left-radius: 5px;"
-                                     "border-bottom-left-radius: 5px;");
+            coverRowBtn->setStyleSheet("QPushButton#coverRowBtn{background-color: rgba(255,255,255,0);}"
+                                       "QPushButton#coverRowBtn:hover{background-color: rgba(211, 229, 255, 20);}");
             key->setStyleSheet("background-color: rgba(31,41,66,255);"
                                "padding: 20;"
                                "font: 15px;");
@@ -117,7 +109,8 @@ void PayWidget::create_dictionary(QMap<QString, QString> contacts)
 
         contactGrid->addWidget(key, count, 0);
         contactGrid->addWidget(value, count, 1);
-        contactGrid->addWidget(payButton, count, 2);
+        contactGrid->addWidget(coverRowBtn, count, 0, 1, 2);
+        //contactGrid->addWidget(payButton, count, 2);
     }
 }
 

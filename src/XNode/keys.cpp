@@ -5,6 +5,7 @@
 //It offers a more secure mechanism than RSA
 
 #include "keys.h"
+#include <cstring>
 
 Keys::Keys(){
 

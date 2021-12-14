@@ -1,5 +1,5 @@
 #include "Blockchain.h"
-
+#include <algorithm>
 /****************************
 **** ChainNode elements ****
 ****************************/
@@ -72,7 +72,7 @@ void Blockchain::appendBlock(const Block& block)
     ChainNode* newNode = new ChainNode(block, prev);
     tail = newNode;
     length++;
-    //updateDifficulty();
+    //updateDifficulty(); TODO: FIX THIS
 }
 
 bool Blockchain::isValidNewBlock(Block newBlock, Block previousBlock)

@@ -21,7 +21,6 @@ public:
     bool get_identified();
 
 private:
-    Ui::LoginDialog *ui;
     QGroupBox *groupBox;
     QHBoxLayout *usernameLayout;
     QVBoxLayout *mainLayout;
