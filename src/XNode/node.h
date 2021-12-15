@@ -13,7 +13,6 @@
 #include "Blockchain.h"
 #include "interface.h"
 #include "archive.h"
-#include "XNodeSDK.h"
 #include <iostream>
 #include <thread>
 #include <memory>
@@ -23,8 +22,9 @@
 #include <grpcpp/server_builder.h>
 #include <grpcpp/create_channel.h>
 #include <spdlog/spdlog.h>
+#include "XNodeSDK.h"
 
-namespace XNode{
+namespace xcoin{
     /// Class that contains locally resolved information about a peer
     class XNodeClient{
     public:
@@ -40,12 +40,18 @@ namespace XNode{
     /// Base class that manages the local node's lifecycle
     class Node : public xcoin::interchange::XNodeControl::Service, xcoin::interchange::XNodeSync::Service{
     public:
-        explicit Node();
+        static Node& getInstance(){
+            static Node instance;
+            return instance;
+        }
         ~Node() override =default;
+        Node(Node const&) = delete;
+        void operator=(Node const&) = delete;
         void RunNode(const std::vector<std::string>& dnsSeedPeers);
         void Shutdown(const std::string& reason);
-        void setSDK(XNodeSDK* SDK){this->sdkInstance = SDK;};
+        void setSdkInstance(XNodeSDK *sdkInstance);
     private:
+        explicit Node();
         const bool SYNC_BATCHING_ENABLED = false;
         enum PingPongStatus{Synced, HashDiff, HeightDiff, ConnErr};
         const uint32_t XNODE_VERSION_INITIAL = static_cast<const uint32_t>(1.1);
@@ -58,8 +64,8 @@ namespace XNode{
         ::grpc::Status HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::interchange::GetHeaders *request, ::xcoin::interchange::Headers* response) override;
         ::grpc::Status GetBlockchainFromHeight(::grpc::ServerContext *context, const ::xcoin::interchange::GetBlockchainFromHeightRequest *request, ::xcoin::interchange::Blockchain *response) override;
         bool AttemptPeerConnection(const std::string& peerAddress);
-        PingPongStatus pingPongStatusForProps(int chainHeight1, int chainHeight2, const std::string& lastHash1, const std::string& lastHash2, bool isErrored);
-        std::pair<XNode::Node::PingPongStatus, int> AttemptPingPongSync(const std::string& peerAddress);
+        static PingPongStatus pingPongStatusForProps(int chainHeight1, int chainHeight2, const std::string& lastHash1, const std::string& lastHash2, bool isErrored);
+        std::pair<xcoin::Node::PingPongStatus, int> AttemptPingPongSync(const std::string& peerAddress);
         bool AttemptBlockchainSync(const std::string &peerAddress, PingPongStatus pingPongStatus,
                                    int remoteChainHeight);
         bool handleIncomingPeerData(const xcoin::interchange::DNSEntry &remotePeer);
@@ -74,3 +80,6 @@ namespace XNode{
 
 
 #endif //XCOIN_XNODE_H
+
+// Note: this class has been designed as a Singleton for ease of use within the UI repository
+// see https://stackoverflow.com/questions/1008019/c-singleton-design-pattern
