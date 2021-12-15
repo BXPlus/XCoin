@@ -384,3 +384,6 @@ vcpkg_installed/
 /build-ui-Desktop_Qt_5_12_11_clang_64bit-Debug/
 /build-ui-Qt_6_2_0_for_macOS-Debug/
 /build-ui-Qt_6_2_2_for_macOS-Debug/
+/build-ui-Desktop_Qt_5_12_11_clang_64bit-Debug/
+
+.idea/
