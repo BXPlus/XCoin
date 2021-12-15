@@ -9,10 +9,8 @@
 class XNodeSDK {
 public:
     enum XNodeStatus {Down, WaitingForDNSS, SyncingBlockchain, Ready, TerminatedWithError};
-    virtual void onPeerListChanged(){};
-    virtual void onStatusChanged(XNodeStatus status){};
-    virtual void AddContact(){};
-    virtual void OnBalancedChanged(){};
+    std::function<void()> onPeerListChanged;
+    std::function<void(XNodeStatus)> onStatusChanged;
 };
 
 

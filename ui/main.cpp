@@ -5,6 +5,9 @@
 #include <QDir>
 #include <QDebug>
 #include <iostream>
+#include "../XNode/XNodeSDK.h"
+#include "../XNode/node.h"
+#include <QtConcurrent/QtConcurrent>
 
 int main(int argc, char *argv[])
 {
@@ -24,6 +27,9 @@ int main(int argc, char *argv[])
     a.setStyleSheet(styleSheet);
     qss.close();
 
+    XNodeSDK* xcoinClientSdkInstance = new XNodeSDK();
+    xcoin::Node::getInstance().setSdkInstance(xcoinClientSdkInstance);
+
     //Login page
 //    LoginDialog *dialogLogin = new LoginDialog();
 //    dialogLogin->setModal(true);
@@ -39,6 +45,14 @@ int main(int argc, char *argv[])
     //Économiser les doigts de picha en evitant d'avoir à cliquer à chaque fois sur le login
     MainWindow w;
     w.show();
+
+    auto dnss = std::vector<std::string>();
+    //dnss.push_back("192.168.1.525:3000"); // TODO: Add DNSS from config file here
+
+    QFuture<void> future = QtConcurrent::run([=]() {
+        xcoin::Node::getInstance().RunNode(dnss);
+    });
+
     return a.exec();
 }
 

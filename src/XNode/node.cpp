@@ -36,7 +36,7 @@ void xcoin::Node::RunNode(const std::vector<std::string>& dnsSeedPeers) {
     if (!couldPerformHandshakeWithDNSS && !dnsSeedPeers.empty())
         this->Shutdown("Could not establish connection with any DNSS");
     else sdkInstance->onStatusChanged(XNodeSDK::XNodeStatus::SyncingBlockchain);
-    server->Wait();
+    server.release();
 }
 
 /**
@@ -416,4 +416,8 @@ xcoin::Node::pingPongStatusForProps(int chainHeight1, int chainHeight2, const st
 
 void xcoin::Node::setSdkInstance(XNodeSDK *newSdkInstance) {
     this->sdkInstance = newSdkInstance;
+}
+
+XNodeSDK *xcoin::Node::getSdkInstance() const {
+    return sdkInstance;
 }

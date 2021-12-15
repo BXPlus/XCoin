@@ -50,6 +50,7 @@ namespace xcoin{
         void RunNode(const std::vector<std::string>& dnsSeedPeers);
         void Shutdown(const std::string& reason);
         void setSdkInstance(XNodeSDK *sdkInstance);
+        XNodeSDK *getSdkInstance() const;
     private:
         explicit Node();
         const bool SYNC_BATCHING_ENABLED = false;
