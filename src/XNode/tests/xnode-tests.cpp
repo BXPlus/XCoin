@@ -7,7 +7,7 @@
 
 class XNodeCoreTests: public ::testing::Test{
 protected:
-    Interface interface;
+    xcoin::interface interface;
     Blockchain blockchain;
     void SetUp() override{
         interface.startup();
@@ -19,7 +19,7 @@ protected:
 
 TEST_F(XNodeCoreTests, ProtobufBlockConversion){
     Block block = blockchain.genesisBlock;
-    string convertedBlock = interface.encodeBlock(block);
-    Block convertedBackBlock = interface.decodeProtobuf(convertedBlock);
-    ASSERT_EQ(block, convertedBackBlock);
+    std::string convertedBlock = interface.exportBlock(block);
+    Block convertedBackBlock = interface.importBlock(convertedBlock);
+    ASSERT_EQ(block.headerHash, convertedBackBlock.headerHash);
 }

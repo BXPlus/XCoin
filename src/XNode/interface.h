@@ -10,7 +10,7 @@
 
 /************************************************************************************
  *
- *  This Interface class handles the encoding/decoding of blocks to and from Protobuf format.
+ *  This interface class handles the encoding/decoding of blocks to and from Protobuf format.
  *  This optimised format helps reduce transfer sizes during blockchain synchronisations.
  *  It provides a simple public interface to encode and decode blocks and chains directly to strings.
  *  The startup and shutdown methods should be called only once, and this class was made to be
@@ -18,14 +18,14 @@
  *
  ************************************************************************************/
 
-namespace XNode{
+namespace xcoin{
     struct XNodeMessageDecodingResult{
         int messageType;
         xcoin::interchange::DNSHandshake dnsHandshake;
         xcoin::interchange::GetHeaders getHeaders;
         xcoin::interchange::Headers headers;
     };
-    class Interface {
+    class interface {
     private:
         static xcoin::interchange::Blockchain encodeChain(const std::vector<Block>& chain);
         static xcoin::interchange::GetHeaders generateGetHeadersMessage(int hashCount, std::string stopHash, const std::vector<std::string>& blockHeaderHashes);
