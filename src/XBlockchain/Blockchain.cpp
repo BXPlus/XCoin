@@ -130,11 +130,11 @@ void Blockchain::replaceChain(Blockchain newChain) {
         std::vector<std::string> knownHashes;
         ChainNode* node = tail;
         for (int i = 0; node && i < 10; i++, node = node->prev) {
-            knownHashes.emplace_back(node->hash);
+            knownHashes.emplace_back(node->block.hash);
         }
         bool found = false;
         for (node = newChain.tail; node; node = node->prev) {
-            if (std::find(knownHashes.begin(), knownHashes.end(), node->hash) != knownHashes.end()) {
+            if (std::find(knownHashes.begin(), knownHashes.end(), node->block.hash) != knownHashes.end()) {
                 found = true;
                 break;
             }
