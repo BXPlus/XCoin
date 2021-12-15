@@ -33,7 +33,6 @@ public:
     void deleteWidgets();
 
 private slots:
-    void contactSearchEdit();
     void openPayDialog(QString value);
 };
 
