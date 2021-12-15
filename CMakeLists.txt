@@ -9,6 +9,7 @@ set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/
 project(xblockchain)
 
 set(CMAKE_CXX_STANDARD 17)
+set (CMAKE_PREFIX_PATH "C:\\Qt\\5.12.12\\msvc2017") # For now, everyone needs to change that to their own QT path
 
 add_subdirectory(googletest)
 
@@ -16,6 +17,7 @@ enable_testing()
 include_directories(googletest/googletest/include googletest/googletest)
 include_directories(src/XBlockchain src/XNode)
 
+find_package(Qt5 COMPONENTS Core Widgets)
 find_package(Protobuf CONFIG REQUIRED)
 find_package(OpenSSL REQUIRED)
 find_package(gRPC CONFIG REQUIRED)
