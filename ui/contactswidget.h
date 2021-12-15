@@ -10,7 +10,7 @@
 #include <QMap>
 #include "custombutton.h"
 #include <QLineEdit>
-#include <paycontactdialog.h>
+#include "paycontactdialog.h"
 
 namespace Ui {
 class ContactsWidget;

@@ -7,7 +7,7 @@
 #include <QGroupBox>
 #include <QTextEdit>
 #include <QLineEdit>
-#include <custombutton.h>
+#include "custombutton.h"
 #include <QAction>
 #include <QBoxLayout>
 

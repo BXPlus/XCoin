@@ -9,7 +9,7 @@
 #include <QPushButton>
 #include <QLineEdit>
 #include <QSignalMapper>
-#include <paycontactdialog.h>
+#include "paycontactdialog.h"
 #include <QList>
 
 class PayWidget : public QWidget
@@ -29,6 +29,7 @@ public:
     QHBoxLayout* topLayout;
 
     void create_dictionary(QMap<QString, QString>);
+    void contactSearchEdit();
     void deleteContact(int);
     void deleteWidgets();
 

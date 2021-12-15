@@ -227,7 +227,7 @@ void ContactsWidget::contactSearchEdit(){
     QMap<QString, QString> tempContacts;
     deleteWidgets();
     for (auto e : contactDict.keys()){
-        if ((e.toLower().contains(text)) or contactDict.value(e).contains(text)){
+        if (e.toLower().contains(text) || contactDict.value(e).contains(text)){
             tempContacts[e] = contactDict.value(e);
         }
     }

@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QStringList>
-#include <custombutton.h>
+#include "custombutton.h"
 #include <QAction>
 #include <QSignalMapper>
 #include <QLabel>
