@@ -6,7 +6,7 @@
 XNode::Node::Node() {
     this->blockchain = Blockchain();
     this->peers = std::map<std::string, XNode::XNodeClient>();
-    for (int i; i < 50; i++) {
+    for (int i = 0; i < 50; i++) {
         this->blockchain.appendBlock(this->blockchain.generateNextBlock("Hello" + std::to_string(i), i+1, 0, ""));
     }
     std::cout << this->blockchain.getLatestBlock().hash << std::endl;
