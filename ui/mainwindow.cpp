@@ -121,7 +121,7 @@ MainWindow::MainWindow(QWidget *parent)
         QSignalMapper* signalMapper = new QSignalMapper (this) ;
         connect(btnList[i], SIGNAL(clicked(bool)), signalMapper, SLOT(map()));
         signalMapper->setMapping (btnList[i], i);
-        connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(go_page(int)));
+        connect(signalMapper, SIGNAL(mappedInt(int)), this, SLOT(go_page(int)));
     }
 
     contentContainer->setCurrentIndex(0);

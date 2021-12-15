@@ -84,7 +84,7 @@ void PayWidget::create_dictionary(QMap<QString, QString> contacts)
         QSignalMapper* signalMapper = new QSignalMapper(this);
         connect(coverRowBtn, SIGNAL(clicked()), signalMapper, SLOT(map()));
         signalMapper->setMapping(coverRowBtn, key->text());
-        connect(signalMapper, SIGNAL(mapped(QString)), this, SLOT(openPayDialog(QString)));
+        connect(signalMapper, SIGNAL(mappedString(QString)), this, SLOT(openPayDialog(QString)));
 
         if (count%2 == 1){
             coverRowBtn->setStyleSheet("QPushButton#coverRowBtn{background-color: rgba(255,255,255,0);}"
@@ -119,9 +119,9 @@ void PayWidget::contactSearchEdit(){
     QMap<QString, QString> tempContacts;
     deleteWidgets();
     for (auto e : contactDict.keys()){
-        if (e.toLower().contains(text) || contactDict.value(e).contains(text)){
-            tempContacts[e] = contactDict.value(e);
-        }
+//        if (e.toLower().contains(text) || contactDict.value(e).contains(text)){
+//            tempContacts[e] = contactDict.value(e);
+//        }
     }
     create_dictionary(tempContacts);
 }

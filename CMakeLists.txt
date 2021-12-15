@@ -10,7 +10,7 @@ project(xblockchain VERSION 1.0.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set (CMAKE_PREFIX_PATH "C:\\Qt\\5.12.12\\msvc2017") # For now, everyone needs to change that to their own QT path
+set(CMAKE_PREFIX_PATH /Users/timvalencony/Installs/Qt/6.2.2/macos) # For now, everyone needs to change that to their own QT path
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -22,7 +22,7 @@ enable_testing()
 include_directories(googletest/googletest/include googletest/googletest)
 include_directories(src/XBlockchain src/XNode)
 
-find_package(Qt5 COMPONENTS Core Widgets)
+find_package(Qt6 COMPONENTS Core Widgets REQUIRED)
 find_package(Protobuf CONFIG REQUIRED)
 find_package(OpenSSL REQUIRED)
 find_package(gRPC CONFIG REQUIRED)
@@ -47,9 +47,9 @@ target_link_libraries(xblockchain-tests gtest gtest_main)
 target_link_libraries(xnode-lib PRIVATE protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite xblockchain-lib gRPC::grpc++ spdlog::spdlog)
 target_link_libraries(xnode xnode-lib)
 target_link_libraries(xblockchain-tests xblockchain-lib)
-target_link_libraries(xcoin-client PRIVATE Qt5::Widgets xnode-lib)
+target_link_libraries(xcoin-client PRIVATE Qt6::Widgets xnode-lib)
 
 add_custom_command(TARGET xcoin-client POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::Core> $<TARGET_FILE_DIR:xcoin-client>
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::Gui> $<TARGET_FILE_DIR:xcoin-client>
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::Widgets> $<TARGET_FILE_DIR:xcoin-client>)
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt6::Core> $<TARGET_FILE_DIR:xcoin-client>
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt6::Gui> $<TARGET_FILE_DIR:xcoin-client>
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt6::Widgets> $<TARGET_FILE_DIR:xcoin-client>)
