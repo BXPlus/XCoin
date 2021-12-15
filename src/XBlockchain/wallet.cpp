@@ -12,9 +12,10 @@ std::string generatePrivateKey()
     return Keys().getPriv();
 }
 
-std::string getPrivateFromWallet() //TODO: MALO
+std::string Wallet::getPrivateFromWallet()
 {
-    return "";
+    std::string privKey = dataStorage.loadData();
+    return privKey;
 }
 
 std::string getPublicFromWallet()
@@ -25,13 +26,17 @@ std::string getPublicFromWallet()
 
 // Wallet Balance
 
-void initWallet() {
-    return;
+Wallet::Wallet() {
+    const std::string newPrivKey = generatePrivateKey();
+
+    dataStorage.saveData(newPrivKey);
 }
 
+/*
 void deleteWallet() {
     return;
 }
+*/
 
 std::vector<UnspentTxOut> findUnspentTxOuts(std::string ownerAddress, std::vector<UnspentTxOut> unspentTxOuts)
 {
