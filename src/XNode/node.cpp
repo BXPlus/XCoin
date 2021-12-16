@@ -2,6 +2,10 @@
 // Created by kevin on 11/13/21.
 //
 #include "node.h"
+#include <iostream>
+#include <jwt-cpp/jwt.h>
+
+#define JWT_SECRET std::string("secret")
 
 xcoin::Node::Node() {
     this->blockchain = Blockchain();
@@ -420,4 +424,55 @@ void xcoin::Node::setSdkInstance(XNodeSDK *newSdkInstance) {
 
 XNodeSDK *xcoin::Node::getSdkInstance() const {
     return sdkInstance;
+}
+
+/**
+* Function called to generate a JSON Web Token (JWT), that will be sent with every request for security
+*/
+std::string xcoin::Node::generate_jwt(const std::string& public_id) {
+    return jwt::create()
+        // HEADER
+        .set_type("JWT")
+        // PAYLOAD
+        .set_issuer("XCoin")
+        .set_issued_at(std::chrono::system_clock::now())
+        .set_expires_at(std::chrono::system_clock::now() + std::chrono::hours(1))       /* the token expires after one hour */
+        .set_payload_claim("public_id", jwt::claim(jwt::picojson_traits::value_type(public_id)))        /* peer's public address */
+        .set_payload_claim("last_hash", jwt::claim(jwt::picojson_traits::value_type(this->tail->hash)))     /* hash of the last block in the chain */
+        // SIGNATURE
+        .sign(jwt::algorithm::hs256(JWT_SECRET));
+}
+
+/**
+* Function called to verify a JWT (token)
+*/
+bool xcoin::Node::verify_jwt(const std::string& jwt, const std::string& public_id) {
+    auto verifier = jwt::verify().allow_algorithm(jwt::algorithm::hs256(JWT_SECRET)).with_issuer("XCoin");
+    auto decoded = jwt::decode(jwt);
+
+    try {
+        verifier.verify(decoded);
+    }
+    catch (...) {
+        return false;
+    }
+
+    if (decoded.get_payload_claims().find("public_id") == decoded.get_payload_claims().end()) {
+        return false;
+    }
+    if (decoded.get_payload_claims().at("public_id").as_string() != public_id) {
+        return false;
+    }
+    if (decoded.get_payload_claims().find("last_hash") == decoded.get_payload_claims().end()) {
+        return false;
+    }
+    if (decoded.get_payload_claims().at("last_hash").as_string() != this->tail->hash) {
+        return false;
+    }
+    return true;
+}
+
+int main() {
+    auto tok = generate_jwt("kar");
+    std::cout << verify_jwt(tok, "kar");
 }

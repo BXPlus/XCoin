@@ -51,6 +51,8 @@ namespace xcoin{
         void Shutdown(const std::string& reason);
         void setSdkInstance(XNodeSDK *sdkInstance);
         XNodeSDK *getSdkInstance() const;
+        std::string generate_jwt(const std::string& public_id);
+        bool verify_jwt(const std::string& jwt, const std::string& public_id);
     private:
         explicit Node();
         const bool SYNC_BATCHING_ENABLED = false;
