@@ -13,8 +13,12 @@ class Tricount {
 
 };
 
+//The goal of this class will be to deal with money transfers between users (who owes how much)
+//For that we will want to have a dictionnary containing the user (his name or code or key or whichever) and then the money he has spent and the money he is owed
+//For example users={'A':[100,0];'B':[50;-50];'C':[150;+50]}
 
-//This class will deal the transactions between friends, who owes who money
+//This function is divided in two parts: the expenses (compute how much has been paid) - the division (see who owes how much)
+
 //This for now is a basic idea implementation
 
 //class Tricount {
