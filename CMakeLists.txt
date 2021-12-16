@@ -42,6 +42,9 @@ add_library(xblockchain-lib src/XBlockchain/block.h src/XBlockchain/block.cpp sr
 add_executable(xnode src/XNode/main.cpp)
 add_library(xnode-lib src/XNode/node.h src/XNode/node.cpp src/XNode/interface.cpp src/XNode/interface.h src/XNode/keys.cpp src/XNode/keys.h src/XNode/blockchain.pb.h src/XNode/blockchain.pb.cc src/XNode/blockchain.grpc.pb.cc src/XNode/blockchain.grpc.pb.h src/XNode/archive.cpp src/XNode/archive.h src/XNode/XNodeSDK.h)
 
+find_path(JWT_CPP_INCLUDE_DIRS "jwt-cpp/base.h")
+target_include_directories(xnode-lib PRIVATE ${JWT_CPP_INCLUDE_DIRS})
+
 target_link_libraries(xblockchain-lib PRIVATE OpenSSL::SSL OpenSSL::Crypto)
 target_link_libraries(xblockchain-tests gtest gtest_main)
 target_link_libraries(xnode-lib PRIVATE protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite xblockchain-lib gRPC::grpc++ spdlog::spdlog)

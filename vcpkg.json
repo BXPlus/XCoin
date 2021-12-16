@@ -5,6 +5,7 @@
     "protobuf",
     "openssl",
     "grpc",
-    "spdlog"
+    "spdlog",
+    "jwt-cpp"
   ]
 }
