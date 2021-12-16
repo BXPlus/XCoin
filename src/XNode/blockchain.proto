@@ -87,3 +87,11 @@ message GetBlockchainFromHeightRequest{
   uint32 startheight = 1;
   string stopHash = 2;
 }
+
+message PeerUpdateHandshake{
+  string peer = 1;
+  string publicAddress = 2;
+  bool online = 3;
+  string updateType = 4;
+  string localPeersHash = 5;
+}
