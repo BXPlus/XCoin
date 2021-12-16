@@ -50,12 +50,12 @@ class XNodeControl final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::DNSHandshake>> PrepareAsyncDNSSyncPeerList(::grpc::ClientContext* context, const ::xcoin::interchange::DNSHandshake& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::DNSHandshake>>(PrepareAsyncDNSSyncPeerListRaw(context, request, cq));
     }
-    virtual ::grpc::Status NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::xcoin::interchange::DNSEntry* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::DNSEntry>> AsyncNotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::DNSEntry>>(AsyncNotifyPeerChangeRaw(context, request, cq));
+    virtual ::grpc::Status NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::PeerUpdateHandshake& request, ::xcoin::interchange::PingHandshake* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::PingHandshake>> AsyncNotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::PeerUpdateHandshake& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::PingHandshake>>(AsyncNotifyPeerChangeRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::DNSEntry>> PrepareAsyncNotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::DNSEntry>>(PrepareAsyncNotifyPeerChangeRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::PingHandshake>> PrepareAsyncNotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::PeerUpdateHandshake& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::PingHandshake>>(PrepareAsyncNotifyPeerChangeRaw(context, request, cq));
     }
     class async_interface {
      public:
@@ -64,8 +64,8 @@ class XNodeControl final {
       virtual void Ping(::grpc::ClientContext* context, const ::xcoin::interchange::PingHandshake* request, ::xcoin::interchange::PingHandshake* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void DNSSyncPeerList(::grpc::ClientContext* context, const ::xcoin::interchange::DNSHandshake* request, ::xcoin::interchange::DNSHandshake* response, std::function<void(::grpc::Status)>) = 0;
       virtual void DNSSyncPeerList(::grpc::ClientContext* context, const ::xcoin::interchange::DNSHandshake* request, ::xcoin::interchange::DNSHandshake* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry* request, ::xcoin::interchange::DNSEntry* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry* request, ::xcoin::interchange::DNSEntry* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::PeerUpdateHandshake* request, ::xcoin::interchange::PingHandshake* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::PeerUpdateHandshake* request, ::xcoin::interchange::PingHandshake* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -75,8 +75,8 @@ class XNodeControl final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::PingHandshake>* PrepareAsyncPingRaw(::grpc::ClientContext* context, const ::xcoin::interchange::PingHandshake& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::DNSHandshake>* AsyncDNSSyncPeerListRaw(::grpc::ClientContext* context, const ::xcoin::interchange::DNSHandshake& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::DNSHandshake>* PrepareAsyncDNSSyncPeerListRaw(::grpc::ClientContext* context, const ::xcoin::interchange::DNSHandshake& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::DNSEntry>* AsyncNotifyPeerChangeRaw(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::DNSEntry>* PrepareAsyncNotifyPeerChangeRaw(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::PingHandshake>* AsyncNotifyPeerChangeRaw(::grpc::ClientContext* context, const ::xcoin::interchange::PeerUpdateHandshake& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::PingHandshake>* PrepareAsyncNotifyPeerChangeRaw(::grpc::ClientContext* context, const ::xcoin::interchange::PeerUpdateHandshake& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -95,12 +95,12 @@ class XNodeControl final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::DNSHandshake>> PrepareAsyncDNSSyncPeerList(::grpc::ClientContext* context, const ::xcoin::interchange::DNSHandshake& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::DNSHandshake>>(PrepareAsyncDNSSyncPeerListRaw(context, request, cq));
     }
-    ::grpc::Status NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::xcoin::interchange::DNSEntry* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::DNSEntry>> AsyncNotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::DNSEntry>>(AsyncNotifyPeerChangeRaw(context, request, cq));
+    ::grpc::Status NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::PeerUpdateHandshake& request, ::xcoin::interchange::PingHandshake* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::PingHandshake>> AsyncNotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::PeerUpdateHandshake& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::PingHandshake>>(AsyncNotifyPeerChangeRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::DNSEntry>> PrepareAsyncNotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::DNSEntry>>(PrepareAsyncNotifyPeerChangeRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::PingHandshake>> PrepareAsyncNotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::PeerUpdateHandshake& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::PingHandshake>>(PrepareAsyncNotifyPeerChangeRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
@@ -109,8 +109,8 @@ class XNodeControl final {
       void Ping(::grpc::ClientContext* context, const ::xcoin::interchange::PingHandshake* request, ::xcoin::interchange::PingHandshake* response, ::grpc::ClientUnaryReactor* reactor) override;
       void DNSSyncPeerList(::grpc::ClientContext* context, const ::xcoin::interchange::DNSHandshake* request, ::xcoin::interchange::DNSHandshake* response, std::function<void(::grpc::Status)>) override;
       void DNSSyncPeerList(::grpc::ClientContext* context, const ::xcoin::interchange::DNSHandshake* request, ::xcoin::interchange::DNSHandshake* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry* request, ::xcoin::interchange::DNSEntry* response, std::function<void(::grpc::Status)>) override;
-      void NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry* request, ::xcoin::interchange::DNSEntry* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::PeerUpdateHandshake* request, ::xcoin::interchange::PingHandshake* response, std::function<void(::grpc::Status)>) override;
+      void NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::PeerUpdateHandshake* request, ::xcoin::interchange::PingHandshake* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -126,8 +126,8 @@ class XNodeControl final {
     ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::PingHandshake>* PrepareAsyncPingRaw(::grpc::ClientContext* context, const ::xcoin::interchange::PingHandshake& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::DNSHandshake>* AsyncDNSSyncPeerListRaw(::grpc::ClientContext* context, const ::xcoin::interchange::DNSHandshake& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::DNSHandshake>* PrepareAsyncDNSSyncPeerListRaw(::grpc::ClientContext* context, const ::xcoin::interchange::DNSHandshake& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::DNSEntry>* AsyncNotifyPeerChangeRaw(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::DNSEntry>* PrepareAsyncNotifyPeerChangeRaw(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::PingHandshake>* AsyncNotifyPeerChangeRaw(::grpc::ClientContext* context, const ::xcoin::interchange::PeerUpdateHandshake& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::PingHandshake>* PrepareAsyncNotifyPeerChangeRaw(::grpc::ClientContext* context, const ::xcoin::interchange::PeerUpdateHandshake& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Ping_;
     const ::grpc::internal::RpcMethod rpcmethod_DNSSyncPeerList_;
     const ::grpc::internal::RpcMethod rpcmethod_NotifyPeerChange_;
@@ -140,7 +140,7 @@ class XNodeControl final {
     virtual ~Service();
     virtual ::grpc::Status Ping(::grpc::ServerContext* context, const ::xcoin::interchange::PingHandshake* request, ::xcoin::interchange::PingHandshake* response);
     virtual ::grpc::Status DNSSyncPeerList(::grpc::ServerContext* context, const ::xcoin::interchange::DNSHandshake* request, ::xcoin::interchange::DNSHandshake* response);
-    virtual ::grpc::Status NotifyPeerChange(::grpc::ServerContext* context, const ::xcoin::interchange::DNSEntry* request, ::xcoin::interchange::DNSEntry* response);
+    virtual ::grpc::Status NotifyPeerChange(::grpc::ServerContext* context, const ::xcoin::interchange::PeerUpdateHandshake* request, ::xcoin::interchange::PingHandshake* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_Ping : public BaseClass {
@@ -194,11 +194,11 @@ class XNodeControl final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status NotifyPeerChange(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::DNSEntry* /*request*/, ::xcoin::interchange::DNSEntry* /*response*/) override {
+    ::grpc::Status NotifyPeerChange(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::PeerUpdateHandshake* /*request*/, ::xcoin::interchange::PingHandshake* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestNotifyPeerChange(::grpc::ServerContext* context, ::xcoin::interchange::DNSEntry* request, ::grpc::ServerAsyncResponseWriter< ::xcoin::interchange::DNSEntry>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestNotifyPeerChange(::grpc::ServerContext* context, ::xcoin::interchange::PeerUpdateHandshake* request, ::grpc::ServerAsyncResponseWriter< ::xcoin::interchange::PingHandshake>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -264,25 +264,25 @@ class XNodeControl final {
    public:
     WithCallbackMethod_NotifyPeerChange() {
       ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::xcoin::interchange::DNSEntry, ::xcoin::interchange::DNSEntry>(
+          new ::grpc::internal::CallbackUnaryHandler< ::xcoin::interchange::PeerUpdateHandshake, ::xcoin::interchange::PingHandshake>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::xcoin::interchange::DNSEntry* request, ::xcoin::interchange::DNSEntry* response) { return this->NotifyPeerChange(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::xcoin::interchange::PeerUpdateHandshake* request, ::xcoin::interchange::PingHandshake* response) { return this->NotifyPeerChange(context, request, response); }));}
     void SetMessageAllocatorFor_NotifyPeerChange(
-        ::grpc::MessageAllocator< ::xcoin::interchange::DNSEntry, ::xcoin::interchange::DNSEntry>* allocator) {
+        ::grpc::MessageAllocator< ::xcoin::interchange::PeerUpdateHandshake, ::xcoin::interchange::PingHandshake>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::xcoin::interchange::DNSEntry, ::xcoin::interchange::DNSEntry>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::xcoin::interchange::PeerUpdateHandshake, ::xcoin::interchange::PingHandshake>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_NotifyPeerChange() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status NotifyPeerChange(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::DNSEntry* /*request*/, ::xcoin::interchange::DNSEntry* /*response*/) override {
+    ::grpc::Status NotifyPeerChange(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::PeerUpdateHandshake* /*request*/, ::xcoin::interchange::PingHandshake* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* NotifyPeerChange(
-      ::grpc::CallbackServerContext* /*context*/, const ::xcoin::interchange::DNSEntry* /*request*/, ::xcoin::interchange::DNSEntry* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::xcoin::interchange::PeerUpdateHandshake* /*request*/, ::xcoin::interchange::PingHandshake* /*response*/)  { return nullptr; }
   };
   typedef WithCallbackMethod_Ping<WithCallbackMethod_DNSSyncPeerList<WithCallbackMethod_NotifyPeerChange<Service > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
@@ -332,7 +332,7 @@ class XNodeControl final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status NotifyPeerChange(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::DNSEntry* /*request*/, ::xcoin::interchange::DNSEntry* /*response*/) override {
+    ::grpc::Status NotifyPeerChange(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::PeerUpdateHandshake* /*request*/, ::xcoin::interchange::PingHandshake* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -389,7 +389,7 @@ class XNodeControl final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status NotifyPeerChange(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::DNSEntry* /*request*/, ::xcoin::interchange::DNSEntry* /*response*/) override {
+    ::grpc::Status NotifyPeerChange(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::PeerUpdateHandshake* /*request*/, ::xcoin::interchange::PingHandshake* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -456,7 +456,7 @@ class XNodeControl final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status NotifyPeerChange(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::DNSEntry* /*request*/, ::xcoin::interchange::DNSEntry* /*response*/) override {
+    ::grpc::Status NotifyPeerChange(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::PeerUpdateHandshake* /*request*/, ::xcoin::interchange::PingHandshake* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -525,10 +525,10 @@ class XNodeControl final {
     WithStreamedUnaryMethod_NotifyPeerChange() {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::xcoin::interchange::DNSEntry, ::xcoin::interchange::DNSEntry>(
+          ::xcoin::interchange::PeerUpdateHandshake, ::xcoin::interchange::PingHandshake>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::xcoin::interchange::DNSEntry, ::xcoin::interchange::DNSEntry>* streamer) {
+                     ::xcoin::interchange::PeerUpdateHandshake, ::xcoin::interchange::PingHandshake>* streamer) {
                        return this->StreamedNotifyPeerChange(context,
                          streamer);
                   }));
@@ -537,12 +537,12 @@ class XNodeControl final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status NotifyPeerChange(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::DNSEntry* /*request*/, ::xcoin::interchange::DNSEntry* /*response*/) override {
+    ::grpc::Status NotifyPeerChange(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::PeerUpdateHandshake* /*request*/, ::xcoin::interchange::PingHandshake* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedNotifyPeerChange(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::xcoin::interchange::DNSEntry,::xcoin::interchange::DNSEntry>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedNotifyPeerChange(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::xcoin::interchange::PeerUpdateHandshake,::xcoin::interchange::PingHandshake>* server_unary_streamer) = 0;
   };
   typedef WithStreamedUnaryMethod_Ping<WithStreamedUnaryMethod_DNSSyncPeerList<WithStreamedUnaryMethod_NotifyPeerChange<Service > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
@@ -579,6 +579,13 @@ class XNodeSync final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::Blockchain>> PrepareAsyncGetBlockchainFromHeight(::grpc::ClientContext* context, const ::xcoin::interchange::GetBlockchainFromHeightRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::Blockchain>>(PrepareAsyncGetBlockchainFromHeightRaw(context, request, cq));
     }
+    virtual ::grpc::Status NotifyBlockChange(::grpc::ClientContext* context, const ::xcoin::interchange::NewBlockHandshake& request, ::xcoin::interchange::PingHandshake* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::PingHandshake>> AsyncNotifyBlockChange(::grpc::ClientContext* context, const ::xcoin::interchange::NewBlockHandshake& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::PingHandshake>>(AsyncNotifyBlockChangeRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::PingHandshake>> PrepareAsyncNotifyBlockChange(::grpc::ClientContext* context, const ::xcoin::interchange::NewBlockHandshake& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::PingHandshake>>(PrepareAsyncNotifyBlockChangeRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -588,6 +595,8 @@ class XNodeSync final {
       virtual void HeaderFirstSync(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders* request, ::xcoin::interchange::Headers* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetBlockchainFromHeight(::grpc::ClientContext* context, const ::xcoin::interchange::GetBlockchainFromHeightRequest* request, ::xcoin::interchange::Blockchain* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetBlockchainFromHeight(::grpc::ClientContext* context, const ::xcoin::interchange::GetBlockchainFromHeightRequest* request, ::xcoin::interchange::Blockchain* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void NotifyBlockChange(::grpc::ClientContext* context, const ::xcoin::interchange::NewBlockHandshake* request, ::xcoin::interchange::PingHandshake* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void NotifyBlockChange(::grpc::ClientContext* context, const ::xcoin::interchange::NewBlockHandshake* request, ::xcoin::interchange::PingHandshake* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -599,6 +608,8 @@ class XNodeSync final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::Headers>* PrepareAsyncHeaderFirstSyncRaw(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::Blockchain>* AsyncGetBlockchainFromHeightRaw(::grpc::ClientContext* context, const ::xcoin::interchange::GetBlockchainFromHeightRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::Blockchain>* PrepareAsyncGetBlockchainFromHeightRaw(::grpc::ClientContext* context, const ::xcoin::interchange::GetBlockchainFromHeightRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::PingHandshake>* AsyncNotifyBlockChangeRaw(::grpc::ClientContext* context, const ::xcoin::interchange::NewBlockHandshake& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::xcoin::interchange::PingHandshake>* PrepareAsyncNotifyBlockChangeRaw(::grpc::ClientContext* context, const ::xcoin::interchange::NewBlockHandshake& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -624,6 +635,13 @@ class XNodeSync final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::Blockchain>> PrepareAsyncGetBlockchainFromHeight(::grpc::ClientContext* context, const ::xcoin::interchange::GetBlockchainFromHeightRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::Blockchain>>(PrepareAsyncGetBlockchainFromHeightRaw(context, request, cq));
     }
+    ::grpc::Status NotifyBlockChange(::grpc::ClientContext* context, const ::xcoin::interchange::NewBlockHandshake& request, ::xcoin::interchange::PingHandshake* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::PingHandshake>> AsyncNotifyBlockChange(::grpc::ClientContext* context, const ::xcoin::interchange::NewBlockHandshake& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::PingHandshake>>(AsyncNotifyBlockChangeRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::PingHandshake>> PrepareAsyncNotifyBlockChange(::grpc::ClientContext* context, const ::xcoin::interchange::NewBlockHandshake& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::PingHandshake>>(PrepareAsyncNotifyBlockChangeRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -633,6 +651,8 @@ class XNodeSync final {
       void HeaderFirstSync(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders* request, ::xcoin::interchange::Headers* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetBlockchainFromHeight(::grpc::ClientContext* context, const ::xcoin::interchange::GetBlockchainFromHeightRequest* request, ::xcoin::interchange::Blockchain* response, std::function<void(::grpc::Status)>) override;
       void GetBlockchainFromHeight(::grpc::ClientContext* context, const ::xcoin::interchange::GetBlockchainFromHeightRequest* request, ::xcoin::interchange::Blockchain* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void NotifyBlockChange(::grpc::ClientContext* context, const ::xcoin::interchange::NewBlockHandshake* request, ::xcoin::interchange::PingHandshake* response, std::function<void(::grpc::Status)>) override;
+      void NotifyBlockChange(::grpc::ClientContext* context, const ::xcoin::interchange::NewBlockHandshake* request, ::xcoin::interchange::PingHandshake* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -650,9 +670,12 @@ class XNodeSync final {
     ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::Headers>* PrepareAsyncHeaderFirstSyncRaw(::grpc::ClientContext* context, const ::xcoin::interchange::GetHeaders& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::Blockchain>* AsyncGetBlockchainFromHeightRaw(::grpc::ClientContext* context, const ::xcoin::interchange::GetBlockchainFromHeightRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::Blockchain>* PrepareAsyncGetBlockchainFromHeightRaw(::grpc::ClientContext* context, const ::xcoin::interchange::GetBlockchainFromHeightRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::PingHandshake>* AsyncNotifyBlockChangeRaw(::grpc::ClientContext* context, const ::xcoin::interchange::NewBlockHandshake& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::xcoin::interchange::PingHandshake>* PrepareAsyncNotifyBlockChangeRaw(::grpc::ClientContext* context, const ::xcoin::interchange::NewBlockHandshake& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_PingPongSync_;
     const ::grpc::internal::RpcMethod rpcmethod_HeaderFirstSync_;
     const ::grpc::internal::RpcMethod rpcmethod_GetBlockchainFromHeight_;
+    const ::grpc::internal::RpcMethod rpcmethod_NotifyBlockChange_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -663,6 +686,7 @@ class XNodeSync final {
     virtual ::grpc::Status PingPongSync(::grpc::ServerContext* context, const ::xcoin::interchange::PingPong* request, ::xcoin::interchange::PingPong* response);
     virtual ::grpc::Status HeaderFirstSync(::grpc::ServerContext* context, const ::xcoin::interchange::GetHeaders* request, ::xcoin::interchange::Headers* response);
     virtual ::grpc::Status GetBlockchainFromHeight(::grpc::ServerContext* context, const ::xcoin::interchange::GetBlockchainFromHeightRequest* request, ::xcoin::interchange::Blockchain* response);
+    virtual ::grpc::Status NotifyBlockChange(::grpc::ServerContext* context, const ::xcoin::interchange::NewBlockHandshake* request, ::xcoin::interchange::PingHandshake* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_PingPongSync : public BaseClass {
@@ -724,7 +748,27 @@ class XNodeSync final {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_PingPongSync<WithAsyncMethod_HeaderFirstSync<WithAsyncMethod_GetBlockchainFromHeight<Service > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_NotifyBlockChange : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_NotifyBlockChange() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_NotifyBlockChange() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status NotifyBlockChange(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::NewBlockHandshake* /*request*/, ::xcoin::interchange::PingHandshake* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestNotifyBlockChange(::grpc::ServerContext* context, ::xcoin::interchange::NewBlockHandshake* request, ::grpc::ServerAsyncResponseWriter< ::xcoin::interchange::PingHandshake>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_PingPongSync<WithAsyncMethod_HeaderFirstSync<WithAsyncMethod_GetBlockchainFromHeight<WithAsyncMethod_NotifyBlockChange<Service > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_PingPongSync : public BaseClass {
    private:
@@ -806,7 +850,34 @@ class XNodeSync final {
     virtual ::grpc::ServerUnaryReactor* GetBlockchainFromHeight(
       ::grpc::CallbackServerContext* /*context*/, const ::xcoin::interchange::GetBlockchainFromHeightRequest* /*request*/, ::xcoin::interchange::Blockchain* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_PingPongSync<WithCallbackMethod_HeaderFirstSync<WithCallbackMethod_GetBlockchainFromHeight<Service > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_NotifyBlockChange : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_NotifyBlockChange() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::xcoin::interchange::NewBlockHandshake, ::xcoin::interchange::PingHandshake>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::xcoin::interchange::NewBlockHandshake* request, ::xcoin::interchange::PingHandshake* response) { return this->NotifyBlockChange(context, request, response); }));}
+    void SetMessageAllocatorFor_NotifyBlockChange(
+        ::grpc::MessageAllocator< ::xcoin::interchange::NewBlockHandshake, ::xcoin::interchange::PingHandshake>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::xcoin::interchange::NewBlockHandshake, ::xcoin::interchange::PingHandshake>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_NotifyBlockChange() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status NotifyBlockChange(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::NewBlockHandshake* /*request*/, ::xcoin::interchange::PingHandshake* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* NotifyBlockChange(
+      ::grpc::CallbackServerContext* /*context*/, const ::xcoin::interchange::NewBlockHandshake* /*request*/, ::xcoin::interchange::PingHandshake* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_PingPongSync<WithCallbackMethod_HeaderFirstSync<WithCallbackMethod_GetBlockchainFromHeight<WithCallbackMethod_NotifyBlockChange<Service > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_PingPongSync : public BaseClass {
@@ -855,6 +926,23 @@ class XNodeSync final {
     }
     // disable synchronous version of this method
     ::grpc::Status GetBlockchainFromHeight(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::GetBlockchainFromHeightRequest* /*request*/, ::xcoin::interchange::Blockchain* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_NotifyBlockChange : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_NotifyBlockChange() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_NotifyBlockChange() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status NotifyBlockChange(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::NewBlockHandshake* /*request*/, ::xcoin::interchange::PingHandshake* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -917,6 +1005,26 @@ class XNodeSync final {
     }
     void RequestGetBlockchainFromHeight(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_NotifyBlockChange : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_NotifyBlockChange() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_NotifyBlockChange() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status NotifyBlockChange(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::NewBlockHandshake* /*request*/, ::xcoin::interchange::PingHandshake* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestNotifyBlockChange(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -983,6 +1091,28 @@ class XNodeSync final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* GetBlockchainFromHeight(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_NotifyBlockChange : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_NotifyBlockChange() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->NotifyBlockChange(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_NotifyBlockChange() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status NotifyBlockChange(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::NewBlockHandshake* /*request*/, ::xcoin::interchange::PingHandshake* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* NotifyBlockChange(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -1066,9 +1196,36 @@ class XNodeSync final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetBlockchainFromHeight(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::xcoin::interchange::GetBlockchainFromHeightRequest,::xcoin::interchange::Blockchain>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_PingPongSync<WithStreamedUnaryMethod_HeaderFirstSync<WithStreamedUnaryMethod_GetBlockchainFromHeight<Service > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_NotifyBlockChange : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_NotifyBlockChange() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::xcoin::interchange::NewBlockHandshake, ::xcoin::interchange::PingHandshake>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::xcoin::interchange::NewBlockHandshake, ::xcoin::interchange::PingHandshake>* streamer) {
+                       return this->StreamedNotifyBlockChange(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_NotifyBlockChange() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status NotifyBlockChange(::grpc::ServerContext* /*context*/, const ::xcoin::interchange::NewBlockHandshake* /*request*/, ::xcoin::interchange::PingHandshake* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedNotifyBlockChange(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::xcoin::interchange::NewBlockHandshake,::xcoin::interchange::PingHandshake>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_PingPongSync<WithStreamedUnaryMethod_HeaderFirstSync<WithStreamedUnaryMethod_GetBlockchainFromHeight<WithStreamedUnaryMethod_NotifyBlockChange<Service > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_PingPongSync<WithStreamedUnaryMethod_HeaderFirstSync<WithStreamedUnaryMethod_GetBlockchainFromHeight<Service > > > StreamedService;
+  typedef WithStreamedUnaryMethod_PingPongSync<WithStreamedUnaryMethod_HeaderFirstSync<WithStreamedUnaryMethod_GetBlockchainFromHeight<WithStreamedUnaryMethod_NotifyBlockChange<Service > > > > StreamedService;
 };
 // Service responsible for blockchain and transactions synchronisation
 

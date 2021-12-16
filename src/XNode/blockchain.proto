@@ -1,16 +1,18 @@
 syntax = "proto3";
 package xcoin.interchange;
 
-service XNodeControl{ // Service responsible for node management and peer discovery
+service XNodeControl{// Service responsible for node management and peer discovery
   rpc Ping(PingHandshake) returns (PingHandshake) {}
   rpc DNSSyncPeerList(DNSHandshake) returns (DNSHandshake) {}
   rpc NotifyPeerChange(PeerUpdateHandshake) returns (PingHandshake) {}
+}
 
-service XNodeSync{ // Service responsible for blockchain and transactions synchronisation
+service XNodeSync{// Service responsible for blockchain and transactions synchronisation
   rpc PingPongSync(PingPong) returns (PingPong) {}
   rpc HeaderFirstSync(GetHeaders) returns (Headers) {}
   rpc GetBlockchainFromHeight(GetBlockchainFromHeightRequest) returns (Blockchain) {}
   rpc NotifyBlockChange(NewBlockHandshake) returns (PingHandshake) {}
+}
 
 // Basic messages
 message Block{

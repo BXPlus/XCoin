@@ -86,23 +86,23 @@ void XNodeControl::Stub::async::DNSSyncPeerList(::grpc::ClientContext* context, 
   return result;
 }
 
-::grpc::Status XNodeControl::Stub::NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::xcoin::interchange::DNSEntry* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::xcoin::interchange::DNSEntry, ::xcoin::interchange::DNSEntry, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_NotifyPeerChange_, context, request, response);
+::grpc::Status XNodeControl::Stub::NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::PeerUpdateHandshake& request, ::xcoin::interchange::PingHandshake* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::xcoin::interchange::PeerUpdateHandshake, ::xcoin::interchange::PingHandshake, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_NotifyPeerChange_, context, request, response);
 }
 
-void XNodeControl::Stub::async::NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry* request, ::xcoin::interchange::DNSEntry* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::xcoin::interchange::DNSEntry, ::xcoin::interchange::DNSEntry, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_NotifyPeerChange_, context, request, response, std::move(f));
+void XNodeControl::Stub::async::NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::PeerUpdateHandshake* request, ::xcoin::interchange::PingHandshake* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::xcoin::interchange::PeerUpdateHandshake, ::xcoin::interchange::PingHandshake, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_NotifyPeerChange_, context, request, response, std::move(f));
 }
 
-void XNodeControl::Stub::async::NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry* request, ::xcoin::interchange::DNSEntry* response, ::grpc::ClientUnaryReactor* reactor) {
+void XNodeControl::Stub::async::NotifyPeerChange(::grpc::ClientContext* context, const ::xcoin::interchange::PeerUpdateHandshake* request, ::xcoin::interchange::PingHandshake* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_NotifyPeerChange_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::xcoin::interchange::DNSEntry>* XNodeControl::Stub::PrepareAsyncNotifyPeerChangeRaw(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::xcoin::interchange::DNSEntry, ::xcoin::interchange::DNSEntry, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_NotifyPeerChange_, context, request);
+::grpc::ClientAsyncResponseReader< ::xcoin::interchange::PingHandshake>* XNodeControl::Stub::PrepareAsyncNotifyPeerChangeRaw(::grpc::ClientContext* context, const ::xcoin::interchange::PeerUpdateHandshake& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::xcoin::interchange::PingHandshake, ::xcoin::interchange::PeerUpdateHandshake, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_NotifyPeerChange_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::xcoin::interchange::DNSEntry>* XNodeControl::Stub::AsyncNotifyPeerChangeRaw(::grpc::ClientContext* context, const ::xcoin::interchange::DNSEntry& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::xcoin::interchange::PingHandshake>* XNodeControl::Stub::AsyncNotifyPeerChangeRaw(::grpc::ClientContext* context, const ::xcoin::interchange::PeerUpdateHandshake& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncNotifyPeerChangeRaw(context, request, cq);
   result->StartCall();
@@ -133,11 +133,11 @@ XNodeControl::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       XNodeControl_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< XNodeControl::Service, ::xcoin::interchange::DNSEntry, ::xcoin::interchange::DNSEntry, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< XNodeControl::Service, ::xcoin::interchange::PeerUpdateHandshake, ::xcoin::interchange::PingHandshake, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](XNodeControl::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::xcoin::interchange::DNSEntry* req,
-             ::xcoin::interchange::DNSEntry* resp) {
+             const ::xcoin::interchange::PeerUpdateHandshake* req,
+             ::xcoin::interchange::PingHandshake* resp) {
                return service->NotifyPeerChange(ctx, req, resp);
              }, this)));
 }
@@ -159,7 +159,7 @@ XNodeControl::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status XNodeControl::Service::NotifyPeerChange(::grpc::ServerContext* context, const ::xcoin::interchange::DNSEntry* request, ::xcoin::interchange::DNSEntry* response) {
+::grpc::Status XNodeControl::Service::NotifyPeerChange(::grpc::ServerContext* context, const ::xcoin::interchange::PeerUpdateHandshake* request, ::xcoin::interchange::PingHandshake* response) {
   (void) context;
   (void) request;
   (void) response;
@@ -171,6 +171,7 @@ static const char* XNodeSync_method_names[] = {
   "/xcoin.interchange.XNodeSync/PingPongSync",
   "/xcoin.interchange.XNodeSync/HeaderFirstSync",
   "/xcoin.interchange.XNodeSync/GetBlockchainFromHeight",
+  "/xcoin.interchange.XNodeSync/NotifyBlockChange",
 };
 
 std::unique_ptr< XNodeSync::Stub> XNodeSync::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -183,6 +184,7 @@ XNodeSync::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel,
   : channel_(channel), rpcmethod_PingPongSync_(XNodeSync_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_HeaderFirstSync_(XNodeSync_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetBlockchainFromHeight_(XNodeSync_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_NotifyBlockChange_(XNodeSync_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status XNodeSync::Stub::PingPongSync(::grpc::ClientContext* context, const ::xcoin::interchange::PingPong& request, ::xcoin::interchange::PingPong* response) {
@@ -254,6 +256,29 @@ void XNodeSync::Stub::async::GetBlockchainFromHeight(::grpc::ClientContext* cont
   return result;
 }
 
+::grpc::Status XNodeSync::Stub::NotifyBlockChange(::grpc::ClientContext* context, const ::xcoin::interchange::NewBlockHandshake& request, ::xcoin::interchange::PingHandshake* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::xcoin::interchange::NewBlockHandshake, ::xcoin::interchange::PingHandshake, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_NotifyBlockChange_, context, request, response);
+}
+
+void XNodeSync::Stub::async::NotifyBlockChange(::grpc::ClientContext* context, const ::xcoin::interchange::NewBlockHandshake* request, ::xcoin::interchange::PingHandshake* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::xcoin::interchange::NewBlockHandshake, ::xcoin::interchange::PingHandshake, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_NotifyBlockChange_, context, request, response, std::move(f));
+}
+
+void XNodeSync::Stub::async::NotifyBlockChange(::grpc::ClientContext* context, const ::xcoin::interchange::NewBlockHandshake* request, ::xcoin::interchange::PingHandshake* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_NotifyBlockChange_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::xcoin::interchange::PingHandshake>* XNodeSync::Stub::PrepareAsyncNotifyBlockChangeRaw(::grpc::ClientContext* context, const ::xcoin::interchange::NewBlockHandshake& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::xcoin::interchange::PingHandshake, ::xcoin::interchange::NewBlockHandshake, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_NotifyBlockChange_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::xcoin::interchange::PingHandshake>* XNodeSync::Stub::AsyncNotifyBlockChangeRaw(::grpc::ClientContext* context, const ::xcoin::interchange::NewBlockHandshake& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncNotifyBlockChangeRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 XNodeSync::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       XNodeSync_method_names[0],
@@ -285,6 +310,16 @@ XNodeSync::Service::Service() {
              ::xcoin::interchange::Blockchain* resp) {
                return service->GetBlockchainFromHeight(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      XNodeSync_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< XNodeSync::Service, ::xcoin::interchange::NewBlockHandshake, ::xcoin::interchange::PingHandshake, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](XNodeSync::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::xcoin::interchange::NewBlockHandshake* req,
+             ::xcoin::interchange::PingHandshake* resp) {
+               return service->NotifyBlockChange(ctx, req, resp);
+             }, this)));
 }
 
 XNodeSync::Service::~Service() {
@@ -305,6 +340,13 @@ XNodeSync::Service::~Service() {
 }
 
 ::grpc::Status XNodeSync::Service::GetBlockchainFromHeight(::grpc::ServerContext* context, const ::xcoin::interchange::GetBlockchainFromHeightRequest* request, ::xcoin::interchange::Blockchain* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status XNodeSync::Service::NotifyBlockChange(::grpc::ServerContext* context, const ::xcoin::interchange::NewBlockHandshake* request, ::xcoin::interchange::PingHandshake* response) {
   (void) context;
   (void) request;
   (void) response;

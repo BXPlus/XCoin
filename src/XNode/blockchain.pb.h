@@ -46,7 +46,7 @@ struct TableStruct_blockchain_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[11]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[13]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -79,6 +79,12 @@ extern HeaderDefaultTypeInternal _Header_default_instance_;
 class Headers;
 struct HeadersDefaultTypeInternal;
 extern HeadersDefaultTypeInternal _Headers_default_instance_;
+class NewBlockHandshake;
+struct NewBlockHandshakeDefaultTypeInternal;
+extern NewBlockHandshakeDefaultTypeInternal _NewBlockHandshake_default_instance_;
+class PeerUpdateHandshake;
+struct PeerUpdateHandshakeDefaultTypeInternal;
+extern PeerUpdateHandshakeDefaultTypeInternal _PeerUpdateHandshake_default_instance_;
 class PingHandshake;
 struct PingHandshakeDefaultTypeInternal;
 extern PingHandshakeDefaultTypeInternal _PingHandshake_default_instance_;
@@ -99,6 +105,8 @@ template<> ::xcoin::interchange::GetBlockchainFromHeightRequest* Arena::CreateMa
 template<> ::xcoin::interchange::GetHeaders* Arena::CreateMaybeMessage<::xcoin::interchange::GetHeaders>(Arena*);
 template<> ::xcoin::interchange::Header* Arena::CreateMaybeMessage<::xcoin::interchange::Header>(Arena*);
 template<> ::xcoin::interchange::Headers* Arena::CreateMaybeMessage<::xcoin::interchange::Headers>(Arena*);
+template<> ::xcoin::interchange::NewBlockHandshake* Arena::CreateMaybeMessage<::xcoin::interchange::NewBlockHandshake>(Arena*);
+template<> ::xcoin::interchange::PeerUpdateHandshake* Arena::CreateMaybeMessage<::xcoin::interchange::PeerUpdateHandshake>(Arena*);
 template<> ::xcoin::interchange::PingHandshake* Arena::CreateMaybeMessage<::xcoin::interchange::PingHandshake>(Arena*);
 template<> ::xcoin::interchange::PingPong* Arena::CreateMaybeMessage<::xcoin::interchange::PingPong>(Arena*);
 template<> ::xcoin::interchange::XNodeMessage* Arena::CreateMaybeMessage<::xcoin::interchange::XNodeMessage>(Arena*);
@@ -2194,6 +2202,365 @@ class GetBlockchainFromHeightRequest final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_blockchain_2eproto;
 };
+// -------------------------------------------------------------------
+
+class PeerUpdateHandshake final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:xcoin.interchange.PeerUpdateHandshake) */ {
+ public:
+  inline PeerUpdateHandshake() : PeerUpdateHandshake(nullptr) {}
+  ~PeerUpdateHandshake() override;
+  explicit constexpr PeerUpdateHandshake(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  PeerUpdateHandshake(const PeerUpdateHandshake& from);
+  PeerUpdateHandshake(PeerUpdateHandshake&& from) noexcept
+    : PeerUpdateHandshake() {
+    *this = ::std::move(from);
+  }
+
+  inline PeerUpdateHandshake& operator=(const PeerUpdateHandshake& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PeerUpdateHandshake& operator=(PeerUpdateHandshake&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const PeerUpdateHandshake& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const PeerUpdateHandshake* internal_default_instance() {
+    return reinterpret_cast<const PeerUpdateHandshake*>(
+               &_PeerUpdateHandshake_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    11;
+
+  friend void swap(PeerUpdateHandshake& a, PeerUpdateHandshake& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PeerUpdateHandshake* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PeerUpdateHandshake* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline PeerUpdateHandshake* New() const final {
+    return new PeerUpdateHandshake();
+  }
+
+  PeerUpdateHandshake* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<PeerUpdateHandshake>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const PeerUpdateHandshake& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const PeerUpdateHandshake& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(PeerUpdateHandshake* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "xcoin.interchange.PeerUpdateHandshake";
+  }
+  protected:
+  explicit PeerUpdateHandshake(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPeerFieldNumber = 1,
+    kPublicAddressFieldNumber = 2,
+    kUpdateTypeFieldNumber = 4,
+    kLocalPeersHashFieldNumber = 5,
+    kOnlineFieldNumber = 3,
+  };
+  // string peer = 1;
+  void clear_peer();
+  const std::string& peer() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_peer(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_peer();
+  PROTOBUF_MUST_USE_RESULT std::string* release_peer();
+  void set_allocated_peer(std::string* peer);
+  private:
+  const std::string& _internal_peer() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_peer(const std::string& value);
+  std::string* _internal_mutable_peer();
+  public:
+
+  // string publicAddress = 2;
+  void clear_publicaddress();
+  const std::string& publicaddress() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_publicaddress(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_publicaddress();
+  PROTOBUF_MUST_USE_RESULT std::string* release_publicaddress();
+  void set_allocated_publicaddress(std::string* publicaddress);
+  private:
+  const std::string& _internal_publicaddress() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_publicaddress(const std::string& value);
+  std::string* _internal_mutable_publicaddress();
+  public:
+
+  // string updateType = 4;
+  void clear_updatetype();
+  const std::string& updatetype() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_updatetype(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_updatetype();
+  PROTOBUF_MUST_USE_RESULT std::string* release_updatetype();
+  void set_allocated_updatetype(std::string* updatetype);
+  private:
+  const std::string& _internal_updatetype() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_updatetype(const std::string& value);
+  std::string* _internal_mutable_updatetype();
+  public:
+
+  // string localPeersHash = 5;
+  void clear_localpeershash();
+  const std::string& localpeershash() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_localpeershash(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_localpeershash();
+  PROTOBUF_MUST_USE_RESULT std::string* release_localpeershash();
+  void set_allocated_localpeershash(std::string* localpeershash);
+  private:
+  const std::string& _internal_localpeershash() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_localpeershash(const std::string& value);
+  std::string* _internal_mutable_localpeershash();
+  public:
+
+  // bool online = 3;
+  void clear_online();
+  bool online() const;
+  void set_online(bool value);
+  private:
+  bool _internal_online() const;
+  void _internal_set_online(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:xcoin.interchange.PeerUpdateHandshake)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr peer_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr publicaddress_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr updatetype_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr localpeershash_;
+  bool online_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_blockchain_2eproto;
+};
+// -------------------------------------------------------------------
+
+class NewBlockHandshake final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:xcoin.interchange.NewBlockHandshake) */ {
+ public:
+  inline NewBlockHandshake() : NewBlockHandshake(nullptr) {}
+  ~NewBlockHandshake() override;
+  explicit constexpr NewBlockHandshake(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  NewBlockHandshake(const NewBlockHandshake& from);
+  NewBlockHandshake(NewBlockHandshake&& from) noexcept
+    : NewBlockHandshake() {
+    *this = ::std::move(from);
+  }
+
+  inline NewBlockHandshake& operator=(const NewBlockHandshake& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline NewBlockHandshake& operator=(NewBlockHandshake&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const NewBlockHandshake& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const NewBlockHandshake* internal_default_instance() {
+    return reinterpret_cast<const NewBlockHandshake*>(
+               &_NewBlockHandshake_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    12;
+
+  friend void swap(NewBlockHandshake& a, NewBlockHandshake& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(NewBlockHandshake* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(NewBlockHandshake* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline NewBlockHandshake* New() const final {
+    return new NewBlockHandshake();
+  }
+
+  NewBlockHandshake* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<NewBlockHandshake>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const NewBlockHandshake& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const NewBlockHandshake& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(NewBlockHandshake* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "xcoin.interchange.NewBlockHandshake";
+  }
+  protected:
+  explicit NewBlockHandshake(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kBlockFieldNumber = 1,
+  };
+  // .xcoin.interchange.Block block = 1;
+  bool has_block() const;
+  private:
+  bool _internal_has_block() const;
+  public:
+  void clear_block();
+  const ::xcoin::interchange::Block& block() const;
+  PROTOBUF_MUST_USE_RESULT ::xcoin::interchange::Block* release_block();
+  ::xcoin::interchange::Block* mutable_block();
+  void set_allocated_block(::xcoin::interchange::Block* block);
+  private:
+  const ::xcoin::interchange::Block& _internal_block() const;
+  ::xcoin::interchange::Block* _internal_mutable_block();
+  public:
+  void unsafe_arena_set_allocated_block(
+      ::xcoin::interchange::Block* block);
+  ::xcoin::interchange::Block* unsafe_arena_release_block();
+
+  // @@protoc_insertion_point(class_scope:xcoin.interchange.NewBlockHandshake)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::xcoin::interchange::Block* block_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_blockchain_2eproto;
+};
 // ===================================================================
 
 
@@ -3863,9 +4230,315 @@ inline void GetBlockchainFromHeightRequest::set_allocated_stophash(std::string* 
   // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.GetBlockchainFromHeightRequest.stopHash)
 }
 
+// -------------------------------------------------------------------
+
+// PeerUpdateHandshake
+
+// string peer = 1;
+inline void PeerUpdateHandshake::clear_peer() {
+  peer_.ClearToEmpty();
+}
+inline const std::string& PeerUpdateHandshake::peer() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.PeerUpdateHandshake.peer)
+  return _internal_peer();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PeerUpdateHandshake::set_peer(ArgT0&& arg0, ArgT... args) {
+ 
+ peer_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:xcoin.interchange.PeerUpdateHandshake.peer)
+}
+inline std::string* PeerUpdateHandshake::mutable_peer() {
+  std::string* _s = _internal_mutable_peer();
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.PeerUpdateHandshake.peer)
+  return _s;
+}
+inline const std::string& PeerUpdateHandshake::_internal_peer() const {
+  return peer_.Get();
+}
+inline void PeerUpdateHandshake::_internal_set_peer(const std::string& value) {
+  
+  peer_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* PeerUpdateHandshake::_internal_mutable_peer() {
+  
+  return peer_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* PeerUpdateHandshake::release_peer() {
+  // @@protoc_insertion_point(field_release:xcoin.interchange.PeerUpdateHandshake.peer)
+  return peer_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void PeerUpdateHandshake::set_allocated_peer(std::string* peer) {
+  if (peer != nullptr) {
+    
+  } else {
+    
+  }
+  peer_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), peer,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.PeerUpdateHandshake.peer)
+}
+
+// string publicAddress = 2;
+inline void PeerUpdateHandshake::clear_publicaddress() {
+  publicaddress_.ClearToEmpty();
+}
+inline const std::string& PeerUpdateHandshake::publicaddress() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.PeerUpdateHandshake.publicAddress)
+  return _internal_publicaddress();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PeerUpdateHandshake::set_publicaddress(ArgT0&& arg0, ArgT... args) {
+ 
+ publicaddress_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:xcoin.interchange.PeerUpdateHandshake.publicAddress)
+}
+inline std::string* PeerUpdateHandshake::mutable_publicaddress() {
+  std::string* _s = _internal_mutable_publicaddress();
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.PeerUpdateHandshake.publicAddress)
+  return _s;
+}
+inline const std::string& PeerUpdateHandshake::_internal_publicaddress() const {
+  return publicaddress_.Get();
+}
+inline void PeerUpdateHandshake::_internal_set_publicaddress(const std::string& value) {
+  
+  publicaddress_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* PeerUpdateHandshake::_internal_mutable_publicaddress() {
+  
+  return publicaddress_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* PeerUpdateHandshake::release_publicaddress() {
+  // @@protoc_insertion_point(field_release:xcoin.interchange.PeerUpdateHandshake.publicAddress)
+  return publicaddress_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void PeerUpdateHandshake::set_allocated_publicaddress(std::string* publicaddress) {
+  if (publicaddress != nullptr) {
+    
+  } else {
+    
+  }
+  publicaddress_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), publicaddress,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.PeerUpdateHandshake.publicAddress)
+}
+
+// bool online = 3;
+inline void PeerUpdateHandshake::clear_online() {
+  online_ = false;
+}
+inline bool PeerUpdateHandshake::_internal_online() const {
+  return online_;
+}
+inline bool PeerUpdateHandshake::online() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.PeerUpdateHandshake.online)
+  return _internal_online();
+}
+inline void PeerUpdateHandshake::_internal_set_online(bool value) {
+  
+  online_ = value;
+}
+inline void PeerUpdateHandshake::set_online(bool value) {
+  _internal_set_online(value);
+  // @@protoc_insertion_point(field_set:xcoin.interchange.PeerUpdateHandshake.online)
+}
+
+// string updateType = 4;
+inline void PeerUpdateHandshake::clear_updatetype() {
+  updatetype_.ClearToEmpty();
+}
+inline const std::string& PeerUpdateHandshake::updatetype() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.PeerUpdateHandshake.updateType)
+  return _internal_updatetype();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PeerUpdateHandshake::set_updatetype(ArgT0&& arg0, ArgT... args) {
+ 
+ updatetype_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:xcoin.interchange.PeerUpdateHandshake.updateType)
+}
+inline std::string* PeerUpdateHandshake::mutable_updatetype() {
+  std::string* _s = _internal_mutable_updatetype();
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.PeerUpdateHandshake.updateType)
+  return _s;
+}
+inline const std::string& PeerUpdateHandshake::_internal_updatetype() const {
+  return updatetype_.Get();
+}
+inline void PeerUpdateHandshake::_internal_set_updatetype(const std::string& value) {
+  
+  updatetype_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* PeerUpdateHandshake::_internal_mutable_updatetype() {
+  
+  return updatetype_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* PeerUpdateHandshake::release_updatetype() {
+  // @@protoc_insertion_point(field_release:xcoin.interchange.PeerUpdateHandshake.updateType)
+  return updatetype_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void PeerUpdateHandshake::set_allocated_updatetype(std::string* updatetype) {
+  if (updatetype != nullptr) {
+    
+  } else {
+    
+  }
+  updatetype_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), updatetype,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.PeerUpdateHandshake.updateType)
+}
+
+// string localPeersHash = 5;
+inline void PeerUpdateHandshake::clear_localpeershash() {
+  localpeershash_.ClearToEmpty();
+}
+inline const std::string& PeerUpdateHandshake::localpeershash() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.PeerUpdateHandshake.localPeersHash)
+  return _internal_localpeershash();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void PeerUpdateHandshake::set_localpeershash(ArgT0&& arg0, ArgT... args) {
+ 
+ localpeershash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:xcoin.interchange.PeerUpdateHandshake.localPeersHash)
+}
+inline std::string* PeerUpdateHandshake::mutable_localpeershash() {
+  std::string* _s = _internal_mutable_localpeershash();
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.PeerUpdateHandshake.localPeersHash)
+  return _s;
+}
+inline const std::string& PeerUpdateHandshake::_internal_localpeershash() const {
+  return localpeershash_.Get();
+}
+inline void PeerUpdateHandshake::_internal_set_localpeershash(const std::string& value) {
+  
+  localpeershash_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* PeerUpdateHandshake::_internal_mutable_localpeershash() {
+  
+  return localpeershash_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* PeerUpdateHandshake::release_localpeershash() {
+  // @@protoc_insertion_point(field_release:xcoin.interchange.PeerUpdateHandshake.localPeersHash)
+  return localpeershash_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void PeerUpdateHandshake::set_allocated_localpeershash(std::string* localpeershash) {
+  if (localpeershash != nullptr) {
+    
+  } else {
+    
+  }
+  localpeershash_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), localpeershash,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.PeerUpdateHandshake.localPeersHash)
+}
+
+// -------------------------------------------------------------------
+
+// NewBlockHandshake
+
+// .xcoin.interchange.Block block = 1;
+inline bool NewBlockHandshake::_internal_has_block() const {
+  return this != internal_default_instance() && block_ != nullptr;
+}
+inline bool NewBlockHandshake::has_block() const {
+  return _internal_has_block();
+}
+inline void NewBlockHandshake::clear_block() {
+  if (GetArenaForAllocation() == nullptr && block_ != nullptr) {
+    delete block_;
+  }
+  block_ = nullptr;
+}
+inline const ::xcoin::interchange::Block& NewBlockHandshake::_internal_block() const {
+  const ::xcoin::interchange::Block* p = block_;
+  return p != nullptr ? *p : reinterpret_cast<const ::xcoin::interchange::Block&>(
+      ::xcoin::interchange::_Block_default_instance_);
+}
+inline const ::xcoin::interchange::Block& NewBlockHandshake::block() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.NewBlockHandshake.block)
+  return _internal_block();
+}
+inline void NewBlockHandshake::unsafe_arena_set_allocated_block(
+    ::xcoin::interchange::Block* block) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(block_);
+  }
+  block_ = block;
+  if (block) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:xcoin.interchange.NewBlockHandshake.block)
+}
+inline ::xcoin::interchange::Block* NewBlockHandshake::release_block() {
+  
+  ::xcoin::interchange::Block* temp = block_;
+  block_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::xcoin::interchange::Block* NewBlockHandshake::unsafe_arena_release_block() {
+  // @@protoc_insertion_point(field_release:xcoin.interchange.NewBlockHandshake.block)
+  
+  ::xcoin::interchange::Block* temp = block_;
+  block_ = nullptr;
+  return temp;
+}
+inline ::xcoin::interchange::Block* NewBlockHandshake::_internal_mutable_block() {
+  
+  if (block_ == nullptr) {
+    auto* p = CreateMaybeMessage<::xcoin::interchange::Block>(GetArenaForAllocation());
+    block_ = p;
+  }
+  return block_;
+}
+inline ::xcoin::interchange::Block* NewBlockHandshake::mutable_block() {
+  ::xcoin::interchange::Block* _msg = _internal_mutable_block();
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.NewBlockHandshake.block)
+  return _msg;
+}
+inline void NewBlockHandshake::set_allocated_block(::xcoin::interchange::Block* block) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete block_;
+  }
+  if (block) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::xcoin::interchange::Block>::GetOwningArena(block);
+    if (message_arena != submessage_arena) {
+      block = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, block, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  block_ = block;
+  // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.NewBlockHandshake.block)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
