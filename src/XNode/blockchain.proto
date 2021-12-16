@@ -4,14 +4,13 @@ package xcoin.interchange;
 service XNodeControl{ // Service responsible for node management and peer discovery
   rpc Ping(PingHandshake) returns (PingHandshake) {}
   rpc DNSSyncPeerList(DNSHandshake) returns (DNSHandshake) {}
-  rpc NotifyPeerChange(DNSEntry) returns (DNSEntry) {}
-}
+  rpc NotifyPeerChange(PeerUpdateHandshake) returns (PingHandshake) {}
 
 service XNodeSync{ // Service responsible for blockchain and transactions synchronisation
   rpc PingPongSync(PingPong) returns (PingPong) {}
   rpc HeaderFirstSync(GetHeaders) returns (Headers) {}
   rpc GetBlockchainFromHeight(GetBlockchainFromHeightRequest) returns (Blockchain) {}
-}
+  rpc NotifyBlockChange(NewBlockHandshake) returns (PingHandshake) {}
 
 // Basic messages
 message Block{
@@ -94,4 +93,8 @@ message PeerUpdateHandshake{
   bool online = 3;
   string updateType = 4;
   string localPeersHash = 5;
+}
+
+message NewBlockHandshake{
+  Block block = 1;
 }
