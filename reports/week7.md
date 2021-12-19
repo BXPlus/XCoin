@@ -16,3 +16,41 @@ Right now, the nodes are not authentified: there is no way to know a peer is leg
 I also ran Cppcheck across all the project folders to check the validity of our files’ code, and contacted my collegues who wrote code where there were issues, so that they could make corrections.
 
 Next week I will try to integrate the tokens into gRPC, which is a specialised protocol used by nodes on the XCoin network to communicate.
+
+@Lio 
+
+This week:
+
+- Implemented a [struct](https://www.cplusplus.com/doc/tutorial/structures/) called `XNodeSettings` that contain all the Node's settings.
+- created a function `loadNodeSettings()`
+- created a function `newSettings`
+
+Next week:
+
+- Should the implementation  during the holidays
+
+@Youssef Chaabouni 
+
+This week:
+
+• Fixed some errors with the wallet file
+
+• Did some further documentation about proof of stake
+
+Next week:
+
+• Make sure everything is done and works concerning the proof of stake
+
+@Clara  
+
+This week, I worked on the styling and theme-change options (we implemented a “light mode”). In particular, I worked on the design and aesthetic of the contacts page, that is now merged with the payment page. I also worked on the “Balance page”.
+
+@Kevin Messali 
+
+This week:
+
+ I fixed with @Cyrus Pellet some issues we were facing with the blockchain sync and the UI. We merged the frontend branch into the master and provided the fixes needed. We added QT libraries in our CMake so we can run the whole project at once. We also continued working on the interface of the network part with the UI. I also provided help for the UI team and helped creating the Tricount class for @Picha.
+
+Next week:
+
+I will continuing working on the interface with the network part and the UI and fixing the issues.
