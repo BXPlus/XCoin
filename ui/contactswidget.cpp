@@ -57,7 +57,17 @@ ContactsWidget::ContactsWidget(QWidget *parent) :
     //Search contact QLineEdit creation
     contactSearch = new QLineEdit(this);
     contactSearch->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
-    contactSearch->setPlaceholderText("Search");
+    contactSearch->setPlaceholderText("Search...");
+    contactSearch->setFocus();
+    contactSearch->setStyleSheet("QLineEdit{margin: 5px;"
+                                 "padding: 10px;"
+                                 "color: white;"
+                                 "selection-color: white;"
+                                 "background: rgba(157, 204, 255, 150);"
+                                 "border: 1px solid rgba(255, 255, 255, 0);"
+                                 "border-color: white;"
+                                 "border-radius: 10px;}");
+    contactSearch->setAttribute(Qt::WA_MacShowFocusRect, 0);
 
     connect(addContactButton, SIGNAL(clicked(bool)), this, SLOT(addContact()));
     connect(editBtn, SIGNAL(clicked(bool)), this, SLOT(editStyle()));
@@ -67,7 +77,6 @@ ContactsWidget::ContactsWidget(QWidget *parent) :
     topLayout->addWidget(addContactButton);
     topLayout->addWidget(editBtn);
     topLayout->addWidget(contactSearch);
-
 
     scrollContacts = new QScrollArea(this);
     boxContainer = new QWidget(scrollContacts);
@@ -96,7 +105,8 @@ void ContactsWidget::createDictionary(QMap<QString, QString> contacts)
         value->setText(contactDict.value(e));
         value->setWordWrap(true);
         key->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
-        value->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+        //value->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+        //value->setFixedSize(QLabel::sizeHint());
         int count = contactGrid->rowCount();
 
         QPushButton* coverRowBtn = new QPushButton(key);
