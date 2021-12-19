@@ -12,7 +12,6 @@
 #include "homewidget.h"
 #include "logindialog.h"
 #include "settingswidget.h"
-#include "togglebtn.h"
 #include "addcontactdialog.h"
 #include "paymentdialog.h"
 #include "balancewidget.h"

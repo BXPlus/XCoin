@@ -2,8 +2,8 @@
 // Created by Cyrus Pellet on 04/11/2021.
 //
 
-#include <iostream>
 #include "node.h"
+#include <iostream>
 
 int main(int argc, char *argv[])
 {
@@ -22,8 +22,7 @@ int main(int argc, char *argv[])
     for(int i = 1; i < argc; i++ )
         DNSS.emplace_back(argv[i]);
     XNodeSDK sdk;
-    XNode::Node node = XNode::Node();
-    node.setSDK(&sdk);
-    node.RunNode(DNSS);
+    xcoin::Node::getInstance().setSdkInstance(&sdk);
+    xcoin::Node::getInstance().RunNode(DNSS);
     return 0;
 }

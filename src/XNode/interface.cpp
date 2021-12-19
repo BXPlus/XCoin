@@ -10,7 +10,7 @@
 * @param block is the block to convert
 * @returns a protobuf interchange block object
 */
-xcoin::interchange::Block XNode::Interface::encodeBlock(Block block) {
+xcoin::interchange::Block xcoin::interface::encodeBlock(Block block) {
     xcoin::interchange::Block encodedBlock;
     encodedBlock.set_index(block.index);
     encodedBlock.set_hash(block.hash);
@@ -29,7 +29,7 @@ xcoin::interchange::Block XNode::Interface::encodeBlock(Block block) {
 * @param protoBlock is a protobuf interchange block object
 * @returns a block
 */
-Block XNode::Interface::decodeBlock(const xcoin::interchange::Block& protoBlock) {
+Block xcoin::interface::decodeBlock(const xcoin::interchange::Block& protoBlock) {
     return {static_cast<int>(protoBlock.index()), protoBlock.hash(), protoBlock.previoushash(), protoBlock.headerhash(), protoBlock.previousheaderhash(), protoBlock.timestamp(), protoBlock.data(), static_cast<int>(protoBlock.difficulty()), static_cast<int>(protoBlock.minterbalance()), protoBlock.minteraddress()};
 }
 
@@ -38,7 +38,7 @@ Block XNode::Interface::decodeBlock(const xcoin::interchange::Block& protoBlock)
 * @param chain is the list of blocks to convert
 * @returns a protobuf interchange blockchain object
 */
-xcoin::interchange::Blockchain XNode::Interface::encodeChain(const std::vector<Block>& chain) {
+xcoin::interchange::Blockchain xcoin::interface::encodeChain(const std::vector<Block>& chain) {
     xcoin::interchange::Blockchain encodedChain;
     for (const Block& block:chain) {
         xcoin::interchange::Block* encodedBlock = encodedChain.add_blocks();
@@ -52,7 +52,7 @@ xcoin::interchange::Blockchain XNode::Interface::encodeChain(const std::vector<B
 * @param protoChain is a protobuf interchange blockchain object
 * @returns a list of blocks
 */
-std::vector<Block> XNode::Interface::decodeChain(const xcoin::interchange::Blockchain& protoChain) {
+std::vector<Block> xcoin::interface::decodeChain(const xcoin::interchange::Blockchain& protoChain) {
     std::vector<Block> decodedBlocks;
     for (const xcoin::interchange::Block& block:protoChain.blocks()) {
         decodedBlocks.push_back(decodeBlock(block));
@@ -67,7 +67,7 @@ std::vector<Block> XNode::Interface::decodeChain(const xcoin::interchange::Block
 * @param blockHeaderHashes is one or more header hashes in reverse order of block height.
 * @returns a getHeaders internal protobuf interchange message object
 */
-xcoin::interchange::GetHeaders XNode::Interface::generateGetHeadersMessage(int hashCount, std::string stopHash, const std::vector<std::string>& blockHeaderHashes) {
+xcoin::interchange::GetHeaders xcoin::interface::generateGetHeadersMessage(int hashCount, std::string stopHash, const std::vector<std::string>& blockHeaderHashes) {
     xcoin::interchange::GetHeaders request;
     request.set_hashcount(hashCount);
     request.set_stophash(stopHash);
@@ -82,7 +82,7 @@ xcoin::interchange::GetHeaders XNode::Interface::generateGetHeadersMessage(int h
 * @param chain is the block chain to encode back to headers
 * @returns a Headers internal protobuf interchange message object
 */
-xcoin::interchange::Headers XNode::Interface::generateHeadersReplyMessage(const std::vector<Block> &chain) {
+xcoin::interchange::Headers xcoin::interface::generateHeadersReplyMessage(const std::vector<Block> &chain) {
     xcoin::interchange::Headers reply;
     for (Block block: chain){
         xcoin::interchange::Header* header = reply.add_headers();
@@ -98,7 +98,7 @@ xcoin::interchange::Headers XNode::Interface::generateHeadersReplyMessage(const 
 * @param block is the block to convert
 * @returns a serialised std::string
 */
-std::string XNode::Interface::exportBlock(const Block& block) {
+std::string xcoin::interface::exportBlock(const Block& block) {
     xcoin::interchange::Block encodedBlock = encodeBlock(block);
     return encodedBlock.SerializeAsString();
 }
@@ -108,7 +108,7 @@ std::string XNode::Interface::exportBlock(const Block& block) {
 * @param blockData is block data as a std::string
 * @returns a block
 */
-Block XNode::Interface::importBlock(const std::string& blockData) {
+Block xcoin::interface::importBlock(const std::string& blockData) {
     xcoin::interchange::Block decodedBlock;
     decodedBlock.ParseFromString(blockData);
     return decodeBlock(decodedBlock);
@@ -119,7 +119,7 @@ Block XNode::Interface::importBlock(const std::string& blockData) {
 * @param chain is the list of blocks to convert
 * @returns a serialised std::string
 */
-std::string XNode::Interface::exportChain(const std::vector<Block>& chain) {
+std::string xcoin::interface::exportChain(const std::vector<Block>& chain) {
     xcoin::interchange::Blockchain encodedChain = encodeChain(chain);
     return encodedChain.SerializeAsString();
 }
@@ -129,7 +129,7 @@ std::string XNode::Interface::exportChain(const std::vector<Block>& chain) {
 * @param chainData is block list data as a std::string
 * @returns a list of blocks
 */
-std::vector<Block> XNode::Interface::importChain(const std::string& chainData) {
+std::vector<Block> xcoin::interface::importChain(const std::string& chainData) {
     xcoin::interchange::Blockchain encodedChain;
     encodedChain.ParseFromString(chainData);
     return decodeChain(encodedChain);
@@ -140,7 +140,7 @@ std::vector<Block> XNode::Interface::importChain(const std::string& chainData) {
 * @param dnsMap is map of ip/ports to public addresses
 * @returns an encoded protobuf string
 */
-std::string XNode::Interface::exportDNSHandshake(const std::map<std::string, std::string>& dnsMap) {
+std::string xcoin::interface::exportDNSHandshake(const std::map<std::string, std::string>& dnsMap) {
     xcoin::interchange::DNSHandshake *encodedHandshake;
     for (auto const& x : dnsMap){
         xcoin::interchange::DNSEntry *entry = encodedHandshake->add_entries();
@@ -161,7 +161,7 @@ std::string XNode::Interface::exportDNSHandshake(const std::map<std::string, std
 * @param encodedHandshake is the encoded handshake
 * @returns a tuple containing the DNS ip/port to public address map and a bool set to true if the peer expects a reply
 */
-std::pair<std::map<std::string, std::string>, bool> XNode::Interface::decodeDNSHandshake(const std::string& encodedHandshake) {
+std::pair<std::map<std::string, std::string>, bool> xcoin::interface::decodeDNSHandshake(const std::string& encodedHandshake) {
     auto res = std::pair<std::map<std::string, std::string>, bool>();
     auto dnsl = std::map<std::string, std::string>();
     xcoin::interchange::DNSHandshake encodedObject;
@@ -178,9 +178,9 @@ std::pair<std::map<std::string, std::string>, bool> XNode::Interface::decodeDNSH
 * @param encodedEnvelope is the encoded envelope
 * @returns idk yet
 */
-XNode::XNodeMessageDecodingResult XNode::Interface::decodeXNodeMessageEnvelope(const std::string &encodedEnvelope) {
+xcoin::XNodeMessageDecodingResult xcoin::interface::decodeXNodeMessageEnvelope(const std::string &encodedEnvelope) {
     xcoin::interchange::XNodeMessage decodedEnvelope;
-    XNode::XNodeMessageDecodingResult res;
+    xcoin::XNodeMessageDecodingResult res;
     res.messageType = -1;
     decodedEnvelope.ParseFromString(encodedEnvelope);
     if (decodedEnvelope.has_dnshandshakemessage()){
@@ -197,14 +197,14 @@ XNode::XNodeMessageDecodingResult XNode::Interface::decodeXNodeMessageEnvelope(c
 /**
 * Function that frees all memory used up by Protobuf during use
 */
-void XNode::Interface::shutdown() {
+void xcoin::interface::shutdown() {
     google::protobuf::ShutdownProtobufLibrary();
 }
 
 /**
 * Function that verifies that the Protobuf library is ready to start
 */
-bool XNode::Interface::startup() {
+bool xcoin::interface::startup() {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
     return true;
 }

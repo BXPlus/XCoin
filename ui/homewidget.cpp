@@ -30,13 +30,13 @@ HomeWidget::HomeWidget(QWidget *parent) :
     imgLabel->setPixmap(pic);
 
     // Uncomment to add subtitle
-//    subtitle = new QLabel(this);
-//    subtitle->setText("Key #dk9174hdn57s");
-//    subtitle->setObjectName(QString("subtitle"));
-//    subtitle->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+    subtitle = new QLabel(this);
+    subtitle->setText("Key #dk9174hdn57s");
+    subtitle->setObjectName(QString("subtitle"));
+    subtitle->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+    subtitle->setMinimumWidth(300);
 
-
-
+    xcoin::Node::getInstance().getSdkInstance()->onStatusChanged = std::bind( &HomeWidget::handleNewNodeStatusFromSDK, this, std::placeholders::_1 );
 
     //SCROLL AREA
 
@@ -141,6 +141,16 @@ HomeWidget::HomeWidget(QWidget *parent) :
     //pageLayout->addWidget(boxContainer); // change to boxContainer or accessBox if grid box layout or scroll area, uncomment if want widget
     this->setLayout(pageLayout);
 
+}
+
+void HomeWidget::handleNewNodeStatusFromSDK(XNodeSDK::XNodeStatus status){
+    switch (status) {
+        case XNodeSDK::WaitingForDNSS: subtitle->setText("Waiting for DNSS");
+        case XNodeSDK::Down: subtitle->setText("Node is offline");
+        case XNodeSDK::TerminatedWithError: subtitle->setText("Node was shutdown");
+        case XNodeSDK::SyncingBlockchain: subtitle->setText("Blockchain is syncing");
+        case XNodeSDK::Ready: subtitle->setText("Node is ready!");
+    }
 }
 
 HomeWidget::~HomeWidget()

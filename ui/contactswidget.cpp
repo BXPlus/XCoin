@@ -117,7 +117,7 @@ void ContactsWidget::createDictionary(QMap<QString, QString> contacts)
         QSignalMapper* signalMapper = new QSignalMapper(this);
         connect(coverRowBtn, SIGNAL(clicked()), signalMapper, SLOT(map()));
         signalMapper->setMapping(coverRowBtn, key->text());
-        connect(signalMapper, SIGNAL(mapped(QString)), this, SLOT(openPayDialog(QString)));
+        connect(signalMapper, SIGNAL(mappedString(QString)), this, SLOT(openPayDialog(QString)));
 
         if (count%2 == 1){
             coverRowBtn->setStyleSheet("QPushButton#coverRowBtn{background-color: rgba(255,255,255,0);}"
@@ -168,12 +168,12 @@ void ContactsWidget::editContact()
         QSignalMapper* signalMapper = new QSignalMapper(this) ;
         connect(deleteBtn, SIGNAL(clicked(bool)), signalMapper, SLOT(map()));
         signalMapper->setMapping (deleteBtn, count);
-        connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(deleteContact(int)));
+        connect(signalMapper, SIGNAL(mappedInt(int)), this, SLOT(deleteContact(int)));
 
         QSignalMapper* signalMapper2 = new QSignalMapper(this) ;
         connect(deleteBtn, SIGNAL(clicked(bool)), signalMapper2, SLOT(map()));
         signalMapper2->setMapping (deleteBtn, key->text());
-        connect(signalMapper2, SIGNAL(mapped(QString)), this, SLOT(get_key(QString)));
+        connect(signalMapper2, SIGNAL(mappedString(QString)), this, SLOT(get_key(QString)));
 
         contactGrid->addWidget(deleteBtn, count, 0);
         contactGrid->addWidget(key, count, 1);
@@ -236,11 +236,11 @@ void ContactsWidget::contactSearchEdit(){
     QString* text = new QString(contactSearch->text().toLower());
     QMap<QString, QString> tempContacts;
     deleteWidgets();
-    for (auto e : contactDict.keys()){
-        if ((e.toLower().contains(text)) or contactDict.value(e).contains(text)){
-            tempContacts[e] = contactDict.value(e);
-        }
-    }
+//    for (auto e : contactDict.keys()){
+//        if (e.toLower().contains(text) || contactDict.value(e).contains(text)){
+//            tempContacts[e] = contactDict.value(e);
+//        }
+//    }
     createDictionary(tempContacts);
 }
 
