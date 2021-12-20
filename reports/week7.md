@@ -54,3 +54,7 @@ This week:
 Next week:
 
 I will continuing working on the interface with the network part and the UI and fixing the issues.
+
+@Picha
+
+This week, I finished my assigned job on Front-End. I started the Tricount algorithm. 
