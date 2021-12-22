@@ -1,4 +1,12 @@
 # Week 7: 13th to 19th of December
+@Tim
+
+This week:
+
+- I finished some last touches on the Settings page
+- This week was mostly github related, as I helped several people from the frontend team with GitHub, by resolving conflicts for them and merging their branches
+- Also github related, I with the help of Cyrus and Kevin, merged all of the frontend work into the main branch so that everyone can run it on CLion (we don't work on QT anymore), it was runnable until new commits were posted, now I am having errors not related to frontend. Therefore, next week I will try to make it runable on CLion again by creating a new branch so that we get back the changes that were made when it was runable on CLion, and will merge everything at the end to facilitate the task.
+
 
 @Alex 
 
