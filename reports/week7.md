@@ -35,7 +35,7 @@ This week:
 
 Next week:
 
-- Should the implementation  during the holidays
+- Should finish the implementation  during the holidays
 
 @Youssef Chaabouni 
 
