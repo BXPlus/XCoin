@@ -1,11 +1,10 @@
 //
-// Created by Cyrus Pellet on 25/10/2021.
+// Created by XCoin on 25/10/2021.
 //
 
 #include "gtest/gtest.h"
 #include "../Blockchain.h"
 #include "../transaction.h"
-
 
 class XBlockchainCoreTests: public ::testing::Test{
 protected:
@@ -61,7 +60,7 @@ protected:
 
 
 // Initialisation test: UnspentTxOut has the right initialisation
-TEST_F(XTransactionTests, UnspentTxOutInit){
+TEST_F(XTransactionTests, testUnspentTxOutInit){
     EXPECT_EQ(unspenttxout.txOutId, "txOutId");
     EXPECT_EQ(unspenttxout.txOutIndex, 1);
     EXPECT_EQ(unspenttxout.address, "address");
@@ -70,9 +69,27 @@ TEST_F(XTransactionTests, UnspentTxOutInit){
 
 
 // Initialisation test: TxOut has the right initialisation
-TEST_F(XTransactionTests, TxOutInit){
+TEST_F(XTransactionTests, testTxOutInit){
     EXPECT_EQ(txout.address, "address");
     EXPECT_EQ(txout.amount, 0);
+}
+
+
+// Testing getTxInAmount
+TEST_F(XTransactionTests, testGetTxInAmount) {
+
+}
+
+
+// Initialisation test: first constructor of TxIn has the right initialisation
+TEST_F(XTransactionTests, testTxInInitNoArgs){
+
+}
+
+
+// Initialisation test: second constructor of TxIn has the right initialisation
+TEST_F(XTransactionTests, testTxInInit){
+
 }
 
 
@@ -94,88 +111,26 @@ TEST_F(XTransactionTests, testGetTransactionId){
 }
 
 
-//testing findUnspentTxOut
-TEST(findUnspentTxOut, handleFindUnspentTxOut) {
-    std::string transactionId = "transactionId";
-    int index = 123;
-    UnspentTxOut UnspentTxOut1("0", index, "0", 0);
-    UnspentTxOut UnspentTxOut2(transactionId, 1, "0", 0);
-    UnspentTxOut UnspentTxOut3("0", 1, "0", 0);
+//testing signTxIn
+TEST_F(XTransactionTests, testSignTxIn) {
 
-    std::vector<UnspentTxOut> aUnspentTxOuts{UnspentTxOut1, UnspentTxOut2, UnspentTxOut3};
-    EXPECT_EQ(findUnspentTxOut(transactionId, index, aUnspentTxOuts),
-              std::make_pair(0, UnspentTxOut("", 0, "", 0)));
-
-    UnspentTxOut UnspentTxOut4(transactionId, index, "0", 0);
-    aUnspentTxOuts.push_back(UnspentTxOut4);
-    EXPECT_EQ(findUnspentTxOut(transactionId, index, aUnspentTxOuts),
-              std::make_pair(1, UnspentTxOut4));
 }
 
 
-// Testing isValidAddress, checking the length of address
-TEST(isValidAddressTest, handleLength) {
-    std::string validAddress = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
-    EXPECT_EQ(isValidAddress(validAddress), 1);
-    validAddress = validAddress.substr(0, 22);
-    EXPECT_EQ(isValidAddress(validAddress), 0);
+//testing validateTransaction
+TEST_F(XTransactionTests, testValidateTransaction) {
+
 }
 
 
-// Testing isValidAddress, checking the characters if it has only hex characters or not
-TEST(isValidAddressTest, HandleCharacters) {
-    std::string address = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
-    address[2] = 'g';
-    EXPECT_EQ(isValidAddress(address), 0);
-    address[2] = 'a';
-    EXPECT_EQ(isValidAddress(address), 1);
-}
+//testing isValidTransactionStructure
+TEST_F(XTransactionTests, testIsValidTransactionStructure) {
 
-
-// Testing isValidAddress, checking if the string starts with "04"
-TEST(isValidAddressTest, Handle04) {
-    std::string address = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
-    EXPECT_EQ(isValidAddress(address), 1);
-    address[1] = '1';
-    EXPECT_EQ(isValidAddress(address), 0);
-}
-
-
-//Testing getCoinbaseTransaction
-TEST(getCoinbaseTransaction, handleCoinbaseTransaction) {
-    std::string address = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
-    int blockIndex = 0;
-    Transaction t = getCoinbaseTransaction(address, blockIndex);
-    std::string transactionId = "";
-
-    EXPECT_EQ(t.txIns[0].txOutId, "");
-    EXPECT_EQ(t.txIns[0].txOutIndex, blockIndex);
-    transactionId += "0";
-    EXPECT_EQ(t.txOuts[0].address, address);
-    transactionId += address;
-    EXPECT_EQ(t.txOuts[0].amount, 50);
-    transactionId += "50";
-    EXPECT_EQ(t.id, sha256(transactionId));
-}
-
-
-//Testing hasDuplicates
-TEST(hasDuplicates, HandleDuplicate) {
-    std::vector<TxIn> txIns;
-    TxIn txIn1("txIn1", 1, std::pair<uint8_t*, uint32_t>());
-    txIns.push_back(txIn1);
-    TxIn txIn2("txIn2", 2, std::pair<uint8_t*, uint32_t>());
-    txIns.push_back(txIn2);
-    EXPECT_EQ(hasDuplicates(txIns), 1);
-    //adding duplicates
-    TxIn txIn3("txIn2", 2, std::pair<uint8_t*, uint32_t>());
-    txIns.push_back(txIn3);
-    EXPECT_EQ(hasDuplicates(txIns), 0);
 }
 
 
 //testing validateCoinbaseTx
-TEST_F(XTransactionTests, ValidateCoinbaseTx) {
+TEST_F(XTransactionTests, testValidateCoinbaseTx) {
     std::string ans = "";
     int COINBASE_AMOUNT = 50;
     int blockIndex = 1;
@@ -213,6 +168,125 @@ TEST_F(XTransactionTests, ValidateCoinbaseTx) {
     transaction.txOuts[0].amount = COINBASE_AMOUNT - 1;
     EXPECT_EQ(transaction.validateCoinbaseTx(blockIndex), 0);
     transaction.txOuts[0].amount = COINBASE_AMOUNT;
+}
+
+
+//Initialisation test: TxOut has the right initialisation
+TEST_F(XTransactionTests, testInitTransaction) {
+
+}
+
+
+//testing findUnspentTxOut
+TEST(findUnspentTxOut, testFindUnspentTxOut) {
+    std::string transactionId = "transactionId";
+    int index = 123;
+    UnspentTxOut UnspentTxOut1("0", index, "0", 0);
+    UnspentTxOut UnspentTxOut2(transactionId, 1, "0", 0);
+    UnspentTxOut UnspentTxOut3("0", 1, "0", 0);
+
+    std::vector<UnspentTxOut> aUnspentTxOuts{UnspentTxOut1, UnspentTxOut2, UnspentTxOut3};
+    std::pair<bool, UnspentTxOut> res1 = findUnspentTxOut(transactionId, index, aUnspentTxOuts);
+    UnspentTxOut tmpUnspentTxOut = UnspentTxOut("", 0, "", 0);
+    EXPECT_EQ(res1.first, 0);
+    EXPECT_EQ((res1.second == tmpUnspentTxOut), 1);
+
+    UnspentTxOut UnspentTxOut4(transactionId, index, "0", 0);
+    aUnspentTxOuts.push_back(UnspentTxOut4);
+    std::pair<bool, UnspentTxOut> res2 = findUnspentTxOut(transactionId, index, aUnspentTxOuts);
+    EXPECT_EQ(res2.first, 1);
+    EXPECT_EQ((res2.second == UnspentTxOut4), 1);
+}
+
+
+//testing updateUnspentTxOuts
+TEST(updateUnspentTxOuts, testUpdateUnspentTxOuts) {
+}
+
+
+//testing isValidTxInStructure
+TEST(isValidTxInStructure, testIsValidTxInStructure) {
+}
+
+
+// Testing isValidAddress, checking the length of address
+TEST(isValidAddressTest, testIsValidAddressLength) {
+    std::string Address = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
+    EXPECT_EQ(isValidAddress(Address), 1);
+    Address = Address.substr(0, 22);
+    EXPECT_EQ(isValidAddress(Address), 0);
+}
+
+
+// Testing isValidAddress, checking the characters if it has only hex characters or not
+TEST(isValidAddressTest, testIsValidAddressCharacters) {
+    std::string address = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
+    address[2] = 'g';
+    EXPECT_EQ(isValidAddress(address), 0);
+    address[2] = 'a';
+    EXPECT_EQ(isValidAddress(address), 1);
+}
+
+
+// Testing isValidAddress, checking if the string starts with "04"
+TEST(isValidAddressTest, testIsValidAddress04) {
+    std::string address = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
+    EXPECT_EQ(isValidAddress(address), 1);
+    address[1] = '1';
+    EXPECT_EQ(isValidAddress(address), 0);
+}
+
+
+//testing isValidTxOutStructure
+TEST(isValidTxInStructure, testIsValidTxOutStructure) {
+}
+
+
+//Testing getCoinbaseTransaction
+TEST(getCoinbaseTransaction, testGetCoinbaseTransaction) {
+    std::string address = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
+    int blockIndex = 0;
+    Transaction t = getCoinbaseTransaction(address, blockIndex);
+    std::string transactionId = "";
+
+    EXPECT_EQ(t.txIns[0].txOutId, "");
+    EXPECT_EQ(t.txIns[0].txOutIndex, blockIndex);
+    transactionId += "0";
+    EXPECT_EQ(t.txOuts[0].address, address);
+    transactionId += address;
+    EXPECT_EQ(t.txOuts[0].amount, 50);
+    transactionId += "50";
+    EXPECT_EQ(t.id, sha256(transactionId));
+}
+
+
+//testing getPublicKey
+TEST(getPublicKey, testGetPublicKey) {
+}
+
+
+//Testing hasDuplicates
+TEST(hasDuplicates, testHasDuplicate) {
+    std::vector<TxIn> txIns;
+    TxIn txIn1("txIn1", 1, std::pair<uint8_t*, uint32_t>());
+    txIns.push_back(txIn1);
+    TxIn txIn2("txIn2", 2, std::pair<uint8_t*, uint32_t>());
+    txIns.push_back(txIn2);
+    EXPECT_EQ(hasDuplicates(txIns), 0);
+    //adding duplicates
+    TxIn txIn3("txIn2", 2, std::pair<uint8_t*, uint32_t>());
+    txIns.push_back(txIn3);
+    EXPECT_EQ(hasDuplicates(txIns), 1);
+}
+
+
+//testing validateBlockTransactions
+TEST(validateBlockTransactions, testValidateBlockTransactions) {
+}
+
+
+//testing processTransactions
+TEST(processTransactions, testProcessTransactions) {
 }
 
 /*

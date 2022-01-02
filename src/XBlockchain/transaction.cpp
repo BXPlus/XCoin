@@ -1,5 +1,4 @@
 #include "transaction.h"
-#include "../XNode/keys.h"
 #include <stdexcept>
 #include <regex>
 #include <set>
@@ -14,11 +13,19 @@ enum findUnspentTxOutOutcome {
 };
 
 
+UnspentTxOut::UnspentTxOut() {
+}
+
+
 UnspentTxOut::UnspentTxOut(std::string txOutId, int txOutIndex, std::string address, int amount) {
     this -> txOutId = txOutId;
     this -> txOutIndex = txOutIndex;
     this -> address = address;
     this -> amount = amount;
+}
+
+
+TxOut::TxOut() {
 }
 
 
@@ -52,7 +59,6 @@ bool validateTxIn(TxIn txIn, std::string id, std::vector<UnspentTxOut> aUnspentT
     }
     UnspentTxOut referencedUTxOut = tmp.second;
     std::string address = referencedUTxOut.address;
-
 
     bool validSignature = verify(txIn.signature, address, id);
     if (!validSignature) {
@@ -193,6 +199,10 @@ bool Transaction::validateCoinbaseTx(int blockIndex) {
 }
 
 
+Transaction::Transaction() {
+}
+
+
 std::pair<bool, UnspentTxOut> findUnspentTxOut(std::string transactionId, int index, std::vector<UnspentTxOut>& aUnspentTxOuts) {
     for(int id = 0; id < int(aUnspentTxOuts.size()); id++) {
         if (aUnspentTxOuts[id].txOutId == transactionId && aUnspentTxOuts[id].txOutIndex == index)
@@ -228,11 +238,7 @@ std::vector<UnspentTxOut> updateUnspentTxOuts(std::vector<Transaction> aTransact
 
 
 bool isValidTxInStructure(TxIn txIn) {
-    if ((&txIn) == nullptr) {
-        std::cout << "txIn is null";
-        return false;
-    }
-    else if ((typeid(txIn.signature) != typeid(std::pair<uint8_t*, uint32_t>)) &&
+    if ((typeid(txIn.signature) != typeid(std::pair<uint8_t*, uint32_t>)) &&
             (typeid(txIn.signature.first) != typeid(uint8_t*)) &&
             (typeid(txIn.signature.second) !=typeid(uint32_t))) {
         std::cout << "invalid signature type in txIn";
@@ -253,7 +259,7 @@ bool isValidTxInStructure(TxIn txIn) {
 
 // valid address is a valid ecdsa public key in the 04 + X-coordinate + Y-coordinate format
 bool isValidAddress(std::string address) {
-    if (int(address.length()) == 130) {
+    if (int(address.length()) != 130) {
         std::cout << address << "\n";
         std::cout << "invalid public key length\n";
         return false;

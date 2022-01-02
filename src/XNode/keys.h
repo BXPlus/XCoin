@@ -6,7 +6,7 @@
 #define XCOIN_KEYS_H
 //#include "transaction.h"
 #include <iostream>
-#include <stdio.h>
+#include <cstdio>
 #include <stdlib.h>
 #include <openssl/ec.h>
 #include <openssl/obj_mac.h>
