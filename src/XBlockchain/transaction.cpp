@@ -187,7 +187,6 @@ bool verify(std::pair<uint8_t*, uint32_t> signature, std::string pub_key, std::s
 
 
     int verification = ECDSA_verify(0, digest, SHA256_DIGEST_LENGTH, signature.first, signature.second, key);
-
     if (verification == -1) { //if there is an error
         std::cout << "An error has occurred when computing the correctness of the signature" << std::endl;
         return 0;
@@ -254,6 +253,7 @@ bool validateTxIn(TxIn txIn, std::string id, std::vector<UnspentTxOut> aUnspentT
     std::string address = referencedUTxOut.address;
 
     bool validSignature = verify(txIn.signature, address, id);
+
     if (!validSignature) {
         std::cout << "invalid txIn signature: " << txIn.signature.first << " txId: " << id << " address: " << address << "\n";
         return false;
@@ -283,6 +283,7 @@ std::pair<uint8_t*, uint32_t> Transaction::signTxIn(int txInIndex, std::string p
     std::pair<bool, UnspentTxOut> tmp = findUnspentTxOut(txIn.txOutId, txIn.txOutIndex, aUnspentTxOuts);
     if (tmp.first == NotFoundUnspentTxOut)
         throw std::invalid_argument( "could not find referenced txOut\n" );
+
     UnspentTxOut referencedUnspentTxOut = tmp.second;
     std::string referencedAddress = referencedUnspentTxOut.address;
 
@@ -348,7 +349,6 @@ bool Transaction::isValidTransactionStructure() {
         std::cout << "invalid TxIns array";
         return false;
     }
-
     if (typeid(txOuts) != typeid(std::vector<TxOut>())) {
         std::cout << "invalid txOuts type in transaction";
         return false;

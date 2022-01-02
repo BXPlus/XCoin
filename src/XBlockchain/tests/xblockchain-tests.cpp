@@ -337,11 +337,6 @@ TEST(getCoinbaseTransaction, testGetCoinbaseTransaction) {
 }
 
 
-//testing getPublicKey
-TEST(getPublicKey, testGetPublicKey) {
-}
-
-
 //Testing hasDuplicates
 TEST(hasDuplicates, testHasDuplicate) {
     std::vector<TxIn> txIns;
@@ -359,6 +354,24 @@ TEST(hasDuplicates, testHasDuplicate) {
 
 //testing validateBlockTransactions
 TEST(validateBlockTransactions, testValidateBlockTransactions) {
+    std::string ans = "";
+    int COINBASE_AMOUNT = 50;
+    int blockIndex = 1;
+
+    TxIn txIn("txIn", blockIndex, std::pair<uint8_t*, uint32_t>());
+    TxOut txOut("txOut", COINBASE_AMOUNT);
+    Transaction transaction;
+    transaction.txIns = std::vector<TxIn>{txIn};
+    transaction.txOuts = std::vector<TxOut>{txOut};
+    transaction.id = transaction.getTransactionId();
+
+    //invalid coinbase tx id
+    std::string id = transaction.id;
+    transaction.id[0] = '+';
+    std::vector<Transaction> aTransactions{transaction};
+    std::vector<UnspentTxOut> aUnspentTxOuts;
+    EXPECT_EQ(validateBlockTransactions(aTransactions, aUnspentTxOuts, 0), 0);
+    //TODO: Strengthen this test
 }
 
 
