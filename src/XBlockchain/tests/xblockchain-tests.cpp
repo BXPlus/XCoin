@@ -193,7 +193,8 @@ TEST_F(XTransactionTests, testValidateTransaction) {
 
 //testing isValidTransactionStructure
 TEST_F(XTransactionTests, testIsValidTransactionStructure) {
-
+    EXPECT_EQ(transaction.isValidTransactionStructure(), 0);
+    //TODO: Strengthen this test
 }
 
 
