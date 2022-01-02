@@ -109,6 +109,35 @@ TEST_F(XTransactionTests, testTxInInit){
 }
 
 
+// Testing validateTxIn
+TEST(validateTxIn, testValidateTxIn) {
+    std::string transactionId = "transactionId";
+    int index = 123;
+    std::string address = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
+    uint8_t signature_array[11] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+    TxIn txIn(transactionId, index, std::pair<uint8_t*, uint32_t>(signature_array, 11));
+
+    UnspentTxOut UnspentTxOut1("0", index, "0", 0);
+    UnspentTxOut UnspentTxOut2(transactionId, 1, "0", 0);
+    UnspentTxOut UnspentTxOut3("0", 1, "0", 0);
+    std::vector<UnspentTxOut> aUnspentTxOuts{UnspentTxOut1, UnspentTxOut2, UnspentTxOut3};
+
+    bool res;
+    res = validateTxIn(txIn, "transactionId", aUnspentTxOuts);
+    EXPECT_EQ(res, 0);
+
+    UnspentTxOut UnspentTxOut4(transactionId, index, address, 0);
+    aUnspentTxOuts.push_back(UnspentTxOut4);
+    UnspentTxOut UnspentTxOut5(transactionId, index, address, 1);
+    aUnspentTxOuts.push_back(UnspentTxOut5);
+
+    res = validateTxIn(txIn, "transactionId", aUnspentTxOuts);
+    EXPECT_EQ(res, 0);
+    //TODO: Strengthen this test
+}
+
+
 // Testing getTransactionId
 TEST_F(XTransactionTests, testGetTransactionId){
     std::string ans = "";
@@ -124,11 +153,6 @@ TEST_F(XTransactionTests, testGetTransactionId){
     transaction.txOuts = std::vector<TxOut>{txOut1, txOut2};
     transaction.id = transaction.getTransactionId();
     EXPECT_EQ(transaction.id, sha256(ans));
-}
-
-
-// Testing validateTxIn
-TEST_F(XTransactionTests, testValidateTxIn) {
 }
 
 
