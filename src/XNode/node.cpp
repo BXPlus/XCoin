@@ -2,11 +2,15 @@
 // Created by kevin on 11/13/21.
 //
 #include "node.h"
+#include <iostream>
+#include <jwt-cpp/jwt.h>
 
-XNode::Node::Node() {
+#define JWT_SECRET std::string("secret")
+
+xcoin::Node::Node() {
     this->blockchain = Blockchain();
-    this->peers = std::map<std::string, XNode::XNodeClient>();
-    for (int i; i < 50; i++) {
+    this->peers = std::map<std::string, xcoin::XNodeClient>();
+    for (int i = 0; i < 50; i++) {
         this->blockchain.appendBlock(this->blockchain.generateNextBlock("Hello" + std::to_string(i), i+1, 0, ""));
     }
     std::cout << this->blockchain.getLatestBlock().hash << std::endl;
@@ -17,7 +21,7 @@ XNode::Node::Node() {
 * Function called to start up a node, initiate peer-discovery & synchronisation
 * @param dnsSeedPeers is a list of DNS seed node addresses to attempt initial connections
 */
-void XNode::Node::RunNode(const std::vector<std::string>& dnsSeedPeers) {
+void xcoin::Node::RunNode(const std::vector<std::string>& dnsSeedPeers) {
     if (this->sdkInstance == nullptr)
         this->Shutdown("No SDK instance set to handle callbacks");
     std::string server_address("0.0.0.0:50051");
@@ -30,19 +34,19 @@ void XNode::Node::RunNode(const std::vector<std::string>& dnsSeedPeers) {
     spdlog::info("Server listening on " + server_address);
     sdkInstance->onStatusChanged(XNodeSDK::XNodeStatus::WaitingForDNSS);
     bool couldPerformHandshakeWithDNSS = false;
-    loadDataFromDisk();
+    // loadDataFromDisk(); //TODO: READD ONCE READY
     for (const std::string &peer: dnsSeedPeers)
         couldPerformHandshakeWithDNSS |= this->AttemptPeerConnection(peer);
     if (!couldPerformHandshakeWithDNSS && !dnsSeedPeers.empty())
         this->Shutdown("Could not establish connection with any DNSS");
     else sdkInstance->onStatusChanged(XNodeSDK::XNodeStatus::SyncingBlockchain);
-    server->Wait();
+    server.release();
 }
 
 /**
 * Function called to shut down a node due to an error: terminates the gRPC thread gracefully and saves data on disk
 */
-void XNode::Node::Shutdown(const std::string& reason) {
+void xcoin::Node::Shutdown(const std::string& reason) {
     sdkInstance->onStatusChanged(XNodeSDK::XNodeStatus::TerminatedWithError);
     spdlog::info(reason + " : node will shut down");
     saveDataOnDisk();
@@ -54,7 +58,7 @@ void XNode::Node::Shutdown(const std::string& reason) {
 * Function called to persist node data on disk to speed up subsequent launches
 * Saves peers and chain in two different savefiles
 */
-void XNode::Node::saveDataOnDisk() {
+void xcoin::Node::saveDataOnDisk() {
     spdlog::debug(std::string("Will save data on disk"));
     Archive localPeers = Archive(XNODE_PEERS_SAVE_PATH);
     Archive localChain = Archive(XNODE_BLOCKCHAIN_SAVE_PATH);
@@ -65,7 +69,7 @@ void XNode::Node::saveDataOnDisk() {
         entry->set_publickey(peer.second.publicKey);
     }
     localPeers.saveData(encodedPeers.SerializeAsString());
-    std::string encodedChain = XNode::Interface::exportChain(this->blockchain.toBlocks());
+    std::string encodedChain = xcoin::interface::exportChain(this->blockchain.toBlocks());
     localChain.saveData(encodedChain);
 }
 
@@ -73,7 +77,7 @@ void XNode::Node::saveDataOnDisk() {
 * Function called to load savefile data from disk on launch
 * Peer list and blockchain are updated from the save file contents
 */
-void XNode::Node::loadDataFromDisk() {
+void xcoin::Node::loadDataFromDisk() {
     Archive localDataArchive = Archive(XNODE_PEERS_SAVE_PATH);
     Archive localChainArchive = Archive(XNODE_BLOCKCHAIN_SAVE_PATH);
     if (localDataArchive.exists()){
@@ -87,7 +91,7 @@ void XNode::Node::loadDataFromDisk() {
     }
     if (localChainArchive.exists()){
         std::string encodedChain = localChainArchive.loadData();
-        XNode::Interface::importChain(encodedChain);
+        xcoin::interface::importChain(encodedChain);
     }
 }
 
@@ -96,7 +100,7 @@ void XNode::Node::loadDataFromDisk() {
 * Callback function executed by gRPC to process incoming Ping requests from peers
 * Add the peer to the list of known nodes if necessary and replies with ping data
 */
-::grpc::Status XNode::Node::Ping(::grpc::ServerContext *context, const ::xcoin::interchange::PingHandshake *request,
+::grpc::Status xcoin::Node::Ping(::grpc::ServerContext *context, const ::xcoin::interchange::PingHandshake *request,
                                  ::xcoin::interchange::PingHandshake *response) {
     spdlog::debug("Ping received from " + context->peer());
     if (this->peers.count(context->peer()) == 0) {
@@ -113,7 +117,7 @@ void XNode::Node::loadDataFromDisk() {
 * Handles incoming peers and replies with own known peers
 */
 ::grpc::Status
-XNode::Node::DNSSyncPeerList(::grpc::ServerContext *context, const ::xcoin::interchange::DNSHandshake *request,
+xcoin::Node::DNSSyncPeerList(::grpc::ServerContext *context, const ::xcoin::interchange::DNSHandshake *request,
                              ::xcoin::interchange::DNSHandshake *response) {
     spdlog::debug("DNS sync requested by " + context->peer());
     for (const xcoin::interchange::DNSEntry &remotePeer: request->entries())
@@ -132,14 +136,14 @@ XNode::Node::DNSSyncPeerList(::grpc::ServerContext *context, const ::xcoin::inte
 * Handles new peer data and sends back to confirm
 */
 ::grpc::Status
-XNode::Node::NotifyPeerChange(::grpc::ServerContext *context, const ::xcoin::interchange::DNSEntry *request,
+xcoin::Node::NotifyPeerChange(::grpc::ServerContext *context, const ::xcoin::interchange::DNSEntry *request,
                               ::xcoin::interchange::DNSEntry *response) {
     this->handleIncomingPeerData(*request);
     response->CopyFrom(*request);
     return ::grpc::Status::OK;
 }
 
-::grpc::Status XNode::Node::PingPongSync(::grpc::ServerContext *context, const ::xcoin::interchange::PingPong *request,
+::grpc::Status xcoin::Node::PingPongSync(::grpc::ServerContext *context, const ::xcoin::interchange::PingPong *request,
                                          ::xcoin::interchange::PingPong *response) {
     ::spdlog::warn("RECEIVED PING PONG");
     if (this->blockchain.length - request->height()<0){ // We need to initiate sync from here as our branch is late
@@ -157,7 +161,7 @@ XNode::Node::NotifyPeerChange(::grpc::ServerContext *context, const ::xcoin::int
 * Handles new peer data and sends back to confirm
 */
 ::grpc::Status
-XNode::Node::HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::interchange::GetHeaders *request,
+xcoin::Node::HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::interchange::GetHeaders *request,
                              ::xcoin::interchange::Headers *response) {
     std::vector<Block> localBlocks = this->blockchain.toBlocks();
     std::reverse(localBlocks.begin(), localBlocks.end());
@@ -172,7 +176,7 @@ XNode::Node::HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::inte
     return ::grpc::Status::OK;
 }
 
-::grpc::Status XNode::Node::GetBlockchainFromHeight(::grpc::ServerContext *context,
+::grpc::Status xcoin::Node::GetBlockchainFromHeight(::grpc::ServerContext *context,
                                                     const ::xcoin::interchange::GetBlockchainFromHeightRequest *request,
                                                     ::xcoin::interchange::Blockchain *response) {
     std::vector<Block> localBlocks = this->blockchain.toBlocks();
@@ -183,7 +187,7 @@ XNode::Node::HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::inte
         auto newBlock = response->add_blocks();
         std::cout << "Adding block " << localBlocks[i].data << std::endl;
         std::cout << "Block hash: " << localBlocks[i].headerHash << std::endl;
-        newBlock->CopyFrom(XNode::Interface::encodeBlock(localBlocks[i]));
+        newBlock->CopyFrom(xcoin::interface::encodeBlock(localBlocks[i]));
     }
     return ::grpc::Status::OK;
 }
@@ -195,10 +199,10 @@ XNode::Node::HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::inte
 * @param peerAddress is an ipv4 or ipv6 address of a potential remote node to connect to
 * @returns true if the connection and handshake was successful
 */
-bool XNode::Node::AttemptPeerConnection(const std::string &peerAddress) {
+bool xcoin::Node::AttemptPeerConnection(const std::string &peerAddress) {
     spdlog::debug("Will attempt to connect to new peer " + peerAddress);
     std::shared_ptr<grpc::Channel> channel = grpc::CreateChannel(peerAddress, grpc::InsecureChannelCredentials());
-    this->peers[peerAddress] = XNode::XNodeClient(channel);
+    this->peers[peerAddress] = xcoin::XNodeClient(channel);
     ::grpc::ClientContext pingContext;
     xcoin::interchange::PingHandshake pingRequest;
     xcoin::interchange::PingHandshake pingReply;
@@ -226,12 +230,11 @@ bool XNode::Node::AttemptPeerConnection(const std::string &peerAddress) {
             spdlog::info("Successfully synced DNS peers with " + peerAddress);
             saveDataOnDisk();
             sdkInstance->onPeerListChanged();
-            std::pair<XNode::Node::PingPongStatus, int> pingPongStatus = AttemptPingPongSync(peerAddress);
-            std::cout<<this->blockchain.getLatestBlock().data<<std::endl;
+            std::pair<xcoin::Node::PingPongStatus, int> pingPongStatus = AttemptPingPongSync(peerAddress);
             if(AttemptBlockchainSync(peerAddress, pingPongStatus.first, pingPongStatus.second)){
                 this->peers[peerAddress].syncSuccess = true;
                 spdlog::info("Successfully synced blockchain with " + peerAddress);
-                std::cout << this->blockchain.length << std::endl;
+                std::cout << this->blockchain.getLatestBlock().hash << std::endl;
                 saveDataOnDisk();
                 sdkInstance->onStatusChanged(XNodeSDK::XNodeStatus::Ready);
             }
@@ -250,7 +253,7 @@ bool XNode::Node::AttemptPeerConnection(const std::string &peerAddress) {
 * @param peerAddress is an ipv4 or ipv6 address of the node to ping pong sync with
 * @returns a pair with 1 the status depending on the differences in height and last hash and 2 the remote peer's chain height
 */
-std::pair<XNode::Node::PingPongStatus, int> XNode::Node::AttemptPingPongSync(const std::string &peerAddress) {
+std::pair<xcoin::Node::PingPongStatus, int> xcoin::Node::AttemptPingPongSync(const std::string &peerAddress) {
     ::grpc::ClientContext pingPongContext;
     xcoin::interchange::PingPong pingPongRequest;
     xcoin::interchange::PingPong pingPongReply;
@@ -266,7 +269,7 @@ std::pair<XNode::Node::PingPongStatus, int> XNode::Node::AttemptPingPongSync(con
 * @param peerAddress is an ipv4 or ipv6 address of the node to sync headers with
 * @returns true if the blockchain could be resolved on both ends
 */
-bool XNode::Node::AttemptBlockchainSync(const std::string &peerAddress, PingPongStatus pingPongStatus,
+bool xcoin::Node::AttemptBlockchainSync(const std::string &peerAddress, PingPongStatus pingPongStatus,
                                         int remoteChainHeight) {
     spdlog::debug("Will attempt to sync headers with " + peerAddress);
     switch (pingPongStatus) {
@@ -333,7 +336,7 @@ bool XNode::Node::AttemptBlockchainSync(const std::string &peerAddress, PingPong
                                     &getBlockchainFromHeightContext, getBlockchainFromHeightRequest, &getBlockchainFromHeightReply);
                             if (getBlockchainFromHeightStatus.ok()){
                                 Blockchain newBlockchain = Blockchain();
-                                std::vector<Block> newBlocks = XNode::Interface::decodeChain(getBlockchainFromHeightReply);
+                                std::vector<Block> newBlocks = xcoin::interface::decodeChain(getBlockchainFromHeightReply);
                                 for (Block block: newBlocks){
                                     newBlockchain.appendBlock(block);
                                 }
@@ -350,7 +353,7 @@ bool XNode::Node::AttemptBlockchainSync(const std::string &peerAddress, PingPong
         }
         case HeightDiff: {
             spdlog::warn("Height diff");
-            int n = remoteChainHeight - this->blockchain.length;
+            int n = this->blockchain.length;
             if (n < 0){
                 return false; // Other peer must initiate sync from pingpong
             }
@@ -363,10 +366,10 @@ bool XNode::Node::AttemptBlockchainSync(const std::string &peerAddress, PingPong
             getBlockchainFromHeightRequest.set_startheight(n);
             ::grpc::Status getBlockchainFromHeightStatus = this->peers[peerAddress].syncStub->GetBlockchainFromHeight(
                     &getBlockchainFromHeightContext, getBlockchainFromHeightRequest, &getBlockchainFromHeightReply);
+
             if (getBlockchainFromHeightStatus.ok()){
-                std::vector<Block> newBlocks = XNode::Interface::decodeChain(getBlockchainFromHeightReply);
-                for (Block block: newBlocks){
-                    std::cout << newBlocks.data() << std::endl;
+                for (xcoin::interchange::Block pblock: getBlockchainFromHeightReply.blocks()){
+                    Block block = xcoin::interface::decodeBlock(pblock);
                     this->blockchain.appendBlock(block);
                 }
                 return true;
@@ -382,7 +385,7 @@ bool XNode::Node::AttemptBlockchainSync(const std::string &peerAddress, PingPong
 * @param remotePeer the incoming peer data
 * @param peerStub the control stub of the remote peer to follow up with other requests if necessary
 */
-bool XNode::Node::handleIncomingPeerData(const xcoin::interchange::DNSEntry &remotePeer) {
+bool xcoin::Node::handleIncomingPeerData(const xcoin::interchange::DNSEntry &remotePeer) {
     if (this->peers.count(remotePeer.ipport()) != 0) {
         if (this->peers[remotePeer.ipport()].publicKey != remotePeer.publickey()) {
             if (this->peers[remotePeer.ipport()].publicKey == XNODE_PUBLICADDR_UNKNOWN) {
@@ -403,14 +406,73 @@ bool XNode::Node::handleIncomingPeerData(const xcoin::interchange::DNSEntry &rem
     }
 }
 
-XNode::Node::PingPongStatus
-XNode::Node::pingPongStatusForProps(int chainHeight1, int chainHeight2, const std::string& lastHash1, const std::string& lastHash2,
+xcoin::Node::PingPongStatus
+xcoin::Node::pingPongStatusForProps(int chainHeight1, int chainHeight2, const std::string& lastHash1, const std::string& lastHash2,
                                     bool isErrored) {
     if(isErrored)
-        return XNode::Node::PingPongStatus::ConnErr;
+        return xcoin::Node::PingPongStatus::ConnErr;
     if (chainHeight1 == chainHeight2){
         if (lastHash1 == lastHash2)
-            return XNode::Node::PingPongStatus::Synced;
-        else return XNode::Node::PingPongStatus::HashDiff;
-    }else return XNode::Node::PingPongStatus::HeightDiff;
+            return xcoin::Node::PingPongStatus::Synced;
+        else return xcoin::Node::PingPongStatus::HashDiff;
+    }else return xcoin::Node::PingPongStatus::HeightDiff;
+}
+
+void xcoin::Node::setSdkInstance(XNodeSDK *newSdkInstance) {
+    this->sdkInstance = newSdkInstance;
+}
+
+XNodeSDK *xcoin::Node::getSdkInstance() const {
+    return sdkInstance;
+}
+
+/**
+* Function called to generate a JSON Web Token (JWT), that will be sent with every request for security
+*/
+std::string xcoin::Node::generate_jwt(const std::string& public_id) {
+    return jwt::create()
+        // HEADER
+        .set_type("JWT")
+        // PAYLOAD
+        .set_issuer("XCoin")
+        .set_issued_at(std::chrono::system_clock::now())
+        .set_expires_at(std::chrono::system_clock::now() + std::chrono::hours(1))       /* the token expires after one hour */
+        .set_payload_claim("public_id", jwt::claim(jwt::picojson_traits::value_type(public_id)))        /* peer's public address */
+        .set_payload_claim("last_hash", jwt::claim(jwt::picojson_traits::value_type(this->tail->hash)))     /* hash of the last block in the chain */
+        // SIGNATURE
+        .sign(jwt::algorithm::hs256(JWT_SECRET));
+}
+
+/**
+* Function called to verify a JWT (token)
+*/
+bool xcoin::Node::verify_jwt(const std::string& jwt, const std::string& public_id) {
+    auto verifier = jwt::verify().allow_algorithm(jwt::algorithm::hs256(JWT_SECRET)).with_issuer("XCoin");
+    auto decoded = jwt::decode(jwt);
+
+    try {
+        verifier.verify(decoded);
+    }
+    catch (...) {
+        return false;
+    }
+
+    if (decoded.get_payload_claims().find("public_id") == decoded.get_payload_claims().end()) {
+        return false;
+    }
+    if (decoded.get_payload_claims().at("public_id").as_string() != public_id) {
+        return false;
+    }
+    if (decoded.get_payload_claims().find("last_hash") == decoded.get_payload_claims().end()) {
+        return false;
+    }
+    if (decoded.get_payload_claims().at("last_hash").as_string() != this->tail->hash) {
+        return false;
+    }
+    return true;
+}
+
+int main() {
+    auto tok = generate_jwt("kar");
+    std::cout << verify_jwt(tok, "kar");
 }

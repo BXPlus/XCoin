@@ -9,6 +9,8 @@
 #include <QDialog>
 #include <QMap>
 #include "custombutton.h"
+#include <QLineEdit>
+#include "paycontactdialog.h"
 
 namespace Ui {
 class ContactsWidget;
@@ -35,16 +37,22 @@ public:
     QList<QPushButton*> delList;
     QString elDelete;
 
-    void create_dictionnary();
-    void delete_widgets();
-    void edit_contact();
+    void editContact();
 
     int editCount = 0;
+
+    QLineEdit* contactSearch;
+    void createDictionary(QMap<QString, QString>);
+    //void deleteContact(int);
+    void deleteWidgets();
+
 private slots:
     void addContact();
     void deleteContact(int count);
     void editStyle();
     void get_key(QString key);
+    void contactSearchEdit();
+    void openPayDialog(QString value);
 };
 
 #endif // CONTACTSWIDGET_H

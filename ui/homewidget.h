@@ -5,6 +5,8 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QGridLayout>
+#include "../XNode/node.h"
+#include "../XNode/XNodeSDK.h"
 
 namespace Ui {
 class HomeWidget;
@@ -27,6 +29,8 @@ public:
     QWidget* box4;
 
     ~HomeWidget();
+private:
+    void handleNewNodeStatusFromSDK(XNodeSDK::XNodeStatus status);
 };
 
 #endif // HOMEWIDGET_H

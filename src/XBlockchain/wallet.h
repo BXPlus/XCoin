@@ -1,12 +1,28 @@
+
 //
 // Created by youssef on 12/5/21.
 //
 
 #include "transaction.h"
 #include "keys.h"
+#include "archive.h"
 
 #ifndef XBLOCKCHAIN_WALLET_H
 #define XBLOCKCHAIN_WALLET_H
+
+
+class Wallet {
+public:
+    Wallet();
+    std::string getPrivateFromWallet();
+
+private:
+    Archive dataStorage = Archive("local.xnodekeys");
+
+};
+
+
+
 
 std::string generatePrivateKey();
 
@@ -37,3 +53,4 @@ std::vector<TxIn> toUnsignedTxInArray(std::vector<UnspentTxOut> unspentTxOuts);
 Transaction createTransaction(std::string receiverAddress, int amount, std::string privateKey, std::vector<UnspentTxOut> unspentTxOuts, std::vector<Transaction> txPool);
 
 #endif //XBLOCKCHAIN_WALLET_H
+

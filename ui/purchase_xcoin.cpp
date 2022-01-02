@@ -7,7 +7,7 @@
 #include <QGroupBox>
 #include <QTextEdit>
 #include <QLineEdit>
-#include <custombutton.h>
+#include "custombutton.h"
 #include <QAction>
 #include <QBoxLayout>
 
@@ -112,7 +112,7 @@ setLayout(page_layout);
                 pay_btn = new QPushButton(QString("PAY NOW"), main_box);
                     pay_btn->setMinimumSize(100,100);
 
-                    pay_btn->setStyleSheet("border-radius: 10px;"
+                pay_btn->setStyleSheet("border-radius: 10px;"
                                            "background-color: green;"
                                            "text-align: center");
 

@@ -14,6 +14,27 @@ SettingsWidget::SettingsWidget(QWidget *parent) : QWidget(parent)
         - Appearance
         -*/
     this->mainWindow = parent;
+
+    //Header Setup
+    topBox = new QWidget();
+    topLayout = new QHBoxLayout();
+    topBox->setLayout(topLayout);
+
+    title = new QLabel(this);
+    title->setText("Settings");
+    title->setObjectName(QString("title"));
+    title->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+
+    editBtn = new QPushButton("Edit", this);
+    editBtn->setObjectName("menuBtn");
+    editBtn->setMaximumSize(55, 45);
+
+    connect(editBtn, SIGNAL(clicked(bool)), this, SLOT(edit_press()));
+
+    topLayout->addWidget(title);
+    topLayout->addWidget(editBtn, 0, Qt::AlignRight);
+
+    //Settings page actual setup
     stringList = {"Node Port:", "Root DNS address:", "Public address:"
                  , "Full/Light node:", "Dark/Light mode:", "30140",
                  "123.456.78.90", "202.25.1.3"};
@@ -21,38 +42,53 @@ SettingsWidget::SettingsWidget(QWidget *parent) : QWidget(parent)
     mainLayout = new QVBoxLayout(this);
     emptyWidget = new QWidget(this);
 
+    mainLayout->addWidget(topBox);
+
     for (int i = 0; i < 5; i++) {
+        QWidget* widget = new QWidget(this);
+        widgetList.append(widget);
+        widget->setObjectName("settingswidget");
+
         QHBoxLayout* layout = new QHBoxLayout();
         hList.append(layout);
 
         QLabel* label = new QLabel(stringList[i], this);
         label->setObjectName("settingslabel");
         lList.append(label);
+        label->setMaximumSize(130, 30);
 
-        layout->addWidget(label);
+        layout->addWidget(label, 0, Qt::AlignLeft);
 
         if (i <= 2) {
             QLabel* string = new QLabel(stringList[i+5], this);
             string->setObjectName("settingsstring");
             sList.append(string);
-            layout->addWidget(string);
+
+            QLineEdit* lineEdit = new QLineEdit(this);
+            lineList.append(lineEdit);
+            lineEdit->setVisible(false);
+
+            layout->addWidget(string, 0, Qt::AlignRight);
+            layout->addWidget(lineEdit, 0, Qt::AlignRight);
         }
         else {
-            ToggleBtn* btn = new ToggleBtn(10, 10, this);
-            bList.append(btn);
-            layout->addWidget(btn);
+//            ToggleBtn* btn = new ToggleBtn(10, 10, this);
+//            bList.append(btn);
+//            layout->addWidget(btn, 0, Qt::AlignRight);
         }
         label->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 
-        mainLayout->addLayout(layout, 12);
+        widget->setLayout(layout);
+
+        mainLayout->addWidget(widget, 12);
     }
 
     mainLayout->addWidget(emptyWidget, 40);
 
     setLayout(mainLayout);
 
-    connect(bList[0], SIGNAL(clicked(bool)), this, SLOT(flnode_state()));
-    connect(bList[1], SIGNAL(clicked(bool)), this, SLOT(appearance_state()));
+    // connect(bList[0], SIGNAL(clicked(bool)), this, SLOT(flnode_state()));
+    // connect(bList[1], SIGNAL(clicked(bool)), this, SLOT(appearance_state()));
 }
 
 void SettingsWidget::flnode_state()
@@ -98,4 +134,35 @@ void SettingsWidget::appearance_state()
         qApp->setStyleSheet(styleSheet);
         qss.close();
     }
+}
+
+void SettingsWidget::edit_press()
+{
+    if (counter % 2 == 0) {
+        editBtn->setText("Done");
+        editBtn->setMaximumWidth(63);
+
+        for (int i = 0; i < 2; i++) {
+            QLineEdit* lineEdit = lineList[i];
+            QLabel* label = sList[i];
+
+            lineEdit->setVisible(true);
+            label->setVisible(false);
+            lineEdit->setText(label->text());
+        }
+    }
+    else {
+        editBtn->setText("Edit");
+        editBtn->setMaximumWidth(55);
+
+        for (int i = 0; i < 2; i++) {
+            QLineEdit* lineEdit = lineList[i];
+            QLabel* label = sList[i];
+
+            lineEdit->setVisible(false);
+            label->setVisible(true);
+            label->setText(lineEdit->text());
+        }
+    }
+    counter++;
 }

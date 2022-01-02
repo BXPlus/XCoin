@@ -22,7 +22,6 @@ find_package(gRPC CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
 
 add_executable(xblockchain-tests src/XBlockchain/tests/xblockchain-tests.cpp)
-add_executable(xtricount TricountAlgo/Tricount.cpp TricountAlgo/Tricount.h)
 add_executable(xnode-tests src/XNode/tests/xnode-tests.cpp)
 add_library(xblockchain-lib src/XBlockchain/block.h src/XBlockchain/block.cpp src/XBlockchain/Blockchain.cpp src/XBlockchain/Blockchain.h src/XBlockchain/sha256.cpp src/XBlockchain/sha256.h src/XBlockchain/bignumber.cpp src/XBlockchain/bignumber.h src/XBlockchain/transaction.cpp src/XBlockchain/transaction.h src/XBlockchain/wallet.cpp src/XBlockchain/wallet.h src/XBlockchain/transactionPool.cpp src/XBlockchain/transactionPool.h)
 add_executable(xnode src/XNode/main.cpp src/XNode/node.h src/XNode/node.cpp src/XNode/interface.cpp src/XNode/interface.h src/XNode/keys.cpp src/XNode/keys.h src/XNode/blockchain.pb.h src/XNode/blockchain.pb.cc src/XNode/blockchain.grpc.pb.cc src/XNode/blockchain.grpc.pb.h src/XNode/archive.cpp src/XNode/archive.h)

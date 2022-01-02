@@ -13,8 +13,21 @@ This week:
 
 Next week:
 
-- I will perfect Tim's work on the contact page's style, and add style on most other pages.
+- I will perfect Tim's work on the contact page, and add style on most other pages.
 - I will try to set the function of the setting button "change theme" to switch between dark and light themes. This is not trivial since it's not possible to change the stylesheet file used from just a button toggle, so it requires manipulating parent and child widgets...
+
+@Tim
+
+This week:
+- I perfected the original work on the contact page made by Alex, as he was unable to work for about four days straight on the project due to an issue. Thus, I created the addcontact Dialog and made it functionnal. I also made it possible to edit the contact list and remove contacts from the scroll bar. 
+- I helped a lot with github this week, as I merged and handled the conflicts of most of the UI team's members code. I also helped set up the environment for Clara so that she could have something to work on. Finally, I helped merge the whole code from the frontend to the master branch, so that we can start connecting the backend with the UI work.
+- Furthermore, I connected the dark/light mode toggle so that there is a change of style once it is pressed. I also finalized the style of the settings page.
+- To finish, I implemented the balance page and set up the style as to have a tab widget which will come in handy moving forward in the project.
+
+Next week:
+- I will finish upgrading the settings page so that it is completely finished, meaning the user can edit the address and other arguments of the page.
+- I will continue my role as github master.
+- I will try and connect functions made from the API team and implement them with QT.
 
 @Picha 
 
@@ -31,13 +44,19 @@ I finish all my assigned tasks :
 
 I will try to fix the design issues of my page. I will also try to connect the line where the user inserts the amount of XCOIN they want with the line that summarizes their total amount before paying. I have to take into account the value of the currency as well.
 
-@Lio 
+
+@Lio
 
 **This week:**  
 
-waited for an assigned task 
+- Studied the UI code that was just merged with the master branch
+- Added two functions into `XNode/XNodeSDK.h`
 
-Studied the UI code that was just merged with the
+**Next week:**
+
+- Implement new properties & functions into `XNode/XNodeSDK.h`
+
+
 
 @Laura Galindo 
 

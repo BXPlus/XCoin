@@ -110,6 +110,19 @@ This week I started to do research on the wallet part of the coin and did some p
 
 This week I added the functions getPriv() and getPub() to Keys, and I understood the peer discovery principle and looked for a library for our system, unfortunately none of us did find one, so next week I will start (and finish) a peer discovery algorithm. I will also add new functions to Keys: keyFromPrivate(), keyFromPublic() and verify().
 
+@Youssef Chaabouni 
+
+This week:
+
+- Added the needed libraries
+- Fixed some errors with the code (functions in xBlockchain)
+- Added all the needed functions to the transaction file (so that the code compiles even if the small functions are not implemented, and we can easily assign tasks)
+
+Next week:
+
+- Continue the implementation of the function of the transaction and the transactionPool modules
+- Keep doing research about possible optimized implementations
+
 @Thang Long VU 
 
 - Achieved in this week (week 4)
@@ -125,3 +138,18 @@ This week I added the functions getPriv() and getPub() to Keys, and I understood
 - Plan for the next week (week 5)
     - Fix my configurations in order to compile my codes to fix bugs in transaction.h and transaction.cpp.
     - Write unit tests for the Transaction part.
+
+
+@Jean-Sebastien G. 
+
+This week:
+
+- I was working on implementing a mix of proof of stake and proof of work blockchain for our crypto currency (in the same way Decentralized finance cryptos work - example DFI). The idea was discarded as the blockchain for our current blockchain was already developed enough that “anchoring” our project to the etherium blockchain or Bitcoin blockchain would require us to use a blockchain not implemented by us… we this decided to focus on just the proof of stake crypto.
+- In previous projects I had developed a log in form and wanted to transform the JS script into a C++ script to help the front end team
+- I did not commit anything on hit hub this week because my ideas and projects turned out to not help the advance of the group and required more work
+
+Next week:
+
+Objective to finish the wallet implementation. 
+
+Write tests for the implementation of the wallet.
