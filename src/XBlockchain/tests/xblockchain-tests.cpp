@@ -158,7 +158,22 @@ TEST_F(XTransactionTests, testGetTransactionId){
 
 //testing signTxIn
 TEST_F(XTransactionTests, testSignTxIn) {
+    int txInIndex = 0;
+    std::string privateKey = "privateKey";
+    std::string address = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
+    std::string txInTxOutId = "txIn";
+    int txInTxOutIndex = 0;
+    TxIn txIn(txInTxOutId, txInTxOutIndex, std::pair<uint8_t*, uint32_t>());
+    transaction.txIns = std::vector<TxIn>{txIn};
 
+    UnspentTxOut UnspentTxOut1("0", txInTxOutIndex, "0", 0);
+    UnspentTxOut UnspentTxOut2(txInTxOutId, 1, "0", 0);
+    UnspentTxOut UnspentTxOut3("0", 1, "0", 0);
+    std::vector<UnspentTxOut> aUnspentTxOuts{UnspentTxOut1, UnspentTxOut2, UnspentTxOut3};
+
+    std::pair<uint8_t*, uint32_t> signature;
+    EXPECT_ANY_THROW(signature = transaction.signTxIn(txInIndex, privateKey, aUnspentTxOuts));
+    //TODO: Strengthen this test
 }
 
 
