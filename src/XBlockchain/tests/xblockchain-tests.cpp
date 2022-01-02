@@ -47,6 +47,7 @@ class XTransactionTests: public ::testing::Test{
 protected:
     Transaction transaction;
     UnspentTxOut unspenttxout;
+    TxIn txin;
     TxOut txout;
     void SetUp() override{
         transaction = Transaction();
@@ -54,6 +55,7 @@ protected:
                                     1,
                                     "address",
                                     0);
+        txin = TxIn("txOutId", 1, std::pair<uint8_t*, uint32_t>(0, 0));
         txout = TxOut("address", 0);
     }
 };
@@ -77,19 +79,30 @@ TEST_F(XTransactionTests, testTxOutInit){
 
 // Testing getTxInAmount
 TEST_F(XTransactionTests, testGetTxInAmount) {
+    std::string transactionId = "transactionId";
+    int index = 123;
+    UnspentTxOut UnspentTxOut1("0", index, "0", 0);
+    UnspentTxOut UnspentTxOut2(transactionId, 1, "0", 0);
+    UnspentTxOut UnspentTxOut3("0", 1, "0", 0);
 
-}
+    std::vector<UnspentTxOut> aUnspentTxOuts{UnspentTxOut1, UnspentTxOut2, UnspentTxOut3};
 
+    UnspentTxOut UnspentTxOut4(transactionId, index, "0", 201);
+    aUnspentTxOuts.push_back(UnspentTxOut4);
+    std::pair<bool, UnspentTxOut> ans;
 
-// Initialisation test: first constructor of TxIn has the right initialisation
-TEST_F(XTransactionTests, testTxInInitNoArgs){
+    ans = findUnspentTxOut(transactionId, index, aUnspentTxOuts);
+    EXPECT_EQ(ans.second.amount, 201);
 
+    UnspentTxOut UnspentTxOut5(transactionId, index, "0", 202);
+    aUnspentTxOuts.push_back(UnspentTxOut5);
+    ans = findUnspentTxOut(transactionId, index, aUnspentTxOuts);
+    EXPECT_EQ(ans.second.amount, 201);
 }
 
 
 // Initialisation test: second constructor of TxIn has the right initialisation
 TEST_F(XTransactionTests, testTxInInit){
-
 }
 
 
@@ -108,6 +121,11 @@ TEST_F(XTransactionTests, testGetTransactionId){
     transaction.txOuts = std::vector<TxOut>{txOut1, txOut2};
     transaction.id = transaction.getTransactionId();
     EXPECT_EQ(transaction.id, sha256(ans));
+}
+
+
+// Testing validateTxIn
+TEST_F(XTransactionTests, testValidateTxIn) {
 }
 
 
@@ -186,16 +204,18 @@ TEST(findUnspentTxOut, testFindUnspentTxOut) {
     UnspentTxOut UnspentTxOut3("0", 1, "0", 0);
 
     std::vector<UnspentTxOut> aUnspentTxOuts{UnspentTxOut1, UnspentTxOut2, UnspentTxOut3};
-    std::pair<bool, UnspentTxOut> res1 = findUnspentTxOut(transactionId, index, aUnspentTxOuts);
+    std::pair<bool, UnspentTxOut> res;
+
+    res = findUnspentTxOut(transactionId, index, aUnspentTxOuts);
     UnspentTxOut tmpUnspentTxOut = UnspentTxOut("", 0, "", 0);
-    EXPECT_EQ(res1.first, 0);
-    EXPECT_EQ((res1.second == tmpUnspentTxOut), 1);
+    EXPECT_EQ(res.first, 0);
+    EXPECT_EQ((res.second == tmpUnspentTxOut), 1);
 
     UnspentTxOut UnspentTxOut4(transactionId, index, "0", 0);
     aUnspentTxOuts.push_back(UnspentTxOut4);
-    std::pair<bool, UnspentTxOut> res2 = findUnspentTxOut(transactionId, index, aUnspentTxOuts);
-    EXPECT_EQ(res2.first, 1);
-    EXPECT_EQ((res2.second == UnspentTxOut4), 1);
+    res = findUnspentTxOut(transactionId, index, aUnspentTxOuts);
+    EXPECT_EQ(res.first, 1);
+    EXPECT_EQ((res.second == UnspentTxOut4), 1);
 }
 
 

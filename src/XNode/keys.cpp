@@ -163,7 +163,7 @@ std::pair<uint8_t*, uint32_t> sign(std::string prv, std::string dataToSign){
         std::cout << "An error has occured when signing the data" << std::endl;
     }
 
-    return std::make_pair(signature, signature_len);
+    return std::pair<uint8_t*, uint32_t>(signature, signature_len);
 
 }
 

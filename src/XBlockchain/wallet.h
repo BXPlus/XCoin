@@ -3,12 +3,12 @@
 // Created by youssef on 12/5/21.
 //
 
+#ifndef XBLOCKCHAIN_WALLET_H
+#define XBLOCKCHAIN_WALLET_H
+
 #include "transaction.h"
 #include "keys.h"
 #include "archive.h"
-
-#ifndef XBLOCKCHAIN_WALLET_H
-#define XBLOCKCHAIN_WALLET_H
 
 
 class Wallet {
