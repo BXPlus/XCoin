@@ -272,11 +272,37 @@ TEST(findUnspentTxOut, testFindUnspentTxOut) {
 
 //testing updateUnspentTxOuts
 TEST(updateUnspentTxOuts, testUpdateUnspentTxOuts) {
+    TxIn txIn("txIn", 0, std::pair<uint8_t*, uint32_t>());
+    TxOut txOut("txOut", 50);
+    Transaction transaction;
+    transaction.txIns = std::vector<TxIn>{};
+    transaction.txOuts = std::vector<TxOut>{txOut};
+    transaction.id = transaction.getTransactionId();
+
+    UnspentTxOut UnspentTxOut1("0", 0, "0", 0);
+    UnspentTxOut UnspentTxOut2("txOut", 1, "0", 0);
+    UnspentTxOut UnspentTxOut3("0", 1, "0", 0);
+
+    std::vector<UnspentTxOut> aUnspentTxOuts{UnspentTxOut1, UnspentTxOut2, UnspentTxOut3};
+    std::vector<Transaction> aTransactions{transaction};
+
+    EXPECT_EQ(updateUnspentTxOuts(aTransactions, aUnspentTxOuts).size(), 4);
+    //TODO:Strengthen this test
 }
 
 
 //testing isValidTxInStructure
 TEST(isValidTxInStructure, testIsValidTxInStructure) {
+    TxIn txIn1;
+    EXPECT_EQ(isValidTxInStructure(txIn1), 0);
+
+    TxIn txIn2("txIn1", 1, std::pair<uint8_t*, uint32_t>());
+    EXPECT_EQ(isValidTxInStructure(txIn2), 0);
+
+    uint8_t signature[11] = { 0 };
+    TxIn txIn3("txIn1", 1, std::pair<uint8_t*, uint32_t>(signature, 1));
+    EXPECT_EQ(isValidTxInStructure(txIn2), 0);
+    //TODO:Strengthen this test
 }
 
 

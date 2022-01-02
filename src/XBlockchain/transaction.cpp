@@ -470,11 +470,7 @@ bool isValidAddress(std::string address) {
 
 
 bool isValidTxOutStructure(TxOut txOut) {
-    if ((&txOut) == nullptr) {
-        std::cout << "txOut is null";
-        return false;
-    }
-    else if (typeid(txOut.address) != typeid("String")) {
+    if (typeid(txOut.address) != typeid("String")) {
         std::cout << "invalid address type in txOut";
         return false;
     }
