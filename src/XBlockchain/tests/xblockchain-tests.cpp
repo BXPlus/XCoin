@@ -179,7 +179,15 @@ TEST_F(XTransactionTests, testSignTxIn) {
 
 //testing validateTransaction
 TEST_F(XTransactionTests, testValidateTransaction) {
+    std::string transactionId = "transactionId";
+    int index = 123;
+    UnspentTxOut UnspentTxOut1("0", index, "0", 0);
+    UnspentTxOut UnspentTxOut2(transactionId, 1, "0", 0);
+    UnspentTxOut UnspentTxOut3("0", 1, "0", 0);
 
+    std::vector<UnspentTxOut> aUnspentTxOuts{UnspentTxOut1, UnspentTxOut2, UnspentTxOut3};
+    EXPECT_EQ(transaction.validateTransaction(aUnspentTxOuts), 0);
+    //TODO: Strengthen this test
 }
 
 
