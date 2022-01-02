@@ -219,6 +219,12 @@ TEST(findUnspentTxOut, testFindUnspentTxOut) {
     res = findUnspentTxOut(transactionId, index, aUnspentTxOuts);
     EXPECT_EQ(res.first, 1);
     EXPECT_EQ((res.second == UnspentTxOut4), 1);
+
+    UnspentTxOut UnspentTxOut5(transactionId, index, "0", 1);
+    aUnspentTxOuts.push_back(UnspentTxOut5);
+    res = findUnspentTxOut(transactionId, index, aUnspentTxOuts);
+    EXPECT_EQ(res.first, 1);
+    EXPECT_EQ((res.second == UnspentTxOut4), 1);
 }
 
 
