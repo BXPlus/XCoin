@@ -103,6 +103,9 @@ TEST_F(XTransactionTests, testGetTxInAmount) {
 
 // Initialisation test: second constructor of TxIn has the right initialisation
 TEST_F(XTransactionTests, testTxInInit){
+    EXPECT_EQ(txin.txOutId, "txOutId");
+    EXPECT_EQ(txin.txOutIndex, 1);
+    EXPECT_EQ((txin.signature == std::pair<uint8_t*, uint32_t>(0, 0)), 1);
 }
 
 
