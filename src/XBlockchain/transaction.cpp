@@ -3,6 +3,7 @@
 #include <regex>
 #include <set>
 #include <cstring>
+/*
 // Delete later zone
 Keys::Keys(){
 
@@ -195,7 +196,7 @@ bool verify(std::pair<uint8_t*, uint32_t> signature, std::string pub_key, std::s
     return verification;
 }
 // Delete later zone
-
+*/
 const int COINBASE_AMOUNT = 50;
 
 
