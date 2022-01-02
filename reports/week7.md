@@ -66,3 +66,22 @@ I will continuing working on the interface with the network part and the UI and 
 @Picha
 
 This week, I finished my assigned job on Front-End. I started the Tricount algorithm. 
+
+@Thang Long VU
+
+This week:
+
+- Finished unit tests for all functions:
+    - getTxInAmount (https://github.com/BXPlus/XCoin/commit/bf9c2ec50b87c5c0e7aaf0c0e72d6ee20aff920c)
+    - Second constructor of TxIn (https://github.com/BXPlus/XCoin/commit/a1c02ebb39f13f71d6efc765c06c26e17120d782)
+    - Added more tests for findUnspentTxOut (https://github.com/BXPlus/XCoin/commit/6e5ed7ece329152a782aaa61ce7b9011d48e389d)
+    - validateTxIn (https://github.com/BXPlus/XCoin/commit/3932c9b2c183649565e9e3066208336d9e9c39bc)
+    - signTxIn (https://github.com/BXPlus/XCoin/commit/f9d3fcea4fb716ebebce4720e5b26e8c6492d0f6)
+    - validateTransaction (https://github.com/BXPlus/XCoin/commit/c2bd44d08dce1456e47aa55180e8d6358c65b0f5)
+    - validateBlockTransactions (https://github.com/BXPlus/XCoin/commit/268cd2809a81ebe0b2cbea4d9359445c21b9ae0b)
+    - isValidTxOutStructure (https://github.com/BXPlus/XCoin/commit/c7a351e5ca15b1f921831375aa1770deeeb7319d)
+    - updateUnspentTxOuts (https://github.com/BXPlus/XCoin/commit/507eb74ff2cb6e5cba904af436bbccaef892168b)
+  
+Next week:
+
+- Strengthening some remaining tests and recheck all the transaction-related codes.

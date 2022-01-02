@@ -18,11 +18,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62685c25-6d0e-4f4d-a4d8-ee5ced8bb340" name="Changes" comment="- Added tests for updateUnspentTxOuts.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="62685c25-6d0e-4f4d-a4d8-ee5ced8bb340" name="Changes" comment="- Comment out Keys implementation in transaction.">
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XBlockchain/transaction.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/transaction.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XBlockchain/transaction.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/transaction.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/week7.md" beforeDir="false" afterPath="$PROJECT_DIR$/reports/week7.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XNode/keys.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/keys.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,7 +79,7 @@
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/XNode/keys.h" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/reports/week7.md" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="CMakeSettings" />
   </component>
@@ -231,7 +229,7 @@
       <workItem from="1639324179715" duration="4000" />
       <workItem from="1639399172832" duration="52000" />
       <workItem from="1639399310632" duration="4199000" />
-      <workItem from="1641101618857" duration="20548000" />
+      <workItem from="1641101618857" duration="20850000" />
     </task>
     <task id="LOCAL-00001" summary="Adding test to validateCoinbaseTx.">
       <created>1639337790483</created>
@@ -352,7 +350,21 @@
       <option name="project" value="LOCAL" />
       <updated>1641122160963</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="- Comment out Keys implementation in transaction.">
+      <created>1641122234223</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1641122234223</updated>
+    </task>
+    <task id="LOCAL-00019" summary="- Comment out Keys implementation in transaction.">
+      <created>1641122240469</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1641122240469</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -385,7 +397,8 @@
     <MESSAGE value="- Added tests for validateBlockTransactions." />
     <MESSAGE value="- Added tests for isValidTxOutStructure." />
     <MESSAGE value="- Added tests for updateUnspentTxOuts." />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added tests for updateUnspentTxOuts." />
+    <MESSAGE value="- Comment out Keys implementation in transaction." />
+    <option name="LAST_COMMIT_MESSAGE" value="- Comment out Keys implementation in transaction." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
