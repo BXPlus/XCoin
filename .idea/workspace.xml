@@ -18,11 +18,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62685c25-6d0e-4f4d-a4d8-ee5ced8bb340" name="Changes" comment="- Added tests for isValidTxOutStructure.">
+    <list default="true" id="62685c25-6d0e-4f4d-a4d8-ee5ced8bb340" name="Changes" comment="- Added tests for updateUnspentTxOuts.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XBlockchain/tests/xblockchain-tests.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/tests/xblockchain-tests.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XBlockchain/transaction.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/transaction.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/XBlockchain/transaction.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/transaction.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XNode/keys.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/keys.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -231,7 +231,7 @@
       <workItem from="1639324179715" duration="4000" />
       <workItem from="1639399172832" duration="52000" />
       <workItem from="1639399310632" duration="4199000" />
-      <workItem from="1641101618857" duration="20476000" />
+      <workItem from="1641101618857" duration="20548000" />
     </task>
     <task id="LOCAL-00001" summary="Adding test to validateCoinbaseTx.">
       <created>1639337790483</created>
@@ -338,7 +338,21 @@
       <option name="project" value="LOCAL" />
       <updated>1641121410502</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="- Added tests for updateUnspentTxOuts.">
+      <created>1641122152227</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1641122152227</updated>
+    </task>
+    <task id="LOCAL-00017" summary="- Added tests for updateUnspentTxOuts.">
+      <created>1641122160963</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1641122160963</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -370,7 +384,8 @@
     <MESSAGE value="- Added tests for isValidTransactionStructure." />
     <MESSAGE value="- Added tests for validateBlockTransactions." />
     <MESSAGE value="- Added tests for isValidTxOutStructure." />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added tests for isValidTxOutStructure." />
+    <MESSAGE value="- Added tests for updateUnspentTxOuts." />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added tests for updateUnspentTxOuts." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
