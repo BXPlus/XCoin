@@ -240,12 +240,6 @@ TEST_F(XTransactionTests, testValidateCoinbaseTx) {
 }
 
 
-//Initialisation test: TxOut has the right initialisation
-TEST_F(XTransactionTests, testInitTransaction) {
-
-}
-
-
 //testing findUnspentTxOut
 TEST(findUnspentTxOut, testFindUnspentTxOut) {
     std::string transactionId = "transactionId";
@@ -316,6 +310,13 @@ TEST(isValidAddressTest, testIsValidAddress04) {
 
 //testing isValidTxOutStructure
 TEST(isValidTxInStructure, testIsValidTxOutStructure) {
+    TxOut txOut1;
+    EXPECT_EQ(isValidTxOutStructure(txOut1), 0);
+    TxOut txOut2("txOut", 50);
+    EXPECT_EQ(isValidTxOutStructure(txOut2), 0);
+    std::string address = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
+    TxOut txOut3(address, 50);
+    EXPECT_EQ(isValidTxOutStructure(txOut3), 0);
 }
 
 
@@ -377,6 +378,24 @@ TEST(validateBlockTransactions, testValidateBlockTransactions) {
 
 //testing processTransactions
 TEST(processTransactions, testProcessTransactions) {
+    std::string ans = "";
+    int COINBASE_AMOUNT = 50;
+    int blockIndex = 1;
+
+    TxIn txIn("txIn", blockIndex, std::pair<uint8_t*, uint32_t>());
+    TxOut txOut("txOut", COINBASE_AMOUNT);
+    Transaction transaction;
+    transaction.txIns = std::vector<TxIn>{txIn};
+    transaction.txOuts = std::vector<TxOut>{txOut};
+    transaction.id = transaction.getTransactionId();
+
+    //invalid coinbase tx id
+    std::string id = transaction.id;
+    transaction.id[0] = '+';
+    std::vector<Transaction> aTransactions{transaction};
+    std::vector<UnspentTxOut> aUnspentTxOuts;
+    EXPECT_EQ(processTransactions(aTransactions, aUnspentTxOuts, 0).size(), 0);
+    //TODO: Strengthen this test
 }
 
 /*
