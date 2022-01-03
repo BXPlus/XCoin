@@ -18,6 +18,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     paycontactdialog.cpp \
+    switch.cpp \
     settingswidget.cpp
 
 HEADERS += \
@@ -29,6 +30,7 @@ HEADERS += \
     logindialog.h \
     mainwindow.h \
     paycontactdialog.h \
+    switch.h \
     settingswidget.h
 
 FORMS += \

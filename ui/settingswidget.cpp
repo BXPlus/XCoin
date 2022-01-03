@@ -72,9 +72,9 @@ SettingsWidget::SettingsWidget(QWidget *parent) : QWidget(parent)
             layout->addWidget(lineEdit, 0, Qt::AlignRight);
         }
         else {
-//            ToggleBtn* btn = new ToggleBtn(10, 10, this);
-//            bList.append(btn);
-//            layout->addWidget(btn, 0, Qt::AlignRight);
+            Switch* btn = new Switch(this);
+            bList.append(btn);
+            layout->addWidget(btn, 0, Qt::AlignRight);
         }
         label->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 
@@ -87,8 +87,8 @@ SettingsWidget::SettingsWidget(QWidget *parent) : QWidget(parent)
 
     setLayout(mainLayout);
 
-    // connect(bList[0], SIGNAL(clicked(bool)), this, SLOT(flnode_state()));
-    // connect(bList[1], SIGNAL(clicked(bool)), this, SLOT(appearance_state()));
+    connect(bList[0], SIGNAL(clicked(bool)), this, SLOT(flnode_state()));
+    connect(bList[1], SIGNAL(clicked(bool)), this, SLOT(appearance_state()));
 }
 
 void SettingsWidget::flnode_state()
