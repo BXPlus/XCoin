@@ -267,3 +267,9 @@ QWidget#ScrollBox {
     background-color: rgb(230, 242, 247);
     border-radius: 15px;
 }
+
+QLabel#payContactDialogTitle {
+    font: bold large;
+    font-size: 20px;
+    color: black;
+}

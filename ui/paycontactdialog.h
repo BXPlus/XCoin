@@ -14,6 +14,7 @@ class payContactDialog : public QDialog
 public:
     explicit payContactDialog(QString publicKey, QWidget *parent = nullptr);
     ~payContactDialog();
+
 private:
     QVBoxLayout* mainLayout;
     QGridLayout* numberInputLayout;
@@ -23,7 +24,9 @@ private:
     QLineEdit* amountEnter;
     QString* toKey;
     QLabel* title;
+    QLabel* enterPriceText;
     QList<QPushButton>* digitBtnList;
+
 private slots:
     void closed();
     void pay();

@@ -236,11 +236,11 @@ void ContactsWidget::contactSearchEdit(){
     QString* text = new QString(contactSearch->text().toLower());
     QMap<QString, QString> tempContacts;
     deleteWidgets();
-//    for (auto e : contactDict.keys()){
-//        if (e.toLower().contains(text) || contactDict.value(e).contains(text)){
-//            tempContacts[e] = contactDict.value(e);
-//        }
-//    }
+    for (auto e : contactDict.keys()){
+        if (e.toLower().contains(*text) || contactDict.value(e).contains(*text)){
+            tempContacts[e] = contactDict.value(e);
+        }
+    }
     createDictionary(tempContacts);
 }
 

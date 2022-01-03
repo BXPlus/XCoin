@@ -7,8 +7,6 @@
 #include <QLabel>
 #include <QDir>
 #include <QCloseEvent>
-#include <QFontDatabase>
-
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -149,12 +147,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::go_home()
 {
     contentContainer->setCurrentIndex(0);
-}
-void MainWindow::on_pushButton_clicked()
-{
-    PaymentDialog payment_window;
-    payment_window.setModal(true);
-    payment_window.exec();
 }
 
 void MainWindow::toggleStyleSheet(){
