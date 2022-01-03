@@ -150,12 +150,6 @@ void MainWindow::go_home()
 {
     contentContainer->setCurrentIndex(0);
 }
-void MainWindow::on_pushButton_clicked()
-{
-    PaymentDialog payment_window;
-    payment_window.setModal(true);
-    payment_window.exec();
-}
 
 void MainWindow::toggleStyleSheet(){
     if (style == 0) {

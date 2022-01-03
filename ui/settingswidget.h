@@ -7,6 +7,7 @@
 #include <QComboBox>
 #include <QScrollArea>
 #include <QLineEdit>
+#include "switch.h"
 
 class SettingsWidget : public QWidget
 {

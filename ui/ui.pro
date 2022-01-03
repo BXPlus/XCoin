@@ -18,10 +18,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     paycontactdialog.cpp \
-    settingswidget.cpp \
-    togglebtn.cpp \
-    paymentdialog.cpp \
-    purchase_xcoin.cpp
+    switch.cpp \
+    settingswidget.cpp
 
 HEADERS += \
     addcontactdialog.h \
@@ -32,10 +30,8 @@ HEADERS += \
     logindialog.h \
     mainwindow.h \
     paycontactdialog.h \
-    settingswidget.h \
-    togglebtn.h \
-    paymentdialog.h \
-    purchase_xcoin.h
+    switch.h \
+    settingswidget.h
 
 FORMS += \
     mainwindow.ui
@@ -46,7 +42,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    Montserrat-Bold.ttf \
     style.qss \
     styleLight.qss
 
