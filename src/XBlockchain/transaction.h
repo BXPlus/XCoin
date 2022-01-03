@@ -76,7 +76,6 @@ bool verify(std::pair<uint8_t*, uint32_t> signature, std::string pub_key, std::s
  */
 
 //Delete later zone
-*/
 class UnspentTxOut {
 public:
     std::string txOutId;

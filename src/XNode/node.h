@@ -62,7 +62,6 @@ namespace xcoin{
         const std::string XNODE_BLOCKCHAIN_SAVE_PATH = "localchain.xnodebackup";
         ::grpc::Status DNSSyncPeerList(::grpc::ServerContext *context, const ::xcoin::interchange::DNSHandshake *request, ::xcoin::interchange::DNSHandshake *response) override;
         ::grpc::Status Ping(::grpc::ServerContext *context, const ::xcoin::interchange::PingHandshake *request, ::xcoin::interchange::PingHandshake *response) override;
-        ::grpc::Status NotifyPeerChange(::grpc::ServerContext *context, const ::xcoin::interchange::DNSEntry *request, ::xcoin::interchange::DNSEntry *response) override;
         ::grpc::Status PingPongSync(::grpc::ServerContext *context, const ::xcoin::interchange::PingPong *request, ::xcoin::interchange::PingPong *response) override;
         ::grpc::Status HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::interchange::GetHeaders *request, ::xcoin::interchange::Headers* response) override;
         ::grpc::Status GetBlockchainFromHeight(::grpc::ServerContext *context, const ::xcoin::interchange::GetBlockchainFromHeightRequest *request, ::xcoin::interchange::Blockchain *response) override;

@@ -18,16 +18,18 @@ void Archive::saveData(const std::string& encodedData) {
     ofs.close();
 }
 
-//std::string Archive::loadData() {
-//  std::string res;
-//   std::ifstream ifs(this->localPath);
-// ifs >> res;
-//  return res;
-//}
+std::string Archive::loadData() {
+  std::string res;
+   std::ifstream ifs(this->localPath);
+ ifs >> res;
+  return res;
+}
 
+//TODO: LIO needs to redo this
+/*
 std::string Archive::loadData() {
     std::ifstream ifs(this->localPath);
     std::ostringstream sstr;
     sstr << ifs.rdbuf();
     return sstr.str();
-}
+}*/

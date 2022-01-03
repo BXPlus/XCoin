@@ -135,13 +135,7 @@ xcoin::Node::DNSSyncPeerList(::grpc::ServerContext *context, const ::xcoin::inte
 * Callback function executed by gRPC to process incoming peer change notifications from peers
 * Handles new peer data and sends back to confirm
 */
-::grpc::Status
-xcoin::Node::NotifyPeerChange(::grpc::ServerContext *context, const ::xcoin::interchange::DNSEntry *request,
-                              ::xcoin::interchange::DNSEntry *response) {
-    this->handleIncomingPeerData(*request);
-    response->CopyFrom(*request);
-    return ::grpc::Status::OK;
-}
+// TODO: Add back here
 
 ::grpc::Status xcoin::Node::PingPongSync(::grpc::ServerContext *context, const ::xcoin::interchange::PingPong *request,
                                          ::xcoin::interchange::PingPong *response) {
@@ -395,8 +389,9 @@ bool xcoin::Node::handleIncomingPeerData(const xcoin::interchange::DNSEntry &rem
                 ::grpc::ClientContext context;
                 xcoin::interchange::DNSEntry notificationRequest;
                 xcoin::interchange::DNSEntry notificationReply;
-                this->peers[remotePeer.ipport()].controlStub->NotifyPeerChange(&context, notificationRequest,
-                                                                         &notificationReply);
+                //this->peers[remotePeer.ipport()].controlStub->NotifyPeerChange(&context, notificationRequest,
+                //                                                         &notificationReply);
+                // TODO: Add back notify here
                 spdlog::debug("Notified peer about additional details for " + remotePeer.ipport());
             } //TODO: Else ask peer directly for its details
         }
@@ -438,7 +433,7 @@ std::string xcoin::Node::generate_jwt(const std::string& public_id) {
         .set_issued_at(std::chrono::system_clock::now())
         .set_expires_at(std::chrono::system_clock::now() + std::chrono::hours(1))       /* the token expires after one hour */
         .set_payload_claim("public_id", jwt::claim(jwt::picojson_traits::value_type(public_id)))        /* peer's public address */
-        .set_payload_claim("last_hash", jwt::claim(jwt::picojson_traits::value_type(this->tail->hash)))     /* hash of the last block in the chain */
+        .set_payload_claim("last_hash", jwt::claim(jwt::picojson_traits::value_type(this->blockchain.tail->block.hash)))     /* hash of the last block in the chain */
         // SIGNATURE
         .sign(jwt::algorithm::hs256(JWT_SECRET));
 }
@@ -466,13 +461,8 @@ bool xcoin::Node::verify_jwt(const std::string& jwt, const std::string& public_i
     if (decoded.get_payload_claims().find("last_hash") == decoded.get_payload_claims().end()) {
         return false;
     }
-    if (decoded.get_payload_claims().at("last_hash").as_string() != this->tail->hash) {
+    if (decoded.get_payload_claims().at("last_hash").as_string() != this->blockchain.tail->block.hash) {
         return false;
     }
     return true;
-}
-
-int main() {
-    auto tok = generate_jwt("kar");
-    std::cout << verify_jwt(tok, "kar");
 }
