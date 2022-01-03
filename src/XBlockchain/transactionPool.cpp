@@ -8,13 +8,11 @@ std::vector<Transaction> getTransactionPool() {
     return transactionPool;
 }
 
-/*
 Transaction sendTransaction(std::string address, int amount) {
     Transaction tx = createTransaction(address, amount, getPrivateFromWallet(), getUnspentTxOuts(), getTransactionPool());
     addToTransactionPool(tx, getUnspentTxOuts());
     return tx;
 }
-*/
 
 bool isValidTxForPool(Transaction tx, std::vector<Transaction> aTransactionPool)
 {

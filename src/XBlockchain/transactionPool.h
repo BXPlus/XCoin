@@ -10,7 +10,7 @@ std::vector<Transaction> transactionPool;
 
 std::vector<Transaction> getTransactionPool();
 
-//Transaction sendTransaction(std::string address, int amount);
+Transaction sendTransaction(std::string address, int amount);
 
 bool isValidTxForPool(Transaction tx, std::vector<Transaction> aTransactionPool);
 
