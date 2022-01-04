@@ -28,6 +28,7 @@ SettingsWidget::SettingsWidget(QWidget *parent) : QWidget(parent)
     editBtn = new QPushButton("Edit", this);
     editBtn->setObjectName("menuBtn");
     editBtn->setMaximumSize(55, 45);
+    editBtn->setCursor(Qt::PointingHandCursor);
 
     connect(editBtn, SIGNAL(clicked(bool)), this, SLOT(edit_press()));
 

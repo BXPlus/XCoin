@@ -25,6 +25,8 @@ private:
     QString* toKey;
     QLabel* title;
     QLabel* enterPriceText;
+    QLabel* enterPayText;
+    QLineEdit* enterPay;
     QList<QPushButton>* digitBtnList;
 
 private slots:

@@ -1,11 +1,12 @@
 #include "paycontactdialog.h"
 #include <QDebug>
 #include <QAction>
+#include "balancewidget.h"
 
 payContactDialog::payContactDialog(QString publicKey, QWidget* parent) :
     QDialog(parent)
 {
-    this->setFixedSize(300, 200);
+    this->setFixedSize(300, 300);
     this->setStyleSheet("background-color: white;");
     toKey = new QString(publicKey);
     setWindowTitle("Pay");
@@ -16,14 +17,26 @@ payContactDialog::payContactDialog(QString publicKey, QWidget* parent) :
     title->setText(QString("Paying " + *toKey));
     title->setObjectName("payContactDialogTitle");
 
+    enterPayText = new QLabel(this);
+    enterPayText->setText(QString("Payment Object:"));
+    enterPayText->setStyleSheet("font-size: 15px;"
+                                "color: black;");
+
+    enterPay = new QLineEdit(this);
+    enterPay->setPlaceholderText(QString("Object..."));
+    enterPay->setStyleSheet("color: black;"
+                            "border: 1px solid gray;"
+                            "border-radius: 4px;");
+
     enterPriceText = new QLabel(this);
-    enterPriceText->setText(QString("Enter wire amount:"));
-    enterPriceText->setStyleSheet("font: italic;"
-                                  "font-size: 15px;"
+    enterPriceText->setText(QString("Wire Amount (XCoins)"));
+    enterPriceText->setStyleSheet("font-size: 15px;"
                                   "color: black;");
 
     amountEnter = new QLineEdit(this);
-    amountEnter->setStyleSheet("color: black;");
+    amountEnter->setStyleSheet("color: black;"
+                               "border: 1px solid gray;"
+                               "border-radius: 4px;");
 
 //    numberInputLayout = new QGridLayout();
 //    QPushButton* zeroBtn = new QPushButton("0", this);
@@ -62,6 +75,8 @@ payContactDialog::payContactDialog(QString publicKey, QWidget* parent) :
     connect(confirmBtn, &QPushButton::clicked, this, &payContactDialog::pay);
 
     mainLayout->addWidget(title);
+    mainLayout->addWidget(enterPayText);
+    mainLayout->addWidget(enterPay);
     mainLayout->addWidget(enterPriceText);
     mainLayout->addWidget(amountEnter);
     mainLayout->addLayout(bottomButtonsLayout);
@@ -75,7 +90,8 @@ void payContactDialog::closed(){
 }
 
 void payContactDialog::pay(){
-    qDebug() << "Paying" << amountEnter->text().toInt() << "XCoins" << "to" << *toKey;
+    qDebug() << "Paying" << amountEnter->text().toInt() << "XCoins" << "to" << *toKey << "for" << enterPay->text();
+    parentWidget()->parentWidget()->parentWidget()->findChild<BalanceWidget*>("BalanceWidget")->editBalanceDict(enterPay->text(), amountEnter->text());
     this->close();
 }
 

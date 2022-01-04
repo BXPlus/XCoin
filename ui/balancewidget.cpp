@@ -1,5 +1,6 @@
 #include "balancewidget.h"
 #include "mainwindow.h"
+#include <qdebug.h>
 
 BalanceWidget::BalanceWidget(QWidget *parent) : QWidget(parent)
 {
@@ -57,18 +58,6 @@ BalanceWidget::BalanceWidget(QWidget *parent) : QWidget(parent)
     layoutList[0]->addWidget(bWidget, 20, Qt::AlignTop);
 
     //Setup of balance history scroll area
-    typeList = {"Reimbursement from Tim", "Restaurant", "Hotel", "Commision",
-               "Lydia", "Bar", "SuperMarket", "Transaction Alex",
-               "Superette", "Boulangerie", "Wine Cellar", "CarWash",
-               "Online payment Nike", "Ikea Furniture"};
-    amountList = {"+ 20 XCoin", "-64.5 XCoin", "- 230 XCoin", "- 7.1 XCoin",
-                 "+ 36 XCoin", "- 12 XCoin", "- 189 XCoin", "+ 90 XCoin",
-                 "- 22.7 XCoin", "- 1.23 XCoin", "- 15 XCoin", "- 6 XCoin",
-                 "- 127 XCoin", "- 390 XCoin"};
-
-    for (int i = 0; i < typeList.length(); i++) {
-        balanceDict[typeList[i]] = amountList[i];
-    }
 
     scrollBalance = new QScrollArea(this);
     boxContainer = new QWidget(scrollBalance);
@@ -80,8 +69,32 @@ BalanceWidget::BalanceWidget(QWidget *parent) : QWidget(parent)
     balanceGrid->setSpacing(0);
     boxContainer->setObjectName("ScrollBox");
 
+    typeList = {"Reimbursement from Tim", "Restaurant", "Hotel", "Commision",
+                "Lydia", "Bar", "SuperMarket", "Transaction Alex",
+                "Superette", "Boulangerie", "Wine Cellar", "CarWash",
+                "Online payment Nike"};
+    typeList.append("Ikea Furniture");
+    amountList = {"+ 20 XCoin", "-64.5 XCoin", "- 230 XCoin", "- 7.1 XCoin",
+                  "+ 36 XCoin", "- 12 XCoin", "- 189 XCoin", "+ 90 XCoin",
+                  "- 22.7 XCoin", "- 1.23 XCoin", "- 15 XCoin", "- 6 XCoin",
+                  "- 127 XCoin", "- 390 XCoin"};
+    createDictionary();
+
+    layoutList[0]->addWidget(scrollBalance);
+    //Set main layouts
+    mainLayout->addWidget(tabWidget);
+    setLayout(mainLayout);
+}
+
+void BalanceWidget::createDictionary(){
+
+    for (int i = 0; i < typeList.length(); i++) {
+        balanceDict[typeList[i]] = amountList[i];
+    }
+
     for(auto e : balanceDict.keys())
     {
+
         QLabel* key = new QLabel;
         key->setText(e);
         QLabel* value = new QLabel;
@@ -101,9 +114,25 @@ BalanceWidget::BalanceWidget(QWidget *parent) : QWidget(parent)
         balanceGrid->addWidget(key, count, 0);
         balanceGrid->addWidget(value, count, 1);
     }
+}
 
-    layoutList[0]->addWidget(scrollBalance);
-    //Set main layouts
-    mainLayout->addWidget(tabWidget);
-    setLayout(mainLayout);
+void BalanceWidget::editBalanceDict(QString object, QString amount) {
+    deleteWidgets();
+    typeList.append(object);
+    amountList.append(QString("- "+amount+" XCoin"));
+    createDictionary();
+}
+
+void BalanceWidget::deleteWidgets() {
+    QLayoutItem* item;
+    while (balanceGrid->count() != 0) {
+        QLayoutItem* child = balanceGrid->takeAt(0);
+        if (child->layout() != 0) {
+            delete(child->layout());
+        }
+        else if (child->widget() != 0) {
+            delete(child->widget());
+        }
+        delete child;
+    }
 }

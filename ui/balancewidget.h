@@ -13,6 +13,11 @@ class BalanceWidget : public QWidget
     Q_OBJECT
 public:
     explicit BalanceWidget(QWidget *parent = nullptr);
+    void createDictionary();
+    void deleteWidgets();
+
+public slots:
+    void editBalanceDict(QString object, QString amount);
 private:
     QTabWidget* tabWidget;
     QVBoxLayout* mainLayout;
@@ -27,11 +32,10 @@ private:
     QList<QLabel*> labelList;
     QList<QString> typeList;
     QList<QString> amountList;
-
-    QGridLayout* balanceGrid;
     QWidget* boxContainer;
     QScrollArea* scrollBalance;
     QMap<QString, QString> balanceDict;
+    QGridLayout* balanceGrid;
 };
 
 #endif // BALANCEWIDGET_H
