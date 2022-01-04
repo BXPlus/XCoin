@@ -41,7 +41,7 @@ QLabel {
     color: white;
 }
 
-QSCrollArea {
+QScrollArea {
     border: none;
 }
 
@@ -182,31 +182,33 @@ QLabel#keyContacts1 {
     background-color: rgba(60, 72, 114, 255);
     padding: 20px;
     font: 15px;
-    border-radius: 25px;
+    border-radius: 15px;
     color: white;
-    margin-top: 15px;
     margin-left: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 QLabel#valueContacts1 {
-    color: black;
+    color: white;
     font-weight: bold;
     font: 15px;
     padding: 20px;
 }
 
 QLabel#keyContacts2 {
-    background-color: rgba(31,41,66,255);
+    background-color: rgba(42,55,88,255);
     padding: 20px;
     font: 15px;
-    border-radius: 25px;
+    border-radius: 15px;
     color: white;
-    margin-top: 15px;
     margin-left: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 QLabel#valueContacts2 {
-    color: black;
+    color: white;
     font-weight: bold;
     font: 15px;
     padding: 20px;
@@ -264,7 +266,7 @@ QLabel#BalanceLabel {
 }
 
 QWidget#ScrollBox {
-    background-color: rgb(230, 242, 247);
+    background-color: rgba(31,41,66,255);
     border-radius: 15px;
 }
 
