@@ -43,6 +43,7 @@ QLabel {
 
 QScrollArea {
     border: none;
+    background-color: rgba(31,41,66,255);
 }
 
 QScrollBar:vertical {
@@ -112,6 +113,7 @@ QLabel#settingslabel {
 
 QLabel#addContact {
     color: black;
+    font-size: 15px;
 }
 
 QPushButton#euro:hover {
@@ -267,7 +269,6 @@ QLabel#BalanceLabel {
 
 QWidget#ScrollBox {
     background-color: rgba(31,41,66,255);
-    border-radius: 15px;
 }
 
 QLabel#payContactDialogTitle {

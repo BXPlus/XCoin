@@ -4,12 +4,14 @@ addContactDialog::addContactDialog(QWidget *parent) :
     QDialog(parent)
 {
     setWindowTitle("Add Contact");
+    this->setStyleSheet("background-color: white;");
+    this->setFixedSize(200, 300);
 
     mainLayout = new QVBoxLayout(this);
     sList = {"First Name:", "Last Name", "Public Key:"};
 
     for (int i = 0; i < 3; i++) {
-        QHBoxLayout* layout = new QHBoxLayout();
+        QVBoxLayout* layout = new QVBoxLayout();
         layoutList.append(layout);
 
         QLabel* label = new QLabel(sList[i], this);
@@ -18,14 +20,26 @@ addContactDialog::addContactDialog(QWidget *parent) :
 
         QLineEdit* line = new QLineEdit();
         lineList.append(line);
+        line->setStyleSheet("color: black;"
+                                "border: 1px solid gray;"
+                                "border-radius: 4px;"
+                                "padding: 5px;"
+                                "margin-bottom: 5px;");
 
         layout->addWidget(label);
         layout->addWidget(line);
 
         mainLayout->addLayout(layout, 25);
     }
-    addBtn = new CustomButton("Done", this);
+    addBtn = new QPushButton("Done", this);
     addBtn->setObjectName("addContactBtn");
+    addBtn->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+    addBtn->setStyleSheet("color: white;"
+                                    "background-color: rgba(109, 223, 129, 255);"
+                                    "background-color: green;"
+                                    "border-radius: 4px;"
+                                    "padding: 5px;"
+                                    "margin-top: 5px;");
 
     connect(addBtn, SIGNAL(clicked(bool)), this, SLOT(closed()));
 

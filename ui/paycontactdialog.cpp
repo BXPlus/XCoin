@@ -26,7 +26,8 @@ payContactDialog::payContactDialog(QString publicKey, QWidget* parent) :
     enterPay->setPlaceholderText(QString("Object..."));
     enterPay->setStyleSheet("color: black;"
                             "border: 1px solid gray;"
-                            "border-radius: 4px;");
+                            "border-radius: 4px;"
+                            "padding: 5px;");
 
     enterPriceText = new QLabel(this);
     enterPriceText->setText(QString("Wire Amount (XCoins)"));
@@ -36,7 +37,9 @@ payContactDialog::payContactDialog(QString publicKey, QWidget* parent) :
     amountEnter = new QLineEdit(this);
     amountEnter->setStyleSheet("color: black;"
                                "border: 1px solid gray;"
-                               "border-radius: 4px;");
+                               "border-radius: 4px;"
+                               "padding: 5px;"
+                               "margin-bottom: 5px;");
 
 //    numberInputLayout = new QGridLayout();
 //    QPushButton* zeroBtn = new QPushButton("0", this);

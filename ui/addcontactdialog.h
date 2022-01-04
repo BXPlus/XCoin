@@ -5,7 +5,7 @@
 #include <QBoxLayout>
 #include <QLabel>
 #include <QLineEdit>
-#include "custombutton.h"
+#include <QPushButton>
 
 namespace Ui {
 class addContactDialog;
@@ -25,12 +25,12 @@ private slots:
     void closed();
 private:
     QVBoxLayout* mainLayout;
-    CustomButton* addBtn;
+    QPushButton* addBtn;
 
     QList<QString> sList;
     QList<QLabel*> labelList;
     QList<QLineEdit*> lineList;
-    QList<QHBoxLayout*> layoutList;
+    QList<QVBoxLayout*> layoutList;
 };
 
 #endif // ADDCONTACTDIALOG_H
