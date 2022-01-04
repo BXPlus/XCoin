@@ -7,6 +7,18 @@ The core goal of the project is to set up a functional and production-ready(ish)
 
 On top of this, we will dedicate 3 additional research teams for the **[front-end](https://www.notion.so/Front-end-2d92b9dc962b4269a3613306fb13fb99)**, which is the **app** that users will interact with, a **[security](https://www.notion.so/Security-5295c1f432e143409e7e6be7da20242b)** team to **harden** our implementation and an **[API](https://www.notion.so/API-fdbd7e831412431d85073d5bf83885b3)** team to enable third-parties to **integrate** our code easily in their applications.
 
+## Compiling & running the project
+> The project was authored and tested on the CLion IDE (2021.3). Other development tools should work given that they can load the cmake project and run the **xcoin-client** target.
+1. Make sure submodules have been cloned alongside the project (`vcpkg` and `googletest` directories shouldn't be empty). Run `git submodule update --init --recursive` if needed.
+2. Install **QT version 6.2.2** and replace the install path line 13 of CMakeLists.txt.
+3. Initialise *vcpkg* using the following steps:
+   1. Run `./vcpkg/bootstrap-vcpkg.sh` (`.\vcpkg\bootstrap-vcpkg.bat` on Windows)
+   2. Run `./vcpkg/vcpkg integrate install` (`.\vcpkg\vcpkg integrate install` on Windows)
+   3. Run `./vcpkg/vcpkg install` (`.\vcpkg\vcpkg install` on Windows)
+4. Load up the cmake project. Several targets such as *xcoin-client*, *xblockchain-lib* and *xnode-lib* should now be available.
+5. Compile and run the `xcoin-client` target, which will launch the UI client.
+
+
 ## Members (name surname, github username, notion username, role)
 
 - Cyrus Pellet, [cpellet](https://github.com/cpellet), Cyrus Pellet, leader
