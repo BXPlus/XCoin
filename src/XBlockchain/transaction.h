@@ -9,8 +9,8 @@
 #include <vector>
 #include "sha256.h"
 
-//#include "../XNode/keys.h"
-
+#include "keys.h"
+/*
 //Delete later zone
 #include <iostream>
 #include <cstdio>
@@ -65,7 +65,7 @@ std::pair<uint8_t*, uint32_t> sign(std::string priv_key, std::string dataToSign)
  *          - Second is the length of the signature
  */
 
-bool verify(std::pair<uint8_t*, uint32_t> signature, std::string pub_key, std::string id);
+//bool verify(std::pair<uint8_t*, uint32_t> signature, std::string pub_key, std::string id);
 /*
  * Verifies whether the signature has been signed by a given public key
  *      INPUTS:

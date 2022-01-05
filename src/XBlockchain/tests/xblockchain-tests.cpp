@@ -4,8 +4,9 @@
 
 #include "gtest/gtest.h"
 #include "../Blockchain.h"
-#include "../transaction.h"
-
+#include "transaction.h"
+//#include "keys.h"
+/*
 class XBlockchainCoreTests: public ::testing::Test{
 protected:
     Blockchain blockchain;
@@ -41,7 +42,7 @@ TEST_F(XBlockchainCoreTests, BlockchainAddBlock){
     EXPECT_EQ(blockchain.length, oldLength + 1);
     EXPECT_EQ(blockchain.difficulty , 0); // TODO: Make some more extensive tests for this when it works
 }
-
+*/
 
 class XTransactionTests: public ::testing::Test{
 protected:
@@ -111,12 +112,15 @@ TEST_F(XTransactionTests, testTxInInit){
 
 // Testing validateTxIn
 TEST(validateTxIn, testValidateTxIn) {
-    std::string transactionId = "transactionId";
     int index = 123;
-    std::string address = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
-    uint8_t signature_array[11] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    std::pair<uint8_t*, uint32_t> signature;
+    std::string priv = "2A6B3770D69EC60C918C97E645B81370B5D8213133C4DA4BDD5D70B25E006D1F";
+    std::string transactionId = "A string I want to use as the data to sign";
+    signature = sign(priv, transactionId);
 
-    TxIn txIn(transactionId, index, std::pair<uint8_t*, uint32_t>(signature_array, 11));
+    std::string address = keyFromPrivate(priv).getPub();
+
+    TxIn txIn(transactionId, index, signature);
 
     UnspentTxOut UnspentTxOut1("0", index, "0", 0);
     UnspentTxOut UnspentTxOut2(transactionId, 1, "0", 0);
@@ -124,17 +128,20 @@ TEST(validateTxIn, testValidateTxIn) {
     std::vector<UnspentTxOut> aUnspentTxOuts{UnspentTxOut1, UnspentTxOut2, UnspentTxOut3};
 
     bool res;
-    res = validateTxIn(txIn, "transactionId", aUnspentTxOuts);
-    EXPECT_EQ(res, 0);
+    res = validateTxIn(txIn, transactionId, aUnspentTxOuts);
+    EXPECT_EQ(res, 0);// "referenced txOut not found";
 
     UnspentTxOut UnspentTxOut4(transactionId, index, address, 0);
     aUnspentTxOuts.push_back(UnspentTxOut4);
     UnspentTxOut UnspentTxOut5(transactionId, index, address, 1);
     aUnspentTxOuts.push_back(UnspentTxOut5);
 
-    res = validateTxIn(txIn, "transactionId", aUnspentTxOuts);
-    EXPECT_EQ(res, 0);
-    //TODO: Strengthen this test
+    res = validateTxIn(txIn, transactionId, aUnspentTxOuts);
+    EXPECT_EQ(res, 1);
+
+    transactionId.pop_back();
+    res = validateTxIn(txIn, transactionId, aUnspentTxOuts);
+    EXPECT_EQ(res, 0); //"invalid txIn signature," << " txId: " << id << " address: " << address << "\n";
 }
 
 

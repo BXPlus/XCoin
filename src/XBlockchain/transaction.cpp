@@ -247,7 +247,7 @@ TxIn::TxIn(std::string txOutId, int txOutIndex, std::pair<uint8_t*, uint32_t> si
 bool validateTxIn(TxIn txIn, std::string id, std::vector<UnspentTxOut> aUnspentTxOuts) {
     std::pair<bool, UnspentTxOut> tmp = findUnspentTxOut(txIn.txOutId, txIn.txOutIndex, aUnspentTxOuts);
     if (tmp.first == NotFoundUnspentTxOut) {
-        std::cout << "referenced txOut not found";
+        std::cout << "referenced txOut not found\n";
         return false;
     }
     UnspentTxOut referencedUTxOut = tmp.second;
@@ -256,7 +256,7 @@ bool validateTxIn(TxIn txIn, std::string id, std::vector<UnspentTxOut> aUnspentT
     bool validSignature = verify(txIn.signature, address, id);
 
     if (!validSignature) {
-        std::cout << "invalid txIn signature: " << txIn.signature.first << " txId: " << id << " address: " << address << "\n";
+        std::cout << "invalid txIn signature," << " txId: " << id << " address: " << address << "\n";
         return false;
     }
     return true;
