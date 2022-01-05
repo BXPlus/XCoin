@@ -291,21 +291,6 @@ TEST(updateUnspentTxOuts, testUpdateUnspentTxOuts) {
 }
 
 
-//testing isValidTxInStructure
-TEST(isValidTxInStructure, testIsValidTxInStructure) {
-    TxIn txIn1;
-    EXPECT_EQ(isValidTxInStructure(txIn1), 0);
-
-    TxIn txIn2("txIn1", 1, std::pair<uint8_t*, uint32_t>());
-    EXPECT_EQ(isValidTxInStructure(txIn2), 0);
-
-    uint8_t signature[11] = { 0 };
-    TxIn txIn3("txIn1", 1, std::pair<uint8_t*, uint32_t>(signature, 1));
-    EXPECT_EQ(isValidTxInStructure(txIn2), 0);
-    //TODO:Strengthen this test
-}
-
-
 // Testing isValidAddress, checking the length of address
 TEST(isValidAddressTest, testIsValidAddressLength) {
     std::string Address = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";

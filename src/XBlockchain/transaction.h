@@ -9,8 +9,8 @@
 #include <vector>
 #include "sha256.h"
 
-#include "../XNode/keys.h"
-/*
+//#include "../XNode/keys.h"
+
 //Delete later zone
 #include <iostream>
 #include <cstdio>
@@ -135,8 +135,6 @@ public:
 std::pair<bool, UnspentTxOut> findUnspentTxOut(std::string transactionId, int index, std::vector<UnspentTxOut>& aUnspentTxOuts); //added test
 
 std::vector<UnspentTxOut> updateUnspentTxOuts(std::vector<Transaction> aTransactions, std::vector<UnspentTxOut> aUnspentTxOuts);
-
-bool isValidTxInStructure(TxIn txIn);
 
 bool isValidAddress(std::string address); //added test
 

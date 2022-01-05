@@ -3,7 +3,7 @@
 #include <regex>
 #include <set>
 #include <cstring>
-/*
+
 // Delete later zone
 Keys::Keys(){
 
@@ -196,7 +196,7 @@ bool verify(std::pair<uint8_t*, uint32_t> signature, std::string pub_key, std::s
     return verification;
 }
 // Delete later zone
-*/
+
 const int COINBASE_AMOUNT = 50;
 
 
@@ -333,29 +333,8 @@ bool Transaction::validateTransaction(std::vector<UnspentTxOut> aUnspentTxOuts) 
 
 
 bool Transaction::isValidTransactionStructure() {
-    if (typeid(id) != typeid("string")) {
-        std::cout << "transactionId missing";
-        return false;
-    }
-    if (typeid(txIns) != typeid(std::vector<TxIn>())) {
-        std::cout << "invalid txIns type in transaction";
-        return false;
-    }
 
     bool isValid = 1;
-    for (int i = 0; i < int(txIns.size()); i++)
-        isValid &= isValidTxInStructure(txIns[i]);
-
-    if (!isValid) {
-        std::cout << "invalid TxIns array";
-        return false;
-    }
-    if (typeid(txOuts) != typeid(std::vector<TxOut>())) {
-        std::cout << "invalid txOuts type in transaction";
-        return false;
-    }
-
-    isValid = 1;
     for (int i = 0; i < int(txOuts.size()); i++)
         isValid &= isValidTxOutStructure(txOuts[i]);
 
@@ -436,26 +415,6 @@ std::vector<UnspentTxOut> updateUnspentTxOuts(std::vector<Transaction> aTransact
 }
 
 
-bool isValidTxInStructure(TxIn txIn) {
-    if ((typeid(txIn.signature) != typeid(std::pair<uint8_t*, uint32_t>)) &&
-            (typeid(txIn.signature.first) != typeid(uint8_t*)) &&
-            (typeid(txIn.signature.second) !=typeid(uint32_t))) {
-        std::cout << "invalid signature type in txIn";
-        return false;
-    }
-    else if (typeid(txIn.txOutId) != typeid("string")) {
-        std::cout << "invalid txOutId type in txIn";
-        return false;
-    }
-    else if (typeid(txIn.txOutIndex) != typeid(0)) {
-        std::cout << "invalid txOutIndex type in txIn";
-        return false;
-    }
-    else
-        return true;
-}
-
-
 // valid address is a valid ecdsa public key in the 04 + X-coordinate + Y-coordinate format
 bool isValidAddress(std::string address) {
     if (int(address.length()) != 130) {
@@ -476,16 +435,8 @@ bool isValidAddress(std::string address) {
 
 
 bool isValidTxOutStructure(TxOut txOut) {
-    if (typeid(txOut.address) != typeid("String")) {
-        std::cout << "invalid address type in txOut";
-        return false;
-    }
-    else if (!isValidAddress(txOut.address)) {
+    if (!isValidAddress(txOut.address)) {
         std::cout << "invalid TxOut address";
-        return false;
-    }
-    else if (typeid(txOut.amount) != typeid(0)) {
-        std::cout << "invalid amount type in txOut";
         return false;
     }
     else

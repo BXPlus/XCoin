@@ -190,7 +190,6 @@ bool verify(std::pair<uint8_t*, uint32_t> signature, std::string pub_key, std::s
 
 
     int verification = ECDSA_verify(0, digest, SHA256_DIGEST_LENGTH, signature.first, signature.second, key);
-
     if (verification == -1){ //if there is an error
         std::cout << "An error has occurred when computing the correctness of the signature" << std::endl;
         return 0;
