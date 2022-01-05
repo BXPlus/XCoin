@@ -16,6 +16,8 @@ class Wallet {
 public:
     Wallet();
     std::string getPrivateFromWallet();
+    std::vector<UnspentTxOut> myUnspentTxOuts;
+    std::vector<UnspentTxOut> getUnspentTxOuts();
 
 private:
     Archive dataStorage = Archive("local.xnodekeys");
@@ -36,9 +38,7 @@ private:
 
     TransactionPool myTransactionPool;
     std::vector<Transaction> getTransactionPool();
-
-    std::vector<UnspentTxOut> myUnspentTxOuts;
-    std::vector<UnspentTxOut> Wallet::getUnspentTxOuts();
+    std::vector<TxIn> getTxPoolIns();
 };
 
 #endif //XBLOCKCHAIN_WALLET_H

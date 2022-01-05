@@ -92,8 +92,9 @@ std::vector<TxOut> Wallet::createTxOuts(std::string receiverAddress, std::string
     }
 }
 
-std::vector<TxIn> Wallet::getTxPoolIns(std::vector<Transaction> aTransactionPool)
+std::vector<TxIn> Wallet::getTxPoolIns()
 {
+    std::vector<Transaction> aTransactionPool = myTransactionPool.transactionPool;
     std::vector<TxIn> res;
     for (int i = 0; i < aTransactionPool.size(); i++){
         std::vector<TxIn> tx_txIns = aTransactionPool[i].txIns;
@@ -105,7 +106,7 @@ std::vector<TxIn> Wallet::getTxPoolIns(std::vector<Transaction> aTransactionPool
 std::vector<UnspentTxOut> Wallet::filterTxPoolTxs(std::vector<UnspentTxOut> unspentTxOuts, std::vector<Transaction> transactionPool)
 {
     std::vector<UnspentTxOut> newUnspentTxOuts;
-    std::vector<TxIn> txIns = getTxPoolIns(transactionPool);
+    std::vector<TxIn> txIns = getTxPoolIns();
     for (int i = 0; i < unspentTxOuts.size(); i++){
         UnspentTxOut unspentTxOut = unspentTxOuts[i];
         bool removable = true;

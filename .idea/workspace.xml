@@ -24,12 +24,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="Started implementing tests for the transactions.">
+    <list default="true" id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="Rearranged data structures of the wallet and transactionPool files and added the final function to send a transaction.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XBlockchain/Blockchain.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/Blockchain.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XBlockchain/transaction.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/transaction.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XBlockchain/transactionPool.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/transactionPool.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XBlockchain/transactionPool.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/transactionPool.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XBlockchain/wallet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/wallet.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XBlockchain/wallet.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/wallet.h" afterDir="false" />
@@ -100,6 +96,11 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.xblockchain-lib">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="XTransactionTests.testGetTransactionId" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="xblockchain" TARGET_NAME="xblockchain-tests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="xblockchain" RUN_TARGET_NAME="xblockchain-tests" TEST_CLASS="XTransactionTests" TEST_METHOD="testGetTransactionId" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -255,7 +256,7 @@
       <workItem from="1639399310632" duration="4199000" />
       <workItem from="1641101618857" duration="20850000" />
       <workItem from="1641306869287" duration="5089000" />
-      <workItem from="1641372676215" duration="2161000" />
+      <workItem from="1641372676215" duration="3973000" />
     </task>
     <task id="LOCAL-00001" summary="Adding test to validateCoinbaseTx.">
       <created>1639337790483</created>
@@ -390,7 +391,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641122240469</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Rearranged data structures of the wallet and transactionPool files and added the final function to send a transaction.">
+      <created>1641374953865</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1641374953865</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -425,7 +433,8 @@
     <MESSAGE value="- Added tests for isValidTxOutStructure." />
     <MESSAGE value="- Added tests for updateUnspentTxOuts." />
     <MESSAGE value="- Comment out Keys implementation in transaction." />
-    <option name="LAST_COMMIT_MESSAGE" value="- Comment out Keys implementation in transaction." />
+    <MESSAGE value="Rearranged data structures of the wallet and transactionPool files and added the final function to send a transaction." />
+    <option name="LAST_COMMIT_MESSAGE" value="Rearranged data structures of the wallet and transactionPool files and added the final function to send a transaction." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
