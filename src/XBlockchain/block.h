@@ -14,6 +14,8 @@ using std::chrono::milliseconds;
 using std::chrono::seconds;
 using std::chrono::system_clock;
 
+/*
+
 //Constants //Find somewhere to put this
 const int mintingWithoutCoinIndex = 100; //change this
 
@@ -64,4 +66,7 @@ std::string calculateMerkleHash(const std::string& previousMerkleRootHash, const
 bool isBlockStakingValid(std::string previousHash, std::string address, long long timestamp, int balance, int difficulty, int index); //Returns true if the block is valid for staking
 Block findBlock(int index, std::string previousHash, std::string previousHeaderHash, std::string previousMerkleHash, std::string data, int difficulty, int nonce);
 
+*/
+
 #endif //XCOIN_BLOCK_H
+

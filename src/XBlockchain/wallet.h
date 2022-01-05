@@ -16,8 +16,10 @@ class Wallet {
 public:
     Wallet();
     std::string getPrivateFromWallet();
+
     std::vector<UnspentTxOut> myUnspentTxOuts;
     std::vector<UnspentTxOut> getUnspentTxOuts();
+    void setUnspentTxOuts(std::vector<UnspentTxOut> unspentTxOuts);
 
 private:
     Archive dataStorage = Archive("local.xnodekeys");

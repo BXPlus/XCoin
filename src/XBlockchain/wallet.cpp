@@ -185,3 +185,9 @@ Transaction Wallet::sendTransaction(std::string address, int amount) {
     myTransactionPool.addToTransactionPool(tx, getUnspentTxOuts());
     return tx;
 }
+
+void Wallet::setUnspentTxOuts(std::vector<UnspentTxOut> unspentTxOuts) {
+    myUnspentTxOuts = unspentTxOuts;
+}
+
+

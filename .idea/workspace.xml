@@ -26,7 +26,10 @@
   <component name="ChangeListManager">
     <list default="true" id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="Rearranged data structures of the wallet and transactionPool files and added the final function to send a transaction.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XBlockchain/transactionPool.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/transactionPool.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/XBlockchain/Blockchain.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/Blockchain.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/XBlockchain/Blockchain.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/Blockchain.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/XBlockchain/block.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/block.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/XBlockchain/block.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/block.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XBlockchain/wallet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/wallet.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XBlockchain/wallet.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/wallet.h" afterDir="false" />
     </list>
@@ -256,7 +259,7 @@
       <workItem from="1639399310632" duration="4199000" />
       <workItem from="1641101618857" duration="20850000" />
       <workItem from="1641306869287" duration="5089000" />
-      <workItem from="1641372676215" duration="3973000" />
+      <workItem from="1641372676215" duration="7176000" />
     </task>
     <task id="LOCAL-00001" summary="Adding test to validateCoinbaseTx.">
       <created>1639337790483</created>
@@ -398,7 +401,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641374953865</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Rearranged data structures of the wallet and transactionPool files and added the final function to send a transaction.">
+      <created>1641376665541</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1641376665541</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
