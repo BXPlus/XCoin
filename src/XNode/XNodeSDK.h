@@ -20,7 +20,7 @@ public:
         bool darkThemeEnabled;
     };
 
-    bool issueNewTransaction()
+    //bool issueNewTransaction()
 
     void setNodePort(int newPort);
     int getNodePort();

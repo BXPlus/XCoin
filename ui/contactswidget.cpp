@@ -15,22 +15,7 @@ ContactsWidget::ContactsWidget(QWidget *parent) :
     pageLayout->setAlignment(Qt::AlignTop);
 
     // load Contacts dictionary later
-    contactDict[QString("John Lennon")] = QString("#dk9174hdn57s");
-    contactDict[QString("Bob")] = QString("#dk9174hdn29s");
-    contactDict[QString("Alex")] = QString("04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a");
-    contactDict[QString("Clara")] = QString("#dk9174hdn29s");
-    contactDict[QString("Picha")] = QString("#dk9174hdn57s");
-    contactDict[QString("Tim")] = QString("#dk9174hdn29s");
-    contactDict[QString("Cyrus")] = QString("#dk9174hdn57s");
-    contactDict[QString("Arthur")] = QString("#dk9174hdn29s");
-    contactDict[QString("Youssef")] = QString("#dk9174hdn57s");
-    contactDict[QString("Mamoune")] = QString("#dk9174hdn29s");
-    contactDict[QString("Long")] = QString("#dk9174hdn29s");
-    contactDict[QString("JS")] = QString("#dk9174hdn29s");
-    contactDict[QString("Laura")] = QString("#dk9174hdn29s");
-    contactDict[QString("Lio")] = QString("#dk9174hdn29s");
-    contactDict[QString("Timothé")] = QString("#dk9174hdn29s");
-    contactDict[QString("Salma")] = QString("#dk9174hdn29s");
+    dict();
 
     topBox = new QWidget();
     topLayout = new QHBoxLayout();
@@ -97,9 +82,11 @@ ContactsWidget::ContactsWidget(QWidget *parent) :
 
 void ContactsWidget::createDictionary(QMap<QString, QString> contacts)
 {
+    labelList.clear();
     for(auto e : contacts.keys())
     {
         QLabel* key = new QLabel;
+        labelList.append(key);
         key->setText(e);
         QLabel* value = new QLabel;
         value->setText(contactDict.value(e));
@@ -139,9 +126,11 @@ void ContactsWidget::createDictionary(QMap<QString, QString> contacts)
 
 void ContactsWidget::editContact()
 {
+    labelList.clear();
     for(auto e : contactDict.keys())
     {
         QLabel* key = new QLabel;
+        labelList.append(key);
         key->setText(e);
         QLabel* value = new QLabel;
         value->setText(contactDict.value(e));
@@ -170,11 +159,6 @@ void ContactsWidget::editContact()
         signalMapper->setMapping (deleteBtn, count);
         connect(signalMapper, SIGNAL(mappedInt(int)), this, SLOT(deleteContact(int)));
 
-        QSignalMapper* signalMapper2 = new QSignalMapper(this) ;
-        connect(deleteBtn, SIGNAL(clicked(bool)), signalMapper2, SLOT(map()));
-        signalMapper2->setMapping (deleteBtn, key->text());
-        connect(signalMapper2, SIGNAL(mappedString(QString)), this, SLOT(get_key(QString)));
-
         contactGrid->addWidget(deleteBtn, count, 0);
         contactGrid->addWidget(key, count, 1);
         contactGrid->addWidget(value, count, 2);
@@ -194,6 +178,8 @@ void ContactsWidget::addContact()
 
     if (sList[0] == "true") {
         if (key != " " && value != ""){
+            QList<QString> info = {key, value};
+            dictList.append(info);
             contactDict[key] = value;
             deleteWidgets();
             createDictionary(contactDict);
@@ -217,19 +203,25 @@ void ContactsWidget::editStyle(){
 }
 
 void ContactsWidget::deleteContact(int count){
-    contactGrid->removeWidget(contactGrid->itemAtPosition(count, 0)->widget());
-    contactGrid->removeWidget(contactGrid->itemAtPosition(count, 1)->widget());
-    contactGrid->removeWidget(contactGrid->itemAtPosition(count, 2)->widget());
-}
-
-void ContactsWidget::get_key(QString key_string){
-    for (auto it = contactDict.begin(); it != contactDict.end(); it++){
-        if (it.key() == key_string) {
-            it = contactDict.erase(it);
-            break;
+    for (int i = 0; i < 3; i++) {
+        QWidget* widget = contactGrid->itemAtPosition(count, i)->widget();
+        contactGrid->removeWidget(widget);
+        QString key_string = "";
+        for (int i = 0; i < labelList.length(); i++) {
+            if (widget == labelList[i]){
+                key_string = labelList[i]->text();
+                break;
+            }
         }
+
+        for (auto it = contactDict.begin(); it != contactDict.end(); it++){
+            if (it.key() == key_string) {
+                contactDict.remove(it.key());
+                break;
+            }
+        }
+        delete (widget);
     }
-    editContact();
 }
 
 void ContactsWidget::contactSearchEdit(){
@@ -252,14 +244,23 @@ void ContactsWidget::openPayDialog(QString value){
 
 void ContactsWidget::deleteWidgets()
 {
-    if ( contactGrid != NULL )
-    {
-        QLayoutItem* item;
-        while ( ( item = contactGrid->takeAt( 0 ) ) != NULL )
-        {
-            delete item->widget();
-            delete item;
+    QLayoutItem* item;
+    while ( (contactGrid->count() != 0) ) {
+        QLayoutItem* child = contactGrid->takeAt( 0 );
+        if ( child->layout() != 0) {
+            delete(child->layout());
         }
+        else if ( child->widget() != 0) {
+            delete(child->widget());
+        }
+        delete child;
+    }
+}
+
+void ContactsWidget::dict() {
+    contactDict.clear();
+    for (int i = 0; i < dictList.length(); i++) {
+        contactDict[QString(dictList[i][0])] = QString(dictList[i][1]);
     }
 }
 

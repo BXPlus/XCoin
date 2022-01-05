@@ -14,7 +14,7 @@ Switch::Switch(QWidget *parent) : QAbstractButton(parent),
 {
     setOffset(_height / 2);
     _y = _height / 2;
-    setBrush(QColor("#009688"));
+    setBrush(QColor("#4683c4"));
 }
 
 Switch::Switch(const QBrush &brush, QWidget *parent) : QAbstractButton(parent),

@@ -30,11 +30,12 @@ void XNodeSDK::saveNodeSettings(XNodeSettings newSettings) {
     settingstring << newSettings ;
     settingsfile.saveData(settingstring.str());
 }
-
+/*
 void XNodeSDK::setNodePort(int newPort) {
     currentSettings.nodePort = newPort;
     saveNodeSettings(currentSettings) ;
 }
+ */
 int XNodeSDK::getNodePort(){return currentSettings.nodePort;}
 
 void XNodeSDK::setRootDNSAddresses(std::vector<std::string> newRoot){

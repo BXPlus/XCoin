@@ -33,8 +33,12 @@ public:
     QWidget* topBox;
     QHBoxLayout* topLayout;
 
-    QMap<QString, QString> contactDict;
+    QMap<QString, QString> contactDict = {};
     QList<QPushButton*> delList;
+    QList<QList<QString>> dictList = {{"John Lenon", "#dk9174hdn29s"}, {"Bob", "#dk9174hdn29s"}, {"Alex", "#dk9174hdn29s"},
+                                      {"Youssef", "#dk9174hdn29s"}, {"Clara", "#dk9174hdn29s"}, {"Arthur", "#dk9174hdn29s"},
+                                      {"Timothé", "#dk9174hdn29s"}, {"Tim", "#dk9174hdn29s"}, {"Jean Seb", "#dk9174hdn29s"}};
+    QList<QLabel*> labelList;
     QString elDelete;
 
     void editContact();
@@ -43,16 +47,15 @@ public:
 
     QLineEdit* contactSearch;
     void createDictionary(QMap<QString, QString>);
-    //void deleteContact(int);
     void deleteWidgets();
 
 private slots:
     void addContact();
     void deleteContact(int count);
     void editStyle();
-    void get_key(QString key);
     void contactSearchEdit();
     void openPayDialog(QString value);
+    void dict();
 };
 
 #endif // CONTACTSWIDGET_H
