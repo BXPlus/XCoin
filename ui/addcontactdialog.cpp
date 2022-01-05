@@ -34,12 +34,14 @@ addContactDialog::addContactDialog(QWidget *parent) :
     addBtn = new QPushButton("Done", this);
     addBtn->setObjectName("addContactBtn");
     addBtn->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
-    addBtn->setStyleSheet("color: white;"
+    addBtn->setStyleSheet("QPushButton#addContactBtn {color: white;"
                                     "background-color: rgba(109, 223, 129, 255);"
                                     "background-color: green;"
                                     "border-radius: 4px;"
                                     "padding: 5px;"
-                                    "margin-top: 5px;");
+                                    "margin-top: 5px;}"
+                          "QPushButton#addContactBtn:hover {background-color: rgba(0,167,10,200);};");
+    addBtn->setCursor(Qt::PointingHandCursor);
 
     connect(addBtn, SIGNAL(clicked(bool)), this, SLOT(closed()));
 

@@ -39,10 +39,11 @@ public:
     QWidget* balanceWidget;
     QWidget* contactsWidget;
     QWidget* settingsWidget;
-    QWidget* graphsWidget;
 
     int style = 0;
     void toggleStyleSheet();
+    int getUserBalance();
+    void editUserBalance(int, int);
 
 private slots:
     void go_home();
@@ -52,5 +53,7 @@ protected:
 
 private:
     Ui::MainWindow *ui;
+    QLabel* balanceLabel;
+    int userBalance;
 };
 #endif // MAINWINDOW_H

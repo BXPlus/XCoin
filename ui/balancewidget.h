@@ -30,12 +30,18 @@ private:
     QList<QString> titleList;
     QList<QString> balanceList;
     QList<QLabel*> labelList;
+    QLabel* userBalanceLabel;
     QList<QString> typeList;
     QList<QString> amountList;
     QWidget* boxContainer;
     QScrollArea* scrollBalance;
     QMap<QString, QString> balanceDict;
     QGridLayout* balanceGrid;
+    QVBoxLayout* smallLayout;
+    QVBoxLayout* bigLayout;
+
+    void updateBalance(int, int);
+    int userBalance;
 };
 
 #endif // BALANCEWIDGET_H

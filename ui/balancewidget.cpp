@@ -22,27 +22,29 @@ BalanceWidget::BalanceWidget(QWidget *parent) : QWidget(parent)
     }
 
     //Create Balance Widget
-    balanceList = {"Balance as of 12/10/2021:", "941.3 XCoin", "To come: -23.4 XCoin"
-                , "Forecast: 917.9 XCoin"};
+
+    balanceList = {QString("Balance as of 12/10/2021:"), QString("To come: -23.4 XCoin")
+                , QString("Forecast: 917.9 XCoin")};
     bWidget = new QWidget(this);
     balanceLayout = new QHBoxLayout();
     bWidget->setLayout(balanceLayout);
     bWidget->setObjectName("BalanceWidget");
 
-    QVBoxLayout* smallLayout = new QVBoxLayout();
-    QVBoxLayout* bigLayout = new QVBoxLayout();
+    smallLayout = new QVBoxLayout();
+    bigLayout = new QVBoxLayout();
 
-    for (int i = 0; i < 4; i++) {
+    userBalance = ((MainWindow*)parentWidget()->parentWidget())->getUserBalance();
+    userBalanceLabel = new QLabel(QString(QString::number(userBalance) + " XCoin"), this);
+    labelList.append(userBalanceLabel);
+    userBalanceLabel->setMaximumSize(200,55);
+    userBalanceLabel->setObjectName("BalanceAmount");
+
+    for (int i = 0; i < 3; i++) {
         QLabel* label = new QLabel(balanceList[i], this);
         labelList.append(label);
-        if (i != 1) {
-            label->setMaximumSize(200, 12);
-        }
-        else {
-            label->setMaximumSize(200, 55);
-        }
+        label->setMaximumSize(200, 12);
 
-        if (i <= 1) {
+        if (i == 0) {
             bigLayout->addWidget(label, 50, Qt::AlignCenter);
         }
 
@@ -50,7 +52,8 @@ BalanceWidget::BalanceWidget(QWidget *parent) : QWidget(parent)
             smallLayout->addWidget(label, 50, Qt::AlignCenter);
         }
     }
-    labelList[1]->setObjectName("BalanceAmount");
+
+    bigLayout->addWidget(userBalanceLabel, 50, Qt::AlignCenter);
 
     balanceLayout->addLayout(bigLayout);
     balanceLayout->addLayout(smallLayout);
@@ -69,7 +72,7 @@ BalanceWidget::BalanceWidget(QWidget *parent) : QWidget(parent)
     balanceGrid->setSpacing(0);
     boxContainer->setObjectName("ScrollBox");
 
-    typeList = {"Reimbursement from Tim", "Restaurant", "Hotel", "Commision",
+    typeList = {"Reimbursement from Tim", "Restaurant", "Hotel", "Commission",
                 "Lydia", "Bar", "SuperMarket", "Transaction Alex",
                 "Superette", "Boulangerie", "Wine Cellar", "CarWash",
                 "Online payment Nike"};
@@ -114,13 +117,27 @@ void BalanceWidget::createDictionary(){
         balanceGrid->addWidget(key, count, 0);
         balanceGrid->addWidget(value, count, 1);
     }
+    userBalanceLabel->setText(QString(QString::number(userBalance) + " XCoin"));
 }
 
 void BalanceWidget::editBalanceDict(QString object, QString amount) {
+    // this function is a slot, signalled when payment done (only decreases userBalance)
+    updateBalance(0, amount.toInt());
+    ((MainWindow*)parentWidget()->parentWidget()->parentWidget())->editUserBalance(0, amount.toInt());
+
     deleteWidgets();
     typeList.append(object);
     amountList.append(QString("- "+amount+" XCoin"));
     createDictionary();
+}
+
+void BalanceWidget::updateBalance(int inc, int dec) {
+    if (inc > 0) {
+        userBalance = userBalance + inc;
+    }
+    if (dec > 0) {
+        userBalance = userBalance - dec;
+    }
 }
 
 void BalanceWidget::deleteWidgets() {

@@ -41,35 +41,20 @@ payContactDialog::payContactDialog(QString publicKey, QWidget* parent) :
                                "padding: 5px;"
                                "margin-bottom: 5px;");
 
-//    numberInputLayout = new QGridLayout();
-//    QPushButton* zeroBtn = new QPushButton("0", this);
-//    digitBtnList->append(zeroBtn);
-//    numberInputLayout->addWidget(zeroBtn, 3, 1);
-//    for (int i=1; i<10; i++) {
-//        QPushButton* nbBtn = new QPushButton(QString::number(i), this);
-//        int y;
-//        if (i%3-1 == -1){y = 2;}
-//        else{y = i%3-1;}
-
-        // Button connect doesn't work: delete at the end if doesn't work
-        //QSignalMapper* signalMapper = new QSignalMapper(this);
-        //connect(nbBtn, SIGNAL(clicked()), signalMapper, SLOT(map()));
-        //signalMapper->setMapping(nbBtn, i);
-        //connect(signalMapper, SIGNAL(mappedInt(int)), this, SLOT(inputDigit(int)));
-
-//        numberInputLayout->addWidget(nbBtn, 2-int(i*0.33), y);
-//    }
-
     confirmBtn = new QPushButton("Confirm", this);
     confirmBtn->setObjectName("confirmPaymentButton");
-    confirmBtn->setStyleSheet("background-color: green;"
+    confirmBtn->setStyleSheet("QPushButton#confirmPaymentButton {background-color: green;"
                                         "border-radius: 4px;"
-                                        "padding: 5px;");
+                                        "padding: 5px;}"
+                              "QPushButton#confirmPaymentButton:hover {background-color: rgba(0,167,10,200);};");
     cancelBtn = new QPushButton("Cancel", this);
     cancelBtn->setObjectName("cancelPaymentButton");
-    cancelBtn->setStyleSheet("background-color: red;"
+    cancelBtn->setStyleSheet("QPushButton#cancelPaymentButton {background-color: red;"
                                        "border-radius: 4px;"
-                                       "padding: 5px;");
+                                       "padding: 5px;}"
+                             "QPushButton#cancelPaymentButton:hover {background-color: rgba(255,0,0,200);};");
+    confirmBtn->setCursor(Qt::PointingHandCursor);
+    cancelBtn->setCursor(Qt::PointingHandCursor);
     bottomButtonsLayout = new QHBoxLayout();
     bottomButtonsLayout->addWidget(cancelBtn);
     bottomButtonsLayout->addWidget(confirmBtn);

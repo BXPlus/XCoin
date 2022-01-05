@@ -63,9 +63,11 @@ MainWindow::MainWindow(QWidget *parent)
     titleLabel->setAlignment(Qt::AlignCenter);
     titleLabel->setMaximumHeight(30);
 
+    userBalance = 10;
+
     // User Balance
-    QLabel* balanceLabel = new QLabel(userBlock);
-    balanceLabel->setText("964.52");
+    balanceLabel = new QLabel(userBlock);
+    balanceLabel->setText(QString::number(userBalance));
     balanceLabel->setAlignment(Qt::AlignCenter);
     balanceLabel->setObjectName("BalanceLabel");
     balanceLabel->setMaximumHeight(30);
@@ -157,4 +159,18 @@ void MainWindow::toggleStyleSheet(){
         menuContainer->setStyleSheet("background-color: rgba(34,45,72,255);");
         style = 0;
     }
+}
+
+int MainWindow::getUserBalance() {
+    return userBalance;
+}
+
+void MainWindow::editUserBalance(int inc, int dec) {
+    if (inc > 0) {
+        userBalance = userBalance + inc;
+    }
+    if (dec > 0) {
+        userBalance = userBalance - dec;
+    }
+    balanceLabel->setText(QString::number(userBalance));
 }
