@@ -37,8 +37,10 @@ SettingsWidget::SettingsWidget(QWidget *parent) : QWidget(parent)
 
     //Settings page actual setup
     stringList = {"Node Port:", "Root DNS address:", "Public address:"
-                 , "Full/Light node:", "Dark/Light mode:", "30140",
+                 , "Full/Light node:", "Dark/Light mode:", "00000",
                  "123.456.78.90", "202.25.1.3"};
+
+    stringList[5] = QString::fromStdString(std::to_string(xcoin::Node::getInstance().getSdkInstance()->getNodePort()));
 
     mainLayout = new QVBoxLayout(this);
     emptyWidget = new QWidget(this);

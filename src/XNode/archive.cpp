@@ -2,6 +2,7 @@
 // Created by Cyrus on 12/5/2021.
 //
 
+#include <sstream>
 #include "archive.h"
 
 Archive::Archive(const std::string& localPath) {
@@ -18,18 +19,16 @@ void Archive::saveData(const std::string& encodedData) {
     ofs.close();
 }
 
-std::string Archive::loadData() {
+/*std::string Archive::loadData() {
   std::string res;
    std::ifstream ifs(this->localPath);
  ifs >> res;
   return res;
-}
+}*/
 
-//TODO: LIO needs to redo this
-/*
 std::string Archive::loadData() {
     std::ifstream ifs(this->localPath);
     std::ostringstream sstr;
     sstr << ifs.rdbuf();
     return sstr.str();
-}*/
+}

@@ -5,9 +5,10 @@
 #include <sstream>
 #include "XNodeSDK.h"
 
-XNodeSDK::XNodeSDK(): settingsfile("local.xnodesettings"){ // set default settings
+XNodeSDK::XNodeSDK(){ // set default settings
+    settingsfile = Archive("localsettings.xnodebackup");
     defaultSettings.nodePort= 50051;
-    defaultSettings.rootDNSAddresses.push_back("129.104.213.110:80");
+    defaultSettings.rootDNSAddresses.emplace_back("129.104.213.110:80");
     defaultSettings.publicAddress = "";
     defaultSettings.lightNode = false;
     defaultSettings.darkThemeEnabled = true;

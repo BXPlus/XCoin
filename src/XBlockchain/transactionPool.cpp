@@ -4,18 +4,7 @@
 
 #include "transactionPool.h"
 
-std::vector<Transaction> getTransactionPool() {
-    return transactionPool;
-}
-/*
-Transaction sendTransaction(std::string address, int amount) {
-    Transaction tx = createTransaction(address, amount, getPrivateFromWallet(), getUnspentTxOuts(), getTransactionPool());
-    addToTransactionPool(tx, getUnspentTxOuts());
-    return tx;
-}
-*/
-
-bool isValidTxForPool(Transaction tx, std::vector<Transaction> aTransactionPool)
+bool TransactionPool::isValidTxForPool(Transaction tx, std::vector<Transaction> aTransactionPool)
 {
     std::vector<TxIn> txPoolIns = getTxPoolIns(aTransactionPool);
     for(int i = 0; i < (tx.txIns).size(); i++){
@@ -34,7 +23,7 @@ bool isValidTxForPool(Transaction tx, std::vector<Transaction> aTransactionPool)
     return true;
 }
 
-void addToTransactionPool(Transaction tx, std::vector<UnspentTxOut> unspentTxOuts) {
+void TransactionPool::addToTransactionPool(Transaction tx, std::vector<UnspentTxOut> unspentTxOuts) {
     if (!tx.validateTransaction(unspentTxOuts)) {
         std::cout << "Trying to add invalid tx to pool";
         return;
@@ -58,7 +47,7 @@ bool hasTxIn(TxIn txIn, std::vector<UnspentTxOut> unspentTxOuts) {
     return false;
 }
 
-void updateTransactionPool(std::vector<UnspentTxOut> unspentTxOuts) {
+void TransactionPool::updateTransactionPool(std::vector<UnspentTxOut> unspentTxOuts) {
     std::vector<Transaction> invalidTxs;
     std::vector<Transaction> newPool;
     for (int i = 0; i < transactionPool.size(); i++) {

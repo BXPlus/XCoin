@@ -7,7 +7,7 @@
 
 // Generate and store the private Key
 
-std::string generatePrivateKey()
+std::string Wallet::generatePrivateKey()
 {
     return Keys().getPriv();
 }
@@ -18,7 +18,7 @@ std::string Wallet::getPrivateFromWallet()
     return privKey;
 }
 
-std::string getPublicFromWallet()
+std::string Wallet::getPublicFromWallet()
 {
     std::string privateKey = getPrivateFromWallet();
     return keyFromPrivate(privateKey).getPub();
@@ -38,7 +38,7 @@ void deleteWallet() {
 }
 */
 
-std::vector<UnspentTxOut> findUnspentTxOuts(std::string ownerAddress, std::vector<UnspentTxOut> unspentTxOuts)
+std::vector<UnspentTxOut> Wallet::findUnspentTxOuts(std::string ownerAddress, std::vector<UnspentTxOut> unspentTxOuts)
 {
     std::vector<UnspentTxOut> res;
     for (int i = 0; i < unspentTxOuts.size(); i++){
@@ -50,10 +50,10 @@ std::vector<UnspentTxOut> findUnspentTxOuts(std::string ownerAddress, std::vecto
     return res;
 }
 
-int getBalance(std::string address, std::vector<UnspentTxOut> unspentTxOuts)
+int Wallet::getBalance(std::string address, std::vector<UnspentTxOut> unspentTxOuts)
 {
     std::vector<UnspentTxOut> ownedUnspentTxOuts = findUnspentTxOuts(address, unspentTxOuts);
-    int res;
+    int res = 0;
     for (int i = 0; i < ownedUnspentTxOuts.size(); i++){
         UnspentTxOut uTxO = ownedUnspentTxOuts[i];
         res += uTxO.amount;
@@ -61,7 +61,7 @@ int getBalance(std::string address, std::vector<UnspentTxOut> unspentTxOuts)
     return res;
 }
 
-std::pair<std::vector<UnspentTxOut>,int> findTxOutsForAmount(int amount, std::vector<UnspentTxOut> myUnspentTxOuts)
+std::pair<std::vector<UnspentTxOut>,int> Wallet::findTxOutsForAmount(int amount, std::vector<UnspentTxOut> myUnspentTxOuts)
 {
     int currentAmount = 0;
     std::vector<UnspentTxOut> includedUnspentTxOuts;
@@ -78,7 +78,7 @@ std::pair<std::vector<UnspentTxOut>,int> findTxOutsForAmount(int amount, std::ve
     throw std::logic_error(errorMsg);
 }
 
-std::vector<TxOut> createTxOuts(std::string receiverAddress, std::string myAddress, int amount, int leftOverAmount)
+std::vector<TxOut> Wallet::createTxOuts(std::string receiverAddress, std::string myAddress, int amount, int leftOverAmount)
 {
     TxOut txOut1 = TxOut(receiverAddress, amount);
     std::vector<TxOut> res;
@@ -92,8 +92,9 @@ std::vector<TxOut> createTxOuts(std::string receiverAddress, std::string myAddre
     }
 }
 
-std::vector<TxIn> getTxPoolIns(std::vector<Transaction> aTransactionPool)
+std::vector<TxIn> Wallet::getTxPoolIns()
 {
+    std::vector<Transaction> aTransactionPool = myTransactionPool.transactionPool;
     std::vector<TxIn> res;
     for (int i = 0; i < aTransactionPool.size(); i++){
         std::vector<TxIn> tx_txIns = aTransactionPool[i].txIns;
@@ -102,10 +103,10 @@ std::vector<TxIn> getTxPoolIns(std::vector<Transaction> aTransactionPool)
     return res;
 }
 
-std::vector<UnspentTxOut> filterTxPoolTxs(std::vector<UnspentTxOut> unspentTxOuts, std::vector<Transaction> transactionPool)
+std::vector<UnspentTxOut> Wallet::filterTxPoolTxs(std::vector<UnspentTxOut> unspentTxOuts, std::vector<Transaction> transactionPool)
 {
     std::vector<UnspentTxOut> newUnspentTxOuts;
-    std::vector<TxIn> txIns = getTxPoolIns(transactionPool);
+    std::vector<TxIn> txIns = getTxPoolIns();
     for (int i = 0; i < unspentTxOuts.size(); i++){
         UnspentTxOut unspentTxOut = unspentTxOuts[i];
         bool removable = true;
@@ -125,7 +126,7 @@ std::vector<UnspentTxOut> filterTxPoolTxs(std::vector<UnspentTxOut> unspentTxOut
     return newUnspentTxOuts;
 }
 
-TxIn toUnsignedTxIn(UnspentTxOut unspentTxOut)
+TxIn Wallet::toUnsignedTxIn(UnspentTxOut unspentTxOut)
 {
     TxIn txIn = TxIn();
     txIn.txOutId = unspentTxOut.txOutId;
@@ -133,7 +134,7 @@ TxIn toUnsignedTxIn(UnspentTxOut unspentTxOut)
     return txIn;
 }
 
-std::vector<TxIn> toUnsignedTxInArray(std::vector<UnspentTxOut> unspentTxOuts)
+std::vector<TxIn> Wallet::toUnsignedTxInArray(std::vector<UnspentTxOut> unspentTxOuts)
 {
     std::vector<TxIn> res;
     for (int i = 0; i < unspentTxOuts.size(); i++) {
@@ -143,7 +144,7 @@ std::vector<TxIn> toUnsignedTxInArray(std::vector<UnspentTxOut> unspentTxOuts)
 }
 
 
-Transaction createTransaction(std::string receiverAddress, int amount, std::string privateKey, std::vector<UnspentTxOut> unspentTxOuts, std::vector<Transaction> txPool)
+Transaction Wallet::createTransaction(std::string receiverAddress, int amount, std::string privateKey, std::vector<UnspentTxOut> unspentTxOuts, std::vector<Transaction> txPool)
 {
     std::cout<< "txPool" << std::endl;
     std::string myAddress = getPublicKey(privateKey);
@@ -168,5 +169,19 @@ Transaction createTransaction(std::string receiverAddress, int amount, std::stri
         txIn.signature = tx.signTxIn(i, privateKey, unspentTxOuts);
     }
 
+    return tx;
+}
+
+std::vector<Transaction> Wallet::getTransactionPool() {
+    return myTransactionPool.transactionPool;
+}
+
+std::vector<UnspentTxOut> Wallet::getUnspentTxOuts() {
+    return myUnspentTxOuts;
+}
+
+Transaction Wallet::sendTransaction(std::string address, int amount) {
+    Transaction tx = createTransaction(address, amount, getPrivateFromWallet(), getUnspentTxOuts(), getTransactionPool());
+    myTransactionPool.addToTransactionPool(tx, getUnspentTxOuts());
     return tx;
 }

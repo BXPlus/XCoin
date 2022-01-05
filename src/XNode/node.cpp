@@ -5,7 +5,7 @@
 #include <iostream>
 #include <jwt-cpp/jwt.h>
 
-#define JWT_SECRET std::string("secret")
+#define JWT_SECRET std::string("my-32-character-ultra-secure-and-ultra-long-secret") // Obviously this wouldn't be handled like this in production but it is good enough as a proof of concept
 
 xcoin::Node::Node() {
     this->blockchain = Blockchain();
@@ -27,6 +27,7 @@ void xcoin::Node::RunNode(const std::vector<std::string>& dnsSeedPeers) {
     std::string server_address("0.0.0.0:50051");
     ::grpc::EnableDefaultHealthCheckService(true);
     ::grpc::ServerBuilder builder;
+    auto call_creds = grpc::MetadataCredentialsFromPlugin(std::unique_ptr<grpc::MetadataCredentialsPlugin>(new XNodeAuthenticator(JWT_SECRET)));
     builder.AddListeningPort(server_address, ::grpc::InsecureServerCredentials());
     builder.RegisterService(static_cast<xcoin::interchange::XNodeControl::Service *>(this));
     builder.RegisterService(static_cast<xcoin::interchange::XNodeSync::Service *>(this));

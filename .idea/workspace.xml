@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
       <config projectName="xblockchain" targetName="xnode" />
       <config projectName="xblockchain" targetName="gtest_main" />
-      <config projectName="xblockchain" targetName="gmock_main" />
       <config projectName="xblockchain" targetName="xnode-lib" />
+      <config projectName="xblockchain" targetName="gmock_main" />
       <config projectName="xblockchain" targetName="xtricount" />
       <config projectName="xblockchain" targetName="xnode-tests" />
       <config projectName="xblockchain" targetName="xblockchain-lib" />
@@ -21,13 +24,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="Added jwt-cpp package to project for gRPC token-based auth between nodes">
+    <list default="true" id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="Rearranged data structures of the wallet and transactionPool files and added the final function to send a transaction.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XBlockchain/transaction.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/transaction.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XNode/archive.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/archive.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XNode/node.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/node.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XNode/node.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/node.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/XBlockchain/transactionPool.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/transactionPool.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/XBlockchain/wallet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/wallet.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/XBlockchain/wallet.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/wallet.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +86,7 @@
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/reports/week7.md" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/CMakeLists.txt" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="CMakeSettings" />
   </component>
@@ -94,12 +95,7 @@
       <recent name="$PROJECT_DIR$/src/XBlockchain" />
     </key>
   </component>
-  <component name="RunManager" selected="CMake Application.xcoin-client">
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="CMake Application.xblockchain-lib">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
@@ -210,16 +206,21 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="CMake Application.xblockchain-lib" />
       <item itemvalue="CMake Application.xcoin-client" />
       <item itemvalue="CMake Application.xnode" />
       <item itemvalue="CMake Application.xnode-lib" />
+      <item itemvalue="CMake Application.xtricount" />
       <item itemvalue="CMake Application.gmock" />
       <item itemvalue="CMake Application.gmock_main" />
       <item itemvalue="CMake Application.gtest" />
       <item itemvalue="CMake Application.gtest_main" />
-      <item itemvalue="CMake Application.xtricount" />
       <item itemvalue="Google Test.findUnspentTxOut.testFindUnspentTxOut" />
       <item itemvalue="Google Test.XTransactionTests.testGetTransactionId" />
       <item itemvalue="Google Test.XTransactionTests.testTxOutInit" />
@@ -244,7 +245,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="62685c25-6d0e-4f4d-a4d8-ee5ced8bb340" name="Changes" comment="Working on sync fixes&#10;&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
+      <changelist id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="Started implementing tests for the transactions." />
       <created>1636987245321</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -254,6 +255,8 @@
       <workItem from="1639399172832" duration="52000" />
       <workItem from="1639399310632" duration="4199000" />
       <workItem from="1641101618857" duration="20850000" />
+      <workItem from="1641306869287" duration="5089000" />
+      <workItem from="1641372676215" duration="3973000" />
     </task>
     <task id="LOCAL-00001" summary="Adding test to validateCoinbaseTx.">
       <created>1639337790483</created>
@@ -388,7 +391,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641122240469</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Rearranged data structures of the wallet and transactionPool files and added the final function to send a transaction.">
+      <created>1641374953865</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1641374953865</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -404,6 +414,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Adding test to validateCoinbaseTx." />
@@ -422,7 +433,8 @@
     <MESSAGE value="- Added tests for isValidTxOutStructure." />
     <MESSAGE value="- Added tests for updateUnspentTxOuts." />
     <MESSAGE value="- Comment out Keys implementation in transaction." />
-    <option name="LAST_COMMIT_MESSAGE" value="- Comment out Keys implementation in transaction." />
+    <MESSAGE value="Rearranged data structures of the wallet and transactionPool files and added the final function to send a transaction." />
+    <option name="LAST_COMMIT_MESSAGE" value="Rearranged data structures of the wallet and transactionPool files and added the final function to send a transaction." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
