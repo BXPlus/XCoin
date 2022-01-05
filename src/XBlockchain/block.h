@@ -76,6 +76,7 @@ private:
     std::string previousHash;
     long long timestamp;
     Transaction data;
+public:
     Block(int index, std::string hash, std::string previousHash, long long timestamp, Transaction data);
 };
 

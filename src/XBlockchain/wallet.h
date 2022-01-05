@@ -6,7 +6,7 @@
 #ifndef XBLOCKCHAIN_WALLET_H
 #define XBLOCKCHAIN_WALLET_H
 
-#include "transaction.h"
+#include "block.h"
 #include "keys.h"
 #include "archive.h"
 #include "transactionPool.h"
@@ -41,6 +41,12 @@ private:
     TransactionPool myTransactionPool;
     std::vector<Transaction> getTransactionPool();
     std::vector<TxIn> getTxPoolIns();
+
+    Transaction createGenesisTransaction();
+    Transaction genesisTransaction = createGenesisTransaction();
+
+    Block createGenesisBlock();
+    Block genesisBlock = createGenesisBlock();
 };
 
 #endif //XBLOCKCHAIN_WALLET_H

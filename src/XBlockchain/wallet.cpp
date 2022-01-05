@@ -190,4 +190,24 @@ void Wallet::setUnspentTxOuts(std::vector<UnspentTxOut> unspentTxOuts) {
     myUnspentTxOuts = unspentTxOuts;
 }
 
+Transaction Wallet::createGenesisTransaction() {
+    std::pair<uint8_t*, uint32_t> signature = std::pair(nullptr, 0);
+    std::string txOutId = "";
+    int txOutIndex = 0;
+    std::string address = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
+    int amount = 50;
+    std::string id = "e655f6a5f26dc9b4cac6e46f52336428287759cf81ef5ff10854f69d68f43fa3";
+    std::vector<TxIn> txIns;
+    txIns.push_back(TxIn(txOutId, txOutIndex, signature));
+    std::vector<TxOut> txOuts;
+    txOuts.push_back(TxOut(address, amount));
+    return Transaction(txIns, txOuts, id);
+}
 
+Block Wallet::createGenesisBlock() {
+    int index = 0;
+    std::string hash = "";
+    std::string previousHash = "";
+    long long timestamp = 1465154705;
+    return Block(index, hash, previousHash, timestamp, genesisTransaction);
+}
