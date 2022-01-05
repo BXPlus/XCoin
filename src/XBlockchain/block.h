@@ -2,12 +2,13 @@
 #define XCOIN_BLOCK_H
 
 //Libraries
-#include "sha256.h"    // Include license for this
-#include "bignumber.h" // Include license for this
+#include "sha256.h"
+#include "bignumber.h"
 #include <iostream>
 #include <sstream>
 #include <chrono>
 #include <cmath>
+#include "transaction.h"
 
 using std::chrono::duration_cast;
 using std::chrono::milliseconds;
@@ -67,6 +68,16 @@ bool isBlockStakingValid(std::string previousHash, std::string address, long lon
 Block findBlock(int index, std::string previousHash, std::string previousHeaderHash, std::string previousMerkleHash, std::string data, int difficulty, int nonce);
 
 */
+
+class Block {
+private:
+    int index;
+    std::string hash;
+    std::string previousHash;
+    long long timestamp;
+    Transaction data;
+    Block(int index, std::string hash, std::string previousHash, long long timestamp, Transaction data);
+};
 
 #endif //XCOIN_BLOCK_H
 

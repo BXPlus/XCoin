@@ -184,4 +184,13 @@
 
 */
 
+Block::Block(int index, std::string hash, std::string previousHash, long long timestamp, Transaction data)
+{
+    this->index = index;
+    this->previousHash = previousHash;
+    this->timestamp = timestamp;
+    this->data = data;
+    this->hash = hash;
+}
+
 
