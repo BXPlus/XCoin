@@ -24,12 +24,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="Added getLatestBlock() and addBlock(nexBlock).">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XBlockchain/Blockchain.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/Blockchain.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XBlockchain/Blockchain.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/Blockchain.h" afterDir="false" />
+    <list default="true" id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="Adapted addBlock(data) to add a block containing a transaction data into the blockchain, and added an encrypt_data tool to hash transactions.">
       <change beforePath="$PROJECT_DIR$/src/XBlockchain/wallet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/wallet.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XBlockchain/wallet.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/wallet.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,7 +258,7 @@
       <workItem from="1639399310632" duration="4199000" />
       <workItem from="1641101618857" duration="20850000" />
       <workItem from="1641306869287" duration="5089000" />
-      <workItem from="1641372676215" duration="14081000" />
+      <workItem from="1641372676215" duration="14428000" />
     </task>
     <task id="LOCAL-00001" summary="Adding test to validateCoinbaseTx.">
       <created>1639337790483</created>
@@ -467,7 +463,21 @@
       <option name="project" value="LOCAL" />
       <updated>1641399013512</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Adapted addBlockchain(data) to add directly a block containing a transaction data into the blockchain.">
+      <created>1641399954977</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1641399954977</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Adapted addBlock(data) to add a block containing a transaction data into the blockchain, and added an encrypt_data tool to hash transactions.">
+      <created>1641400057602</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1641400057602</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -486,8 +496,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Adding test to validateCoinbaseTx." />
-    <MESSAGE value="- Reorganizing the functions in transaction.cpp to be the same order as transaction.h.&#10;- Adding enum findUnspentTxOutOutcome to make the findUnspentTxOut function more readable." />
     <MESSAGE value="- Remove JSONStringify function for TxIn as disscussed with Kevin." />
     <MESSAGE value="Reorganize the order the functions in xblockchain-tests to be the same as transaction.h" />
     <MESSAGE value="- Added the skeletons of functions in transaction.h to be tested.&#10;- Fixed some bugs of transaction.cpp and transaction.h." />
@@ -511,7 +519,9 @@
     <MESSAGE value="Added getCurrentTimestamp()." />
     <MESSAGE value="Added a blockchain element to the wallet." />
     <MESSAGE value="Added getLatestBlock() and addBlock(nexBlock)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added getLatestBlock() and addBlock(nexBlock)." />
+    <MESSAGE value="Adapted addBlockchain(data) to add directly a block containing a transaction data into the blockchain." />
+    <MESSAGE value="Adapted addBlock(data) to add a block containing a transaction data into the blockchain, and added an encrypt_data tool to hash transactions." />
+    <option name="LAST_COMMIT_MESSAGE" value="Adapted addBlock(data) to add a block containing a transaction data into the blockchain, and added an encrypt_data tool to hash transactions." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

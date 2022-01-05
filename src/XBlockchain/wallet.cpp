@@ -183,6 +183,7 @@ std::vector<UnspentTxOut> Wallet::getUnspentTxOuts() {
 Transaction Wallet::sendTransaction(std::string address, int amount) {
     Transaction tx = createTransaction(address, amount, getPrivateFromWallet(), getUnspentTxOuts(), getTransactionPool());
     myTransactionPool.addToTransactionPool(tx, getUnspentTxOuts());
+    addBlockToChain(tx);
     return tx;
 }
 
