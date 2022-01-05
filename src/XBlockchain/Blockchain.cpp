@@ -206,3 +206,9 @@
     If we find one of them, then it means that all of the previous blocks are there too (because the hash includes the hash of the previous block).
     If we do not, then it means that the chain branches out earlier (10 last blocks are not there), and we don't accept it.
 */
+
+Blockchain::Blockchain(Block block) {
+    std::vector<Block> chain;
+    chain.push_back(block);
+    this->chain = chain;
+}

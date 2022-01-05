@@ -58,6 +58,11 @@
 
 */
 
-
+class Blockchain {
+private:
+    std::vector<Block> chain;
+    Block getLatestBlock();
+    Blockchain(Block block);
+};
 
 #endif //XCOIN_BLOCKCHAIN_H
