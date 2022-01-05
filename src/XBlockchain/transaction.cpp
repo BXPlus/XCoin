@@ -396,6 +396,11 @@ bool Transaction::validateCoinbaseTx(int blockIndex) {
 Transaction::Transaction() {
 }
 
+Transaction::Transaction(std::vector<TxIn> txIns, std::vector<TxOut> txOuts, std::string id) {
+    this->txIns = txIns;
+    this->txOuts = txOuts;
+    this->id = id;
+}
 
 std::pair<bool, UnspentTxOut> findUnspentTxOut(std::string transactionId, int index, std::vector<UnspentTxOut>& aUnspentTxOuts) {
     for(int id = 0; id < int(aUnspentTxOuts.size()); id++) {

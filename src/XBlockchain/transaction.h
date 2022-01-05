@@ -6,7 +6,8 @@
 #define XCOIN_TRANSACTION_H
 
 #include <map>
-#include "block.h"
+#include <vector>
+#include "sha256.h"
 
 #include "../XNode/keys.h"
 /*
@@ -128,6 +129,7 @@ public:
     bool isValidTransactionStructure();
     bool validateCoinbaseTx(int blockIndex); //added test
     Transaction();
+    Transaction(std::vector<TxIn> txIns, std::vector<TxOut> txOuts, std::string id);
 };
 
 std::pair<bool, UnspentTxOut> findUnspentTxOut(std::string transactionId, int index, std::vector<UnspentTxOut>& aUnspentTxOuts); //added test
