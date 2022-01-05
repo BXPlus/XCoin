@@ -211,3 +211,13 @@ Block Wallet::createGenesisBlock() {
     long long timestamp = 1465154705;
     return Block(index, hash, previousHash, timestamp, genesisTransaction);
 }
+
+void Wallet::addBlockToChain(Transaction data) {
+    myBlockchain.addBlock(data);
+    std::vector<Transaction> aTransactions;
+    aTransactions.push_back(data);
+    Block newBlock = myBlockchain.getLatestBlock();
+    std::vector<UnspentTxOut> retVal = processTransactions(aTransactions, myUnspentTxOuts, newBlock.index);
+    setUnspentTxOuts(retVal);
+    myTransactionPool.updateTransactionPool(myUnspentTxOuts);
+}

@@ -48,7 +48,9 @@ private:
     Block createGenesisBlock();
     Block genesisBlock = createGenesisBlock();
 
-    Blockchain blockchain = Blockchain(genesisBlock);
+    Blockchain myBlockchain = Blockchain(genesisBlock);
+
+    void addBlockToChain(Transaction data);
 };
 
 #endif //XBLOCKCHAIN_WALLET_H
