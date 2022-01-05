@@ -59,13 +59,13 @@
 */
 
 class Blockchain {
-private:
-    Block getLatestBlock();
 
 public:
     Blockchain(Block block);
     std::vector<Block> chain;
-    void addBlock(Block newBlock);
+    void addBlock(Transaction data);
+    Block getLatestBlock();
+    static std::string encrypt_data(Transaction transaction);
 };
 
 #endif //XCOIN_BLOCKCHAIN_H

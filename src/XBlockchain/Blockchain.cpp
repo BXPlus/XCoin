@@ -217,7 +217,22 @@ Block Blockchain::getLatestBlock() {
     return chain[chain.size()-1];
 }
 
-void Blockchain::addBlock(Block newBlock) {
+std::string Blockchain::encrypt_data(Transaction transaction) {
+    std::stringstream ss;
+    ss << transaction.id;
+    std::vector<TxIn> txIns = transaction.txIns;
+    std::vector<TxOut> txOuts = transaction.txOuts;
+    for(int i = 0; i < txIns.size(); i++){
+        ss << txIns[i].txOutIndex << txIns[i].txOutId;
+    }
+    for(int i = 0; i < txOuts.size(); i++){
+        ss << txOuts[i].address << txOuts[i].amount;
+    }
+    return sha256(ss.str());
+}
+
+void Blockchain::addBlock(Transaction data) {
     Block lastBlock = getLatestBlock();
-    chain.push_back(Block(lastBlock.index+1, newBlock.hash, lastBlock.hash, Block::getCurrentTimestamp(), newBlock.data));
+    std::string hash = encrypt_data(data);
+    chain.push_back(Block(lastBlock.index+1, hash, lastBlock.hash, Block::getCurrentTimestamp(), data));
 }

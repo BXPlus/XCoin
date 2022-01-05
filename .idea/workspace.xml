@@ -24,12 +24,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="Rearranged data structures of the wallet and transactionPool files and added the final function to send a transaction.">
+    <list default="true" id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="Added getLatestBlock() and addBlock(nexBlock).">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XBlockchain/Blockchain.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/Blockchain.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XBlockchain/Blockchain.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/Blockchain.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XBlockchain/block.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/block.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XBlockchain/block.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/block.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XBlockchain/wallet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/wallet.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XBlockchain/wallet.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/wallet.h" afterDir="false" />
     </list>
@@ -43,6 +41,11 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
@@ -259,7 +262,7 @@
       <workItem from="1639399310632" duration="4199000" />
       <workItem from="1641101618857" duration="20850000" />
       <workItem from="1641306869287" duration="5089000" />
-      <workItem from="1641372676215" duration="7176000" />
+      <workItem from="1641372676215" duration="14081000" />
     </task>
     <task id="LOCAL-00001" summary="Adding test to validateCoinbaseTx.">
       <created>1639337790483</created>
@@ -408,7 +411,63 @@
       <option name="project" value="LOCAL" />
       <updated>1641376665541</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Commented block and blockchain code.">
+      <created>1641384671381</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1641384671381</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Added new constructor to Transaction.">
+      <created>1641395858122</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1641395858122</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Adapted the block structure.">
+      <created>1641395891280</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1641395891280</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Added a genesisTransaction and a genesisBlock.">
+      <created>1641396178201</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1641396178201</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Adapted Blockchain structure.">
+      <created>1641396625153</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1641396625153</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Added getCurrentTimestamp().">
+      <created>1641396764136</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1641396764136</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Added a blockchain element to the wallet.">
+      <created>1641397065219</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1641397065219</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Added getLatestBlock() and addBlock(nexBlock).">
+      <created>1641399013512</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1641399013512</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -444,7 +503,15 @@
     <MESSAGE value="- Added tests for updateUnspentTxOuts." />
     <MESSAGE value="- Comment out Keys implementation in transaction." />
     <MESSAGE value="Rearranged data structures of the wallet and transactionPool files and added the final function to send a transaction." />
-    <option name="LAST_COMMIT_MESSAGE" value="Rearranged data structures of the wallet and transactionPool files and added the final function to send a transaction." />
+    <MESSAGE value="Commented block and blockchain code." />
+    <MESSAGE value="Added new constructor to Transaction." />
+    <MESSAGE value="Adapted the block structure." />
+    <MESSAGE value="Added a genesisTransaction and a genesisBlock." />
+    <MESSAGE value="Adapted Blockchain structure." />
+    <MESSAGE value="Added getCurrentTimestamp()." />
+    <MESSAGE value="Added a blockchain element to the wallet." />
+    <MESSAGE value="Added getLatestBlock() and addBlock(nexBlock)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added getLatestBlock() and addBlock(nexBlock)." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -453,6 +520,11 @@
           <url>file://$PROJECT_DIR$/src/XNode/XNodeSync.cpp</url>
           <line>4</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/XBlockchain/block.cpp</url>
+          <line>4</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
