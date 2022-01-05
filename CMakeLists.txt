@@ -22,7 +22,7 @@ enable_testing()
 include_directories(googletest/googletest/include googletest/googletest)
 include_directories(src/XBlockchain src/XNode)
 
-find_package(Qt6 COMPONENTS Core Widgets REQUIRED)
+find_package(Qt6 COMPONENTS Core Widgets)
 find_package(Protobuf CONFIG REQUIRED)
 find_package(OpenSSL REQUIRED)
 find_package(gRPC CONFIG REQUIRED)
@@ -50,9 +50,9 @@ target_link_libraries(xblockchain-tests gtest gtest_main)
 target_link_libraries(xnode-lib PRIVATE protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite xblockchain-lib gRPC::grpc++ spdlog::spdlog)
 target_link_libraries(xnode xnode-lib)
 target_link_libraries(xblockchain-tests xblockchain-lib)
-target_link_libraries(xcoin-client PRIVATE Qt6::Widgets xnode-lib)
+#target_link_libraries(xcoin-client PRIVATE Qt6::Widgets xnode-lib)
 
-add_custom_command(TARGET xcoin-client POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt6::Core> $<TARGET_FILE_DIR:xcoin-client>
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt6::Gui> $<TARGET_FILE_DIR:xcoin-client>
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt6::Widgets> $<TARGET_FILE_DIR:xcoin-client>)
+#add_custom_command(TARGET xcoin-client POST_BUILD
+ #       COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt6::Core> $<TARGET_FILE_DIR:xcoin-client>
+  #      COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt6::Gui> $<TARGET_FILE_DIR:xcoin-client>
+   #     COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt6::Widgets> $<TARGET_FILE_DIR:xcoin-client>)

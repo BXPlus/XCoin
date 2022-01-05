@@ -49,7 +49,6 @@ public:
     int getAdjustedDifficulty(const Block& latestBlock);
     Block getPrevAdjustmentBlock();
 
-
     // Set up blockchain as a list of blocks.
     std::vector<Block> toBlocks();
     std::vector<std::string> toHeaderHashes();
