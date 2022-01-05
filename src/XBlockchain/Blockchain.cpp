@@ -212,3 +212,12 @@ Blockchain::Blockchain(Block block) {
     chain.push_back(block);
     this->chain = chain;
 }
+
+Block Blockchain::getLatestBlock() {
+    return chain[chain.size()-1];
+}
+
+void Blockchain::addBlock(Block newBlock) {
+    Block lastBlock = getLatestBlock();
+    chain.push_back(Block(lastBlock.index+1, newBlock.hash, lastBlock.hash, Block::getCurrentTimestamp(), newBlock.data));
+}

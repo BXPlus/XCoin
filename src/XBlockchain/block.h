@@ -71,14 +71,14 @@ Block findBlock(int index, std::string previousHash, std::string previousHeaderH
 
 class Block {
 private:
-    int index;
-    std::string hash;
     std::string previousHash;
     long long timestamp;
-    Transaction data;
 public:
     Block(int index, std::string hash, std::string previousHash, long long timestamp, Transaction data);
-    long long getCurrentTimestamp();
+    static long long getCurrentTimestamp();
+    Transaction data;
+    int index;
+    std::string hash;
 };
 
 #endif //XCOIN_BLOCK_H

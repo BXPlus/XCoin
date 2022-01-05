@@ -60,11 +60,12 @@
 
 class Blockchain {
 private:
-    std::vector<Block> chain;
     Block getLatestBlock();
 
 public:
     Blockchain(Block block);
+    std::vector<Block> chain;
+    void addBlock(Block newBlock);
 };
 
 #endif //XCOIN_BLOCKCHAIN_H
