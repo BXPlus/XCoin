@@ -12,6 +12,7 @@
 #include <map>
 #include "Blockchain.h"
 #include "interface.h"
+#include "xnodeauthenticator.h"
 #include "archive.h"
 #include <iostream>
 #include <thread>

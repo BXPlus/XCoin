@@ -19,6 +19,9 @@ public:
         bool lightNode;
         bool darkThemeEnabled;
     };
+
+    bool issueNewTransaction()
+
     void setNodePort(int newPort);
     int getNodePort();
 
@@ -33,7 +36,6 @@ public:
 
     bool getDarkThemeEnabled();
     void setDarkThemeEnabled(bool newTheme);
-
     // constructor for XNodeSDK
     XNodeSDK();
 private:
@@ -41,7 +43,7 @@ private:
     XNodeSettings loadNodeSettings();
     XNodeSettings currentSettings;
     XNodeSettings defaultSettings;
-    Archive settingsfile;
+    Archive settingsfile = Archive("local.xnodebackup");
 };
 std::ostream& operator<<(std::ostream &os, const struct XNodeSDK::XNodeSettings &settings);
 std::istream& operator>>(std::istream &is, struct XNodeSDK::XNodeSettings &settings);
