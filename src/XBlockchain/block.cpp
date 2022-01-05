@@ -193,4 +193,9 @@ Block::Block(int index, std::string hash, std::string previousHash, long long ti
     this->hash = hash;
 }
 
+long long Block::getCurrentTimestamp() {
+    long long millisec_since_epoch = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+    return millisec_since_epoch;
+}
+
 

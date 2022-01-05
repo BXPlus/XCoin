@@ -78,6 +78,7 @@ private:
     Transaction data;
 public:
     Block(int index, std::string hash, std::string previousHash, long long timestamp, Transaction data);
+    long long getCurrentTimestamp();
 };
 
 #endif //XCOIN_BLOCK_H
