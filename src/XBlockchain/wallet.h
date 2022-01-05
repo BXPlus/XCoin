@@ -6,7 +6,7 @@
 #ifndef XBLOCKCHAIN_WALLET_H
 #define XBLOCKCHAIN_WALLET_H
 
-#include "block.h"
+#include "Blockchain.h"
 #include "keys.h"
 #include "archive.h"
 #include "transactionPool.h"
@@ -47,6 +47,8 @@ private:
 
     Block createGenesisBlock();
     Block genesisBlock = createGenesisBlock();
+
+    Blockchain blockchain = Blockchain(genesisBlock);
 };
 
 #endif //XBLOCKCHAIN_WALLET_H

@@ -62,6 +62,8 @@ class Blockchain {
 private:
     std::vector<Block> chain;
     Block getLatestBlock();
+
+public:
     Blockchain(Block block);
 };
 
