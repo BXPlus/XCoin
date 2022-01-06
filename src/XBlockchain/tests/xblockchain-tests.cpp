@@ -370,6 +370,7 @@ TEST(updateUnspentTxOuts, testUpdateUnspentTxOuts) {
     TxIn txIn("txIn", 0, std::pair<uint8_t*, uint32_t>());
     TxOut txOut("txOut", 50);
     Transaction transaction;
+    transaction.id = "";
     transaction.txIns = std::vector<TxIn>{};
     transaction.txOuts = std::vector<TxOut>{txOut};
     transaction.id = transaction.getTransactionId();
@@ -382,7 +383,11 @@ TEST(updateUnspentTxOuts, testUpdateUnspentTxOuts) {
     std::vector<Transaction> aTransactions{transaction};
 
     EXPECT_EQ(updateUnspentTxOuts(aTransactions, aUnspentTxOuts).size(), 4);
-    //TODO:Strengthen this test
+    TxIn txIn1("txIn1", 1, std::pair<uint8_t*, uint32_t>());
+    aTransactions[0].txIns.push_back(txIn1);
+    TxIn txIn2("txOut", 1, std::pair<uint8_t*, uint32_t>());
+    aTransactions[0].txIns.push_back(txIn2);
+    EXPECT_EQ(updateUnspentTxOuts(aTransactions, aUnspentTxOuts).size(), 3);
 }
 
 
