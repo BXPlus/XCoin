@@ -25,9 +25,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XBlockchain/tests/xblockchain-tests.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/tests/xblockchain-tests.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XBlockchain/transaction.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/transaction.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XBlockchain/transaction.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/transaction.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -536,7 +533,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641472229073</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Finish adding processTransactions test.">
+      <created>1641474565428</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1641474565428</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -554,7 +558,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Added tests for validateTransaction." />
     <MESSAGE value="- Added tests for isValidTransactionStructure." />
     <MESSAGE value="- Added tests for validateBlockTransactions." />
     <MESSAGE value="- Added tests for isValidTxOutStructure." />
@@ -579,7 +582,8 @@
     <MESSAGE value="Change privateKey into a constant" />
     <MESSAGE value="Finish adding updateUnspentTxOuts test." />
     <MESSAGE value="Finish adding validateBlockTransactions test." />
-    <option name="LAST_COMMIT_MESSAGE" value="Finish adding validateBlockTransactions test." />
+    <MESSAGE value="Finish adding processTransactions test." />
+    <option name="LAST_COMMIT_MESSAGE" value="Finish adding processTransactions test." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -8,7 +8,6 @@
 #include <map>
 #include <vector>
 #include "sha256.h"
-
 #include "keys.h"
 
 
