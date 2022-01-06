@@ -44,6 +44,8 @@ TEST_F(XBlockchainCoreTests, BlockchainAddBlock){
 }
 */
 
+const std::string validAddress = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
+
 class XTransactionTests: public ::testing::Test{
 protected:
     Transaction transaction;
@@ -210,8 +212,17 @@ TEST_F(XTransactionTests, testValidateTransaction) {
 
 //testing isValidTransactionStructure
 TEST_F(XTransactionTests, testIsValidTransactionStructure) {
+    EXPECT_EQ(transaction.isValidTransactionStructure(), 1);
+    transaction.txOuts = std::vector<TxOut>{};
+    TxOut txOutNotValid1;
+    TxOut txOutNotValid2("txOut", 50);
+    TxOut txOutNotValid3(validAddress, 50);
+    transaction.txOuts.push_back(txOutNotValid3);
+    EXPECT_EQ(transaction.isValidTransactionStructure(), 1);
+    transaction.txOuts.push_back(txOutNotValid2);
     EXPECT_EQ(transaction.isValidTransactionStructure(), 0);
-    //TODO: Strengthen this test
+    transaction.txOuts.push_back(txOutNotValid1);
+    EXPECT_EQ(transaction.isValidTransactionStructure(), 0);
 }
 
 
@@ -310,7 +321,7 @@ TEST(updateUnspentTxOuts, testUpdateUnspentTxOuts) {
 
 // Testing isValidAddress, checking the length of address
 TEST(isValidAddressTest, testIsValidAddressLength) {
-    std::string Address = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
+    std::string Address = validAddress;
     EXPECT_EQ(isValidAddress(Address), 1);
     Address = Address.substr(0, 22);
     EXPECT_EQ(isValidAddress(Address), 0);
@@ -319,7 +330,7 @@ TEST(isValidAddressTest, testIsValidAddressLength) {
 
 // Testing isValidAddress, checking the characters if it has only hex characters or not
 TEST(isValidAddressTest, testIsValidAddressCharacters) {
-    std::string address = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
+    std::string address = validAddress;
     address[2] = 'g';
     EXPECT_EQ(isValidAddress(address), 0);
     address[2] = 'a';
@@ -329,7 +340,7 @@ TEST(isValidAddressTest, testIsValidAddressCharacters) {
 
 // Testing isValidAddress, checking if the string starts with "04"
 TEST(isValidAddressTest, testIsValidAddress04) {
-    std::string address = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
+    std::string address = validAddress;
     EXPECT_EQ(isValidAddress(address), 1);
     address[1] = '1';
     EXPECT_EQ(isValidAddress(address), 0);
@@ -342,9 +353,9 @@ TEST(isValidTxInStructure, testIsValidTxOutStructure) {
     EXPECT_EQ(isValidTxOutStructure(txOut1), 0);
     TxOut txOut2("txOut", 50);
     EXPECT_EQ(isValidTxOutStructure(txOut2), 0);
-    std::string address = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
+    std::string address = validAddress;
     TxOut txOut3(address, 50);
-    EXPECT_EQ(isValidTxOutStructure(txOut3), 0);
+    EXPECT_EQ(isValidTxOutStructure(txOut3), 1);
 }
 
 
