@@ -506,7 +506,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641458252898</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Complete validateTransaction tests">
+      <created>1641466772462</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1641466772462</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -524,7 +531,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Added test for second constructor of TxIn.&#10;- Temporary include classes and functions in keys due to unsolvable CMake issues for testing transaction, will remove later." />
     <MESSAGE value="- Added more test for findUnspentTxOut." />
     <MESSAGE value="- Added tests for validateTxIn." />
     <MESSAGE value="- Added tests for signTxIn." />
@@ -549,7 +555,8 @@
     <MESSAGE value="Finish test for validateTxIn" />
     <MESSAGE value="Complete signTxIn tests." />
     <MESSAGE value="Complete isValidTransactionStructure tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Complete isValidTransactionStructure tests" />
+    <MESSAGE value="Complete validateTransaction tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Complete validateTransaction tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

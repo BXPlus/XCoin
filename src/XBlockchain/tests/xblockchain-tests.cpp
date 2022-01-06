@@ -45,6 +45,7 @@ TEST_F(XBlockchainCoreTests, BlockchainAddBlock){
 */
 
 const std::string validAddress = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
+const std::string privateKey = "2A6B3770D69EC60C918C97E645B81370B5D8213133C4DA4BDD5D70B25E006D1F";
 const int COINBASE_AMOUNT = 50;
 
 class XTransactionTests: public ::testing::Test{
@@ -116,11 +117,10 @@ TEST_F(XTransactionTests, testTxInInit){
 // Testing validateTxIn
 TEST(validateTxIn, testValidateTxIn) {
     int index = 123;
-    std::string priv = "2A6B3770D69EC60C918C97E645B81370B5D8213133C4DA4BDD5D70B25E006D1F";
     std::string transactionId = "A string I want to use as the data to sign";
-    std::pair<uint8_t*, uint32_t> signature = sign(priv, transactionId);
+    std::pair<uint8_t*, uint32_t> signature = sign(privateKey, transactionId);
 
-    std::string address = keyFromPrivate(priv).getPub();
+    std::string address = keyFromPrivate(privateKey).getPub();
 
     TxIn txIn(transactionId, index, signature);
 
@@ -174,7 +174,6 @@ TEST_F(XTransactionTests, testSignTxIn) {
     transaction.txIns = std::vector<TxIn>{txIn1, txIn2};
 
     transaction.id = "This is a data";
-    std::string privateKey = "2A6B3770D69EC60C918C97E645B81370B5D8213133C4DA4BDD5D70B25E006D1F";
     std::string referencedAddress = getPublicKey(privateKey);
 
     std::pair<uint8_t*, uint32_t> signatureTestWith = sign(privateKey, transaction.id);
@@ -228,14 +227,12 @@ TEST_F(XTransactionTests, testValidateTransaction) {
     // Checking validateTxIn
     transaction.id = sha256(sha256_string);
 
-    std::string priv = "2A6B3770D69EC60C918C97E645B81370B5D8213133C4DA4BDD5D70B25E006D1F";
-
-    std::pair<uint8_t*, uint32_t> signature = sign(priv, transaction.id);
+    std::pair<uint8_t*, uint32_t> signature = sign(privateKey, transaction.id);
     txIn1.signature = signature;
     txIn2.signature = signature;
     transaction.txIns = std::vector<TxIn>{txIn1, txIn2};
 
-    std::string address = keyFromPrivate(priv).getPub();
+    std::string address = keyFromPrivate(privateKey).getPub();
     std::cout << "Main address: " << address << "\n";
     UnspentTxOut UnspentTxOut4("txIn", 50, "random_address", 0);
     aUnspentTxOuts.push_back(UnspentTxOut4);
@@ -271,11 +268,10 @@ TEST_F(XTransactionTests, testIsValidTransactionStructure) {
     EXPECT_EQ(transaction.isValidTransactionStructure(), 0);
 
     int index = 123;
-    std::string priv = "2A6B3770D69EC60C918C97E645B81370B5D8213133C4DA4BDD5D70B25E006D1F";
     std::string transactionId = "A string I want to use as the data to sign";
-    std::pair<uint8_t*, uint32_t> signature = sign(priv, transactionId);
+    std::pair<uint8_t*, uint32_t> signature = sign(privateKey, transactionId);
 
-    std::string address = keyFromPrivate(priv).getPub();
+    std::string address = keyFromPrivate(privateKey).getPub();
 
     TxIn txIn(transactionId, index, signature);
 
