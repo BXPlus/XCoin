@@ -165,22 +165,32 @@ TEST_F(XTransactionTests, testGetTransactionId){
 
 //testing signTxIn
 TEST_F(XTransactionTests, testSignTxIn) {
-    int txInIndex = 0;
-    std::string privateKey = "privateKey";
-    std::string address = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
-    std::string txInTxOutId = "txIn";
-    int txInTxOutIndex = 0;
-    TxIn txIn(txInTxOutId, txInTxOutIndex, std::pair<uint8_t*, uint32_t>());
-    transaction.txIns = std::vector<TxIn>{txIn};
+    std::string txOutId = "txIn";
+    int txOutIndex = 1;
+    TxIn txIn1(txOutId, txOutIndex + 1, std::pair<uint8_t*, uint32_t>());
+    TxIn txIn2(txOutId, txOutIndex, std::pair<uint8_t*, uint32_t>());
+    transaction.txIns = std::vector<TxIn>{txIn1, txIn2};
 
-    UnspentTxOut UnspentTxOut1("0", txInTxOutIndex, "0", 0);
-    UnspentTxOut UnspentTxOut2(txInTxOutId, 1, "0", 0);
-    UnspentTxOut UnspentTxOut3("0", 1, "0", 0);
+    transaction.id = "This is a data";
+    std::string privateKey = "2A6B3770D69EC60C918C97E645B81370B5D8213133C4DA4BDD5D70B25E006D1F";
+    std::string referencedAddress = getPublicKey(privateKey);
+
+    std::pair<uint8_t*, uint32_t> signatureTestWith = sign(privateKey, transaction.id);
+
+    UnspentTxOut UnspentTxOut1("0", txOutIndex, "0", 0);
+    UnspentTxOut UnspentTxOut2(txOutId, 0, "0", 0);
+    UnspentTxOut UnspentTxOut3("0", 0, "0", 0);
     std::vector<UnspentTxOut> aUnspentTxOuts{UnspentTxOut1, UnspentTxOut2, UnspentTxOut3};
 
-    std::pair<uint8_t*, uint32_t> signature;
-    EXPECT_ANY_THROW(signature = transaction.signTxIn(txInIndex, privateKey, aUnspentTxOuts));
-    //TODO: Strengthen this test
+    std::pair<uint8_t*, uint32_t> signatureTmp;
+    EXPECT_ANY_THROW(signatureTmp = transaction.signTxIn(1, privateKey, aUnspentTxOuts));
+
+    UnspentTxOut UnspentTxOut4(txOutId, txOutIndex, referencedAddress, 0);
+    aUnspentTxOuts.push_back(UnspentTxOut4);
+
+    std::pair<uint8_t*, uint32_t> signatureAns = transaction.signTxIn(1, privateKey, aUnspentTxOuts);
+    aUnspentTxOuts.back().address.pop_back();
+    EXPECT_ANY_THROW(signatureTmp = transaction.signTxIn(1, privateKey, aUnspentTxOuts));
 }
 
 

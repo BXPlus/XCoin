@@ -284,7 +284,7 @@ std::pair<uint8_t*, uint32_t> Transaction::signTxIn(int txInIndex, std::string p
     std::pair<bool, UnspentTxOut> tmp = findUnspentTxOut(txIn.txOutId, txIn.txOutIndex, aUnspentTxOuts);
     if (tmp.first == NotFoundUnspentTxOut)
         throw std::invalid_argument( "could not find referenced txOut\n" );
-
+    std::cout << "Reached here\n";
     UnspentTxOut referencedUnspentTxOut = tmp.second;
     std::string referencedAddress = referencedUnspentTxOut.address;
 
