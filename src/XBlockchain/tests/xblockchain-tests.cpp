@@ -45,6 +45,7 @@ TEST_F(XBlockchainCoreTests, BlockchainAddBlock){
 */
 
 const std::string validAddress = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
+const int COINBASE_AMOUNT = 50;
 
 class XTransactionTests: public ::testing::Test{
 protected:
@@ -115,10 +116,9 @@ TEST_F(XTransactionTests, testTxInInit){
 // Testing validateTxIn
 TEST(validateTxIn, testValidateTxIn) {
     int index = 123;
-    std::pair<uint8_t*, uint32_t> signature;
     std::string priv = "2A6B3770D69EC60C918C97E645B81370B5D8213133C4DA4BDD5D70B25E006D1F";
     std::string transactionId = "A string I want to use as the data to sign";
-    signature = sign(priv, transactionId);
+    std::pair<uint8_t*, uint32_t> signature = sign(priv, transactionId);
 
     std::string address = keyFromPrivate(priv).getPub();
 
@@ -198,15 +198,61 @@ TEST_F(XTransactionTests, testSignTxIn) {
 
 //testing validateTransaction
 TEST_F(XTransactionTests, testValidateTransaction) {
-    std::string transactionId = "transactionId";
-    int index = 123;
-    UnspentTxOut UnspentTxOut1("0", index, "0", 0);
-    UnspentTxOut UnspentTxOut2(transactionId, 1, "0", 0);
-    UnspentTxOut UnspentTxOut3("0", 1, "0", 0);
-
-    std::vector<UnspentTxOut> aUnspentTxOuts{UnspentTxOut1, UnspentTxOut2, UnspentTxOut3};
+    // Checking isValidTransactionStructure part
+    TxOut txOutNotValid1;
+    TxOut txOutNotValid2("txOut", 50);
+    TxOut txOutValid(validAddress, 50);
+    transaction.txOuts = std::vector<TxOut>{txOutValid, txOutNotValid2, txOutNotValid1};
+    std::vector<UnspentTxOut> aUnspentTxOuts;
     EXPECT_EQ(transaction.validateTransaction(aUnspentTxOuts), 0);
-    //TODO: Strengthen this test
+
+    // Checking getTransactionId part
+    std::string sha256_string = "";
+    TxIn txIn1("txIn", 50, std::pair<uint8_t*, uint32_t>());
+    sha256_string += "txIn50";
+    TxIn txIn2("txIn", 49, std::pair<uint8_t*, uint32_t>());
+    sha256_string += "txIn49";
+    transaction.txIns = std::vector<TxIn>{txIn1, txIn2};
+
+    TxOut txOut1(validAddress, 49);
+    sha256_string += validAddress;
+    sha256_string += "49";
+    TxOut txOut2(validAddress, 50);
+    sha256_string += validAddress;
+    sha256_string += "50";
+    transaction.txOuts = std::vector<TxOut>{txOut1, txOut2};
+
+    transaction.id = "";
+    EXPECT_EQ(transaction.validateTransaction(aUnspentTxOuts), 0);
+
+    // Checking validateTxIn
+    transaction.id = sha256(sha256_string);
+
+    std::string priv = "2A6B3770D69EC60C918C97E645B81370B5D8213133C4DA4BDD5D70B25E006D1F";
+
+    std::pair<uint8_t*, uint32_t> signature = sign(priv, transaction.id);
+    txIn1.signature = signature;
+    txIn2.signature = signature;
+    transaction.txIns = std::vector<TxIn>{txIn1, txIn2};
+
+    std::string address = keyFromPrivate(priv).getPub();
+    std::cout << "Main address: " << address << "\n";
+    UnspentTxOut UnspentTxOut4("txIn", 50, "random_address", 0);
+    aUnspentTxOuts.push_back(UnspentTxOut4);
+    UnspentTxOut UnspentTxOut5("txIn", 50, address, 98);
+    aUnspentTxOuts.push_back(UnspentTxOut5);
+
+    EXPECT_EQ(transaction.validateTransaction(aUnspentTxOuts), 0);
+    aUnspentTxOuts = std::vector<UnspentTxOut>{UnspentTxOut5};
+    EXPECT_EQ(transaction.validateTransaction(aUnspentTxOuts), 0);
+
+    // Checking totalTxInValues != totalTxOutValues
+    UnspentTxOut UnspentTxOut6("txIn", 49, address, 0);
+    aUnspentTxOuts.push_back(UnspentTxOut6);
+    EXPECT_EQ(transaction.validateTransaction(aUnspentTxOuts), 0);
+    aUnspentTxOuts.back().amount = 1;
+
+    EXPECT_EQ(transaction.validateTransaction(aUnspentTxOuts), 1);
 }
 
 
@@ -216,20 +262,45 @@ TEST_F(XTransactionTests, testIsValidTransactionStructure) {
     transaction.txOuts = std::vector<TxOut>{};
     TxOut txOutNotValid1;
     TxOut txOutNotValid2("txOut", 50);
-    TxOut txOutNotValid3(validAddress, 50);
-    transaction.txOuts.push_back(txOutNotValid3);
+    TxOut txOutValid(validAddress, 50);
+    transaction.txOuts.push_back(txOutValid);
     EXPECT_EQ(transaction.isValidTransactionStructure(), 1);
     transaction.txOuts.push_back(txOutNotValid2);
     EXPECT_EQ(transaction.isValidTransactionStructure(), 0);
     transaction.txOuts.push_back(txOutNotValid1);
     EXPECT_EQ(transaction.isValidTransactionStructure(), 0);
+
+    int index = 123;
+    std::string priv = "2A6B3770D69EC60C918C97E645B81370B5D8213133C4DA4BDD5D70B25E006D1F";
+    std::string transactionId = "A string I want to use as the data to sign";
+    std::pair<uint8_t*, uint32_t> signature = sign(priv, transactionId);
+
+    std::string address = keyFromPrivate(priv).getPub();
+
+    TxIn txIn(transactionId, index, signature);
+
+    UnspentTxOut UnspentTxOut1("0", index, "0", 0);
+    UnspentTxOut UnspentTxOut2(transactionId, 1, "0", 0);
+    UnspentTxOut UnspentTxOut3("0", 1, "0", 0);
+    std::vector<UnspentTxOut> aUnspentTxOuts{UnspentTxOut1, UnspentTxOut2, UnspentTxOut3};
+
+    bool res;
+    res = validateTxIn(txIn, transactionId, aUnspentTxOuts);
+    EXPECT_EQ(res, 0);// "referenced txOut not found";
+
+    UnspentTxOut UnspentTxOut4(transactionId, index, address, 0);
+    aUnspentTxOuts.push_back(UnspentTxOut4);
+    UnspentTxOut UnspentTxOut5(transactionId, index, address, 1);
+    aUnspentTxOuts.push_back(UnspentTxOut5);
+
+    res = validateTxIn(txIn, transactionId, aUnspentTxOuts);
+    EXPECT_EQ(res, 1);
 }
 
 
 //testing validateCoinbaseTx
 TEST_F(XTransactionTests, testValidateCoinbaseTx) {
     std::string ans = "";
-    int COINBASE_AMOUNT = 50;
     int blockIndex = 1;
 
     TxIn txIn("txIn", blockIndex, std::pair<uint8_t*, uint32_t>());
@@ -361,7 +432,7 @@ TEST(isValidTxInStructure, testIsValidTxOutStructure) {
 
 //Testing getCoinbaseTransaction
 TEST(getCoinbaseTransaction, testGetCoinbaseTransaction) {
-    std::string address = "04bfcab8722991ae774db48f934ca79cfb7dd991229153b9f732ba5334aafcd8e7266e47076996b55a14bf9913ee3145ce0cfc1372ada8ada74bd287450313534a";
+    std::string address = validAddress;
     int blockIndex = 0;
     Transaction t = getCoinbaseTransaction(address, blockIndex);
     std::string transactionId = "";
@@ -395,7 +466,6 @@ TEST(hasDuplicates, testHasDuplicate) {
 //testing validateBlockTransactions
 TEST(validateBlockTransactions, testValidateBlockTransactions) {
     std::string ans = "";
-    int COINBASE_AMOUNT = 50;
     int blockIndex = 1;
 
     TxIn txIn("txIn", blockIndex, std::pair<uint8_t*, uint32_t>());
@@ -405,12 +475,9 @@ TEST(validateBlockTransactions, testValidateBlockTransactions) {
     transaction.txOuts = std::vector<TxOut>{txOut};
     transaction.id = transaction.getTransactionId();
 
-    //invalid coinbase tx id
-    std::string id = transaction.id;
-    transaction.id[0] = '+';
     std::vector<Transaction> aTransactions{transaction};
     std::vector<UnspentTxOut> aUnspentTxOuts;
-    EXPECT_EQ(validateBlockTransactions(aTransactions, aUnspentTxOuts, 0), 0);
+    EXPECT_EQ(validateBlockTransactions(aTransactions, aUnspentTxOuts, blockIndex), 0);
     //TODO: Strengthen this test
 }
 
@@ -418,7 +485,6 @@ TEST(validateBlockTransactions, testValidateBlockTransactions) {
 //testing processTransactions
 TEST(processTransactions, testProcessTransactions) {
     std::string ans = "";
-    int COINBASE_AMOUNT = 50;
     int blockIndex = 1;
 
     TxIn txIn("txIn", blockIndex, std::pair<uint8_t*, uint32_t>());
