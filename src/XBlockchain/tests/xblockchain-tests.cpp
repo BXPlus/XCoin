@@ -478,8 +478,33 @@ TEST(validateBlockTransactions, testValidateBlockTransactions) {
 
     std::vector<Transaction> aTransactions{transaction};
     std::vector<UnspentTxOut> aUnspentTxOuts;
+    EXPECT_EQ(validateBlockTransactions(aTransactions, aUnspentTxOuts, blockIndex - 1), 0);
+
+    TxIn txIn1("txIn", 50, std::pair<uint8_t*, uint32_t>());
+    TxIn txIn2("txIn", 50, std::pair<uint8_t*, uint32_t>());
+    transaction.txIns = std::vector<TxIn>{txIn1, txIn2};
+
+    TxOut txOut1(validAddress, 49);
+    TxOut txOut2(validAddress, 50);
+    transaction.txOuts = std::vector<TxOut>{txOut1, txOut2};
+
+    transaction.txIns = std::vector<TxIn>{txIn1, txIn2};
+
+    aTransactions.push_back(transaction);
     EXPECT_EQ(validateBlockTransactions(aTransactions, aUnspentTxOuts, blockIndex), 0);
-    //TODO: Strengthen this test
+    TxIn txIn3("txIn", 49, std::pair<uint8_t*, uint32_t>());
+    aTransactions[1].txIns = std::vector<TxIn>{txIn1, txIn3};
+    aTransactions[1].id = aTransactions[1].getTransactionId();
+    std::pair<uint8_t*, uint32_t> signature = sign(privateKey, aTransactions[1].id);
+    aTransactions[1].txIns[0].signature = signature;
+    aTransactions[1].txIns[1].signature = signature;
+    std::string address = keyFromPrivate(privateKey).getPub();
+    UnspentTxOut UnspentTxOut4("txIn", 50, address, 98);
+    aUnspentTxOuts = std::vector<UnspentTxOut>{UnspentTxOut4};
+    UnspentTxOut UnspentTxOut5("txIn", 49, address, 1);
+    aUnspentTxOuts.push_back(UnspentTxOut5);
+
+    EXPECT_EQ(validateBlockTransactions(aTransactions, aUnspentTxOuts, blockIndex), 1);
 }
 
 

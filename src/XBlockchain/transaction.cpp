@@ -482,14 +482,9 @@ bool validateBlockTransactions(std::vector<Transaction> aTransactions, std::vect
 
     //check for duplicate txIns. Each txIn can be included only once
     std::vector<TxIn> txIns;
-    std::set<TxIn> used;
     for (int i = 0; i < (int)(aTransactions.size()); i++) {
-        for (int j = 0; j < (int)(aTransactions[i].txIns.size()); j++) {
-            if (used.find(aTransactions[i].txIns[j]) != used.end()) {
-                txIns.push_back(aTransactions[i].txIns[j]);
-                used.insert(aTransactions[i].txIns[j]);
-            }
-        }
+        for (int j = 0; j < (int)(aTransactions[i].txIns.size()); j++)
+            txIns.push_back(aTransactions[i].txIns[j]);
     }
 
     if (hasDuplicates(txIns))
