@@ -9,6 +9,7 @@
 
 xcoin::Node::Node() {
     this->blockchain = Blockchain();
+    this->wallet = Wallet();
     this->peers = std::map<std::string, xcoin::XNodeClient>();
     for (int i = 0; i < 50; i++) {
         this->blockchain.appendBlock(this->blockchain.generateNextBlock("Hello" + std::to_string(i), i+1, 0, ""));

@@ -21,10 +21,8 @@ public:
 
 private:
     Archive dataStorage = Archive("local.xnodekeys");
-
     std::string generatePrivateKey();
     std::string getPublicFromWallet();
-    void initWallet();
     void deleteWallet();
     std::vector<UnspentTxOut> findUnspentTxOuts(std::string ownerAddress, std::vector<UnspentTxOut> unspentTxOuts);
     int getBalance(std::string address, std::vector<UnspentTxOut> unspentTxOuts);

@@ -37,7 +37,7 @@ void TransactionPool::addToTransactionPool(Transaction tx, std::vector<UnspentTx
     return;
 }
 
-bool hasTxIn(TxIn txIn, std::vector<UnspentTxOut> unspentTxOuts) {
+bool TransactionPool::hasTxIn(TxIn txIn, std::vector<UnspentTxOut> unspentTxOuts) {
     for (int i = 0; i < int(unspentTxOuts.size()); i++) {
         UnspentTxOut uTxO = unspentTxOuts[i];
         if (uTxO.txOutId == txIn.txOutId && uTxO.txOutIndex == txIn.txOutIndex) {

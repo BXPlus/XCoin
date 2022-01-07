@@ -27,16 +27,17 @@ std::string Wallet::getPublicFromWallet()
 // Wallet Balance
 
 Wallet::Wallet() {
-    const std::string newPrivKey = generatePrivateKey();
-
-    dataStorage.saveData(newPrivKey);
+    if(!dataStorage.exists()){
+        const std::string newPrivKey = generatePrivateKey();
+        dataStorage.saveData(newPrivKey);
+    }
 }
 
-/*
-void deleteWallet() {
-    return;
+void Wallet::deleteWallet() {
+    this->dataStorage.deleteLocalData();
+    myTransactionPool.transactionPool.clear();
 }
-*/
+
 
 std::vector<UnspentTxOut> Wallet::findUnspentTxOuts(std::string ownerAddress, std::vector<UnspentTxOut> unspentTxOuts)
 {

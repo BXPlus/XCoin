@@ -5,12 +5,13 @@
 #include "gtest/gtest.h"
 #include "../Blockchain.h"
 #include "../transaction.h"
+#include "../wallet.h"
 
 class XBlockchainCoreTests: public ::testing::Test{
 protected:
-    Blockchain blockchain;
+    Wallet testWallet;
     void SetUp() override{
-        blockchain = Blockchain();
+        testWallet = Wallet();
     }
 };
 

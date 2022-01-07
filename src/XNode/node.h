@@ -11,6 +11,7 @@
 #include <string>
 #include <map>
 #include "Blockchain.h"
+#include "wallet.h"
 #include "interface.h"
 #include "xnodeauthenticator.h"
 #include "archive.h"
@@ -77,6 +78,7 @@ namespace xcoin{
         std::map<std::string, XNodeClient> peers;
         std::unique_ptr<::grpc::Server> server;
         Blockchain blockchain;
+        Wallet wallet;
         XNodeSDK* sdkInstance;
     };
 }
