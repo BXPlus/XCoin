@@ -7,6 +7,7 @@
 
 #include "blockchain.pb.h"
 #include "Blockchain.h"
+#include "transaction.h"
 
 /************************************************************************************
  *
@@ -41,6 +42,8 @@ namespace xcoin{
         static std::string exportDNSHandshake(const std::map<std::string,std::string>& dnsMap);
         static std::pair<std::map<std::string,std::string>,bool> decodeDNSHandshake(const std::string& encodedHandshake);
         static XNodeMessageDecodingResult decodeXNodeMessageEnvelope(const std::string& encodedEnvelope);
+        static Transaction decodeTransaction(const std::string& transactionData);
+        static std::string encodeTransaction(const Transaction& transaction);
         static void shutdown();
         static bool startup();
     };

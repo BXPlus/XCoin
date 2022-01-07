@@ -21,8 +21,6 @@ public:
         bool darkThemeEnabled;
     };
 
-    //bool issueNewTransaction()
-
     void setNodePort(int newPort);
     int getNodePort();
 

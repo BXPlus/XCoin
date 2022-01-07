@@ -54,6 +54,7 @@ namespace xcoin{
         void setSdkInstance(XNodeSDK *sdkInstance);
         XNodeSDK *getSdkInstance() const;
         std::string generate_jwt(const std::string& public_id) const;
+        bool registerAndCommitTransaction(const std::string& address, int amount);
         bool verify_jwt(const std::string& jwt, const std::string& public_id) const;
     private:
         explicit Node();

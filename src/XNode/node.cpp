@@ -440,6 +440,26 @@ std::shared_ptr<grpc::CallCredentials> xcoin::Node::generateCredentialsForContex
     return grpc::MetadataCredentialsFromPlugin(std::unique_ptr<grpc::MetadataCredentialsPlugin>(new XNodeAuthenticator(generate_jwt(peerAddress))));
 }
 
+/**
+* Function that registers a new transaction and appends it to the blockchain
+* @param address, amount the transaction details
+* @return true if adding the transaction was successful
+*/
+bool xcoin::Node::registerAndCommitTransaction(const std::string& address, int amount) {
+    try{
+        Transaction tx = wallet.commitTransaction(address, amount, blockchain.getLatestBlock());
+        std::string encodedTx = xcoin::interface::encodeTransaction(tx);
+        Block newBlock = blockchain.generateNextBlock(encodedTx, blockchain.getLatestBlock().difficulty, wallet.getBalance(wallet.getPublicFromWallet(), wallet.myUnspentTxOuts), wallet.getPublicFromWallet());
+        blockchain.appendBlock(newBlock);
+        spdlog::info("Added new transaction to chain. Will broadcast");
+        return true;
+    }catch (...){
+        spdlog::warn("Invalid transaction processed");
+        return false;
+    }
+    //TODO: broadcast
+}
+
 void xcoin::Node::setSdkInstance(XNodeSDK *newSdkInstance) {
     this->sdkInstance = newSdkInstance;
 }

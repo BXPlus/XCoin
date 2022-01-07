@@ -62,7 +62,6 @@ void XNodeSDK::setDarkThemeEnabled(bool newTheme) {
 bool XNodeSDK::getDarkThemeEnabled() {return currentSettings.darkThemeEnabled;}
 
 
-
 std::ostream& operator<<(std::ostream &os, const struct XNodeSDK::XNodeSettings &settings)
 {   os << "nodePort: " << settings.nodePort << "\n";
     os << "rootDNSAddresses: "; // << newSettings.rootDNSAddresses << "\n"; // look result of this encoding

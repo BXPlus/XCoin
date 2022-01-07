@@ -46,7 +46,7 @@ struct TableStruct_blockchain_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[13]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[17]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -91,6 +91,18 @@ extern PingHandshakeDefaultTypeInternal _PingHandshake_default_instance_;
 class PingPong;
 struct PingPongDefaultTypeInternal;
 extern PingPongDefaultTypeInternal _PingPong_default_instance_;
+class Transaction;
+struct TransactionDefaultTypeInternal;
+extern TransactionDefaultTypeInternal _Transaction_default_instance_;
+class TxIn;
+struct TxInDefaultTypeInternal;
+extern TxInDefaultTypeInternal _TxIn_default_instance_;
+class TxInSignature;
+struct TxInSignatureDefaultTypeInternal;
+extern TxInSignatureDefaultTypeInternal _TxInSignature_default_instance_;
+class TxOut;
+struct TxOutDefaultTypeInternal;
+extern TxOutDefaultTypeInternal _TxOut_default_instance_;
 class XNodeMessage;
 struct XNodeMessageDefaultTypeInternal;
 extern XNodeMessageDefaultTypeInternal _XNodeMessage_default_instance_;
@@ -109,6 +121,10 @@ template<> ::xcoin::interchange::NewBlockHandshake* Arena::CreateMaybeMessage<::
 template<> ::xcoin::interchange::PeerUpdateHandshake* Arena::CreateMaybeMessage<::xcoin::interchange::PeerUpdateHandshake>(Arena*);
 template<> ::xcoin::interchange::PingHandshake* Arena::CreateMaybeMessage<::xcoin::interchange::PingHandshake>(Arena*);
 template<> ::xcoin::interchange::PingPong* Arena::CreateMaybeMessage<::xcoin::interchange::PingPong>(Arena*);
+template<> ::xcoin::interchange::Transaction* Arena::CreateMaybeMessage<::xcoin::interchange::Transaction>(Arena*);
+template<> ::xcoin::interchange::TxIn* Arena::CreateMaybeMessage<::xcoin::interchange::TxIn>(Arena*);
+template<> ::xcoin::interchange::TxInSignature* Arena::CreateMaybeMessage<::xcoin::interchange::TxInSignature>(Arena*);
+template<> ::xcoin::interchange::TxOut* Arena::CreateMaybeMessage<::xcoin::interchange::TxOut>(Arena*);
 template<> ::xcoin::interchange::XNodeMessage* Arena::CreateMaybeMessage<::xcoin::interchange::XNodeMessage>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace xcoin {
@@ -2561,6 +2577,686 @@ class NewBlockHandshake final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_blockchain_2eproto;
 };
+// -------------------------------------------------------------------
+
+class TxInSignature final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:xcoin.interchange.TxInSignature) */ {
+ public:
+  inline TxInSignature() : TxInSignature(nullptr) {}
+  ~TxInSignature() override;
+  explicit constexpr TxInSignature(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  TxInSignature(const TxInSignature& from);
+  TxInSignature(TxInSignature&& from) noexcept
+    : TxInSignature() {
+    *this = ::std::move(from);
+  }
+
+  inline TxInSignature& operator=(const TxInSignature& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TxInSignature& operator=(TxInSignature&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TxInSignature& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const TxInSignature* internal_default_instance() {
+    return reinterpret_cast<const TxInSignature*>(
+               &_TxInSignature_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    13;
+
+  friend void swap(TxInSignature& a, TxInSignature& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TxInSignature* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TxInSignature* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TxInSignature* New() const final {
+    return new TxInSignature();
+  }
+
+  TxInSignature* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TxInSignature>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const TxInSignature& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const TxInSignature& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TxInSignature* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "xcoin.interchange.TxInSignature";
+  }
+  protected:
+  explicit TxInSignature(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kS1FieldNumber = 1,
+    kS2FieldNumber = 2,
+  };
+  // uint64 s1 = 1;
+  void clear_s1();
+  ::PROTOBUF_NAMESPACE_ID::uint64 s1() const;
+  void set_s1(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_s1() const;
+  void _internal_set_s1(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // uint32 s2 = 2;
+  void clear_s2();
+  ::PROTOBUF_NAMESPACE_ID::uint32 s2() const;
+  void set_s2(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_s2() const;
+  void _internal_set_s2(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:xcoin.interchange.TxInSignature)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 s1_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 s2_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_blockchain_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TxIn final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:xcoin.interchange.TxIn) */ {
+ public:
+  inline TxIn() : TxIn(nullptr) {}
+  ~TxIn() override;
+  explicit constexpr TxIn(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  TxIn(const TxIn& from);
+  TxIn(TxIn&& from) noexcept
+    : TxIn() {
+    *this = ::std::move(from);
+  }
+
+  inline TxIn& operator=(const TxIn& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TxIn& operator=(TxIn&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TxIn& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const TxIn* internal_default_instance() {
+    return reinterpret_cast<const TxIn*>(
+               &_TxIn_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    14;
+
+  friend void swap(TxIn& a, TxIn& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TxIn* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TxIn* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TxIn* New() const final {
+    return new TxIn();
+  }
+
+  TxIn* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TxIn>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const TxIn& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const TxIn& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TxIn* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "xcoin.interchange.TxIn";
+  }
+  protected:
+  explicit TxIn(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTxOutIdFieldNumber = 1,
+    kSignatureFieldNumber = 3,
+    kTxOutIndexFieldNumber = 2,
+  };
+  // string txOutId = 1;
+  void clear_txoutid();
+  const std::string& txoutid() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_txoutid(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_txoutid();
+  PROTOBUF_MUST_USE_RESULT std::string* release_txoutid();
+  void set_allocated_txoutid(std::string* txoutid);
+  private:
+  const std::string& _internal_txoutid() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_txoutid(const std::string& value);
+  std::string* _internal_mutable_txoutid();
+  public:
+
+  // .xcoin.interchange.TxInSignature signature = 3;
+  bool has_signature() const;
+  private:
+  bool _internal_has_signature() const;
+  public:
+  void clear_signature();
+  const ::xcoin::interchange::TxInSignature& signature() const;
+  PROTOBUF_MUST_USE_RESULT ::xcoin::interchange::TxInSignature* release_signature();
+  ::xcoin::interchange::TxInSignature* mutable_signature();
+  void set_allocated_signature(::xcoin::interchange::TxInSignature* signature);
+  private:
+  const ::xcoin::interchange::TxInSignature& _internal_signature() const;
+  ::xcoin::interchange::TxInSignature* _internal_mutable_signature();
+  public:
+  void unsafe_arena_set_allocated_signature(
+      ::xcoin::interchange::TxInSignature* signature);
+  ::xcoin::interchange::TxInSignature* unsafe_arena_release_signature();
+
+  // uint32 txOutIndex = 2;
+  void clear_txoutindex();
+  ::PROTOBUF_NAMESPACE_ID::uint32 txoutindex() const;
+  void set_txoutindex(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_txoutindex() const;
+  void _internal_set_txoutindex(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:xcoin.interchange.TxIn)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr txoutid_;
+  ::xcoin::interchange::TxInSignature* signature_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 txoutindex_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_blockchain_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TxOut final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:xcoin.interchange.TxOut) */ {
+ public:
+  inline TxOut() : TxOut(nullptr) {}
+  ~TxOut() override;
+  explicit constexpr TxOut(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  TxOut(const TxOut& from);
+  TxOut(TxOut&& from) noexcept
+    : TxOut() {
+    *this = ::std::move(from);
+  }
+
+  inline TxOut& operator=(const TxOut& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TxOut& operator=(TxOut&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TxOut& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const TxOut* internal_default_instance() {
+    return reinterpret_cast<const TxOut*>(
+               &_TxOut_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    15;
+
+  friend void swap(TxOut& a, TxOut& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TxOut* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TxOut* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TxOut* New() const final {
+    return new TxOut();
+  }
+
+  TxOut* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TxOut>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const TxOut& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const TxOut& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TxOut* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "xcoin.interchange.TxOut";
+  }
+  protected:
+  explicit TxOut(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAddressFieldNumber = 1,
+    kAmountFieldNumber = 2,
+  };
+  // string address = 1;
+  void clear_address();
+  const std::string& address() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_address(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_address();
+  PROTOBUF_MUST_USE_RESULT std::string* release_address();
+  void set_allocated_address(std::string* address);
+  private:
+  const std::string& _internal_address() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_address(const std::string& value);
+  std::string* _internal_mutable_address();
+  public:
+
+  // uint32 amount = 2;
+  void clear_amount();
+  ::PROTOBUF_NAMESPACE_ID::uint32 amount() const;
+  void set_amount(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_amount() const;
+  void _internal_set_amount(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:xcoin.interchange.TxOut)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr address_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 amount_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_blockchain_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Transaction final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:xcoin.interchange.Transaction) */ {
+ public:
+  inline Transaction() : Transaction(nullptr) {}
+  ~Transaction() override;
+  explicit constexpr Transaction(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Transaction(const Transaction& from);
+  Transaction(Transaction&& from) noexcept
+    : Transaction() {
+    *this = ::std::move(from);
+  }
+
+  inline Transaction& operator=(const Transaction& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Transaction& operator=(Transaction&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Transaction& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Transaction* internal_default_instance() {
+    return reinterpret_cast<const Transaction*>(
+               &_Transaction_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    16;
+
+  friend void swap(Transaction& a, Transaction& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Transaction* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Transaction* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Transaction* New() const final {
+    return new Transaction();
+  }
+
+  Transaction* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<Transaction>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Transaction& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const Transaction& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Transaction* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "xcoin.interchange.Transaction";
+  }
+  protected:
+  explicit Transaction(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTxInsFieldNumber = 2,
+    kTxOutsFieldNumber = 3,
+    kIdFieldNumber = 1,
+  };
+  // repeated .xcoin.interchange.TxIn txIns = 2;
+  int txins_size() const;
+  private:
+  int _internal_txins_size() const;
+  public:
+  void clear_txins();
+  ::xcoin::interchange::TxIn* mutable_txins(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::xcoin::interchange::TxIn >*
+      mutable_txins();
+  private:
+  const ::xcoin::interchange::TxIn& _internal_txins(int index) const;
+  ::xcoin::interchange::TxIn* _internal_add_txins();
+  public:
+  const ::xcoin::interchange::TxIn& txins(int index) const;
+  ::xcoin::interchange::TxIn* add_txins();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::xcoin::interchange::TxIn >&
+      txins() const;
+
+  // repeated .xcoin.interchange.TxOut txOuts = 3;
+  int txouts_size() const;
+  private:
+  int _internal_txouts_size() const;
+  public:
+  void clear_txouts();
+  ::xcoin::interchange::TxOut* mutable_txouts(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::xcoin::interchange::TxOut >*
+      mutable_txouts();
+  private:
+  const ::xcoin::interchange::TxOut& _internal_txouts(int index) const;
+  ::xcoin::interchange::TxOut* _internal_add_txouts();
+  public:
+  const ::xcoin::interchange::TxOut& txouts(int index) const;
+  ::xcoin::interchange::TxOut* add_txouts();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::xcoin::interchange::TxOut >&
+      txouts() const;
+
+  // string id = 1;
+  void clear_id();
+  const std::string& id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_id();
+  PROTOBUF_MUST_USE_RESULT std::string* release_id();
+  void set_allocated_id(std::string* id);
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
+  std::string* _internal_mutable_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:xcoin.interchange.Transaction)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::xcoin::interchange::TxIn > txins_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::xcoin::interchange::TxOut > txouts_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_blockchain_2eproto;
+};
 // ===================================================================
 
 
@@ -4532,9 +5228,421 @@ inline void NewBlockHandshake::set_allocated_block(::xcoin::interchange::Block* 
   // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.NewBlockHandshake.block)
 }
 
+// -------------------------------------------------------------------
+
+// TxInSignature
+
+// uint64 s1 = 1;
+inline void TxInSignature::clear_s1() {
+  s1_ = uint64_t{0u};
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TxInSignature::_internal_s1() const {
+  return s1_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TxInSignature::s1() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.TxInSignature.s1)
+  return _internal_s1();
+}
+inline void TxInSignature::_internal_set_s1(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  s1_ = value;
+}
+inline void TxInSignature::set_s1(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_s1(value);
+  // @@protoc_insertion_point(field_set:xcoin.interchange.TxInSignature.s1)
+}
+
+// uint32 s2 = 2;
+inline void TxInSignature::clear_s2() {
+  s2_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 TxInSignature::_internal_s2() const {
+  return s2_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 TxInSignature::s2() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.TxInSignature.s2)
+  return _internal_s2();
+}
+inline void TxInSignature::_internal_set_s2(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  s2_ = value;
+}
+inline void TxInSignature::set_s2(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_s2(value);
+  // @@protoc_insertion_point(field_set:xcoin.interchange.TxInSignature.s2)
+}
+
+// -------------------------------------------------------------------
+
+// TxIn
+
+// string txOutId = 1;
+inline void TxIn::clear_txoutid() {
+  txoutid_.ClearToEmpty();
+}
+inline const std::string& TxIn::txoutid() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.TxIn.txOutId)
+  return _internal_txoutid();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void TxIn::set_txoutid(ArgT0&& arg0, ArgT... args) {
+ 
+ txoutid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:xcoin.interchange.TxIn.txOutId)
+}
+inline std::string* TxIn::mutable_txoutid() {
+  std::string* _s = _internal_mutable_txoutid();
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.TxIn.txOutId)
+  return _s;
+}
+inline const std::string& TxIn::_internal_txoutid() const {
+  return txoutid_.Get();
+}
+inline void TxIn::_internal_set_txoutid(const std::string& value) {
+  
+  txoutid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* TxIn::_internal_mutable_txoutid() {
+  
+  return txoutid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* TxIn::release_txoutid() {
+  // @@protoc_insertion_point(field_release:xcoin.interchange.TxIn.txOutId)
+  return txoutid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void TxIn::set_allocated_txoutid(std::string* txoutid) {
+  if (txoutid != nullptr) {
+    
+  } else {
+    
+  }
+  txoutid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), txoutid,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.TxIn.txOutId)
+}
+
+// uint32 txOutIndex = 2;
+inline void TxIn::clear_txoutindex() {
+  txoutindex_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 TxIn::_internal_txoutindex() const {
+  return txoutindex_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 TxIn::txoutindex() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.TxIn.txOutIndex)
+  return _internal_txoutindex();
+}
+inline void TxIn::_internal_set_txoutindex(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  txoutindex_ = value;
+}
+inline void TxIn::set_txoutindex(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_txoutindex(value);
+  // @@protoc_insertion_point(field_set:xcoin.interchange.TxIn.txOutIndex)
+}
+
+// .xcoin.interchange.TxInSignature signature = 3;
+inline bool TxIn::_internal_has_signature() const {
+  return this != internal_default_instance() && signature_ != nullptr;
+}
+inline bool TxIn::has_signature() const {
+  return _internal_has_signature();
+}
+inline void TxIn::clear_signature() {
+  if (GetArenaForAllocation() == nullptr && signature_ != nullptr) {
+    delete signature_;
+  }
+  signature_ = nullptr;
+}
+inline const ::xcoin::interchange::TxInSignature& TxIn::_internal_signature() const {
+  const ::xcoin::interchange::TxInSignature* p = signature_;
+  return p != nullptr ? *p : reinterpret_cast<const ::xcoin::interchange::TxInSignature&>(
+      ::xcoin::interchange::_TxInSignature_default_instance_);
+}
+inline const ::xcoin::interchange::TxInSignature& TxIn::signature() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.TxIn.signature)
+  return _internal_signature();
+}
+inline void TxIn::unsafe_arena_set_allocated_signature(
+    ::xcoin::interchange::TxInSignature* signature) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(signature_);
+  }
+  signature_ = signature;
+  if (signature) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:xcoin.interchange.TxIn.signature)
+}
+inline ::xcoin::interchange::TxInSignature* TxIn::release_signature() {
+  
+  ::xcoin::interchange::TxInSignature* temp = signature_;
+  signature_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::xcoin::interchange::TxInSignature* TxIn::unsafe_arena_release_signature() {
+  // @@protoc_insertion_point(field_release:xcoin.interchange.TxIn.signature)
+  
+  ::xcoin::interchange::TxInSignature* temp = signature_;
+  signature_ = nullptr;
+  return temp;
+}
+inline ::xcoin::interchange::TxInSignature* TxIn::_internal_mutable_signature() {
+  
+  if (signature_ == nullptr) {
+    auto* p = CreateMaybeMessage<::xcoin::interchange::TxInSignature>(GetArenaForAllocation());
+    signature_ = p;
+  }
+  return signature_;
+}
+inline ::xcoin::interchange::TxInSignature* TxIn::mutable_signature() {
+  ::xcoin::interchange::TxInSignature* _msg = _internal_mutable_signature();
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.TxIn.signature)
+  return _msg;
+}
+inline void TxIn::set_allocated_signature(::xcoin::interchange::TxInSignature* signature) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete signature_;
+  }
+  if (signature) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::xcoin::interchange::TxInSignature>::GetOwningArena(signature);
+    if (message_arena != submessage_arena) {
+      signature = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, signature, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  signature_ = signature;
+  // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.TxIn.signature)
+}
+
+// -------------------------------------------------------------------
+
+// TxOut
+
+// string address = 1;
+inline void TxOut::clear_address() {
+  address_.ClearToEmpty();
+}
+inline const std::string& TxOut::address() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.TxOut.address)
+  return _internal_address();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void TxOut::set_address(ArgT0&& arg0, ArgT... args) {
+ 
+ address_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:xcoin.interchange.TxOut.address)
+}
+inline std::string* TxOut::mutable_address() {
+  std::string* _s = _internal_mutable_address();
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.TxOut.address)
+  return _s;
+}
+inline const std::string& TxOut::_internal_address() const {
+  return address_.Get();
+}
+inline void TxOut::_internal_set_address(const std::string& value) {
+  
+  address_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* TxOut::_internal_mutable_address() {
+  
+  return address_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* TxOut::release_address() {
+  // @@protoc_insertion_point(field_release:xcoin.interchange.TxOut.address)
+  return address_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void TxOut::set_allocated_address(std::string* address) {
+  if (address != nullptr) {
+    
+  } else {
+    
+  }
+  address_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), address,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.TxOut.address)
+}
+
+// uint32 amount = 2;
+inline void TxOut::clear_amount() {
+  amount_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 TxOut::_internal_amount() const {
+  return amount_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 TxOut::amount() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.TxOut.amount)
+  return _internal_amount();
+}
+inline void TxOut::_internal_set_amount(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  amount_ = value;
+}
+inline void TxOut::set_amount(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_amount(value);
+  // @@protoc_insertion_point(field_set:xcoin.interchange.TxOut.amount)
+}
+
+// -------------------------------------------------------------------
+
+// Transaction
+
+// string id = 1;
+inline void Transaction::clear_id() {
+  id_.ClearToEmpty();
+}
+inline const std::string& Transaction::id() const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.Transaction.id)
+  return _internal_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Transaction::set_id(ArgT0&& arg0, ArgT... args) {
+ 
+ id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:xcoin.interchange.Transaction.id)
+}
+inline std::string* Transaction::mutable_id() {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.Transaction.id)
+  return _s;
+}
+inline const std::string& Transaction::_internal_id() const {
+  return id_.Get();
+}
+inline void Transaction::_internal_set_id(const std::string& value) {
+  
+  id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* Transaction::_internal_mutable_id() {
+  
+  return id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* Transaction::release_id() {
+  // @@protoc_insertion_point(field_release:xcoin.interchange.Transaction.id)
+  return id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void Transaction::set_allocated_id(std::string* id) {
+  if (id != nullptr) {
+    
+  } else {
+    
+  }
+  id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), id,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:xcoin.interchange.Transaction.id)
+}
+
+// repeated .xcoin.interchange.TxIn txIns = 2;
+inline int Transaction::_internal_txins_size() const {
+  return txins_.size();
+}
+inline int Transaction::txins_size() const {
+  return _internal_txins_size();
+}
+inline void Transaction::clear_txins() {
+  txins_.Clear();
+}
+inline ::xcoin::interchange::TxIn* Transaction::mutable_txins(int index) {
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.Transaction.txIns)
+  return txins_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::xcoin::interchange::TxIn >*
+Transaction::mutable_txins() {
+  // @@protoc_insertion_point(field_mutable_list:xcoin.interchange.Transaction.txIns)
+  return &txins_;
+}
+inline const ::xcoin::interchange::TxIn& Transaction::_internal_txins(int index) const {
+  return txins_.Get(index);
+}
+inline const ::xcoin::interchange::TxIn& Transaction::txins(int index) const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.Transaction.txIns)
+  return _internal_txins(index);
+}
+inline ::xcoin::interchange::TxIn* Transaction::_internal_add_txins() {
+  return txins_.Add();
+}
+inline ::xcoin::interchange::TxIn* Transaction::add_txins() {
+  ::xcoin::interchange::TxIn* _add = _internal_add_txins();
+  // @@protoc_insertion_point(field_add:xcoin.interchange.Transaction.txIns)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::xcoin::interchange::TxIn >&
+Transaction::txins() const {
+  // @@protoc_insertion_point(field_list:xcoin.interchange.Transaction.txIns)
+  return txins_;
+}
+
+// repeated .xcoin.interchange.TxOut txOuts = 3;
+inline int Transaction::_internal_txouts_size() const {
+  return txouts_.size();
+}
+inline int Transaction::txouts_size() const {
+  return _internal_txouts_size();
+}
+inline void Transaction::clear_txouts() {
+  txouts_.Clear();
+}
+inline ::xcoin::interchange::TxOut* Transaction::mutable_txouts(int index) {
+  // @@protoc_insertion_point(field_mutable:xcoin.interchange.Transaction.txOuts)
+  return txouts_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::xcoin::interchange::TxOut >*
+Transaction::mutable_txouts() {
+  // @@protoc_insertion_point(field_mutable_list:xcoin.interchange.Transaction.txOuts)
+  return &txouts_;
+}
+inline const ::xcoin::interchange::TxOut& Transaction::_internal_txouts(int index) const {
+  return txouts_.Get(index);
+}
+inline const ::xcoin::interchange::TxOut& Transaction::txouts(int index) const {
+  // @@protoc_insertion_point(field_get:xcoin.interchange.Transaction.txOuts)
+  return _internal_txouts(index);
+}
+inline ::xcoin::interchange::TxOut* Transaction::_internal_add_txouts() {
+  return txouts_.Add();
+}
+inline ::xcoin::interchange::TxOut* Transaction::add_txouts() {
+  ::xcoin::interchange::TxOut* _add = _internal_add_txouts();
+  // @@protoc_insertion_point(field_add:xcoin.interchange.Transaction.txOuts)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::xcoin::interchange::TxOut >&
+Transaction::txouts() const {
+  // @@protoc_insertion_point(field_list:xcoin.interchange.Transaction.txOuts)
+  return txouts_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
