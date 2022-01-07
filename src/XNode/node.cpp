@@ -493,3 +493,4 @@ bool xcoin::Node::verify_jwt(const std::string& jwt, const std::string& public_i
     }
     return true;
 }
+

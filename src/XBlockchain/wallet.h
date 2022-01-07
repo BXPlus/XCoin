@@ -18,7 +18,7 @@ public:
     std::string getPrivateFromWallet();
     std::vector<UnspentTxOut> myUnspentTxOuts;
     std::vector<UnspentTxOut> getUnspentTxOuts();
-
+    Transaction commitTransaction(std::string address, int amount, const Block& lastBlock);
 private:
     Archive dataStorage = Archive("local.xnodekeys");
     std::string generatePrivateKey();
@@ -33,7 +33,8 @@ private:
     std::vector<TxIn> toUnsignedTxInArray(std::vector<UnspentTxOut> unspentTxOuts);
     Transaction createTransaction(std::string receiverAddress, int amount, std::string privateKey, std::vector<UnspentTxOut> unspentTxOuts, std::vector<Transaction> txPool);
     Transaction sendTransaction(std::string address, int amount);
-
+    Transaction mintCoinbaseTransaction(int amount);
+    static std::string encrypt_data(const Transaction& transaction);
     TransactionPool myTransactionPool;
     std::vector<Transaction> getTransactionPool();
     std::vector<TxIn> getTxPoolIns();

@@ -24,17 +24,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="Wallet initialisation and integration into XNode for transaction relaying&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;">
+    <list default="true" id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="JWT generation and forwarding into gRPC calls. Status message for UI&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XBlockchain/transactionPool.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/transactionPool.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XNode/XNodeSDK.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/XNodeSDK.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XNode/XNodeSDK.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/XNodeSDK.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/XBlockchain/transactionPool.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/transactionPool.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/XBlockchain/wallet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/wallet.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/XBlockchain/wallet.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/wallet.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XNode/node.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/node.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XNode/node.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/node.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XNode/xnodeauthenticator.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/xnodeauthenticator.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/homewidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/ui/homewidget.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/homewidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/ui/homewidget.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/ui/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -420,7 +416,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641579042893</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="JWT generation and forwarding into gRPC calls. Status message for UI&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;">
+      <created>1641592983635</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1641592983635</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -456,7 +459,8 @@
     <MESSAGE value="- Comment out Keys implementation in transaction." />
     <MESSAGE value="Rearranged data structures of the wallet and transactionPool files and added the final function to send a transaction." />
     <MESSAGE value="Wallet initialisation and integration into XNode for transaction relaying&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Wallet initialisation and integration into XNode for transaction relaying&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
+    <MESSAGE value="JWT generation and forwarding into gRPC calls. Status message for UI&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
+    <option name="LAST_COMMIT_MESSAGE" value="JWT generation and forwarding into gRPC calls. Status message for UI&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

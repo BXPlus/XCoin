@@ -65,12 +65,17 @@ void TransactionPool::updateTransactionPool(std::vector<UnspentTxOut> unspentTxO
             newPool.push_back(tx);
         }
     }
-    if (invalidTxs.size() > 0){
+    if (!invalidTxs.empty()){
         std::cout << "Removing the following transactions from txPool:"; //Here we add the elements in invalidTxs;
         transactionPool = newPool;
     }
 }
 
-std::vector<TxIn> TransactionPool::getTxPoolIns(std::vector<Transaction> aTransactionPool) {
-    return std::vector<TxIn>();
+std::vector<TxIn> TransactionPool::getTxPoolIns(const std::vector<Transaction>& aTransactionPool) {
+    std::vector<TxIn> res;
+    for (auto & i : aTransactionPool){
+        std::vector<TxIn> tx_txIns = i.txIns;
+        res.insert(res.end(), tx_txIns.begin(), tx_txIns.end());
+    }
+    return res;
 }
