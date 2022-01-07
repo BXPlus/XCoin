@@ -12,10 +12,8 @@ xcoin::Node::Node() {
     this->wallet = Wallet();
     this->peers = std::map<std::string, xcoin::XNodeClient>();
     for (int i = 0; i < 50; i++) {
-        this->blockchain.appendBlock(this->blockchain.generateNextBlock("Hello" + std::to_string(i), i+1, 0, ""));
+        //this->blockchain.appendBlock(this->blockchain.generateNextBlock("Hello" + std::to_string(i), i+1, 0, ""));
     }
-    std::cout << this->blockchain.getLatestBlock().hash << std::endl;
-
 }
 
 /**
@@ -28,7 +26,6 @@ void xcoin::Node::RunNode(const std::vector<std::string>& dnsSeedPeers) {
     std::string server_address("0.0.0.0:50051");
     ::grpc::EnableDefaultHealthCheckService(true);
     ::grpc::ServerBuilder builder;
-    auto call_creds = grpc::MetadataCredentialsFromPlugin(std::unique_ptr<grpc::MetadataCredentialsPlugin>(new XNodeAuthenticator(JWT_SECRET)));
     builder.AddListeningPort(server_address, ::grpc::InsecureServerCredentials());
     builder.RegisterService(static_cast<xcoin::interchange::XNodeControl::Service *>(this));
     builder.RegisterService(static_cast<xcoin::interchange::XNodeSync::Service *>(this));
@@ -36,17 +33,20 @@ void xcoin::Node::RunNode(const std::vector<std::string>& dnsSeedPeers) {
     spdlog::info("Server listening on " + server_address);
     sdkInstance->onStatusChanged(XNodeSDK::XNodeStatus::WaitingForDNSS);
     bool couldPerformHandshakeWithDNSS = false;
-    // loadDataFromDisk(); //TODO: READD ONCE READY
+    loadDataFromDisk();
+    sdkInstance->onStatusMessageBroadcast(dnsSeedPeers.empty() ? "Node will start as DNSS" : "Connecting to peers...");
     for (const std::string &peer: dnsSeedPeers)
         couldPerformHandshakeWithDNSS |= this->AttemptPeerConnection(peer);
     if (!couldPerformHandshakeWithDNSS && !dnsSeedPeers.empty())
-        this->Shutdown("Could not establish connection with any DNSS");
+        sdkInstance->onStatusMessageBroadcast("Peer connection failed, falling back to DNSS node");
+        //this->Shutdown("Could not establish connection with any DNSS");
     else sdkInstance->onStatusChanged(XNodeSDK::XNodeStatus::SyncingBlockchain);
     server.release();
 }
 
 /**
 * Function called to shut down a node due to an error: terminates the gRPC thread gracefully and saves data on disk
+* @param reason used to specify termination context in console
 */
 void xcoin::Node::Shutdown(const std::string& reason) {
     sdkInstance->onStatusChanged(XNodeSDK::XNodeStatus::TerminatedWithError);
@@ -93,7 +93,10 @@ void xcoin::Node::loadDataFromDisk() {
     }
     if (localChainArchive.exists()){
         std::string encodedChain = localChainArchive.loadData();
-        xcoin::interface::importChain(encodedChain);
+        for (const Block& block: xcoin::interface::importChain(encodedChain)){
+            this->blockchain.appendBlock(block);
+        }
+        spdlog::info("Loaded " + std::to_string(this->blockchain.length) + " blocks from local backup");
     }
 }
 
@@ -137,13 +140,11 @@ xcoin::Node::DNSSyncPeerList(::grpc::ServerContext *context, const ::xcoin::inte
 * Callback function executed by gRPC to process incoming peer change notifications from peers
 * Handles new peer data and sends back to confirm
 */
-// TODO: Add back here
-
 ::grpc::Status xcoin::Node::PingPongSync(::grpc::ServerContext *context, const ::xcoin::interchange::PingPong *request,
                                          ::xcoin::interchange::PingPong *response) {
     ::spdlog::warn("RECEIVED PING PONG");
     if (this->blockchain.length - request->height()<0){ // We need to initiate sync from here as our branch is late
-        PingPongStatus stat = this->pingPongStatusForProps(request->height(), this->blockchain.length, request->lasthash(),
+        PingPongStatus stat = xcoin::Node::pingPongStatusForProps(request->height(), this->blockchain.length, request->lasthash(),
                                                            this->blockchain.getLatestBlock().headerHash,false);
         this->AttemptBlockchainSync(context->peer(), stat, request->height());
     }
@@ -172,6 +173,10 @@ xcoin::Node::HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::inte
     return ::grpc::Status::OK;
 }
 
+/**
+* Callback function executed by gRPC to process incoming getBlockchainFromHeight requests from peers
+* Returns local chain from a given height onwards for ping-pong followup
+*/
 ::grpc::Status xcoin::Node::GetBlockchainFromHeight(::grpc::ServerContext *context,
                                                     const ::xcoin::interchange::GetBlockchainFromHeightRequest *request,
                                                     ::xcoin::interchange::Blockchain *response) {
@@ -200,6 +205,7 @@ bool xcoin::Node::AttemptPeerConnection(const std::string &peerAddress) {
     std::shared_ptr<grpc::Channel> channel = grpc::CreateChannel(peerAddress, grpc::InsecureChannelCredentials());
     this->peers[peerAddress] = xcoin::XNodeClient(channel);
     ::grpc::ClientContext pingContext;
+    pingContext.set_credentials(generateCredentialsForContext(peerAddress));
     xcoin::interchange::PingHandshake pingRequest;
     xcoin::interchange::PingHandshake pingReply;
     pingRequest.set_data("Hello!");
@@ -218,6 +224,7 @@ bool xcoin::Node::AttemptPeerConnection(const std::string &peerAddress) {
                 entry->set_publickey(peer.second.publicKey);
             }
         ::grpc::ClientContext dnsContext;
+        dnsContext.set_credentials(generateCredentialsForContext(peerAddress));
         ::grpc::Status dnsStatus = this->peers[peerAddress].controlStub->DNSSyncPeerList(&dnsContext, dnsRequest,
                                                                                          &dnsReply);
         if (dnsStatus.ok()) {
@@ -251,12 +258,13 @@ bool xcoin::Node::AttemptPeerConnection(const std::string &peerAddress) {
 */
 std::pair<xcoin::Node::PingPongStatus, int> xcoin::Node::AttemptPingPongSync(const std::string &peerAddress) {
     ::grpc::ClientContext pingPongContext;
+    pingPongContext.set_credentials(generateCredentialsForContext(peerAddress));
     xcoin::interchange::PingPong pingPongRequest;
     xcoin::interchange::PingPong pingPongReply;
     pingPongRequest.set_height(this->blockchain.length);
     pingPongRequest.set_lasthash(this->blockchain.getLatestBlock().headerHash);
     ::grpc::Status pingPongStatus = this->peers[peerAddress].syncStub->PingPongSync(&pingPongContext, pingPongRequest, &pingPongReply);
-    return {this->pingPongStatusForProps(pingPongReply.height(), pingPongRequest.height(), pingPongReply.lasthash(), pingPongRequest.lasthash(), !pingPongStatus.ok()), pingPongReply.height()};
+    return {xcoin::Node::pingPongStatusForProps(pingPongReply.height(), pingPongRequest.height(), pingPongReply.lasthash(), pingPongRequest.lasthash(), !pingPongStatus.ok()), pingPongReply.height()};
 }
 
 /**
@@ -280,12 +288,12 @@ bool xcoin::Node::AttemptBlockchainSync(const std::string &peerAddress, PingPong
             std::vector<Block> blockVector = this->blockchain.toBlocks();
             std::reverse(blockVector.begin(), blockVector.end());
             if (SYNC_BATCHING_ENABLED){
-                // TODO: Enable block batching for large blockchains
                 for (size_t i = 0; i < blockVector.size(); i += 200) {
                     auto first = blockVector.begin() + i;
                     auto last = blockVector.begin() + std::min(blockVector.size(), i + 200);
                     std::vector<Block> blockBatch(first, last);
                     ::grpc::ClientContext headerFirstSyncContext;
+                    headerFirstSyncContext.set_credentials(generateCredentialsForContext(peerAddress));
                     xcoin::interchange::GetHeaders headerFirstSyncRequest;
                     headerFirstSyncRequest.set_version(XNODE_VERSION_INITIAL);
                     headerFirstSyncRequest.set_hashcount(last - first);
@@ -300,13 +308,14 @@ bool xcoin::Node::AttemptBlockchainSync(const std::string &peerAddress, PingPong
                     ::grpc::Status headerFirstSyncStatus = this->peers[peerAddress].syncStub->HeaderFirstSync(
                             &headerFirstSyncContext, headerFirstSyncRequest, &headerFirstSyncReply);
                     if (headerFirstSyncStatus.ok()) {
-                        // TODO: Handle reply
+                        // TODO: Handle reply for block batching as done below
                         break;
                     } else return false;
                 }
             }else{
                 std::vector<std::string> hashVector = this->blockchain.toHeaderHashes();
                 ::grpc::ClientContext headerFirstSyncContext;
+                headerFirstSyncContext.set_credentials(generateCredentialsForContext(peerAddress));
                 xcoin::interchange::GetHeaders headerFirstSyncRequest;
                 xcoin::interchange::Headers headerFirstSyncReply;
                 headerFirstSyncRequest.set_version(XNODE_VERSION_INITIAL);
@@ -324,6 +333,7 @@ bool xcoin::Node::AttemptBlockchainSync(const std::string &peerAddress, PingPong
                     for (int i = 0; i < res.size(); i++){
                         if (res[i].blockheaderhash() == hashVector[i]){
                             ::grpc::ClientContext getBlockchainFromHeightContext;
+                            getBlockchainFromHeightContext.set_credentials(generateCredentialsForContext(peerAddress));
                             xcoin::interchange::GetBlockchainFromHeightRequest getBlockchainFromHeightRequest;
                             xcoin::interchange::Blockchain getBlockchainFromHeightReply;
                             getBlockchainFromHeightRequest.set_stophash("0");
@@ -333,12 +343,12 @@ bool xcoin::Node::AttemptBlockchainSync(const std::string &peerAddress, PingPong
                             if (getBlockchainFromHeightStatus.ok()){
                                 Blockchain newBlockchain = Blockchain();
                                 std::vector<Block> newBlocks = xcoin::interface::decodeChain(getBlockchainFromHeightReply);
-                                for (Block block: newBlocks){
+                                for (const Block& block: newBlocks){
                                     newBlockchain.appendBlock(block);
                                 }
                                 this->blockchain.replaceChain(newBlockchain);
                                 this->saveDataOnDisk();
-                                // TODO: Decide which branch is better and just rewrite the whole thing eventually
+                                // TODO: Decide whether to merge depending on stake (later)
                                 return true;
                             }else return false;
                             break;
@@ -356,6 +366,7 @@ bool xcoin::Node::AttemptBlockchainSync(const std::string &peerAddress, PingPong
             std::vector<Block> blockVector = this->blockchain.toBlocks();
             std::reverse(blockVector.begin(), blockVector.end());
             ::grpc::ClientContext getBlockchainFromHeightContext;
+            getBlockchainFromHeightContext.set_credentials(generateCredentialsForContext(peerAddress));
             xcoin::interchange::GetBlockchainFromHeightRequest getBlockchainFromHeightRequest;
             xcoin::interchange::Blockchain getBlockchainFromHeightReply;
             getBlockchainFromHeightRequest.set_stophash("0");
@@ -364,7 +375,7 @@ bool xcoin::Node::AttemptBlockchainSync(const std::string &peerAddress, PingPong
                     &getBlockchainFromHeightContext, getBlockchainFromHeightRequest, &getBlockchainFromHeightReply);
 
             if (getBlockchainFromHeightStatus.ok()){
-                for (xcoin::interchange::Block pblock: getBlockchainFromHeightReply.blocks()){
+                for (const xcoin::interchange::Block& pblock: getBlockchainFromHeightReply.blocks()){
                     Block block = xcoin::interface::decodeBlock(pblock);
                     this->blockchain.appendBlock(block);
                 }
@@ -389,11 +400,10 @@ bool xcoin::Node::handleIncomingPeerData(const xcoin::interchange::DNSEntry &rem
                 this->peers[remotePeer.ipport()] = XNodeClient(channel);
             } else if (remotePeer.ipport() == XNODE_PUBLICADDR_UNKNOWN) {
                 ::grpc::ClientContext context;
-                xcoin::interchange::DNSEntry notificationRequest;
-                xcoin::interchange::DNSEntry notificationReply;
+                xcoin::interchange::PeerUpdateHandshake notificationRequest;
+                xcoin::interchange::PingHandshake notificationReply;
                 //this->peers[remotePeer.ipport()].controlStub->NotifyPeerChange(&context, notificationRequest,
                 //                                                         &notificationReply);
-                // TODO: Add back notify here
                 spdlog::debug("Notified peer about additional details for " + remotePeer.ipport());
             } //TODO: Else ask peer directly for its details
         }
@@ -403,6 +413,12 @@ bool xcoin::Node::handleIncomingPeerData(const xcoin::interchange::DNSEntry &rem
     }
 }
 
+/**
+* Utility function used to resolve the chain sync status from heights and last hashes
+* @param chainHeight1, chainHeight2 the local and remote chain heights
+* @param lastHash1, lastHash2 the local and remote last hashes
+* @return the corresponding ping pong status
+*/
 xcoin::Node::PingPongStatus
 xcoin::Node::pingPongStatusForProps(int chainHeight1, int chainHeight2, const std::string& lastHash1, const std::string& lastHash2,
                                     bool isErrored) {
@@ -413,6 +429,15 @@ xcoin::Node::pingPongStatusForProps(int chainHeight1, int chainHeight2, const st
             return xcoin::Node::PingPongStatus::Synced;
         else return xcoin::Node::PingPongStatus::HashDiff;
     }else return xcoin::Node::PingPongStatus::HeightDiff;
+}
+
+/**
+* Function that generates call credentials (set on transaction context) to pass on JWT to peer
+* @param peerAddress the peer's ip/port pair to sign JWT with
+* @returns call credentials for use within gRPC transactions
+*/
+std::shared_ptr<grpc::CallCredentials> xcoin::Node::generateCredentialsForContext(const std::string &peerAddress) const {
+    return grpc::MetadataCredentialsFromPlugin(std::unique_ptr<grpc::MetadataCredentialsPlugin>(new XNodeAuthenticator(generate_jwt(peerAddress))));
 }
 
 void xcoin::Node::setSdkInstance(XNodeSDK *newSdkInstance) {
@@ -426,7 +451,7 @@ XNodeSDK *xcoin::Node::getSdkInstance() const {
 /**
 * Function called to generate a JSON Web Token (JWT), that will be sent with every request for security
 */
-std::string xcoin::Node::generate_jwt(const std::string& public_id) {
+std::string xcoin::Node::generate_jwt(const std::string& public_id) const {
     return jwt::create()
         // HEADER
         .set_type("JWT")
@@ -443,7 +468,7 @@ std::string xcoin::Node::generate_jwt(const std::string& public_id) {
 /**
 * Function called to verify a JWT (token)
 */
-bool xcoin::Node::verify_jwt(const std::string& jwt, const std::string& public_id) {
+bool xcoin::Node::verify_jwt(const std::string& jwt, const std::string& public_id) const {
     auto verifier = jwt::verify().allow_algorithm(jwt::algorithm::hs256(JWT_SECRET)).with_issuer("XCoin");
     auto decoded = jwt::decode(jwt);
 
@@ -464,7 +489,7 @@ bool xcoin::Node::verify_jwt(const std::string& jwt, const std::string& public_i
         return false;
     }
     if (decoded.get_payload_claims().at("last_hash").as_string() != this->blockchain.tail->block.hash) {
-        return false;
+        return true; // Eventually return false after sync and handle accordingly if needed;
     }
     return true;
 }

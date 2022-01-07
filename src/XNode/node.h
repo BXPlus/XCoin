@@ -53,8 +53,8 @@ namespace xcoin{
         void Shutdown(const std::string& reason);
         void setSdkInstance(XNodeSDK *sdkInstance);
         XNodeSDK *getSdkInstance() const;
-        std::string generate_jwt(const std::string& public_id);
-        bool verify_jwt(const std::string& jwt, const std::string& public_id);
+        std::string generate_jwt(const std::string& public_id) const;
+        bool verify_jwt(const std::string& jwt, const std::string& public_id) const;
     private:
         explicit Node();
         const bool SYNC_BATCHING_ENABLED = false;
@@ -70,6 +70,7 @@ namespace xcoin{
         bool AttemptPeerConnection(const std::string& peerAddress);
         static PingPongStatus pingPongStatusForProps(int chainHeight1, int chainHeight2, const std::string& lastHash1, const std::string& lastHash2, bool isErrored);
         std::pair<xcoin::Node::PingPongStatus, int> AttemptPingPongSync(const std::string& peerAddress);
+        std::shared_ptr<grpc::CallCredentials> generateCredentialsForContext(const std::string& peerAddress) const;
         bool AttemptBlockchainSync(const std::string &peerAddress, PingPongStatus pingPongStatus,
                                    int remoteChainHeight);
         bool handleIncomingPeerData(const xcoin::interchange::DNSEntry &remotePeer);

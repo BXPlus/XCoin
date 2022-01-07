@@ -25,7 +25,7 @@ XNodeSDK::XNodeSettings XNodeSDK::loadNodeSettings(){
     return currentSettings;
 }
 
-void XNodeSDK::saveNodeSettings(XNodeSettings newSettings) {
+void XNodeSDK::saveNodeSettings(const XNodeSettings& newSettings) {
     std::ostringstream settingstring;
     settingstring << newSettings ;
     settingsfile.saveData(settingstring.str());

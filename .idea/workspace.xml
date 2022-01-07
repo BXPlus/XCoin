@@ -24,16 +24,17 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="Auth middleware for gRPC calls&#10;&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;">
+    <list default="true" id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="Wallet initialisation and integration into XNode for transaction relaying&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XBlockchain/tests/xblockchain-tests.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/tests/xblockchain-tests.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XBlockchain/wallet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/wallet.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XBlockchain/wallet.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/wallet.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XNode/archive.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/archive.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XNode/archive.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/archive.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/XBlockchain/transactionPool.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/transactionPool.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/XNode/XNodeSDK.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/XNodeSDK.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/XNode/XNodeSDK.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/XNodeSDK.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XNode/node.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/node.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XNode/node.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/node.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XNode/peerDiscovery.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/XNode/xnodeauthenticator.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/xnodeauthenticator.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/homewidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/ui/homewidget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/homewidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/ui/homewidget.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/ui/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +74,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
     <option name="majorVersion" value="2021" />
@@ -98,6 +102,7 @@
     <property name="cmake.loaded.for.project" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/CMakeLists.txt" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="CMakeSettings" />
   </component>
   <component name="RecentsManager">
@@ -201,7 +206,7 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="xcoin-client" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="xblockchain" TARGET_NAME="xcoin-client" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="xblockchain" RUN_TARGET_NAME="xcoin-client">
+    <configuration name="xcoin-client" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="192.168.47.59:2001" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="xblockchain" TARGET_NAME="xcoin-client" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="xblockchain" RUN_TARGET_NAME="xcoin-client">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -408,7 +413,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641374953865</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Wallet initialisation and integration into XNode for transaction relaying&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;">
+      <created>1641579042893</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1641579042893</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -443,7 +455,8 @@
     <MESSAGE value="- Added tests for updateUnspentTxOuts." />
     <MESSAGE value="- Comment out Keys implementation in transaction." />
     <MESSAGE value="Rearranged data structures of the wallet and transactionPool files and added the final function to send a transaction." />
-    <option name="LAST_COMMIT_MESSAGE" value="Rearranged data structures of the wallet and transactionPool files and added the final function to send a transaction." />
+    <MESSAGE value="Wallet initialisation and integration into XNode for transaction relaying&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Wallet initialisation and integration into XNode for transaction relaying&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

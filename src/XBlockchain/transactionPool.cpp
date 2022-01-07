@@ -70,3 +70,7 @@ void TransactionPool::updateTransactionPool(std::vector<UnspentTxOut> unspentTxO
         transactionPool = newPool;
     }
 }
+
+std::vector<TxIn> TransactionPool::getTxPoolIns(std::vector<Transaction> aTransactionPool) {
+    return std::vector<TxIn>();
+}
