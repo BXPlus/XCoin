@@ -92,17 +92,6 @@ std::vector<TxOut> Wallet::createTxOuts(std::string receiverAddress, std::string
     }
 }
 
-std::vector<TxIn> Wallet::getTxPoolIns()
-{
-    std::vector<Transaction> aTransactionPool = myTransactionPool.transactionPool;
-    std::vector<TxIn> res;
-    for (int i = 0; i < aTransactionPool.size(); i++){
-        std::vector<TxIn> tx_txIns = aTransactionPool[i].txIns;
-        res.insert(res.end(), tx_txIns.begin(), tx_txIns.end());
-    }
-    return res;
-}
-
 std::vector<UnspentTxOut> Wallet::filterTxPoolTxs(std::vector<UnspentTxOut> unspentTxOuts, std::vector<Transaction> transactionPool)
 {
     std::vector<UnspentTxOut> newUnspentTxOuts;

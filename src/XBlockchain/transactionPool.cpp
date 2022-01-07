@@ -23,6 +23,16 @@ bool TransactionPool::isValidTxForPool(Transaction tx, std::vector<Transaction> 
     return true;
 }
 
+std::vector<TxIn> TransactionPool::getTxPoolIns(std::vector<Transaction> aTransactionPool)
+{
+    std::vector<TxIn> res;
+    for (int i = 0; i < aTransactionPool.size(); i++){
+        std::vector<TxIn> tx_txIns = aTransactionPool[i].txIns;
+        res.insert(res.end(), tx_txIns.begin(), tx_txIns.end());
+    }
+    return res;
+}
+
 void TransactionPool::addToTransactionPool(Transaction tx, std::vector<UnspentTxOut> unspentTxOuts) {
     if (!tx.validateTransaction(unspentTxOuts)) {
         std::cout << "Trying to add invalid tx to pool";

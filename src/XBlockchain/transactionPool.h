@@ -9,8 +9,7 @@ class TransactionPool {
 private:
     bool isValidTxForPool(Transaction tx, std::vector<Transaction> aTransactionPool);
     bool hasTxIn(TxIn txIn, std::vector<UnspentTxOut> unspentTxOuts);
-
-    std::vector<TxIn> getTxPoolIns(std::vector<Transaction> aTransactionPool);
+    static std::vector<TxIn> getTxPoolIns(std::vector<Transaction> aTransactionPool);
 
 public:
     std::vector<Transaction> transactionPool;

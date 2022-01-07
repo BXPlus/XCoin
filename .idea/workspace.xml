@@ -24,8 +24,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/XBlockchain/transaction.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/transaction.h" afterDir="false" />
+    <list default="true" id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="Adapted addBlock(data) to add a block containing a transaction data into the blockchain, and added an encrypt_data tool to hash transactions.">
+      <change beforePath="$PROJECT_DIR$/src/XBlockchain/wallet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/wallet.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +88,7 @@
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/XNode/keys.cpp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/CMakeLists.txt" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="CMakeSettings" />
   </component>
@@ -97,12 +97,7 @@
       <recent name="$PROJECT_DIR$/src/XBlockchain" />
     </key>
   </component>
-  <component name="RunManager" selected="Google Test.processTransactions.testProcessTransactions">
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="CMake Application.xblockchain-lib">
     <configuration name="XTransactionTests.testGetTransactionId" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="xblockchain" TARGET_NAME="xblockchain-tests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="xblockchain" RUN_TARGET_NAME="xblockchain-tests" TEST_CLASS="XTransactionTests" TEST_METHOD="testGetTransactionId" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -127,31 +122,31 @@
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="getCoinbaseTransaction.testGetCoinbaseTransaction" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="xblockchain" TARGET_NAME="xblockchain-tests" RUN_TARGET_PROJECT_NAME="xblockchain" RUN_TARGET_NAME="xblockchain-tests" TEST_CLASS="getCoinbaseTransaction" TEST_METHOD="testGetCoinbaseTransaction" TEST_MODE="SUITE_TEST">
+    <configuration name="isValidTxInStructure.testIsValidTxInStructure" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="xblockchain" TARGET_NAME="xblockchain-tests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="xblockchain" RUN_TARGET_NAME="xblockchain-tests" TEST_CLASS="isValidTxInStructure" TEST_METHOD="testIsValidTxInStructure" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="hasDuplicates.testHasDuplicate" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="xblockchain" TARGET_NAME="xblockchain-tests" RUN_TARGET_PROJECT_NAME="xblockchain" RUN_TARGET_NAME="xblockchain-tests" TEST_CLASS="hasDuplicates" TEST_METHOD="testHasDuplicate" TEST_MODE="SUITE_TEST">
+    <configuration name="isValidTxInStructure.testIsValidTxOutStructure" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="xblockchain" TARGET_NAME="xblockchain-tests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="xblockchain" RUN_TARGET_NAME="xblockchain-tests" TEST_CLASS="isValidTxInStructure" TEST_METHOD="testIsValidTxOutStructure" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="isValidTxInStructure.testIsValidTxOutStructure" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="xblockchain" TARGET_NAME="xblockchain-tests" RUN_TARGET_PROJECT_NAME="xblockchain" RUN_TARGET_NAME="xblockchain-tests" TEST_CLASS="isValidTxInStructure" TEST_METHOD="testIsValidTxOutStructure" TEST_MODE="SUITE_TEST">
+    <configuration name="processTransactions.testProcessTransactions" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="xblockchain" TARGET_NAME="xblockchain-tests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="xblockchain" RUN_TARGET_NAME="xblockchain-tests" TEST_CLASS="processTransactions" TEST_METHOD="testProcessTransactions" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="processTransactions.testProcessTransactions" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="xblockchain" TARGET_NAME="xblockchain-tests" RUN_TARGET_PROJECT_NAME="xblockchain" RUN_TARGET_NAME="xblockchain-tests" TEST_CLASS="processTransactions" TEST_METHOD="testProcessTransactions" TEST_MODE="SUITE_TEST">
+    <configuration name="updateUnspentTxOuts.testUpdateUnspentTxOuts" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="xblockchain" TARGET_NAME="xblockchain-tests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="xblockchain" RUN_TARGET_NAME="xblockchain-tests" TEST_CLASS="updateUnspentTxOuts" TEST_METHOD="testUpdateUnspentTxOuts" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="validateBlockTransactions.testValidateBlockTransactions" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="xblockchain" TARGET_NAME="xblockchain-tests" RUN_TARGET_PROJECT_NAME="xblockchain" RUN_TARGET_NAME="xblockchain-tests" TEST_CLASS="validateBlockTransactions" TEST_METHOD="testValidateBlockTransactions" TEST_MODE="SUITE_TEST">
+    <configuration name="validateBlockTransactions.testValidateBlockTransactions" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="xblockchain" TARGET_NAME="xblockchain-tests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="xblockchain" RUN_TARGET_NAME="xblockchain-tests" TEST_CLASS="validateBlockTransactions" TEST_METHOD="testValidateBlockTransactions" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
@@ -161,11 +156,6 @@
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="gmock" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="xblockchain" TARGET_NAME="gmock" CONFIG_NAME="Debug">
@@ -213,6 +203,11 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="CMake Application.xblockchain-lib" />
       <item itemvalue="CMake Application.xcoin-client" />
@@ -228,19 +223,19 @@
       <item itemvalue="Google Test.XTransactionTests.testTxOutInit" />
       <item itemvalue="Google Test.XTransactionTests.testUnspentTxOutInit" />
       <item itemvalue="Google Test.xnode-tests" />
-      <item itemvalue="Google Test.isValidTxInStructure.testIsValidTxOutStructure" />
-      <item itemvalue="Google Test.getCoinbaseTransaction.testGetCoinbaseTransaction" />
-      <item itemvalue="Google Test.hasDuplicates.testHasDuplicate" />
       <item itemvalue="Google Test.validateBlockTransactions.testValidateBlockTransactions" />
       <item itemvalue="Google Test.processTransactions.testProcessTransactions" />
+      <item itemvalue="Google Test.isValidTxInStructure.testIsValidTxOutStructure" />
+      <item itemvalue="Google Test.isValidTxInStructure.testIsValidTxInStructure" />
+      <item itemvalue="Google Test.updateUnspentTxOuts.testUpdateUnspentTxOuts" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Google Test.updateUnspentTxOuts.testUpdateUnspentTxOuts" />
+        <item itemvalue="Google Test.isValidTxInStructure.testIsValidTxInStructure" />
+        <item itemvalue="Google Test.isValidTxInStructure.testIsValidTxOutStructure" />
         <item itemvalue="Google Test.processTransactions.testProcessTransactions" />
         <item itemvalue="Google Test.validateBlockTransactions.testValidateBlockTransactions" />
-        <item itemvalue="Google Test.hasDuplicates.testHasDuplicate" />
-        <item itemvalue="Google Test.getCoinbaseTransaction.testGetCoinbaseTransaction" />
-        <item itemvalue="Google Test.isValidTxInStructure.testIsValidTxOutStructure" />
       </list>
     </recent_temporary>
   </component>
@@ -477,70 +472,7 @@
       <option name="project" value="LOCAL" />
       <updated>1641400057602</updated>
     </task>
-    <task id="LOCAL-00032" summary="Delete all typeid as they are redundant.">
-      <created>1641418577816</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1641418577816</updated>
-    </task>
-    <task id="LOCAL-00033" summary="Finish test for validateTxIn">
-      <created>1641419949825</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1641419949825</updated>
-    </task>
-    <task id="LOCAL-00034" summary="Complete signTxIn tests.">
-      <created>1641455747595</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1641455747595</updated>
-    </task>
-    <task id="LOCAL-00035" summary="Complete isValidTransactionStructure tests">
-      <created>1641458252898</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1641458252898</updated>
-    </task>
-    <task id="LOCAL-00036" summary="Complete validateTransaction tests">
-      <created>1641466772462</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1641466772462</updated>
-    </task>
-    <task id="LOCAL-00037" summary="Change privateKey into a constant">
-      <created>1641466891300</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1641466891300</updated>
-    </task>
-    <task id="LOCAL-00038" summary="Finish adding updateUnspentTxOuts test.">
-      <created>1641469368137</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1641469368137</updated>
-    </task>
-    <task id="LOCAL-00039" summary="Finish adding validateBlockTransactions test.">
-      <created>1641472229073</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1641472229073</updated>
-    </task>
-    <task id="LOCAL-00040" summary="Finish adding processTransactions test.">
-      <created>1641474565428</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1641474565428</updated>
-    </task>
-    <option name="localTasksCounter" value="41" />
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -556,8 +488,18 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="- Remove JSONStringify function for TxIn as disscussed with Kevin." />
+    <MESSAGE value="Reorganize the order the functions in xblockchain-tests to be the same as transaction.h" />
+    <MESSAGE value="- Added the skeletons of functions in transaction.h to be tested.&#10;- Fixed some bugs of transaction.cpp and transaction.h." />
+    <MESSAGE value="- Added test for getTxInAmount.&#10;- Temporary include classes and functions in keys due to unsolvable CMake issues for testing transaction, will remove later." />
+    <MESSAGE value="- Added test for second constructor of TxIn.&#10;- Temporary include classes and functions in keys due to unsolvable CMake issues for testing transaction, will remove later." />
+    <MESSAGE value="- Added more test for findUnspentTxOut." />
+    <MESSAGE value="- Added tests for validateTxIn." />
+    <MESSAGE value="- Added tests for signTxIn." />
+    <MESSAGE value="- Added tests for validateTransaction." />
     <MESSAGE value="- Added tests for isValidTransactionStructure." />
     <MESSAGE value="- Added tests for validateBlockTransactions." />
     <MESSAGE value="- Added tests for isValidTxOutStructure." />
@@ -574,16 +516,7 @@
     <MESSAGE value="Added getLatestBlock() and addBlock(nexBlock)." />
     <MESSAGE value="Adapted addBlockchain(data) to add directly a block containing a transaction data into the blockchain." />
     <MESSAGE value="Adapted addBlock(data) to add a block containing a transaction data into the blockchain, and added an encrypt_data tool to hash transactions." />
-    <MESSAGE value="Delete all typeid as they are redundant." />
-    <MESSAGE value="Finish test for validateTxIn" />
-    <MESSAGE value="Complete signTxIn tests." />
-    <MESSAGE value="Complete isValidTransactionStructure tests" />
-    <MESSAGE value="Complete validateTransaction tests" />
-    <MESSAGE value="Change privateKey into a constant" />
-    <MESSAGE value="Finish adding updateUnspentTxOuts test." />
-    <MESSAGE value="Finish adding validateBlockTransactions test." />
-    <MESSAGE value="Finish adding processTransactions test." />
-    <option name="LAST_COMMIT_MESSAGE" value="Finish adding processTransactions test." />
+    <option name="LAST_COMMIT_MESSAGE" value="Adapted addBlock(data) to add a block containing a transaction data into the blockchain, and added an encrypt_data tool to hash transactions." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -597,11 +530,6 @@
           <url>file://$PROJECT_DIR$/src/XBlockchain/block.cpp</url>
           <line>4</line>
           <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/XBlockchain/tests/xblockchain-tests.cpp</url>
-          <line>337</line>
-          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
