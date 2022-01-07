@@ -24,8 +24,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="Adapted addBlock(data) to add a block containing a transaction data into the blockchain, and added an encrypt_data tool to hash transactions.">
+    <list default="true" id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="Adding getTxPoolIns()">
       <change beforePath="$PROJECT_DIR$/src/XBlockchain/wallet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/wallet.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/XBlockchain/wallet.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/wallet.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,6 +157,11 @@
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="gmock" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="xblockchain" TARGET_NAME="gmock" CONFIG_NAME="Debug">
@@ -472,7 +478,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641400057602</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Adding getTxPoolIns()">
+      <created>1641590473858</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1641590473858</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -491,7 +504,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Remove JSONStringify function for TxIn as disscussed with Kevin." />
     <MESSAGE value="Reorganize the order the functions in xblockchain-tests to be the same as transaction.h" />
     <MESSAGE value="- Added the skeletons of functions in transaction.h to be tested.&#10;- Fixed some bugs of transaction.cpp and transaction.h." />
     <MESSAGE value="- Added test for getTxInAmount.&#10;- Temporary include classes and functions in keys due to unsolvable CMake issues for testing transaction, will remove later." />
@@ -516,7 +528,8 @@
     <MESSAGE value="Added getLatestBlock() and addBlock(nexBlock)." />
     <MESSAGE value="Adapted addBlockchain(data) to add directly a block containing a transaction data into the blockchain." />
     <MESSAGE value="Adapted addBlock(data) to add a block containing a transaction data into the blockchain, and added an encrypt_data tool to hash transactions." />
-    <option name="LAST_COMMIT_MESSAGE" value="Adapted addBlock(data) to add a block containing a transaction data into the blockchain, and added an encrypt_data tool to hash transactions." />
+    <MESSAGE value="Adding getTxPoolIns()" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding getTxPoolIns()" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

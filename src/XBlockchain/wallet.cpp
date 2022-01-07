@@ -176,6 +176,12 @@ Transaction Wallet::sendTransaction(std::string address, int amount) {
     return tx;
 }
 
+Transaction Wallet::mintCoinbaseTransaction(int amount) {
+    Transaction tx = getCoinbaseTransaction(getPublicFromWallet() , amount);
+    addBlockToChain(tx);
+    return tx;
+}
+
 void Wallet::setUnspentTxOuts(std::vector<UnspentTxOut> unspentTxOuts) {
     myUnspentTxOuts = unspentTxOuts;
 }

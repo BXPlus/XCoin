@@ -37,6 +37,7 @@ private:
     std::vector<TxIn> toUnsignedTxInArray(std::vector<UnspentTxOut> unspentTxOuts);
     Transaction createTransaction(std::string receiverAddress, int amount, std::string privateKey, std::vector<UnspentTxOut> unspentTxOuts, std::vector<Transaction> txPool);
     Transaction sendTransaction(std::string address, int amount);
+    Transaction mintCoinbaseTransaction(int amount);
 
     TransactionPool myTransactionPool;
     std::vector<Transaction> getTransactionPool();
