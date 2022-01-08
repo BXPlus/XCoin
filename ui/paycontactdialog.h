@@ -7,6 +7,8 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QSignalMapper>
+#include "../XNode/node.h"
+
 
 class payContactDialog : public QDialog
 {

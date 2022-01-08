@@ -25,7 +25,7 @@ XNodeSDK::XNodeSettings XNodeSDK::loadNodeSettings(){
     return currentSettings;
 }
 
-void XNodeSDK::saveNodeSettings(XNodeSettings newSettings) {
+void XNodeSDK::saveNodeSettings(const XNodeSettings& newSettings) {
     std::ostringstream settingstring;
     settingstring << newSettings ;
     settingsfile.saveData(settingstring.str());
@@ -60,7 +60,6 @@ void XNodeSDK::setDarkThemeEnabled(bool newTheme) {
     currentSettings.darkThemeEnabled = newTheme;
     saveNodeSettings(currentSettings) ;}
 bool XNodeSDK::getDarkThemeEnabled() {return currentSettings.darkThemeEnabled;}
-
 
 
 std::ostream& operator<<(std::ostream &os, const struct XNodeSDK::XNodeSettings &settings)

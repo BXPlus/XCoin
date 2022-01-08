@@ -176,7 +176,7 @@ std::pair<std::map<std::string, std::string>, bool> xcoin::interface::decodeDNSH
 /**
 * Function deserialising a generic XNode message envelope into specialised message types
 * @param encodedEnvelope is the encoded envelope
-* @returns idk yet
+* @returns a message decoding result to encompass several message types
 */
 xcoin::XNodeMessageDecodingResult xcoin::interface::decodeXNodeMessageEnvelope(const std::string &encodedEnvelope) {
     xcoin::interchange::XNodeMessage decodedEnvelope;
@@ -192,6 +192,51 @@ xcoin::XNodeMessageDecodingResult xcoin::interface::decodeXNodeMessageEnvelope(c
         //TODO: also check for MD5 hash
     }
     return res;
+}
+
+/**
+* Function serialising a core blockchain transaction to a std::string
+* @param transaction is the core transaction to export
+* @returns an encoded protobuf string
+*/
+std::string xcoin::interface::encodeTransaction(const Transaction &transaction) {
+    xcoin::interchange::Transaction encodedTransaction;
+    encodedTransaction.set_id(transaction.id);
+    for (auto txIn: transaction.txIns){
+        xcoin::interchange::TxIn* encodedTxIn = encodedTransaction.add_txins();
+        xcoin::interchange::TxInSignature encodedSignature;
+        encodedTxIn->set_txoutid(txIn.txOutId);
+        encodedTxIn->set_txoutindex(txIn.txOutIndex);
+        encodedSignature.set_s1(reinterpret_cast<unsigned long long int>(txIn.signature.first));
+        encodedSignature.set_s2(txIn.signature.second);
+        encodedTxIn->set_allocated_signature(&encodedSignature);
+    }
+    for (auto txOut: transaction.txOuts){
+        xcoin::interchange::TxOut* encodedTxOut = encodedTransaction.add_txouts();
+        encodedTxOut->set_address(txOut.address);
+        encodedTxOut->set_amount(txOut.amount);
+    }
+    return encodedTransaction.SerializeAsString();
+}
+
+/**
+* Function deserialising a core blockchain transaction string
+* @param transactionData is the encoded transaction string
+* @returns a decoded core Transaction object
+*/
+Transaction xcoin::interface::decodeTransaction(const std::string &transactionData) {
+    xcoin::interchange::Transaction decodedTransaction;
+    Transaction finalTransaction;
+    decodedTransaction.ParseFromString(transactionData);
+    finalTransaction.id = decodedTransaction.id();
+    for (const auto& txIn : decodedTransaction.txins()){
+        auto pair = std::make_pair((uint8_t*)static_cast<unsigned long long>(txIn.signature().s1()), (uint32_t)static_cast<int>(txIn.signature().s2()));
+        finalTransaction.txIns.emplace_back(txIn.txoutid(), txIn.txoutindex(), pair);
+    }
+    for (const auto& txOut : decodedTransaction.txouts()){
+        finalTransaction.txOuts.emplace_back(TxOut(txOut.address(), txOut.amount()));
+    }
+    return finalTransaction;
 }
 
 /**

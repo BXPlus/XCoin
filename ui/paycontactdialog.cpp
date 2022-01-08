@@ -86,6 +86,7 @@ void payContactDialog::closed(){
 
 void payContactDialog::pay(){
     qDebug() << "Paying" << amountEnter->text().toInt() << "XCoins" << "to" << *toKey << "for" << enterPay->text();
+    //xcoin::Node::getInstance().registerAndCommitTransaction(enterPay->text().toStdString(), amountEnter->text().toInt());
     parentWidget()->parentWidget()->parentWidget()->findChild<BalanceWidget*>("BalanceWidget")->editBalanceDict(enterPay->text(), amountEnter->text());
     this->close();
 }

@@ -27,16 +27,17 @@ std::string Wallet::getPublicFromWallet()
 // Wallet Balance
 
 Wallet::Wallet() {
-    const std::string newPrivKey = generatePrivateKey();
-
-    dataStorage.saveData(newPrivKey);
+    if(!dataStorage.exists()){
+        const std::string newPrivKey = generatePrivateKey();
+        dataStorage.saveData(newPrivKey);
+    }
 }
 
-/*
-void deleteWallet() {
-    return;
+void Wallet::deleteWallet() {
+    this->dataStorage.deleteLocalData();
+    myTransactionPool.transactionPool.clear();
 }
-*/
+
 
 std::vector<UnspentTxOut> Wallet::findUnspentTxOuts(std::string ownerAddress, std::vector<UnspentTxOut> unspentTxOuts)
 {
@@ -183,5 +184,36 @@ std::vector<UnspentTxOut> Wallet::getUnspentTxOuts() {
 Transaction Wallet::sendTransaction(std::string address, int amount) {
     Transaction tx = createTransaction(address, amount, getPrivateFromWallet(), getUnspentTxOuts(), getTransactionPool());
     myTransactionPool.addToTransactionPool(tx, getUnspentTxOuts());
+    return tx;
+}
+
+Transaction Wallet::mintCoinbaseTransaction(int amount) {
+    Transaction tx = getCoinbaseTransaction(getPublicFromWallet() , amount);
+    return tx;
+}
+
+std::string Wallet::encrypt_data(const Transaction& transaction) {
+    std::stringstream ss;
+    ss << transaction.id;
+    std::vector<TxIn> txIns = transaction.txIns;
+    std::vector<TxOut> txOuts = transaction.txOuts;
+    for(auto & txIn : txIns){
+        ss << txIn.txOutIndex << txIn.txOutId;
+    }
+    for(auto & txOut : txOuts){
+        ss << txOut.address << txOut.amount;
+    }
+    return sha256(ss.str());
+}
+
+Transaction Wallet::commitTransaction(std::string address, int amount, const Block& lastBlock) {
+    Transaction tx = createTransaction(std::move(address), amount, getPrivateFromWallet(), getUnspentTxOuts(), getTransactionPool());
+    myTransactionPool.addToTransactionPool(tx, getUnspentTxOuts());
+    std::string hash = encrypt_data(tx);
+    std::vector<Transaction> aTransactions;
+    aTransactions.push_back(tx);
+    std::vector<UnspentTxOut> retVal = processTransactions(aTransactions, myUnspentTxOuts, lastBlock.index);
+    myUnspentTxOuts = retVal;
+    myTransactionPool.updateTransactionPool(myUnspentTxOuts);
     return tx;
 }

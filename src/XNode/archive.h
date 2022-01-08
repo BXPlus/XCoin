@@ -13,6 +13,7 @@ class Archive {
 public:
     Archive(const std::string& localPath);
     bool exists();
+    void deleteLocalData();
     void saveData(const std::string& encodedData);
     std::string loadData();
 private:

@@ -32,3 +32,7 @@ std::string Archive::loadData() {
     sstr << ifs.rdbuf();
     return sstr.str();
 }
+
+void Archive::deleteLocalData() {
+    std::filesystem::remove(this->localPath);
+}

@@ -23,6 +23,7 @@ public:
     QGridLayout* boxLayout;
     QLabel* title;
     QLabel* subtitle;
+    QLabel* statusLabel;
     QWidget* box1;
     QWidget* box2;
     QWidget* box3;
@@ -30,7 +31,8 @@ public:
 
     ~HomeWidget();
 private:
-    void handleNewNodeStatusFromSDK(XNodeSDK::XNodeStatus status);
+    void handleNewNodeStatusFromSDK(XNodeSDK::XNodeStatus status) const;
+    void handleNewStatusMessageFromSDK(const std::string& message);
 };
 
 #endif // HOMEWIDGET_H

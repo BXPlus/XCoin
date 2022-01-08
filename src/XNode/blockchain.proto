@@ -100,3 +100,25 @@ message PeerUpdateHandshake{
 message NewBlockHandshake{
   Block block = 1;
 }
+
+message TxInSignature{
+  uint64 s1 = 1;
+  uint32 s2 = 2;
+}
+
+message TxIn{
+  string txOutId = 1;
+  uint32 txOutIndex = 2;
+  TxInSignature signature = 3;
+}
+
+message TxOut{
+  string address = 1;
+  uint32 amount = 2;
+}
+
+message Transaction{
+  string id = 1;
+  repeated TxIn txIns = 2;
+  repeated TxOut txOuts = 3;
+}

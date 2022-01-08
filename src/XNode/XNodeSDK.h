@@ -11,6 +11,7 @@ class XNodeSDK {
 public:
     enum XNodeStatus {Down, WaitingForDNSS, SyncingBlockchain, Ready, TerminatedWithError};
     std::function<void()> onPeerListChanged;
+    std::function<void(std::string)> onStatusMessageBroadcast;
     std::function<void(XNodeStatus)> onStatusChanged;
     struct XNodeSettings{
         int nodePort;
@@ -19,8 +20,6 @@ public:
         bool lightNode;
         bool darkThemeEnabled;
     };
-
-    //bool issueNewTransaction()
 
     void setNodePort(int newPort);
     int getNodePort();
@@ -39,7 +38,7 @@ public:
     // constructor for XNodeSDK
     XNodeSDK();
 private:
-    void saveNodeSettings(XNodeSettings newSettings);
+    void saveNodeSettings(const XNodeSettings& newSettings);
     XNodeSettings loadNodeSettings();
     XNodeSettings currentSettings;
     XNodeSettings defaultSettings;

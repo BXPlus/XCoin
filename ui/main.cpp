@@ -46,11 +46,12 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    auto dnss = std::vector<std::string>();
-    //dnss.push_back("192.168.1.525:3000"); // TODO: Add DNSS from config file here
+    std::vector<std::string> DNSS = std::vector<std::string>();
+    for(int i = 1; i < argc; i++ )
+        DNSS.emplace_back(argv[i]);
 
     QFuture<void> future = QtConcurrent::run([=]() {
-        xcoin::Node::getInstance().RunNode(dnss);
+        xcoin::Node::getInstance().RunNode(DNSS);
     });
 
     return a.exec();
