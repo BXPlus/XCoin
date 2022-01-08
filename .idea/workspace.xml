@@ -24,15 +24,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="Single transaction relaying on network and processing via wallet. Coinbase transactions in SDK&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XBlockchain/transaction.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/transaction.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XBlockchain/transactionPool.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/transactionPool.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XBlockchain/wallet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/wallet.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XNode/interface.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/interface.cpp" afterDir="false" />
+    <list default="true" id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="Transaction authoring now works locally&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;">
       <change beforePath="$PROJECT_DIR$/src/XNode/node.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/node.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/contactswidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/ui/contactswidget.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/mainwindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/ui/mainwindow.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -446,7 +439,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641639586104</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Transaction authoring now works locally&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;">
+      <created>1641657362881</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1641657362882</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -486,7 +486,8 @@
     <MESSAGE value="Migrated useful functions over from Youssef's branch to finish transaction processing&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
     <MESSAGE value="Transaction creation from UI with tx block encoding and SDK bridging&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
     <MESSAGE value="Single transaction relaying on network and processing via wallet. Coinbase transactions in SDK&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Single transaction relaying on network and processing via wallet. Coinbase transactions in SDK&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
+    <MESSAGE value="Transaction authoring now works locally&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Transaction authoring now works locally&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

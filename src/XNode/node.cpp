@@ -209,6 +209,7 @@ xcoin::Node::NotifyBlockChange(::grpc::ServerContext *context, const ::xcoin::in
     Block block = xcoin::interface::decodeBlock(request->block());
     blockchain.appendBlock(block);
     Transaction decodedTransaction = xcoin::interface::decodeTransaction(block.data);
+    sdkInstance->onLocalBalanceChanged(wallet.getLocalBalance());
     wallet.addTransactionToPoolDirect(decodedTransaction);
     response->set_data("OK");
     return ::grpc::Status::OK;
