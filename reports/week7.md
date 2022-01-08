@@ -51,7 +51,9 @@ Next week:
 
 @Clara  
 
-This week, I worked on the styling and theme-change options (we implemented a “light mode”). In particular, I worked on the design and aesthetic of the contacts page, that is now merged with the payment page. I also worked on the “Balance page”.
+This week, I worked on the styling and theme-change options (we implemented a “light mode”). In particular, I worked on the design and aesthetic of the contacts page, that is now merged with the payment page. I also worked on the “Balance page”, and fixed some issues with the display.
+
+Next week, I plan on working with Alex to try to make some working buttons for the "Payment" page; when the user clicks on the button, he should be able to enter the amount he wants to transfer.
 
 @Kevin Messali 
 
