@@ -108,3 +108,10 @@ We will be finishing fully the synchronization with @Cyrus Pellet and more preci
 @Malo 
 
 This week I plugged the functions I make in keys into Wallet and transaction and I tried to debug code from Long Vu in transaction. Next week I will probably make the contact storage.
+
+@Clara 
+
+This week, I started working on the main design of the app. In particular, I worked on making the app's design more coherent as a whole, and made sure that the configuration and code for styling was consistent between the pages "Contacts", "Balance", "Pay" and "Settings" . 
+
+Next week, I plan on implementing a "theme-change" options, i.e when a button is clicked, the design of the app goes from "dark mode" to "light mode". This will probably involve implementing changes regarding the colors and overall appearance. 
+
