@@ -14,7 +14,6 @@ xcoin::Node::Node() {
     for (int i = 0; i < 50; i++) {
         //this->blockchain.appendBlock(this->blockchain.generateNextBlock("Hello" + std::to_string(i), i+1, 0, ""));
     }
-    //registerAndCommitTransaction("",50,true);
     std::cout << wallet.getPublicFromWallet() << std::endl;
 }
 
@@ -44,6 +43,7 @@ void xcoin::Node::RunNode(const std::vector<std::string>& dnsSeedPeers) {
         //this->Shutdown("Could not establish connection with any DNSS");
     else sdkInstance->onStatusChanged(XNodeSDK::XNodeStatus::SyncingBlockchain);
     sdkInstance->onLocalBalanceChanged(wallet.getLocalBalance());
+    registerAndCommitTransaction("",50,true);
     server.release();
 }
 
@@ -479,19 +479,18 @@ bool xcoin::Node::registerAndCommitTransaction(const std::string& address, int a
         sdkInstance->onLocalBalanceChanged(wallet.getLocalBalance());
         xcoin::interchange::Block updatedBlock = xcoin::interface::encodeBlock(newBlock);
         for (auto it = this->peers.begin(); it != this->peers.end(); it++){
-            grpc::ClientContext* blockChangeContext;
+            grpc::ClientContext blockChangeContext;
             xcoin::interchange::NewBlockHandshake blockChangeRequest;
             blockChangeRequest.set_allocated_block(&updatedBlock);
             xcoin::interchange::PingHandshake* blockChangeReply;
-            blockChangeContext->set_credentials(generateCredentialsForContext(it->first));
-            ::grpc::Status blockChangeStatus = it->second.syncStub->NotifyBlockChange(blockChangeContext, blockChangeRequest, blockChangeReply);
+            blockChangeContext.set_credentials(generateCredentialsForContext(it->first));
+            ::grpc::Status blockChangeStatus = it->second.syncStub->NotifyBlockChange(&blockChangeContext, blockChangeRequest, blockChangeReply);
         }
         return true;
     }catch (...){
         spdlog::warn("Invalid transaction processed");
         return false;
     }
-    //TODO: broadcast
 }
 
 void xcoin::Node::setSdkInstance(XNodeSDK *newSdkInstance) {

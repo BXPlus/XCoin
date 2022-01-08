@@ -24,12 +24,12 @@ bool TransactionPool::isValidTxForPool(Transaction tx, std::vector<Transaction> 
 }
 
 void TransactionPool::addToTransactionPool(Transaction tx, std::vector<UnspentTxOut> unspentTxOuts) {
-    if (!tx.validateTransaction(unspentTxOuts)) {
-        std::cout << "Trying to add invalid tx to pool";
+    /*if (!tx.validateTransaction(unspentTxOuts)) {
+        std::cout << "Trying to add invalid tx to pool 1";
         return;
-    }
+    }*/
     if (!isValidTxForPool(tx, transactionPool)) {
-        std::cout << "Trying to add invalid tx to pool";
+        std::cout << "Trying to add invalid tx to pool 2";
         return;
     }
     std::cout << "Adding transaction to transactionPool"; //Add details about the transaction by implementing JSON.stringify(tx)

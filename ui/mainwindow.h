@@ -57,6 +57,9 @@ private:
     Ui::MainWindow *ui;
     QLabel* balanceLabel;
     int userBalance;
-    void updateUserBalanceFromSDK(int newBalance){userBalance = newBalance;};
+    void updateUserBalanceFromSDK(int newBalance){
+        userBalance = newBalance;
+        balanceLabel->setText(QString::number(userBalance));
+    };
 };
 #endif // MAINWINDOW_H

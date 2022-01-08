@@ -24,16 +24,15 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="Transaction creation from UI with tx block encoding and SDK bridging&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;">
+    <list default="true" id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="Single transaction relaying on network and processing via wallet. Coinbase transactions in SDK&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/XBlockchain/transaction.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/transaction.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/XBlockchain/transactionPool.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/transactionPool.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XBlockchain/wallet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/wallet.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XBlockchain/wallet.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/wallet.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XNode/XNodeSDK.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/XNodeSDK.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/XNode/interface.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/interface.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XNode/node.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/node.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XNode/node.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/node.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/mainwindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/ui/mainwindow.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/contactswidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/ui/contactswidget.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/mainwindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/ui/mainwindow.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/paycontactdialog.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/ui/paycontactdialog.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +204,7 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="xcoin-client" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="192.168.47.59:2001" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="xblockchain" TARGET_NAME="xcoin-client" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="xblockchain" RUN_TARGET_NAME="xcoin-client">
+    <configuration name="xcoin-client" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="xblockchain" TARGET_NAME="xcoin-client" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="xblockchain" RUN_TARGET_NAME="xcoin-client">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -440,7 +439,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641599518956</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Single transaction relaying on network and processing via wallet. Coinbase transactions in SDK&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;">
+      <created>1641639586104</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1641639586104</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -479,7 +485,8 @@
     <MESSAGE value="JWT generation and forwarding into gRPC calls. Status message for UI&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
     <MESSAGE value="Migrated useful functions over from Youssef's branch to finish transaction processing&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
     <MESSAGE value="Transaction creation from UI with tx block encoding and SDK bridging&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Transaction creation from UI with tx block encoding and SDK bridging&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
+    <MESSAGE value="Single transaction relaying on network and processing via wallet. Coinbase transactions in SDK&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Single transaction relaying on network and processing via wallet. Coinbase transactions in SDK&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -204,12 +204,12 @@ std::string xcoin::interface::encodeTransaction(const Transaction &transaction) 
     encodedTransaction.set_id(transaction.id);
     for (auto txIn: transaction.txIns){
         xcoin::interchange::TxIn* encodedTxIn = encodedTransaction.add_txins();
-        xcoin::interchange::TxInSignature encodedSignature;
+        xcoin::interchange::TxInSignature* encodedSignature = encodedTxIn->mutable_signature();
         encodedTxIn->set_txoutid(txIn.txOutId);
         encodedTxIn->set_txoutindex(txIn.txOutIndex);
-        encodedSignature.set_s1(reinterpret_cast<unsigned long long int>(txIn.signature.first));
-        encodedSignature.set_s2(txIn.signature.second);
-        encodedTxIn->set_allocated_signature(&encodedSignature);
+        encodedSignature->set_s1(reinterpret_cast<unsigned long long int>(txIn.signature.first));
+        encodedSignature->set_s2(txIn.signature.second);
+        //encodedTxIn->set_allocated_signature(encodedSignature);
     }
     for (auto txOut: transaction.txOuts){
         xcoin::interchange::TxOut* encodedTxOut = encodedTransaction.add_txouts();

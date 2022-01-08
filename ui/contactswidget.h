@@ -35,7 +35,7 @@ public:
 
     QMap<QString, QString> contactDict = {};
     QList<QPushButton*> delList;
-    QList<QList<QString>> dictList = {{"John Lenon", "#dk9174hdn29s"}, {"Bob", "#dk9174hdn29s"}, {"Alex", "#dk9174hdn29s"},
+    QList<QList<QString>> dictList = {{"Cyrus", "043A967EA681DE73DB77AFDB0AB6FDDA81D8974062D9D6A2D549FE75E558E306B6E26002963C39CB769DDFC43DE323C9624EAA74F167BF0F238BE62E708BE3BBA4"}, {"Bob", "#dk9174hdn29s"}, {"Alex", "#dk9174hdn29s"},
                                       {"Youssef", "#dk9174hdn29s"}, {"Clara", "#dk9174hdn29s"}, {"Arthur", "#dk9174hdn29s"},
                                       {"Timothé", "#dk9174hdn29s"}, {"Tim", "#dk9174hdn29s"}, {"Jean Seb", "#dk9174hdn29s"}};
     QList<QLabel*> labelList;

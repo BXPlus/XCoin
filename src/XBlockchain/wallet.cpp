@@ -114,11 +114,11 @@ std::vector<UnspentTxOut> Wallet::filterTxPoolTxs(std::vector<UnspentTxOut> unsp
     std::vector<TxIn> txIns = getTxPoolIns();
     for (int i = 0; i < unspentTxOuts.size(); i++){
         UnspentTxOut unspentTxOut = unspentTxOuts[i];
-        bool removable = true;
+        bool removable = false;
         for (int j = 0; j < txIns.size(); j++){
             TxIn txIn = txIns[j];
             if (txIn.txOutIndex == unspentTxOut.txOutIndex && txIn.txOutId == unspentTxOut.txOutId) {
-                removable = false;
+                removable = true;
                 break;
             }
         };
@@ -151,23 +151,17 @@ std::vector<TxIn> Wallet::toUnsignedTxInArray(std::vector<UnspentTxOut> unspentT
 
 Transaction Wallet::createTransaction(std::string receiverAddress, int amount, std::string privateKey, std::vector<UnspentTxOut> unspentTxOuts, std::vector<Transaction> txPool)
 {
-    std::cout<< "txPool" << std::endl;
     std::string myAddress = getPublicKey(privateKey);
     std::vector<UnspentTxOut> myUnspentTxOutsA = findUnspentTxOuts(myAddress, unspentTxOuts);
-
-    std::vector<UnspentTxOut> myUnspentTxOuts = filterTxPoolTxs(myUnspentTxOutsA, txPool);
-
+    std::vector<UnspentTxOut> myUnspentTxOutsB = filterTxPoolTxs(myUnspentTxOutsA, txPool);
     std::vector<UnspentTxOut> includedUnspentTxOuts;
     int leftOverAmount;
-    std::tie(includedUnspentTxOuts, leftOverAmount) = findTxOutsForAmount(amount, myUnspentTxOuts);
-
+    std::tie(includedUnspentTxOuts, leftOverAmount) = findTxOutsForAmount(amount, myUnspentTxOutsB);
     std::vector<TxIn> unsignedTxIns = toUnsignedTxInArray(includedUnspentTxOuts);
-
     Transaction tx;
     tx.txIns = unsignedTxIns;
     tx.txOuts = createTxOuts(receiverAddress, myAddress, amount, leftOverAmount);
     tx.id = tx.getTransactionId();
-
     //Signing the txIns
     for(int i = 0; i < tx.txIns.size(); i++){
         TxIn txIn = tx.txIns[i];
@@ -211,12 +205,12 @@ std::string Wallet::encrypt_data(const Transaction& transaction) {
 }
 
 Transaction Wallet::commitTransaction(std::string address, int amount, const Block& lastBlock) {
-    Transaction tx = createTransaction(std::move(address), amount, getPrivateFromWallet(), getUnspentTxOuts(), getTransactionPool());
+    Transaction tx = createTransaction(address, amount, getPrivateFromWallet(), getUnspentTxOuts(), getTransactionPool());
     myTransactionPool.addToTransactionPool(tx, getUnspentTxOuts());
     std::string hash = encrypt_data(tx);
     std::vector<Transaction> aTransactions;
     aTransactions.push_back(tx);
-    std::vector<UnspentTxOut> retVal = processTransactions(aTransactions, myUnspentTxOuts, lastBlock.index);
+    std::vector<UnspentTxOut> retVal = processTransactions(aTransactions, myUnspentTxOuts, amount);
     myUnspentTxOuts = retVal;
     myTransactionPool.updateTransactionPool(myUnspentTxOuts);
     return tx;
@@ -228,7 +222,7 @@ Transaction Wallet::commitCoinbaseTransaction(int amount, const Block &lastBlock
     std::string hash = encrypt_data(tx);
     std::vector<Transaction> aTransactions;
     aTransactions.push_back(tx);
-    std::vector<UnspentTxOut> retVal = processTransactions(aTransactions, myUnspentTxOuts, lastBlock.index);
+    std::vector<UnspentTxOut> retVal = processTransactions(aTransactions, myUnspentTxOuts, amount);
     myUnspentTxOuts = retVal;
     myTransactionPool.updateTransactionPool(myUnspentTxOuts);
     return tx;
