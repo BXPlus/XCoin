@@ -14,6 +14,8 @@ xcoin::Node::Node() {
     for (int i = 0; i < 50; i++) {
         //this->blockchain.appendBlock(this->blockchain.generateNextBlock("Hello" + std::to_string(i), i+1, 0, ""));
     }
+    //registerAndCommitTransaction("",50,true);
+    std::cout << wallet.getPublicFromWallet() << std::endl;
 }
 
 /**
@@ -41,6 +43,7 @@ void xcoin::Node::RunNode(const std::vector<std::string>& dnsSeedPeers) {
         sdkInstance->onStatusMessageBroadcast("Peer connection failed, falling back to DNSS node");
         //this->Shutdown("Could not establish connection with any DNSS");
     else sdkInstance->onStatusChanged(XNodeSDK::XNodeStatus::SyncingBlockchain);
+    sdkInstance->onLocalBalanceChanged(wallet.getLocalBalance());
     server.release();
 }
 
@@ -95,6 +98,8 @@ void xcoin::Node::loadDataFromDisk() {
         std::string encodedChain = localChainArchive.loadData();
         for (const Block& block: xcoin::interface::importChain(encodedChain)){
             this->blockchain.appendBlock(block);
+            Transaction decodedTransaction = xcoin::interface::decodeTransaction(block.data);
+            wallet.addTransactionToPoolDirect(decodedTransaction);
         }
         spdlog::info("Loaded " + std::to_string(this->blockchain.length) + " blocks from local backup");
     }
@@ -112,8 +117,9 @@ void xcoin::Node::loadDataFromDisk() {
         std::shared_ptr<grpc::Channel> channel = grpc::CreateChannel(context->peer(),
                                                                      grpc::InsecureChannelCredentials());
         this->peers[context->peer()] = XNodeClient(channel);
+        this->peers[context->peer()].publicKey = request->data();
     }
-    response->set_data(request->data());
+    response->set_data(wallet.getPublicFromWallet());
     return ::grpc::Status::OK;
 }
 
@@ -193,6 +199,20 @@ xcoin::Node::HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::inte
     return ::grpc::Status::OK;
 }
 
+/**
+* Callback function executed by gRPC to process incoming notifyBlockChange requests from peers when a new transaction has been added
+* Returns an acknowledgement that the update has been well received
+*/
+::grpc::Status
+xcoin::Node::NotifyBlockChange(::grpc::ServerContext *context, const ::xcoin::interchange::NewBlockHandshake *request,
+                               ::xcoin::interchange::PingHandshake *response) {
+    Block block = xcoin::interface::decodeBlock(request->block());
+    blockchain.appendBlock(block);
+    Transaction decodedTransaction = xcoin::interface::decodeTransaction(block.data);
+    wallet.addTransactionToPoolDirect(decodedTransaction);
+    response->set_data("OK");
+    return ::grpc::Status::OK;
+}
 
 /**
 * Function called to try to connect to a remote peer
@@ -208,11 +228,12 @@ bool xcoin::Node::AttemptPeerConnection(const std::string &peerAddress) {
     pingContext.set_credentials(generateCredentialsForContext(peerAddress));
     xcoin::interchange::PingHandshake pingRequest;
     xcoin::interchange::PingHandshake pingReply;
-    pingRequest.set_data("Hello!");
+    pingRequest.set_data(wallet.getPublicFromWallet());
     clock_t start = clock();
     ::grpc::Status pingStatus = this->peers[peerAddress].controlStub->Ping(&pingContext, pingRequest, &pingReply);
     clock_t end = clock();
-    if (pingStatus.ok() && pingReply.data() == pingRequest.data()) {
+    if (pingStatus.ok()) {
+        this->peers[peerAddress].publicKey = pingReply.data();
         spdlog::info("Successfully established connection with " + peerAddress + " with ping: " +
                      std::to_string(((float) end - start) / CLOCKS_PER_SEC) + "s");
         xcoin::interchange::DNSHandshake dnsRequest;
@@ -445,13 +466,26 @@ std::shared_ptr<grpc::CallCredentials> xcoin::Node::generateCredentialsForContex
 * @param address, amount the transaction details
 * @return true if adding the transaction was successful
 */
-bool xcoin::Node::registerAndCommitTransaction(const std::string& address, int amount) {
+bool xcoin::Node::registerAndCommitTransaction(const std::string& address, int amount, bool coinbase) {
     try{
-        Transaction tx = wallet.commitTransaction(address, amount, blockchain.getLatestBlock());
+        Transaction tx;
+        if (coinbase){
+            tx = wallet.commitCoinbaseTransaction(amount, blockchain.getLatestBlock());
+        }else tx = wallet.commitTransaction(address, amount, blockchain.getLatestBlock());
         std::string encodedTx = xcoin::interface::encodeTransaction(tx);
-        Block newBlock = blockchain.generateNextBlock(encodedTx, blockchain.getLatestBlock().difficulty, wallet.getBalance(wallet.getPublicFromWallet(), wallet.myUnspentTxOuts), wallet.getPublicFromWallet());
+        Block newBlock = blockchain.generateNextBlock(encodedTx, blockchain.getLatestBlock().difficulty, wallet.getLocalBalance(), wallet.getPublicFromWallet());
         blockchain.appendBlock(newBlock);
         spdlog::info("Added new transaction to chain. Will broadcast");
+        sdkInstance->onLocalBalanceChanged(wallet.getLocalBalance());
+        xcoin::interchange::Block updatedBlock = xcoin::interface::encodeBlock(newBlock);
+        for (auto it = this->peers.begin(); it != this->peers.end(); it++){
+            grpc::ClientContext* blockChangeContext;
+            xcoin::interchange::NewBlockHandshake blockChangeRequest;
+            blockChangeRequest.set_allocated_block(&updatedBlock);
+            xcoin::interchange::PingHandshake* blockChangeReply;
+            blockChangeContext->set_credentials(generateCredentialsForContext(it->first));
+            ::grpc::Status blockChangeStatus = it->second.syncStub->NotifyBlockChange(blockChangeContext, blockChangeRequest, blockChangeReply);
+        }
         return true;
     }catch (...){
         spdlog::warn("Invalid transaction processed");

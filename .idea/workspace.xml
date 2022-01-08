@@ -24,20 +24,16 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="Migrated useful functions over from Youssef's branch to finish transaction processing&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;">
+    <list default="true" id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="Transaction creation from UI with tx block encoding and SDK bridging&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/XBlockchain/wallet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/wallet.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XBlockchain/wallet.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XBlockchain/wallet.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XNode/XNodeSDK.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/XNodeSDK.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XNode/XNodeSDK.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/XNodeSDK.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XNode/blockchain.pb.cc" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/blockchain.pb.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XNode/blockchain.pb.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/blockchain.pb.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XNode/blockchain.proto" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/blockchain.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XNode/interface.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/interface.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XNode/interface.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/interface.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XNode/node.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/node.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XNode/node.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/node.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/mainwindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/ui/mainwindow.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/mainwindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/ui/mainwindow.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/paycontactdialog.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/ui/paycontactdialog.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/paycontactdialog.h" beforeDir="false" afterPath="$PROJECT_DIR$/ui/paycontactdialog.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -437,7 +433,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641595015128</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Transaction creation from UI with tx block encoding and SDK bridging&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;">
+      <created>1641599518956</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1641599518956</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -475,7 +478,8 @@
     <MESSAGE value="Wallet initialisation and integration into XNode for transaction relaying&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
     <MESSAGE value="JWT generation and forwarding into gRPC calls. Status message for UI&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
     <MESSAGE value="Migrated useful functions over from Youssef's branch to finish transaction processing&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrated useful functions over from Youssef's branch to finish transaction processing&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
+    <MESSAGE value="Transaction creation from UI with tx block encoding and SDK bridging&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Transaction creation from UI with tx block encoding and SDK bridging&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

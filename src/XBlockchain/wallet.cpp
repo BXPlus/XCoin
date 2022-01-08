@@ -62,6 +62,10 @@ int Wallet::getBalance(std::string address, std::vector<UnspentTxOut> unspentTxO
     return res;
 }
 
+int Wallet::getLocalBalance() {
+    return getBalance(getPublicFromWallet(), getUnspentTxOuts());
+}
+
 std::pair<std::vector<UnspentTxOut>,int> Wallet::findTxOutsForAmount(int amount, std::vector<UnspentTxOut> myUnspentTxOuts)
 {
     int currentAmount = 0;
@@ -216,4 +220,20 @@ Transaction Wallet::commitTransaction(std::string address, int amount, const Blo
     myUnspentTxOuts = retVal;
     myTransactionPool.updateTransactionPool(myUnspentTxOuts);
     return tx;
+}
+
+Transaction Wallet::commitCoinbaseTransaction(int amount, const Block &lastBlock) {
+    Transaction tx = mintCoinbaseTransaction(amount);
+    myTransactionPool.addToTransactionPool(tx, getUnspentTxOuts());
+    std::string hash = encrypt_data(tx);
+    std::vector<Transaction> aTransactions;
+    aTransactions.push_back(tx);
+    std::vector<UnspentTxOut> retVal = processTransactions(aTransactions, myUnspentTxOuts, lastBlock.index);
+    myUnspentTxOuts = retVal;
+    myTransactionPool.updateTransactionPool(myUnspentTxOuts);
+    return tx;
+}
+
+void Wallet::addTransactionToPoolDirect(Transaction tx) {
+    myTransactionPool.addToTransactionPool(tx, getUnspentTxOuts());
 }

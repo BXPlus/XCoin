@@ -13,6 +13,7 @@ public:
     std::function<void()> onPeerListChanged;
     std::function<void(std::string)> onStatusMessageBroadcast;
     std::function<void(XNodeStatus)> onStatusChanged;
+    std::function<void(int)> onLocalBalanceChanged;
     struct XNodeSettings{
         int nodePort;
         std::vector<std::string> rootDNSAddresses;

@@ -19,7 +19,7 @@ payContactDialog::payContactDialog(QString name, QString publicKey, QWidget* par
     title->setObjectName("payContactDialogTitle");
 
     subtitle = new QLabel(this);
-    subtitle->setText(QString("Key number " + *toKey));
+    subtitle->setText(QString(*toKey));
     subtitle->setStyleSheet("font: italic;"
                             "color: black;");
 
@@ -86,9 +86,10 @@ void payContactDialog::closed(){
 
 void payContactDialog::pay(){
     qDebug() << "Paying" << amountEnter->text().toInt() << "XCoins" << "to" << *toKey << "for" << enterPay->text();
-    //xcoin::Node::getInstance().registerAndCommitTransaction(enterPay->text().toStdString(), amountEnter->text().toInt());
-    parentWidget()->parentWidget()->parentWidget()->findChild<BalanceWidget*>("BalanceWidget")->editBalanceDict(enterPay->text(), amountEnter->text());
-    this->close();
+    if (xcoin::Node::getInstance().registerAndCommitTransaction(subtitle->text().toStdString(), amountEnter->text().toInt(), false)){
+        parentWidget()->parentWidget()->parentWidget()->findChild<BalanceWidget*>("BalanceWidget")->editBalanceDict(enterPay->text(), amountEnter->text());
+        this->close();
+    }
 }
 
 void payContactDialog::inputDigit(int i){

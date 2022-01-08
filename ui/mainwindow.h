@@ -14,6 +14,8 @@
 #include "settingswidget.h"
 #include "addcontactdialog.h"
 #include "balancewidget.h"
+#include "../XNode/node.h"
+#include "../XNode/XNodeSDK.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -55,5 +57,6 @@ private:
     Ui::MainWindow *ui;
     QLabel* balanceLabel;
     int userBalance;
+    void updateUserBalanceFromSDK(int newBalance){userBalance = newBalance;};
 };
 #endif // MAINWINDOW_H

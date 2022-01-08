@@ -63,7 +63,9 @@ MainWindow::MainWindow(QWidget *parent)
     titleLabel->setAlignment(Qt::AlignCenter);
     titleLabel->setMaximumHeight(30);
 
-    userBalance = 10;
+    userBalance = 0;
+
+    xcoin::Node::getInstance().getSdkInstance()->onLocalBalanceChanged = std::bind( &MainWindow::updateUserBalanceFromSDK, this, std::placeholders::_1 );
 
     // User Balance
     balanceLabel = new QLabel(userBlock);

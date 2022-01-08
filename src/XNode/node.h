@@ -54,8 +54,9 @@ namespace xcoin{
         void setSdkInstance(XNodeSDK *sdkInstance);
         XNodeSDK *getSdkInstance() const;
         std::string generate_jwt(const std::string& public_id) const;
-        bool registerAndCommitTransaction(const std::string& address, int amount);
+        bool registerAndCommitTransaction(const std::string& address, int amount, bool coinbase);
         bool verify_jwt(const std::string& jwt, const std::string& public_id) const;
+        Wallet wallet;
     private:
         explicit Node();
         const bool SYNC_BATCHING_ENABLED = false;
@@ -68,6 +69,7 @@ namespace xcoin{
         ::grpc::Status PingPongSync(::grpc::ServerContext *context, const ::xcoin::interchange::PingPong *request, ::xcoin::interchange::PingPong *response) override;
         ::grpc::Status HeaderFirstSync(::grpc::ServerContext *context, const ::xcoin::interchange::GetHeaders *request, ::xcoin::interchange::Headers* response) override;
         ::grpc::Status GetBlockchainFromHeight(::grpc::ServerContext *context, const ::xcoin::interchange::GetBlockchainFromHeightRequest *request, ::xcoin::interchange::Blockchain *response) override;
+        ::grpc::Status NotifyBlockChange(::grpc::ServerContext *context, const ::xcoin::interchange::NewBlockHandshake *request, ::xcoin::interchange::PingHandshake *response) override;
         bool AttemptPeerConnection(const std::string& peerAddress);
         static PingPongStatus pingPongStatusForProps(int chainHeight1, int chainHeight2, const std::string& lastHash1, const std::string& lastHash2, bool isErrored);
         std::pair<xcoin::Node::PingPongStatus, int> AttemptPingPongSync(const std::string& peerAddress);
@@ -80,7 +82,6 @@ namespace xcoin{
         std::map<std::string, XNodeClient> peers;
         std::unique_ptr<::grpc::Server> server;
         Blockchain blockchain;
-        Wallet wallet;
         XNodeSDK* sdkInstance;
     };
 }

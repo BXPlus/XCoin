@@ -19,7 +19,10 @@ public:
     std::vector<UnspentTxOut> myUnspentTxOuts;
     std::vector<UnspentTxOut> getUnspentTxOuts();
     Transaction commitTransaction(std::string address, int amount, const Block& lastBlock);
+    Transaction commitCoinbaseTransaction(int amount, const Block& lastBlock);
+    void addTransactionToPoolDirect(Transaction tx);
     int getBalance(std::string address, std::vector<UnspentTxOut> unspentTxOuts);
+    int getLocalBalance();
     std::string getPublicFromWallet();
 private:
     Archive dataStorage = Archive("local.xnodekeys");
