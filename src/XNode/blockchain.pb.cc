@@ -478,7 +478,7 @@ const char descriptor_table_protodef_blockchain_2eproto[] PROTOBUF_SECTION_VARIA
   "\tH\001\210\001\001\022\031\n\014previousHash\030\003 \001(\tH\002\210\001\001\022\027\n\nhea"
   "derHash\030\004 \001(\tH\003\210\001\001\022\037\n\022previousHeaderHash"
   "\030\005 \001(\tH\004\210\001\001\022\026\n\ttimestamp\030\006 \001(\003H\005\210\001\001\022\021\n\004d"
-  "ata\030\007 \001(\tH\006\210\001\001\022\027\n\ndifficulty\030\010 \001(\003H\007\210\001\001\022"
+  "ata\030\007 \001(\014H\006\210\001\001\022\027\n\ndifficulty\030\010 \001(\003H\007\210\001\001\022"
   "\022\n\005nonce\030\t \001(\003H\010\210\001\001\022\032\n\rminterBalance\030\n \001"
   "(\003H\t\210\001\001\022\032\n\rminterAddress\030\013 \001(\tH\n\210\001\001\022\035\n\020m"
   "erkle_root_hash\030\014 \001(\tH\013\210\001\001B\010\n\006_indexB\007\n\005"
@@ -797,12 +797,11 @@ const char* Block::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
         } else
           goto handle_unusual;
         continue;
-      // optional string data = 7;
+      // optional bytes data = 7;
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
           auto str = _internal_mutable_data();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "xcoin.interchange.Block.data"));
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -936,13 +935,9 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(6, this->_internal_timestamp(), target);
   }
 
-  // optional string data = 7;
+  // optional bytes data = 7;
   if (_internal_has_data()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_data().data(), static_cast<int>(this->_internal_data().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "xcoin.interchange.Block.data");
-    target = stream->WriteStringMaybeAliased(
+    target = stream->WriteBytesMaybeAliased(
         7, this->_internal_data(), target);
   }
 
@@ -1030,10 +1025,10 @@ size_t Block::ByteSizeLong() const {
           this->_internal_previousheaderhash());
     }
 
-    // optional string data = 7;
+    // optional bytes data = 7;
     if (cached_has_bits & 0x00000010u) {
       total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
           this->_internal_data());
     }
 

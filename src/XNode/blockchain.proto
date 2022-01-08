@@ -22,7 +22,7 @@ message Block{
   optional string headerHash = 4;
   optional string previousHeaderHash = 5;
   optional int64 timestamp = 6;
-  optional string data = 7;
+  optional bytes data = 7;
   optional int64 difficulty= 8;
   optional int64 nonce = 9;
   optional int64 minterBalance = 10;

@@ -24,8 +24,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="Transaction authoring now works locally&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;">
+    <list default="true" id="2a8e340a-ef12-431a-bdca-fdc69fb0a838" name="Changes" comment="Block update hotifx&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/XNode/blockchain.pb.cc" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/blockchain.pb.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/XNode/blockchain.pb.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/blockchain.pb.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/XNode/blockchain.proto" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/blockchain.proto" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/XNode/node.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XNode/node.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/ui/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -446,7 +451,21 @@
       <option name="project" value="LOCAL" />
       <updated>1641657362882</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Added wallet update&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;">
+      <created>1641657563608</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1641657563608</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Block update hotifx&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;">
+      <created>1641658512583</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1641658512583</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -487,7 +506,9 @@
     <MESSAGE value="Transaction creation from UI with tx block encoding and SDK bridging&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
     <MESSAGE value="Single transaction relaying on network and processing via wallet. Coinbase transactions in SDK&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
     <MESSAGE value="Transaction authoring now works locally&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Transaction authoring now works locally&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
+    <MESSAGE value="Added wallet update&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
+    <MESSAGE value="Block update hotifx&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Block update hotifx&#10;&#10;Co-authored-by: Kevin Messali &lt;kevinmessali06@gmail.com&gt;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

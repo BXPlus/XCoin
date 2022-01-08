@@ -336,7 +336,7 @@ class Block final :
   std::string* _internal_mutable_previousheaderhash();
   public:
 
-  // optional string data = 7;
+  // optional bytes data = 7;
   bool has_data() const;
   private:
   bool _internal_has_data() const;
@@ -3556,7 +3556,7 @@ inline void Block::set_timestamp(::PROTOBUF_NAMESPACE_ID::int64 value) {
   // @@protoc_insertion_point(field_set:xcoin.interchange.Block.timestamp)
 }
 
-// optional string data = 7;
+// optional bytes data = 7;
 inline bool Block::_internal_has_data() const {
   bool value = (_has_bits_[0] & 0x00000010u) != 0;
   return value;
@@ -3576,7 +3576,7 @@ template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
 void Block::set_data(ArgT0&& arg0, ArgT... args) {
  _has_bits_[0] |= 0x00000010u;
- data_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+ data_.SetBytes(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
   // @@protoc_insertion_point(field_set:xcoin.interchange.Block.data)
 }
 inline std::string* Block::mutable_data() {

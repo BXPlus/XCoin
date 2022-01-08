@@ -486,7 +486,10 @@ bool xcoin::Node::registerAndCommitTransaction(const std::string& address, int a
             blockChangeRequest.mutable_block()->CopyFrom(updatedBlock);
             xcoin::interchange::PingHandshake blockChangeReply;
             blockChangeContext.set_credentials(generateCredentialsForContext(it->first));
-            ::grpc::Status blockChangeStatus = it->second.syncStub->NotifyBlockChange(&blockChangeContext, blockChangeRequest, &blockChangeReply);
+            auto status = it->second.syncStub->NotifyBlockChange(&blockChangeContext, blockChangeRequest, &blockChangeReply);
+            if(status.ok()){
+                spdlog::info("Update successful");
+            }
         }
         return true;
     }catch (...){

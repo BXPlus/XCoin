@@ -27,6 +27,8 @@ int main(int argc, char *argv[])
     a.setStyleSheet(styleSheet);
     qss.close();
 
+    spdlog::set_level(spdlog::level::debug);
+
     XNodeSDK* xcoinClientSdkInstance = new XNodeSDK();
     xcoin::Node::getInstance().setSdkInstance(xcoinClientSdkInstance);
 
