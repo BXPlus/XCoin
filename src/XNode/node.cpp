@@ -212,6 +212,7 @@ xcoin::Node::NotifyBlockChange(::grpc::ServerContext *context, const ::xcoin::in
     sdkInstance->onLocalBalanceChanged(wallet.getLocalBalance());
     wallet.addTransactionToPoolDirect(decodedTransaction);
     response->set_data("OK");
+    spdlog::info("Received incoming block update from " + context->peer());
     return ::grpc::Status::OK;
 }
 
@@ -478,14 +479,14 @@ bool xcoin::Node::registerAndCommitTransaction(const std::string& address, int a
         blockchain.appendBlock(newBlock);
         spdlog::info("Added new transaction to chain. Will broadcast");
         sdkInstance->onLocalBalanceChanged(wallet.getLocalBalance());
-        xcoin::interchange::Block updatedBlock = xcoin::interface::encodeBlock(newBlock);
         for (auto it = this->peers.begin(); it != this->peers.end(); it++){
             grpc::ClientContext blockChangeContext;
             xcoin::interchange::NewBlockHandshake blockChangeRequest;
-            blockChangeRequest.set_allocated_block(&updatedBlock);
-            xcoin::interchange::PingHandshake* blockChangeReply;
+            xcoin::interchange::Block updatedBlock = xcoin::interface::encodeBlock(newBlock);
+            blockChangeRequest.mutable_block()->CopyFrom(updatedBlock);
+            xcoin::interchange::PingHandshake blockChangeReply;
             blockChangeContext.set_credentials(generateCredentialsForContext(it->first));
-            ::grpc::Status blockChangeStatus = it->second.syncStub->NotifyBlockChange(&blockChangeContext, blockChangeRequest, blockChangeReply);
+            ::grpc::Status blockChangeStatus = it->second.syncStub->NotifyBlockChange(&blockChangeContext, blockChangeRequest, &blockChangeReply);
         }
         return true;
     }catch (...){
