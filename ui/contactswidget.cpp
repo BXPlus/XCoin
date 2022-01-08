@@ -101,9 +101,11 @@ void ContactsWidget::createDictionary(QMap<QString, QString> contacts)
         coverRowBtn->setCursor(Qt::PointingHandCursor);
         coverRowBtn->setObjectName("coverRowBtn");
 
+        QString* id = new QString(key->text() + ";" + value->text());
+
         QSignalMapper* signalMapper = new QSignalMapper(this);
         connect(coverRowBtn, SIGNAL(clicked()), signalMapper, SLOT(map()));
-        signalMapper->setMapping(coverRowBtn, key->text());
+        signalMapper->setMapping(coverRowBtn, *id);
         connect(signalMapper, SIGNAL(mappedString(QString)), this, SLOT(openPayDialog(QString)));
 
         if (count%2 == 1){
@@ -236,10 +238,18 @@ void ContactsWidget::contactSearchEdit(){
     createDictionary(tempContacts);
 }
 
-void ContactsWidget::openPayDialog(QString value){
-    payContactDialog* dialog = new payContactDialog(value, this);
-    dialog->setModal(true);
-    dialog->exec();
+void ContactsWidget::openPayDialog(QString id){
+    QStringList tokens = id.split (";");
+    if (tokens.count() == 2) {
+        QString *name = new QString(tokens.at(0));
+        QString *key = new QString(tokens.at(1));
+        payContactDialog *dialog = new payContactDialog(*name, *key, this);
+        dialog->setModal(true);
+        dialog->exec();
+    }
+    else {
+        qDebug() << "could not split id";
+    }
 }
 
 void ContactsWidget::deleteWidgets()

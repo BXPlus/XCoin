@@ -133,9 +133,9 @@ void PayWidget::deleteContact(int count)
 }
 
 void PayWidget::openPayDialog(QString value){
-    payContactDialog* dialog = new payContactDialog(value, this);
-    dialog->setModal(true);
-    dialog->exec();
+    //payContactDialog* dialog = new payContactDialog(value, this);
+    //dialog->setModal(true);
+    //dialog->exec();
 }
 
 void PayWidget::deleteWidgets()

@@ -3,19 +3,25 @@
 #include <QAction>
 #include "balancewidget.h"
 
-payContactDialog::payContactDialog(QString publicKey, QWidget* parent) :
+payContactDialog::payContactDialog(QString name, QString publicKey, QWidget* parent) :
     QDialog(parent)
 {
     this->setFixedSize(300, 300);
     this->setStyleSheet("background-color: white;");
+    toName = new QString(name);
     toKey = new QString(publicKey);
     setWindowTitle("Pay");
     mainLayout = new QVBoxLayout();
     this->setLayout(mainLayout);
 
     title = new QLabel(this);
-    title->setText(QString("Paying " + *toKey));
+    title->setText(QString("Paying " + *toName));
     title->setObjectName("payContactDialogTitle");
+
+    subtitle = new QLabel(this);
+    subtitle->setText(QString("Key number " + *toKey));
+    subtitle->setStyleSheet("font: italic;"
+                            "color: black;");
 
     enterPayText = new QLabel(this);
     enterPayText->setText(QString("Payment Object:"));
@@ -63,6 +69,7 @@ payContactDialog::payContactDialog(QString publicKey, QWidget* parent) :
     connect(confirmBtn, &QPushButton::clicked, this, &payContactDialog::pay);
 
     mainLayout->addWidget(title);
+    mainLayout->addWidget(subtitle);
     mainLayout->addWidget(enterPayText);
     mainLayout->addWidget(enterPay);
     mainLayout->addWidget(enterPriceText);

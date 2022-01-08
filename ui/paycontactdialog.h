@@ -12,7 +12,7 @@ class payContactDialog : public QDialog
 {
 
 public:
-    explicit payContactDialog(QString publicKey, QWidget *parent = nullptr);
+    explicit payContactDialog(QString name, QString publicKey, QWidget *parent = nullptr);
     ~payContactDialog();
 
 private:
@@ -22,8 +22,10 @@ private:
     QPushButton* confirmBtn;
     QPushButton* cancelBtn;
     QLineEdit* amountEnter;
+    QString* toName;
     QString* toKey;
     QLabel* title;
+    QLabel* subtitle;
     QLabel* enterPriceText;
     QLabel* enterPayText;
     QLineEdit* enterPay;
