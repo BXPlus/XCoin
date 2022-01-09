@@ -21,6 +21,7 @@ class ContactsWidget : public QWidget
     Q_OBJECT
 public:
     explicit ContactsWidget(QWidget *parent = nullptr);
+private:
     QLabel* title;
     QVBoxLayout* pageLayout;
     QGridLayout* contactGrid;

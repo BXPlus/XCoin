@@ -28,7 +28,9 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+    int getUserBalance();
+    void editUserBalance(int, int);
+private:
     QList<CustomButton*> btnList;
 
     QWidget* mainWidget;
@@ -44,8 +46,6 @@ public:
 
     int style = 0;
     void toggleStyleSheet();
-    int getUserBalance();
-    void editUserBalance(int, int);
 
 private slots:
     void go_home();

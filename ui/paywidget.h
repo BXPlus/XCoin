@@ -17,6 +17,8 @@ class PayWidget : public QWidget
     Q_OBJECT
 public:
     explicit PayWidget(QWidget *parent = nullptr);
+
+private:
     QMap<QString, QString> contactDict;
     QLabel* title;
     QVBoxLayout* pageLayout;

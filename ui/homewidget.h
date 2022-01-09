@@ -18,6 +18,8 @@ class HomeWidget : public QWidget
 
 public:
     explicit HomeWidget(QWidget *parent = nullptr);
+    ~HomeWidget();
+private:
     QVBoxLayout* pageLayout;
     QWidget* boxContainer;
     QGridLayout* boxLayout;
@@ -28,9 +30,6 @@ public:
     QWidget* box2;
     QWidget* box3;
     QWidget* box4;
-
-    ~HomeWidget();
-private:
     void handleNewNodeStatusFromSDK(XNodeSDK::XNodeStatus status) const;
     void handleNewStatusMessageFromSDK(const std::string& message);
 };
