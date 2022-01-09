@@ -1,10 +1,10 @@
-#include <cstring>
 #include <fstream>
 #include "sha256.h"
 #include <openssl/sha.h>
 #include <sstream>
 #include <iomanip>
 
+//SHA256 function using the openssl library
 std::string sha256(std::string input)
 {
     unsigned char hash[SHA256_DIGEST_LENGTH];

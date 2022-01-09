@@ -87,3 +87,7 @@ This week:
 Next week:
 
 - Strengthening some remaining tests and recheck all the transaction-related codes.
+
+@Timothe
+
+This week I went through the code to get an understanding of the overall project while trying to help others where I can on the blockchain and Frontend. Next week I will comment some of the code and organise it so that it is understandable. 

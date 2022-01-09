@@ -119,3 +119,8 @@ Next week:
 This week I started implementing the wallet on CLion but it crashed and then shifted to working on the implementation on QT creator. I cannot commit using Qt creator so I was trying to find new solutions to commit onto the Github
 
 Next week we should have finished the wallet implementation and will most likely write tests for the wallet
+
+@Timothe
+
+This week I helped implement the wallet part of the coin implemented the functions that are necessary for the transactions.
+Next week I will look over what the Frontend team worked on in order to prepare the merge, try to fix issues if there are any and write some tests if need be.

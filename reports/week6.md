@@ -115,3 +115,7 @@ This week, I started working on the main design of the app. In particular, I wor
 
 Next week, I plan on implementing a "theme-change" options, i.e when a button is clicked, the design of the app goes from "dark mode" to "light mode". This will probably involve implementing changes regarding the colors and overall appearance. 
 
+@Timothe
+
+This week I helped implement the tests for the transaction functions and made sure that everything was in order. I looked over the code from the front-end team and asked questions in order to understand what they wrote.
+Next week I will go through more of their code to fully understand it. And look over what other people did so that I have a full overview of the project.
