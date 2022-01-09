@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
 #include <QStringList>
 #include "custombutton.h"
 #include <QAction>
@@ -10,10 +9,7 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
-
     //HomePage setup
     setWindowTitle("XCoin");
     setMinimumSize(700,600);
@@ -126,7 +122,6 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    delete ui;
 }
 
 void MainWindow::go_page(int i)
