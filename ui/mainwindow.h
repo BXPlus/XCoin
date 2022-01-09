@@ -13,7 +13,6 @@
 #include "logindialog.h"
 #include "settingswidget.h"
 #include "addcontactdialog.h"
-#include "balancewidget.h"
 #include "../XNode/node.h"
 #include "../XNode/XNodeSDK.h"
 
@@ -39,9 +38,9 @@ private:
     QStackedWidget* contentContainer;
     QVBoxLayout* menuLayout;
 
-    QWidget* homeWidget;
-    QWidget* balanceWidget;
-    QWidget* contactsWidget;
+    HomeWidget* homeWidget;
+    BalanceWidget* balanceWidget;
+    ContactsWidget* contactsWidget;
     QWidget* settingsWidget;
 
     int style = 0;
@@ -57,9 +56,6 @@ private:
     Ui::MainWindow *ui;
     QLabel* balanceLabel;
     int userBalance;
-    void updateUserBalanceFromSDK(int newBalance){
-        userBalance = newBalance;
-        balanceLabel->setText(QString::number(userBalance));
-    };
+    void updateUserBalanceFromSDK(int);
 };
 #endif // MAINWINDOW_H

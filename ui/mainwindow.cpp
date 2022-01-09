@@ -95,14 +95,6 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
 
-    // Creating central separating bar
-//    QWidget* sepBar = new QWidget(this);
-//    sepBar->setStyleSheet("background-color: rgba(45,58,82,255);");
-//    sepBar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
-//    sepBar->setFixedWidth(10);
-//    mainLayout->addWidget(sepBar);
-
-
     //Creating Stacked Widget
 
     contentContainer = new QStackedWidget(mainWidget);
@@ -175,4 +167,10 @@ void MainWindow::editUserBalance(int inc, int dec) {
         userBalance = userBalance - dec;
     }
     balanceLabel->setText(QString::number(userBalance));
+}
+
+void MainWindow::updateUserBalanceFromSDK(int newBalance) {
+    userBalance = newBalance;
+    balanceLabel->setText(QString::number(userBalance));
+    balanceWidget->updateBalanceSDKChange(newBalance);
 }

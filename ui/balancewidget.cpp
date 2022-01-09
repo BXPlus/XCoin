@@ -35,6 +35,7 @@ BalanceWidget::BalanceWidget(QWidget *parent) : QWidget(parent)
 
     userBalance = ((MainWindow*)parentWidget()->parentWidget())->getUserBalance();
     userBalanceLabel = new QLabel(QString(QString::number(userBalance) + " XCoin"), this);
+
     labelList.append(userBalanceLabel);
     userBalanceLabel->setMaximumSize(200,55);
     userBalanceLabel->setObjectName("BalanceAmount");
@@ -138,6 +139,11 @@ void BalanceWidget::updateBalance(int inc, int dec) {
     if (dec > 0) {
         userBalance = userBalance - dec;
     }
+}
+
+void BalanceWidget::updateBalanceSDKChange(int newBalance) {
+    userBalance = newBalance;
+    userBalanceLabel->setText(QString(QString::number(userBalance) + " XCoin"));
 }
 
 void BalanceWidget::deleteWidgets() {

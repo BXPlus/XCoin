@@ -18,6 +18,8 @@ public:
 
 public slots:
     void editBalanceDict(QString object, QString amount);
+    void updateBalanceSDKChange(int newBalance = 0);
+
 private:
     QTabWidget* tabWidget;
     QVBoxLayout* mainLayout;
