@@ -1,7 +1,3 @@
-//
-// Created by Tim Valencony on 03/01/2022.
-//
-
 #include "switch.h"
 
 Switch::Switch(QWidget *parent) : QAbstractButton(parent),

@@ -16,10 +16,6 @@
 #include "../XNode/node.h"
 #include "../XNode/XNodeSDK.h"
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
-
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -53,7 +49,6 @@ protected:
     void closeEvent(QCloseEvent * event);
 
 private:
-    Ui::MainWindow *ui;
     QLabel* balanceLabel;
     int userBalance;
     void updateUserBalanceFromSDK(int);

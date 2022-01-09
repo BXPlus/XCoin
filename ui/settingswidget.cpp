@@ -6,13 +6,6 @@
 
 SettingsWidget::SettingsWidget(QWidget *parent) : QWidget(parent)
 {
-  /* Ideas for the different elements of the settings page:
-        - Node Port(un nombre)
-        - Full/Light node (toggle)
-        - Public address (string)
-        - Root DNS address (string)
-        - Appearance
-        -*/
     this->mainWindow = parent;
 
     //Header Setup

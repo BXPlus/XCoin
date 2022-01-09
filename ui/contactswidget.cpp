@@ -92,8 +92,6 @@ void ContactsWidget::createDictionary(QMap<QString, QString> contacts)
         value->setText(contactDict.value(e));
         value->setWordWrap(true);
         key->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
-        //value->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
-        //value->setFixedSize(QLabel::sizeHint());
         int count = contactGrid->rowCount();
 
         QPushButton* coverRowBtn = new QPushButton(key);
