@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
 #include <QStringList>
 #include "custombutton.h"
 #include <QAction>
@@ -10,9 +9,7 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
 
     //HomePage setup
     setWindowTitle("XCoin");
@@ -94,15 +91,6 @@ MainWindow::MainWindow(QWidget *parent)
         menuLayout->addWidget(btn);
     }
 
-
-    // Creating central separating bar
-//    QWidget* sepBar = new QWidget(this);
-//    sepBar->setStyleSheet("background-color: rgba(45,58,82,255);");
-//    sepBar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
-//    sepBar->setFixedWidth(10);
-//    mainLayout->addWidget(sepBar);
-
-
     //Creating Stacked Widget
 
     contentContainer = new QStackedWidget(mainWidget);
@@ -134,7 +122,6 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    delete ui;
 }
 
 void MainWindow::go_page(int i)
