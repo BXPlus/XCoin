@@ -230,4 +230,9 @@ Transaction Wallet::commitCoinbaseTransaction(int amount, const Block &lastBlock
 
 void Wallet::addTransactionToPoolDirect(Transaction tx) {
     myTransactionPool.addToTransactionPool(tx, getUnspentTxOuts());
+    std::vector<Transaction> aTransactions;
+    aTransactions.push_back(tx);
+    std::vector<UnspentTxOut> retVal = processTransactions(aTransactions, myUnspentTxOuts, 0);
+    myUnspentTxOuts = retVal;
+    myTransactionPool.updateTransactionPool(myUnspentTxOuts);
 }

@@ -97,9 +97,9 @@ void xcoin::Node::loadDataFromDisk() {
     if (localChainArchive.exists()){
         std::string encodedChain = localChainArchive.loadData();
         for (const Block& block: xcoin::interface::importChain(encodedChain)){
-            this->blockchain.appendBlock(block);
-            Transaction decodedTransaction = xcoin::interface::decodeTransaction(block.data);
-            wallet.addTransactionToPoolDirect(decodedTransaction);
+            //this->blockchain.appendBlock(block);
+            //Transaction decodedTransaction = xcoin::interface::decodeTransaction(block.data);
+            //wallet.addTransactionToPoolDirect(decodedTransaction);
         }
         spdlog::info("Loaded " + std::to_string(this->blockchain.length) + " blocks from local backup");
     }
@@ -369,7 +369,6 @@ bool xcoin::Node::AttemptBlockchainSync(const std::string &peerAddress, PingPong
                                     newBlockchain.appendBlock(block);
                                     Transaction decodedTransaction = xcoin::interface::decodeTransaction(block.data);
                                     wallet.addTransactionToPoolDirect(decodedTransaction);
-                                    std::cout << wallet.getLocalBalance() << std::endl;
                                     sdkInstance->onLocalBalanceChanged(wallet.getLocalBalance());
                                 }
                                 this->blockchain.replaceChain(newBlockchain);
