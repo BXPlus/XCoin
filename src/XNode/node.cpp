@@ -255,7 +255,6 @@ bool xcoin::Node::AttemptPeerConnection(const std::string &peerAddress) {
                 this->handleIncomingPeerData(remotePeer);
             spdlog::info("Successfully synced DNS peers with " + peerAddress);
             saveDataOnDisk();
-            sdkInstance->onPeerListChanged();
             std::pair<xcoin::Node::PingPongStatus, int> pingPongStatus = AttemptPingPongSync(peerAddress);
             if(AttemptBlockchainSync(peerAddress, pingPongStatus.first, pingPongStatus.second)){
                 this->peers[peerAddress].syncSuccess = true;
@@ -368,8 +367,13 @@ bool xcoin::Node::AttemptBlockchainSync(const std::string &peerAddress, PingPong
                                 std::vector<Block> newBlocks = xcoin::interface::decodeChain(getBlockchainFromHeightReply);
                                 for (const Block& block: newBlocks){
                                     newBlockchain.appendBlock(block);
+                                    Transaction decodedTransaction = xcoin::interface::decodeTransaction(block.data);
+                                    wallet.addTransactionToPoolDirect(decodedTransaction);
+                                    std::cout << wallet.getLocalBalance() << std::endl;
+                                    sdkInstance->onLocalBalanceChanged(wallet.getLocalBalance());
                                 }
                                 this->blockchain.replaceChain(newBlockchain);
+
                                 this->saveDataOnDisk();
                                 // TODO: Decide whether to merge depending on stake (later)
                                 return true;
@@ -400,6 +404,10 @@ bool xcoin::Node::AttemptBlockchainSync(const std::string &peerAddress, PingPong
             if (getBlockchainFromHeightStatus.ok()){
                 for (const xcoin::interchange::Block& pblock: getBlockchainFromHeightReply.blocks()){
                     Block block = xcoin::interface::decodeBlock(pblock);
+                    Transaction decodedTransaction = xcoin::interface::decodeTransaction(block.data);
+                    wallet.addTransactionToPoolDirect(decodedTransaction);
+                    std::cout << wallet.getLocalBalance() << std::endl;
+                    sdkInstance->onLocalBalanceChanged(wallet.getLocalBalance());
                     this->blockchain.appendBlock(block);
                 }
                 return true;
@@ -484,14 +492,15 @@ bool xcoin::Node::registerAndCommitTransaction(const std::string& address, int a
         spdlog::warn("Invalid transaction processed");
         return false;
     }
-    for (auto it = this->peers.begin(); it != this->peers.end(); it++){
+    for (auto & peer : this->peers){
         grpc::ClientContext blockChangeContext;
         xcoin::interchange::NewBlockHandshake blockChangeRequest;
         xcoin::interchange::Block updatedBlock = xcoin::interface::encodeBlock(newBlock);
         blockChangeRequest.mutable_block()->CopyFrom(updatedBlock);
         xcoin::interchange::PingHandshake blockChangeReply;
-        blockChangeContext.set_credentials(generateCredentialsForContext(it->first));
-        auto status = it->second.syncStub->NotifyBlockChange(&blockChangeContext, blockChangeRequest, &blockChangeReply);
+        blockChangeContext.set_credentials(generateCredentialsForContext(peer.first));
+        std::cout << "will send" << std::endl;
+        auto status = peer.second.syncStub->NotifyBlockChange(&blockChangeContext, blockChangeRequest, &blockChangeReply);
         if(status.ok()){
             spdlog::info("Update successful");
         }
