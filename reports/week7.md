@@ -19,7 +19,7 @@ This week:
 
 @Laura Galindo 
 
-Right now, the nodes are not authentified: there is no way to know a peer is legit. Therefore, we wish to send a token along every request to give us a way to verify that the person making a request is running a genuine node. So this week, I wrote the functions `generate` and `check` in `XNode/node.cpp` to create and check tokens sent and received from a specific peer. I used JSON Web Tokens (JWT) as it is a common method, and for this I used the library `jwt-cpp`, as it is quite hard and takes a lot of time for a beginner to implement from scratch.
+Right now, the nodes are not authentified: there is no way to know a peer is legit. Therefore, we wish to send a token along every request to give us a way to verify that the person making a request is running a genuine node. So this week, I wrote the functions `generate_jwt` and `verify_jwt` in `XNode/node.cpp` to create and check tokens sent and received from a specific peer. I used JSON Web Tokens (JWT) as it is a common method, and for this I used the library `jwt-cpp`, as it is quite hard and takes a lot of time for a beginner to implement from scratch.
 
 I also ran Cppcheck across all the project folders to check the validity of our files’ code, and contacted my collegues who wrote code where there were issues, so that they could make corrections.
 
