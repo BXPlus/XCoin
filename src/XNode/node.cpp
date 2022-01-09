@@ -469,33 +469,34 @@ std::shared_ptr<grpc::CallCredentials> xcoin::Node::generateCredentialsForContex
 * @return true if adding the transaction was successful
 */
 bool xcoin::Node::registerAndCommitTransaction(const std::string& address, int amount, bool coinbase) {
+    Block newBlock = blockchain.genesisBlock;
     try{
         Transaction tx;
         if (coinbase){
             tx = wallet.commitCoinbaseTransaction(amount, blockchain.getLatestBlock());
         }else tx = wallet.commitTransaction(address, amount, blockchain.getLatestBlock());
         std::string encodedTx = xcoin::interface::encodeTransaction(tx);
-        Block newBlock = blockchain.generateNextBlock(encodedTx, blockchain.getLatestBlock().difficulty, wallet.getLocalBalance(), wallet.getPublicFromWallet());
+        newBlock = blockchain.generateNextBlock(encodedTx, blockchain.getLatestBlock().difficulty, wallet.getLocalBalance(), wallet.getPublicFromWallet());
         blockchain.appendBlock(newBlock);
         spdlog::info("Added new transaction to chain. Will broadcast");
         sdkInstance->onLocalBalanceChanged(wallet.getLocalBalance());
-        for (auto it = this->peers.begin(); it != this->peers.end(); it++){
-            grpc::ClientContext blockChangeContext;
-            xcoin::interchange::NewBlockHandshake blockChangeRequest;
-            xcoin::interchange::Block updatedBlock = xcoin::interface::encodeBlock(newBlock);
-            blockChangeRequest.mutable_block()->CopyFrom(updatedBlock);
-            xcoin::interchange::PingHandshake blockChangeReply;
-            blockChangeContext.set_credentials(generateCredentialsForContext(it->first));
-            auto status = it->second.syncStub->NotifyBlockChange(&blockChangeContext, blockChangeRequest, &blockChangeReply);
-            if(status.ok()){
-                spdlog::info("Update successful");
-            }
-        }
-        return true;
     }catch (...){
         spdlog::warn("Invalid transaction processed");
         return false;
     }
+    for (auto it = this->peers.begin(); it != this->peers.end(); it++){
+        grpc::ClientContext blockChangeContext;
+        xcoin::interchange::NewBlockHandshake blockChangeRequest;
+        xcoin::interchange::Block updatedBlock = xcoin::interface::encodeBlock(newBlock);
+        blockChangeRequest.mutable_block()->CopyFrom(updatedBlock);
+        xcoin::interchange::PingHandshake blockChangeReply;
+        blockChangeContext.set_credentials(generateCredentialsForContext(it->first));
+        auto status = it->second.syncStub->NotifyBlockChange(&blockChangeContext, blockChangeRequest, &blockChangeReply);
+        if(status.ok()){
+            spdlog::info("Update successful");
+        }
+    }
+    return true;
 }
 
 void xcoin::Node::setSdkInstance(XNodeSDK *newSdkInstance) {
